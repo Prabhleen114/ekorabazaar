@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${product.name} | Ekora Wholesale`,
     description: product.description,
+    keywords: product.tags || [],
     openGraph: {
       title: `${product.name} - Buy Wholesale on Ekora`,
       description: product.description,
@@ -44,6 +45,7 @@ export default async function ProductDetailsPage({ params }: Props) {
     "name": product.name,
     "image": product.image,
     "description": product.description,
+    "keywords": product.tags ? product.tags.join(', ') : "",
     "offers": {
       "@type": "AggregateOffer",
       "offerCount": product.tiers.length,
@@ -62,15 +64,18 @@ export default async function ProductDetailsPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* Visually hidden SEO tags */}
+      {product.tags && (
+        <div className="sr-only" aria-hidden="true">
+          {product.tags.join(', ')}
+        </div>
+      )}
 
       <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12">
         {/* Product Image Gallery (Mock) */}
         <div className="w-full md:w-1/2">
-          <div className="aspect-square bg-white rounded-3xl border border-brand-linen flex items-center justify-center p-8 sticky top-32 shadow-sm">
-             <div className="text-center opacity-30">
-               <span className="text-4xl font-bold font-serif mb-4 block">Ekora</span>
-               <p>[Product Image Placeholder]</p>
-             </div>
+          <div className="aspect-square bg-white rounded-3xl border border-brand-linen flex items-center justify-center p-8 sticky top-32 shadow-sm overflow-hidden relative">
+             <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-contain p-8" />
           </div>
         </div>
 
