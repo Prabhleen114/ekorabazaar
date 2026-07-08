@@ -20,9 +20,9 @@ export default function ShopPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("recommended");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    // Fetch mock products
     fetch("/api/products")
       .then(res => res.json())
       .then(data => {
@@ -31,7 +31,20 @@ export default function ShopPage() {
       });
   }, []);
 
-  const sortedProducts = [...products].sort((a, b) => {
+  const allCategories = Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort();
+
+  const toggleCategory = (cat: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
+    );
+  };
+
+  const filteredProducts = products.filter(p => {
+    if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
+    return true;
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === "price_asc") return a.price - b.price;
     if (sortBy === "discount_desc") return b.maxDiscount - a.maxDiscount;
     return 0; // recommended
@@ -54,19 +67,21 @@ export default function ShopPage() {
               {/* Category Filter */}
               <div>
                 <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Category</h4>
-                <div className="space-y-2 text-sm text-brand-charcoal/70">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Fragrances
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Resins
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Waxes
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Molds
-                  </label>
+                <div className="space-y-2 text-sm text-brand-charcoal/70 max-h-64 overflow-y-auto pr-2">
+                  {allCategories.map((cat, idx) => (
+                    <label key={idx} className="flex items-center gap-2 cursor-pointer group">
+                      <input 
+                        type="checkbox" 
+                        checked={selectedCategories.includes(cat)}
+                        onChange={() => toggleCategory(cat)}
+                        className="rounded text-brand-orange focus:ring-brand-orange shrink-0" 
+                      /> 
+                      <span className="line-clamp-1 group-hover:text-brand-orange transition-colors" title={cat}>{cat}</span>
+                    </label>
+                  ))}
+                  {allCategories.length === 0 && !loading && (
+                    <span className="text-xs italic opacity-50">No categories found.</span>
+                  )}
                 </div>
               </div>
 
@@ -107,7 +122,7 @@ export default function ShopPage() {
           {/* Top Bar: Sort & Results */}
           <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen mb-6">
             <p className="text-sm text-brand-charcoal/60 font-medium mb-4 sm:mb-0">
-              Showing {products.length} products
+              Showing {sortedProducts.length} products
             </p>
             <div className="flex items-center gap-3 text-sm">
               <span className="text-brand-charcoal/60 font-medium">Sort by:</span>
