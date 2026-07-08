@@ -53,7 +53,7 @@ export default function MysteryCohort({ count = 84 }: { count?: number }) {
 
             <div className="pt-4">
               <Link 
-                href="/start-selling"
+                href="/sell/start-selling"
                 className="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-terracotta text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 shadow-lg shadow-brand-orange/20"
               >
                 <Lock className="w-4 h-4" /> Secure Your Sourcing Storefront Key

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Footer() {
+export default function BuyerFooter() {
   return (
     <footer className="bg-brand-bg border-t border-brand-linen py-16">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/sell" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-4">
               <Image 
                 src="/images/logo.jpg" 
                 alt="Ekora Bazaar" 
@@ -19,7 +19,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-brand-charcoal/60 mb-6 max-w-xs leading-relaxed">
-              India&apos;s First Creator Commerce Platform. We build the infrastructure for independent creators to thrive.
+              India&apos;s Premium Craft Supplies Marketplace. Batch-tested, reliable raw materials for serious creators.
             </p>
             <div className="flex items-center gap-4 text-sm font-medium text-brand-charcoal/50">
               <a href="https://instagram.com/ekorabazaar" target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal transition-colors">Instagram</a>
@@ -28,14 +28,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Platform */}
+          {/* Shop */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Platform</h4>
+            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Shop</h4>
             <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
-              <li><Link href="/sell/platform" className="hover:text-brand-charcoal transition-colors">Product Preview</Link></li>
-              <li><Link href="/sell/categories" className="hover:text-brand-charcoal transition-colors">Categories</Link></li>
-              <li><Link href="/sell/how-it-works" className="hover:text-brand-charcoal transition-colors">How it Works</Link></li>
-              <li><Link href="/sell/start-selling" className="hover:text-brand-charcoal transition-colors">Pricing</Link></li>
+              <li><Link href="/shop?category=fragrances" className="hover:text-brand-charcoal transition-colors">Fragrances</Link></li>
+              <li><Link href="/shop?category=resins" className="hover:text-brand-charcoal transition-colors">Resins & Epoxies</Link></li>
+              <li><Link href="/shop?category=waxes" className="hover:text-brand-charcoal transition-colors">Waxes</Link></li>
+              <li><Link href="/shop?category=molds" className="hover:text-brand-charcoal transition-colors">Silicone Molds</Link></li>
             </ul>
           </div>
 
@@ -43,10 +43,21 @@ export default function Footer() {
           <div>
             <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Company</h4>
             <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
-              <li><Link href="/sell/why-ekora" className="hover:text-brand-charcoal transition-colors">Our Story</Link></li>
-              <li><Link href="/sell/faq" className="hover:text-brand-charcoal transition-colors">FAQ</Link></li>
+              <li><Link href="/about" className="hover:text-brand-charcoal transition-colors">About Us</Link></li>
+              <li><Link href="/help" className="hover:text-brand-charcoal transition-colors">Help Center</Link></li>
               <li><span className="text-brand-charcoal/30 cursor-not-allowed">Careers — Coming Soon</span></li>
               <li><span className="text-brand-charcoal/30 cursor-not-allowed">Press — Coming Soon</span></li>
+            </ul>
+          </div>
+
+          {/* Supplier Relations */}
+          <div>
+            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Supplier Relations</h4>
+            <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
+              <li><Link href="/sell" className="hover:text-brand-charcoal transition-colors text-brand-orange">Become a Seller</Link></li>
+              <li><Link href="/sell/platform" className="hover:text-brand-charcoal transition-colors">Seller Tools</Link></li>
+              <li><Link href="/sell/faq" className="hover:text-brand-charcoal transition-colors">Supplier FAQ</Link></li>
+              <li><Link href="/sell/why-ekora" className="hover:text-brand-charcoal transition-colors">Why Sell With Us</Link></li>
             </ul>
           </div>
 
@@ -62,11 +73,11 @@ export default function Footer() {
                 <a href="tel:+917783053603" className="hover:text-brand-charcoal transition-colors">+91 7783053603</a>
               </p>
               <p>
-                <a href="mailto:techekora@gmail.com" className="hover:text-brand-charcoal transition-colors">techekora@gmail.com</a>
+                <a href="mailto:support@ekorabazaar.com" className="hover:text-brand-charcoal transition-colors">support@ekorabazaar.com</a>
               </p>
               <div className="pt-2">
                 <a 
-                  href="https://wa.me/917783053603?text=Hi%20Ekora!%20I'm%20interested%20in%20becoming%20a%20Founding%20Creator."
+                  href="https://wa.me/917783053603?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-md shadow-emerald-600/10 transition-all duration-200"
@@ -79,22 +90,19 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Legal</h4>
-            <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
-              <li><Link href="/terms" className="hover:text-brand-charcoal transition-colors">Terms of Service</Link></li>
-              <li><Link href="/privacy" className="hover:text-brand-charcoal transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/refund-policy" className="hover:text-brand-charcoal transition-colors">Refund Policy</Link></li>
-              <li><Link href="/creator-guidelines" className="hover:text-brand-charcoal transition-colors">Creator Guidelines</Link></li>
-            </ul>
-          </div>
         </div>
 
+        {/* Legal */}
         <div className="pt-8 border-t border-brand-linen flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium text-brand-charcoal/40">
-          <p>© 2025 Ekora. All rights reserved.</p>
-          <p>Made in India</p>
+          <ul className="flex flex-wrap gap-4 md:gap-6">
+            <li><Link href="/terms" className="hover:text-brand-charcoal transition-colors">Terms of Service</Link></li>
+            <li><Link href="/privacy" className="hover:text-brand-charcoal transition-colors">Privacy Policy</Link></li>
+            <li><Link href="/refund-policy" className="hover:text-brand-charcoal transition-colors">Refund Policy</Link></li>
+          </ul>
+          <div className="flex gap-4">
+            <p>© 2025 Ekora. All rights reserved.</p>
+            <p>Made in India</p>
+          </div>
         </div>
       </div>
     </footer>

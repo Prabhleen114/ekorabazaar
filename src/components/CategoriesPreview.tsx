@@ -47,7 +47,7 @@ export default function CategoriesPreview() {
 
         <div className="text-center">
           <Link
-            href="/categories"
+            href="/sell/categories"
             className="inline-flex items-center justify-center bg-brand-linen hover:bg-brand-charcoal/10 text-brand-charcoal px-6 py-3 rounded-xl font-semibold transition-colors"
           >
             Explore All Categories →

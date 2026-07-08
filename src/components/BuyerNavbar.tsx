@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar() {
+export default function BuyerNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,7 +18,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -28,11 +27,9 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Platform", href: "/sell/platform" },
-    { name: "Categories", href: "/sell/categories" },
-    { name: "How It Works", href: "/sell/how-it-works" },
-    { name: "Why Ekora", href: "/sell/why-ekora" },
-    { name: "FAQ", href: "/sell/faq" },
+    { name: "Shop", href: "/shop" },
+    { name: "Collections", href: "/collections" },
+    { name: "About", href: "/about" },
   ];
 
   return (
@@ -46,7 +43,7 @@ export default function Navbar() {
           {/* Left: Brand */}
           <div className="flex-1 flex justify-start">
             <Link
-              href="/sell"
+              href="/"
               className="flex items-center"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -78,10 +75,10 @@ export default function Navbar() {
           {/* Right: CTA & Mobile Toggle */}
           <div className="flex-1 flex justify-end items-center gap-4">
             <Link
-              href="/sell/start-selling"
-              className="hidden md:inline-flex items-center justify-center bg-brand-orange hover:bg-brand-terracotta text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all shadow-md shadow-brand-orange/10 hover:scale-[1.02]"
+              href="/sell"
+              className="hidden md:inline-flex items-center justify-center bg-brand-charcoal hover:bg-brand-charcoal/80 text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all shadow-md"
             >
-              Start Selling
+              Become a Seller
             </Link>
 
             <button
@@ -120,11 +117,11 @@ export default function Navbar() {
             
             <div className="pb-12 mt-auto">
               <Link
-                href="/sell/start-selling"
-                className="flex items-center justify-center bg-brand-orange text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-terracotta transition-all shadow-lg shadow-brand-orange/15 text-center"
+                href="/sell"
+                className="flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-charcoal/90 transition-all shadow-lg text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Start Selling Today
+                Become a Seller
               </Link>
             </div>
           </motion.div>

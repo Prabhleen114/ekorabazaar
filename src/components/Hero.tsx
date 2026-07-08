@@ -40,13 +40,13 @@ export default function Hero({ count = 84 }: { count?: number }) {
 
           <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
             <Link
-              href="/start-selling"
+              href="/sell/start-selling"
               className="w-full sm:w-auto bg-brand-orange text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-brand-terracotta hover:scale-[1.02] active:scale-[0.98] transition-all text-center shadow-lg shadow-brand-orange/20"
             >
               Sell with us
             </Link>
             <Link
-              href="/platform"
+              href="/sell/platform"
               className="group flex items-center justify-center gap-2 text-brand-charcoal/60 hover:text-brand-charcoal font-medium transition-all duration-200"
             >
               See the platform

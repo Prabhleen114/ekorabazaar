@@ -49,7 +49,7 @@ export default function EarlyAccess() {
               </div>
 
               <Link
-                href="/start-selling"
+                href="/sell/start-selling"
                 className="w-full inline-flex items-center justify-center py-4 rounded-xl bg-brand-orange hover:bg-brand-terracotta text-white font-semibold text-lg transition-all duration-200 shadow-lg shadow-brand-orange/20 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Apply for Early Access →
