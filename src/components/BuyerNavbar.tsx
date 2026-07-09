@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BuyerNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +63,118 @@ export default function BuyerNavbar() {
 
           {/* Center: Desktop Nav */}
           <nav className="hidden md:flex justify-center items-center gap-8">
-            {navLinks.map((link) => (
+            <div className="relative">
+              <button
+                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors ${
+                  isCategoriesOpen ? "text-brand-orange" : "text-brand-charcoal/60 hover:text-brand-charcoal"
+                }`}
+              >
+                Categories
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? "rotate-180 text-brand-orange" : ""}`} />
+              </button>
+
+              <AnimatePresence>
+                {isCategoriesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 15 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-[40%] mt-6 w-[960px] bg-white shadow-2xl rounded-2xl border border-brand-linen flex overflow-hidden z-50 text-left"
+                  >
+                    {/* Left Sidebar */}
+                    <div className="w-64 bg-brand-bg p-8 shrink-0 border-r border-brand-linen">
+                      <h3 className="font-serif font-bold text-lg text-brand-charcoal mb-6 uppercase tracking-wider">Shop By Category</h3>
+                      <ul className="space-y-4">
+                        {['My Account', 'Contact Us', 'Blog', 'White Label & Private Label', 'Amazon Order'].map(item => (
+                          <li key={item}>
+                            <Link href="#" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                              <span className="w-1 h-1 rounded-full bg-brand-charcoal/40"></span> {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Columns */}
+                    <div className="flex-1 p-8 grid grid-cols-3 gap-8">
+                      {/* Column 1 */}
+                      <div className="space-y-8">
+                        <div>
+                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Soap Making Material</h4>
+                          <ul className="space-y-3">
+                            {['Melt & Pour Soap Base', 'Essential Oils', 'Cosmetic Liquid & Mica Colors', 'Fragrance Oils', 'Silicon Moulds'].map(item => (
+                              <li key={item}>
+                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Candle Making Material</h4>
+                          <ul className="space-y-3">
+                            {['Waxes and Butters', 'Candle Mould'].map(item => (
+                              <li key={item}>
+                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Column 2 */}
+                      <div className="space-y-8">
+                        <div>
+                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">All Silicon Molds</h4>
+                          <ul className="space-y-3">
+                            {['Candle Mould', 'Chocolate Mould', 'Fondant Molds', 'Soap Mould', 'Tube & Loaf Mould', 'Resin Mold'].map(item => (
+                              <li key={item}>
+                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Popular Categories</h4>
+                          <ul className="space-y-3">
+                            {['Home Decor', 'Natural Extracts'].map(item => (
+                              <li key={item}>
+                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div>
+                        <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">All Other Categories</h4>
+                        <ul className="space-y-3">
+                          {['Liquid and Cream Base', 'Dry Flowers', 'Preservative & Bulk Chemical', 'Fruit Flavour', 'Steam Distilled Hydrosols', 'Cold Processed Soaps', 'Office Product', 'DIY Tools', 'Other Item', 'Chocolate'].map(item => (
+                            <li key={item}>
+                              <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {navLinks.filter(l => l.name !== "Categories").map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
