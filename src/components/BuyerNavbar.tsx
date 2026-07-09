@@ -27,9 +27,10 @@ export default function BuyerNavbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Shop", href: "/shop" },
-    { name: "Collections", href: "/collections" },
-    { name: "About", href: "/about" },
+    { name: "Categories", href: "/shop" },
+    { name: "Free Formulations", href: "/formulations" },
+    { name: "Sample Kits", href: "/sample-kits" },
+    { name: "A to Z Classes", href: "/classes" },
   ];
 
   return (
