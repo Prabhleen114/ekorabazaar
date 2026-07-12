@@ -194,7 +194,7 @@ export default function ClassesPage() {
       <BuyerNavbar />
 
       {/* HERO SECTION (Attention) */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/95 to-brand-bg/50 z-10" />
           <Image 
@@ -227,7 +227,7 @@ export default function ClassesPage() {
       </section>
 
       {/* ABOUT SECTION (Interest) */}
-      <section className="py-24 bg-white border-y border-brand-linen">
+      <section className="py-16 md:py-20 bg-white border-y border-brand-linen">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
@@ -257,7 +257,7 @@ export default function ClassesPage() {
       </section>
 
       {/* COURSES SECTION (Desire) */}
-      <section id="courses" className="py-24 bg-brand-bg">
+      <section id="courses" className="py-16 md:py-20 bg-brand-bg">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal mb-4">Masterclass Collection</h2>
@@ -318,7 +318,7 @@ export default function ClassesPage() {
       </section>
 
       {/* KITS SECTION (Desire/Action) */}
-      <section className="py-24 bg-white border-t border-brand-linen">
+      <section className="py-16 md:py-20 bg-white border-t border-brand-linen">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal mb-4">Professional Supply Kits</h2>
@@ -357,7 +357,7 @@ export default function ClassesPage() {
       </section>
 
       {/* CTA SECTION (Action) */}
-      <section className="py-24 bg-brand-charcoal text-white text-center px-6 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-brand-charcoal text-white text-center px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute -top-[50%] -left-[10%] w-[70%] h-[200%] bg-brand-orange rounded-full blur-[120px] mix-blend-screen" />
         </div>
