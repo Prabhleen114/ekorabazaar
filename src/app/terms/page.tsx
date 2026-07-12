@@ -1,14 +1,57 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Terms of Service — Ekora",
-  description: "Terms and conditions for creators using the Ekora platform.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service — Ekora Bazaar",
+  description: "Terms and conditions for buyers and creators using the Ekora Bazaar platform.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms of Service — Ekora Bazaar",
+    description: "Terms and conditions for buyers and creators using the Ekora Bazaar platform.",
+    url: "https://www.ekorabazaar.in/terms",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service — Ekora Bazaar",
+    description: "Terms and conditions for buyers and creators using the Ekora Bazaar platform.",
+  },
 };
 
 export default function TermsPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Terms of Service",
+        item: "https://www.ekorabazaar.in/terms",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Terms of Service</h1>

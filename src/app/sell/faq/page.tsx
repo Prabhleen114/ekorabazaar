@@ -3,14 +3,109 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import FAQAccordion from "@/components/FAQAccordion";
 
-export const metadata = {
-  title: "Frequently Asked Questions — Ekora",
-  description: "Everything you need to know about Ekora, the Early Access program, and how we help creators grow.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions — Sell on Ekora",
+  description:
+    "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, zero DMs checkout, and wholesale pricing.",
+  keywords: [
+    "Ekora FAQ",
+    "how to sell on Ekora questions",
+    "Instagram seller FAQ India",
+    "Ekora creator marketplace help",
+  ],
+  alternates: {
+    canonical: "/sell/faq",
+  },
+  openGraph: {
+    title: "Frequently Asked Questions — Sell on Ekora",
+    description:
+      "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, and wholesale pricing.",
+    url: "https://www.ekorabazaar.in/sell/faq",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Frequently Asked Questions — Sell on Ekora",
+    description:
+      "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, and wholesale pricing.",
+  },
 };
 
 export default function FAQPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Who can apply to sell on Ekora?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Any independent creator or artisan in India selling handmade, crafted, or custom items on Instagram can apply.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long does the verification process take?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Most creator applications are reviewed and approved within 48 hours.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does Ekora handle payments and orders?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ekora provides an automated storefront with secure checkout, removing the need to manage orders via DMs.",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sell on Ekora",
+        item: "https://www.ekorabazaar.in/sell",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "FAQ",
+        item: "https://www.ekorabazaar.in/sell/faq",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}

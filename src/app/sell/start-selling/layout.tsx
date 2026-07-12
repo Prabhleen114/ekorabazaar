@@ -1,35 +1,35 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
+  title: "Apply to Sell — Early Access Seller Application | Ekora",
   description:
-    "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows designed for independent sellers.",
+    "Apply to become a verified seller on Ekora Bazaar. Setup your creator storefront in 2 minutes and start selling to buyers across India.",
   keywords: [
-    "Ekora creator platform",
-    "Instagram seller tools India",
-    "wholesale creator storefront",
+    "Ekora seller application",
+    "apply to sell handmade products",
+    "register as Instagram creator seller",
   ],
   alternates: {
-    canonical: "/sell/platform",
+    canonical: "/sell/start-selling",
   },
   openGraph: {
-    title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
+    title: "Apply to Sell — Early Access Seller Application | Ekora",
     description:
-      "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows.",
-    url: "https://www.ekorabazaar.in/sell/platform",
+      "Apply to become a verified seller on Ekora Bazaar. Setup your creator storefront in 2 minutes.",
+    url: "https://www.ekorabazaar.in/sell/start-selling",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
+    title: "Apply to Sell — Early Access Seller Application | Ekora",
     description:
-      "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows.",
+      "Apply to become a verified seller on Ekora Bazaar. Setup your creator storefront in 2 minutes.",
   },
 };
 
-export default function PlatformLayout({
+export default function StartSellingLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -53,8 +53,8 @@ export default function PlatformLayout({
       {
         "@type": "ListItem",
         position: 3,
-        name: "Platform",
-        item: "https://www.ekorabazaar.in/sell/platform",
+        name: "Start Selling",
+        item: "https://www.ekorabazaar.in/sell/start-selling",
       },
     ],
   };

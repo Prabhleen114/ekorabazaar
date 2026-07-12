@@ -4,9 +4,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, Package, Sparkles } from "lucide-react";
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Luxury Candle-Making Classes | Ekora Bazaar",
-  description: "Join Ekora's candle-making classes. Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes like Bakery and Indian Festivities.",
+  description:
+    "Join Ekora's candle-making classes. Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes like Bakery and Indian Festivities.",
+  keywords: [
+    "candle making classes India",
+    "learn candle making online",
+    "luxury candle making workshop",
+    "professional candle course",
+    "Ekora candle classes",
+  ],
+  alternates: {
+    canonical: "/classes",
+  },
+  openGraph: {
+    title: "Luxury Candle-Making Classes | Ekora Bazaar",
+    description:
+      "Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes.",
+    url: "https://www.ekorabazaar.in/classes",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luxury Candle-Making Classes | Ekora Bazaar",
+    description:
+      "Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes.",
+  },
 };
 
 const classesData = [
@@ -136,8 +164,33 @@ const kitsData = [
 ];
 
 export default function ClassesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Classes",
+        item: "https://www.ekorabazaar.in/classes",
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <BuyerNavbar />
 
       {/* HERO SECTION (Attention) */}

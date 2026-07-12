@@ -1,14 +1,65 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Creator Guidelines — Ekora",
-  description: "Platform standards and catalog requirements for selling on Ekora.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Creator Guidelines & Selling Standards — Ekora",
+  description:
+    "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
+  keywords: [
+    "Ekora creator guidelines",
+    "seller standards Ekora",
+    "Instagram seller rules India",
+  ],
+  alternates: {
+    canonical: "/creator-guidelines",
+  },
+  openGraph: {
+    title: "Creator Guidelines & Selling Standards — Ekora",
+    description:
+      "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
+    url: "https://www.ekorabazaar.in/creator-guidelines",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Creator Guidelines & Selling Standards — Ekora",
+    description:
+      "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
+  },
 };
 
 export default function CreatorGuidelinesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Creator Guidelines",
+        item: "https://www.ekorabazaar.in/creator-guidelines",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Creator Guidelines</h1>

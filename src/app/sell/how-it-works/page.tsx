@@ -12,12 +12,60 @@ import {
   Headphones 
 } from "lucide-react";
 
-export const metadata = {
-  title: "How It Works — Ekora",
-  description: "Your journey from Instagram creator to Ekora seller.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "How It Works — Ekora Seller Journey",
+  description:
+    "Your journey from Instagram creator to Ekora seller. Learn how we handle storefront setup, payments, and fulfillment.",
+  keywords: [
+    "how to sell on Ekora",
+    "Instagram seller onboarding India",
+    "creator commerce process",
+  ],
+  alternates: {
+    canonical: "/sell/how-it-works",
+  },
+  openGraph: {
+    title: "How It Works — Ekora Seller Journey",
+    description: "Your journey from Instagram creator to Ekora seller.",
+    url: "https://www.ekorabazaar.in/sell/how-it-works",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How It Works — Ekora Seller Journey",
+    description: "Your journey from Instagram creator to Ekora seller.",
+  },
 };
 
 export default function HowItWorksPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sell on Ekora",
+        item: "https://www.ekorabazaar.in/sell",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "How It Works",
+        item: "https://www.ekorabazaar.in/sell/how-it-works",
+      },
+    ],
+  };
   const steps = [
     {
       icon: FileText,
@@ -67,6 +115,12 @@ export default function HowItWorksPage() {
 
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}

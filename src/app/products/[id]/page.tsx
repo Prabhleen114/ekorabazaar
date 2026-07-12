@@ -21,11 +21,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${product.name} | Ekora Wholesale`,
     description: product.description,
-    keywords: product.tags || [],
+    keywords: product.tags || [product.name, product.category, "wholesale raw materials", "Ekora"],
+    alternates: {
+      canonical: `/products/${id}`,
+    },
     openGraph: {
       title: `${product.name} - Buy Wholesale on Ekora`,
       description: product.description,
+      url: `https://www.ekorabazaar.in/products/${id}`,
       type: "article",
+      images: [
+        {
+          url: product.image || "/og-image.jpg",
+          width: 800,
+          height: 800,
+          alt: product.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} - Buy Wholesale on Ekora`,
+      description: product.description,
+      images: [product.image || "/og-image.jpg"],
     },
   };
 }
@@ -55,6 +73,31 @@ export default async function ProductDetailsPage({ params }: Props) {
     }
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.ekorabazaar.in"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": "https://www.ekorabazaar.in/shop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.name,
+        "item": `https://www.ekorabazaar.in/products/${product.id}`
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
@@ -63,6 +106,10 @@ export default async function ProductDetailsPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Visually hidden SEO tags */}
       {product.tags && (

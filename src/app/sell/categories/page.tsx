@@ -4,25 +4,84 @@ import Link from "next/link";
 import Image from "next/image";
 import { Gift } from "lucide-react";
 
-export const metadata = {
-  title: "Categories — Ekora",
-  description: "Explore the wide range of categories available on Ekora's creator marketplace.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Creator Categories — Sell Your Handmade Products on Ekora",
+  description:
+    "Explore creator categories on Ekora — resin art, home decor, candles, crochet, pottery, jewelry, paintings, and custom gifts.",
+  keywords: [
+    "sell resin art India",
+    "sell handmade decor online",
+    "sell crochet items India",
+    "sell handmade candles India",
+    "Ekora categories",
+  ],
+  alternates: {
+    canonical: "/sell/categories",
+  },
+  openGraph: {
+    title: "Creator Categories — Sell Your Handmade Products on Ekora",
+    description:
+      "Explore creator categories on Ekora — resin art, home decor, candles, crochet, pottery, jewelry, paintings, and custom gifts.",
+    url: "https://www.ekorabazaar.in/sell/categories",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Creator Categories — Sell Your Handmade Products on Ekora",
+    description:
+      "Explore creator categories on Ekora — resin art, home decor, candles, crochet, pottery, jewelry, paintings, and custom gifts.",
+  },
 };
 
 export default function CategoriesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sell on Ekora",
+        item: "https://www.ekorabazaar.in/sell",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Categories",
+        item: "https://www.ekorabazaar.in/sell/categories",
+      },
+    ],
+  };
+
   const categories = [
     { name: "Resin Art", image: "/images/resin_art.png", desc: "Custom resin trays, coasters, and preserved items." },
     { name: "Home Decor", image: "/images/home_decor.png", desc: "Wall art, macrame, and decorative interior pieces." },
-    { name: "Candles", image: "/images/candles.png", desc: "Hand-poured soy, beeswax, and decorative candles." },
-    { name: "Pottery", image: "/images/pottery.png", desc: "Hand-thrown ceramics, mugs, and clay creations." },
-    { name: "Jewelry", image: "/images/jewelry.png", desc: "Handmade necklaces, earrings, and custom pieces." },
-    { name: "Crochet", image: "/images/crochet.png", desc: "Hand-knit amigurumi, clothing, and accessories." },
+    { name: "Candles", image: "/images/candles.png", desc: "Soy candles, beeswax pillars, and scented melts." },
+    { name: "Crochet", image: "/images/crochet.png", desc: "Amigurumi toys, wearables, and cozy accessories." },
+    { name: "Pottery", image: "/images/pottery.png", desc: "Hand-thrown ceramic mugs, bowls, and vases." },
+    { name: "Jewelry", image: "/images/jewelry.png", desc: "Polymer clay earrings, beaded necklaces, and silver." },
     { name: "Paintings", image: "/images/paintings.png", desc: "Original canvas, watercolor, and digital art prints." },
     { name: "Custom Gifts", icon: Gift, desc: "Personalized hampers and made-to-order gifts." },
   ];
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}

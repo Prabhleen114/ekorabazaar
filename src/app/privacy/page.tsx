@@ -1,14 +1,57 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Privacy Policy — Ekora",
-  description: "How we collect, use, and protect your information at Ekora.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy — Ekora Bazaar",
+  description: "How we collect, use, and protect your information at Ekora Bazaar.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy — Ekora Bazaar",
+    description: "How we collect, use, and protect your information at Ekora Bazaar.",
+    url: "https://www.ekorabazaar.in/privacy",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — Ekora Bazaar",
+    description: "How we collect, use, and protect your information at Ekora Bazaar.",
+  },
 };
 
 export default function PrivacyPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Privacy Policy",
+        item: "https://www.ekorabazaar.in/privacy",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Privacy Policy</h1>

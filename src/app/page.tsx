@@ -3,14 +3,63 @@ import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import { CheckCircle2, FlaskConical, FileText, ArrowRight, Package } from "lucide-react";
 
-export const metadata = {
-  title: "Ekora | Premium Raw Materials for Creators",
-  description: "Batch-tested, reliable craft supplies for candles, resins, and soaps.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+  description:
+    "India's premier wholesale marketplace for creators. Buy batch-tested raw materials for candles, resins, soaps, and craft supplies directly at wholesale prices.",
+  keywords: [
+    "raw materials India",
+    "wholesale craft supplies",
+    "candle making supplies",
+    "soap base wholesale",
+    "resin art materials",
+    "Ekora Bazaar",
+    "Ekora",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+    description:
+      "Batch-tested, reliable craft supplies for candles, resins, and soaps at wholesale prices.",
+    url: "https://www.ekorabazaar.in",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+    description:
+      "Batch-tested, reliable craft supplies for candles, resins, and soaps at wholesale prices.",
+  },
 };
 
 export default function BuyerHomePage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <BuyerNavbar />
       
       {/* Hero Section */}

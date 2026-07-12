@@ -1,14 +1,60 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Refund & Cancellation Policy — Ekora",
-  description: "Terms regarding refunds and cancellations for creators and customers.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Refund & Cancellation Policy — Ekora Bazaar",
+  description:
+    "Clear terms regarding refunds, replacements, and order cancellations for wholesale craft supplies and creator products on Ekora Bazaar.",
+  alternates: {
+    canonical: "/refund-policy",
+  },
+  openGraph: {
+    title: "Refund & Cancellation Policy — Ekora Bazaar",
+    description:
+      "Clear terms regarding refunds, replacements, and order cancellations on Ekora Bazaar.",
+    url: "https://www.ekorabazaar.in/refund-policy",
+    siteName: "Ekora Bazaar",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Refund & Cancellation Policy — Ekora Bazaar",
+    description:
+      "Clear terms regarding refunds, replacements, and order cancellations on Ekora Bazaar.",
+  },
 };
 
 export default function RefundPolicyPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.ekorabazaar.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Refund & Cancellation Policy",
+        item: "https://www.ekorabazaar.in/refund-policy",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Refund &amp; Cancellation Policy</h1>
