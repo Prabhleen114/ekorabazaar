@@ -15,7 +15,7 @@ export default function MysteryCohort({ count = 84 }: { count?: number }) {
   ];
 
   return (
-    <section className="py-24 bg-white border-t border-brand-linen relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-white border-t border-brand-linen relative overflow-hidden">
       {/* Editorial Grid Pattern Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#FAF8F5_1px,transparent_1px),linear-gradient(to_bottom,#FAF8F5_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-40 pointer-events-none" />
 

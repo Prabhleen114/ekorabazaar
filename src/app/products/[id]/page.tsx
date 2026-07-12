@@ -118,7 +118,7 @@ export default async function ProductDetailsPage({ params }: Props) {
         </div>
       )}
 
-      <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12">
+      <div className="pt-24 md:pt-28 pb-20 px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12">
         {/* Product Image Gallery (Mock) */}
         <div className="w-full md:w-1/2">
           <div className="aspect-square bg-white rounded-3xl border border-brand-linen flex items-center justify-center p-8 sticky top-32 shadow-sm overflow-hidden relative">

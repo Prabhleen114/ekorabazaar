@@ -57,7 +57,7 @@ export default function StartSellingPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 text-center border-b border-brand-linen bg-brand-bg">
+      <section className="pt-24 md:pt-28 pb-16 px-6 text-center border-b border-brand-linen bg-brand-bg">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold font-serif tracking-tight text-brand-charcoal mb-6">
             Become a Founding Creator
@@ -69,7 +69,7 @@ export default function StartSellingPage() {
       </section>
 
       {/* Application Form Section */}
-      <section className="py-24 bg-brand-bg">
+      <section className="py-16 md:py-20 bg-brand-bg">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             

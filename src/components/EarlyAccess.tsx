@@ -10,7 +10,7 @@ export default function EarlyAccess() {
   ];
 
   return (
-    <section className="bg-brand-bg border-t border-brand-linen py-24" id="early-access">
+    <section className="bg-brand-bg border-t border-brand-linen py-16 md:py-20" id="early-access">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           

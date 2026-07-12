@@ -63,7 +63,7 @@ export default function BuyerHomePage() {
       <BuyerNavbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 max-w-6xl mx-auto w-full flex-1">
+      <section className="pt-24 md:pt-28 pb-20 px-6 max-w-6xl mx-auto w-full flex-1">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold font-serif text-brand-charcoal leading-tight mb-6 tracking-tight">
             Premium Raw Materials for<br className="hidden md:block"/> Serious Creators
@@ -127,7 +127,7 @@ export default function BuyerHomePage() {
       </section>
 
       {/* Sample Kit CTA */}
-      <section className="py-24 px-6 max-w-4xl mx-auto text-center">
+      <section className="py-16 md:py-20 px-6 max-w-4xl mx-auto text-center">
         <div className="bg-brand-linen/30 rounded-[3rem] p-12 border border-brand-linen">
           <h2 className="text-3xl font-bold font-serif text-brand-charcoal mb-4">Unsure? Try a Sample Kit.</h2>
           <p className="text-brand-charcoal/70 mb-8 max-w-lg mx-auto">

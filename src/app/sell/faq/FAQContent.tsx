@@ -56,7 +56,7 @@ export default function FAQContent() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 md:pt-28 pb-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl font-bold text-zinc-900 mb-6">
             Frequently Asked Questions
@@ -69,7 +69,7 @@ export default function FAQContent() {
       </section>
 
       {/* FAQ Accordion */}
-      <section className="py-24 bg-white px-6">
+      <section className="py-16 md:py-20 bg-white px-6">
         <div className="max-w-2xl mx-auto">
           {faqs.map((faq, i) => (
             <div key={i} className="border-b border-zinc-200">

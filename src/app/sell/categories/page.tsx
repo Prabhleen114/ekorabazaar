@@ -85,7 +85,7 @@ export default function CategoriesPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 text-center">
+      <section className="pt-24 md:pt-28 pb-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold font-serif tracking-tight text-zinc-900 mb-6">
             Explore Categories
@@ -129,7 +129,7 @@ export default function CategoriesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-zinc-50 border-t border-zinc-200 text-center">
+      <section className="py-16 md:py-20 bg-zinc-50 border-t border-zinc-200 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 mb-8">
             Want to sell in these categories?

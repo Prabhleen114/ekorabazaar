@@ -32,7 +32,7 @@ export default function FormulationsPage() {
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20">
       <BuyerNavbar />
 
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 max-w-7xl mx-auto">
+      <section className="pt-24 md:pt-28 pb-16 md:pt-28 md:pt-32 md:pb-16 md:pb-20 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h4 className="text-brand-orange font-bold uppercase tracking-[0.2em] mb-4 text-sm">
             Expert Recipes

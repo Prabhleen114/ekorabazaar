@@ -72,7 +72,7 @@ export default function PlatformsPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className="pt-24 md:pt-28 pb-16 px-6 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-6 text-left">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-charcoal/50">
             Platform Blueprint
@@ -140,7 +140,7 @@ export default function PlatformsPage() {
       </section>
 
       {/* Feature Grid */}
-      <section className="py-24 bg-white border-t border-brand-linen">
+      <section className="py-16 md:py-20 bg-white border-t border-brand-linen">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-charcoal/50 mb-4 block">
             Designed for Trust
@@ -168,7 +168,7 @@ export default function PlatformsPage() {
       </section>
 
       {/* Urgency Form */}
-      <section className="py-24 bg-brand-bg border-t border-brand-linen" id="early-access">
+      <section className="py-16 md:py-20 bg-brand-bg border-t border-brand-linen" id="early-access">
         <div className="max-w-5xl mx-auto px-6 bg-brand-charcoal text-white rounded-3xl p-12 relative overflow-hidden">
           <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <div className="text-left space-y-6">

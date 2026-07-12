@@ -51,7 +51,7 @@ export default function StartSellingContent() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 md:pt-28 pb-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl font-bold text-zinc-900 mb-6">
             Become a Founding Creator
@@ -64,7 +64,7 @@ export default function StartSellingContent() {
       </section>
 
       {/* Two-column layout */}
-      <section className="py-24 bg-white px-6">
+      <section className="py-16 md:py-20 bg-white px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left — Benefits */}

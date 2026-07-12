@@ -61,7 +61,7 @@ export default function CreatorGuidelinesPage() {
         }}
       />
       <Navbar />
-      <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
+      <div className="max-w-4xl mx-auto px-6 pt-24 md:pt-28 pb-16 md:pb-20">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Creator Guidelines</h1>
         
         <div className="prose prose-zinc max-w-none text-left space-y-6 text-brand-charcoal/70">

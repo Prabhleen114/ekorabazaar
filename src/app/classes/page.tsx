@@ -194,7 +194,7 @@ export default function ClassesPage() {
       <BuyerNavbar />
 
       {/* HERO SECTION (Attention) */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-24 md:pt-28 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/95 to-brand-bg/50 z-10" />
           <Image 

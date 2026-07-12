@@ -49,7 +49,7 @@ export default async function FormulationSinglePage({ params }: { params: Promis
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20">
       <BuyerNavbar />
 
-      <main className="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+      <main className="pt-24 md:pt-28 pb-16 md:pb-20 px-6 max-w-3xl mx-auto">
         <Link 
           href="/formulations"
           className="inline-flex items-center gap-2 text-brand-charcoal/60 hover:text-brand-orange transition-colors font-medium text-sm mb-12"

@@ -89,7 +89,7 @@ export default function Transformation() {
   ];
 
   return (
-    <section className="py-24 bg-brand-bg border-t border-brand-linen relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-brand-bg border-t border-brand-linen relative overflow-hidden">
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#EADED2_1px,transparent_1px),linear-gradient(to_bottom,#EADED2_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
       
