@@ -30,7 +30,7 @@ export default function BuyerNavbar() {
   const navLinks = [
     { name: "Categories", href: "/shop" },
     { name: "Free Formulations", href: "/formulations" },
-    { name: "Sample Kits", href: "/sample-kits" },
+    { name: "Sample Kits", href: "/classes" },
     { name: "A to Z Classes", href: "/classes" },
   ];
 
@@ -89,7 +89,7 @@ export default function BuyerNavbar() {
                       <ul className="space-y-4">
                         {['My Account', 'Contact Us', 'Blog', 'White Label & Private Label', 'Amazon Order'].map(item => (
                           <li key={item}>
-                            <Link href="#" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <Link href={`/shop?category=${encodeURIComponent(item)}`} className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
                               <span className="w-1 h-1 rounded-full bg-brand-charcoal/40"></span> {item}
                             </Link>
                           </li>
@@ -106,7 +106,7 @@ export default function BuyerNavbar() {
                           <ul className="space-y-3">
                             {['Melt & Pour Soap Base', 'Essential Oils', 'Cosmetic Liquid & Mica Colors', 'Fragrance Oils', 'Silicon Moulds'].map(item => (
                               <li key={item}>
-                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
                                   <ChevronRight className="w-3 h-3 opacity-50" /> {item}
                                 </Link>
                               </li>
@@ -118,7 +118,7 @@ export default function BuyerNavbar() {
                           <ul className="space-y-3">
                             {['Waxes and Butters', 'Candle Mould'].map(item => (
                               <li key={item}>
-                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
                                   <ChevronRight className="w-3 h-3 opacity-50" /> {item}
                                 </Link>
                               </li>
@@ -134,7 +134,7 @@ export default function BuyerNavbar() {
                           <ul className="space-y-3">
                             {['Candle Mould', 'Chocolate Mould', 'Fondant Molds', 'Soap Mould', 'Tube & Loaf Mould', 'Resin Mold'].map(item => (
                               <li key={item}>
-                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
                                   <ChevronRight className="w-3 h-3 opacity-50" /> {item}
                                 </Link>
                               </li>
@@ -146,7 +146,7 @@ export default function BuyerNavbar() {
                           <ul className="space-y-3">
                             {['Home Decor', 'Natural Extracts'].map(item => (
                               <li key={item}>
-                                <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
                                   <ChevronRight className="w-3 h-3 opacity-50" /> {item}
                                 </Link>
                               </li>
@@ -161,7 +161,7 @@ export default function BuyerNavbar() {
                         <ul className="space-y-3">
                           {['Liquid and Cream Base', 'Dry Flowers', 'Preservative & Bulk Chemical', 'Fruit Flavour', 'Steam Distilled Hydrosols', 'Cold Processed Soaps', 'Office Product', 'DIY Tools', 'Other Item', 'Chocolate'].map(item => (
                             <li key={item}>
-                              <Link href="#" className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
+                              <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
                                 <ChevronRight className="w-3 h-3 opacity-50" /> {item}
                               </Link>
                             </li>

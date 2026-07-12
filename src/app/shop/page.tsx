@@ -28,6 +28,13 @@ export default function ShopPage() {
       .then(data => {
         setProducts(data);
         setLoading(false);
+        if (typeof window !== "undefined") {
+          const urlParams = new URLSearchParams(window.location.search);
+          const cat = urlParams.get("category");
+          if (cat) {
+            setSelectedCategories([cat]);
+          }
+        }
       });
   }, []);
 
