@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#ffffff"/>
+
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#0f0f0f" stroke-width="22"/>
+
+  <!-- Inner ring -->
+  <circle cx="256" cy="256" r="192" fill="none" stroke="#0f0f0f" stroke-width="8"/>
+
+  <!--
+    Geometric "E" mark — three horizontal bars + left vertical bar
+    All values are pure coordinate geometry, no font/text used.
+
+    E is built from 4 rectangles:
+      - Vertical stem: x=148–182, y=178–334  (tall vertical bar on left)
+      - Top bar:       x=148–332, y=178–212  (wide top horizontal)
+      - Mid bar:       x=148–310, y=239–266  (medium middle bar)
+      - Bottom bar:    x=148–332, y=300–334  (wide bottom horizontal)
+
+    B is built from 4 paths to the RIGHT of the E:
+      - Vertical stem: x=320–354, y=178–334
+      - Upper bump: arc from (354,178) to (354,256) curving right
+      - Lower bump: arc from (354,256) to (354,334) curving right (larger)
+      - Mid bridge:    x=320–354, y=249–263
+  -->
+
+  <!-- === E mark === -->
+  <!-- Vertical stem -->
+  <rect x="148" y="178" width="36" height="156" fill="#0f0f0f"/>
+  <!-- Top bar -->
+  <rect x="148" y="178" width="184" height="34" fill="#0f0f0f"/>
+  <!-- Mid bar -->
+  <rect x="148" y="239" width="154" height="34" fill="#0f0f0f"/>
+  <!-- Bottom bar -->
+  <rect x="148" y="300" width="184" height="34" fill="#0f0f0f"/>
+
+  <!-- === B mark === -->
+  <!-- B vertical stem — overlaps top/mid/bottom bars of E for interlocking effect -->
+  <rect x="320" y="178" width="36" height="156" fill="#0f0f0f"/>
+  <!-- B upper bump — semicircle arc -->
+  <path d="
+    M 356,178
+    L 356,255
+    C 420,255 420,178 356,178
+    Z
+  " fill="#0f0f0f"/>
+  <!-- B lower bump — larger semicircle arc -->
+  <path d="
+    M 356,257
+    L 356,334
+    C 432,334 432,257 356,257
+    Z
+  " fill="#0f0f0f"/>
+
+  <!-- === Dot / period mark centered at bottom — artisan stamp detail === -->
+  <circle cx="256" cy="388" r="10" fill="#0f0f0f"/>
+
+  <!-- === Small EB label arcs at top (decorative dots) === -->
+  <circle cx="196" cy="128" r="5" fill="#0f0f0f"/>
+  <circle cx="256" cy="118" r="5" fill="#0f0f0f"/>
+  <circle cx="316" cy="128" r="5" fill="#0f0f0f"/>
+</svg>
