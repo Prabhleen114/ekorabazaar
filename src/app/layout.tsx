@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -161,6 +162,9 @@ export default function RootLayout({
       >
         {children}
         <WhatsAppButton />
+        {process.env.NODE_ENV === "production" && (
+          <GoogleAnalytics gaId="G-YTRDDR6JBB" />
+        )}
       </body>
     </html>
   );
