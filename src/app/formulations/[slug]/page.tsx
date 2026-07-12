@@ -23,9 +23,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const data: Formulation[] = dataRaw as Formulation[];
-  const formulation = data.find(f => (f.url.split("/").pop() || "") === params.slug);
+  const formulation = data.find(f => (f.url.split("/").pop() || "") === slug);
 
   if (!formulation) return { title: "Not Found" };
   
@@ -35,10 +36,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function FormulationSinglePage({ params }: { params: { slug: string } }) {
+export default async function FormulationSinglePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const data: Formulation[] = dataRaw as Formulation[];
   
-  const formulation = data.find(f => (f.url.split("/").pop() || "") === params.slug);
+  const formulation = data.find(f => decodeURIComponent(f.url.split("/").pop() || "") === decodeURIComponent(slug));
 
   if (!formulation) {
     notFound();
