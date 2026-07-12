@@ -2,10 +2,9 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import fs from "fs";
-import path from "path";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import dataRaw from "@/lib/data/formulations.json";
 
 type Formulation = {
   title: string;
@@ -17,8 +16,7 @@ type Formulation = {
 
 // Generate static params for build time
 export async function generateStaticParams() {
-  const filePath = path.join(process.cwd(), "src", "lib", "data", "formulations.json");
-  const data: Formulation[] = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const data: Formulation[] = dataRaw as Formulation[];
   
   return data.map((item) => ({
     slug: item.url.split("/").pop() || "",
@@ -26,8 +24,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), "src", "lib", "data", "formulations.json");
-  const data: Formulation[] = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const data: Formulation[] = dataRaw as Formulation[];
   const formulation = data.find(f => (f.url.split("/").pop() || "") === params.slug);
 
   if (!formulation) return { title: "Not Found" };
@@ -39,8 +36,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function FormulationSinglePage({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), "src", "lib", "data", "formulations.json");
-  const data: Formulation[] = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const data: Formulation[] = dataRaw as Formulation[];
   
   const formulation = data.find(f => (f.url.split("/").pop() || "") === params.slug);
 

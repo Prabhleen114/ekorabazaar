@@ -2,8 +2,7 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import fs from "fs";
-import path from "path";
+
 
 type Formulation = {
   title: string;
@@ -18,9 +17,10 @@ export const metadata = {
   description: "Explore our collection of free cosmetic, skincare, and candle making formulations. High-quality recipes crafted by experts.",
 };
 
+import dataRaw from "@/lib/data/formulations.json";
+
 export default function FormulationsPage() {
-  const filePath = path.join(process.cwd(), "src", "lib", "data", "formulations.json");
-  const data: Formulation[] = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const data: Formulation[] = dataRaw as Formulation[];
   
   // Create slugs for internal routing
   const formulations = data.map((item) => {

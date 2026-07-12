@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>House of Ekora — Attar Labels</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── PRINT SETUP ─────────────────────────────── */
+    @page { size: A4; margin: 12mm; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0ece4;
+      color: #1a1a1a;
+    }
+
+    /* ─── SCREEN HEADER ───────────────────────────── */
+    .screen-header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      border-bottom: 1px solid #c5b9a8;
+      margin-bottom: 40px;
+    }
+    .screen-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.2rem;
+      letter-spacing: 0.25em;
+      color: #2c2218;
+    }
+    .screen-header p {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: #7a6e60;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+    .print-note {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: #2c2218;
+      color: #e8ddd0;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+    }
+    .print-note:hover { background: #3d3020; }
+
+    @media print { .screen-header { display: none; } }
+
+    /* ─── PRINT GRID ──────────────────────────────── */
+    .label-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18mm;
+      padding: 10mm;
+    }
+
+    /* ─── INDIVIDUAL LABEL CARD ───────────────────── */
+    .label-card {
+      width: 80mm;
+      min-height: 110mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      padding: 10mm 8mm;
+    }
+
+    /* ──── VARIANT A: IVORY / ARCH ─────────────────── */
+    .label-card.arch {
+      background: #f5f0e8;
+      border: 0.5px solid #c8b89a;
+    }
+    .label-card.arch::before {
+      /* Mughal arch SVG as background */
+      content: '';
+      position: absolute;
+      top: 6mm;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58mm;
+      height: 68mm;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 240'%3E%3Cpath d='M20 240 L20 100 Q20 20 100 10 Q180 20 180 100 L180 240' fill='none' stroke='%23b8a07a' stroke-width='1' opacity='0.55'/%3E%3Cpath d='M35 240 L35 102 Q35 38 100 28 Q165 38 165 102 L165 240' fill='none' stroke='%23b8a07a' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* ──── VARIANT B: NOIR / BOTANICAL ────────────── */
+    .label-card.noir {
+      background: #1a1816;
+      border: 0.5px solid #3a3530;
+    }
+
+    /* ──── VARIANT C: SAND / MONOLITH ─────────────── */
+    .label-card.sand {
+      background: #e8dfd0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23e8dfd0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23d8cfbf' opacity='0.4'/%3E%3C/svg%3E");
+      border: 0.5px solid #b8a888;
+    }
+
+    /* ──── VARIANT D: NAVY ─────────────────────────── */
+    .label-card.navy {
+      background: #141c2b;
+      border: 0.5px solid #263050;
+    }
+
+    /* ──── VARIANT E: CHARCOAL ─────────────────────── */
+    .label-card.charcoal {
+      background: #1e1e1e;
+      border: 0.5px solid #383030;
+    }
+
+    /* ──── VARIANT F: SLATE ────────────────────────── */
+    .label-card.slate {
+      background: #2a2720;
+      border: 0.5px solid #403c32;
+    }
+
+    /* ─── LABEL CONTENT ───────────────────────────── */
+    .label-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    /* Top section */
+    .label-top {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Tiny motif / foil mark at top */
+    .foil-mark {
+      width: 8mm;
+      height: 8mm;
+      margin-bottom: 5mm;
+    }
+    .foil-mark svg { width: 100%; height: 100%; }
+
+    /* Brand name */
+    .brand {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 5.5pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+    .arch .brand, .sand .brand { color: #7a6a52; }
+    .noir .brand, .navy .brand, .charcoal .brand, .slate .brand { color: #8a7e6e; }
+
+    /* Thin rule */
+    .rule {
+      width: 100%;
+      height: 0.25px;
+      margin: 3mm 0;
+    }
+    .arch .rule, .sand .rule { background: #c0a87a; }
+    .noir .rule, .charcoal .rule, .slate .rule { background: #4a4440; }
+    .navy .rule { background: #2e3d5a; }
+
+    /* Fragrance name */
+    .fragrance-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.1;
+      margin: 3mm 0 2mm;
+    }
+    .arch .fragrance-name, .sand .fragrance-name { color: #1a1510; font-size: 22pt; }
+    .noir .fragrance-name { color: #f0ece4; font-size: 22pt; }
+    .navy .fragrance-name { color: #e8e4dc; font-size: 20pt; }
+    .charcoal .fragrance-name { color: #e4ddd0; font-size: 20pt; }
+    .slate .fragrance-name { color: #ddd8cc; font-size: 20pt; }
+
+    /* Descriptor / note line */
+    .descriptor {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 1mm;
+    }
+    .arch .descriptor, .sand .descriptor { color: #8a7a60; }
+    .noir .descriptor, .navy .descriptor, .charcoal .descriptor, .slate .descriptor { color: #6a6458; }
+
+    /* botanical SVG zone */
+    .botanical {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 4mm;
+      flex: 1;
+      align-items: flex-end;
+      margin-bottom: 4mm;
+    }
+    .botanical svg { opacity: 0.18; }
+
+    /* Bottom section */
+    .label-bottom {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .details {
+      font-family: 'Inter', sans-serif;
+      font-weight: 200;
+      font-size: 5pt;
+      letter-spacing: 0.2em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .arch .details, .sand .details { color: #9a8a70; }
+    .noir .details, .navy .details, .charcoal .details, .slate .details { color: #6a6050; }
+
+    /* cut marks */
+    .cut-mark {
+      position: absolute;
+      width: 2mm; height: 2mm;
+      border-color: #c0a87a;
+      border-style: solid;
+      opacity: 0.4;
+    }
+    .cut-mark.tl { top: 0; left: 0; border-width: 0.5px 0 0 0.5px; }
+    .cut-mark.tr { top: 0; right: 0; border-width: 0.5px 0.5px 0 0; }
+    .cut-mark.bl { bottom: 0; left: 0; border-width: 0 0 0.5px 0.5px; }
+    .cut-mark.br { bottom: 0; right: 0; border-width: 0 0.5px 0.5px 0; }
+
+    /* ─── SCREEN ONLY: label image previews ─────── */
+    @media screen {
+      body { padding: 0 20px 60px; }
+      .label-grid {
+        max-width: 960px;
+        margin: 0 auto;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 30px;
+        padding: 0;
+      }
+      .label-card {
+        width: 100%;
+        min-height: 420px;
+        padding: 36px 28px;
+        border-radius: 2px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      }
+      .fragrance-name { font-size: 38pt !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="screen-header">
+  <h1>House of Ekora</h1>
+  <p>Attar Label Collection · 10 ml · Print-Ready</p>
+  <button class="print-note" onclick="window.print()">⬡ Print Labels</button>
+</div>
+
+<div class="label-grid">
+
+  <!-- 01 · MIDNIGHT MOGRA · Arch / Ivory -->
+  <div class="label-card arch">
+    <div class="cut-mark tl"></div><div class="cut-mark tr"></div>
+    <div class="cut-mark bl"></div><div class="cut-mark br"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2 L22 14 L34 8 L26 18 L38 20 L26 22 L34 32 L22 26 L20 38 L18 26 L6 32 L14 22 L2 20 L14 18 L6 8 L18 14 Z" stroke="#b8904a" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+        <span class="brand">House of Ekora</span>
+        <div class="rule"></div>
+        <div class="fragrance-name">Midnight<br/>Mogra</div>
+        <div class="descriptor">Jasmine · Musk · Sandalwood</div>
+      </div>
+      <div class="botanical">
+        <!-- Jasmine botanical SVG fine line art -->
+        <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 75 Q28 60 20 50 Q12 40 15 28 Q18 16 30 12" stroke="#4a3820" stroke-width="0.7"/>
+          <path d="M30 12 Q38 6 42 14 Q46 22 38 24" stroke="#4a3820" stroke-width="0.6"/>
+          <circle cx="42" cy="14" r="4" stroke="#4a3820" stroke-width="0.5" fill="none"/>
+          <circle cx="38" cy="24" r="3" stroke="#4a3820" stroke-width="0.5" fill="none"/>
+          <path d="M15 28 Q8 22 12 14 Q16 6 24 10" stroke="#4a3820" stroke-width="0.6"/>
+          <circle cx="12" cy="14" r="3.5" stroke="#4a3820" stroke-width="0.5" fill="none"/>
+          <path d="M20 50 Q10 52 8 44 Q6 36 14 34" stroke="#4a3820" stroke-width="0.6"/>
+          <circle cx="8" cy="44" r="3" stroke="#4a3820" stroke-width="0.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule"></div>
+        <div class="details">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · OUD AL SHAAM · Noir / Botanical -->
+  <div class="label-card noir">
+    <div class="cut-mark tl" style="border-color:#3a3020"></div><div class="cut-mark tr" style="border-color:#3a3020"></div>
+    <div class="cut-mark bl" style="border-color:#3a3020"></div><div class="cut-mark br" style="border-color:#3a3020"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="2" width="8" height="8" transform="rotate(45 20 6)" stroke="#8a6840" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <span class="brand">House of Ekora</span>
+        <div class="rule"></div>
+        <div class="fragrance-name">Oud<br/>Al Shaam</div>
+        <div class="descriptor">Oud · Rose · Amber</div>
+      </div>
+      <div class="botanical">
+        <!-- Rose botanical -->
+        <svg width="65" height="75" viewBox="0 0 65 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 68 Q30 55 22 46 Q14 37 18 24" stroke="#f0e8dc" stroke-width="0.6"/>
+          <path d="M18 24 Q16 16 22 10 Q28 4 34 8 Q40 12 38 20 Q36 28 28 28 Q20 28 18 24 Z" stroke="#f0e8dc" stroke-width="0.6" fill="none"/>
+          <path d="M28 28 Q30 22 36 20" stroke="#f0e8dc" stroke-width="0.4"/>
+          <path d="M22 46 Q12 48 10 40 Q8 32 16 30" stroke="#f0e8dc" stroke-width="0.5"/>
+          <ellipse cx="10" cy="40" rx="5" ry="3.5" stroke="#f0e8dc" stroke-width="0.5" fill="none"/>
+          <path d="M22 10 Q18 4 12 6 Q6 8 8 14" stroke="#f0e8dc" stroke-width="0.4"/>
+          <ellipse cx="8" cy="14" rx="3" ry="4" stroke="#f0e8dc" stroke-width="0.4" fill="none"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule"></div>
+        <div class="details">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 · SAFFRON NOIR · Sand / Monolith -->
+  <div class="label-card sand">
+    <div class="cut-mark tl" style="border-color:#9a8060"></div><div class="cut-mark tr" style="border-color:#9a8060"></div>
+    <div class="cut-mark bl" style="border-color:#9a8060"></div><div class="cut-mark br" style="border-color:#9a8060"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,3 37,13 37,27 20,37 3,27 3,13" stroke="#7a5028" stroke-width="0.8"/>
+            <polygon points="20,9 31,15 31,25 20,31 9,25 9,15" stroke="#7a5028" stroke-width="0.4"/>
+          </svg>
+        </div>
+        <span class="brand">House of Ekora</span>
+        <div class="rule"></div>
+        <div class="fragrance-name">Saffron<br/>Noir</div>
+        <div class="descriptor">Saffron · Vetiver · Dark Musk</div>
+      </div>
+      <div class="botanical">
+        <!-- Saffron botanical -->
+        <svg width="55" height="70" viewBox="0 0 55 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28 65 L28 35" stroke="#2c1e10" stroke-width="0.7"/>
+          <path d="M28 35 Q20 28 18 20 Q16 12 22 8" stroke="#2c1e10" stroke-width="0.6"/>
+          <path d="M28 35 Q36 28 38 20 Q40 12 34 8" stroke="#2c1e10" stroke-width="0.6"/>
+          <path d="M28 35 L28 22" stroke="#2c1e10" stroke-width="0.5"/>
+          <ellipse cx="22" cy="8" rx="4" ry="6" stroke="#2c1e10" stroke-width="0.5" fill="none" transform="rotate(-10 22 8)"/>
+          <ellipse cx="34" cy="8" rx="4" ry="6" stroke="#2c1e10" stroke-width="0.5" fill="none" transform="rotate(10 34 8)"/>
+          <ellipse cx="28" cy="22" rx="3.5" ry="5.5" stroke="#2c1e10" stroke-width="0.5" fill="none"/>
+          <path d="M22 14 L18 18 M34 14 L38 18 M28 16 L28 20" stroke="#2c1e10" stroke-width="0.4"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule"></div>
+        <div class="details">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 · ROSE-E-HIND · Arch / Alabaster + dried rose accent -->
+  <div class="label-card arch" style="background:#f8f3ee; border-color:#d4b0a0;">
+    <div class="cut-mark tl"></div><div class="cut-mark tr"></div>
+    <div class="cut-mark bl"></div><div class="cut-mark br"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="9" stroke="#9a6050" stroke-width="0.7"/>
+            <circle cx="20" cy="20" r="5" stroke="#9a6050" stroke-width="0.4"/>
+            <path d="M20 11 L20 29 M11 20 L29 20" stroke="#9a6050" stroke-width="0.4"/>
+          </svg>
+        </div>
+        <span class="brand" style="color:#8a6a5a;">House of Ekora</span>
+        <div class="rule" style="background:#c09080;"></div>
+        <div class="fragrance-name" style="color:#1c1010;">Rose-e-Hind</div>
+        <div class="descriptor" style="color:#9a7060;">Heirloom Rose · Cardamom · Cedar</div>
+      </div>
+      <div class="botanical" style="justify-content:flex-start; padding-left:4mm;">
+        <!-- Rose botanical left side -->
+        <svg width="55" height="65" viewBox="0 0 55 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 58 Q22 46 30 38 Q38 30 35 18" stroke="#4a2820" stroke-width="0.6"/>
+          <path d="M35 18 Q38 10 32 5 Q26 0 20 4 Q14 8 16 16 Q18 24 26 24 Q34 24 35 18 Z" stroke="#4a2820" stroke-width="0.6" fill="none"/>
+          <path d="M26 24 Q24 18 18 16" stroke="#4a2820" stroke-width="0.4"/>
+          <path d="M30 38 Q40 40 42 32 Q44 24 36 22" stroke="#4a2820" stroke-width="0.5"/>
+          <ellipse cx="42" cy="32" rx="5" ry="3.5" stroke="#4a2820" stroke-width="0.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule" style="background:#c09080;"></div>
+        <div class="details" style="color:#9a7060;">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 · AMBER DUSK · Navy -->
+  <div class="label-card navy">
+    <div class="cut-mark tl" style="border-color:#263050"></div><div class="cut-mark tr" style="border-color:#263050"></div>
+    <div class="cut-mark bl" style="border-color:#263050"></div><div class="cut-mark br" style="border-color:#263050"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4 L24 16 L36 12 L28 22 L36 28 L24 26 L20 36 L16 26 L4 28 L12 22 L4 12 L16 16 Z" stroke="#8a7040" stroke-width="0.7" fill="none"/>
+          </svg>
+        </div>
+        <span class="brand">House of Ekora</span>
+        <div class="rule"></div>
+        <div class="fragrance-name" style="color:#f0ece0;">Amber<br/>Dusk</div>
+        <div class="descriptor">Amber · Labdanum · Vanilla Oak</div>
+      </div>
+      <div class="botanical">
+        <!-- Amber resin drops botanical -->
+        <svg width="50" height="70" viewBox="0 0 50 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 65 Q22 52 18 42 Q14 32 18 20 Q22 8 30 6" stroke="#c0b080" stroke-width="0.6"/>
+          <path d="M30 6 Q38 4 40 12 Q42 20 36 22" stroke="#c0b080" stroke-width="0.5"/>
+          <ellipse cx="36" cy="14" rx="5" ry="7" stroke="#c0b080" stroke-width="0.5" fill="none"/>
+          <path d="M18 42 Q8 44 6 36 Q4 28 12 26" stroke="#c0b080" stroke-width="0.5"/>
+          <ellipse cx="6" cy="36" rx="4" ry="5" stroke="#c0b080" stroke-width="0.4" fill="none"/>
+          <path d="M25 45 Q34 48 36 40" stroke="#c0b080" stroke-width="0.4"/>
+          <ellipse cx="34" cy="40" rx="3" ry="4" stroke="#c0b080" stroke-width="0.4" fill="none"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule"></div>
+        <div class="details">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 · VETIVER CROWN · Slate/Emerald -->
+  <div class="label-card slate">
+    <div class="cut-mark tl" style="border-color:#403c32"></div><div class="cut-mark tr" style="border-color:#403c32"></div>
+    <div class="cut-mark bl" style="border-color:#403c32"></div><div class="cut-mark br" style="border-color:#403c32"></div>
+    <div class="label-inner">
+      <div class="label-top">
+        <div class="foil-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- tiny Mughal arch motif -->
+            <path d="M10 32 L10 16 Q10 6 20 4 Q30 6 30 16 L30 32" stroke="#607a50" stroke-width="0.8"/>
+            <path d="M14 32 L14 17 Q14 10 20 9 Q26 10 26 17 L26 32" stroke="#607a50" stroke-width="0.4"/>
+          </svg>
+        </div>
+        <span class="brand">House of Ekora</span>
+        <div class="rule"></div>
+        <div class="fragrance-name" style="color:#e0ddd4;">Vetiver<br/>Crown</div>
+        <div class="descriptor" style="color:#5a7048;">Vetiver · Geranium · Neroli</div>
+      </div>
+      <div class="botanical">
+        <!-- Vetiver grass botanical -->
+        <svg width="55" height="72" viewBox="0 0 55 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28 68 Q26 52 20 38 Q14 24 18 10" stroke="#8aaa6a" stroke-width="0.6"/>
+          <path d="M28 68 Q30 52 36 38 Q42 24 38 10" stroke="#8aaa6a" stroke-width="0.6"/>
+          <path d="M28 68 Q28 50 28 32 Q28 18 28 6" stroke="#8aaa6a" stroke-width="0.5"/>
+          <path d="M18 10 Q14 4 10 8" stroke="#8aaa6a" stroke-width="0.5"/>
+          <path d="M38 10 Q42 4 46 8" stroke="#8aaa6a" stroke-width="0.5"/>
+          <path d="M28 6 Q24 2 22 6 M28 6 Q32 2 34 6" stroke="#8aaa6a" stroke-width="0.4"/>
+          <path d="M20 38 Q14 36 12 40 M36 38 Q42 36 44 40" stroke="#8aaa6a" stroke-width="0.4"/>
+          <path d="M22 52 Q16 50 14 54 M34 52 Q40 50 42 54" stroke="#8aaa6a" stroke-width="0.4"/>
+        </svg>
+      </div>
+      <div class="label-bottom">
+        <div class="rule"></div>
+        <div class="details">Pure Attar · 10 ml · Alcohol-Free</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /label-grid -->
+
+</body>
+</html>
