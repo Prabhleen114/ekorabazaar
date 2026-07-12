@@ -10,7 +10,7 @@ type Tier = {
   discountPct: number;
 };
 
-export default function PricingWidget({ basePrice, tiers }: { basePrice: number; tiers: Tier[] }) {
+export default function PricingWidget({ tiers }: { basePrice?: number; tiers: Tier[] }) {
   const [quantity, setQuantity] = useState(1);
 
   const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];

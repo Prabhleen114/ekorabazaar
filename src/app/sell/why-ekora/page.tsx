@@ -29,7 +29,7 @@ export default function WhyEkoraPage() {
       });
       if (!res.ok) throw new Error("Submission failed");
       setSuccess(true);
-    } catch (err) {
+    } catch {
       alert("Something went wrong. Please try again or message us on WhatsApp.");
     } finally {
       setLoading(false);

@@ -42,7 +42,6 @@ export async function POST(req: NextRequest) {
       }
       currentApps.push(leadData);
       fs.writeFileSync(filePath, JSON.stringify(currentApps, null, 2), "utf-8");
-      console.log("Successfully saved application locally to applications.json");
     } catch (fsErr) {
       console.error("Failed to write to local applications.json:", fsErr);
     }
@@ -86,7 +85,6 @@ Timestamp: ${leadData.timestamp}
           subject: subject,
           text: textContent,
         });
-        console.log("Email notification sent successfully to ekoratech@gmail.com");
       } catch (mailErr) {
         console.error("Nodemailer failed to send email:", mailErr);
       }

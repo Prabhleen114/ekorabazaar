@@ -37,9 +37,6 @@ const personaCards = [
 
 export default function PlatformsPage() {
   const [selectedPersona, setSelectedPersona] = useState(personaCards[0].title);
-  const activePersona = personaCards.find(
-    (card) => card.title === selectedPersona
-  ) ?? personaCards[0];
 
   const [email, setEmail] = useState("");
   const [isCreator, setIsCreator] = useState(true);

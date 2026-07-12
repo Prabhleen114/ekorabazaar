@@ -12,13 +12,13 @@ export function getCreatorCount(): number {
       
       // Only count unique name or email submissions
       const uniqueSubmissions = new Set(
-        currentApps.map((app: any) => app.email !== "N/A" ? app.email : app.handle)
+        currentApps.map((app: { email?: string; handle?: string }) => app.email !== "N/A" ? app.email : app.handle)
       );
       
       return Math.min(baseCount + uniqueSubmissions.size, maxCount);
     }
-  } catch (err) {
-    console.error("Error reading applications count:", err);
+  } catch {
+    // Fallback silently if file read fails
   }
   return baseCount;
 }

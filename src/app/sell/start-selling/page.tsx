@@ -38,7 +38,7 @@ export default function StartSellingPage() {
       });
       if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again or contact support on WhatsApp.");
     } finally {
       setLoading(false);

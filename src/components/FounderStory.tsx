@@ -1,5 +1,3 @@
-import { User } from "lucide-react";
-
 export default function FounderStory() {
   return (
     <section className="bg-white border-t border-zinc-200 py-24">

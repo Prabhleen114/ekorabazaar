@@ -32,7 +32,7 @@ export default function SocialProof() {
         <div className="grid md:grid-cols-3 gap-6">
           {quotes.map((q, i) => (
             <div key={i} className="bg-white border border-brand-linen rounded-2xl p-6 shadow-sm">
-              <p className="text-brand-charcoal/80 leading-relaxed mb-6 text-sm">"{q.quote}"</p>
+              <p className="text-brand-charcoal/80 leading-relaxed mb-6 text-sm">&ldquo;{q.quote}&rdquo;</p>
               <div className="flex items-center gap-3">
                 <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${q.color}`}>
                   {q.initials}
