@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "creator commerce process",
   ],
   alternates: {
-    canonical: "/sell/how-it-works",
+    canonical: "https://www.ekorabazaar.in/sell/how-it-works",
   },
   openGraph: {
     title: "How It Works — Ekora Seller Journey",
@@ -33,11 +33,22 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "How It Works — Ekora Seller Journey",
     description: "Your journey from Instagram creator to Ekora seller.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Instagram creator marketplace advantages",
   ],
   alternates: {
-    canonical: "/sell/why-ekora",
+    canonical: "https://www.ekorabazaar.in/sell/why-ekora",
   },
   openGraph: {
     title: "Why Ekora — Building Commerce Infrastructure for Creators",
@@ -20,12 +20,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Why Ekora — Building Commerce Infrastructure for Creators",
     description:
       "Our mission to build the commerce infrastructure that independent creators deserve.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

@@ -15,14 +15,17 @@ const newsreader = Newsreader({
   variable: "--font-serif",
   display: "swap",
 });
+const BASE_URL = "https://www.ekorabazaar.in";
+const OG_IMAGE = "https://www.ekorabazaar.in/og-image.jpg";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.ekorabazaar.in"),
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "Ekora — India's First Creator Commerce Platform",
-    template: "%s | Ekora",
+    default: "Ekora Bazaar — India's First Creator Commerce Platform",
+    template: "%s | Ekora Bazaar",
   },
   description:
-    "Discover India's best Instagram creators in one place. Buy unique handmade products directly from verified creators — wholesale raw materials, batch-tested craft supplies, and unique creations.",
+    "Buy unique handmade products from verified Indian creators. Wholesale craft supplies — candle wax, resin, molds & more. India's creator commerce platform.",
   keywords: [
     "creator marketplace",
     "Instagram sellers",
@@ -37,37 +40,42 @@ export const metadata: Metadata = {
     "Ekora Bazaar",
     "Ekora",
   ],
-  authors: [{ name: "Ekora Bazaar", url: "https://www.ekorabazaar.in" }],
+  authors: [{ name: "Ekora Bazaar", url: BASE_URL }],
   creator: "Ekora Bazaar",
   publisher: "Ekora Bazaar",
   alternates: {
-    canonical: "/",
+    canonical: BASE_URL,
     languages: {
-      "en-IN": "https://www.ekorabazaar.in",
+      "en-IN": BASE_URL,
     },
   },
   openGraph: {
-    title: "Ekora — India's First Creator Commerce Platform",
+    title: "Ekora Bazaar — India's First Creator Commerce Platform",
     description:
-      "Discover India's best Instagram creators in one place. Buy unique handmade products and wholesale raw materials directly from verified creators.",
-    url: "https://www.ekorabazaar.in",
+      "Buy unique handmade products from verified Indian creators. Wholesale craft supplies — candle wax, resin, molds & more.",
+    url: BASE_URL,
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: OG_IMAGE,
+        secureUrl: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ekora — India's First Creator Commerce Platform",
-    description: "Discover India's best Instagram creators. From Reels to Cart.",
-    images: ["/og-image.jpg"],
+    site: "@ekorabazaar",
+    creator: "@ekorabazaar",
+    title: "Ekora Bazaar — India's First Creator Commerce Platform",
+    description:
+      "Buy unique handmade products from verified Indian creators. Wholesale craft supplies — candle wax, resin, molds & more.",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
@@ -92,9 +100,13 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+    other: [
+      { rel: "mask-icon", url: "/favicon.svg", color: "#0f0f0f" },
+    ],
   },
   manifest: "/manifest.webmanifest",
 };
+
 
 import WhatsAppButton from "@/components/WhatsAppButton";
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Instagram seller rules India",
   ],
   alternates: {
-    canonical: "/creator-guidelines",
+    canonical: "https://www.ekorabazaar.in/creator-guidelines",
   },
   openGraph: {
     title: "Creator Guidelines & Selling Standards — Ekora",
@@ -23,12 +23,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Creator Guidelines & Selling Standards — Ekora",
     description:
       "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

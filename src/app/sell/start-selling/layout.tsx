@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "register as Instagram creator seller",
   ],
   alternates: {
-    canonical: "/sell/start-selling",
+    canonical: "https://www.ekorabazaar.in/sell/start-selling",
   },
   openGraph: {
     title: "Apply to Sell — Early Access Seller Application | Ekora",
@@ -20,12 +20,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Apply to Sell — Early Access Seller Application | Ekora",
     description:
       "Apply to become a verified seller on Ekora Bazaar. Setup your creator storefront in 2 minutes.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

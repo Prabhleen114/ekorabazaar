@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Ekora candle classes",
   ],
   alternates: {
-    canonical: "/classes",
+    canonical: "https://www.ekorabazaar.in/classes",
   },
   openGraph: {
     title: "Luxury Candle-Making Classes | Ekora Bazaar",
@@ -28,12 +28,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Luxury Candle-Making Classes | Ekora Bazaar",
     description:
       "Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

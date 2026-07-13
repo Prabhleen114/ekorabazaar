@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Ekora shop",
   ],
   alternates: {
-    canonical: "/shop",
+    canonical: "https://www.ekorabazaar.in/shop",
   },
   openGraph: {
     title: "Wholesale Craft Supplies & Raw Materials Shop | Ekora Bazaar",
@@ -22,12 +22,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Wholesale Craft Supplies & Raw Materials Shop | Ekora Bazaar",
     description:
       "Shop premium batch-tested raw materials for candle making, resin art, perfumery, and soaps.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

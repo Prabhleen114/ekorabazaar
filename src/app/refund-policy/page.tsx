@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Clear terms regarding refunds, replacements, and order cancellations for wholesale craft supplies and creator products on Ekora Bazaar.",
   alternates: {
-    canonical: "/refund-policy",
+    canonical: "https://www.ekorabazaar.in/refund-policy",
   },
   openGraph: {
     title: "Refund & Cancellation Policy — Ekora Bazaar",
@@ -18,12 +18,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Refund & Cancellation Policy — Ekora Bazaar",
     description:
       "Clear terms regarding refunds, replacements, and order cancellations on Ekora Bazaar.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

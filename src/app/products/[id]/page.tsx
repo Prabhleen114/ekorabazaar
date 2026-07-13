@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProductById(id);
   
   if (!product) {
-    return { title: "Product Not Found | Ekora" };
+    return { title: "Product Not Found | Ekora Bazaar" };
   }
 
   return {
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: product.description,
     keywords: product.tags || [product.name, product.category, "wholesale raw materials", "Ekora"],
     alternates: {
-      canonical: `/products/${id}`,
+      canonical: `https://www.ekorabazaar.in/products/${id}`,
     },
     openGraph: {
       title: `${product.name} - Buy Wholesale on Ekora`,
@@ -32,10 +32,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: product.image || "/og-image.jpg",
+          url: product.image || "https://www.ekorabazaar.in/og-image.jpg",
+          secureUrl: product.image || "https://www.ekorabazaar.in/og-image.jpg",
           width: 800,
           height: 800,
           alt: product.name,
+          type: "image/jpeg",
         },
       ],
     },
@@ -43,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${product.name} - Buy Wholesale on Ekora`,
       description: product.description,
-      images: [product.image || "/og-image.jpg"],
+      images: [product.image || "https://www.ekorabazaar.in/og-image.jpg"],
     },
   };
 }

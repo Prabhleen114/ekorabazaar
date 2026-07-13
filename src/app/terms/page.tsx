@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Service — Ekora Bazaar",
   description: "Terms and conditions for buyers and creators using the Ekora Bazaar platform.",
   alternates: {
-    canonical: "/terms",
+    canonical: "https://www.ekorabazaar.in/terms",
   },
   openGraph: {
     title: "Terms of Service — Ekora Bazaar",
@@ -16,11 +16,22 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Terms of Service — Ekora Bazaar",
     description: "Terms and conditions for buyers and creators using the Ekora Bazaar platform.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

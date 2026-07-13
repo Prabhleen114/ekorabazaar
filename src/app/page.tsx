@@ -5,10 +5,12 @@ import { CheckCircle2, FlaskConical, FileText, ArrowRight, Package } from "lucid
 
 import type { Metadata } from "next";
 
+const OG_IMAGE = "https://www.ekorabazaar.in/og-image.jpg";
+
 export const metadata: Metadata = {
-  title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+  title: "Ekora Bazaar | Premium Raw Materials & Wholesale Craft Supplies",
   description:
-    "India's premier wholesale marketplace for creators. Buy batch-tested raw materials for candles, resins, soaps, and craft supplies directly at wholesale prices.",
+    "India's premier wholesale marketplace for creators. Buy batch-tested candle wax, resin, molds, soap base and craft supplies at wholesale prices.",
   keywords: [
     "raw materials India",
     "wholesale craft supplies",
@@ -19,22 +21,34 @@ export const metadata: Metadata = {
     "Ekora",
   ],
   alternates: {
-    canonical: "/",
+    canonical: "https://www.ekorabazaar.in",
   },
   openGraph: {
-    title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+    title: "Ekora Bazaar | Premium Raw Materials & Wholesale Craft Supplies",
     description:
-      "Batch-tested, reliable craft supplies for candles, resins, and soaps at wholesale prices.",
+      "Batch-tested craft supplies for candles, resins, and soaps at wholesale prices. India's creator commerce platform.",
     url: "https://www.ekorabazaar.in",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        secureUrl: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — Premium Raw Materials & Wholesale Craft Supplies",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ekora | Premium Raw Materials & Wholesale Craft Supplies",
+    site: "@ekorabazaar",
+    title: "Ekora Bazaar | Premium Raw Materials & Wholesale Craft Supplies",
     description:
-      "Batch-tested, reliable craft supplies for candles, resins, and soaps at wholesale prices.",
+      "Batch-tested craft supplies for candles, resins, and soaps at wholesale prices.",
+    images: [OG_IMAGE],
   },
 };
 

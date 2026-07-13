@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — Ekora Bazaar",
   description: "How we collect, use, and protect your information at Ekora Bazaar.",
   alternates: {
-    canonical: "/privacy",
+    canonical: "https://www.ekorabazaar.in/privacy",
   },
   openGraph: {
     title: "Privacy Policy — Ekora Bazaar",
@@ -16,11 +16,22 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy — Ekora Bazaar",
     description: "How we collect, use, and protect your information at Ekora Bazaar.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Ekora creator marketplace help",
   ],
   alternates: {
-    canonical: "/sell/faq",
+    canonical: "https://www.ekorabazaar.in/sell/faq",
   },
   openGraph: {
     title: "Frequently Asked Questions — Sell on Ekora",
@@ -26,12 +26,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Frequently Asked Questions — Sell on Ekora",
     description:
       "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, and wholesale pricing.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

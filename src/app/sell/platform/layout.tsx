@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "wholesale creator storefront",
   ],
   alternates: {
-    canonical: "/sell/platform",
+    canonical: "https://www.ekorabazaar.in/sell/platform",
   },
   openGraph: {
     title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
@@ -20,12 +20,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
     description:
       "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 

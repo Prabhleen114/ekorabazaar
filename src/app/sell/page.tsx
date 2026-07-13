@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "Ekora seller application",
   ],
   alternates: {
-    canonical: "/sell",
+    canonical: "https://www.ekorabazaar.in/sell",
   },
   openGraph: {
     title: "Sell on Ekora — India's Premier Creator Commerce Platform",
@@ -37,12 +37,23 @@ export const metadata: Metadata = {
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
+      images: [
+      {
+        url: "https://www.ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ekora Bazaar — India's First Creator Commerce Platform",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sell on Ekora — India's Premier Creator Commerce Platform",
     description:
       "Turn your Instagram followers into buyers with zero hassle. Join verified creators selling on Ekora.",
+      images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
 
