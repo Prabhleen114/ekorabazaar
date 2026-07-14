@@ -1,61 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <title>Ekora Bazaar</title>
-  <rect width="512" height="512" fill="#ffffff"/>
+  <title>Ekora Bazaar Favicon</title>
+  
+  <!-- 1. Pure White Background -->
+  <rect width="512" height="512" fill="#ffffff" />
 
+  <!-- 2. Thin Luxury Gold Ring (Center 256,256; r=240; stroke=12px -> ~0.37px at 16x16) -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#C5A059" stroke-width="12" />
+
+  <!-- 3. Large Interlocking EB Monogram -->
   <!--
-    EB MONOGRAM — Pure vector geometry. No fonts. No text. No images.
-    Design: Interlocking E (left) + B (right) sharing a central vertical spine.
-
-    Canvas: 512×512
-    Color: #111111 on #ffffff
-
-    Geometry:
-      y_top  = 96   (top of mark)
-      y_mid  = 256  (vertical center of canvas)
-      y_bot  = 416  (bottom of mark)
-      Mark height = 320px
-
-      x_left  = 141  (E left stem outer edge)
-      x_bar_r = 291  (right edge of E bars + spine = left edge of B bumps)
-      x_right = 371  (rightmost point of B bumps, 291+80)
-      Mark width = 230px
-      Mark horizontal center = 141 + 115 = 256 ✓
-
-    E elements:
-      - Left vertical stem:  x=141, y=96,  w=60,  h=320
-      - Top horizontal bar:  x=141, y=96,  w=150, h=70
-      - Middle bar (short):  x=141, y=221, w=130, h=70
-      - Bottom bar:          x=141, y=346, w=150, h=70
-      - Shared right spine:  x=231, y=96,  w=60,  h=320
-
-    B elements (right half-disks sharing x=291 as flat edge):
-      - Upper bump: center (291, 176), radius 80  → M291,96  A80,80 0 0,1 291,256 Z
-      - Lower bump: center (291, 336), radius 80  → M291,256 A80,80 0 0,1 291,416 Z
-
-    Bar spacing: bar_h=70, gap=55  (3×70 + 2×55 = 320 ✓)
-    Gaps are equal → perfectly symmetrical E
+    Weave structure:
+    - B spine (x: 208..272) passes BEHIND E top arm (y: 108..164) -> white gap around E top arm over B stem
+    - B spine (x: 208..272) passes IN FRONT OF E middle arm (y: 230..282) -> white gap around B stem over E middle arm
+    - B spine (x: 208..272) passes BEHIND E bottom arm (y: 348..404) -> white gap around E bottom arm over B stem
   -->
 
-  <!-- E: left vertical stem -->
-  <rect x="141" y="96" width="60" height="320" fill="#111111"/>
+  <defs>
+    <!-- Mask for B: cuts out gaps where E's Top and Bottom arms pass OVER B's stem -->
+    <mask id="mask-B-weave">
+      <rect width="512" height="512" fill="white" />
+      <!-- Gap around E top arm (y: 108..164) across B stem (x: 208..272) -->
+      <rect x="194" y="94" width="92" height="84" fill="black" />
+      <!-- Gap around E bottom arm (y: 348..404) across B stem (x: 208..272) -->
+      <rect x="194" y="334" width="92" height="84" fill="black" />
+    </mask>
 
-  <!-- E: top horizontal bar -->
-  <rect x="141" y="96" width="150" height="70" fill="#111111"/>
+    <!-- Mask for E Middle Arm: cuts out gap where B's stem passes OVER E's middle arm -->
+    <mask id="mask-E-mid-weave">
+      <rect width="512" height="512" fill="white" />
+      <!-- Gap around B stem (x: 208..272) across E middle arm -->
+      <rect x="194" y="216" width="92" height="80" fill="black" />
+    </mask>
+  </defs>
 
-  <!-- E: middle bar (shorter — classic E proportion) -->
-  <rect x="141" y="221" width="130" height="70" fill="#111111"/>
+  <!-- LETTER B (Masked where E top/bottom arms cross over it) -->
+  <g mask="url(#mask-B-weave)" fill="#111111">
+    <!-- B Vertical Stem (x: 208 to 272, y: 108 to 404) with refined serif heels left at x: 190 -->
+    <path d="M 190,108 L 272,108 L 272,404 L 190,404 L 190,378 C 200,378 208,370 208,360 L 208,152 C 208,142 200,134 190,134 Z" />
 
-  <!-- E: bottom horizontal bar -->
-  <rect x="141" y="346" width="150" height="70" fill="#111111"/>
+    <!-- Upper Right Bowl (Outer: (272,108) to (414,177) to (272,246); Inner: (272,160) to (344,177) to (272,194)) -->
+    <path d="M 272,108 C 356,108 414,134 414,177 C 414,220 356,246 272,246 L 272,194 C 322,194 346,186 346,177 C 346,168 322,160 272,160 Z" />
 
-  <!-- Shared central spine (right side of E, left side of B) -->
-  <rect x="231" y="96" width="60" height="320" fill="#111111"/>
+    <!-- Lower Right Bowl (Outer: (272,246) to (424,325) to (272,404); Inner: (272,298) to (354,325) to (272,352)) -->
+    <path d="M 272,246 C 366,246 424,276 424,325 C 424,374 366,404 272,404 L 272,352 C 330,352 356,340 356,325 C 356,310 330,298 272,298 Z" />
+  </g>
 
-  <!-- B: upper right half-disk (center 291,176 radius 80) -->
-  <!-- sweep-flag=1 → clockwise → arc goes RIGHT from top to mid → right-facing D shape -->
-  <path d="M 291,96 A 80,80 0 0,1 291,256 Z" fill="#111111"/>
+  <!-- LETTER E (Top & Bottom bars sit OVER B; Middle bar masked under B) -->
+  <g fill="#111111">
+    <!-- E Main Stem (x: 120 to 184, y: 108 to 404) with graceful Left Serifs (top x: 88, bottom x: 88) -->
+    <path d="M 88,108 L 184,108 L 184,404 L 88,404 L 88,378 C 102,378 120,366 120,350 L 120,162 C 120,146 102,134 88,134 Z" />
 
-  <!-- B: lower right half-disk (center 291,336 radius 80) -->
-  <path d="M 291,256 A 80,80 0 0,1 291,416 Z" fill="#111111"/>
+    <!-- E Top Arm with Serif Terminal (y: 108 to 164, extending across B stem to x: 312, serif tip drops to y: 196) -->
+    <path d="M 184,108 L 312,108 L 312,196 L 286,196 L 286,164 L 184,164 Z" />
+
+    <!-- E Bottom Arm with Serif Terminal (y: 348 to 404, extending across B stem to x: 312, serif tip rises to y: 316) -->
+    <path d="M 184,404 L 312,404 L 312,316 L 286,316 L 286,348 L 184,348 Z" />
+  </g>
+
+  <!-- E Middle Arm (Masked so B stem passes OVER it right in the center) -->
+  <g mask="url(#mask-E-mid-weave)" fill="#111111">
+    <!-- Middle horizontal bar (y: 230 to 282, extending from x: 184 across B to x: 326) -->
+    <path d="M 184,230 L 326,230 L 326,282 L 184,282 Z" />
+  </g>
 
 </svg>
