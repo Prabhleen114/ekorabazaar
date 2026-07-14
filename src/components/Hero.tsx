@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero({ count = 84 }: { count?: number }) {
   return (
-    <section className="bg-brand-bg pt-24 md:pt-28 pb-16 overflow-hidden">
+    <section className="bg-brand-bg pt-16 md:pt-20 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left Column: Copy & CTAs */}
         <div className="flex flex-col items-start text-left relative z-10">

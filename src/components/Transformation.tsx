@@ -125,7 +125,7 @@ export default function Transformation() {
               </div>
             </div>
 
-            <div className="space-y-8 relative">
+            <div className="space-y-5 relative">
               {/* Connecting Line for Timeline */}
               <div className="absolute left-6 top-4 bottom-4 w-0.5 bg-red-100" />
               
@@ -168,7 +168,7 @@ export default function Transformation() {
               </div>
             </div>
 
-            <div className="space-y-8 relative">
+            <div className="space-y-5 relative">
               {/* Connecting Line for Timeline */}
               <div className="absolute left-6 top-4 bottom-4 w-0.5 bg-emerald-100" />
               

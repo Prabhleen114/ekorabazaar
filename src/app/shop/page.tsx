@@ -32,7 +32,33 @@ export default function ShopPage() {
           const urlParams = new URLSearchParams(window.location.search);
           const cat = urlParams.get("category");
           if (cat) {
-            setSelectedCategories([cat]);
+            const dbCategories = Array.from(new Set(data.map((p: any) => p.category))).filter(Boolean) as string[];
+            const search = decodeURIComponent(cat).toLowerCase().trim();
+            
+            // Find matches
+            const matched: string[] = [];
+            dbCategories.forEach((dbc: string) => {
+              const dbcLower = dbc.toLowerCase();
+              if (dbcLower === search) {
+                matched.push(dbc);
+              } else if (search === 'waxes' && dbcLower.includes('waxes')) {
+                matched.push(dbc);
+              } else if (search === 'resins' && (dbcLower.includes('resin') || dbcLower.includes('epoxy'))) {
+                matched.push(dbc);
+              } else if (search === 'fragrances' && (dbcLower.includes('fragrance') || dbcLower.includes('perfume'))) {
+                matched.push(dbc);
+              } else if (search === 'molds' && (dbcLower.includes('mold') || dbcLower.includes('mould'))) {
+                matched.push(dbc);
+              } else if (dbcLower.includes(search) || search.includes(dbcLower)) {
+                matched.push(dbc);
+              }
+            });
+            
+            if (matched.length > 0) {
+              setSelectedCategories(matched);
+            } else {
+              setSelectedCategories([cat]);
+            }
           }
         }
       });

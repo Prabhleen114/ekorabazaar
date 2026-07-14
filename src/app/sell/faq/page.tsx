@@ -120,7 +120,7 @@ export default function FAQPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-16 px-6 text-center bg-brand-bg">
+      <section className="pt-16 md:pt-20 pb-2 px-6 text-center bg-brand-bg">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold font-serif tracking-tight text-brand-charcoal mb-6">
             Frequently Asked Questions
@@ -132,7 +132,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-brand-bg">
+      <section className="pt-2 pb-16 bg-brand-bg">
         <div className="max-w-6xl mx-auto px-6">
           <FAQAccordion />
         </div>

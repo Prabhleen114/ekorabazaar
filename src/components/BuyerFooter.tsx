@@ -43,8 +43,8 @@ export default function BuyerFooter() {
           <div>
             <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Company</h4>
             <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
-              <li><Link href="/about" className="hover:text-brand-charcoal transition-colors">About Us</Link></li>
-              <li><Link href="/help" className="hover:text-brand-charcoal transition-colors">Help Center</Link></li>
+              <li><Link href="/sell/why-ekora" className="hover:text-brand-charcoal transition-colors">About Us</Link></li>
+              <li><Link href="/sell/faq" className="hover:text-brand-charcoal transition-colors">Help Center</Link></li>
               <li><span className="text-brand-charcoal/30 cursor-not-allowed">Careers — Coming Soon</span></li>
               <li><span className="text-brand-charcoal/30 cursor-not-allowed">Press — Coming Soon</span></li>
             </ul>

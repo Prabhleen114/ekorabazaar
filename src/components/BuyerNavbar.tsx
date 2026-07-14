@@ -85,15 +85,33 @@ export default function BuyerNavbar() {
                   >
                     {/* Left Sidebar */}
                     <div className="w-64 bg-brand-bg p-8 shrink-0 border-r border-brand-linen">
-                      <h3 className="font-serif font-bold text-lg text-brand-charcoal mb-6 uppercase tracking-wider">Shop By Category</h3>
+                      <h3 className="font-serif font-bold text-lg text-brand-charcoal mb-6 uppercase tracking-wider">Quick Navigation</h3>
                       <ul className="space-y-4">
-                        {['My Account', 'Contact Us', 'Blog', 'White Label & Private Label', 'Amazon Order'].map(item => (
-                          <li key={item}>
-                            <Link href={`/shop?category=${encodeURIComponent(item)}`} className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                              <span className="w-1 h-1 rounded-full bg-brand-charcoal/40"></span> {item}
-                            </Link>
-                          </li>
-                        ))}
+                        <li>
+                          <Link href="/shop" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> All Products
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/formulations" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Free Formulations
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/classes" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Classes &amp; Training
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/sell" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Become a Seller
+                          </Link>
+                        </li>
+                        <li>
+                          <a href="https://wa.me/917783053603?text=Hi%20Ekora!%20I'd%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Contact Us
+                          </a>
+                        </li>
                       </ul>
                     </div>
 

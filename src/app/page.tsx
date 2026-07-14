@@ -77,7 +77,7 @@ export default function BuyerHomePage() {
       <BuyerNavbar />
       
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-20 px-6 max-w-6xl mx-auto w-full flex-1">
+      <section className="pt-16 md:pt-20 pb-16 px-6 max-w-6xl mx-auto w-full flex-1">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold font-serif text-brand-charcoal leading-tight mb-6 tracking-tight">
             Premium Raw Materials for<br className="hidden md:block"/> Serious Creators
