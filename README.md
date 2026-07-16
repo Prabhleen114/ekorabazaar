@@ -1,27 +1,5 @@
-# Craftland
-
-A modern web application built with Next.js, React, Tailwind CSS, and Framer Motion.
-
-## Getting Started
-
-First, install the dependencies if you haven't already:
-
-```bash
-npm install
-```
-
-Then, run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Tech Stack
-
-- Next.js
-- React
-- Tailwind CSS
-- Framer Motion
-- Lucide React
+# Ekora Bazaar
+Ekora Bazaar is India's first creator commerce platform connecting buyers with authentic verified Instagram creators.
+Built with Next.js App Router, React, Tailwind CSS, and Framer Motion for a seamless shopping experience.
+To run the project locally, execute npm install followed by npm run dev in your terminal.
+The application will start on localhost port 3000 where you can browse products and creators.
