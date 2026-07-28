@@ -1,0 +1,10 @@
+export { default as StepPersonal } from "./steps/StepPersonal";
+export { default as StepBusiness } from "./steps/StepBusiness";
+export { default as StepAddress } from "./steps/StepAddress";
+export { default as StepGST } from "./steps/StepGST";
+export { default as StepBank } from "./steps/StepBank";
+export { default as StepIdentity } from "./steps/StepIdentity";
+export { default as StepCatalogue } from "./steps/StepCatalogue";
+export { default as StepReview } from "./steps/StepReview";
+export { default as StepPayment } from "./steps/StepPayment";
+export { default as SuccessPage } from "./steps/SuccessPage";
