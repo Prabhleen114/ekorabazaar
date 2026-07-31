@@ -202,14 +202,8 @@ export default function ShopPage() {
               {sortedProducts.map((product) => (
                 <Link key={product.id} href={`/products/${product.id}`} className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-lg transition-all duration-300 flex flex-col">
                   {/* Image Placeholder */}
-                  <div className="aspect-square bg-brand-linen/30 relative flex items-center justify-center overflow-hidden">
-                    <PackageSearch className="w-12 h-12 text-brand-charcoal/20 absolute z-0" />
-                    <img 
-                      src={product.image || "/placeholder.jpg"} 
-                      alt={product.name} 
-                      className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity" 
-                      onError={(e) => { e.currentTarget.style.opacity = '0'; }}
-                    />
+                  <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
+                    <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
                     {product.bulkDiscountAvailable && (
                       <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
                         <Tag className="w-3 h-3" /> Bulk Discount
