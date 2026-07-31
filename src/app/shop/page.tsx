@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
-import { Filter, ChevronDown, Tag } from "lucide-react";
+import { Filter, ChevronDown, Tag, PackageSearch } from "lucide-react";
 
 type Product = {
   id: string;
@@ -21,6 +21,7 @@ export default function ShopPage() {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("recommended");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetch("/api/products")
@@ -60,6 +61,11 @@ export default function ShopPage() {
               setSelectedCategories([cat]);
             }
           }
+          
+          const q = urlParams.get("q");
+          if (q) {
+            setSearchQuery(decodeURIComponent(q));
+          }
         }
       });
   }, []);
@@ -74,6 +80,12 @@ export default function ShopPage() {
 
   const filteredProducts = products.filter(p => {
     if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
+    if (searchQuery) {
+      const qLower = searchQuery.toLowerCase();
+      if (!p.name.toLowerCase().includes(qLower) && !p.category.toLowerCase().includes(qLower)) {
+        return false;
+      }
+    }
     return true;
   });
 
@@ -155,7 +167,11 @@ export default function ShopPage() {
           {/* Top Bar: Sort & Results */}
           <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen mb-6">
             <p className="text-sm text-brand-charcoal/60 font-medium mb-4 sm:mb-0">
-              Showing {sortedProducts.length} products
+              {searchQuery ? (
+                <>Showing results for &quot;<span className="font-bold text-brand-charcoal">{searchQuery}</span>&quot; ({sortedProducts.length})</>
+              ) : (
+                <>Showing {sortedProducts.length} products</>
+              )}
             </p>
             <div className="flex items-center gap-3 text-sm">
               <span className="text-brand-charcoal/60 font-medium">Sort by:</span>
@@ -186,8 +202,14 @@ export default function ShopPage() {
               {sortedProducts.map((product) => (
                 <Link key={product.id} href={`/products/${product.id}`} className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-lg transition-all duration-300 flex flex-col">
                   {/* Image Placeholder */}
-                  <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
-                    <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="aspect-square bg-brand-linen/30 relative flex items-center justify-center overflow-hidden">
+                    <PackageSearch className="w-12 h-12 text-brand-charcoal/20 absolute z-0" />
+                    <img 
+                      src={product.image || "/placeholder.jpg"} 
+                      alt={product.name} 
+                      className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity" 
+                      onError={(e) => { e.currentTarget.style.opacity = '0'; }}
+                    />
                     {product.bulkDiscountAvailable && (
                       <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
                         <Tag className="w-3 h-3" /> Bulk Discount

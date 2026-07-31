@@ -5,9 +5,9 @@ export default function BuyerFooter() {
   return (
     <footer className="bg-brand-bg border-t border-brand-linen py-16">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <Image 
                 src="/images/logo.jpg" 
@@ -70,14 +70,14 @@ export default function BuyerFooter() {
                 Muzaffarpur, Bihar - 842001
               </p>
               <p className="pt-1">
-                <a href="tel:+917783053603" className="hover:text-brand-charcoal transition-colors">+91 7783053603</a>
+                <a href="tel:+919465533394" className="hover:text-brand-charcoal transition-colors">+91 9465533394</a>
               </p>
               <p>
                 <a href="mailto:support@ekorabazaar.com" className="hover:text-brand-charcoal transition-colors">support@ekorabazaar.com</a>
               </p>
               <div className="pt-2">
                 <a 
-                  href="https://wa.me/917783053603?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
+                  href="https://wa.me/919465533394?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-md shadow-emerald-600/10 transition-all duration-200"

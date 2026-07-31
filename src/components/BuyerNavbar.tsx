@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Search } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -28,6 +28,7 @@ export default function BuyerNavbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
+    { name: "Shop Now", href: "/shop" },
     { name: "Categories", href: "/shop" },
     { name: "Free Formulations", href: "/formulations" },
     { name: "Sample Kits", href: "/classes" },
@@ -108,7 +109,7 @@ export default function BuyerNavbar() {
                           </Link>
                         </li>
                         <li>
-                          <a href="https://wa.me/917783053603?text=Hi%20Ekora!%20I'd%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
+                          <a href="https://wa.me/919465533394?text=Hi%20Ekora!%20I'd%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
                             <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Contact Us
                           </a>
                         </li>
@@ -205,6 +206,13 @@ export default function BuyerNavbar() {
 
           {/* Right: CTA & Mobile Toggle */}
           <div className="flex-1 flex justify-end items-center gap-4">
+            <form action="/shop" method="GET" className="hidden lg:flex items-center relative">
+              <input type="text" name="q" placeholder="Search products..." className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-10 py-1.5 text-sm font-medium focus:outline-none focus:border-brand-orange w-48 transition-all focus:w-64" />
+              <button type="submit" className="absolute right-3 text-brand-charcoal/50 hover:text-brand-orange">
+                <Search className="w-4 h-4" />
+              </button>
+            </form>
+
             <Link
               href="/sell"
               className="hidden md:inline-flex items-center justify-center bg-brand-charcoal hover:bg-brand-charcoal/80 text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all shadow-md"
@@ -234,6 +242,13 @@ export default function BuyerNavbar() {
             className="fixed inset-0 z-40 bg-brand-bg pt-24 px-6 md:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 flex-1">
+              <form action="/shop" method="GET" className="relative mb-4">
+                <input type="text" name="q" placeholder="Search products..." className="w-full bg-white border border-brand-linen rounded-2xl pl-5 pr-12 py-4 text-lg font-medium focus:outline-none focus:border-brand-orange shadow-sm" />
+                <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-charcoal/50 hover:text-brand-orange">
+                  <Search className="w-6 h-6" />
+                </button>
+              </form>
+              
               {navLinks.map((link) => (
                 <Link
                   key={link.name}

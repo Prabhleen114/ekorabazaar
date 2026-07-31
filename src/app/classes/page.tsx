@@ -52,7 +52,7 @@ const classesData = [
   {
     level: "Level 1",
     title: "Foundations / Beginner",
-    fees: "RS 1800",
+    fees: "₹1800",
     includes: [
       "Materials & tools guide",
       "Wax types & fragrance ratios",
@@ -74,7 +74,7 @@ const classesData = [
   {
     level: "Level 2",
     title: "Intermediate - Bakery",
-    fees: "RS 3200",
+    fees: "₹3200",
     includes: [
       "Colour blending and wax colour theory",
       "Flash points and fragrance pairing",
@@ -93,7 +93,7 @@ const classesData = [
   {
     level: "Level 2",
     title: "Intermediate - Drinks",
-    fees: "RS 3400",
+    fees: "₹3400",
     includes: [
       "Advanced layering for liquid effects",
       "Gel wax manipulation",
@@ -112,7 +112,7 @@ const classesData = [
   {
     level: "Level 2",
     title: "Intermediate - Indian Festives",
-    fees: "RS 2200",
+    fees: "₹2200",
     includes: [
       "Festive colour blending",
       "Gold leafing & embellishments",
@@ -133,7 +133,7 @@ const classesData = [
 const kitsData = [
   {
     title: "Kit Level 1",
-    fees: "RS 3400",
+    fees: "₹3400",
     items: [
       "1 KG SOY WAX", "1 KG PARAFFIN WAX", "Wicks as per design", "Wick sticker", 
       "Colour packets - 7 pack", "Coffee fragrance - 30 ml", "Wick insertion tool", 
@@ -143,7 +143,7 @@ const kitsData = [
   },
   {
     title: "Kit Level 2 - Bakery",
-    fees: "RS 3400",
+    fees: "₹3400",
     items: [
       "1 KG SOY WAX", "1 KG PARAFFIN WAX", "Wicks as per design", "Wick sticker", 
       "Colour packets - 5 pack", "Coffee fragrance - 30 ml", "Wick Insertion tool", 
@@ -153,7 +153,7 @@ const kitsData = [
   },
   {
     title: "Kit Level 2 - Drinks",
-    fees: "RS 3400",
+    fees: "₹3400",
     items: [
       "1 KG SOY WAX", "500 GM PARAFFIN WAX", "500 GM GEL WAX", "Wicks as per design", 
       "Wick sticker", "Colour packets - 5 pack", "Coffee fragrance - 30 ml", "Wick Insertion tool", 
@@ -163,7 +163,7 @@ const kitsData = [
   },
   {
     title: "Kit Level 2 - Indian Festivities",
-    fees: "RS 3400",
+    fees: "₹3400",
     items: [
       "1 KG SOY WAX", "500 GM PARAFFIN WAX", "250 GM GEL WAX", "Wicks as per design", 
       "Wick sticker", "Colour packets - 5 pack", "Coffee fragrance - 30 ml", "Wick Insertion tool", 
@@ -378,12 +378,14 @@ export default function ClassesPage() {
             Secure your spot in our upcoming masterclasses or order your professional supply kit today. Elevate your craft with Ekora.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link 
-              href="/contact"
+            <a 
+              href="https://wa.me/919465533394?text=Hi%20Ekora!%20I'd%20like%20to%20enroll%20in%20a%20class."
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-4 text-base font-bold transition-all shadow-lg hover:shadow-brand-orange/20"
             >
               Enroll in a Class
-            </Link>
+            </a>
             <Link 
               href="/shop"
               className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-8 py-4 text-base font-bold transition-all"

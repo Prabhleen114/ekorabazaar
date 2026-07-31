@@ -110,6 +110,7 @@ export const metadata: Metadata = {
 
 
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieConsent from "@/components/CookieConsent";
 
 export default function RootLayout({
   children,
@@ -180,10 +181,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-brand-bg text-brand-charcoal`}
+        className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
       >
         {children}
         <WhatsAppButton />
+        <CookieConsent />
         {process.env.NODE_ENV === "production" && (
           <GoogleAnalytics gaId="G-YTRDDR6JBB" />
         )}
