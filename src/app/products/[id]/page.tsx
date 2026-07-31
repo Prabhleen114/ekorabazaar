@@ -151,15 +151,61 @@ export default async function ProductDetailsPage({ params }: Props) {
 
           <PricingWidget basePrice={product.price} tiers={product.tiers} />
           
-          {/* Trust factors */}
-          <div className="mt-8 grid grid-cols-2 gap-4 border-t border-brand-linen pt-8">
-            <div className="bg-white p-4 rounded-xl border border-brand-linen">
-              <h4 className="font-bold text-sm text-brand-charcoal mb-1">COA Available</h4>
-              <p className="text-xs text-brand-charcoal/50">Download test results after purchase.</p>
+          {/* Fragrance Notes Pyramid */}
+          {product.fragranceNotes && (
+            <div className="mt-10 border-t border-brand-linen pt-8">
+              <h3 className="font-bold font-serif text-xl text-brand-charcoal mb-6 text-center bg-rose-50 text-rose-900 py-2.5 rounded-xl border border-rose-100 shadow-sm">Fragrance Notes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
+                  <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Top Notes</h4>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.top.join(", ")}</p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
+                  <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Heart Notes</h4>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.heart.join(", ")}</p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
+                  <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Base Notes</h4>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.base.join(", ")}</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-4 rounded-xl border border-brand-linen">
+          )}
+
+          {/* Recommended Usage Table */}
+          {product.usageLevels && (
+            <div className="mt-10 border-t border-brand-linen pt-8">
+              <h3 className="font-bold font-serif text-xl text-brand-charcoal mb-6 text-center bg-brand-linen/30 py-2.5 rounded-xl">Recommended Usage Levels</h3>
+              <div className="overflow-hidden rounded-2xl border border-brand-linen shadow-sm">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-brand-linen/40 text-brand-charcoal/60 uppercase text-[10px] font-bold tracking-wider">
+                    <tr>
+                      <th className="px-6 py-4">Application</th>
+                      <th className="px-6 py-4 text-right">Recommended Usage</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-brand-linen bg-white">
+                    {Object.entries(product.usageLevels).map(([app, usage]) => (
+                      <tr key={app} className="hover:bg-brand-bg/50 transition-colors">
+                        <td className="px-6 py-3.5 font-medium text-brand-charcoal">{app}</td>
+                        <td className="px-6 py-3.5 text-right font-bold text-brand-orange">{usage as string}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Trust factors */}
+          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-brand-linen pt-8">
+            <div className="bg-white p-5 rounded-2xl border border-brand-linen shadow-sm">
+              <h4 className="font-bold text-sm text-brand-charcoal mb-1">COA Available</h4>
+              <p className="text-xs text-brand-charcoal/50 leading-relaxed">Download test results after purchase.</p>
+            </div>
+            <div className="bg-white p-5 rounded-2xl border border-brand-linen shadow-sm">
               <h4 className="font-bold text-sm text-brand-charcoal mb-1">Batch Matched</h4>
-              <p className="text-xs text-brand-charcoal/50">Consistent quality across all orders.</p>
+              <p className="text-xs text-brand-charcoal/50 leading-relaxed">Consistent quality across all orders.</p>
             </div>
           </div>
         </div>

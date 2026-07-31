@@ -1150,7 +1150,7 @@
     "price": 58,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-01-at-1.29.20-PM-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -1221,8 +1221,42 @@
       "pure",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "17",
@@ -5856,7 +5890,7 @@
     "price": 51,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/06/Vedini-10ml-Frosted-Glass-Hanging-Car-Diffuser-Bottle-with-Wooden-Round-Cap-and-Rope-for-Car-Perfume-Essential-Oils-Air-Freshener-Aromatherapy-247x296.png",
+    "image": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -5927,8 +5961,39 @@
       "jindeal",
       "eco-friendly",
       "natural",
-      "organic"
-    ]
+      "organic",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coriander",
+        "Bergamot"
+      ],
+      "heart": [
+        "Amyris",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Dark Musk"
+      ]
+    }
   },
   {
     "id": "80",
@@ -9201,7 +9266,7 @@
     "price": 72,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Diffuser-stick-white-black-brown-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -9271,8 +9336,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "125",
@@ -10104,7 +10203,7 @@
     "price": 47,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/50ml-diffuser-bottle-reed-diffuser-bottle-glass-diffuser-bottle-golden-cap-diffuser-bottle-2-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -10175,8 +10274,42 @@
       "organic",
       "pure",
       "essential",
-      "maker"
-    ]
+      "maker",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "137",
@@ -10186,7 +10319,7 @@
     "price": 34,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/50ml-difuser-bottle-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -10255,8 +10388,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "138",
@@ -11562,7 +11729,7 @@
     "price": 29,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01thRepr279qbWdLxuE_2221351267755-0-cib-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -11633,8 +11800,41 @@
       "pure",
       "essential",
       "maker",
-      "creator"
-    ]
+      "creator",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "156",
@@ -11716,7 +11916,7 @@
     "price": 98,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/ChatGPT-Image-May-17-2026-02_46_14-PM-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -11783,8 +11983,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "158",
@@ -11794,7 +12028,7 @@
     "price": 46,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01dtegbp279qbfMLRgS_2221351267755-0-cib-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -11865,8 +12099,42 @@
       "pure",
       "essential",
       "maker",
-      "creator"
-    ]
+      "creator",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "159",
@@ -11876,7 +12144,7 @@
     "price": 31,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01W993Qq1SZ8ElUhGsD_6000000002260-0-cib-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -11947,8 +12215,40 @@
       "pure",
       "essential",
       "maker",
-      "creator"
-    ]
+      "creator",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coriander",
+        "Bergamot"
+      ],
+      "heart": [
+        "Amyris",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Dark Musk"
+      ]
+    }
   },
   {
     "id": "160",
@@ -11958,7 +12258,7 @@
     "price": 32,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01fPZVqn279qbTpUaZ4_2221351267755-0-cib-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -12029,8 +12329,40 @@
       "pure",
       "essential",
       "maker",
-      "creator"
-    ]
+      "creator",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coriander",
+        "Bergamot"
+      ],
+      "heart": [
+        "Amyris",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Dark Musk"
+      ]
+    }
   },
   {
     "id": "161",
@@ -15390,7 +15722,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/04/frosted-perfume-bottle-30ml-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -15460,8 +15792,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "206",
@@ -16002,7 +16368,7 @@
     "price": 58,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/10ml-roll-on-perfume-bottle-square-AND-ROUND-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -16073,8 +16439,42 @@
       "natural",
       "organic",
       "pure",
-      "maker"
-    ]
+      "maker",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "214",
@@ -20986,7 +21386,7 @@
     "price": 29,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/04/perfume-spray-bottle-10ml-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -21054,8 +21454,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "280",
@@ -36458,7 +36892,7 @@
     "price": 519,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-1-2025-03_21_48-PM-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36522,8 +36956,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "494",
@@ -36533,7 +37001,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/06/images-2.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36589,8 +37057,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "495",
@@ -36600,7 +37102,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/download-1.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36663,8 +37165,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Jasmine",
+        "Vanilla Orchid"
+      ],
+      "base": [
+        "Vanilla Bean",
+        "White Musk",
+        "Amber"
+      ]
+    }
   },
   {
     "id": "496",
@@ -36674,7 +37209,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/SEA-SALT-FRAGRANCE-OIL-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1498092651296-641e88c3b057?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36737,8 +37272,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sea Salt",
+        "Ozone",
+        "Lemon"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Green Leaves"
+      ],
+      "base": [
+        "Wood",
+        "Tonka Bean"
+      ]
+    }
   },
   {
     "id": "497",
@@ -36748,7 +37316,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/images-3.jpg",
+    "image": "https://images.unsplash.com/photo-1611078734994-4b53272d1743?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36810,8 +37378,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sweet Orange",
+        "Bergamot",
+        "Lemon Zest"
+      ],
+      "heart": [
+        "Neroli",
+        "Jasmine"
+      ],
+      "base": [
+        "White Woods",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "498",
@@ -36821,7 +37422,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/images-1.jpg",
+    "image": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36884,8 +37485,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coriander",
+        "Bergamot"
+      ],
+      "heart": [
+        "Amyris",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Dark Musk"
+      ]
+    }
   },
   {
     "id": "499",
@@ -36895,7 +37528,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/download.jpg",
+    "image": "https://images.unsplash.com/photo-1596431980894-3754b2a303dd?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -36958,8 +37591,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Cinnamon Bark",
+        "Nutmeg"
+      ],
+      "heart": [
+        "Clove",
+        "Baked Apple"
+      ],
+      "base": [
+        "Vanilla",
+        "Tonka Bean"
+      ]
+    }
   },
   {
     "id": "500",
@@ -36969,7 +37634,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/fragrance-oil-500x500-1-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37030,8 +37695,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "501",
@@ -37041,7 +37740,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/fragrance-oil-500x500-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1498092651296-641e88c3b057?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37102,8 +37801,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sea Salt",
+        "Ozone",
+        "Lemon"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Green Leaves"
+      ],
+      "base": [
+        "Wood",
+        "Tonka Bean"
+      ]
+    }
   },
   {
     "id": "502",
@@ -37113,7 +37845,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/images.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37173,8 +37905,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "503",
@@ -37184,7 +37950,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/2-500x500-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37245,8 +38011,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "504",
@@ -37256,7 +38056,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/fragrance-oil-500x500-1-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37317,8 +38117,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "505",
@@ -37328,7 +38162,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/L4SVqgCH0DcLWwReWsu6hCaWtYhzYlQ4w3PbQ5pw-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37389,8 +38223,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "506",
@@ -37400,7 +38268,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/09/mimosa-mandarin-fragrance-oil-web-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1611078734994-4b53272d1743?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37464,8 +38332,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sweet Orange",
+        "Bergamot",
+        "Lemon Zest"
+      ],
+      "heart": [
+        "Neroli",
+        "Jasmine"
+      ],
+      "base": [
+        "White Woods",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "507",
@@ -37475,7 +38376,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37539,8 +38440,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "508",
@@ -37550,7 +38485,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/09/Masala-Chai-Featured-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37614,8 +38549,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "509",
@@ -37625,7 +38594,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/06/fragrance-oil-500x500-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37689,8 +38658,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "510",
@@ -37700,7 +38703,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/06/french-lilac-fragrance-oil-web-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37764,8 +38767,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "511",
@@ -37775,7 +38812,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/05/hazelnut-cappuccino-fragrance-oil-craftovator_a9ee4700-972c-42c9-8299-776e6576cc8d-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37839,8 +38876,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coffee Bean",
+        "Cacao"
+      ],
+      "heart": [
+        "Caramel",
+        "Sugar"
+      ],
+      "base": [
+        "Vanilla",
+        "Milk"
+      ]
+    }
   },
   {
     "id": "512",
@@ -37850,7 +38919,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/04/images.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37912,8 +38981,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "513",
@@ -37923,7 +39026,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/images-1.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -37985,8 +39088,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "514",
@@ -37996,7 +39133,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/5-53-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38059,8 +39196,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "515",
@@ -38070,7 +39241,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/31-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38132,8 +39303,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "516",
@@ -38143,7 +39348,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/31Gkv4VI10L._AC_UF10001000_QL80_-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38205,8 +39410,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "517",
@@ -38216,7 +39455,7 @@
     "price": 142,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/fragrance-oil-1000x1000-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38278,8 +39517,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "518",
@@ -38289,7 +39562,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/green-tea-fragrance-oil-835669-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38352,8 +39625,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "519",
@@ -38363,7 +39670,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/02/Sex-Bomb-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38427,8 +39734,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "520",
@@ -38438,7 +39779,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/02/vetiver-essential-oil-500x500-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38502,8 +39843,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "521",
@@ -38513,7 +39888,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/02/french-vanilla-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38577,8 +39952,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Jasmine",
+        "Vanilla Orchid"
+      ],
+      "base": [
+        "Vanilla Bean",
+        "White Musk",
+        "Amber"
+      ]
+    }
   },
   {
     "id": "522",
@@ -38588,7 +39996,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/02/kashmiri_lavender_oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1595960010991-628df776c5f0?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38652,8 +40060,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Eucalyptus"
+      ],
+      "heart": [
+        "Lavender",
+        "Clary Sage"
+      ],
+      "base": [
+        "Cedarwood",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "523",
@@ -38663,7 +40103,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/01/8761-Japanese-Cherry-Blossom-FO-695-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38722,8 +40162,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "524",
@@ -38733,7 +40207,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/01/NobleOud-min_1200x1200-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38791,8 +40265,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Cardamom",
+        "Black Pepper"
+      ],
+      "heart": [
+        "Oud Wood",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Vanilla",
+        "Tonka"
+      ]
+    }
   },
   {
     "id": "525",
@@ -38802,7 +40309,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/11/pumpkin_spice-sw-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38865,8 +40372,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "526",
@@ -38876,7 +40417,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/07/Frangipani-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -38935,8 +40476,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "527",
@@ -38946,7 +40521,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/03/Site-lichen-evernia-prunastri-20210131-2-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39010,8 +40585,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "528",
@@ -39021,7 +40630,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/02/il_794xN.3935450831_8qgo-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39078,8 +40687,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "529",
@@ -39089,7 +40732,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/02/essential-oils-vs-synthetic-essential-oils-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39146,8 +40789,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "530",
@@ -39157,7 +40834,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/11/download-1-1.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39221,8 +40898,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "531",
@@ -39232,7 +40943,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/11/592-Mango_900x900_crop_center-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39296,8 +41007,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "532",
@@ -39307,7 +41052,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/11/1520093173485-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39371,8 +41116,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "533",
@@ -39382,7 +41161,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/11/list-of-most-fragrant-flowers-for-your-gardens-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39446,8 +41225,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "534",
@@ -39457,7 +41270,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/11/50ad1a7094535f117959b08bfb15b7fc-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39521,8 +41334,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "535",
@@ -39532,7 +41379,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/06/teakwood-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39589,8 +41436,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "536",
@@ -39600,7 +41481,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Lavender-GB-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39657,8 +41538,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "537",
@@ -39668,7 +41583,7 @@
     "price": 77,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/aloe-vera-732x549-thumbnail-732x549-1-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39725,8 +41640,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "538",
@@ -39736,7 +41685,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/stock-photo-lotus-floral-botanical-flowers-wild-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39793,8 +41742,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "539",
@@ -39804,7 +41787,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/pg-mogra-star-800x800-1-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39861,8 +41844,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "540",
@@ -39872,7 +41889,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/istockphoto-178395953-170667a-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39929,8 +41946,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "541",
@@ -39940,7 +41991,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/Ginger-Limeade-0640-Copy-1-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -39997,8 +42048,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "542",
@@ -40008,7 +42093,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/PurensoCucumberFragranceOil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40064,8 +42149,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "543",
@@ -40075,7 +42194,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Fragrance-Oil-247x250.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40133,8 +42252,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Cardamom",
+        "Black Pepper"
+      ],
+      "heart": [
+        "Oud Wood",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Vanilla",
+        "Tonka"
+      ]
+    }
   },
   {
     "id": "544",
@@ -40144,7 +42296,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/photo-1631662351752-5803e12f04b5-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40202,8 +42354,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "545",
@@ -40213,7 +42399,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/01/61qfHvFGSL._SL1024_-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40270,8 +42456,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "546",
@@ -40281,7 +42501,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/01/2f58hxx-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40339,8 +42559,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "547",
@@ -40350,7 +42604,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/01/pink-sands-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40407,8 +42661,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "548",
@@ -40418,7 +42706,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/01/8645-Dewberry-Fragrance-Oil-378--247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40474,8 +42762,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "549",
@@ -40485,7 +42807,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/11/MixFruit-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40543,8 +42865,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "550",
@@ -40554,7 +42910,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/08/kiwi_fragrance-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40619,8 +42975,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "551",
@@ -40630,7 +43020,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/02/images.jpg",
+    "image": "https://images.unsplash.com/photo-1498092651296-641e88c3b057?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40687,8 +43077,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sea Salt",
+        "Ozone",
+        "Lemon"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Green Leaves"
+      ],
+      "base": [
+        "Wood",
+        "Tonka Bean"
+      ]
+    }
   },
   {
     "id": "552",
@@ -40698,7 +43121,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/patchouli-oil-1538131104-4347235-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40756,8 +43179,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "553",
@@ -40767,7 +43224,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/coffeebean_d9ced61a-7b3f-4edd-a2d9-20801f89ebbf_1400x-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40824,8 +43281,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coffee Bean",
+        "Cacao"
+      ],
+      "heart": [
+        "Caramel",
+        "Sugar"
+      ],
+      "base": [
+        "Vanilla",
+        "Milk"
+      ]
+    }
   },
   {
     "id": "554",
@@ -40835,7 +43324,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/Choco-musk-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40892,8 +43381,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "555",
@@ -40903,7 +43426,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/09/real-lemon-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -40960,8 +43483,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "556",
@@ -40971,7 +43528,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/09/green-teaa-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41028,8 +43585,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "557",
@@ -41039,7 +43630,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/strawberry-vedini-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41095,8 +43686,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "558",
@@ -41106,7 +43731,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/07/white-lily-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41163,8 +43788,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "559",
@@ -41174,7 +43833,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/06/WHITEMUSK-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41231,8 +43890,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "560",
@@ -41242,7 +43935,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/White-Soap-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41299,8 +43992,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "561",
@@ -41310,7 +44037,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/iStock_82244447_LARGE-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41367,8 +44094,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "562",
@@ -41378,7 +44139,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Lavender-GB-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1595960010991-628df776c5f0?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41435,8 +44196,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Eucalyptus"
+      ],
+      "heart": [
+        "Lavender",
+        "Clary Sage"
+      ],
+      "base": [
+        "Cedarwood",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "563",
@@ -41446,7 +44239,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/essential-oil-royalty-free-image-171327149-1559662463-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41504,8 +44297,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coriander",
+        "Bergamot"
+      ],
+      "heart": [
+        "Amyris",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Dark Musk"
+      ]
+    }
   },
   {
     "id": "564",
@@ -41515,7 +44340,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/essential-oil-royalty-free-image-171327149-1559662463-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41572,8 +44397,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "565",
@@ -41583,7 +44442,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/493ss_thinkstock_rf_essential_oils-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1611078734994-4b53272d1743?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41640,8 +44499,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sweet Orange",
+        "Bergamot",
+        "Lemon Zest"
+      ],
+      "heart": [
+        "Neroli",
+        "Jasmine"
+      ],
+      "base": [
+        "White Woods",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "566",
@@ -41651,7 +44543,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/493ss_thinkstock_rf_essential_oils-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41708,8 +44600,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "567",
@@ -41719,7 +44645,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Red-Wine-Fragrance-Oil-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41776,8 +44702,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "568",
@@ -41787,7 +44747,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/White-Soap-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41844,8 +44804,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "569",
@@ -41855,7 +44849,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Papaya-SK-Fragrance-Oil-247x296.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41911,8 +44905,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "570",
@@ -41922,7 +44950,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-apple-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -41978,8 +45006,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "571",
@@ -41989,7 +45051,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Real-Rose-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42046,8 +45108,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Rose Petals",
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Bulgarian Rose",
+        "Jasmine"
+      ],
+      "base": [
+        "White Musk",
+        "Sandalwood"
+      ]
+    }
   },
   {
     "id": "572",
@@ -42057,7 +45152,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Fasli-Gulaab-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42114,8 +45209,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "573",
@@ -42125,7 +45254,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Spanish-Kesar-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42182,8 +45311,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "574",
@@ -42193,7 +45356,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Jasmine-Flower-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1595861172851-41b9d0e199d7?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42250,8 +45413,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Lemon",
+        "Bergamot"
+      ],
+      "heart": [
+        "Jasmine",
+        "Lily"
+      ],
+      "base": [
+        "Vanilla",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "575",
@@ -42261,7 +45456,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Rose-Bulgarian-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42318,8 +45513,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Rose Petals",
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Bulgarian Rose",
+        "Jasmine"
+      ],
+      "base": [
+        "White Musk",
+        "Sandalwood"
+      ]
+    }
   },
   {
     "id": "576",
@@ -42329,7 +45557,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Neem-Tulsi-NTG-Fragrance-Oil-247x280.png",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42387,8 +45615,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "577",
@@ -42398,7 +45660,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Honey-Milk-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42463,8 +45725,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "578",
@@ -42474,7 +45770,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/White-Soap-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42531,8 +45827,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "579",
@@ -42542,7 +45872,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/lime-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42599,8 +45929,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "580",
@@ -42610,7 +45974,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Lavender-GB-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1595960010991-628df776c5f0?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42666,8 +46030,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Eucalyptus"
+      ],
+      "heart": [
+        "Lavender",
+        "Clary Sage"
+      ],
+      "base": [
+        "Cedarwood",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "581",
@@ -42677,7 +46073,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-02-28-09.34.55-A-premium-fragrance-oil-bottle-labeled-Vedini-Diced-Pineapple-Fragrance-Oil-with-a-bright-yellow-and-tropical-themed-design.-The-bottle-is-surrounde-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42739,8 +46135,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "582",
@@ -42750,7 +46180,7 @@
     "price": 246,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-03-03-16.32.52-A-visually-stunning-image-representing-the-fragrance-of-Vedini-Strawberry-Lush-Candle-Cosmetic-Fragrance-Oil.-The-image-should-include-a-luxurious-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42812,8 +46242,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "583",
@@ -42823,7 +46287,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-02-27-23.58.07-A-premium-fragrance-oil-bottle-labeled-Vedini-Cherry-Blossom-Candle-Cosmetic-Fragrance-Oil.-The-bottle-is-sleek-and-amber-colored-with-a-gold-cap-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42885,8 +46349,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "584",
@@ -42896,7 +46394,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-03-03-17.00.53-A-luxurious-fragrance-oil-bottle-labeled-Vedini-Orchid-Bouquet-Fragrance-Oil-placed-beside-a-bouquet-of-fresh-orchids.-The-background-has-a-soft-fl-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -42958,8 +46456,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "585",
@@ -42969,7 +46501,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-03-01-12.25.55-A-cozy-aromatic-scene-featuring-a-steaming-cup-of-freshly-brewed-coffee-with-roasted-coffee-beans-scattered-around.-A-luxurious-amber-glass-bottle-la-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43031,8 +46563,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Coffee Bean",
+        "Cacao"
+      ],
+      "heart": [
+        "Caramel",
+        "Sugar"
+      ],
+      "base": [
+        "Vanilla",
+        "Milk"
+      ]
+    }
   },
   {
     "id": "586",
@@ -43042,7 +46606,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/04/truemusk200099207912_l-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43106,8 +46670,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "587",
@@ -43117,7 +46715,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/04/jasmine-fragrance-oil-500x500-1-247x296.webp",
+    "image": "https://images.unsplash.com/photo-1595861172851-41b9d0e199d7?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43181,8 +46779,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Lemon",
+        "Bergamot"
+      ],
+      "heart": [
+        "Jasmine",
+        "Lily"
+      ],
+      "base": [
+        "Vanilla",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "588",
@@ -43192,7 +46822,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/01/oud-fragrance-tsk-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43250,8 +46880,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Cardamom",
+        "Black Pepper"
+      ],
+      "heart": [
+        "Oud Wood",
+        "Sandalwood"
+      ],
+      "base": [
+        "Amber",
+        "Vanilla",
+        "Tonka"
+      ]
+    }
   },
   {
     "id": "589",
@@ -43261,7 +46924,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-white-soap-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43318,8 +46981,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "590",
@@ -43329,7 +47026,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1611078734994-4b53272d1743?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43389,8 +47086,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sweet Orange",
+        "Bergamot",
+        "Lemon Zest"
+      ],
+      "heart": [
+        "Neroli",
+        "Jasmine"
+      ],
+      "base": [
+        "White Woods",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "591",
@@ -43400,7 +47130,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/02/2980d894ff4872c6bb574b970c035eb1_1024x1024-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43456,8 +47186,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "592",
@@ -43467,7 +47231,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Fragrance-Oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43524,8 +47288,42 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Lemon",
+        "Green Leaves"
+      ],
+      "heart": [
+        "Jasmine",
+        "Muguet"
+      ],
+      "base": [
+        "Sandalwood",
+        "Vanilla",
+        "White Musk"
+      ]
+    }
   },
   {
     "id": "593",
@@ -43535,7 +47333,7 @@
     "price": 168,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/rose-floating-candle-500x500-1-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43592,8 +47390,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Rose Petals",
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Bulgarian Rose",
+        "Jasmine"
+      ],
+      "base": [
+        "White Musk",
+        "Sandalwood"
+      ]
+    }
   },
   {
     "id": "594",
@@ -43603,7 +47434,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/01/GettyImages-1140603314-0bead6e6a2ba40f8abe6d4b7a89e2fad-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43661,8 +47492,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Jasmine",
+        "Vanilla Orchid"
+      ],
+      "base": [
+        "Vanilla Bean",
+        "White Musk",
+        "Amber"
+      ]
+    }
   },
   {
     "id": "595",
@@ -43672,7 +47536,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-white-soap-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1595960010991-628df776c5f0?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43729,8 +47593,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Eucalyptus"
+      ],
+      "heart": [
+        "Lavender",
+        "Clary Sage"
+      ],
+      "base": [
+        "Cedarwood",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "596",
@@ -43740,7 +47636,7 @@
     "price": 155,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-white-soap-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1615486171448-4fd1fb84a0c5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43796,8 +47692,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Bergamot",
+        "Pink Berries"
+      ],
+      "heart": [
+        "Jasmine",
+        "Vanilla Orchid"
+      ],
+      "base": [
+        "Vanilla Bean",
+        "White Musk",
+        "Amber"
+      ]
+    }
   },
   {
     "id": "597",
@@ -43807,7 +47736,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-white-soap-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1611078734994-4b53272d1743?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43865,8 +47794,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sweet Orange",
+        "Bergamot",
+        "Lemon Zest"
+      ],
+      "heart": [
+        "Neroli",
+        "Jasmine"
+      ],
+      "base": [
+        "White Woods",
+        "Musk"
+      ]
+    }
   },
   {
     "id": "598",
@@ -43876,7 +47838,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-white-soap-fragrance-oil-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1498092651296-641e88c3b057?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -43933,8 +47895,41 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sea Salt",
+        "Ozone",
+        "Lemon"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Green Leaves"
+      ],
+      "base": [
+        "Wood",
+        "Tonka Bean"
+      ]
+    }
   },
   {
     "id": "599",
@@ -43944,7 +47939,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/02/Bubblegum_18c0cd68-f38d-4f4b-9121-2d8d99f42a3e-247x296.jpeg",
+    "image": "https://images.unsplash.com/photo-1518115598154-b6c8ebfec9d5?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -44001,8 +47996,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Strawberry",
+        "Raspberry"
+      ],
+      "heart": [
+        "Bubblegum",
+        "Sugar"
+      ],
+      "base": [
+        "Vanilla",
+        "Tonka"
+      ]
+    }
   },
   {
     "id": "600",
@@ -44012,7 +48039,7 @@
     "price": 259,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/02/Aqua-Fresh-247x296.jpg",
+    "image": "https://images.unsplash.com/photo-1498092651296-641e88c3b057?w=800&q=80",
     "tiers": [
       {
         "minQty": 1,
@@ -44070,7 +48097,40 @@
       "essential",
       "maker",
       "creator",
-      "small business"
-    ]
+      "small business",
+      "fragrance oil",
+      "candle making",
+      "soap making",
+      "diy perfume",
+      "wholesale fragrance",
+      "ekora bazaar premium",
+      "aromatherapy"
+    ],
+    "usageLevels": {
+      "Soy Candles": "6–10%",
+      "Wax Melts": "8–12%",
+      "Melt & Pour Soap": "1–3%",
+      "Cold Process Soap": "2–5%",
+      "Lotion & Cream": "0.5–1%",
+      "Shampoo & Body Wash": "0.5–2%",
+      "Fine Perfume": "As per formulation",
+      "Reed Diffuser": "15–25%",
+      "Room Spray": "As per formulation"
+    },
+    "fragranceNotes": {
+      "top": [
+        "Sea Salt",
+        "Ozone",
+        "Lemon"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Green Leaves"
+      ],
+      "base": [
+        "Wood",
+        "Tonka Bean"
+      ]
+    }
   }
 ]
