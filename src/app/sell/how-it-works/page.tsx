@@ -1,3 +1,4 @@
+import serialize from "serialize-javascript";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -129,7 +130,7 @@ export default function HowItWorksPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
+          __html: serialize(breadcrumbSchema, { isJSON: true }),
         }}
       />
       <Navbar />

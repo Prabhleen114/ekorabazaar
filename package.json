@@ -16,10 +16,12 @@
     "lucide-react": "^1.21.0",
     "next": "16.2.9",
     "next-themes": "^0.4.6",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^9.0.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-icons": "^5.6.0",
+    "serialize-javascript": "^7.0.7",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/serialize-javascript": "^5.0.4",
     "cheerio": "^1.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",

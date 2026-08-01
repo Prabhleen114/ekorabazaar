@@ -4,6 +4,10 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import serialize from "serialize-javascript";
+import { ChevronRight } from "lucide-react";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -107,11 +111,11 @@ export default async function ProductDetailsPage({ params }: Props) {
       {/* Inject JSON-LD Schema for SEO Engine */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serialize(jsonLd, { isJSON: true }) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
       />
       {/* Visually hidden SEO tags */}
       {product.tags && (
@@ -121,15 +125,31 @@ export default async function ProductDetailsPage({ params }: Props) {
       )}
 
       <div className="pt-24 md:pt-28 pb-20 px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12">
-        {/* Product Image Gallery (Mock) */}
+        {/* Product Image Gallery (Optimized) */}
         <div className="w-full md:w-1/2">
           <div className="aspect-square bg-white rounded-3xl border border-brand-linen flex items-center justify-center p-8 sticky top-32 shadow-sm overflow-hidden relative">
-             <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-contain p-8" />
+            <Image 
+              src={product.image || "/og-image.jpg"} 
+              alt={product.name} 
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain p-8" 
+            />
           </div>
         </div>
 
         {/* Product Info & Pricing */}
         <div className="w-full md:w-1/2">
+          {/* Visual Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="flex items-center text-xs font-semibold text-brand-charcoal/50 mb-4">
+            <Link href="/" className="hover:text-brand-orange transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3 mx-1" />
+            <Link href="/shop" className="hover:text-brand-orange transition-colors">Shop</Link>
+            <ChevronRight className="w-3 h-3 mx-1" />
+            <Link href={`/shop?category=${encodeURIComponent(product.category)}`} className="hover:text-brand-orange transition-colors">{product.category}</Link>
+          </nav>
+          
           <div className="mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{product.category}</span>
           </div>
@@ -158,15 +178,15 @@ export default async function ProductDetailsPage({ params }: Props) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Top Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.top.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.top?.join(", ")}</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Heart Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.heart.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.heart?.join(", ")}</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Base Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.base.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.base?.join(", ")}</p>
                 </div>
               </div>
             </div>
