@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",
+    "canvas": "^3.2.3",
     "clsx": "^2.1.1",
     "firebase": "^12.17.0",
     "framer-motion": "^12.42.0",
