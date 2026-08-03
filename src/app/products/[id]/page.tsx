@@ -178,15 +178,21 @@ export default async function ProductDetailsPage({ params }: Props) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Top Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.top?.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
+                    {Array.isArray(product.fragranceNotes.top) ? product.fragranceNotes.top.join(", ") : product.fragranceNotes.top}
+                  </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Heart Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.heart?.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
+                    {Array.isArray(product.fragranceNotes.heart) ? product.fragranceNotes.heart.join(", ") : product.fragranceNotes.heart}
+                  </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                   <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-3">Base Notes</h4>
-                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">{product.fragranceNotes.base?.join(", ")}</p>
+                  <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
+                    {Array.isArray(product.fragranceNotes.base) ? product.fragranceNotes.base.join(", ") : product.fragranceNotes.base}
+                  </p>
                 </div>
               </div>
             </div>

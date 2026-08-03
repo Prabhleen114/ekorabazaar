@@ -1,6 +1,7 @@
 import csv
 import os
 import sys
+# pyrefly: ignore [missing-import]
 from PIL import Image, ImageDraw, ImageFont
 
 # --- Configuration ---

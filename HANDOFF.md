@@ -3,14 +3,33 @@
 **Total Products:** 108
 
 ## Current Status
-- **Text Generation (Groq):** Completed for the majority of products. (Note: A few products encountered a `429 Rate Limit` during the last batch).
-- **Image Generation (Python):** Script `scripts/generate_covers.py` has been written and `products.csv` is ready. Pending local execution by the user.
+- **Text Generation (Groq):** ✅ Complete — 108/108 descriptions and fragrance notes done.
+- **Image Generation (Gemini 2.5 Flash):** 🔄 In Progress — 3/108 completed.
 
 ## Pending Products (Image Generation)
-- All 108 products are currently pending image generation via the Python script. 
-*(Once the script is run locally, `output_images` will populate).*
+- Ladoo Sweet Mithai
+- Pure Desire
+- Lavender Vanilla
+- Sea Salt
+- Pure Orange
+- Mahogany Teakwood
+- Apple Cinnamon
+- Ice Cool
+- Blue Ocean
+- Silky Sun
+- Inter Pool
+- Dove Strong
+- Mimosa & Mandarin
+- White Linen
+- Masala Chai
+- Arctic Breeze
+- French Lilac
+- Hazelnut Coffee
+- Gili Mitti
+- Bamboo Leaf
+- ... and 20 more
 
 ## Next Exact Step to Resume
-1. Run `pip install Pillow` and `python scripts/generate_covers.py` locally to generate all 108 images.
-2. Move the generated images from `output_images` into `public/images/products`.
-3. Re-run the Groq description script if you wish to fill in the missing descriptions that hit rate limits.
+1. Re-run `python scripts/generate_covers_dalle.py` — it will auto-skip completed images.
+2. After all 108 are done, copy images from `output_images/` to `public/images/products/` and update `products.json`.
+3. `git add . && git commit -m "feat: bespoke product images" && git push`
