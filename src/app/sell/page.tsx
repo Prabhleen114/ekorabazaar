@@ -1,3 +1,4 @@
+import serialize from "serialize-javascript";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
@@ -84,7 +85,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
+          __html: serialize(breadcrumbSchema, { isJSON: true }),
         }}
       />
       <Navbar />

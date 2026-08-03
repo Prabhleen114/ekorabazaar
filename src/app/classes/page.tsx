@@ -1,3 +1,4 @@
+import serialize from "serialize-javascript";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -199,7 +200,7 @@ export default function ClassesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
+          __html: serialize(breadcrumbSchema, { isJSON: true }),
         }}
       />
       <BuyerNavbar />

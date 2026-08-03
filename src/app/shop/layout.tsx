@@ -1,3 +1,4 @@
+import serialize from "serialize-javascript";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -71,7 +72,7 @@ export default function ShopLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
+          __html: serialize(breadcrumbSchema, { isJSON: true }),
         }}
       />
       {children}

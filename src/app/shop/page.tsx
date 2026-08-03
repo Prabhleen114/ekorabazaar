@@ -1,10 +1,10 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { Metadata } from "next";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
-import Link from "next/link";
-import { Filter, ChevronDown, Tag, PackageSearch } from "lucide-react";
+import ShopClient from "./ShopClient";
+import { mockProducts } from "@/lib/products";
+import { Suspense } from "react";
+import serialize from "serialize-javascript";
 
 type ProductFilters = {
   skinSafe?: boolean;
@@ -129,6 +129,19 @@ export default function ShopPage() {
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
+      {/* Hide H1 visually but keep it for SEO (Content SEO / AI SEO) */}
+      <h1 className="sr-only">Wholesale Craft Supplies and Raw Materials Shop</h1>
+      
+      {/* JSON-LD Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serialize(collectionSchema, { isJSON: true }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
+      />
+
       <BuyerNavbar />
       
       <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">

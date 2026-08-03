@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "jindeal.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.ekorabazaar.in",
+      },
     ],
   },
 };
