@@ -1,0 +1,866 @@
+﻿[
+    {
+        "id":  "493",
+        "original":  "LADOO SWEET MITHAEE FRAGRANCE OIL (PREMIUM FINE INDIAN SWEET FRAGRANCE OIL â€“ FOR CANDLES, SOAPS \u0026 LOTIONS)",
+        "cleaned":  "Ladoo Sweet Mithai Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "494",
+        "original":  "PURE DESIRE FRAGRANCE OIL",
+        "cleaned":  "Pure Desire Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "495",
+        "original":  "LAVENDER VANILLA FRAGRANCE OIL FOR CANDLES \u0026 COSMETICS, SOAP, LOTION",
+        "cleaned":  "Lavender Vanilla Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "496",
+        "original":  "SEA SALT CANDLE FRAGRANCE OIL FOR CANDLES \u0026 COSMETICS, SOAP, LOTION",
+        "cleaned":  "Sea Salt Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "497",
+        "original":  "PURE ORANGE FRAGRANCE OIL FOR CANDLES \u0026 COSMETICS, SOAP, LOTION",
+        "cleaned":  "Pure Orange Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "498",
+        "original":  "MAHOGANY TEAKWOOD FRAGRANCE OIL FOR CANDLES \u0026 COSMETICS, SOAP, LOTION",
+        "cleaned":  "Mahogany Teakwood Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "499",
+        "original":  "APPLE CINNAMON FRAGRANCE OIL FOR CANDLES \u0026 COSMETICS, SOAP, LOTION",
+        "cleaned":  "Apple Cinnamon Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "500",
+        "original":  "ICE COOL FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Ice Cool Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "501",
+        "original":  "BLUE OCEAN FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Blue Ocean Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "502",
+        "original":  "INSIGNIA FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Insignia Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "503",
+        "original":  "SILKY SUN FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Silky Sun Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "504",
+        "original":  "INTER POOL FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Inter Pool Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "505",
+        "original":  "DOVE STRONG FRAGRANCE OIL FOR CANDLE AND COSMETIC",
+        "cleaned":  "Dove Strong Fragrance Oil (skin safe)(candle)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "506",
+        "original":  "MIMOSA \u0026 MANDARIN FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Mimosa \u0026 Mandarin Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "507",
+        "original":  "WHITE LINENE FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "White Linene Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "508",
+        "original":  "MASALA CHAI FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Masala Chai Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "509",
+        "original":  "ARCTIC BREEZE FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Arctic Breeze Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "510",
+        "original":  "FRENCH LILAC FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "French Lilac Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "511",
+        "original":  "HAZELNUT COFFEE FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Hazelnut Coffee Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "512",
+        "original":  "GILI MITTI CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Gili Mitti Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "513",
+        "original":  "BAMBOO LEAF CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Bamboo Leaf Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "514",
+        "original":  "MORINGA DRUMSTICK FLOWER CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Moringa Drumstick Flower Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "515",
+        "original":  "AMBER NOIR CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Amber Noir Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "516",
+        "original":  "APPLE PIE CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Apple Pie Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "517",
+        "original":  "RUSSIAN LEATHER CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Russian Leather Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "518",
+        "original":  "GREEN TEA \u0026 LEMON CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Green Tea \u0026 Lemon Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "519",
+        "original":  "LUSH BOMB FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Lush Bomb Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "520",
+        "original":  "VETIVER STANDARD FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Vetiver Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "521",
+        "original":  "VANILLA SPC FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Vanilla Spc Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "522",
+        "original":  "LAVENDER KASHMIR FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Lavender Kashmir Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "523",
+        "original":  "JAPANESE CHERRY BLOSSOM COSMETICS FRAGRANCE OIL",
+        "cleaned":  "Japanese Cherry Blossom Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "524",
+        "original":  "AMEER AL OUDH COSMETIC FRAGRANCE OIL",
+        "cleaned":  "Ameer Al Oudh Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "525",
+        "original":  "PUMPKIN PIE COSMETIC AND CANDLE FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Pumpkin Pie Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "526",
+        "original":  "FRANGIPANI FRAGRANCE OILS FOR COSMETIC AND SOAP",
+        "cleaned":  "Frangipani Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "527",
+        "original":  "ENGLISH OAKMOSS CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE ) CANDLE COLOR ME CHANGE",
+        "cleaned":  "English Oakmoss Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "528",
+        "original":  "SENSUAL AMBER COSMETIC FRAGRANCE OILS",
+        "cleaned":  "Sensual Amber Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "529",
+        "original":  "FUN LOVING COSMETIC FRAGRANCE OILS",
+        "cleaned":  "Fun Loving Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "530",
+        "original":  "SAFFRON CEDAR FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Saffron Cedar Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "531",
+        "original":  "MANGO PUNCH FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Mango Punch Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "532",
+        "original":  "PEACH COCONUT FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Peach Coconut Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "533",
+        "original":  "MORNING FLOWER FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Morning Flower Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "534",
+        "original":  "CARDAMOM \u0026 SAFFRON FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Cardamom \u0026 Saffron Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "535",
+        "original":  "FRENCH OAK FRAGRANCE OIL",
+        "cleaned":  "French Oak Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "536",
+        "original":  "SILKY MUSK FRAGRANCE OIL",
+        "cleaned":  "Silky Musk Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "537",
+        "original":  "ALOE VERA FRAGRANCE OIL",
+        "cleaned":  "Aloe Vera Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "538",
+        "original":  "LOTUS FLORAL FRAGRANCE OIL",
+        "cleaned":  "Lotus Floral Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "539",
+        "original":  "ROMANTIC MOGRA FRAGRANCE OIL",
+        "cleaned":  "Romantic Mogra Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "540",
+        "original":  "GREEN APPLE FRAGRANCE OIL",
+        "cleaned":  "Green Apple Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "541",
+        "original":  "GINGER \u0026 LIME FRAGRANCE OIL",
+        "cleaned":  "Ginger \u0026 Lime Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "542",
+        "original":  "CUCUMBER FRAGRANCE OIL",
+        "cleaned":  "Cucumber Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "543",
+        "original":  "BLACK OUDH INC FRAGRANCE OIL",
+        "cleaned":  "Black Oudh Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "544",
+        "original":  "HONEY SUCKLE \u0026 PEACH FRAGRANCE OIL",
+        "cleaned":  "Honey Suckle \u0026 Peach Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "545",
+        "original":  "NARGIS FLOWER FRAGRANCE OIL",
+        "cleaned":  "Nargis Flower Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "546",
+        "original":  "GARDENIA \u0026 WHITE PEACH FRAGRANCE OIL",
+        "cleaned":  "Gardenia \u0026 White Peach Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "547",
+        "original":  "PINK SAND FRAGRANCE OIL",
+        "cleaned":  "Pink Sand Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "548",
+        "original":  "DEWBERRY HR FRAGRANCE OIL",
+        "cleaned":  "Dewberry Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "549",
+        "original":  "MIX FRUIT 101 FRAGRANCE OIL",
+        "cleaned":  "Mix Fruit 101 Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "550",
+        "original":  "KIWI FIG FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE ) ORIGIN: INDIA",
+        "cleaned":  "Kiwi Fig Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "551",
+        "original":  "SEA BREEZE FRAGRANCE OIL",
+        "cleaned":  "Sea Breeze Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "552",
+        "original":  "PATCHOULI SOLID DEO FRAGRANCE OIL",
+        "cleaned":  "Patchouli Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "553",
+        "original":  "COFFEE BEAN FRAGRANCE OIL",
+        "cleaned":  "Coffee Bean Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "554",
+        "original":  "CHOCO MUSK FRAGRANCE OIL",
+        "cleaned":  "Choco Musk Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "555",
+        "original":  "REAL LEMON FRAGRANCE OIL",
+        "cleaned":  "Real Lemon Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "556",
+        "original":  "GREEN TEA FRAGRANCE OIL",
+        "cleaned":  "Green Tea Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "557",
+        "original":  "STRAWBERRY FRAGRANCE OIL",
+        "cleaned":  "Strawberry Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "558",
+        "original":  "WHITE LILY FRAGRANCE OIL",
+        "cleaned":  "White Lily Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "559",
+        "original":  "WHITE MUSK FRAGRANCE OIL",
+        "cleaned":  "White Musk Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "560",
+        "original":  "WHITE SOAP FRAGRANCE OIL",
+        "cleaned":  "White Soap Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "561",
+        "original":  "MILK SOAP FRAGRANCE OIL",
+        "cleaned":  "Milk Soap Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "562",
+        "original":  "LAVENDER YARDLE FRAGRANCE OIL",
+        "cleaned":  "Lavender Yardle Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "563",
+        "original":  "SANDALWOOD \u0026 SAFFRON FRAGRANCE OIL (CP STABLE)",
+        "cleaned":  "Sandalwood \u0026 Saffron Fragrance Oil (cold process stable)",
+        "skinSafe":  false,
+        "cpStable":  true,
+        "candle":  false
+    },
+    {
+        "id":  "564",
+        "original":  "KESAR INC FRAGRANCE OIL",
+        "cleaned":  "Kesar Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "565",
+        "original":  "CITRUS FRUIT FM FRAGRANCE OIL",
+        "cleaned":  "Citrus Fruit Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "566",
+        "original":  "GENTLEMENS TONIC FRAGRANCE OIL",
+        "cleaned":  "Gentleman\u0027S Tonic Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "567",
+        "original":  "RED WINE FRAGRANCE OIL",
+        "cleaned":  "Red Wine Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "568",
+        "original":  "SANDAL FLORANCE FRAGRANCE OIL",
+        "cleaned":  "Sandal Florance Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "569",
+        "original":  "PAPAYA SK FRAGRANCE OIL",
+        "cleaned":  "Papaya Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "570",
+        "original":  "APPLE FRAGRANCE OIL",
+        "cleaned":  "Apple Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "571",
+        "original":  "REAL ROSE FRAGRANCE OIL",
+        "cleaned":  "Real Rose Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "572",
+        "original":  "FASLI GULAAB FRAGRANCE OIL",
+        "cleaned":  "Fasli Gulaab Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "573",
+        "original":  "SPANISH KESAR FRAGRANCE OIL",
+        "cleaned":  "Spanish Kesar Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "574",
+        "original":  "JASMINE FLOWER FRAGRANCE OIL",
+        "cleaned":  "Jasmine Flower Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "575",
+        "original":  "ROSE BULGARIAN FRAGRANCE OIL",
+        "cleaned":  "Rose Bulgarian Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "576",
+        "original":  "NEEM \u0026 TULSI NTG FRAGRANCE OIL",
+        "cleaned":  "Neem \u0026 Tulsi Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "577",
+        "original":  "HONEY AND MILK FRAGRANCE OIL FOR SOAP, LOTION, SHAMPOO, BASES AND OTHER COSMETIC",
+        "cleaned":  "Honey And Milk Fragrance Oil (skin safe)",
+        "skinSafe":  true,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "578",
+        "original":  "GOLDEN WOMEN FRAGRANCE OIL",
+        "cleaned":  "Golden Women Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "579",
+        "original":  "IRIS LIME FRAGRANCE OIL",
+        "cleaned":  "Iris Lime Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "580",
+        "original":  "LAVENDER GB FRAGRANCE OIL",
+        "cleaned":  "Lavender Fragrance Oil",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  false
+    },
+    {
+        "id":  "581",
+        "original":  "DICED PINNAPLE CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Diced Pinnaple Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "582",
+        "original":  "STRAWBERRY LUSH CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Strawberry Lush Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "583",
+        "original":  "CHERRY BLOSSOM CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Cherry Blossom Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "584",
+        "original":  "ORCHID BOUQUET CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Orchid Bouquet Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "585",
+        "original":  "ROASTED COFFEE CANDLE \u0026 COSMETIC FRAGRANCE OIL ( COLD PROCESS STABLE )",
+        "cleaned":  "Roasted Coffee Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "586",
+        "original":  "MUSK GOLD FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Musk Gold Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "587",
+        "original":  "JASMINE KNIGHT FRAGRANCE OIL FOR CANDLE AND COSMETIC ( COLD PROCESS STABLE )",
+        "cleaned":  "Jasmine Knight Fragrance Oil (skin safe)(cold process stable)(candle)",
+        "skinSafe":  true,
+        "cpStable":  true,
+        "candle":  true
+    },
+    {
+        "id":  "588",
+        "original":  "FRESH OUDH CANDLE FRAGRANCE OIL",
+        "cleaned":  "Fresh Oudh Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "589",
+        "original":  "CACTUS BLOSSOM CANDLE FRAGRANCE OILS",
+        "cleaned":  "Cactus Blossom Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "590",
+        "original":  "MIDNIGHT BLUE CITRUS FRAGRANCE OIL FOR CANDLE",
+        "cleaned":  "Midnight Blue Citrus Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "591",
+        "original":  "BUTTERFLY CANDLE FRAGRANCE OILS",
+        "cleaned":  "Butterfly Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "592",
+        "original":  "TEMPLE CANDLE FRAGRANCE OIL",
+        "cleaned":  "Temple Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "593",
+        "original":  "ROSE CANDLE FRAGRANCE OIL",
+        "cleaned":  "Rose Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "594",
+        "original":  "MULBERRY VANILLA CANDLE FRAGRANCE OIL",
+        "cleaned":  "Mulberry Vanilla Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "595",
+        "original":  "LAVENDER FLORENCE CD CANDLE FRAGRANCE",
+        "cleaned":  "Lavender Florence Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "596",
+        "original":  "VANILLA MT CD CANDLE FRAGRANCE",
+        "cleaned":  "Vanilla Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "597",
+        "original":  "ORANGE \u0026 CINNAMON CD CANDLE FRAGRANCE OIL",
+        "cleaned":  "Orange \u0026 Cinnamon Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "598",
+        "original":  "CLEAN OCEAN CD CANDLE FRAGRANCE",
+        "cleaned":  "Clean Ocean Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "599",
+        "original":  "BUBBLE GUM CD CANDLE FRAGRANCE",
+        "cleaned":  "Bubble Gum Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    },
+    {
+        "id":  "600",
+        "original":  "NEW AQUA FRESH CD CANDLE FRAGRANCE",
+        "cleaned":  "New Aqua Fresh Fragrance Oil (candle)",
+        "skinSafe":  false,
+        "cpStable":  false,
+        "candle":  true
+    }
+]
