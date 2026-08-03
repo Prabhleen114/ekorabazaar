@@ -6,6 +6,12 @@ import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import { Filter, ChevronDown, Tag, PackageSearch } from "lucide-react";
 
+type ProductFilters = {
+  skinSafe?: boolean;
+  cpStable?: boolean;
+  candle?: boolean;
+};
+
 type Product = {
   id: string;
   name: string;
@@ -14,6 +20,7 @@ type Product = {
   bulkDiscountAvailable: boolean;
   maxDiscount: number;
   image: string;
+  filters?: ProductFilters;
 };
 
 export default function ShopPage() {
@@ -22,6 +29,11 @@ export default function ShopPage() {
   const [sortBy, setSortBy] = useState("recommended");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [fragranceFilters, setFragranceFilters] = useState<Record<string, boolean>>({
+    skinSafe: false,
+    cpStable: false,
+    candle: false,
+  });
 
   useEffect(() => {
     fetch(`/api/products?t=${Date.now()}`)
@@ -73,10 +85,23 @@ export default function ShopPage() {
   const allCategories = Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort();
 
   const toggleCategory = (cat: string) => {
-    setSelectedCategories(prev => 
+    setSelectedCategories(prev =>
       prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
     );
   };
+
+  const toggleFragranceFilter = (key: string) => {
+    setFragranceFilters(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const activeFragranceFilters = Object.entries(fragranceFilters)
+    .filter(([, v]) => v)
+    .map(([k]) => k);
+
+  // Whether any visible product has a filters field (i.e. fragrance oil section is active)
+  const showFragranceFilters = products.some(
+    p => p.filters && (selectedCategories.length === 0 || selectedCategories.includes(p.category))
+  );
 
   const filteredProducts = products.filter(p => {
     if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
@@ -84,6 +109,13 @@ export default function ShopPage() {
       const qLower = searchQuery.toLowerCase();
       if (!p.name.toLowerCase().includes(qLower) && !p.category.toLowerCase().includes(qLower)) {
         return false;
+      }
+    }
+    // Fragrance attribute filters — only apply if product has filters field
+    if (activeFragranceFilters.length > 0) {
+      if (!p.filters) return false;
+      for (const key of activeFragranceFilters) {
+        if (!p.filters[key as keyof ProductFilters]) return false;
       }
     }
     return true;
@@ -130,24 +162,29 @@ export default function ShopPage() {
                 </div>
               </div>
 
-              {/* Art Type Filter */}
-              <div>
-                <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Art Type</h4>
-                <div className="space-y-2 text-sm text-brand-charcoal/70">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Candle Making
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Resin Geode
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Perfumery
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" /> Soap Making
-                  </label>
+              {/* Fragrance Oil Attribute Filters */}
+              {showFragranceFilters && (
+                <div>
+                  <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Fragrance Type</h4>
+                  <div className="space-y-2 text-sm text-brand-charcoal/70">
+                    {([
+                      { key: 'skinSafe', label: '🌿 Skin Safe' },
+                      { key: 'cpStable', label: '🧼 Cold Process Stable' },
+                      { key: 'candle',   label: '🕯️ Candle Grade' },
+                    ] as { key: string; label: string }[]).map(({ key, label }) => (
+                      <label key={key} className="flex items-center gap-2 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={fragranceFilters[key]}
+                          onChange={() => toggleFragranceFilter(key)}
+                          className="rounded text-brand-orange focus:ring-brand-orange shrink-0"
+                        />
+                        <span className="group-hover:text-brand-orange transition-colors">{label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Stock Status */}
               <div>
