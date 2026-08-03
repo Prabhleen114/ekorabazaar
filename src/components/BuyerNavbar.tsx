@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronRight, Search } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,11 +39,11 @@ export default function BuyerNavbar() {
     <>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          isScrolled || mobileMenuOpen ? "bg-brand-bg border-b border-brand-linen" : "bg-brand-bg/80 backdrop-blur-md"
+          isScrolled || mobileMenuOpen ? "bg-white border-b border-brand-linen shadow-sm" : "bg-white/90 backdrop-blur-md border-b border-brand-linen/60"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
-          {/* Left: Brand */}
+        <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
+          {/* Left: Brand Logo */}
           <div className="flex-1 flex justify-start">
             <Link
               href="/"
@@ -62,126 +62,179 @@ export default function BuyerNavbar() {
             </Link>
           </div>
 
-          {/* Center: Desktop Nav */}
-          <nav className="hidden md:flex justify-center items-center gap-8">
-            <div className="relative">
+          {/* Center: Desktop Nav Items & Mega Menu Trigger */}
+          <nav className="hidden md:flex justify-center items-center gap-8 h-full">
+            {/* Top-Level Categories Mega Menu Dropdown */}
+            <div 
+              className="relative h-full flex items-center"
+              onMouseEnter={() => setIsCategoriesOpen(true)}
+              onMouseLeave={() => setIsCategoriesOpen(false)}
+            >
               <button
                 onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                  isCategoriesOpen ? "text-brand-orange" : "text-brand-charcoal/60 hover:text-brand-charcoal"
+                className={`relative flex items-center gap-1.5 text-sm font-medium h-full transition-colors ${
+                  isCategoriesOpen ? "text-brand-orange" : "text-brand-charcoal/80 hover:text-brand-charcoal"
                 }`}
               >
-                Categories
+                <span>Categories</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? "rotate-180 text-brand-orange" : ""}`} />
+                {/* Underline Indicator */}
+                {isCategoriesOpen && (
+                  <motion.div
+                    layoutId="activeUnderline"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-orange"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
 
+              {/* Full-Width Mega Menu Dropdown Container */}
               <AnimatePresence>
                 {isCategoriesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 15 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 15 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-[40%] mt-6 w-[960px] bg-white shadow-2xl rounded-2xl border border-brand-linen flex overflow-hidden z-50 text-left"
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="fixed top-16 left-0 right-0 w-full bg-white/98 backdrop-blur-xl border-b border-brand-linen shadow-2xl z-50 overflow-hidden"
                   >
-                    {/* Left Sidebar */}
-                    <div className="w-64 bg-brand-bg p-8 shrink-0 border-r border-brand-linen">
-                      <h3 className="font-serif font-bold text-lg text-brand-charcoal mb-6 uppercase tracking-wider">Quick Navigation</h3>
-                      <ul className="space-y-4">
-                        <li>
-                          <Link href="/shop" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> All Products
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/formulations" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Free Formulations
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/classes" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Classes &amp; Training
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/sell" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Become a Seller
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="https://wa.me/919465533394?text=Hi%20Ekora!%20I'd%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-brand-charcoal/70 hover:text-brand-orange uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange"></span> Contact Us
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Columns */}
-                    <div className="flex-1 p-8 grid grid-cols-3 gap-8">
-                      {/* Column 1 */}
-                      <div className="space-y-8">
-                        <div>
-                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Soap Making Material</h4>
-                          <ul className="space-y-3">
-                            {['Melt & Pour Soap Base', 'Essential Oils', 'Cosmetic Liquid & Mica Colors', 'Fragrance Oils', 'Silicon Moulds'].map(item => (
-                              <li key={item}>
-                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
-                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Candle Making Material</h4>
-                          <ul className="space-y-3">
-                            {['Waxes and Butters', 'Candle Mould'].map(item => (
-                              <li key={item}>
-                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
-                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Column 2 */}
-                      <div className="space-y-8">
-                        <div>
-                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">All Silicon Molds</h4>
-                          <ul className="space-y-3">
-                            {['Candle Mould', 'Chocolate Mould', 'Fondant Molds', 'Soap Mould', 'Tube & Loaf Mould', 'Resin Mold'].map(item => (
-                              <li key={item}>
-                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
-                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">Popular Categories</h4>
-                          <ul className="space-y-3">
-                            {['Home Decor', 'Natural Extracts'].map(item => (
-                              <li key={item}>
-                                <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
-                                  <ChevronRight className="w-3 h-3 opacity-50" /> {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Column 3 */}
+                    <div className="max-w-7xl mx-auto px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
+                      {/* Column 1: Premium Bases & Raw Materials */}
                       <div>
-                        <h4 className="font-bold text-brand-charcoal/60 uppercase tracking-wider text-sm mb-4">All Other Categories</h4>
-                        <ul className="space-y-3">
-                          {['Liquid and Cream Base', 'Dry Flowers', 'Preservative & Bulk Chemical', 'Fruit Flavour', 'Steam Distilled Hydrosols', 'Cold Processed Soaps', 'Office Product', 'DIY Tools', 'Other Item', 'Chocolate'].map(item => (
+                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
+                          Premium Bases &amp; Raw Materials
+                        </h3>
+                        <ul className="space-y-2.5">
+                          {[
+                            "Melt & Pour Soap Bases",
+                            "Liquid & Cream Bases",
+                            "Premium Waxes & Butters",
+                            "Raw Chemicals & Preservatives",
+                          ].map((item) => (
                             <li key={item}>
-                              <Link href={`/shop?category=${encodeURIComponent(item)}`} className="text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange flex items-center gap-1 uppercase">
-                                <ChevronRight className="w-3 h-3 opacity-50" /> {item}
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(item)}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Column 2: Scents, Colors & Botanicals */}
+                      <div>
+                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
+                          Scents, Colors &amp; Botanicals
+                        </h3>
+                        <ul className="space-y-2.5">
+                          <li>
+                            <div className="flex flex-col">
+                              <Link
+                                href={`/shop?category=${encodeURIComponent("Premium Fragrance Oils")}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange leading-relaxed transition-colors flex items-center"
+                              >
+                                Premium Fragrance Oils
+                                <span className="inline-flex items-center justify-center bg-[#e0f2fe] text-[#0369a1] text-[10px] font-bold px-2 py-0.5 rounded-full ml-2 tracking-wide uppercase">
+                                  NEW
+                                </span>
+                              </Link>
+                              {/* Sub-divisions */}
+                              <ul className="ml-3 mt-1.5 space-y-1 border-l-2 border-brand-linen pl-3">
+                                {["Cosmetic Safe", "CP Stable", "Candle"].map((sub) => (
+                                  <li key={sub}>
+                                    <Link
+                                      href={`/shop?category=Premium Fragrance Oils&sub=${encodeURIComponent(sub)}`}
+                                      className="font-sans font-normal text-xs text-brand-charcoal/50 hover:text-brand-orange block py-0.5 leading-normal transition-colors"
+                                    >
+                                      {sub}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </li>
+                          {[
+                            "Pure Essential Oils",
+                            "Mica & Liquid Colors",
+                            "Steam Distilled Hydrosols",
+                            "Dried Flowers & Botanicals",
+                            "Natural Extracts & Flavours",
+                          ].map((item) => (
+                            <li key={item}>
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(item)}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Column 3: Silicone Moulds & Equipment */}
+                      <div>
+                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
+                          Silicone Moulds &amp; Equipment
+                        </h3>
+                        <ul className="space-y-2.5">
+                          {["Soap & Loaf Moulds", "Candle Moulds"].map((item) => (
+                            <li key={item}>
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(item)}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                          <li>
+                            <Link
+                              href={`/shop?category=${encodeURIComponent("Resin Moulds")}`}
+                              className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange leading-relaxed transition-colors flex items-center"
+                            >
+                              Resin Moulds
+                              <span className="inline-flex items-center justify-center bg-[#e0f2fe] text-[#0369a1] text-[10px] font-bold px-2 py-0.5 rounded-full ml-2 tracking-wide uppercase">
+                                NEW
+                              </span>
+                            </Link>
+                          </li>
+                          {[
+                            "Culinary Moulds (Chocolate & Fondant)",
+                            "DIY Tools & Accessories",
+                          ].map((item) => (
+                            <li key={item}>
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(item)}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Column 4: Curated Lifestyle & Learning */}
+                      <div>
+                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
+                          Curated Lifestyle &amp; Learning
+                        </h3>
+                        <ul className="space-y-2.5">
+                          {[
+                            "Cold Processed Soaps",
+                            "Home Decor & Office",
+                            "Free Formulations",
+                            "Classes & Training",
+                          ].map((item) => (
+                            <li key={item}>
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(item)}`}
+                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
+                              >
+                                {item}
                               </Link>
                             </li>
                           ))}
@@ -197,14 +250,14 @@ export default function BuyerNavbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-brand-charcoal/60 hover:text-brand-charcoal transition-colors"
+                className="text-sm font-medium text-brand-charcoal/70 hover:text-brand-charcoal transition-colors py-5"
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* Right: CTA & Mobile Toggle */}
+          {/* Right: Search & CTA */}
           <div className="flex-1 flex justify-end items-center gap-4">
             <form action="/shop" method="GET" className="hidden lg:flex items-center relative">
               <input type="text" name="q" placeholder="Search products..." className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-10 py-1.5 text-sm font-medium focus:outline-none focus:border-brand-orange w-48 transition-all focus:w-64" />
@@ -239,13 +292,13 @@ export default function BuyerNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-brand-bg pt-24 px-6 md:hidden flex flex-col"
+            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col overflow-y-auto"
           >
-            <div className="flex flex-col gap-6 flex-1">
-              <form action="/shop" method="GET" className="relative mb-4">
-                <input type="text" name="q" placeholder="Search products..." className="w-full bg-white border border-brand-linen rounded-2xl pl-5 pr-12 py-4 text-lg font-medium focus:outline-none focus:border-brand-orange shadow-sm" />
+            <div className="flex flex-col gap-6 flex-1 pb-12">
+              <form action="/shop" method="GET" className="relative mb-2">
+                <input type="text" name="q" placeholder="Search products..." className="w-full bg-stone-50 border border-brand-linen rounded-2xl pl-5 pr-12 py-3.5 text-base font-medium focus:outline-none focus:border-brand-orange shadow-sm" />
                 <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-charcoal/50 hover:text-brand-orange">
-                  <Search className="w-6 h-6" />
+                  <Search className="w-5 h-5" />
                 </button>
               </form>
               
@@ -253,7 +306,7 @@ export default function BuyerNavbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-3xl font-bold font-sans tracking-tight text-brand-charcoal hover:text-brand-charcoal/70 transition-colors"
+                  className="text-2xl font-bold font-sans tracking-tight text-brand-charcoal hover:text-brand-orange transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -261,10 +314,10 @@ export default function BuyerNavbar() {
               ))}
             </div>
             
-            <div className="pb-12 mt-auto">
+            <div className="pb-8 mt-auto">
               <Link
                 href="/sell"
-                className="flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-charcoal/90 transition-all shadow-lg text-center"
+                className="flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-4 text-base font-semibold w-full hover:bg-brand-charcoal/90 transition-all shadow-lg text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Become a Seller
