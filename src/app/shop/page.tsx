@@ -6,133 +6,70 @@ import { mockProducts } from "@/lib/products";
 import { Suspense } from "react";
 import serialize from "serialize-javascript";
 
-type ProductFilters = {
-  skinSafe?: boolean;
-  cpStable?: boolean;
-  candle?: boolean;
-};
-
-type Product = {
-  id: string;
-  name: string;
-  category: string;
-  price: number;
-  bulkDiscountAvailable: boolean;
-  maxDiscount: number;
-  image: string;
-  filters?: ProductFilters;
+export const metadata: Metadata = {
+  title: "Shop Premium Raw Materials & Craft Supplies | Ekora Wholesale",
+  description: "Browse our extensive catalog of batch-tested candle waxes, epoxy resins, fragrance oils, and silicone molds at wholesale prices.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/shop",
+  },
+  openGraph: {
+    title: "Shop Premium Raw Materials | Ekora Wholesale",
+    description: "Browse our extensive catalog of batch-tested candle waxes, epoxy resins, fragrance oils, and silicone molds.",
+    url: "https://www.ekorabazaar.in/shop",
+    type: "website",
+  }
 };
 
 export default function ShopPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("recommended");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [fragranceFilters, setFragranceFilters] = useState<Record<string, boolean>>({
-    skinSafe: false,
-    cpStable: false,
-    candle: false,
-  });
-
-  useEffect(() => {
-    fetch(`/api/products?t=${Date.now()}`)
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-        setLoading(false);
-        if (typeof window !== "undefined") {
-          const urlParams = new URLSearchParams(window.location.search);
-          const cat = urlParams.get("category");
-          if (cat) {
-            const dbCategories = Array.from(new Set(data.map((p: any) => p.category))).filter(Boolean) as string[];
-            const search = decodeURIComponent(cat).toLowerCase().trim();
-            
-            // Find matches
-            const matched: string[] = [];
-            dbCategories.forEach((dbc: string) => {
-              const dbcLower = dbc.toLowerCase();
-              if (dbcLower === search) {
-                matched.push(dbc);
-              } else if (search === 'waxes' && dbcLower.includes('waxes')) {
-                matched.push(dbc);
-              } else if (search === 'resins' && (dbcLower.includes('resin') || dbcLower.includes('epoxy'))) {
-                matched.push(dbc);
-              } else if (search === 'fragrances' && (dbcLower.includes('fragrance') || dbcLower.includes('perfume'))) {
-                matched.push(dbc);
-              } else if (search === 'molds' && (dbcLower.includes('mold') || dbcLower.includes('mould'))) {
-                matched.push(dbc);
-              } else if (dbcLower.includes(search) || search.includes(dbcLower)) {
-                matched.push(dbc);
-              }
-            });
-            
-            if (matched.length > 0) {
-              setSelectedCategories(matched);
-            } else {
-              setSelectedCategories([cat]);
-            }
-          }
-          
-          const q = urlParams.get("q");
-          if (q) {
-            setSearchQuery(decodeURIComponent(q));
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Wholesale Raw Materials Catalog",
+    "url": "https://www.ekorabazaar.in/shop",
+    "description": "Premium craft supplies and raw materials for creators.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": mockProducts.slice(0, 20).map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Product",
+          "name": product.name,
+          "image": product.image,
+          "url": `https://www.ekorabazaar.in/products/${product.id}`,
+          "offers": {
+            "@type": "Offer",
+            "price": product.price,
+            "priceCurrency": "INR"
           }
         }
-      });
-  }, []);
-
-  const allCategories = Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort();
-
-  const toggleCategory = (cat: string) => {
-    setSelectedCategories(prev =>
-      prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
-    );
+      }))
+    }
   };
 
-  const toggleFragranceFilter = (key: string) => {
-    setFragranceFilters(prev => ({ ...prev, [key]: !prev[key] }));
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.ekorabazaar.in"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": "https://www.ekorabazaar.in/shop"
+      }
+    ]
   };
-
-  const activeFragranceFilters = Object.entries(fragranceFilters)
-    .filter(([, v]) => v)
-    .map(([k]) => k);
-
-  // Whether any visible product has a filters field (i.e. fragrance oil section is active)
-  const showFragranceFilters = products.some(
-    p => p.filters && (selectedCategories.length === 0 || selectedCategories.includes(p.category))
-  );
-
-  const filteredProducts = products.filter(p => {
-    if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
-    if (searchQuery) {
-      const qLower = searchQuery.toLowerCase();
-      if (!p.name.toLowerCase().includes(qLower) && !p.category.toLowerCase().includes(qLower)) {
-        return false;
-      }
-    }
-    // Fragrance attribute filters — only apply if product has filters field
-    if (activeFragranceFilters.length > 0) {
-      if (!p.filters) return false;
-      for (const key of activeFragranceFilters) {
-        if (!p.filters[key as keyof ProductFilters]) return false;
-      }
-    }
-    return true;
-  });
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price_asc") return a.price - b.price;
-    if (sortBy === "discount_desc") return b.maxDiscount - a.maxDiscount;
-    return 0; // recommended
-  });
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
-      {/* Hide H1 visually but keep it for SEO (Content SEO / AI SEO) */}
       <h1 className="sr-only">Wholesale Craft Supplies and Raw Materials Shop</h1>
       
-      {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serialize(collectionSchema, { isJSON: true }) }}
@@ -144,140 +81,9 @@ export default function ShopPage() {
 
       <BuyerNavbar />
       
-      <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
-        
-        {/* Sidebar Filters */}
-        <aside className="w-full md:w-64 shrink-0">
-          <div className="bg-white rounded-2xl p-6 border border-brand-linen sticky top-24">
-            <div className="flex items-center gap-2 font-bold font-serif text-brand-charcoal mb-6 text-xl">
-              <Filter className="w-5 h-5" /> Filters
-            </div>
-
-            <div className="space-y-6">
-              {/* Category Filter */}
-              <div>
-                <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Category</h4>
-                <div className="space-y-2 text-sm text-brand-charcoal/70 max-h-64 overflow-y-auto pr-2">
-                  {allCategories.map((cat, idx) => (
-                    <label key={idx} className="flex items-center gap-2 cursor-pointer group">
-                      <input 
-                        type="checkbox" 
-                        checked={selectedCategories.includes(cat)}
-                        onChange={() => toggleCategory(cat)}
-                        className="rounded text-brand-orange focus:ring-brand-orange shrink-0" 
-                      /> 
-                      <span className="line-clamp-1 group-hover:text-brand-orange transition-colors" title={cat}>{cat}</span>
-                    </label>
-                  ))}
-                  {allCategories.length === 0 && !loading && (
-                    <span className="text-xs italic opacity-50">No categories found.</span>
-                  )}
-                </div>
-              </div>
-
-              {/* Fragrance Oil Attribute Filters */}
-              {showFragranceFilters && (
-                <div>
-                  <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Fragrance Type</h4>
-                  <div className="space-y-2 text-sm text-brand-charcoal/70">
-                    {([
-                      { key: 'skinSafe', label: '🌿 Skin Safe' },
-                      { key: 'cpStable', label: '🧼 Cold Process Stable' },
-                      { key: 'candle',   label: '🕯️ Candle Grade' },
-                    ] as { key: string; label: string }[]).map(({ key, label }) => (
-                      <label key={key} className="flex items-center gap-2 cursor-pointer group">
-                        <input
-                          type="checkbox"
-                          checked={fragranceFilters[key]}
-                          onChange={() => toggleFragranceFilter(key)}
-                          className="rounded text-brand-orange focus:ring-brand-orange shrink-0"
-                        />
-                        <span className="group-hover:text-brand-orange transition-colors">{label}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Stock Status */}
-              <div>
-                <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Stock Status</h4>
-                <div className="space-y-2 text-sm text-brand-charcoal/70">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded text-brand-orange focus:ring-brand-orange" defaultChecked /> In Stock
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <div className="flex-1">
-          {/* Top Bar: Sort & Results */}
-          <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen mb-6">
-            <p className="text-sm text-brand-charcoal/60 font-medium mb-4 sm:mb-0">
-              {searchQuery ? (
-                <>Showing results for &quot;<span className="font-bold text-brand-charcoal">{searchQuery}</span>&quot; ({sortedProducts.length})</>
-              ) : (
-                <>Showing {sortedProducts.length} products</>
-              )}
-            </p>
-            <div className="flex items-center gap-3 text-sm">
-              <span className="text-brand-charcoal/60 font-medium">Sort by:</span>
-              <div className="relative">
-                <select 
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-brand-bg border border-brand-linen rounded-lg pl-4 pr-10 py-2 font-medium text-brand-charcoal focus:outline-none focus:border-brand-orange"
-                >
-                  <option value="recommended">Recommended</option>
-                  <option value="price_asc">Price: Low to High</option>
-                  <option value="discount_desc">Highest Wholesale Discount %</option>
-                </select>
-                <ChevronDown className="w-4 h-4 text-brand-charcoal/60 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
-            </div>
-          </div>
-
-          {/* Product Grid */}
-          {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
-              {[1, 2, 3, 4, 5, 6].map(n => (
-                <div key={n} className="bg-white rounded-2xl h-80 border border-brand-linen"></div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.id}`} className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  {/* Image Placeholder */}
-                  <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
-                    <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
-                    {product.bulkDiscountAvailable && (
-                      <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
-                        <Tag className="w-3 h-3" /> Bulk Discount
-                      </div>
-                    )}
-                  </div>
-                  {/* Product Info */}
-                  <div className="p-5 flex-1 flex flex-col">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 mb-1">{product.category}</span>
-                    <h3 className="font-semibold text-brand-charcoal mb-2 line-clamp-2">{product.name}</h3>
-                    <div className="mt-auto pt-4 flex items-center justify-between">
-                      <span className="font-bold text-lg text-brand-charcoal">₹{product.price}</span>
-                      {product.maxDiscount > 0 && (
-                        <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Up to {product.maxDiscount}% off</span>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-
-      </div>
+      <Suspense fallback={<div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full min-h-screen animate-pulse bg-brand-linen/10" />}>
+        <ShopClient />
+      </Suspense>
 
       <BuyerFooter />
     </main>

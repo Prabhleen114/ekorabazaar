@@ -6,6 +6,12 @@ import Image from "next/image";
 import { Filter, ChevronDown, Tag, PackageSearch } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+type ProductFilters = {
+  skinSafe?: boolean;
+  cpStable?: boolean;
+  candle?: boolean;
+};
+
 type Product = {
   id: string;
   name: string;
@@ -14,57 +20,70 @@ type Product = {
   bulkDiscountAvailable: boolean;
   maxDiscount: number;
   image: string;
+  filters?: ProductFilters;
 };
 
-export default function ShopClient({ initialProducts }: { initialProducts: Product[] }) {
+export default function ShopClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  const [products] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("recommended");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [fragranceFilters, setFragranceFilters] = useState<Record<string, boolean>>({
+    skinSafe: false,
+    cpStable: false,
+    candle: false,
+  });
 
   useEffect(() => {
-    const cat = searchParams.get("category");
-    if (cat) {
-      const dbCategories = Array.from(new Set(initialProducts.map((p) => p.category))).filter(Boolean) as string[];
-      const search = decodeURIComponent(cat).toLowerCase().trim();
-      
-      const matched: string[] = [];
-      dbCategories.forEach((dbc: string) => {
-        const dbcLower = dbc.toLowerCase();
-        if (dbcLower === search) {
-          matched.push(dbc);
-        } else if (search === 'waxes' && dbcLower.includes('waxes')) {
-          matched.push(dbc);
-        } else if (search === 'resins' && (dbcLower.includes('resin') || dbcLower.includes('epoxy'))) {
-          matched.push(dbc);
-        } else if (search === 'fragrances' && (dbcLower.includes('fragrance') || dbcLower.includes('perfume'))) {
-          matched.push(dbc);
-        } else if (search === 'molds' && (dbcLower.includes('mold') || dbcLower.includes('mould'))) {
-          matched.push(dbc);
-        } else if (dbcLower.includes(search) || search.includes(dbcLower)) {
-          matched.push(dbc);
+    fetch(`/api/products?t=${Date.now()}`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+        setLoading(false);
+        const cat = searchParams.get("category");
+        if (cat) {
+          const dbCategories = Array.from(new Set(data.map((p: Product) => p.category))).filter(Boolean) as string[];
+          const search = decodeURIComponent(cat).toLowerCase().trim();
+          
+          const matched: string[] = [];
+          dbCategories.forEach((dbc: string) => {
+            const dbcLower = dbc.toLowerCase();
+            if (dbcLower === search) {
+              matched.push(dbc);
+            } else if (search === 'waxes' && dbcLower.includes('waxes')) {
+              matched.push(dbc);
+            } else if (search === 'resins' && (dbcLower.includes('resin') || dbcLower.includes('epoxy'))) {
+              matched.push(dbc);
+            } else if (search === 'fragrances' && (dbcLower.includes('fragrance') || dbcLower.includes('perfume'))) {
+              matched.push(dbc);
+            } else if (search === 'molds' && (dbcLower.includes('mold') || dbcLower.includes('mould'))) {
+              matched.push(dbc);
+            } else if (dbcLower.includes(search) || search.includes(dbcLower)) {
+              matched.push(dbc);
+            }
+          });
+          
+          if (matched.length > 0) {
+            setSelectedCategories(matched);
+          } else {
+            setSelectedCategories([cat]);
+          }
+        } else {
+          setSelectedCategories([]);
+        }
+        
+        const q = searchParams.get("q");
+        if (q) {
+          setSearchQuery(decodeURIComponent(q));
+        } else {
+          setSearchQuery("");
         }
       });
-      
-      if (matched.length > 0) {
-        setSelectedCategories(matched);
-      } else {
-        setSelectedCategories([cat]);
-      }
-    } else {
-      setSelectedCategories([]);
-    }
-    
-    const q = searchParams.get("q");
-    if (q) {
-      setSearchQuery(decodeURIComponent(q));
-    } else {
-      setSearchQuery("");
-    }
-  }, [searchParams, initialProducts]);
+  }, [searchParams]);
 
   const allCategories = Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort();
 
@@ -83,12 +102,30 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
     router.push(`?${params.toString()}`, { scroll: false });
   };
 
+  const toggleFragranceFilter = (key: string) => {
+    setFragranceFilters(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const activeFragranceFilters = Object.entries(fragranceFilters)
+    .filter(([, v]) => v)
+    .map(([k]) => k);
+
+  const showFragranceFilters = products.some(
+    p => p.filters && (selectedCategories.length === 0 || selectedCategories.includes(p.category))
+  );
+
   const filteredProducts = products.filter(p => {
     if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
     if (searchQuery) {
       const qLower = searchQuery.toLowerCase();
       if (!p.name.toLowerCase().includes(qLower) && !p.category.toLowerCase().includes(qLower)) {
         return false;
+      }
+    }
+    if (activeFragranceFilters.length > 0) {
+      if (!p.filters) return false;
+      for (const key of activeFragranceFilters) {
+        if (!p.filters[key as keyof ProductFilters]) return false;
       }
     }
     return true;
@@ -125,13 +162,43 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
                     <span className="line-clamp-1 group-hover:text-brand-orange transition-colors" title={cat}>{cat}</span>
                   </label>
                 ))}
+                {allCategories.length === 0 && !loading && (
+                  <span className="text-xs italic opacity-50">No categories found.</span>
+                )}
               </div>
             </div>
+
+            {/* Fragrance Oil Attribute Filters */}
+            {showFragranceFilters && (
+              <div>
+                <h4 className="font-semibold text-brand-charcoal mb-3 text-sm">Fragrance Type</h4>
+                <div className="space-y-2 text-sm text-brand-charcoal/70">
+                  {([
+                    { key: 'skinSafe', label: '🌿 Skin Safe' },
+                    { key: 'cpStable', label: '🧼 Cold Process Stable' },
+                    { key: 'candle',   label: '🕯️ Candle Grade' },
+                  ] as { key: string; label: string }[]).map(({ key, label }) => (
+                    <label key={key} className="flex items-center gap-2 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={fragranceFilters[key]}
+                        onChange={() => toggleFragranceFilter(key)}
+                        className="rounded text-brand-orange focus:ring-brand-orange shrink-0"
+                      />
+                      <span className="group-hover:text-brand-orange transition-colors">{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            )}
             
-            {/* Clear Filters Button (If active) */}
-            {selectedCategories.length > 0 && (
+            {/* Clear Filters Button */}
+            {(selectedCategories.length > 0 || activeFragranceFilters.length > 0) && (
               <button 
-                onClick={() => router.push('?', { scroll: false })}
+                onClick={() => {
+                  router.push('?', { scroll: false });
+                  setFragranceFilters({skinSafe: false, cpStable: false, candle: false});
+                }}
                 className="text-xs text-brand-orange hover:underline font-semibold"
               >
                 Clear all filters
@@ -170,13 +237,22 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
         </div>
 
         {/* Product Grid / Empty State */}
-        {sortedProducts.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+            {[1, 2, 3, 4, 5, 6].map(n => (
+              <div key={n} className="bg-white rounded-2xl h-80 border border-brand-linen"></div>
+            ))}
+          </div>
+        ) : sortedProducts.length === 0 ? (
           <div className="bg-white rounded-2xl border border-brand-linen p-12 flex flex-col items-center justify-center text-center">
             <PackageSearch className="w-16 h-16 text-brand-charcoal/20 mb-4" />
             <h3 className="text-xl font-bold text-brand-charcoal mb-2">No products found</h3>
             <p className="text-brand-charcoal/60 mb-6">Try adjusting your filters or search query.</p>
             <button 
-              onClick={() => router.push('?', { scroll: false })}
+              onClick={() => {
+                router.push('?', { scroll: false });
+                setFragranceFilters({skinSafe: false, cpStable: false, candle: false});
+              }}
               className="bg-brand-orange text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-orange-600 transition-colors"
             >
               Clear Filters
@@ -186,7 +262,7 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-lg transition-all duration-300 flex flex-col">
-                {/* Image (Optimized) */}
+                {/* Image */}
                 <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
                   <Image 
                     src={product.image || "/og-image.jpg"} 
