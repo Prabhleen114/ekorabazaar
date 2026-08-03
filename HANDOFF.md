@@ -4,8 +4,8 @@
 
 ## Current Status
 - **Text Generation (Groq):** ✅ Complete — 108/108 descriptions and fragrance notes done.
-- **Image Generation (Gemini Image):** 🔄 In Progress — 83/108 completed.
-  * 73 original Gemini-generated covers restored and verified.
+- **Image Generation (Gemini Image):** 🔄 In Progress — 10/108 completed.
+  dont restore any deleted gemini generated photo
   * 10 additional custom covers generated and saved to `public/images/products/` with correct name overlays.
   * 25 covers remaining.
 
