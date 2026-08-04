@@ -52,3 +52,30 @@ html {
   background: #d4d4d8;
   border-radius: 3px;
 }
+
+/* Horizontal scroll without visible scrollbar (category chips) */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe-area bottom padding for iOS home bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pb-safe-offset-4 {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Prevent content from being hidden under sticky bottom bars on PDP mobile */
+@media (max-width: 767px) {
+  .pdp-mobile-scroll-pad {
+    padding-bottom: 5rem;
+  }
+}
+

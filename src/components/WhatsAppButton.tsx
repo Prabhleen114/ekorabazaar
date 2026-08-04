@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
   const whatsappUrl = "https://wa.me/917783053603?text=Hi%20Ekora!%20I'm%20interested%20in%20becoming%20a%20Founding%20Creator.";
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center justify-end pointer-events-none">
+    <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 flex items-center justify-end pointer-events-none">
       <motion.a
         href={whatsappUrl}
         target="_blank"

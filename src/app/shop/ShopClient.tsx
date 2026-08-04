@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Filter, ChevronDown, Tag, PackageSearch, Sparkles, Droplets, Leaf } from "lucide-react";
+import { Filter, ChevronDown, Tag, PackageSearch, Sparkles, Droplets, Leaf, Search, X, SlidersHorizontal, ArrowUpDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 type ProductFilters = {
   skinSafe?: boolean;
@@ -46,6 +47,18 @@ export default function ShopClient() {
   // Collection & Blend State
   const [activeCollection, setActiveCollection] = useState<string | null>(null);
   const [blendFilter, setBlendFilter] = useState<"all" | "single" | "blend">("all");
+
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [isMobileSortOpen, setIsMobileSortOpen] = useState(false);
+
+  // Prevent scroll when bottom sheets are open
+  useEffect(() => {
+    if (isMobileFilterOpen || isMobileSortOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileFilterOpen, isMobileSortOpen]);
 
   useEffect(() => {
     fetch(`/api/products?t=${Date.now()}`)
@@ -127,6 +140,7 @@ export default function ShopClient() {
     setSelectedApplications([]);
     setActiveCollection(null);
     setBlendFilter("all");
+    setIsMobileFilterOpen(false);
   };
 
   const filteredProducts = products.filter(p => {
@@ -156,11 +170,13 @@ export default function ShopClient() {
     if (sortBy === "discount_desc") return b.maxDiscount - a.maxDiscount;
     return 0; // recommended
   });
+  
+  const activeFilterCount = selectedCategories.length + selectedFamilies.length + selectedNotes.length + selectedApplications.length;
 
   return (
-    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
-      {/* Sidebar Filters */}
-      <aside className="w-full md:w-64 shrink-0">
+    <div className="pt-20 md:pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
+      {/* Desktop Sidebar Filters */}
+      <aside className="hidden md:block w-64 shrink-0">
         <div className="bg-white rounded-2xl p-6 border border-brand-linen sticky top-24 max-h-[80vh] overflow-y-auto custom-scrollbar">
           <div className="flex items-center gap-2 font-bold font-serif text-brand-charcoal mb-6 text-xl">
             <Filter className="w-5 h-5" /> Filters
@@ -220,16 +236,57 @@ export default function ShopClient() {
             </div>
             
             {/* Clear Filters Button */}
-            <button onClick={clearAllFilters} className="text-xs text-brand-orange hover:underline font-semibold w-full text-center py-2 bg-orange-50 rounded-lg">
-              Clear all filters
-            </button>
+            {activeFilterCount > 0 && (
+              <button onClick={clearAllFilters} className="text-xs text-brand-orange hover:underline font-semibold w-full text-center py-2 bg-orange-50 rounded-lg">
+                Clear all filters
+              </button>
+            )}
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col gap-6">
+      <div className="flex-1 w-full min-w-0 flex flex-col gap-6">
         
+        {/* Mobile: Persistent Search & Category Chips */}
+        <div className="md:hidden flex flex-col gap-4">
+          <form action="/shop" method="GET" className="relative w-full">
+            <input 
+              type="text" 
+              name="q" 
+              placeholder="Search products..." 
+              defaultValue={searchQuery}
+              className="w-full bg-stone-50 border border-brand-linen rounded-2xl pl-11 pr-4 py-3 text-sm font-medium focus:outline-none focus:border-brand-orange shadow-sm" 
+            />
+            <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40" />
+          </form>
+          
+          <div className="flex overflow-x-auto hide-scrollbar gap-2 pb-2 -mx-4 px-4 snap-x">
+            <button
+              onClick={() => {
+                router.push('?', { scroll: false });
+                clearAllFilters();
+              }}
+              className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium border snap-start shrink-0 transition-colors ${
+                selectedCategories.length === 0 ? "bg-brand-charcoal text-white border-brand-charcoal" : "bg-white text-brand-charcoal/70 border-brand-linen"
+              }`}
+            >
+              All
+            </button>
+            {allCategories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => toggleCategory(cat)}
+                className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium border snap-start shrink-0 transition-colors ${
+                  selectedCategories.includes(cat) ? "bg-brand-charcoal text-white border-brand-charcoal" : "bg-white text-brand-charcoal/70 border-brand-linen"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Curated Collections Header */}
         <div className="bg-gradient-to-r from-brand-linen/40 to-orange-50/40 p-6 rounded-2xl border border-brand-linen">
           <h3 className="font-serif font-bold text-brand-charcoal text-lg mb-4">Curated Scent Collections</h3>
@@ -250,8 +307,29 @@ export default function ShopClient() {
           </div>
         </div>
 
-        {/* Top Bar: Blend Toggle & Sort */}
-        <div className="flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen gap-4">
+        {/* Mobile: Sticky Filter + Sort Bar */}
+        <div className="md:hidden sticky top-16 z-30 bg-white/95 backdrop-blur-md border-y border-brand-linen py-3 -mx-4 px-4 flex items-center justify-between shadow-sm">
+          <button 
+            onClick={() => setIsMobileFilterOpen(true)}
+            className="flex-1 flex items-center justify-center gap-2 border-r border-brand-linen text-sm font-semibold text-brand-charcoal active:text-brand-orange"
+          >
+            <SlidersHorizontal className="w-4 h-4" /> Filter
+            {activeFilterCount > 0 && (
+              <span className="bg-brand-orange text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                {activeFilterCount}
+              </span>
+            )}
+          </button>
+          <button 
+            onClick={() => setIsMobileSortOpen(true)}
+            className="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-brand-charcoal active:text-brand-orange"
+          >
+            <ArrowUpDown className="w-4 h-4" /> Sort
+          </button>
+        </div>
+
+        {/* Desktop: Top Bar (Blend Toggle & Sort) */}
+        <div className="hidden md:flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen gap-4">
           
           {/* Blend vs Single Toggle */}
           <div className="flex bg-brand-bg rounded-lg p-1">
@@ -288,9 +366,9 @@ export default function ShopClient() {
 
         {/* Product Grid / Empty State */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 animate-pulse">
             {[1, 2, 3, 4, 5, 6].map(n => (
-              <div key={n} className="bg-white rounded-2xl h-80 border border-brand-linen"></div>
+              <div key={n} className="bg-white rounded-2xl aspect-square border border-brand-linen" />
             ))}
           </div>
         ) : sortedProducts.length === 0 ? (
@@ -303,7 +381,7 @@ export default function ShopClient() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {sortedProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-lg transition-all duration-300 flex flex-col">
                 <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
@@ -311,7 +389,7 @@ export default function ShopClient() {
                     src={product.image || "/og-image.jpg"} 
                     alt={product.name} 
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover" 
                   />
                   {/* Tags */}
@@ -328,16 +406,17 @@ export default function ShopClient() {
                     )}
                   </div>
                 </div>
-                <div className="p-5 flex-1 flex flex-col">
+                {/* Product Info */}
+                <div className="p-3 md:p-5 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40">{product.category}</span>
-                    {product.scentFamily && <span className="text-[10px] font-medium text-brand-orange bg-orange-50 px-2 py-0.5 rounded-full">{product.scentFamily}</span>}
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 line-clamp-1">{product.category}</span>
+                    {product.scentFamily && <span className="text-[9px] md:text-[10px] font-medium text-brand-orange bg-orange-50 px-2 py-0.5 rounded-full">{product.scentFamily}</span>}
                   </div>
-                  <h2 className="font-semibold text-brand-charcoal mb-2 line-clamp-2 text-base group-hover:text-brand-orange transition-colors">{product.name}</h2>
-                  <div className="mt-auto pt-4 flex items-center justify-between border-t border-brand-linen">
-                    <span className="font-bold text-lg text-brand-charcoal">₹{product.price}</span>
+                  <h2 className="font-semibold text-brand-charcoal mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-brand-orange transition-colors">{product.name}</h2>
+                  <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
+                    <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
                     {product.maxDiscount > 0 && (
-                      <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Up to {product.maxDiscount}% off</span>
+                      <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">Up to {product.maxDiscount}%</span>
                     )}
                   </div>
                 </div>
@@ -346,6 +425,172 @@ export default function ShopClient() {
           </div>
         )}
       </div>
+
+      {/* Mobile Modals/Sheets */}
+      <AnimatePresence>
+        {isMobileFilterOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-brand-charcoal/40 backdrop-blur-sm md:hidden flex flex-col justify-end"
+            onClick={() => setIsMobileFilterOpen(false)}
+          >
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-t-3xl w-full max-h-[85vh] flex flex-col"
+            >
+              <div className="p-4 border-b border-brand-linen flex items-center justify-between sticky top-0 bg-white rounded-t-3xl z-10">
+                <h3 className="text-lg font-bold text-brand-charcoal">Filters</h3>
+                <button onClick={() => setIsMobileFilterOpen(false)} className="p-2 -mr-2 text-brand-charcoal/50">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto flex-1 space-y-8">
+                
+                {/* Mobile Categories inside Filter */}
+                <div>
+                  <h4 className="font-bold text-brand-charcoal mb-4">Category</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {allCategories.map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => toggleCategory(cat)}
+                        className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                          selectedCategories.includes(cat) ? "bg-brand-orange text-white border-brand-orange" : "bg-stone-50 text-brand-charcoal border-brand-linen"
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile Scent Family */}
+                <div>
+                  <h4 className="font-bold text-brand-charcoal mb-4">Scent Family</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {FAMILIES.map(family => (
+                      <button
+                        key={family}
+                        onClick={() => toggleArrayItem(setSelectedFamilies, family)}
+                        className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                          selectedFamilies.includes(family) ? "bg-brand-orange text-white border-brand-orange" : "bg-stone-50 text-brand-charcoal border-brand-linen"
+                        }`}
+                      >
+                        {family}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Mobile Note Level */}
+                <div>
+                  <h4 className="font-bold text-brand-charcoal mb-4">Note Level</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {NOTES.map(note => (
+                      <button
+                        key={note}
+                        onClick={() => toggleArrayItem(setSelectedNotes, note)}
+                        className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                          selectedNotes.includes(note) ? "bg-brand-orange text-white border-brand-orange" : "bg-stone-50 text-brand-charcoal border-brand-linen"
+                        }`}
+                      >
+                        {note}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile Application */}
+                <div>
+                  <h4 className="font-bold text-brand-charcoal mb-4">Application</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {APPLICATIONS.map(app => (
+                      <button
+                        key={app}
+                        onClick={() => toggleArrayItem(setSelectedApplications, app)}
+                        className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+                          selectedApplications.includes(app) ? "bg-brand-orange text-white border-brand-orange" : "bg-stone-50 text-brand-charcoal border-brand-linen"
+                        }`}
+                      >
+                        {app}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+              <div className="p-4 border-t border-brand-linen bg-white" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={clearAllFilters}
+                    className="flex-1 py-3.5 rounded-xl font-bold text-brand-charcoal bg-stone-100 active:scale-[0.98] transition-transform"
+                  >
+                    Clear All
+                  </button>
+                  <button 
+                    onClick={() => setIsMobileFilterOpen(false)}
+                    className="flex-[2] py-3.5 rounded-xl font-bold text-white bg-brand-orange shadow-lg shadow-brand-orange/20 active:scale-[0.98] transition-transform"
+                  >
+                    Show Results
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isMobileSortOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-50 bg-brand-charcoal/40 backdrop-blur-sm md:hidden flex flex-col justify-end"
+            onClick={() => setIsMobileSortOpen(false)}
+          >
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 220 }}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-t-3xl w-full overflow-hidden"
+              style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+            >
+              <div className="p-5 border-b border-brand-linen flex items-center justify-between">
+                <h3 className="text-lg font-bold text-brand-charcoal">Sort by</h3>
+                <button onClick={() => setIsMobileSortOpen(false)} className="p-2 -mr-2 text-brand-charcoal/50 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-2 pb-4">
+                {[
+                  { value: "recommended", label: "Recommended" },
+                  { value: "price_asc", label: "Price: Low to High" },
+                  { value: "discount_desc", label: "Highest Wholesale Discount %" }
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => { setSortBy(option.value); setIsMobileSortOpen(false); }}
+                    className={`w-full text-left px-5 py-4 font-medium flex items-center justify-between rounded-xl min-h-[56px] ${
+                      sortBy === option.value ? "text-brand-orange bg-brand-orange/5" : "text-brand-charcoal"
+                    }`}
+                  >
+                    {option.label}
+                    {sortBy === option.value && <div className="w-2.5 h-2.5 rounded-full bg-brand-orange flex-shrink-0" />}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

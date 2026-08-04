@@ -3,11 +3,11 @@ import Image from "next/image";
 
 export default function BuyerFooter() {
   return (
-    <footer className="bg-brand-bg border-t border-brand-linen py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
+    <footer className="bg-brand-bg border-t border-brand-linen py-10 md:py-16">
+      <div className="max-w-6xl mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12 mb-10 md:mb-16">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <Image 
                 src="/images/logo.jpg" 
@@ -62,8 +62,8 @@ export default function BuyerFooter() {
           </div>
 
           {/* Contact Us */}
-          <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Contact Us</h4>
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="text-brand-charcoal font-semibold mb-4 md:mb-6 font-serif">Contact Us</h4>
             <div className="space-y-3 text-sm text-brand-charcoal/60 font-medium leading-relaxed">
               <p>
                 Near Shyam Mandir Marg, Sutapatti,<br />

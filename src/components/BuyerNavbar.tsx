@@ -274,7 +274,7 @@ export default function BuyerNavbar() {
             </Link>
 
             <button
-              className="md:hidden p-2 -mr-2 text-brand-charcoal focus:outline-none"
+              className="md:hidden p-3 -mr-3 text-brand-charcoal focus:outline-none flex items-center justify-center min-w-[44px] min-h-[44px]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -292,21 +292,73 @@ export default function BuyerNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white pt-20 px-6 md:hidden flex flex-col overflow-y-auto"
           >
-            <div className="flex flex-col gap-6 flex-1 pb-12">
-              <form action="/shop" method="GET" className="relative mb-2">
-                <input type="text" name="q" placeholder="Search products..." className="w-full bg-stone-50 border border-brand-linen rounded-2xl pl-5 pr-12 py-3.5 text-base font-medium focus:outline-none focus:border-brand-orange shadow-sm" />
-                <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-charcoal/50 hover:text-brand-orange">
-                  <Search className="w-5 h-5" />
-                </button>
-              </form>
+            <div className="flex flex-col gap-5 flex-1 pb-12 mt-4">
+              <Link
+                href="/shop"
+                className="text-2xl font-bold font-sans tracking-tight text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Shop Now
+              </Link>
               
-              {navLinks.map((link) => (
+              {/* Mobile Categories Accordion */}
+              <div className="border-t border-b border-brand-linen py-2">
+                <button 
+                  onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                  className="w-full flex items-center justify-between text-2xl font-bold font-sans tracking-tight text-brand-charcoal min-h-[44px]"
+                >
+                  Categories
+                  <ChevronDown className={`w-6 h-6 transition-transform duration-200 ${isCategoriesOpen ? "rotate-180 text-brand-orange" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {isCategoriesOpen && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-4 pb-2 space-y-4">
+                        <div>
+                          <h4 className="text-sm font-bold text-brand-charcoal/50 uppercase tracking-wider mb-2">Bases & Materials</h4>
+                          <div className="flex flex-col space-y-1">
+                            {["Melt & Pour Soap Bases", "Liquid & Cream Bases", "Premium Waxes & Butters"].map(cat => (
+                              <Link key={cat} href={`/shop?category=${encodeURIComponent(cat)}`} onClick={() => setMobileMenuOpen(false)} className="py-2 text-lg font-medium text-brand-charcoal/80 active:text-brand-orange min-h-[44px] flex items-center">{cat}</Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-brand-charcoal/50 uppercase tracking-wider mb-2">Scents & Colors</h4>
+                          <div className="flex flex-col space-y-1">
+                            <Link href={`/shop?category=Premium Fragrance Oils`} onClick={() => setMobileMenuOpen(false)} className="py-2 text-lg font-medium text-brand-charcoal/80 active:text-brand-orange flex items-center gap-2 min-h-[44px]">
+                              Premium Fragrance Oils <span className="bg-[#e0f2fe] text-[#0369a1] text-[10px] font-bold px-2 py-0.5 rounded-full">NEW</span>
+                            </Link>
+                            {["Pure Essential Oils", "Mica & Liquid Colors", "Steam Distilled Hydrosols"].map(cat => (
+                              <Link key={cat} href={`/shop?category=${encodeURIComponent(cat)}`} onClick={() => setMobileMenuOpen(false)} className="py-2 text-lg font-medium text-brand-charcoal/80 active:text-brand-orange min-h-[44px] flex items-center">{cat}</Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-brand-charcoal/50 uppercase tracking-wider mb-2">Moulds & Tools</h4>
+                          <div className="flex flex-col space-y-1">
+                            {["Soap & Loaf Moulds", "Candle Moulds", "Resin Moulds", "DIY Tools & Accessories"].map(cat => (
+                              <Link key={cat} href={`/shop?category=${encodeURIComponent(cat)}`} onClick={() => setMobileMenuOpen(false)} className="py-2 text-lg font-medium text-brand-charcoal/80 active:text-brand-orange min-h-[44px] flex items-center">{cat}</Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navLinks.filter(l => l.name !== "Categories" && l.name !== "Shop Now").map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-bold font-sans tracking-tight text-brand-charcoal hover:text-brand-orange transition-colors"
+                  className="text-2xl font-bold font-sans tracking-tight text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -314,10 +366,10 @@ export default function BuyerNavbar() {
               ))}
             </div>
             
-            <div className="pb-8 mt-auto">
+            <div className="pb-8 mt-auto sticky bottom-0 bg-white pt-4">
               <Link
                 href="/sell"
-                className="flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-4 text-base font-semibold w-full hover:bg-brand-charcoal/90 transition-all shadow-lg text-center"
+                className="flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-4 text-base font-semibold w-full active:scale-[0.98] transition-all shadow-lg text-center min-h-[56px]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Become a Seller
