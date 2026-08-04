@@ -1,11 +1,12 @@
-# Project Handoff Status — Image Linking & Validation
+# Project Handoff Status — Cover Photos Tracking
 
-## ✅ Validation Summary
-- **Total Unique Bespoke AI Cover Photos Linked:** 80 / 80
-- **Old Generic Placeholders Replaced:** All old 16MB generic PIL placeholders removed and replaced by genuine bespoke AI luxury images.
-- **products.json Linked:** 80 fragrance oil products now reference their corresponding bespoke image paths (`/images/products/[Name].png`).
+## 📊 Overview
+- **Completed Bespoke AI Cover Photos:** 80 Fragrance Oils (Live and linked in `products.json`)
+- **Pending Cover Photos:** Remaining Fragrance Oils (FO) & Essential Oils (EO)
 
-## 📸 80 Fragrance Oils With Active Bespoke AI Covers
+---
+
+## ✅ 80 Fragrance Oils with Completed AI Covers
 1. Aloe Vera
 2. Amber Noir
 3. Ameer Al Oudh
@@ -86,3 +87,121 @@
 78. White Linen
 79. White Musk
 80. White Soap
+
+---
+
+## ⏳ Pending Fragrance Oils (FO) Needing Covers
+1. Acquadi Men
+2. Agarwood & Gaiac
+3. Anise / Star Anise
+4. Autumn Leaves
+5. Banana Pie
+6. Blackberry Forest
+7. Blue Spruce
+8. Bois De Rose
+9. Carribean Saffron
+10. Cherry Silk
+11. Cocoa Butter
+12. Coconut
+13. Coffee Chocolate
+14. Cranberry Apple
+15. Dark Rose
+16. Eucalyptus Mint
+17. Frankincense Resin
+18. Fresh Watermelon
+19. Geranium Saffron
+20. Ginger Bread
+21. Grapefruit
+22. Green Tea
+23. Herb Tea
+24. Jasmine
+25. Mandarin Mimosa
+26. Mango Coconut Creme
+27. Mango Flora
+28. Midnight Blue Citrus
+29. Monsoon Vetiver
+30. Mountain Cedar
+31. Nag Champa
+32. Neroli
+33. Orange Clove
+34. Orange Vanilla
+35. Peony Blossom
+36. Pomegranate
+37. Pumpkin Spice
+38. Rose Crystal / Rose Eco+ / Rose Musk
+39. Rosemary Sage
+40. Sandalwood Dreams
+41. Spicy Bergamot
+42. Strawberry Bubblegum / Strawberry Kiwi
+43. Sweet Patchouli
+44. Teak Wood
+45. Tickless Berry
+46. Tobacco Oudh
+47. Tuberose
+48. Twilight Bloom
+49. Vanilla Bread / Vanilla Ice Cream
+50. White Oudh / Winter Breeze
+
+---
+
+## 🍃 Pending Essential Oils (EO) Needing Covers
+1. Ajwain Essential Oil
+2. Bergamot Essential Oil
+3. Black Pepper Essential Oil
+4. Blue Tansy Essential Oil
+5. Cajeput Essential Oil
+6. Calendula Essential Oil
+7. Camphor Essential Oil
+8. Cardamom Essential Oil
+9. Carrot Seed Essential Oil
+10. Cedarwood Essential Oil
+11. Chamomile Blue & Roman Essential Oil
+12. Cinnamon Bark & Leaf Essential Oil
+13. Citronella Essential Oil
+14. Clary Sage Essential Oil
+15. Clove Bud & Leaf Essential Oil
+16. Coffee Essential Oil
+17. Coriander Essential Oil
+18. Curry Leaf Essential Oil
+19. Cypress Essential Oil
+20. Dill Essential Oil
+21. Eucalyptus Essential Oil
+22. Fir Needle Essential Oil
+23. Frangipani Essential Oil
+24. Frankincense Essential Oil
+25. Garlic Essential Oil
+26. Geranium Essential Oil
+27. Ginger Essential Oil
+28. Grapefruit Pink Essential Oil
+29. Helichrysum Essential Oil
+30. Jasmine Grandiflorum Essential Oil
+31. Jatamansi Essential Oil
+32. Juniper Berry Essential Oil
+33. Lavender Essential Oil
+34. Lemongrass Essential Oil
+35. Lime Essential Oil
+36. Mandarin Essential Oil
+37. May Chang Essential Oil
+38. Myrrh Essential Oil
+39. Nagarmotha Essential Oil
+40. Neroli Essential Oil
+41. Nutmeg Essential Oil
+42. Oregano Essential Oil
+43. Palmarosa Essential Oil
+44. Patchouli Dark Essential Oil
+45. Peppermint Essential Oil
+46. Pine Essential Oil
+47. Pure Anise & Basil Essential Oil
+48. Pure Bay Leaf & Fennel Essential Oil
+49. Rose & Rose Geranium Essential Oil
+50. Rosemary Essential Oil
+51. Rosewood Essential Oil
+52. Saffron Essential Oil
+53. Sage & Sandalwood Essential Oil
+54. Spearmint & Star Anise Essential Oil
+55. Tea Tree Essential Oil
+56. Thyme Essential Oil
+57. Turmeric Leaf & Root Essential Oil
+58. Vanilla & Vetiver Essential Oil
+59. Wintergreen Essential Oil
+60. Ylang Ylang Essential Oil
