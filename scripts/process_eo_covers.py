@@ -36,15 +36,14 @@ def main():
     # Map product normalized names to product objects
     product_map = {}
     for p in essential_oils:
-        full_name = p["name"]
-        base_name = full_name.split("(")[0].replace("Essential Oil", "").strip()
-        norm_name = normalize_text(base_name)
+        full_name = p["name"].lower()
+        # Extract core name by taking everything before "essential oil", "oil", "100%", "(", or "-"
+        core_name = re.split(r'\bessential oil\b|\boil\b|\b100%|\(|-', full_name)[0].strip()
+        core_name = re.sub(r'\bpure\b', '', core_name).strip()
+        
+        norm_name = normalize_text(core_name)
         if norm_name:
             product_map[norm_name] = p
-        
-        norm_full = normalize_text(full_name)
-        if norm_full:
-            product_map[norm_full] = p
 
     for img_path in gemini_files:
         try:
@@ -56,20 +55,26 @@ def main():
             
             norm_detected = normalize_text(detected_text)
             
+            # Extract core from detected text by removing common words
+            core_detected = norm_detected.replace('ekorabazaar', '').replace('ekcra', '').replace('bazaar', '').replace('essentialoil', '').replace('essential', '').replace('oil', '').replace('pure', '')
+            
             best_match = None
             best_score = 0
 
             for norm_p_name, prod in product_map.items():
                 if len(norm_p_name) < 3:
                     continue
-                if norm_p_name in norm_detected:
+                # Match if product core name is in detected core name or vice versa
+                if norm_p_name in core_detected or core_detected in norm_p_name:
                     if len(norm_p_name) > best_score:
                         best_match = prod
                         best_score = len(norm_p_name)
 
             if best_match:
-                base_name = best_match["name"].split("(")[0].replace("Essential Oil", "").strip()
-                safe_name = base_name.strip()
+                # Generate a clean filename based on the core product name
+                core_p_name = re.split(r'\bessential oil\b|\boil\b|\b100%|\(|-', best_match["name"], flags=re.IGNORECASE)[0].strip()
+                core_p_name = re.sub(r'\bpure\b', '', core_p_name, flags=re.IGNORECASE).strip()
+                safe_name = re.sub(r'[^a-zA-Z0-9\s]', '', core_p_name).strip().upper() + " ESSENTIAL OIL"
                 target_filename = f"{safe_name}.png"
                 target_path = os.path.join(TARGET_DIR, target_filename)
 
