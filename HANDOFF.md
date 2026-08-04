@@ -1,85 +1,88 @@
-# Project Handoff Status
+# Project Handoff Status — Image Linking & Validation
 
-**Total Fragrance Oils:** 108
+## ✅ Validation Summary
+- **Total Unique Bespoke AI Cover Photos Linked:** 80 / 80
+- **Old Generic Placeholders Replaced:** All old 16MB generic PIL placeholders removed and replaced by genuine bespoke AI luxury images.
+- **products.json Linked:** 80 fragrance oil products now reference their corresponding bespoke image paths (`/images/products/[Name].png`).
 
-## Current Image Status
-- **Bespoke AI Covers Completed & Linked:** 32 / 108
-- **Remaining Needing AI Covers:** 76 / 108
-
-## Exact List of Remaining 76 Fragrance Oils Needing Covers
-1. Dove Strong Fragrance Oil
-2. White Linen Fragrance Oil
-3. Masala Chai Fragrance Oil
-4. Arctic Breeze Fragrance Oil
-5. Hazelnut Coffee Fragrance Oil
-6. Gili Mitti Fragrance Oil
-7. Bamboo Leaf Fragrance Oil
-8. Russian Leather Fragrance Oil
-9. Lush Bomb Fragrance Oil
-10. Vanilla SPC Fragrance Oil
-11. Japanese Cherry Blossom Fragrance Oil
-12. Pumpkin Pie Fragrance Oil
-13. English Oakmoss Fragrance Oil
-14. Sensual Amber Fragrance Oil
-15. Fun Loving Fragrance Oil
-16. Mango Punch Fragrance Oil
-17. Morning Flower Fragrance Oil
-18. French Oak Fragrance Oil
-19. Lotus Floral Fragrance Oil
-20. Romantic Mogra Fragrance Oil
-21. Green Apple Fragrance Oil
-22. Ginger & Lime Fragrance Oil
-23. Black Oudh Fragrance Oil
-24. Nargis Flower Fragrance Oil
-25. Gardenia & White Peach Fragrance Oil
-26. Pink Sand Fragrance Oil
-27. Dewberry Fragrance Oil
-28. Mix Fruit 101 Fragrance Oil
-29. Kiwi Fig Fragrance Oil
-30. Sea Breeze Fragrance Oil
-31. Patchouli Fragrance Oil
-32. Coffee Bean Fragrance Oil
-33. Choco Musk Fragrance Oil
-34. Real Lemon Fragrance Oil
-35. Green Tea Fragrance Oil
-36. White Lily Fragrance Oil
-37. White Soap Fragrance Oil
-38. Milk Soap Fragrance Oil
-39. Lavender Yardle Fragrance Oil
-40. Sandalwood & Saffron Fragrance Oil
-41. Kesar Fragrance Oil
-42. Citrus Fruit Fragrance Oil
-43. Gentleman's Tonic Fragrance Oil
-44. Red Wine Fragrance Oil
-45. Sandal Florence Fragrance Oil
-46. Papaya Fragrance Oil
-47. Apple Fragrance Oil
-48. Fasli Gulaab Fragrance Oil
-49. Spanish Kesar Fragrance Oil
-50. Jasmine Flower Fragrance Oil
-51. Rose Bulgarian Fragrance Oil
-52. Neem & Tulsi Fragrance Oil
-53. Honey & Milk Fragrance Oil
-54. Golden Women Fragrance Oil
-55. Iris Lime Fragrance Oil
-56. Lavender Fragrance Oil
-57. Diced Pineapple Fragrance Oil
-58. Strawberry Lush Fragrance Oil
-59. Cherry Blossom Fragrance Oil
-60. Orchid Bouquet Fragrance Oil
-61. Roasted Coffee Fragrance Oil
-62. Musk Gold Fragrance Oil
-63. Jasmine Knight Fragrance Oil
-64. Fresh Oudh Fragrance Oil
-65. Cactus Blossom Fragrance Oil
-66. Midnight Blue Citrus Fragrance Oil
-67. Butterfly Fragrance Oil
-68. Temple Fragrance Oil
-69. Rose Candle Fragrance Oil
-70. Mulberry Vanilla Fragrance Oil
-71. Lavender Florence Fragrance Oil
-72. Vanilla Fragrance Oil
-73. Orange & Cinnamon Fragrance Oil
-74. Clean Ocean Fragrance Oil
-75. Bubble Gum Fragrance Oil
-76. New Aqua Fresh Fragrance Oil
+## 📸 80 Fragrance Oils With Active Bespoke AI Covers
+1. Aloe Vera
+2. Amber Noir
+3. Ameer Al Oudh
+4. Apple Cinnamon
+5. Apple Pie
+6. Apple
+7. Arctic Breeze
+8. Bamboo Leaf
+9. Black Oudh
+10. Blue Ocean
+11. Cactus Blossom
+12. Cardamom & Saffron
+13. Cherry Blossom
+14. Choco Musk
+15. Coffee Bean
+16. Cucumber
+17. Dewberry
+18. Dove Strong
+19. English Oakmoss
+20. Fasli Gulaab
+21. Frangipani
+22. French Lilac
+23. French Oak
+24. Fun Loving
+25. Gardenia & White Peach
+26. Gili Mitti
+27. Green Apple
+28. Green Tea & Lemon
+29. Honey & Milk
+30. Honeysuckle & Peach
+31. Ice Cool
+32. Insignia
+33. Inter Pool
+34. Japanese Cherry Blossom
+35. Jasmine Knight
+36. Kesar
+37. Ladoo Sweet Mithai
+38. Lavender Kashmir
+39. Lavender Vanilla
+40. Lavender Yardle
+41. Lotus Floral
+42. Lush Bomb
+43. Mahogany Teakwood
+44. Mango Punch
+45. Masala Chai
+46. Milk Soap
+47. Mimosa & Mandarin
+48. Mix Fruit 101
+49. Moringa Drumstick Flower
+50. Morning Flower
+51. Musk Gold
+52. Nargis Flower
+53. Neem & Tulsi
+54. Patchouli
+55. Peach Coconut
+56. Pink Sand
+57. Pumpkin Pie
+58. Pure Desire
+59. Pure Orange
+60. Real Lemon
+61. Real Rose
+62. Red Wine
+63. Roasted Coffee
+64. Rose Bulgarian
+65. Russian Leather
+66. Saffron Cedar
+67. Sandal Florence
+68. Sandalwood & Saffron
+69. Sea Salt
+70. Sensual Amber
+71. Silky Musk
+72. Silky Sun
+73. Spanish Kesar
+74. Strawberry
+75. Vanilla SPC
+76. Vetiver
+77. White Lily
+78. White Linen
+79. White Musk
+80. White Soap

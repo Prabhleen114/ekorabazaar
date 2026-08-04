@@ -49413,7 +49413,7 @@
     "price": 217,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/Saffron Cedar.png",
     "tiers": [
       {
         "minQty": 1,
