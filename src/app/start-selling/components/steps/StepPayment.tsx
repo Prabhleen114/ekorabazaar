@@ -3,42 +3,71 @@
 import { useOnboarding } from "../../context/OnboardingContext";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, ShieldCheck, Loader2 } from "lucide-react";
-import { db } from "../../../../lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { CONSENT_VERSION } from "@/lib/consentVersion";
 
 export default function StepPayment() {
   const { data, setCurrentStep } = useOnboarding();
-  const [agreedTerms, setAgreedTerms] = useState(false);
-  const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+  const [agreedMandatory, setAgreedMandatory] = useState(false);
+  const [agreedMarketing, setAgreedMarketing] = useState(false);
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const handlePayment = async () => {
-    if (!agreedTerms || !agreedPrivacy) {
-      setError("Please agree to the Terms & Conditions and Privacy Policy.");
+    setHasAttemptedSubmit(true);
+
+    // Client-side gate — UX validation before the network call
+    if (!agreedMandatory) {
+      setError("Please agree to the mandatory legal terms to continue.");
       return;
     }
+
     setIsSubmitting(true);
     setError("");
+
     try {
-      await addDoc(collection(db, "creator_applications"), {
-        ...data,
-        status: "Payment Pending",
-        applicationStage: "Submitted",
-        createdAt: serverTimestamp(),
+      /**
+       * The application is submitted through a server-side API route, NOT
+       * directly to Firestore from the browser. The API route (/api/seller-application)
+       * independently validates that:
+       *   - legalConsent.mandatoryAccepted === true (boolean, not string)
+       *   - legalConsent.version matches the current CONSENT_VERSION constant
+       *   - legalConsent.marketingAccepted is a boolean
+       *   - The server-side timestamp is set by the server, not trusted from client
+       *
+       * The client sends mandatoryConsented: true only because it has already
+       * validated the checkbox locally. The server re-validates independently.
+       */
+      const response = await fetch("/api/seller-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          legalConsent: {
+            version: CONSENT_VERSION,   // imported from single source of truth
+            mandatoryAccepted: true,    // client confirmed; server will re-validate
+            marketingAccepted: agreedMarketing,
+            // timestamp is intentionally omitted — the server sets it
+          },
+        }),
       });
-      // Simulate payment gateway handoff delay (replace with Razorpay/Cashfree SDK call)
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Submission failed.");
+      }
+
+      // Simulate payment gateway handoff delay (replace with Razorpay/Cashfree SDK)
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setCurrentStep(10);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err);
-      setError("Failed to submit application. Please try again.");
+      const message = err instanceof Error ? err.message : "Failed to submit application. Please try again.";
+      setError(message);
       setIsSubmitting(false);
     }
   };
-
-  const checkboxBase =
-    "w-6 h-6 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors";
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -78,38 +107,72 @@ export default function StepPayment() {
           </div>
         </div>
 
-        {/* Checkboxes */}
-        <div className="space-y-4 mb-8">
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <div
-              className={checkboxBase + " " + (agreedTerms ? "bg-brand-charcoal border-brand-charcoal" : "border-brand-linen group-hover:border-brand-charcoal/40")}
-              onClick={() => setAgreedTerms(!agreedTerms)}
-            >
-              {agreedTerms && <CheckCircle2 className="w-4 h-4 text-white" />}
+        {/* Legal Consent */}
+        <div className="space-y-2 mb-8">
+          <label
+            className="flex items-start gap-3 cursor-pointer group min-h-[44px] p-2 -ml-2 rounded-xl hover:bg-brand-linen/30 transition-colors"
+          >
+            <div className="relative flex items-center justify-center pt-0.5">
+              <input
+                type="checkbox"
+                className="peer sr-only"
+                checked={agreedMandatory}
+                onChange={(e) => {
+                  setAgreedMandatory(e.target.checked);
+                  if (error) setError("");
+                }}
+                aria-invalid={hasAttemptedSubmit && !agreedMandatory}
+                aria-describedby={hasAttemptedSubmit && !agreedMandatory ? "consent-error" : undefined}
+              />
+              <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
+                agreedMandatory
+                  ? "bg-brand-charcoal border-brand-charcoal"
+                  : (hasAttemptedSubmit && !agreedMandatory ? "border-red-500 bg-red-50" : "border-brand-linen peer-focus-visible:ring-2 peer-focus-visible:ring-brand-orange peer-focus-visible:ring-offset-2")
+              }`}>
+                {agreedMandatory && <CheckCircle2 className="w-4 h-4 text-white" />}
+              </div>
             </div>
-            <span className="text-brand-charcoal/80 text-sm font-medium">
-              I agree to the{" "}
-              <a href="/terms" target="_blank" className="text-brand-orange hover:underline">Terms &amp; Conditions</a>{" "}
-              of Ekora Bazaar.
+            <span className={`text-sm font-medium pt-0.5 ${hasAttemptedSubmit && !agreedMandatory ? "text-red-600" : "text-brand-charcoal/80"}`}>
+              I agree to Ekora Bazaar&apos;s{" "}
+              <a href="/terms" target="_blank" className="text-brand-orange hover:underline font-semibold" onClick={(e) => e.stopPropagation()}>Terms &amp; Conditions</a>{" "}
+              and{" "}
+              <a href="/seller-agreement" target="_blank" className="text-brand-orange hover:underline font-semibold" onClick={(e) => e.stopPropagation()}>Seller Agreement</a>,{" "}
+              and acknowledge the{" "}
+              <a href="/privacy" target="_blank" className="text-brand-orange hover:underline font-semibold" onClick={(e) => e.stopPropagation()}>Privacy Policy</a>.
             </span>
           </label>
 
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <div
-              className={checkboxBase + " " + (agreedPrivacy ? "bg-brand-charcoal border-brand-charcoal" : "border-brand-linen group-hover:border-brand-charcoal/40")}
-              onClick={() => setAgreedPrivacy(!agreedPrivacy)}
-            >
-              {agreedPrivacy && <CheckCircle2 className="w-4 h-4 text-white" />}
+          <label
+            className="flex items-start gap-3 cursor-pointer group min-h-[44px] p-2 -ml-2 rounded-xl hover:bg-brand-linen/30 transition-colors"
+          >
+            <div className="relative flex items-center justify-center pt-0.5">
+              <input
+                type="checkbox"
+                className="peer sr-only"
+                checked={agreedMarketing}
+                onChange={(e) => setAgreedMarketing(e.target.checked)}
+              />
+              <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
+                agreedMarketing
+                  ? "bg-brand-charcoal border-brand-charcoal"
+                  : "border-brand-linen peer-focus-visible:ring-2 peer-focus-visible:ring-brand-orange peer-focus-visible:ring-offset-2"
+              }`}>
+                {agreedMarketing && <CheckCircle2 className="w-4 h-4 text-white" />}
+              </div>
             </div>
-            <span className="text-brand-charcoal/80 text-sm font-medium">
-              I agree to the{" "}
-              <a href="/privacy" target="_blank" className="text-brand-orange hover:underline">Privacy Policy</a>.
+            <span className="text-brand-charcoal/80 text-sm font-medium pt-0.5">
+              I&apos;d like to receive product updates, offers and marketing communications from Ekora Bazaar.{" "}
+              <span className="text-brand-charcoal/50">(Optional)</span>
             </span>
           </label>
         </div>
 
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-xl mb-6">
+          <div
+            id="consent-error"
+            role="alert"
+            className="p-4 bg-red-50 border border-red-200 rounded-xl mb-6"
+          >
             <p className="text-red-600 text-sm font-medium">{error}</p>
           </div>
         )}
