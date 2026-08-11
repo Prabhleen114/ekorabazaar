@@ -50,9 +50,9 @@ def assign_category(raw_title: str, existing_category: str = "") -> str:
     n = f"{raw_title} {existing_category}".lower()
 
     # 1. Essential & Fragrance Oils
-    if 'essential oil' in n or 'pure essential' in n:
+    if re.search(r'\b(e\s*o|e\.o\.|e\.o|e/o|essential\s*oil)\b', n):
         return "Essential Oils"
-    if 'fragrance oil' in n or 'aroma oil' in n or 'scent oil' in n or 'perfume oil' in n or 'flavour' in n:
+    if re.search(r'\b(f\s*o|f\.o\.|f\.o|f/o|fragrance\s*oil|perfume\s*oil|aroma\s*oil|scent\s*oil|flavour|flavor|attar)\b', n):
         return "Fragrance Oils"
 
     # 2. IF title contains 'mold', 'mould', or 'silicone', IT IS A MOULD!
