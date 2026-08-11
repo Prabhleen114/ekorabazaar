@@ -13,7 +13,9 @@ import {
   Leaf, 
   ArrowRight,
   FlaskConical,
-  Grid
+  Grid,
+  Palette,
+  Wrench
 } from "lucide-react";
 
 import type { Metadata } from "next";
@@ -83,84 +85,92 @@ export default function CategoriesPage() {
 
   const rawMaterialCategories = [
     {
-      name: "Candle Moulds",
-      categoryParam: "CANDLE MOULD",
-      count: "447 Designs",
-      desc: "3D pillar, flower, body torso, geometric, and decorative silicone candle molds.",
-      icon: Flame,
-      color: "bg-amber-50 text-amber-600 border-amber-100",
+      name: "Eco-Resin & Stone Moulds",
+      categoryParam: "Eco-Resin & Stone Moulds",
+      count: "385 Items",
+      desc: "Tray, coaster, vessel, and planter moulds for jesmonite, concrete, and eco-resin.",
+      icon: Gem,
+      color: "bg-indigo-50 text-indigo-600 border-indigo-100",
     },
     {
-      name: "Fondant & Baking Moulds",
-      categoryParam: "FONDANT MOULD",
-      count: "417 Designs",
+      name: "Culinary & Fondant Moulds",
+      categoryParam: "Culinary & Fondant Moulds",
+      count: "365 Items",
       desc: "Food-grade silicone molds for cake decorating, chocolate, and sugarcraft.",
       icon: Box,
       color: "bg-rose-50 text-rose-600 border-rose-100",
     },
     {
+      name: "Containers & Packaging",
+      categoryParam: "Containers & Packaging",
+      count: "337 Items",
+      desc: "Amber glass dropper bottles, clear-lid metal tin boxes, candle jars, and caps.",
+      icon: Package,
+      color: "bg-orange-50 text-orange-600 border-orange-100",
+    },
+    {
       name: "Fragrance Oils",
-      categoryParam: "FRAGRANCE OIL",
-      count: "250+ Blends",
+      categoryParam: "Fragrance Oils",
+      count: "309 Blends",
       desc: "Concentrated aroma oils for soy candles, CP soaps, diffusers, and fine cosmetics.",
       icon: Droplets,
       color: "bg-purple-50 text-purple-600 border-purple-100",
     },
     {
-      name: "Multi-Purpose Craft Moulds",
-      categoryParam: "MULTI-PURPOSE CRAFT MOULD",
-      count: "182 Designs",
+      name: "Candle & Pillar Moulds",
+      categoryParam: "Candle & Pillar Moulds",
+      count: "259 Items",
+      desc: "3D pillar, flower, body torso, geometric, and decorative silicone candle molds.",
+      icon: Flame,
+      color: "bg-amber-50 text-amber-600 border-amber-100",
+    },
+    {
+      name: "General Silicone Moulds",
+      categoryParam: "General Silicone Moulds",
+      count: "166 Items",
       desc: "Flexible high-durability silicone molds for general casting, plaster, and clay.",
       icon: Grid,
       color: "bg-blue-50 text-blue-600 border-blue-100",
     },
     {
-      name: "Eco Resin Moulds",
-      categoryParam: "ECO RESIN MOULD",
-      count: "120 Designs",
-      desc: "Tray, coaster, trinket dish, and vessel molds for epoxy and eco resin casting.",
-      icon: Gem,
-      color: "bg-indigo-50 text-indigo-600 border-indigo-100",
-    },
-    {
       name: "Pure Essential Oils",
-      categoryParam: "ESSENTIAL OILS",
-      count: "120 Pure Oils",
+      categoryParam: "Essential Oils",
+      count: "116 Pure Oils",
       desc: "Steam-distilled therapeutic grade plant extracts and natural aromatics.",
       icon: Leaf,
       color: "bg-emerald-50 text-emerald-600 border-emerald-100",
     },
     {
-      name: "Concrete & Terrazzo Moulds",
-      categoryParam: "CONCRETE MOLDS & MATERIALS",
-      count: "117 Moulds",
-      desc: "Heavy-duty silicone and rigid molds for cement planters, urns, and architectural decor.",
-      icon: Layers,
-      color: "bg-stone-50 text-stone-600 border-stone-100",
-    },
-    {
-      name: "Packaging & Containers",
-      categoryParam: "PACKAGING & CONTAINERS",
-      count: "88 Items",
-      desc: "Amber glass dropper bottles, clear-lid metal tin boxes, and candle jars.",
-      icon: Package,
-      color: "bg-orange-50 text-orange-600 border-orange-100",
-    },
-    {
-      name: "Soap Moulds & Bases",
-      categoryParam: "SOAP MOULD",
-      count: "73 Products",
-      desc: "Melt & pour soap bases, loaf molds, bath bomb presses, and loofah scrubbers.",
+      name: "Soap & Bar Moulds",
+      categoryParam: "Soap & Bar Moulds",
+      count: "104 Items",
+      desc: "Bar molds, loaf molds, bath bomb presses, and decorative soap making silicone.",
       icon: Sparkles,
       color: "bg-teal-50 text-teal-600 border-teal-100",
     },
     {
-      name: "Bases & Raw Chemicals",
-      categoryParam: "BASES",
-      count: "77 Chemicals",
-      desc: "Natural soy wax flakes, paraffin, preservatives, emulsifiers, and mica pigments.",
+      name: "Premium Bases & Waxes",
+      categoryParam: "Premium Bases & Waxes",
+      count: "69 Products",
+      desc: "Natural soy wax flakes, melt & pour soap bases, paraffin, and cosmetic bases.",
       icon: FlaskConical,
       color: "bg-cyan-50 text-cyan-600 border-cyan-100",
+    },
+    {
+      name: "Pigments & Colors",
+      categoryParam: "Pigments & Colors",
+      count: "44 Products",
+      desc: "Mica powders, liquid resin pigments, candle dyes, and cosmetic safe colorants.",
+      icon: Palette,
+      color: "bg-pink-50 text-pink-600 border-pink-100",
+    },
+    {
+      name: "Candle Making Accessories",
+      categoryParam: "Candle Making Accessories",
+      count: "11 Products",
+      desc: "Cotton wicks, wooden wicks, sustainers, wick stickers, and testing tools.",
+      icon: Wrench,
+      color: "bg-stone-50 text-stone-600 border-stone-100",
     },
   ];
 
@@ -178,7 +188,7 @@ export default function CategoriesPage() {
       <section className="pt-20 md:pt-28 pb-12 px-6 text-center max-w-5xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-4 py-1 text-xs font-semibold text-brand-charcoal/70 mb-6 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
-          2,268+ Live Wholesale Products
+          2,268 Live Wholesale Products
         </div>
         <h1 className="text-4xl md:text-6xl font-bold font-serif tracking-tight text-brand-charcoal mb-4">
           Wholesale Material Categories

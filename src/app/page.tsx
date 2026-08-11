@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 
 export default function BuyerHomePage() {
   const craftCategories = [
-    { name: "Fragrance Oils", href: "/shop?category=FRAGRANCE%20OIL", count: "140+ Blends", icon: Droplets, color: "bg-rose-50 text-rose-600 border-rose-100" },
-    { name: "Candle Waxes", href: "/shop?category=WAX", count: "Soy & Paraffin", icon: Flame, color: "bg-amber-50 text-amber-600 border-amber-100" },
-    { name: "Silicone Moulds", href: "/shop?category=CANDLE%20MOULD", count: "1,200+ Designs", icon: Box, color: "bg-blue-50 text-blue-600 border-blue-100" },
-    { name: "Resins & Concrete", href: "/shop?category=ECO%20RESIN%20MOULD", count: "Eco & Terrazzo", icon: Gem, color: "bg-purple-50 text-purple-600 border-purple-100" },
-    { name: "Soap Bases", href: "/shop?category=MELT%20AND%20POUR%20SOAP%20BASE", count: "Natural & Melt/Pour", icon: Sparkles, color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
-    { name: "Jars & Packaging", href: "/shop?category=PACKAGING%20%26%20CONTAINERS", count: "Glass & Metal Tins", icon: Package, color: "bg-orange-50 text-orange-600 border-orange-100" },
+    { name: "Fragrance Oils", href: "/shop?category=Fragrance%20Oils", count: "309 Blends", icon: Droplets, color: "bg-rose-50 text-rose-600 border-rose-100" },
+    { name: "Candle Moulds", href: "/shop?category=Candle%20%26%20Pillar%20Moulds", count: "259 Designs", icon: Flame, color: "bg-amber-50 text-amber-600 border-amber-100" },
+    { name: "Fondant Moulds", href: "/shop?category=Culinary%20%26%20Fondant%20Moulds", count: "365 Designs", icon: Box, color: "bg-blue-50 text-blue-600 border-blue-100" },
+    { name: "Resin & Stone", href: "/shop?category=Eco-Resin%20%26%20Stone%20Moulds", count: "385 Designs", icon: Gem, color: "bg-purple-50 text-purple-600 border-purple-100" },
+    { name: "Bases & Waxes", href: "/shop?category=Premium%20Bases%20%26%20Waxes", count: "Soap & Candle", icon: Sparkles, color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
+    { name: "Containers & Tins", href: "/shop?category=Containers%20%26%20Packaging", count: "337 Items", icon: Package, color: "bg-orange-50 text-orange-600 border-orange-100" },
   ];
 
   const trustBadges = [

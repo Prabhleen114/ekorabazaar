@@ -100,10 +100,10 @@ export default function BuyerNavbar() {
                         </h3>
                         <ul className="space-y-2.5">
                           {[
-                            { label: "Melt & Pour Soap Bases", category: "MELT AND POUR SOAP BASE" },
-                            { label: "Liquid & Cream Bases", category: "LIQUID & CREAM BASE" },
-                            { label: "Candle & Soy Waxes", category: "WAX" },
-                            { label: "Waxes & Butters", category: "WAXES AND BUTTERS" },
+                            { label: "Bases & Waxes", category: "Premium Bases & Waxes" },
+                            { label: "Containers & Packaging", category: "Containers & Packaging" },
+                            { label: "Pigments & Colors", category: "Pigments & Colors" },
+                            { label: "Candle Accessories & Wicks", category: "Candle Making Accessories" },
                           ].map((item) => (
                             <li key={item.label}>
                               <Link
@@ -126,7 +126,7 @@ export default function BuyerNavbar() {
                           <li>
                             <div className="flex flex-col">
                               <Link
-                                href={`/shop?category=${encodeURIComponent("FRAGRANCE OIL")}`}
+                                href={`/shop?category=${encodeURIComponent("Fragrance Oils")}`}
                                 className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange leading-relaxed transition-colors flex items-center"
                               >
                                 Premium Fragrance Oils
@@ -136,9 +136,8 @@ export default function BuyerNavbar() {
                               </Link>
                               <ul className="ml-3 mt-1.5 space-y-1 border-l-2 border-brand-linen pl-3">
                                 {[
-                                  { label: "Candle Oils", category: "CANDLE FRAGRANCE OILS" },
-                                  { label: "Essential Oils", category: "ESSENTIAL OILS" },
-                                  { label: "Fine Fragrances", category: "FINE FRAGRANCE INGREDIENTS (PREMIUM PERFUME RAW MATERIALS)" },
+                                  { label: "Essential Oils", category: "Essential Oils" },
+                                  { label: "Aroma Blends", category: "Fragrance Oils" },
                                 ].map((sub) => (
                                   <li key={sub.label}>
                                     <Link
@@ -175,12 +174,11 @@ export default function BuyerNavbar() {
                         </h3>
                         <ul className="space-y-2.5">
                           {[
-                            { label: "Candle Moulds", category: "CANDLE MOULD" },
-                            { label: "Fondant & Baking Moulds", category: "FONDANT MOULD" },
-                            { label: "Eco Resin Moulds", category: "ECO RESIN MOULD" },
-                            { label: "Concrete & Terrazzo Moulds", category: "CONCRETE MOLDS & MATERIALS" },
-                            { label: "Soap Moulds", category: "SOAP MOULD" },
-                            { label: "Multi-Purpose Craft Moulds", category: "MULTI-PURPOSE CRAFT MOULD" },
+                            { label: "Candle & Pillar Moulds", category: "Candle & Pillar Moulds" },
+                            { label: "Culinary & Fondant Moulds", category: "Culinary & Fondant Moulds" },
+                            { label: "Eco-Resin & Stone Moulds", category: "Eco-Resin & Stone Moulds" },
+                            { label: "Soap & Bar Moulds", category: "Soap & Bar Moulds" },
+                            { label: "General Silicone Moulds", category: "General Silicone Moulds" },
                           ].map((item) => (
                             <li key={item.label}>
                               <Link

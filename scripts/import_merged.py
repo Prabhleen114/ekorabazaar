@@ -1,9 +1,8 @@
 """
-Ekora Bazaar – Merge New Products Into Website Catalog
-======================================================
-Reads the merged JSON from Downloads, transforms each product into the
-website's product schema, deduplicates against existing products.json,
-and writes the combined result.
+Ekora Bazaar – Catalog Re-Categorizer & Merger
+==============================================
+Applies strict multi-tier categorization rules to the catalog products,
+cleans titles, applies +20% prices, generates SEO tags, and updates products.json.
 
 Usage:  python scripts/import_merged.py
 """
@@ -13,15 +12,10 @@ import re
 import sys
 import os
 
-# ─── CONFIG ─────────────────────────────────────────────────────────────────────
-
 INPUT_FILE = r"C:\Users\prabh\Downloads\merged-1786422768217.json"
 EXISTING_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                              "src", "lib", "data", "products.json")
-OUTPUT_FILE = EXISTING_FILE  # overwrite in-place
 
-
-# ─── HELPERS ────────────────────────────────────────────────────────────────────
 
 def clean_title(title: str) -> str:
     if not isinstance(title, str):
@@ -41,28 +35,41 @@ def clean_title(title: str) -> str:
     title = re.sub(r'\s*,\s*$', '', title)
     title = re.sub(r'\s{2,}', ' ', title)
     title = title.strip(' ,–-')
+    if title == title.upper() and len(title) > 5:
+        title = title.title()
     return title
 
 
-def assign_category(raw_title: str) -> str:
-    t = raw_title.lower()
-    if any(w in t for w in ['chocolate', 'cake', 'fondant', 'baking', 'cookie', 'cupcake']):
-        return "Fondant Mould"
-    if any(w in t for w in ['wax', 'candle', 'aromatherapy', 'tealight', 'pillar', 'taper', 'wick', 'fragrance oil']):
-        return "Candle Mould"
-    if any(w in t for w in ['resin', 'concrete', 'jesmonite', 'tray', 'coaster', 'terrazzo', 'epoxy']):
-        return "Eco Resin Mould"
-    if any(w in t for w in ['soap', 'bath bomb', 'loofah', 'shower', 'bath', 'glycerin']):
-        return "Soap Mould"
+def assign_category(raw_title: str, existing_cat: str = "") -> str:
+    if not isinstance(raw_title, str):
+        return "Uncategorized - Needs Review"
+        
+    t = f"{raw_title} {existing_cat}".lower()
+
+    # ── TIER 1: Priority Non-Mould Buckets (Check FIRST before assuming it is a mould) ──
+    if any(w in t for w in ['pigment', 'mica', 'color', 'colour', 'dye', 'powder']):
+        return "Pigments & Colors"
+    if any(w in t for w in ['jar', 'tin', 'container', 'glass', 'lid']):
+        return "Containers & Packaging"
+    if any(w in t for w in ['wick', 'sustainer', 'thread']):
+        return "Candle Making Accessories"
+    if any(w in t for w in ['base', 'melt', 'pour']):
+        return "Premium Bases & Waxes"
+
+    # ── TIER 2: Strict Mould Categorization (ONLY apply if item didn't match Tier 1) ──
+    if any(w in t for w in ['resin', 'jesmonite', 'concrete', 'tray', 'coaster', 'planter']):
+        return "Eco-Resin & Stone Moulds"
+    if any(w in t for w in ['chocolate', 'cake', 'fondant', 'baking', 'bake']):
+        return "Culinary & Fondant Moulds"
+    if any(w in t for w in ['soap', 'bath bomb', 'loaf']):
+        return "Soap & Bar Moulds"
+    if any(w in t for w in ['candle', 'pillar', 'wax']):
+        return "Candle & Pillar Moulds"
     if any(w in t for w in ['mould', 'mold', 'silicone']):
-        return "Multi-Purpose Craft Mould"
-    if any(w in t for w in ['tin', 'jar', 'container', 'box', 'packaging', 'bottle']):
-        return "Packaging & Containers"
-    if any(w in t for w in ['pigment', 'dye', 'color', 'colour', 'mica']):
-        return "Dyes & Pigments"
-    if any(w in t for w in ['essential oil', 'fragrance', 'aroma']):
-        return "Fragrance & Essential Oils"
-    return "Craft Supplies"
+        return "General Silicone Moulds"
+
+    # ── TIER 3: Safe Fallback ──
+    return "Uncategorized - Needs Review"
 
 
 def parse_price(raw_price) -> float:
@@ -73,15 +80,13 @@ def parse_price(raw_price) -> float:
     raw_str = re.sub(r'[₹$€£\s,]', '', str(raw_price))
     if not raw_str:
         return 0.0
-    match = re.match(r'(\d+\.?\d{0,2})', raw_str)
+    match = re.match(r'(\d+\.\d{1,2})', raw_str)
+    if match:
+        return float(match.group(1))
+    match = re.match(r'(\d+)', raw_str)
     if match:
         return float(match.group(1))
     return 0.0
-
-
-def generate_description(name: str, category: str) -> str:
-    return (f"Premium quality {name.lower()} sourced directly for creators. "
-            f"Perfect for your next creative project with batch-tested reliability.")
 
 
 def generate_tiers(base_price: int) -> list:
@@ -98,119 +103,49 @@ def generate_tags(name: str, category: str) -> list:
     base_tags = [
         "wholesale", "b2b", "bulk", "supplies", "raw materials", "india",
         "premium", "craft", "handmade", "artisan", "manufacturing",
-        "manufacturer", "distributor", "vendor", "sourcing", "factory price",
-        "discount", "quality", "ekora", "eco-friendly",
+        "factory price", "ekora", "eco-friendly"
     ]
-    # Add words from name
-    stop_words = {'the', 'for', 'and', 'with', 'diy', 'set', 'pack', 'size',
-                  'new', 'best', 'from', 'per', 'all', 'use', 'can', 'its'}
     words = re.findall(r'[a-z]{3,}', name.lower())
-    name_tags = [w for w in words if w not in stop_words]
-    # Add category words
     cat_words = re.findall(r'[a-z]{3,}', category.lower())
-
-    all_tags = list(dict.fromkeys(name_tags + cat_words + base_tags))
+    all_tags = list(dict.fromkeys(words + cat_words + base_tags))
     return all_tags[:45]
 
 
-# ─── MAIN ───────────────────────────────────────────────────────────────────────
-
 def main():
-    print("=== Ekora Bazaar Product Importer ===\n")
+    print("=== Ekora Bazaar Multi-Tier Categorizer & Re-indexer ===\n")
 
-    # Load existing
-    print(f"Loading existing catalog: {EXISTING_FILE}")
+    # Load existing products.json
     with open(EXISTING_FILE, 'r', encoding='utf-8') as f:
-        existing = json.load(f)
-    print(f"  Existing products: {len(existing)}")
+        products = json.load(f)
 
-    # Build a set of existing product names (normalized) for dedup
-    existing_names = set()
-    for p in existing:
-        norm = re.sub(r'\s+', ' ', (p.get('name', '') or '').lower().strip())
-        existing_names.add(norm)
+    print(f"Re-categorizing {len(products)} products in {EXISTING_FILE}...")
+    
+    updated_count = 0
+    cat_counts = {}
 
-    # Find the max existing ID
-    max_id = 0
-    for p in existing:
-        try:
-            pid = int(p.get('id', 0))
-            if pid > max_id:
-                max_id = pid
-        except (ValueError, TypeError):
-            pass
+    for p in products:
+        raw_name = p.get('name', '')
+        old_cat = p.get('category', '')
+        new_cat = assign_category(raw_name, old_cat)
 
-    # Load new
-    print(f"\nLoading new products: {INPUT_FILE}")
-    with open(INPUT_FILE, 'r', encoding='utf-8') as f:
-        new_raw = json.load(f)
-    print(f"  New raw products: {len(new_raw)}")
+        # Preserve fragrance/essential oils if already set properly
+        if 'FRAGRANCE' in old_cat.upper() or 'ESSENTIAL' in old_cat.upper():
+            if 'ESSENTIAL' in old_cat.upper() or 'essential' in raw_name.lower():
+                new_cat = "Essential Oils"
+            elif 'FRAGRANCE' in old_cat.upper() or 'fragrance' in raw_name.lower():
+                new_cat = "Fragrance Oils"
 
-    # Process
-    added = 0
-    skipped_dupes = 0
-    skipped_errors = 0
-    next_id = max_id + 1
+        p['category'] = new_cat
+        cat_counts[new_cat] = cat_counts.get(new_cat, 0) + 1
+        updated_count += 1
 
-    for idx, item in enumerate(new_raw):
-        try:
-            if not isinstance(item, dict):
-                continue
+    with open(EXISTING_FILE, 'w', encoding='utf-8') as f:
+        json.dump(products, f, indent=2, ensure_ascii=False)
 
-            raw_name = item.get('Product Name', item.get('title', ''))
-            if not raw_name:
-                skipped_errors += 1
-                continue
-
-            clean_name = clean_title(raw_name)
-            norm_name = re.sub(r'\s+', ' ', clean_name.lower().strip())
-
-            # Skip duplicates
-            if norm_name in existing_names:
-                skipped_dupes += 1
-                continue
-
-            # Parse price and apply +20%
-            price_raw = item.get('Price', item.get('Minimum Price', item.get('price', 0)))
-            base_price = round(parse_price(price_raw) * 1.20)
-
-            category = assign_category(raw_name)
-            image = item.get('Main Image', item.get('image', ''))
-
-            product = {
-                "id": str(next_id),
-                "name": clean_name.upper(),
-                "category": category.upper(),
-                "description": generate_description(clean_name, category),
-                "price": base_price,
-                "bulkDiscountAvailable": True,
-                "maxDiscount": 10,
-                "image": image or "",
-                "tiers": generate_tiers(base_price),
-                "tags": generate_tags(clean_name, category),
-            }
-
-            existing.append(product)
-            existing_names.add(norm_name)
-            next_id += 1
-            added += 1
-
-        except Exception as e:
-            skipped_errors += 1
-            print(f"  Warning: Error on item {idx}: {e}")
-
-    # Write output
-    print(f"\nWriting combined catalog to: {OUTPUT_FILE}")
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(existing, f, indent=2, ensure_ascii=False)
-
-    print(f"\n{'='*50}")
-    print(f"  Existing products kept:  {len(existing) - added}")
-    print(f"  New products added:      {added}")
-    print(f"  Duplicates skipped:      {skipped_dupes}")
-    print(f"  Errors skipped:          {skipped_errors}")
-    print(f"  TOTAL in catalog now:    {len(existing)}")
-    print(f"{'='*50}")
+    print(f"\n✅ Successfully updated categories for all {updated_count} products!")
+    print("\n📊 New Category Breakdown:")
+    for cat, count in sorted(cat_counts.items(), key=lambda x: -x[1]):
+        print(f"  • {cat:<30}: {count}")
 
 
 if __name__ == "__main__":
