@@ -17,54 +17,40 @@ PRODUCTS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__f
 def strict_categorize(name: str, current_cat: str) -> str:
     n = name.lower()
 
-    # 1. Fragrance & Essential Oils (Preserve existing if valid)
+    # 1. Essential & Fragrance Oils
     if 'essential oil' in n or 'pure essential' in n:
         return "Essential Oils"
     if 'fragrance oil' in n or 'aroma oil' in n or 'scent oil' in n or 'perfume oil' in n or 'flavour' in n:
         return "Fragrance Oils"
 
-    # 2. Containers & Packaging (Priority Non-Mould)
-    container_keywords = ['jar', 'tin', 'container', 'glass', 'lid', 'bottle', 'vial', 'flask', 'canister', 'diffuser bottle', 'dropper', 'box', 'packaging', 'atomizer', 'pump']
-    if any(w in n for w in container_keywords) and 'mould' not in n and 'mold' not in n:
-        return "Containers & Packaging"
+    # 2. IF title contains 'mold', 'mould', or 'silicone', IT IS A MOULD!
+    is_mould = any(w in n for w in ['mould', 'mold', 'silicone', 'silicon'])
 
-    # 3. Pigments & Colors (Priority Non-Mould)
-    pigment_keywords = ['pigment', 'mica', 'color', 'colour', 'dye', 'powder']
-    if any(w in n for w in pigment_keywords) and 'mould' not in n and 'mold' not in n and 'soap' not in n:
-        return "Pigments & Colors"
-
-    # 4. Candle Making Accessories (Priority Non-Mould)
-    accessory_keywords = ['wick', 'sustainer', 'thread', 'wick sticker', 'wick centering']
-    if any(w in n for w in accessory_keywords) and 'mould' not in n and 'mold' not in n:
-        return "Candle Making Accessories"
-
-    # 5. Premium Bases & Waxes (Priority Non-Mould)
-    base_keywords = ['soap base', 'wax flakes', 'soy wax', 'paraffin wax', 'beeswax', 'melt and pour', 'liquid base', 'cream base', 'butter']
-    if any(w in n for w in base_keywords) and 'mould' not in n and 'mold' not in n:
-        return "Premium Bases & Waxes"
-
-    # 6. Specific Mould Categories
-    if any(w in n for w in ['resin', 'jesmonite', 'concrete', 'tray', 'coaster', 'planter', 'terrazzo', 'epoxy']):
-        return "Eco-Resin & Stone Moulds"
-    if any(w in n for w in ['chocolate', 'cake', 'fondant', 'baking', 'bake', 'cookie', 'cupcake', 'pastry']):
-        return "Culinary & Fondant Moulds"
-    if any(w in n for w in ['soap', 'bath bomb', 'loaf']):
-        return "Soap & Bar Moulds"
-    if any(w in n for w in ['candle', 'pillar', 'taper']):
-        return "Candle & Pillar Moulds"
-    if any(w in n for w in ['mould', 'mold', 'silicone']):
+    if is_mould:
+        if any(w in n for w in ['resin', 'jesmonite', 'concrete', 'tray', 'coaster', 'planter', 'terrazzo', 'epoxy', 'stone', 'container mold', 'container mould']):
+            return "Eco-Resin & Stone Moulds"
+        if any(w in n for w in ['chocolate', 'cake', 'fondant', 'baking', 'bake', 'cookie', 'cupcake', 'pastry', 'jelly', 'pudding', 'doraemon', 'cartoon', 'snowflake', 'peppa', 'dinosaur', 'bear', 'animal']):
+            return "Culinary & Fondant Moulds"
+        if any(w in n for w in ['soap', 'bath bomb', 'loaf', 'bar']):
+            return "Soap & Bar Moulds"
+        if any(w in n for w in ['candle', 'pillar', 'taper', 'wax', 'yarn ball', 'aromatherapy']):
+            return "Candle & Pillar Moulds"
         return "General Silicone Moulds"
 
-    # If current category is already specific, keep it
-    if current_cat in [
-        "Eco-Resin & Stone Moulds", "Culinary & Fondant Moulds", "Containers & Packaging",
-        "Fragrance Oils", "Candle & Pillar Moulds", "General Silicone Moulds",
-        "Essential Oils", "Soap & Bar Moulds", "Premium Bases & Waxes",
-        "Pigments & Colors", "Candle Making Accessories"
-    ]:
-        return current_cat
+    # 3. Non-Mould Items
+    if any(w in n for w in ['jar', 'tin', 'container', 'glass', 'lid', 'bottle', 'vial', 'flask', 'canister', 'diffuser bottle', 'dropper', 'box', 'packaging', 'atomizer', 'pump']):
+        return "Containers & Packaging"
 
-    return "Uncategorized - Needs Review"
+    if any(w in n for w in ['pigment', 'mica', 'color', 'colour', 'dye', 'powder']):
+        return "Pigments & Colors"
+
+    if any(w in n for w in ['wick', 'sustainer', 'thread', 'wick sticker', 'wick centering']):
+        return "Candle Making Accessories"
+
+    if any(w in n for w in ['soap base', 'wax flakes', 'soy wax', 'paraffin wax', 'beeswax', 'melt and pour', 'liquid base', 'cream base', 'butter']):
+        return "Premium Bases & Waxes"
+
+    return "General Silicone Moulds" if ('silicone' in current_cat.lower() or 'mould' in current_cat.lower() or 'mold' in current_cat.lower()) else "Uncategorized - Needs Review"
 
 
 def main():
@@ -75,7 +61,6 @@ def main():
 
     print(f"Total raw items in catalog: {len(products)}")
 
-    # 1. DEDUPLICATION (by normalized name)
     seen_titles = {}
     cleaned_products = []
     duplicates_removed = 0
@@ -94,7 +79,6 @@ def main():
     print(f"  • Duplicates removed: {duplicates_removed}")
     print(f"  • Unique products remaining: {len(cleaned_products)}")
 
-    # 2. RE-CATEGORIZATION AUDIT
     category_reassignments = 0
     cat_counts = {}
 
@@ -115,11 +99,9 @@ def main():
     for cat, count in sorted(cat_counts.items(), key=lambda x: -x[1]):
         print(f"  • {cat:<32}: {count}")
 
-    # Re-assign sequential IDs to guarantee 1..N cleanliness
     for idx, p in enumerate(cleaned_products, 1):
         p['id'] = str(idx)
 
-    # Save cleaned file
     with open(PRODUCTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(cleaned_products, f, indent=2, ensure_ascii=False)
 
