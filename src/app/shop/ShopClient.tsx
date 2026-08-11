@@ -174,7 +174,7 @@ export default function ShopClient() {
   const activeFilterCount = selectedCategories.length + selectedFamilies.length + selectedNotes.length + selectedApplications.length;
 
   return (
-    <div className="pt-20 md:pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
+    <div className="pt-6 md:pt-8 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
       {/* Desktop Sidebar Filters */}
       <aside className="hidden md:block w-64 shrink-0">
         <div className="bg-white rounded-2xl p-6 border border-brand-linen sticky top-24 max-h-[80vh] overflow-y-auto custom-scrollbar">
@@ -330,24 +330,8 @@ export default function ShopClient() {
           </button>
         </div>
 
-        {/* Desktop: Top Bar (Blend Toggle & Sort) */}
-        <div className="hidden md:flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-xl border border-brand-linen gap-4">
-          
-          {/* Blend vs Single Toggle */}
-          <div className="flex bg-brand-bg rounded-lg p-1">
-            <button 
-              onClick={() => setBlendFilter("all")}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors ${blendFilter === "all" ? "bg-white text-brand-charcoal shadow-sm" : "text-brand-charcoal/50 hover:text-brand-charcoal"}`}
-            >All Oils</button>
-            <button 
-              onClick={() => setBlendFilter("single")}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors ${blendFilter === "single" ? "bg-white text-brand-charcoal shadow-sm" : "text-brand-charcoal/50 hover:text-brand-charcoal"}`}
-            >Single Origin</button>
-            <button 
-              onClick={() => setBlendFilter("blend")}
-              className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors ${blendFilter === "blend" ? "bg-white text-brand-charcoal shadow-sm" : "text-brand-charcoal/50 hover:text-brand-charcoal"}`}
-            >Artisan Blends</button>
-          </div>
+        {/* Desktop: Top Bar (Sort Only) */}
+        <div className="hidden md:flex justify-end items-center bg-white p-4 rounded-xl border border-brand-linen gap-4">
 
           <div className="flex items-center gap-3 text-sm">
             <span className="text-brand-charcoal/60 font-medium">Sort by:</span>

@@ -49,7 +49,7 @@ def assign_category(raw_title: str, existing_cat: str = "") -> str:
     # ── TIER 1: Priority Non-Mould Buckets (Check FIRST before assuming it is a mould) ──
     if any(w in t for w in ['pigment', 'mica', 'color', 'colour', 'dye', 'powder']):
         return "Pigments & Colors"
-    if any(w in t for w in ['jar', 'tin', 'container', 'glass', 'lid']):
+    if any(w in t for w in ['jar', 'tin', 'container', 'glass', 'lid', 'bottle', 'vial', 'flask', 'canister', 'diffuser']):
         return "Containers & Packaging"
     if any(w in t for w in ['wick', 'sustainer', 'thread']):
         return "Candle Making Accessories"
