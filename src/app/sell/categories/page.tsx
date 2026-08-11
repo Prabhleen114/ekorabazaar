@@ -9,7 +9,6 @@ import {
   Gem, 
   Sparkles, 
   Package, 
-  Layers, 
   Leaf, 
   ArrowRight,
   FlaskConical,
@@ -23,7 +22,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Wholesale Material Categories | Ekora Bazaar",
   description:
-    "Explore wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
+    "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
   keywords: [
     "silicone molds wholesale India",
     "candle making supplies India",
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wholesale Material Categories | Ekora Bazaar",
     description:
-      "Explore wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
+      "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
     url: "https://www.ekorabazaar.in/sell/categories",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
@@ -58,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wholesale Material Categories | Ekora Bazaar",
     description:
-      "Explore wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
+      "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
     images: ["https://www.ekorabazaar.in/og-image.jpg"],
   },
 };
@@ -87,7 +86,7 @@ export default function CategoriesPage() {
     {
       name: "Eco-Resin & Stone Moulds",
       categoryParam: "Eco-Resin & Stone Moulds",
-      count: "385 Items",
+      count: "464 Items",
       desc: "Tray, coaster, vessel, and planter moulds for jesmonite, concrete, and eco-resin.",
       icon: Gem,
       color: "bg-indigo-50 text-indigo-600 border-indigo-100",
@@ -95,31 +94,15 @@ export default function CategoriesPage() {
     {
       name: "Culinary & Fondant Moulds",
       categoryParam: "Culinary & Fondant Moulds",
-      count: "365 Items",
+      count: "347 Items",
       desc: "Food-grade silicone molds for cake decorating, chocolate, and sugarcraft.",
       icon: Box,
       color: "bg-rose-50 text-rose-600 border-rose-100",
     },
     {
-      name: "Containers & Packaging",
-      categoryParam: "Containers & Packaging",
-      count: "337 Items",
-      desc: "Amber glass dropper bottles, clear-lid metal tin boxes, candle jars, and caps.",
-      icon: Package,
-      color: "bg-orange-50 text-orange-600 border-orange-100",
-    },
-    {
-      name: "Fragrance Oils",
-      categoryParam: "Fragrance Oils",
-      count: "309 Blends",
-      desc: "Concentrated aroma oils for soy candles, CP soaps, diffusers, and fine cosmetics.",
-      icon: Droplets,
-      color: "bg-purple-50 text-purple-600 border-purple-100",
-    },
-    {
       name: "Candle & Pillar Moulds",
       categoryParam: "Candle & Pillar Moulds",
-      count: "259 Items",
+      count: "342 Items",
       desc: "3D pillar, flower, body torso, geometric, and decorative silicone candle molds.",
       icon: Flame,
       color: "bg-amber-50 text-amber-600 border-amber-100",
@@ -127,15 +110,31 @@ export default function CategoriesPage() {
     {
       name: "General Silicone Moulds",
       categoryParam: "General Silicone Moulds",
-      count: "166 Items",
+      count: "279 Items",
       desc: "Flexible high-durability silicone molds for general casting, plaster, and clay.",
       icon: Grid,
       color: "bg-blue-50 text-blue-600 border-blue-100",
     },
     {
+      name: "Fragrance Oils",
+      categoryParam: "Fragrance Oils",
+      count: "212 Blends",
+      desc: "Concentrated aroma oils for soy candles, CP soaps, diffusers, and fine cosmetics.",
+      icon: Droplets,
+      color: "bg-purple-50 text-purple-600 border-purple-100",
+    },
+    {
+      name: "Containers & Packaging",
+      categoryParam: "Containers & Packaging",
+      count: "201 Items",
+      desc: "Amber glass dropper bottles, clear-lid metal tin boxes, candle jars, and caps.",
+      icon: Package,
+      color: "bg-orange-50 text-orange-600 border-orange-100",
+    },
+    {
       name: "Pure Essential Oils",
       categoryParam: "Essential Oils",
-      count: "116 Pure Oils",
+      count: "119 Pure Oils",
       desc: "Steam-distilled therapeutic grade plant extracts and natural aromatics.",
       icon: Leaf,
       color: "bg-emerald-50 text-emerald-600 border-emerald-100",
@@ -143,7 +142,7 @@ export default function CategoriesPage() {
     {
       name: "Soap & Bar Moulds",
       categoryParam: "Soap & Bar Moulds",
-      count: "104 Items",
+      count: "107 Items",
       desc: "Bar molds, loaf molds, bath bomb presses, and decorative soap making silicone.",
       icon: Sparkles,
       color: "bg-teal-50 text-teal-600 border-teal-100",
@@ -159,7 +158,7 @@ export default function CategoriesPage() {
     {
       name: "Pigments & Colors",
       categoryParam: "Pigments & Colors",
-      count: "44 Products",
+      count: "26 Products",
       desc: "Mica powders, liquid resin pigments, candle dyes, and cosmetic safe colorants.",
       icon: Palette,
       color: "bg-pink-50 text-pink-600 border-pink-100",
@@ -167,7 +166,7 @@ export default function CategoriesPage() {
     {
       name: "Candle Making Accessories",
       categoryParam: "Candle Making Accessories",
-      count: "11 Products",
+      count: "9 Products",
       desc: "Cotton wicks, wooden wicks, sustainers, wick stickers, and testing tools.",
       icon: Wrench,
       color: "bg-stone-50 text-stone-600 border-stone-100",
@@ -188,7 +187,7 @@ export default function CategoriesPage() {
       <section className="pt-20 md:pt-28 pb-12 px-6 text-center max-w-5xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-4 py-1 text-xs font-semibold text-brand-charcoal/70 mb-6 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
-          2,268 Live Wholesale Products
+          2,268 Verified Wholesale Products
         </div>
         <h1 className="text-4xl md:text-6xl font-bold font-serif tracking-tight text-brand-charcoal mb-4">
           Wholesale Material Categories
