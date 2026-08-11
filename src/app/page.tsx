@@ -3,7 +3,6 @@ import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-  ShieldCheck, 
   Sparkles, 
   Factory, 
   ArrowRight, 
@@ -33,7 +32,7 @@ export default function BuyerHomePage() {
     { 
       name: "Fragrance Oils", 
       href: "/shop?category=Fragrance%20Oils", 
-      count: "307 Blends", 
+      count: "308 Blends", 
       icon: Droplets, 
       color: "bg-rose-50 text-rose-600 border-rose-100",
       bgImage: "/images/fragrance_oils_bg.jpg"
@@ -41,7 +40,7 @@ export default function BuyerHomePage() {
     { 
       name: "Candle Moulds", 
       href: "/shop?category=Candle%20%26%20Pillar%20Moulds", 
-      count: "205 Designs", 
+      count: "214 Designs", 
       icon: Flame, 
       color: "bg-amber-50 text-amber-600 border-amber-100",
       bgImage: "/images/candle_moulds_bg.jpg"
@@ -73,7 +72,7 @@ export default function BuyerHomePage() {
     { 
       name: "Containers & Tins", 
       href: "/shop?category=Containers%20%26%20Packaging", 
-      count: "172 Items", 
+      count: "182 Items", 
       icon: Package, 
       color: "bg-orange-50 text-orange-600 border-orange-100",
       bgImage: "/images/containers_tins_bg.jpg"
@@ -91,57 +90,113 @@ export default function BuyerHomePage() {
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
       
-      {/* 1. HERO SECTION (Tighter Compact Padding) */}
-      <section className="relative pt-8 md:pt-14 pb-8 md:pb-12 px-5 md:px-6 max-w-6xl mx-auto w-full text-center">
-        <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-4 py-1.5 text-xs font-semibold text-brand-charcoal/70 mb-4 md:mb-6 shadow-sm">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          Batch-Tested Wholesale Raw Materials
-        </div>
-
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-brand-charcoal leading-tight mb-4 md:mb-5 tracking-tight">
-          Premium Raw Materials for<br className="hidden md:block"/> Serious Creators
-        </h1>
+      {/* 1. HERO SECTION: ARTISAN FORMULATIONS IN ACTION (Pops Up First!) */}
+      <section className="pt-6 md:pt-10 pb-8 md:pb-12 px-5 md:px-6 max-w-6xl mx-auto w-full">
         
-        <p className="text-base md:text-xl text-brand-charcoal/70 max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed">
-          Stop guessing with your supplies. Verified, laboratory-certified raw materials with wholesale tier pricing for growing craft businesses.
-        </p>
+        {/* Top Header Badge & Search Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 md:mb-8">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1">Craftsmanship &amp; Sourcing</span>
+            <h1 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal">
+              Artisan Formulations in Action
+            </h1>
+            <p className="text-xs md:text-base text-brand-charcoal/70 mt-1">
+              From raw ingredients to finished luxury products — engineered for candle &amp; soap crafters.
+            </p>
+          </div>
 
-        {/* Unified Hero CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 md:mb-8 w-full max-w-md mx-auto">
-          <Link
-            href="/shop"
-            className="w-full sm:w-auto bg-brand-orange hover:bg-brand-terracotta text-white px-8 py-3.5 rounded-2xl text-base font-bold transition-all text-center shadow-lg shadow-brand-orange/20 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-          >
-            <span>Explore the Collection</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-          <Link
-            href="/sell"
-            className="w-full sm:w-auto bg-white border border-brand-linen hover:border-brand-charcoal text-brand-charcoal px-8 py-3.5 rounded-2xl text-base font-bold transition-all text-center shadow-sm flex items-center justify-center gap-2"
-          >
-            <Store className="w-4 h-4 text-brand-orange" />
-            <span>Sell with Us</span>
-          </Link>
+          {/* Quick Search Bar */}
+          <div className="w-full md:w-80">
+            <form action="/shop" method="GET" className="relative w-full">
+              <input
+                type="text"
+                name="q"
+                placeholder="Search fragrance oils, waxes, molds…"
+                className="w-full bg-white border border-brand-linen rounded-2xl pl-10 pr-12 py-2.5 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-orange shadow-sm"
+              />
+              <svg className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-charcoal/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-brand-orange text-white rounded-xl px-3 py-1 text-xs font-bold hover:bg-brand-terracotta transition-colors">
+                Go
+              </button>
+            </form>
+          </div>
         </div>
 
-        {/* Mobile: Persistent Search Bar */}
-        <div className="md:hidden w-full max-w-md mx-auto mb-4">
-          <form action="/shop" method="GET" className="relative w-full">
-            <input
-              type="text"
-              name="q"
-              placeholder="Search fragrance oils, waxes, molds…"
-              className="w-full bg-white border border-brand-linen rounded-2xl pl-11 pr-14 py-3 text-sm font-medium focus:outline-none focus:border-brand-orange shadow-sm"
+        {/* Hero Cards Grid (Candle Making & Soap Making Cards) */}
+        <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+          
+          {/* Candle Making Process Card */}
+          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-6 md:p-10 flex flex-col justify-end min-h-[320px] md:min-h-[380px] group shadow-md hover:shadow-2xl transition-all duration-300">
+            <Image 
+              src="/images/candle_making_process.jpg" 
+              alt="Artisan Candle Making Process" 
+              fill 
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
             />
-            <svg className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-brand-charcoal/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 bg-brand-orange text-white rounded-xl px-3.5 py-1.5 text-xs font-bold">
-              Go
-            </button>
-          </form>
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/95 via-brand-charcoal/60 to-transparent z-10" />
+            
+            <div className="relative z-20 text-white space-y-2.5">
+              <div className="inline-flex items-center gap-1.5 bg-amber-500/30 border border-amber-400/50 text-amber-300 rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                <Flame className="w-3.5 h-3.5" /> Candle Making Supplies
+              </div>
+              <h2 className="text-2xl md:text-4xl font-serif font-bold text-white leading-tight">
+                Artisan Candle Pouring &amp; Mold Casting
+              </h2>
+              <p className="text-xs md:text-sm text-white/85 max-w-md leading-relaxed">
+                100% natural soy wax, heat-resistant silicone pillar molds, and IFRA-tested fragrance oils optimized for clean hot scent throw.
+              </p>
+              <div className="pt-2">
+                <Link 
+                  href="/shop?category=Candle%20%26%20Pillar%20Moulds" 
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-terracotta px-5 py-3 rounded-xl border border-white/20 transition-all shadow-md shadow-brand-orange/30 active:scale-[0.98]"
+                >
+                  <span>Explore Candle Supplies</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Soap Making Process Card */}
+          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-6 md:p-10 flex flex-col justify-end min-h-[320px] md:min-h-[380px] group shadow-md hover:shadow-2xl transition-all duration-300">
+            <Image 
+              src="/images/soap_making_process.jpg" 
+              alt="Cold Process Organic Soap Making" 
+              fill 
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/95 via-brand-charcoal/60 to-transparent z-10" />
+            
+            <div className="relative z-20 text-white space-y-2.5">
+              <div className="inline-flex items-center gap-1.5 bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5" /> Soap Crafting Essentials
+              </div>
+              <h2 className="text-2xl md:text-4xl font-serif font-bold text-white leading-tight">
+                Cold Process Soap Swirling &amp; Loaf Casting
+              </h2>
+              <p className="text-xs md:text-sm text-white/85 max-w-md leading-relaxed">
+                Clear &amp; opaque Melt &amp; Pour soap bases, silicone bar molds, essential oils, and skin-safe colorants for luxury batch production.
+              </p>
+              <div className="pt-2">
+                <Link 
+                  href="/shop?category=Soap%20%26%20Bar%20Moulds" 
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-terracotta px-5 py-3 rounded-xl border border-white/20 transition-all shadow-md shadow-brand-orange/30 active:scale-[0.98]"
+                >
+                  <span>Explore Soap Supplies</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* 2. CRAFT PRODUCTS / CATEGORIES SECTION (With Semi-Transparent Product Photos) */}
+      {/* 2. CRAFT PRODUCTS / CATEGORIES OVERVIEW SECTION */}
       <section className="py-8 md:py-12 px-5 md:px-6 max-w-6xl mx-auto w-full border-t border-brand-linen">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -196,84 +251,7 @@ export default function BuyerHomePage() {
         </div>
       </section>
 
-      {/* 3. ARTISAN CRAFT PROCESS SHOWCASE (Candle Making & Soap Making Semi-Transparent Cards) */}
-      <section className="py-8 md:py-12 px-5 md:px-6 max-w-6xl mx-auto w-full border-t border-brand-linen">
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1">Craftsmanship</span>
-          <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-charcoal mb-2">Artisan Formulations in Action</h2>
-          <p className="text-xs md:text-sm text-brand-charcoal/70">From raw ingredients to finished luxury products — engineered for candle &amp; soap crafters.</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Candle Making Process Card */}
-          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-8 md:p-10 flex flex-col justify-end min-h-[300px] md:min-h-[340px] group shadow-sm hover:shadow-xl transition-all duration-300">
-            <Image 
-              src="/images/candle_making_process.jpg" 
-              alt="Artisan Candle Making Process" 
-              fill 
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-35 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/90 via-brand-charcoal/50 to-transparent z-10" />
-            
-            <div className="relative z-20 text-white space-y-2">
-              <div className="inline-flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/40 text-amber-300 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-                <Flame className="w-3.5 h-3.5" /> Candle Making Supplies
-              </div>
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-white">
-                Artisan Candle Pouring &amp; Mold Casting
-              </h3>
-              <p className="text-xs md:text-sm text-white/80 max-w-md leading-relaxed">
-                100% natural soy wax, heat-resistant silicone pillar molds, and IFRA-tested fragrance oils optimized for clean hot scent throw.
-              </p>
-              <div className="pt-2">
-                <Link 
-                  href="/shop?category=Candle%20%26%20Pillar%20Moulds" 
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-white/20 hover:bg-brand-orange px-4 py-2.5 rounded-xl border border-white/30 transition-all backdrop-blur-md"
-                >
-                  <span>Explore Candle Supplies</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Soap Making Process Card */}
-          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-8 md:p-10 flex flex-col justify-end min-h-[300px] md:min-h-[340px] group shadow-sm hover:shadow-xl transition-all duration-300">
-            <Image 
-              src="/images/soap_making_process.jpg" 
-              alt="Cold Process Organic Soap Making" 
-              fill 
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-35 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/90 via-brand-charcoal/50 to-transparent z-10" />
-            
-            <div className="relative z-20 text-white space-y-2">
-              <div className="inline-flex items-center gap-1.5 bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5" /> Soap Crafting Essentials
-              </div>
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-white">
-                Cold Process Soap Swirling &amp; Loaf Casting
-              </h3>
-              <p className="text-xs md:text-sm text-white/80 max-w-md leading-relaxed">
-                Clear &amp; opaque Melt &amp; Pour soap bases, silicone bar molds, essential oils, and skin-safe colorants for luxury batch production.
-              </p>
-              <div className="pt-2">
-                <Link 
-                  href="/shop?category=Soap%20%26%20Bar%20Moulds" 
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-white/20 hover:bg-brand-orange px-4 py-2.5 rounded-xl border border-white/30 transition-all backdrop-blur-md"
-                >
-                  <span>Explore Soap Supplies</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. BUILD TRUST SECTION */}
+      {/* 3. BUILD TRUST SECTION */}
       <section className="bg-white border-y border-brand-linen py-8 md:py-12 px-5 md:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-8">
@@ -299,7 +277,7 @@ export default function BuyerHomePage() {
         </div>
       </section>
 
-      {/* 5. SELLER & SUPPLIER CTA SECTION (Frontpage Seller Flow) */}
+      {/* 4. SELLER & SUPPLIER CTA SECTION (Frontpage Seller Flow) */}
       <section className="py-10 md:py-14 px-5 md:px-6 max-w-6xl mx-auto w-full">
         <div className="bg-brand-charcoal text-white rounded-3xl p-6 md:p-12 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
