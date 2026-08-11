@@ -10,7 +10,6 @@ import {
   Sparkles, 
   Package, 
   Leaf, 
-  Droplets,
   ArrowRight,
   FlaskConical,
   Grid,
