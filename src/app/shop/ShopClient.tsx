@@ -287,25 +287,27 @@ export default function ShopClient() {
           </div>
         </div>
 
-        {/* Curated Collections Header */}
-        <div className="bg-gradient-to-r from-brand-linen/40 to-orange-50/40 p-6 rounded-2xl border border-brand-linen">
-          <h3 className="font-serif font-bold text-brand-charcoal text-lg mb-4">Curated Scent Collections</h3>
-          <div className="flex flex-wrap gap-3">
-            {COLLECTIONS.map(coll => (
-              <button 
-                key={coll.name}
-                onClick={() => setActiveCollection(activeCollection === coll.name ? null : coll.name)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCollection === coll.name 
-                  ? "bg-brand-charcoal text-white shadow-md" 
-                  : "bg-white text-brand-charcoal border border-brand-linen hover:border-brand-charcoal"
-                }`}
-              >
-                {coll.icon} {coll.name}
-              </button>
-            ))}
+        {/* Curated Collections Header - Render ONLY when fragrance-related category is selected */}
+        {selectedCategories.some(c => c.toLowerCase().includes("fragrance") || c.toLowerCase().includes("scent") || c.toLowerCase().includes("essential")) && (
+          <div className="bg-gradient-to-r from-brand-linen/40 to-orange-50/40 p-6 rounded-2xl border border-brand-linen">
+            <h3 className="font-serif font-bold text-brand-charcoal text-lg mb-4">Curated Scent Collections</h3>
+            <div className="flex flex-wrap gap-3">
+              {COLLECTIONS.map(coll => (
+                <button 
+                  key={coll.name}
+                  onClick={() => setActiveCollection(activeCollection === coll.name ? null : coll.name)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    activeCollection === coll.name 
+                    ? "bg-brand-charcoal text-white shadow-md" 
+                    : "bg-white text-brand-charcoal border border-brand-linen hover:border-brand-charcoal"
+                  }`}
+                >
+                  {coll.icon} {coll.name}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Mobile: Sticky Filter + Sort Bar */}
         <div className="md:hidden sticky top-16 z-30 bg-white/95 backdrop-blur-md border-y border-brand-linen py-3 -mx-4 px-4 flex items-center justify-between shadow-sm">
@@ -399,7 +401,7 @@ export default function ShopClient() {
                         <Tag className="w-3 h-3" /> Bulk Discount
                       </div>
                     )}
-                    {product.isBlend && (
+                    {product.isBlend && !product.category.toLowerCase().includes("essential") && !product.name.toLowerCase().includes("essential oil") && (
                       <div className="bg-purple-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm w-max">
                         Blend
                       </div>

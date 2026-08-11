@@ -18711,7 +18711,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -30535,7 +30535,7 @@
     ],
     "scentFamily": "Woody",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -30694,7 +30694,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31231,7 +31231,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31312,7 +31312,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31393,7 +31393,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31473,7 +31473,7 @@
     ],
     "scentFamily": "Woody",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31712,7 +31712,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31876,7 +31876,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -31962,7 +31962,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32040,7 +32040,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32193,7 +32193,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32349,7 +32349,7 @@
     ],
     "scentFamily": "Woody",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32430,7 +32430,7 @@
     ],
     "scentFamily": "Citrus",
     "noteLevel": "Top Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32595,7 +32595,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32676,7 +32676,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32757,7 +32757,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32838,7 +32838,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -32920,7 +32920,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33003,7 +33003,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33168,7 +33168,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33327,7 +33327,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33410,7 +33410,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33491,7 +33491,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Top Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33571,7 +33571,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33650,7 +33650,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33730,7 +33730,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33809,7 +33809,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -33890,7 +33890,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34047,7 +34047,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34125,7 +34125,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34354,7 +34354,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34666,7 +34666,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34744,7 +34744,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34900,7 +34900,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -34980,7 +34980,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35060,7 +35060,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35139,7 +35139,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35219,7 +35219,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35298,7 +35298,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35458,7 +35458,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35536,7 +35536,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -35698,7 +35698,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -36235,7 +36235,7 @@
     ],
     "scentFamily": "Citrus",
     "noteLevel": "Top Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -36778,7 +36778,7 @@
     ],
     "scentFamily": "Herbaceous",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -37242,7 +37242,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -59044,7 +59044,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -59355,7 +59355,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -59412,7 +59412,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -59519,7 +59519,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60078,7 +60078,7 @@
     ],
     "scentFamily": "Citrus",
     "noteLevel": "Top Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60137,7 +60137,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Base Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60194,7 +60194,7 @@
     ],
     "scentFamily": "Floral",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60254,7 +60254,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60373,7 +60373,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60428,7 +60428,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60586,7 +60586,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60642,7 +60642,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60698,7 +60698,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60752,7 +60752,7 @@
     ],
     "scentFamily": "Spicy",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -60858,7 +60858,7 @@
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
+    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
