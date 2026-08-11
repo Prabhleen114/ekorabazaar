@@ -10,6 +10,7 @@ import {
   Sparkles, 
   Package, 
   Leaf, 
+  Droplets,
   ArrowRight,
   FlaskConical,
   Grid,
@@ -150,7 +151,7 @@ export default function CategoriesPage() {
     {
       name: "Premium Bases & Waxes",
       categoryParam: "Premium Bases & Waxes",
-      count: "40 Products",
+      count: "67 Products",
       desc: "Natural soy wax flakes, melt & pour soap bases, paraffin, and cosmetic bases.",
       icon: FlaskConical,
       color: "bg-cyan-50 text-cyan-600 border-cyan-100",
@@ -162,6 +163,14 @@ export default function CategoriesPage() {
       desc: "Mica powders, liquid resin pigments, candle dyes, and cosmetic safe colorants.",
       icon: Palette,
       color: "bg-pink-50 text-pink-600 border-pink-100",
+    },
+    {
+      name: "Hydrosols",
+      categoryParam: "Hydrosols",
+      count: "19 Botanicals",
+      desc: "Steam-distilled floral and herbal waters — lavender, rose, sandalwood & more.",
+      icon: Droplets,
+      color: "bg-sky-50 text-sky-600 border-sky-100",
     },
     {
       name: "Candle Making Accessories",

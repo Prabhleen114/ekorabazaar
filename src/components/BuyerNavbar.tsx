@@ -152,7 +152,7 @@ export default function BuyerNavbar() {
                             </div>
                           </li>
                           {[
-                            { label: "Hydrosols", category: "HYDROSOL" },
+                            { label: "Hydrosols", category: "Hydrosols" },
                             { label: "Dried Botanicals", category: "DRY FLOWERS" },
                           ].map((item) => (
                             <li key={item.label}>
