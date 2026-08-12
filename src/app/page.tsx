@@ -56,7 +56,7 @@ export default function BuyerHomePage() {
     { 
       name: "Resin & Stone", 
       href: "/shop?category=Eco-Resin%20%26%20Stone%20Moulds", 
-      count: "359 Designs", 
+      count: "499 Designs", 
       icon: Gem, 
       color: "bg-purple-50 text-purple-600 border-purple-100",
       bgImage: "/images/resin_stone_bg.jpg"

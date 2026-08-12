@@ -86,7 +86,7 @@ export default function CategoriesPage() {
     {
       name: "Eco-Resin & Stone Moulds",
       categoryParam: "Eco-Resin & Stone Moulds",
-      count: "359 Items",
+      count: "499 Items",
       desc: "Tray, coaster, vessel, and planter moulds for jesmonite, concrete, and eco-resin.",
       icon: Gem,
       color: "bg-indigo-50 text-indigo-600 border-indigo-100",
