@@ -17,9 +17,9 @@
 8. Bamboo Leaf
 9. Black Oudh
 10. Blue Ocean
-11. Cactus Blossom
+11. ~~Cactus Blossom~~ ✅ Done
 12. Cardamom & Saffron
-13. Cherry Blossom
+13. ~~Cherry Blossom~~ ✅ Done
 14. Choco Musk
 15. Coffee Bean
 16. Cucumber
@@ -41,7 +41,7 @@
 32. Insignia
 33. Inter Pool
 34. Japanese Cherry Blossom
-35. Jasmine Knight
+35. ~~Jasmine Knight~~ ✅ Done
 36. Kesar
 37. Ladoo Sweet Mithai
 38. Lavender Kashmir
@@ -57,7 +57,7 @@
 48. Mix Fruit 101
 49. Moringa Drumstick Flower
 50. Morning Flower
-51. Musk Gold
+51. ~~Musk Gold~~ ✅ Done
 52. Nargis Flower
 53. Neem & Tulsi
 54. Patchouli
@@ -69,7 +69,7 @@
 60. Real Lemon
 61. Real Rose
 62. Red Wine
-63. Roasted Coffee
+63. ~~Roasted Coffee~~ ✅ Done
 64. Rose Bulgarian
 65. Russian Leather
 66. Saffron Cedar
@@ -98,7 +98,7 @@
 5. Banana Pie
 6. Blackberry Forest
 7. Blue Spruce
-8. Bois De Rose
+8. ~~Bois De Rose~~ ✅ Done
 9. Carribean Saffron
 10. Cherry Silk
 11. Cocoa Butter
@@ -118,7 +118,7 @@
 25. Mandarin Mimosa
 26. Mango Coconut Creme
 27. Mango Flora
-28. Midnight Blue Citrus
+28. ~~Midnight Blue Citrus~~ ✅ Done
 29. Monsoon Vetiver
 30. Mountain Cedar
 31. Nag Champa
@@ -145,7 +145,7 @@
 ---
 
 ## 🍃 Pending Essential Oils (EO) Needing Covers
-1. Ajwain Essential Oil
+1. ~~Ajwain Essential Oil~~ ✅ Done
 2. Bergamot Essential Oil
 3. Black Pepper Essential Oil
 4. Blue Tansy Essential Oil
@@ -156,10 +156,10 @@
 9. Carrot Seed Essential Oil
 10. Cedarwood Essential Oil
 11. Chamomile Blue & Roman Essential Oil
-12. Cinnamon Bark & Leaf Essential Oil
+12. ~~Cinnamon Bark & Leaf Essential Oil~~ ✅ Done
 13. Citronella Essential Oil
 14. Clary Sage Essential Oil
-15. Clove Bud & Leaf Essential Oil
+15. ~~Clove Bud & Leaf Essential Oil~~ ✅ Done
 16. Coffee Essential Oil
 17. Coriander Essential Oil
 18. Curry Leaf Essential Oil
@@ -169,15 +169,15 @@
 22. Fir Needle Essential Oil
 23. Frangipani Essential Oil
 24. Frankincense Essential Oil
-25. Garlic Essential Oil
-26. Geranium Essential Oil
+25. ~~Garlic Essential Oil~~ ✅ Done
+26. ~~Geranium Essential Oil~~ ✅ Done
 27. Ginger Essential Oil
 28. Grapefruit Pink Essential Oil
 29. Helichrysum Essential Oil
-30. Jasmine Grandiflorum Essential Oil
+30. ~~Jasmine Grandiflorum Essential Oil~~ ✅ Done
 31. Jatamansi Essential Oil
 32. Juniper Berry Essential Oil
-33. Lavender Essential Oil
+33. ~~Lavender Essential Oil~~ ✅ Done
 34. Lemongrass Essential Oil
 35. Lime Essential Oil
 36. Mandarin Essential Oil
@@ -187,24 +187,24 @@
 40. Neroli Essential Oil
 41. Nutmeg Essential Oil
 42. Oregano Essential Oil
-43. Palmarosa Essential Oil
+43. ~~Palmarosa Essential Oil~~ ✅ Done
 44. Patchouli Dark Essential Oil
 45. Peppermint Essential Oil
 46. Pine Essential Oil
-47. Pure Anise & Basil Essential Oil
+47. ~~Pure Anise & Basil Essential Oil~~ ✅ Done
 48. Pure Bay Leaf & Fennel Essential Oil
-49. Rose & Rose Geranium Essential Oil
+49. ~~Rose & Rose Geranium Essential Oil~~ ✅ Done
 50. Rosemary Essential Oil
-51. Rosewood Essential Oil
-52. Saffron Essential Oil
+51. ~~Rosewood Essential Oil~~ ✅ Done
+52. ~~Saffron Essential Oil~~ ✅ Done
 53. Sage & Sandalwood Essential Oil
-54. Spearmint & Star Anise Essential Oil
+54. ~~Spearmint & Star Anise Essential Oil~~ ✅ Done
 55. Tea Tree Essential Oil
 56. Thyme Essential Oil
-57. Turmeric Leaf & Root Essential Oil
-58. Vanilla & Vetiver Essential Oil
+57. ~~Turmeric Leaf & Root Essential Oil~~ ✅ Done
+58. ~~Vanilla & Vetiver Essential Oil~~ ✅ Done
 59. Wintergreen Essential Oil
-60. Ylang Ylang Essential Oil
+60. ~~Ylang Ylang Essential Oil~~ ✅ Done
 
 
 ## Essential Oil Image Mapping Verification Log
