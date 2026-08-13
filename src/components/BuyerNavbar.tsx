@@ -126,18 +126,19 @@ export default function BuyerNavbar() {
                           <li>
                             <div className="flex flex-col">
                               <Link
-                                href={`/shop?category=${encodeURIComponent("Fragrance Oils")}`}
+                                href="/shop"
                                 className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange leading-relaxed transition-colors flex items-center"
                               >
-                                Premium Fragrance Oils
+                                Premium Oils &amp; Flavours
                                 <span className="inline-flex items-center justify-center bg-[#e0f2fe] text-[#0369a1] text-[10px] font-bold px-2 py-0.5 rounded-full ml-2 tracking-wide uppercase">
                                   NEW
                                 </span>
                               </Link>
                               <ul className="ml-3 mt-1.5 space-y-1 border-l-2 border-brand-linen pl-3">
                                 {[
+                                  { label: "Fragrance Oils", category: "Fragrance Oils" },
                                   { label: "Essential Oils", category: "Essential Oils" },
-                                  { label: "Aroma Blends", category: "Fragrance Oils" },
+                                  { label: "Food Safe Flavour Oils", category: "Food Safe Flavour Oil" },
                                 ].map((sub) => (
                                   <li key={sub.label}>
                                     <Link
