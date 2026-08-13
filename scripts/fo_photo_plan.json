@@ -1,0 +1,274 @@
+{
+  "actions": [
+    {
+      "filename": "Gemini_Generated_Image_qxls50qxls50qxls.png",
+      "label": "Aqua Fresh",
+      "product_id": "598",
+      "product_name": "New Aqua Fresh Fragrance Oil (candle)",
+      "new_filename": "Aqua Fresh.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Aqua Fresh.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_f859y7f859y7f859.png",
+      "label": "Bois De Bois",
+      "product_id": "685",
+      "product_name": "Bois De Rose Candle & Cosmetic F O",
+      "new_filename": "Bois De Bois.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Bois De Bois.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_2jlmv52jlmv52jlm.png",
+      "label": "Bubble Gum",
+      "product_id": "828",
+      "product_name": "Bubble Gum F O",
+      "new_filename": "Bubble Gum.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Bubble Gum.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_4jkp4h4jkp4h4jkp.png",
+      "label": "Butterfly Fragrance",
+      "product_id": "589",
+      "product_name": "Butterfly Fragrance Oil (candle)",
+      "new_filename": "Butterfly Fragrance.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Butterfly Fragrance.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_6ag6aw6ag6aw6ag6.png",
+      "label": "Cactus Bloom",
+      "product_id": "587",
+      "product_name": "Cactus Blossom Fragrance Oil (candle)",
+      "new_filename": "Cactus Bloom.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Cactus Bloom.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_18t5fp18t5fp18t5.png",
+      "label": "Cherry Blossom",
+      "product_id": "609",
+      "product_name": "Cherry Blossom Candle & Cosmetic F O",
+      "new_filename": "Cherry Blossom.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Cherry Blossom.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_lou5s2lou5s2lou5.png",
+      "label": "Cinnamon Leaf",
+      "product_id": "497",
+      "product_name": "Apple Cinnamon Fragrance Oil (skin safe)(candle)",
+      "new_filename": "Cinnamon Leaf.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Cinnamon Leaf.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_jbq09ajbq09ajbq0.png",
+      "label": "Clean Ocean",
+      "product_id": "827",
+      "product_name": "Clean Ocean F O",
+      "new_filename": "Clean Ocean.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Clean Ocean.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_rsxdfjrsxdfjrsxd.png",
+      "label": "Clove Leaf",
+      "product_id": "648",
+      "product_name": "Orange Clove Candle & Cosmetic F O",
+      "new_filename": "Clove Leaf.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Clove Leaf.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_yiiyqbyiiyqbyiiy.png",
+      "label": "Diced Pineapple",
+      "product_id": "606",
+      "product_name": "Diced Pineapple Candle & Cosmetic F O",
+      "new_filename": "Diced Pineapple.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Diced Pineapple.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_br6rb4br6rb4br6r.png",
+      "label": "Fresh Oudh",
+      "product_id": "586",
+      "product_name": "Fresh Oudh Fragrance Oil (candle)",
+      "new_filename": "Fresh Oudh.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Fresh Oudh.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_6rxpl86rxpl86rxp.png",
+      "label": "Geranium",
+      "product_id": "671",
+      "product_name": "Geranium Saffron Candle & Cosmetic F O",
+      "new_filename": "Geranium.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Geranium.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_36tp5f36tp5f36tp.png",
+      "label": "Golden Women",
+      "product_id": "576",
+      "product_name": "Golden Women Fragrance Oil",
+      "new_filename": "Golden Women.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Golden Women.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_d5ex75d5ex75d5ex.png",
+      "label": "Iris Lime",
+      "product_id": "577",
+      "product_name": "Iris Lime Fragrance Oil",
+      "new_filename": "Iris Lime.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Iris Lime.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_jcl12gjcl12gjcl1.png",
+      "label": "Jasmine Knight",
+      "product_id": "615",
+      "product_name": "Jasmine Knight F O",
+      "new_filename": "Jasmine Knight.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Jasmine Knight.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_szsfjpszsfjpszsf.png",
+      "label": "Jasminum Grandiflorum",
+      "product_id": "665",
+      "product_name": "Jasmine Candle & Cosmetic F O",
+      "new_filename": "Jasminum Grandiflorum.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Jasminum Grandiflorum.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_47l3k47l3k47l3k4.png",
+      "label": "Lavender",
+      "product_id": "578",
+      "product_name": "Lavender Fragrance Oil",
+      "new_filename": "Lavender.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Lavender.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_i2f8k8i2f8k8i2f8.png",
+      "label": "Lavender Florence",
+      "product_id": "825",
+      "product_name": "Lavender Florence F O",
+      "new_filename": "Lavender Florence.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Lavender Florence.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_w0n1rlw0n1rlw0n1.png",
+      "label": "Lemon",
+      "product_id": "516",
+      "product_name": "Green Tea & Lemon Fragrance Oil (skin safe)(cold process stable)(candle)",
+      "new_filename": "Lemon.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Lemon.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_ipa9qcipa9qcipa9.png",
+      "label": "Midnight Blue Citrus",
+      "product_id": "727",
+      "product_name": "Midnight Blue Citrus F O",
+      "new_filename": "Midnight Blue Citrus.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Midnight Blue Citrus.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_8mtt8y8mtt8y8mtt.png",
+      "label": "Mulberry Vanilla",
+      "product_id": "592",
+      "product_name": "Mulberry Vanilla Fragrance Oil (candle)",
+      "new_filename": "Mulberry Vanilla.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Mulberry Vanilla.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_nzs8m6nzs8m6nzs8.png",
+      "label": "Musk Gold",
+      "product_id": "620",
+      "product_name": "Musk Gold F O",
+      "new_filename": "Musk Gold.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Musk Gold.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_4cdjgh4cdjgh4cdj.png",
+      "label": "Orange & Cinnamon",
+      "product_id": "595",
+      "product_name": "Orange & Cinnamon Fragrance Oil (candle)",
+      "new_filename": "Orange & Cinnamon.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Orange & Cinnamon.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_svbe57svbe57svbe.png",
+      "label": "Orchid Bloom",
+      "product_id": "610",
+      "product_name": "Orchid Bouquet Candle & Cosmetic F O",
+      "new_filename": "Orchid Bloom.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Orchid Bloom.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_hh2bk8hh2bk8hh2b.png",
+      "label": "Pure Anise",
+      "product_id": "699",
+      "product_name": "Pure Orange F O",
+      "new_filename": "Pure Anise.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Pure Anise.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_gxx50sgxx50sgxx5.png",
+      "label": "Roasted Coffee",
+      "product_id": "618",
+      "product_name": "Roasted Coffee Candle & Cosmetic F O",
+      "new_filename": "Roasted Coffee.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Roasted Coffee.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_2umpv82umpv82ump.png",
+      "label": "Rose",
+      "product_id": "569",
+      "product_name": "Real Rose Fragrance Oil",
+      "new_filename": "Rose.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Rose.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_yiqmfyyiqmfyyiqm.png",
+      "label": "Saffron",
+      "product_id": "528",
+      "product_name": "Saffron Cedar Fragrance Oil (skin safe)(cold process stable)(candle)",
+      "new_filename": "Saffron.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Saffron.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_g8r1scg8r1scg8r1.png",
+      "label": "Strawberry Lush",
+      "product_id": "607",
+      "product_name": "Strawberry Lush Candle & Cosmetic F O",
+      "new_filename": "Strawberry Lush.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Strawberry Lush.png"
+    },
+    {
+      "filename": "Gemini_Generated_Image_dwn263dwn263dwn2.png",
+      "label": "Vanilla",
+      "product_id": "493",
+      "product_name": "Lavender Vanilla Fragrance Oil (skin safe)(candle)",
+      "new_filename": "Vanilla.png",
+      "target_dir": "public/images/products",
+      "image_path": "/images/products/Vanilla.png"
+    }
+  ]
+}
