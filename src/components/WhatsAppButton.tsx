@@ -2,9 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function WhatsAppButton() {
-  const whatsappUrl = "https://wa.me/917783053603?text=Hi%20Ekora!%20I'm%20interested%20in%20becoming%20a%20Founding%20Creator.";
+  const pathname = usePathname();
+  const isSellPage = pathname === '/sell' || pathname?.startsWith('/sell/');
+  
+  const text = isSellPage 
+    ? "Hi Ekora! I'm interested in becoming a Founding Creator." 
+    : "HI! i have a query";
+    
+  const whatsappUrl = `https://wa.me/917783053603?text=${encodeURIComponent(text)}`;
 
   return (
     <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 flex items-center justify-end pointer-events-none">
