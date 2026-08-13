@@ -31351,7 +31351,7 @@
     "price": 928,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-geranium-essential-oil.png",
     "tiers": [
       {
         "minQty": 1,
@@ -31431,7 +31431,7 @@
     "price": 736,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/04/rosewood-bois-de-rose-essential-oil-1000x1000-1-247x296.jpg",
+    "image": "/images/products/essential oils/Bois De Bois.png",
     "tiers": [
       {
         "minQty": 1,
@@ -60250,7 +60250,7 @@
     "price": 122,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/essential oils/ekora-bazaar-jasmine-grandiflorum-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60525,7 +60525,7 @@
     "price": 156,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/essential oils/anise essential oil.png",
     "tiers": [
       {
         "minQty": 1,
@@ -60623,8 +60623,8 @@
   },
   {
     "id": "822",
-    "name": "6 Cavity Small Oval Diy Handmade Essential Oil Soap Mold",
-    "category": "Essential Oils",
+    "name": "6 Cavity Small Oval Diy Handmade Essential Oil Soap Mould",
+    "category": "Soap & Bar Moulds",
     "description": "Premium quality 6 cavity small oval diy handmade essential oil soap mold jkb-999 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
     "price": 178,
     "bulkDiscountAvailable": true,
