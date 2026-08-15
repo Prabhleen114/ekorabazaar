@@ -1,0 +1,212 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ----------------------------------------------------------------------
+// ENUMS
+// ----------------------------------------------------------------------
+
+enum Role {
+  CUSTOMER
+  SELLER
+  ADMIN
+}
+
+enum SellerAccountStatus {
+  ACTIVE
+  SUSPENDED
+  DISABLED
+}
+
+enum SellerApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  RESUBMISSION_REQUIRED
+}
+
+enum GSTStatus {
+  NOT_SUBMITTED
+  PENDING_VERIFICATION
+  VERIFIED
+  REJECTED
+  RESUBMISSION_REQUIRED
+}
+
+enum PaymentType {
+  SELLER_ONBOARDING
+  CUSTOMER_ORDER
+}
+
+enum PaymentStatus {
+  PENDING
+  CAPTURED
+  FAILED
+  REFUNDED
+}
+
+enum OrderStatus {
+  PAYMENT_PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum ProductStatus {
+  DRAFT
+  PENDING_APPROVAL
+  PUBLISHED
+  REJECTED
+}
+
+// ----------------------------------------------------------------------
+// MODELS
+// ----------------------------------------------------------------------
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String?
+  role          Role      @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  seller        Seller?
+  orders        Order[]
+  payments      Payment[]
+  adminProducts Product[] @relation("AdminCreatedProducts")
+}
+
+model Seller {
+  id                String                  @id // e.g., EKO-SELL-XXXXXX
+  userId            String                  @unique
+  user              User                    @relation(fields: [userId], references: [id])
+  brandName         String
+  accountStatus     SellerAccountStatus     @default(DISABLED)
+  applicationStatus SellerApplicationStatus @default(DRAFT)
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+
+  businessDetails   SellerBusiness?
+  products          Product[]               @relation("SellerProducts")
+  payments          Payment[]
+}
+
+model SellerBusiness {
+  id              String    @id @default(uuid())
+  sellerId        String    @unique
+  seller          Seller    @relation(fields: [sellerId], references: [id])
+  legalName       String
+  businessType    String
+  address         String
+  gstin           String?
+  gstStatus       GSTStatus @default(NOT_SUBMITTED)
+  documentUrls    Json?     // Array of Firebase Storage URLs
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Product {
+  id                String        @id @default(uuid())
+  title             String
+  description       String?
+  price             Int           // Stored in paise/minor units
+  stock             Int           @default(0)
+  status            ProductStatus @default(DRAFT)
+  rejectionReason   String?
+  imageUrl          String?
+  
+  // Ownership
+  sellerId          String?
+  seller            Seller?       @relation("SellerProducts", fields: [sellerId], references: [id])
+  createdByAdminId  String?
+  adminCreator      User?         @relation("AdminCreatedProducts", fields: [createdByAdminId], references: [id])
+  source            String        @default("SELLER") // e.g., "SELLER" or "EKORA_OFFICIAL"
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  customerId      String
+  customer        User        @relation(fields: [customerId], references: [id])
+  status          OrderStatus @default(PAYMENT_PENDING)
+  paymentStatus   PaymentStatus @default(PENDING)
+  
+  subtotal        Int
+  tax             Int         @default(0)
+  shipping        Int         @default(0)
+  total           Int
+  currency        String      @default("INR")
+
+  razorpayOrderId String?     @unique
+  
+  items           OrderItem[]
+  payments        Payment[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id                  String   @id @default(uuid())
+  orderId             String
+  order               Order    @relation(fields: [orderId], references: [id])
+  
+  productId           String
+  sellerId            String?
+  
+  // Snapshots
+  productNameSnapshot String
+  priceSnapshot       Int
+  quantity            Int
+  subtotal            Int
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Payment {
+  id                  String        @id @default(uuid())
+  userId              String
+  user                User          @relation(fields: [userId], references: [id])
+  sellerId            String?
+  seller              Seller?       @relation(fields: [sellerId], references: [id])
+  orderId             String?
+  order               Order?        @relation(fields: [orderId], references: [id])
+  
+  type                PaymentType
+  provider            String        @default("RAZORPAY")
+  amount              Int           // Stored in minor units (paise)
+  currency            String        @default("INR")
+  status              PaymentStatus @default(PENDING)
+
+  razorpayOrderId     String?       @unique
+  razorpayPaymentId   String?       @unique
+  razorpaySignature   String?
+  
+  webhookEventId      String?       @unique
+  failureReason       String?
+
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+}
+
+model WebhookEvent {
+  id          String   @id @default(uuid())
+  eventId     String   @unique
+  eventType   String
+  payload     Json
+  processed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  processedAt DateTime?
+}
