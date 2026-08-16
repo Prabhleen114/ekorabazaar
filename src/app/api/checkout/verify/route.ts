@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         throw new Error("Unauthorized payment manipulation.")
       }
 
-      if (payment.status === PaymentStatus.SUCCESS) {
+      if (payment.status === PaymentStatus.CAPTURED) {
         return { alreadyVerified: true, orderId: payment.orderId }
       }
 
@@ -65,14 +65,14 @@ export async function POST(req: Request) {
       await tx.payment.update({
         where: { id: payment.id },
         data: {
-          status: PaymentStatus.SUCCESS,
+          status: PaymentStatus.CAPTURED,
           razorpayPaymentId,
         }
       })
 
       // Mark Order as PAID
       await tx.order.update({
-        where: { id: payment.orderId },
+        where: { id: payment.orderId! },
         data: {
           status: OrderStatus.PAID
         }

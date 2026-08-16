@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
-import { SellerApplicationStatus } from '@prisma/client'
+import { SellerApplicationStatus, SellerAccountStatus } from '@prisma/client'
 
 export async function POST(req: Request) {
   try {
@@ -15,12 +15,14 @@ export async function POST(req: Request) {
       where: { userId: session.userId! },
       update: {
         brandName,
-        applicationStatus: SellerApplicationStatus.PENDING_PAYMENT,
+        applicationStatus: SellerApplicationStatus.DRAFT,
       },
       create: {
+        id: `EKO-SELL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
         userId: session.userId!,
         brandName,
-        applicationStatus: SellerApplicationStatus.PENDING_PAYMENT,
+        applicationStatus: SellerApplicationStatus.DRAFT,
+        accountStatus: SellerAccountStatus.DISABLED,
       },
     })
 
@@ -29,15 +31,14 @@ export async function POST(req: Request) {
       update: {
         legalName,
         address,
-        gstNumber,
-        panNumber,
+        gstin: gstNumber || panNumber || '',
       },
       create: {
         sellerId: seller.id,
         legalName,
+        businessType: 'INDIVIDUAL', // default or extract from body if available
         address,
-        gstNumber,
-        panNumber,
+        gstin: gstNumber || panNumber || '',
       },
     })
 

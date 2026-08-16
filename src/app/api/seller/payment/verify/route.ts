@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         throw new Error("Unauthorized payment manipulation.")
       }
 
-      if (payment.status === PaymentStatus.SUCCESS) {
+      if (payment.status === PaymentStatus.CAPTURED) {
         return { alreadyVerified: true, payment }
       }
 
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       const updatedPayment = await tx.payment.update({
         where: { id: payment.id },
         data: {
-          status: PaymentStatus.SUCCESS,
+          status: PaymentStatus.CAPTURED,
           razorpayPaymentId,
         }
       })

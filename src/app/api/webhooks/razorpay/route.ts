@@ -65,15 +65,15 @@ export async function POST(req: Request) {
           return
         }
 
-        if (payment.status === PaymentStatus.SUCCESS) {
+        if (payment.status === PaymentStatus.CAPTURED) {
           return // Already handled by frontend verification
         }
 
         // --- Process SELLER ONBOARDING PAYMENT ---
-        if (payment.type === 'SELLER_REGISTRATION' && payment.sellerId) {
+        if (payment.type === 'SELLER_ONBOARDING' && payment.sellerId) {
           await tx.payment.update({
             where: { id: payment.id },
-            data: { status: PaymentStatus.SUCCESS, razorpayPaymentId }
+            data: { status: PaymentStatus.CAPTURED, razorpayPaymentId }
           })
           
           await tx.seller.update({
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
         }
 
         // --- Process CHECKOUT PAYMENT ---
-        if (payment.type === 'ORDER_CHECKOUT' && payment.orderId && payment.order) {
+        if (payment.type === 'CUSTOMER_ORDER' && payment.orderId && payment.order) {
           // We must do inventory deduction IF it wasn't done by the frontend
           for (const item of payment.order.items) {
             const product = await tx.product.findUnique({ where: { id: item.productId } })
@@ -100,7 +100,7 @@ export async function POST(req: Request) {
 
           await tx.payment.update({
             where: { id: payment.id },
-            data: { status: PaymentStatus.SUCCESS, razorpayPaymentId }
+            data: { status: PaymentStatus.CAPTURED, razorpayPaymentId }
           })
 
           await tx.order.update({

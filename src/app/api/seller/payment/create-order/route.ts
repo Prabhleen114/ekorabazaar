@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Seller application not found. Complete application first." }, { status: 400 })
     }
 
-    if (seller.applicationStatus !== SellerApplicationStatus.PENDING_PAYMENT && seller.applicationStatus !== SellerApplicationStatus.REJECTED) {
+    if (seller.applicationStatus !== SellerApplicationStatus.DRAFT && seller.applicationStatus !== SellerApplicationStatus.REJECTED) {
       return NextResponse.json({ error: "Invalid application status for payment." }, { status: 400 })
     }
 
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         sellerId: seller.id,
         amount: SELLER_ONBOARDING_FEE,
         currency: 'INR',
-        type: PaymentType.SELLER_REGISTRATION,
+        type: PaymentType.SELLER_ONBOARDING,
         status: PaymentStatus.PENDING,
         razorpayOrderId: rzpOrderId,
       }

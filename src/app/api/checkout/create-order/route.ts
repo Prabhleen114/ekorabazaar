@@ -35,7 +35,7 @@ export async function POST(req: Request) {
           throw new Error(`Product ${product.title} is not available for purchase.`)
         }
 
-        if (product.seller.accountStatus !== SellerAccountStatus.ACTIVE) {
+        if (product.seller && product.seller.accountStatus !== SellerAccountStatus.ACTIVE) {
           throw new Error(`The seller for ${product.title} is currently inactive.`)
         }
 
@@ -74,9 +74,10 @@ export async function POST(req: Request) {
     const [createdOrder, createdPayment] = await prisma.$transaction(async (tx) => {
       const order = await tx.order.create({
         data: {
-          userId: session.userId!,
-          totalAmount,
-          status: OrderStatus.PENDING,
+          customerId: session.userId!,
+          total: totalAmount,
+          subtotal: totalAmount,
+          status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
           items: {
             create: validOrderItems
@@ -90,7 +91,7 @@ export async function POST(req: Request) {
           orderId: order.id,
           amount: totalAmount,
           currency: 'INR',
-          type: PaymentType.ORDER_CHECKOUT,
+          type: PaymentType.CUSTOMER_ORDER,
           status: PaymentStatus.PENDING,
           razorpayOrderId: rzpOrderId,
         }

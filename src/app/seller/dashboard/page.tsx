@@ -18,7 +18,7 @@ export default async function SellerOverviewPage() {
 
   const isActive = seller.accountStatus === 'ACTIVE'
   const isUnderReview = seller.applicationStatus === 'UNDER_REVIEW'
-  const isPendingPayment = seller.applicationStatus === 'PENDING_PAYMENT' || seller.applicationStatus === 'DRAFT' || seller.applicationStatus === 'SUBMITTED'
+  const isPendingPayment = seller.applicationStatus === 'DRAFT' || seller.applicationStatus === 'SUBMITTED'
 
   return (
     <div className="p-8">
