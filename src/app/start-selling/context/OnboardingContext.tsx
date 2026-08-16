@@ -9,6 +9,10 @@ export type OnboardingData = {
   mobile: string;
   whatsapp: string;
 
+  // Account Creation
+  password?: string;
+  confirmPassword?: string;
+
   // Step 2: Business
   brandName: string;
   instagram: string;
@@ -56,6 +60,8 @@ const defaultData: OnboardingData = {
   email: "",
   mobile: "",
   whatsapp: "",
+  password: "",
+  confirmPassword: "",
   brandName: "",
   instagram: "",
   category: "",

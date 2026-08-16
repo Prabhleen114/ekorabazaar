@@ -6,7 +6,7 @@ import { ArrowLeft, CheckCircle2, ShieldCheck, Loader2 } from "lucide-react";
 import { CONSENT_VERSION } from "@/lib/consentVersion";
 
 export default function StepPayment() {
-  const { data, setCurrentStep } = useOnboarding();
+  const { data, updateData, setCurrentStep } = useOnboarding();
   const [agreedMandatory, setAgreedMandatory] = useState(false);
   const [agreedMarketing, setAgreedMarketing] = useState(false);
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
@@ -17,6 +17,16 @@ export default function StepPayment() {
     setHasAttemptedSubmit(true);
 
     // Client-side gate — UX validation before the network call
+    if (!data.password || data.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+    
+    if (data.password !== data.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     if (!agreedMandatory) {
       setError("Please agree to the mandatory legal terms to continue.");
       return;
@@ -104,6 +114,53 @@ export default function StepPayment() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Account Creation Section */}
+        <div className="mb-8">
+          <h3 className="text-xl font-bold font-serif text-brand-charcoal mb-4">Create Your Account</h3>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Email Address</label>
+              <input
+                type="email"
+                value={data.email}
+                disabled
+                className="w-full px-4 py-3 rounded-xl border border-brand-linen bg-brand-bg/50 text-brand-charcoal/60 cursor-not-allowed"
+              />
+              <p className="text-xs text-brand-charcoal/50 mt-1">This will be your login email.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Password *</label>
+                <input
+                  type="password"
+                  value={data.password || ""}
+                  onChange={(e) => updateData({ password: e.target.value })}
+                  placeholder="Min 8 characters"
+                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 bg-brand-bg/50 transition-all ${
+                    hasAttemptedSubmit && (!data.password || data.password.length < 8)
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-brand-linen focus:ring-brand-charcoal"
+                  }`}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Confirm Password *</label>
+                <input
+                  type="password"
+                  value={data.confirmPassword || ""}
+                  onChange={(e) => updateData({ confirmPassword: e.target.value })}
+                  placeholder="Confirm your password"
+                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 bg-brand-bg/50 transition-all ${
+                    hasAttemptedSubmit && (data.password !== data.confirmPassword || !data.confirmPassword)
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-brand-linen focus:ring-brand-charcoal"
+                  }`}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

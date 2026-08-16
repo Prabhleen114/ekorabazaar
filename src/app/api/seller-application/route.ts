@@ -1,27 +1,55 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
+import { getSession, createSession } from '@/lib/session'
 import { requireAuth } from '@/lib/auth'
 import { SellerApplicationStatus, SellerAccountStatus } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 export async function POST(req: Request) {
   try {
-    const session = await requireAuth()
-
+    const session = await getSession()
     const body = await req.json()
-    const { brandName, legalName, address, gstNumber, panNumber } = body
+    const { brandName, legalName, address, gstNumber, panNumber, email, password } = body
+
+    let currentUserId = session?.userId
+
+    // If not authenticated, we must create a new user account
+    if (!currentUserId) {
+      if (!email || !password) {
+        return NextResponse.json({ error: "Authentication required or missing account creation fields." }, { status: 400 })
+      }
+
+      // Check for duplicate email
+      const existingUser = await prisma.user.findUnique({ where: { email } })
+      if (existingUser) {
+        return NextResponse.json({ error: "An account with this email already exists. Please log in." }, { status: 409 })
+      }
+
+      // Hash password and create User
+      const passwordHash = await bcrypt.hash(password, 10)
+      const newUser = await prisma.user.create({
+        data: {
+          email,
+          passwordHash,
+          role: 'SELLER'
+        }
+      })
+
+      currentUserId = newUser.id
+    }
 
     // Create or update the seller application
     const seller = await prisma.seller.upsert({
-      where: { userId: session.userId! },
+      where: { userId: currentUserId },
       update: {
         brandName,
-        applicationStatus: SellerApplicationStatus.DRAFT,
+        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
       },
       create: {
         id: `EKO-SELL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
-        userId: session.userId!,
+        userId: currentUserId,
         brandName,
-        applicationStatus: SellerApplicationStatus.DRAFT,
+        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
         accountStatus: SellerAccountStatus.DISABLED,
       },
     })
@@ -41,6 +69,9 @@ export async function POST(req: Request) {
         gstin: gstNumber || panNumber || '',
       },
     })
+
+    // Do NOT automatically create a session.
+    // The creator must manually log in from the success page.
 
     return NextResponse.json({ success: true, sellerId: seller.id, status: seller.applicationStatus })
   } catch (error: any) {
