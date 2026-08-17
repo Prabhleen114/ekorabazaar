@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     // Step 1: Validate inventory, product status, and seller status transactionally
     // We cannot trust frontend prices or seller IDs
     let totalAmount = 0
-    const validOrderItems: any[] = []
+    let validOrderItems: any[] = []
 
     await prisma.$transaction(async (tx) => {
       for (const item of items) {
@@ -43,13 +43,14 @@ export async function POST(req: Request) {
           throw new Error(`Insufficient stock for ${product.title}.`)
         }
 
-        const subtotal = product.price * item.quantity
+        const effectivePrice = product.customerPrice ?? product.price
+        const subtotal = effectivePrice * item.quantity
         totalAmount += subtotal
 
         validOrderItems.push({
           productId: product.id,
           productNameSnapshot: product.title,
-          priceSnapshot: product.price,
+          priceSnapshot: effectivePrice,
           quantity: item.quantity,
           subtotal: subtotal
         })

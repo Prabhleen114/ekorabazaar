@@ -1,6 +1,7 @@
 import { requireAdmin } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { redirect } from 'next/navigation'
+import AdminProductActions from './AdminProductActions'
 
 export default async function AdminProductsPage() {
   const session = await requireAdmin().catch(() => null)
@@ -43,9 +44,7 @@ export default async function AdminProductsPage() {
                   {product.stock}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  {/* Actions to be connected to API */}
-                  <button className="text-green-600 hover:text-green-900 mr-4">Approve</button>
-                  <button className="text-red-600 hover:text-red-900">Reject</button>
+                  <AdminProductActions product={product} />
                 </td>
               </tr>
             ))}

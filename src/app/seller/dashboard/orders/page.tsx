@@ -40,6 +40,7 @@ export default async function SellerOrdersPage() {
             <tr>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price (Sold At)</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Status</th>
@@ -53,6 +54,9 @@ export default async function SellerOrdersPage() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {item.productNameSnapshot}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  ₹{(item.priceSnapshot / 100).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {item.quantity}
@@ -70,7 +74,7 @@ export default async function SellerOrdersPage() {
             
             {orderItems.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-sm text-gray-500">
+                <td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-500">
                   No orders yet.
                 </td>
               </tr>

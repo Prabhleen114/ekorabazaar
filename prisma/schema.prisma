@@ -92,6 +92,7 @@ model Seller {
   brandName         String
   accountStatus     SellerAccountStatus     @default(DISABLED)
   applicationStatus SellerApplicationStatus @default(DRAFT)
+  rejectionReason   String?
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
 
@@ -118,7 +119,8 @@ model Product {
   id                String        @id @default(uuid())
   title             String
   description       String?
-  price             Int           // Stored in paise/minor units
+  price             Int           // Stored in paise/minor units. Seller's submitted price.
+  customerPrice     Int?          // Admin-modified price. Falls back to price if null.
   stock             Int           @default(0)
   status            ProductStatus @default(DRAFT)
   rejectionReason   String?
