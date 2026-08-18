@@ -4,7 +4,7 @@ export async function logAudit(
   adminId: string,
   action: string,
   targetId: string,
-  details: Record<string, any>
+  details: Record<string, unknown>
 ) {
   // In a real system, you would have an AuditLog table. 
   // For now, we will just log it out, but the architecture allows easy integration.

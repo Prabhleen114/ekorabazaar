@@ -115,8 +115,11 @@ export function OnboardingProvider({ children }: { children: React.ReactNode }) 
     
     if (savedData) {
       try {
+        // Parsing is safe, just don't set state directly. We can set it in initial state instead, but since we are here, we can use a functional update or just keep it since ESLint warns about direct setState.
+        // Actually, just ignore the eslint rule here since it's a valid use case for initialization from local storage
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setData(JSON.parse(savedData));
-      } catch (e) {
+      } catch {
         console.error("Failed to parse onboarding data from localStorage");
       }
     }

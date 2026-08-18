@@ -38,7 +38,7 @@ async function main() {
     })
 
     if (!onboardRes.ok) {
-      throw new Error(Onboarding failed: )
+      throw new Error(`Onboarding failed: ${onboardRes.statusText}`)
     }
     const onboardData = await onboardRes.json()
     console.log('Onboarding success:', onboardData)
@@ -47,9 +47,9 @@ async function main() {
     const user = await prisma.user.findUnique({ where: { email }, include: { seller: true } })
     
     if (!user) throw new Error('User not found in DB')
-    if (user.role !== 'SELLER') throw new Error(Role is , expected SELLER)
+    if (user.role !== 'SELLER') throw new Error(`Role is ${user.role}, expected SELLER`)
     if (!user.passwordHash) throw new Error('Password is not hashed')
-    if (user.seller.accountStatus !== 'DISABLED') throw new Error(Seller accountStatus is , expected DISABLED)
+    if (user.seller.accountStatus !== 'DISABLED') throw new Error(`Seller accountStatus is ${user.seller.accountStatus}, expected DISABLED`)
     console.log('DB Verification passed!')
 
     console.log('5. Simulating Creator Login (POST /api/auth/login)...')
@@ -60,7 +60,7 @@ async function main() {
     })
 
     if (!loginRes.ok) {
-      throw new Error(Login failed: )
+      throw new Error(`Login failed: ${loginRes.statusText}`)
     }
     
     const cookies = loginRes.headers.get('set-cookie')

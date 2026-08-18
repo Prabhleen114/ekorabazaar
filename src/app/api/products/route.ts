@@ -7,16 +7,27 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const products = await prisma.product.findMany({
-      where: { status: ProductStatus.PUBLISHED },
+      where: { 
+        status: ProductStatus.PUBLISHED,
+        seller: { accountStatus: 'ACTIVE' }
+      },
       include: { seller: true }
     });
 
-    const mappedProducts = products.map(p => ({
-      ...p,
-      price: p.customerPrice ?? p.price,
-      // hide customerPrice so the frontend just consumes `price`
-      customerPrice: undefined 
-    }));
+    const mappedProducts = products.map(p => {
+      const effectivePricePaise = p.customerPrice ?? p.price;
+      return {
+        id: p.id,
+        name: p.title,
+        category: "General", // Default as not in schema yet
+        price: effectivePricePaise / 100, // Convert to INR
+        image: p.imageUrl || "/og-image.jpg",
+        inStock: p.stock > 0,
+        bulkDiscountAvailable: false,
+        maxDiscount: 0,
+        description: p.description
+      };
+    });
 
     return NextResponse.json(mappedProducts);
   } catch (error) {

@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ShopClient from "./ShopClient";
-import { mockProducts } from "@/lib/products";
+import prisma from "@/lib/db";
+import { ProductStatus } from "@prisma/client";
 import { Suspense } from "react";
 import serialize from "serialize-javascript";
 
@@ -20,7 +21,15 @@ export const metadata: Metadata = {
   }
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const dbProducts = await prisma.product.findMany({
+    where: { 
+      status: ProductStatus.PUBLISHED,
+      seller: { accountStatus: 'ACTIVE' }
+    },
+    take: 20
+  });
+
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -29,21 +38,24 @@ export default function ShopPage() {
     "description": "Premium craft supplies and raw materials for creators.",
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": mockProducts.slice(0, 20).map((product, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": {
-          "@type": "Product",
-          "name": product.name,
-          "image": product.image,
-          "url": `https://www.ekorabazaar.in/products/${product.id}`,
-          "offers": {
-            "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "INR"
+      "itemListElement": dbProducts.map((product, index) => {
+        const effectivePrice = (product.customerPrice ?? product.price) / 100;
+        return {
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Product",
+            "name": product.title,
+            "image": product.imageUrl || "https://www.ekorabazaar.in/og-image.jpg",
+            "url": `https://www.ekorabazaar.in/products/${product.id}`,
+            "offers": {
+              "@type": "Offer",
+              "price": effectivePrice,
+              "priceCurrency": "INR"
+            }
           }
-        }
-      }))
+        };
+      })
     }
   };
 

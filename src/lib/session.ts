@@ -13,8 +13,8 @@ export interface SessionPayload {
   // Do NOT include passwords or payment secrets here.
 }
 
-export async function encrypt(payload: any) {
-  return await new SignJWT(payload)
+export async function encrypt(payload: SessionPayload) {
+  return await new SignJWT(payload as unknown as Record<string, unknown>)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('24h') // 24 hour expiration
@@ -27,7 +27,7 @@ export async function decrypt(input: string): Promise<SessionPayload | null> {
       algorithms: ['HS256'],
     })
     return payload as unknown as SessionPayload
-  } catch (error) {
+  } catch {
     return null
   }
 }

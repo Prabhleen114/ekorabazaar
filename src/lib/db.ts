@@ -5,8 +5,6 @@ import pg from 'pg'
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
 // Ensure we don't create multiple instances during hot-reloads in development
-let prisma: PrismaClient
-
 if (!globalForPrisma.prisma) {
   const connectionString = process.env.DATABASE_URL
   if (connectionString) {
@@ -18,6 +16,6 @@ if (!globalForPrisma.prisma) {
   }
 }
 
-prisma = globalForPrisma.prisma
+const prisma = globalForPrisma.prisma
 
 export default prisma

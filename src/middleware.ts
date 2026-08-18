@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { decrypt } from '@/lib/session'
-import { Role } from '@prisma/client'
+
 
 // Protect these routes
 const protectedRoutes = ['/admin', '/seller/dashboard']
