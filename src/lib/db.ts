@@ -2,20 +2,44 @@ import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import pg from 'pg'
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient }
+const globalForPrisma = global as unknown as { prisma: PrismaClient | undefined }
 
-// Ensure we don't create multiple instances during hot-reloads in development
-if (!globalForPrisma.prisma) {
-  const connectionString = process.env.DATABASE_URL
-  if (connectionString) {
-    const pool = new pg.Pool({ connectionString })
-    const adapter = new PrismaPg(pool)
-    globalForPrisma.prisma = new PrismaClient({ adapter })
-  } else {
-    globalForPrisma.prisma = new PrismaClient()
+function getPrismaClient(): PrismaClient {
+  if (!globalForPrisma.prisma) {
+    // Determine the best direct database connection string.
+    // If Vercel sets DATABASE_URL to a prisma:// accelerate URL, we bypass it for adapter-pg.
+    // DIRECT_URL and POSTGRES_URL_NON_POOLING are standard fallbacks for direct PostgreSQL.
+    const connectionString = process.env.DIRECT_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL
+
+    if (connectionString && !connectionString.startsWith('prisma://')) {
+      const pool = new pg.Pool({ connectionString })
+      const adapter = new PrismaPg(pool)
+      globalForPrisma.prisma = new PrismaClient({ adapter })
+    } else {
+      // Initialize normally to prevent build-time constructor crashes.
+      // If DATABASE_URL is truly missing or is an unhandled accelerate URL,
+      // actual DB queries at runtime will gracefully throw connection errors.
+      globalForPrisma.prisma = new PrismaClient()
+    }
   }
+  return globalForPrisma.prisma
 }
 
-const prisma = globalForPrisma.prisma
+// Safely export a lazy proxy. Next.js statically collects routes at build time, 
+// which imports this file. Deferring instantiation ensures production builds never crash 
+// due to unavailable DB connections during static analysis.
+const prisma = new Proxy({} as PrismaClient, {
+  get: (target, prop) => {
+    if (prop === 'then') {
+      return undefined; // Bypass promise resolution checks
+    }
+    const client = getPrismaClient();
+    const value = (client as any)[prop];
+    if (typeof value === 'function') {
+      return value.bind(client);
+    }
+    return value;
+  }
+});
 
 export default prisma
