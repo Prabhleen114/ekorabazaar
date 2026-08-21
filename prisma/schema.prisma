@@ -111,6 +111,24 @@ model SellerBusiness {
   gstin           String?
   gstStatus       GSTStatus @default(NOT_SUBMITTED)
   documentUrls    Json?     // Array of Firebase Storage URLs
+  
+  // Official GST & Business details
+  tradeName              String?
+  taxpayerType           String?
+  constitutionOfBusiness String?
+  gstRegistrationDate    String? // Storing as string to preserve format e.g. 02/07/2026
+  
+  // Structured Address
+  city            String?
+  district        String?
+  state           String?
+  pincode         String?
+  country         String?   @default("India")
+  addressType     String?
+  
+  // Nature of Business
+  natureOfBusiness Json?    // Array of strings
+  
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 }
@@ -132,6 +150,8 @@ model Product {
   createdByAdminId  String?
   adminCreator      User?         @relation("AdminCreatedProducts", fields: [createdByAdminId], references: [id])
   source            String        @default("SELLER") // e.g., "SELLER" or "EKORA_OFFICIAL"
+
+  category          String?       @default("General Silicone Moulds")
 
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt

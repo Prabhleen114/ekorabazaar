@@ -19,7 +19,7 @@ export async function GET() {
       return {
         id: p.id,
         name: p.title,
-        category: "General", // Default as not in schema yet
+        category: p.category || "General Silicone Moulds",
         price: effectivePricePaise / 100, // Convert to INR
         image: p.imageUrl || "/og-image.jpg",
         inStock: p.stock > 0,
