@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, ChevronDown, Search, GraduationCap } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { CATEGORIES } from "@/lib/categories";
 import TopUtilityBar from "./TopUtilityBar";
 
 export default function BuyerNavbar() {
@@ -99,15 +100,10 @@ export default function BuyerNavbar() {
                           Bases &amp; Waxes
                         </h3>
                         <ul className="space-y-2.5">
-                          {[
-                            { label: "Bases & Waxes", category: "Premium Bases & Waxes" },
-                            { label: "Containers & Packaging", category: "Containers & Packaging" },
-                            { label: "Pigments & Colors", category: "Pigments & Colors" },
-                            { label: "Candle Accessories & Wicks", category: "Candle Making Accessories" },
-                          ].map((item) => (
-                            <li key={item.label}>
+                          {CATEGORIES.BASES_AND_WAXES.map((item) => (
+                            <li key={item.id}>
                               <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
+                                href={`/shop?category=${encodeURIComponent(item.id)}`}
                                 className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
                               >
                                 {item.label}
@@ -135,14 +131,10 @@ export default function BuyerNavbar() {
                                 </span>
                               </Link>
                               <ul className="ml-3 mt-1.5 space-y-1 border-l-2 border-brand-linen pl-3">
-                                {[
-                                  { label: "Fragrance Oils", category: "Fragrance Oils" },
-                                  { label: "Essential Oils", category: "Essential Oils" },
-                                  { label: "Food Safe Flavour Oils", category: "Food Safe Flavour Oil" },
-                                ].map((sub) => (
-                                  <li key={sub.label}>
+                                {CATEGORIES.SCENTS_AND_BOTANICALS.slice(0, 3).map((sub) => (
+                                  <li key={sub.id}>
                                     <Link
-                                      href={`/shop?category=${encodeURIComponent(sub.category)}`}
+                                      href={`/shop?category=${encodeURIComponent(sub.id)}`}
                                       className="font-sans font-normal text-xs text-brand-charcoal/50 hover:text-brand-orange block py-0.5 leading-normal transition-colors"
                                     >
                                       {sub.label}
@@ -152,13 +144,10 @@ export default function BuyerNavbar() {
                               </ul>
                             </div>
                           </li>
-                          {[
-                            { label: "Hydrosols", category: "Hydrosols" },
-                            { label: "Dried Botanicals", category: "DRY FLOWERS" },
-                          ].map((item) => (
-                            <li key={item.label}>
+                          {CATEGORIES.SCENTS_AND_BOTANICALS.slice(3).map((item) => (
+                            <li key={item.id}>
                               <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
+                                href={`/shop?category=${encodeURIComponent(item.id)}`}
                                 className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
                               >
                                 {item.label}
@@ -168,22 +157,16 @@ export default function BuyerNavbar() {
                         </ul>
                       </div>
 
-                      {/* Column 3: Silicone Moulds (Direct from Category Import) */}
+                      {/* Column 3: Silicone Moulds */}
                       <div>
                         <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
                           Silicone Moulds
                         </h3>
                         <ul className="space-y-2.5">
-                          {[
-                            { label: "Candle & Pillar Moulds", category: "Candle & Pillar Moulds" },
-                            { label: "Culinary & Fondant Moulds", category: "Culinary & Fondant Moulds" },
-                            { label: "Eco-Resin & Stone Moulds", category: "Eco-Resin & Stone Moulds" },
-                            { label: "Soap & Bar Moulds", category: "Soap & Bar Moulds" },
-                            { label: "General Silicone Moulds", category: "General Silicone Moulds" },
-                          ].map((item) => (
-                            <li key={item.label}>
+                          {CATEGORIES.SILICONE_MOULDS.map((item) => (
+                            <li key={item.id}>
                               <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
+                                href={`/shop?category=${encodeURIComponent(item.id)}`}
                                 className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
                               >
                                 {item.label}

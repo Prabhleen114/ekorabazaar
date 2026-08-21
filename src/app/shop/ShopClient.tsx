@@ -347,8 +347,15 @@ export default function ShopClient() {
                     src={product.image || "/og-image.jpg"} 
                     alt={product.name} 
                     fill
+                    unoptimized={true}
                     sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null; // Prevent infinite loop
+                      target.src = "/og-image.jpg";
+                      target.srcset = "";
+                    }}
                   />
                   {product.bulkDiscountAvailable && (
                     <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">

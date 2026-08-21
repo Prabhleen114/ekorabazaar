@@ -156,8 +156,15 @@ export default async function ProductDetailsPage({ params }: Props) {
               alt={displayProduct.name} 
               fill
               priority
+              unoptimized={true}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover md:object-contain" 
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null; // Prevent infinite loop
+                target.src = "/og-image.jpg";
+                target.srcset = "";
+              }}
             />
           </div>
         </div>
