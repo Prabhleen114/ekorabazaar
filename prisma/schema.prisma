@@ -10,6 +10,17 @@ datasource db {
 // ENUMS
 // ----------------------------------------------------------------------
 
+enum ClassificationConfidence {
+  HIGH
+  LOW
+  UNCLASSIFIED
+}
+
+enum ClassificationStatus {
+  CLASSIFIED
+  NEEDS_REVIEW
+}
+
 enum Role {
   CUSTOMER
   SELLER
@@ -152,6 +163,9 @@ model Product {
   source            String        @default("SELLER") // e.g., "SELLER" or "EKORA_OFFICIAL"
 
   category          String?       @default("General Silicone Moulds")
+
+  classificationConfidence ClassificationConfidence @default(UNCLASSIFIED)
+  classificationStatus     ClassificationStatus     @default(NEEDS_REVIEW)
 
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
