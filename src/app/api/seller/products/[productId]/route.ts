@@ -11,7 +11,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
     }
 
     const body = await req.json().catch(() => ({}))
-    const { title, description, price, stock, imageUrl } = body
+    const { title, description, category, price, stock, moq, imageUrl, wholesaleTiers } = body
 
     // Verify ownership implicitly by fetching product
     const product = await prisma.product.findUnique({ where: { id: productId } })
@@ -29,25 +29,55 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
       return NextResponse.json({ error: "Your account must be active to edit products." }, { status: 403 })
     }
 
-    // Rules: Seller can only edit DRAFT or REJECTED products
-    if (product.status !== ProductStatus.DRAFT && product.status !== ProductStatus.REJECTED) {
-      return NextResponse.json({ error: "You can only edit products that are in DRAFT or REJECTED status." }, { status: 400 })
+    const updateData: any = {
+      ...(title && { title: title.trim() }),
+      ...(description !== undefined && { description: description?.trim() || null }),
+      ...(category !== undefined && { category: category?.trim() || null }),
+      ...(stock !== undefined && { stock: parseInt(stock, 10) }),
+      ...(moq !== undefined && { moq: parseInt(moq, 10) }),
+      ...(imageUrl !== undefined && { imageUrl: imageUrl || null }),
+      ...(wholesaleTiers !== undefined && { wholesaleTiers: wholesaleTiers || null }),
+    }
+
+    // If it was rejected, editing safe fields doesn't necessarily make it draft, 
+    // but usually editing a rejected product resubmits it or sets to draft.
+    if (product.status === ProductStatus.REJECTED) {
+      updateData.status = ProductStatus.DRAFT;
+      updateData.rejectionReason = null;
+    }
+
+    // Handle Price Changes
+    if (price !== undefined && parseInt(price, 10) !== product.price) {
+      const newPrice = parseInt(price, 10);
+      
+      // If product is not yet approved/published, just update the price directly
+      if (product.status === ProductStatus.DRAFT || product.status === ProductStatus.REJECTED) {
+        updateData.price = newPrice;
+      } else {
+        // Product is PUBLISHED or PENDING_APPROVAL. Create a PriceChangeRequest.
+        // Don't modify the live price.
+        
+        // Cancel any existing pending price requests for this product
+        await prisma.priceChangeRequest.updateMany({
+          where: { productId: product.id, status: 'PENDING' },
+          data: { status: 'REJECTED', adminComment: 'Superseded by new request' }
+        });
+
+        // Create new request
+        await prisma.priceChangeRequest.create({
+          data: {
+            productId: product.id,
+            sellerId: product.sellerId!,
+            oldPrice: product.price,
+            requestedPrice: newPrice
+          }
+        });
+      }
     }
 
     const updatedProduct = await prisma.product.update({
       where: { id: productId },
-      data: {
-        ...(title && { title: title.trim() }),
-        ...(description !== undefined && { description: description?.trim() || null }),
-        ...(price !== undefined && { price: parseInt(price, 10) }),
-        ...(stock !== undefined && { stock: parseInt(stock, 10) }),
-        ...(imageUrl !== undefined && { imageUrl: imageUrl || null }),
-        // If it was rejected, editing returns it to DRAFT
-        ...(product.status === ProductStatus.REJECTED && { 
-            status: ProductStatus.DRAFT, 
-            rejectionReason: null 
-        })
-      }
+      data: updateData
     })
 
     return NextResponse.json({ success: true, product: updatedProduct })

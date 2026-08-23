@@ -78,6 +78,12 @@ enum ProductStatus {
   REJECTED
 }
 
+enum PriceChangeRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 // ----------------------------------------------------------------------
 // MODELS
 // ----------------------------------------------------------------------
@@ -110,6 +116,7 @@ model Seller {
   businessDetails   SellerBusiness?
   products          Product[]               @relation("SellerProducts")
   payments          Payment[]
+  priceChangeRequests PriceChangeRequest[]
 }
 
 model SellerBusiness {
@@ -155,6 +162,9 @@ model Product {
   rejectionReason   String?
   imageUrl          String?
   
+  moq               Int           @default(1)
+  wholesaleTiers    Json?         // Array of { minQty, maxQty, price, discountPct }
+  
   // Ownership
   sellerId          String?
   seller            Seller?       @relation("SellerProducts", fields: [sellerId], references: [id])
@@ -167,11 +177,29 @@ model Product {
   classificationConfidence ClassificationConfidence @default(UNCLASSIFIED)
   classificationStatus     ClassificationStatus     @default(NEEDS_REVIEW)
 
+  priceChangeRequests PriceChangeRequest[]
+
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 
   @@index([status, category])
   @@index([status, sellerId])
+}
+
+model PriceChangeRequest {
+  id              String   @id @default(uuid())
+  productId       String
+  product         Product  @relation(fields: [productId], references: [id])
+  sellerId        String
+  seller          Seller   @relation(fields: [sellerId], references: [id])
+  oldPrice        Int
+  requestedPrice  Int
+  reason          String?
+  status          PriceChangeRequestStatus @default(PENDING)
+  adminComment    String?
+  createdAt       DateTime @default(now())
+  reviewedAt      DateTime?
+  reviewedBy      String?
 }
 
 model Order {

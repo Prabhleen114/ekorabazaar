@@ -10,8 +10,8 @@ type Tier = {
   discountPct: number;
 };
 
-export default function PricingWidget({ tiers }: { basePrice?: number; tiers: Tier[] }) {
-  const [quantity, setQuantity] = useState(1);
+export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; tiers: Tier[]; moq?: number }) {
+  const [quantity, setQuantity] = useState(moq);
 
   const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];
   const subtotal = currentTier.price * quantity;
@@ -54,7 +54,7 @@ export default function PricingWidget({ tiers }: { basePrice?: number; tiers: Ti
           <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/50 block mb-2">Quantity</label>
           <div className="flex items-center bg-white border border-brand-linen rounded-xl overflow-hidden h-12 w-36">
             <button 
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              onClick={() => setQuantity(Math.max(moq, quantity - 1))}
               className="w-12 h-full flex items-center justify-center text-brand-charcoal/50 hover:bg-brand-linen/50 hover:text-brand-charcoal transition-colors min-w-[44px]"
             >
               <Minus className="w-4 h-4" />
@@ -62,7 +62,7 @@ export default function PricingWidget({ tiers }: { basePrice?: number; tiers: Ti
             <input 
               type="number" 
               value={quantity}
-              onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+              onChange={(e) => setQuantity(Math.max(moq, parseInt(e.target.value) || moq))}
               className="flex-1 w-full text-center font-semibold text-brand-charcoal focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             />
             <button 

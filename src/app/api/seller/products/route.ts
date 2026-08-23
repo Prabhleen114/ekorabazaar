@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const session = await requireSeller()
     const body = await req.json().catch(() => ({}))
-    const { title, description, price, stock, imageUrl } = body
+    const { title, description, category, price, stock, moq, imageUrl, wholesaleTiers } = body
 
     if (!title || typeof title !== 'string' || title.trim().length === 0) {
       return NextResponse.json({ error: "Title is required" }, { status: 400 })
@@ -27,9 +27,12 @@ export async function POST(req: Request) {
       data: {
         title: title.trim(),
         description: description?.trim() || null,
+        category: category?.trim() || null,
         price: parseInt(price, 10),
         stock: stock !== undefined ? parseInt(stock, 10) : 0,
+        moq: moq !== undefined ? parseInt(moq, 10) : 1,
         imageUrl: imageUrl || null,
+        wholesaleTiers: wholesaleTiers || null,
         sellerId: session.sellerId!,
         source: 'SELLER',
         status: ProductStatus.DRAFT

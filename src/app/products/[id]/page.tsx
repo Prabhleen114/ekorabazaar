@@ -5,7 +5,7 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
 import { Metadata } from "next";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 import Link from "next/link";
 import serialize from "serialize-javascript";
 import { ChevronRight } from "lucide-react";
@@ -82,7 +82,13 @@ export default async function ProductDetailsPage({ params }: Props) {
     category: category,
     tags: [],
     price: effectivePrice,
-    tiers: [{ price: effectivePrice, minQty: 1, maxQty: null, discountPct: 0 }],
+    tiers: Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
+      ? (product.wholesaleTiers as any[]).map(t => ({
+          ...t,
+          price: t.price ? t.price : effectivePrice,
+          minQty: t.minQty || product.moq
+        }))
+      : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }],
     fragranceNotes: null as any,
     usageLevels: null as any
   };
@@ -151,20 +157,9 @@ export default async function ProductDetailsPage({ params }: Props) {
         <div className="w-full md:w-1/2">
           {/* Edge-to-edge on mobile, rounded on desktop */}
           <div className="aspect-square bg-white md:rounded-3xl md:border border-brand-linen flex items-center justify-center p-0 md:p-8 md:sticky md:top-32 shadow-none md:shadow-sm overflow-hidden relative">
-            <Image 
+            <ProductImageClient 
               src={displayProduct.image} 
               alt={displayProduct.name} 
-              fill
-              priority
-              unoptimized={true}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover md:object-contain" 
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null; // Prevent infinite loop
-                target.src = "/og-image.jpg";
-                target.srcset = "";
-              }}
             />
           </div>
         </div>
@@ -202,7 +197,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             </div>
           </div>
 
-          <PricingWidget basePrice={displayProduct.price} tiers={displayProduct.tiers} />
+          <PricingWidget tiers={displayProduct.tiers} moq={product.moq} />
           
           {/* Details / Specifications (Collapsible on Mobile) */}
           <div className="mt-8 space-y-4">

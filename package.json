@@ -13,6 +13,7 @@
     "@next/third-parties": "^16.2.10",
     "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
+    "@supabase/supabase-js": "^2.112.3",
     "bcrypt": "^6.0.0",
     "canvas": "^3.2.3",
     "clsx": "^2.1.1",

@@ -1,177 +1,98 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function SellerProductManager({ initialProducts }: { initialProducts: any[] }) {
-  const [products, setProducts] = useState(initialProducts)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [editingProduct, setEditingProduct] = useState<any>(null)
-  
-  const [title, setTitle] = useState('')
-  const [price, setPrice] = useState('')
-  const [stock, setStock] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-
-  const openCreate = () => {
-    setEditingProduct(null)
-    setTitle('')
-    setPrice('')
-    setStock('0')
-    setError('')
-    setIsModalOpen(true)
-  }
-
-  const openEdit = (product: any) => {
-    setEditingProduct(product)
-    setTitle(product.title)
-    setPrice((product.price / 100).toFixed(2))
-    setStock(product.stock.toString())
-    setError('')
-    setIsModalOpen(true)
-  }
-
-  const handleSave = async () => {
-    setLoading(true)
-    setError('')
-    try {
-      const url = editingProduct 
-        ? `/api/seller/products/${editingProduct.id}`
-        : `/api/seller/products`
-        
-      const method = editingProduct ? 'PATCH' : 'POST'
-
-      const res = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          title, 
-          price: Math.round(parseFloat(price) * 100), 
-          stock: parseInt(stock, 10) 
-        })
-      })
-      const data = await res.json()
-      if (!data.success) {
-        setError(data.error || 'Failed to save product')
-      } else {
-        window.location.reload()
-      }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleSubmit = async (productId: string) => {
-    if (!confirm("Submit product for admin approval? You won't be able to edit it until it's reviewed.")) return
-    try {
-      const res = await fetch(`/api/seller/products/${productId}/submit`, { method: 'POST' })
-      const data = await res.json()
-      if (data.success) {
-        window.location.reload()
-      } else {
-        alert(data.error || 'Failed to submit')
-      }
-    } catch (err: any) {
-      alert(err.message)
-    }
-  }
+  const products = initialProducts;
 
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Manage Products</h1>
-        <button onClick={openCreate} className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">
-          Create Product
-        </button>
+        <h1 className="text-2xl font-bold font-serif text-brand-charcoal">My Products</h1>
+        <Link href="/seller/dashboard/products/create" className="px-5 py-2.5 bg-brand-orange text-white rounded-xl text-sm font-semibold hover:bg-brand-terracotta transition-colors shadow-sm">
+          Add New Product
+        </Link>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Your Selling Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="relative px-6 py-3"><span className="sr-only">Actions</span></th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{product.title}</div>
-                  {product.rejectionReason && (
-                    <div className="text-xs text-red-500 mt-1">Reason: {product.rejectionReason}</div>
-                  )}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ₹{(product.price / 100).toFixed(2)}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {product.stock}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    product.status === 'PUBLISHED' ? 'bg-green-100 text-green-800' :
-                    product.status === 'PENDING_APPROVAL' ? 'bg-yellow-100 text-yellow-800' :
-                    product.status === 'REJECTED' ? 'bg-red-100 text-red-800' :
-                    'bg-gray-100 text-gray-800'
-                  }`}>
-                    {product.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  {(product.status === 'DRAFT' || product.status === 'REJECTED') && (
-                    <>
-                      <button onClick={() => openEdit(product)} className="text-indigo-600 hover:text-indigo-900 mr-4">Edit</button>
-                      <button onClick={() => handleSubmit(product.id)} className="text-green-600 hover:text-green-900">Submit</button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-            {products.length === 0 && (
-              <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-sm text-gray-500">
-                  You haven't created any products yet.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">{editingProduct ? 'Edit Product' : 'Create Product'}</h2>
-            {error && <div className="mb-4 text-sm text-red-500">{error}</div>}
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} className="w-full border rounded-md px-3 py-2" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Selling Price (₹)</label>
-                <input type="number" step="0.01" min="0" value={price} onChange={e => setPrice(e.target.value)} className="w-full border rounded-md px-3 py-2" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Stock</label>
-                <input type="number" min="0" value={stock} onChange={e => setStock(e.target.value)} className="w-full border rounded-md px-3 py-2" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-linen flex flex-col">
+            <div className="aspect-[4/3] bg-brand-bg relative flex items-center justify-center border-b border-brand-linen overflow-hidden">
+              {product.imageUrl ? (
+                <Image 
+                  src={product.imageUrl} 
+                  alt={product.title} 
+                  fill
+                  className="object-cover"
+                  unoptimized={product.imageUrl.startsWith("http")}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = "/og-image.jpg";
+                    target.srcset = "";
+                  }}
+                />
+              ) : (
+                <Image src="/og-image.jpg" alt="No image" fill className="object-cover opacity-50" />
+              )}
+              
+              <div className="absolute top-3 right-3 flex flex-col gap-2">
+                <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${
+                  product.status === 'PUBLISHED' ? 'bg-emerald-100 text-emerald-800' :
+                  product.status === 'PENDING_APPROVAL' ? 'bg-amber-100 text-amber-800' :
+                  product.status === 'REJECTED' ? 'bg-red-100 text-red-800' :
+                  'bg-stone-100 text-stone-800'
+                }`}>
+                  {product.status.replace('_', ' ')}
+                </span>
               </div>
             </div>
-
-            <div className="mt-6 flex justify-end space-x-3">
-              <button onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-md text-sm font-medium">Cancel</button>
-              <button onClick={handleSave} disabled={loading} className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700 disabled:opacity-50">
-                {loading ? 'Saving...' : 'Save Product'}
-              </button>
+            
+            <div className="p-5 flex-1 flex flex-col">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 mb-1">
+                {product.category || "General"}
+              </span>
+              <h3 className="font-semibold text-brand-charcoal mb-2 line-clamp-1">{product.title}</h3>
+              
+              <div className="flex items-center justify-between mb-4 text-sm mt-auto pt-3">
+                <span className="font-bold text-lg text-brand-charcoal">₹{(product.price / 100).toFixed(2)}</span>
+                
+                <div className={`flex items-center gap-1.5 font-medium text-xs ${product.stock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${product.stock > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
+                  {product.stock > 0 ? `${product.stock} In Stock` : 'Out of Stock'}
+                </div>
+              </div>
+              
+              {product.rejectionReason && product.status === 'REJECTED' && (
+                <div className="mb-4 bg-red-50 text-red-700 p-2.5 rounded-lg text-xs font-medium border border-red-100">
+                  <span className="font-bold">Reason:</span> {product.rejectionReason}
+                </div>
+              )}
+              
+              <Link 
+                href={`/seller/dashboard/products/${product.id}/edit`}
+                className="w-full py-2.5 px-4 bg-stone-100 hover:bg-stone-200 text-brand-charcoal text-sm font-semibold rounded-xl transition-colors text-center"
+              >
+                Manage
+              </Link>
             </div>
           </div>
+        ))}
+      </div>
+      
+      {products.length === 0 && (
+        <div className="text-center py-20 bg-white border border-brand-linen rounded-3xl mt-6">
+          <div className="text-brand-charcoal/30 mb-4">
+            <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-bold text-brand-charcoal mb-2">No products yet</h3>
+          <p className="text-brand-charcoal/60 mb-6 text-sm">Start listing your wholesale products today.</p>
+          <Link href="/seller/dashboard/products/create" className="px-6 py-3 bg-brand-orange text-white rounded-xl text-sm font-semibold hover:bg-brand-terracotta transition-colors shadow-sm inline-block">
+            Create First Product
+          </Link>
         </div>
       )}
     </div>
