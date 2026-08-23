@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Filter, ChevronDown, Tag, PackageSearch, Search, X, SlidersHorizontal, ArrowUpDown, Check } from "lucide-react";
+import { Filter, ChevronDown, Tag, PackageSearch, Search, X, SlidersHorizontal, ArrowUpDown, Check, Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -16,12 +16,71 @@ type Product = {
   maxDiscount: number;
   image: string;
   inStock?: boolean;
-  scentFamily?: string;
-  noteLevel?: string;
-  isBlend?: boolean;
-  applications?: string[];
-  scentCollection?: string;
 };
+
+const ProductCard = React.memo(
+  React.forwardRef<HTMLAnchorElement, { product: Product; index: number }>(
+    ({ product, index }, ref) => {
+      const isExternalImage = Boolean(product.image && product.image.startsWith("http"));
+
+      return (
+        <Link
+          key={product.id}
+          href={`/products/${product.id}`}
+          ref={ref}
+          className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
+        >
+          <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
+            <Image
+              src={product.image || "/og-image.jpg"}
+              alt={product.name}
+              fill
+              unoptimized={isExternalImage}
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              loading={index < 8 ? "eager" : "lazy"}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null; // Prevent infinite loop
+                target.src = "/og-image.jpg";
+                target.srcset = "";
+              }}
+            />
+            {product.bulkDiscountAvailable && (
+              <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                <Tag className="w-3 h-3" /> Bulk Discount
+              </div>
+            )}
+          </div>
+          <div className="p-3 md:p-5 flex-1 flex flex-col">
+            <div className="flex justify-between items-start mb-1">
+              <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 line-clamp-1">
+                {product.category}
+              </span>
+              {product.inStock === false && (
+                <span className="text-[10px] font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded">
+                  Sold Out
+                </span>
+              )}
+            </div>
+            <h2 className="font-semibold text-brand-charcoal mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-brand-orange transition-colors">
+              {product.name}
+            </h2>
+            <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
+              <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
+              {product.maxDiscount > 0 && (
+                <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
+                  Up to {product.maxDiscount}%
+                </span>
+              )}
+            </div>
+          </div>
+        </Link>
+      );
+    }
+  )
+);
+ProductCard.displayName = "ProductCard";
 
 type PriceOption = "all" | "under_500" | "500_1500" | "1500_3000" | "over_3000" | "custom";
 
@@ -31,8 +90,13 @@ export default function ShopClient() {
   
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalProducts, setTotalProducts] = useState(0);
+
   const [sortBy, setSortBy] = useState("recommended");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   
   // Luxury Filter States
@@ -44,6 +108,18 @@ export default function ShopClient() {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [isMobileSortOpen, setIsMobileSortOpen] = useState(false);
 
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastProductElementRef = useCallback((node: HTMLAnchorElement | null) => {
+    if (loading || loadingMore) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prevPage => prevPage + 1);
+      }
+    }, { rootMargin: "200px" });
+    if (node) observer.current.observe(node);
+  }, [loading, loadingMore, hasMore]);
+
   useEffect(() => {
     if (isMobileFilterOpen || isMobileSortOpen) {
       document.body.style.overflow = "hidden";
@@ -52,44 +128,97 @@ export default function ShopClient() {
     }
   }, [isMobileFilterOpen, isMobileSortOpen]);
 
+  // Initial Fetch & Filter changes (Reset to Page 1)
   useEffect(() => {
-    fetch(`/api/products?t=${Date.now()}`)
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-        setLoading(false);
-        const cat = searchParams.get("category");
-        if (cat) {
-          const dbCategories = Array.from(new Set(data.map((p: Product) => p.category))).filter(Boolean) as string[];
-          const search = decodeURIComponent(cat).toLowerCase().trim();
-          
-          const matched: string[] = [];
-          dbCategories.forEach((dbc: string) => {
-            const dbcLower = dbc.toLowerCase();
-            if (dbcLower === search) {
-              matched.push(dbc);
-            } else if (dbcLower.includes(search) || search.includes(dbcLower)) {
-              matched.push(dbc);
-            }
+    let ignore = false;
+    const fetchProducts = async () => {
+      setLoading(true);
+      setPage(1);
+      
+      const cat = searchParams.get("category");
+      setSelectedCategory(cat || null);
+      const q = searchParams.get("q");
+      setSearchQuery(q ? decodeURIComponent(q) : "");
+
+      const params = new URLSearchParams();
+      params.append("page", "1");
+      params.append("limit", "24");
+      if (cat) params.append("category", decodeURIComponent(cat));
+      if (q) params.append("q", decodeURIComponent(q));
+      params.append("sortBy", sortBy);
+      if (inStockOnly) params.append("inStockOnly", "true");
+      if (priceOption !== "all") params.append("priceOption", priceOption);
+      if (priceOption === "custom") {
+        if (minPrice) params.append("minPrice", minPrice);
+        if (maxPrice) params.append("maxPrice", maxPrice);
+      }
+
+      try {
+        const res = await fetch(`/api/products?${params.toString()}`);
+        const data = await res.json();
+        if (!ignore && data.products) {
+          setProducts(data.products);
+          setHasMore(data.pagination.hasNextPage);
+          setTotalProducts(data.pagination.totalProducts);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    };
+
+    fetchProducts();
+    return () => { ignore = true; };
+  }, [searchParams, sortBy, inStockOnly, priceOption, minPrice, maxPrice]);
+
+  // Load More Pages
+  useEffect(() => {
+    if (page === 1) return; // handled by initial fetch
+    let ignore = false;
+
+    const loadMoreProducts = async () => {
+      setLoadingMore(true);
+      
+      const params = new URLSearchParams();
+      params.append("page", page.toString());
+      params.append("limit", "24");
+      
+      const cat = searchParams.get("category");
+      if (cat) params.append("category", decodeURIComponent(cat));
+      const q = searchParams.get("q");
+      if (q) params.append("q", decodeURIComponent(q));
+      
+      params.append("sortBy", sortBy);
+      if (inStockOnly) params.append("inStockOnly", "true");
+      if (priceOption !== "all") params.append("priceOption", priceOption);
+      if (priceOption === "custom") {
+        if (minPrice) params.append("minPrice", minPrice);
+        if (maxPrice) params.append("maxPrice", maxPrice);
+      }
+
+      try {
+        const res = await fetch(`/api/products?${params.toString()}`);
+        const data = await res.json();
+        if (!ignore && data.products) {
+          setProducts(prev => {
+            // Prevent duplicate appending
+            const existingIds = new Set(prev.map(p => p.id));
+            const newProducts = data.products.filter((p: Product) => !existingIds.has(p.id));
+            return [...prev, ...newProducts];
           });
-          
-          if (matched.length > 0) {
-            setSelectedCategories(matched);
-          } else {
-            setSelectedCategories([cat]);
-          }
-        } else {
-          setSelectedCategories([]);
+          setHasMore(data.pagination.hasNextPage);
         }
-        
-        const q = searchParams.get("q");
-        if (q) {
-          setSearchQuery(decodeURIComponent(q));
-        } else {
-          setSearchQuery("");
-        }
-      });
-  }, [searchParams]);
+      } catch (err) {
+        console.error("Failed to fetch more products:", err);
+      } finally {
+        if (!ignore) setLoadingMore(false);
+      }
+    };
+
+    loadMoreProducts();
+    return () => { ignore = true; };
+  }, [page, searchParams, sortBy, inStockOnly, priceOption, minPrice, maxPrice]);
 
   const clearAllFilters = () => {
     setPriceOption("all");
@@ -98,51 +227,9 @@ export default function ShopClient() {
     setInStockOnly(false);
     setIsMobileFilterOpen(false);
   };
-
-  // Filter Logic
-  const filteredProducts = products.filter(p => {
-    // Top Nav Category Filter (via URL)
-    if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
-    
-    // Search Query
-    if (searchQuery) {
-      const qLower = searchQuery.toLowerCase();
-      if (!p.name.toLowerCase().includes(qLower) && !p.category.toLowerCase().includes(qLower)) {
-        return false;
-      }
-    }
-
-    // Price Brackets
-    if (priceOption === "under_500" && p.price >= 500) return false;
-    if (priceOption === "500_1500" && (p.price < 500 || p.price > 1500)) return false;
-    if (priceOption === "1500_3000" && (p.price < 1500 || p.price > 3000)) return false;
-    if (priceOption === "over_3000" && p.price <= 3000) return false;
-    
-    if (priceOption === "custom") {
-      const minVal = parseFloat(minPrice);
-      const maxVal = parseFloat(maxPrice);
-      if (!isNaN(minVal) && minVal > 0 && p.price < minVal) return false;
-      if (!isNaN(maxVal) && maxVal > 0 && p.price > maxVal) return false;
-    }
-
-    // Stock Filter
-    if (inStockOnly && p.inStock === false) return false;
-
-    return true;
-  });
-
-  // Sorting Logic
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price_asc") return a.price - b.price;
-    if (sortBy === "price_desc") return b.price - a.price;
-    if (sortBy === "newest") return parseInt(b.id || "0") - parseInt(a.id || "0");
-    if (sortBy === "discount_desc") return b.maxDiscount - a.maxDiscount;
-    return 0; // recommended / featured
-  });
   
   const activeFilterCount = (priceOption !== "all" ? 1 : 0) + (inStockOnly ? 1 : 0);
-
-  const activeCategoryTitle = selectedCategories.length === 1 ? selectedCategories[0] : selectedCategories.length > 1 ? "Selected Categories" : "All Products";
+  const activeCategoryTitle = selectedCategory ? decodeURIComponent(selectedCategory) : "All Products";
 
   return (
     <div className="pt-6 md:pt-8 pb-16 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8">
@@ -166,7 +253,6 @@ export default function ShopClient() {
           </div>
 
           <div className="space-y-6">
-            
             {/* Price Filter Brackets */}
             <div>
               <h4 className="font-bold text-xs uppercase tracking-wider text-brand-charcoal/60 mb-3">
@@ -209,7 +295,7 @@ export default function ShopClient() {
                       className="w-full bg-brand-bg border border-brand-linen rounded-lg px-2.5 py-1.5 text-xs font-semibold text-brand-charcoal focus:outline-none focus:border-brand-orange" 
                     />
                   </div>
-                  <span className="text-brand-charcoal/40 text-xs mt-4">–</span>
+                  <span className="text-brand-charcoal/40 text-xs mt-4">-</span>
                   <div className="flex-1">
                     <label className="text-[10px] font-bold uppercase text-brand-charcoal/50 block mb-1">Max ₹</label>
                     <input 
@@ -241,14 +327,12 @@ export default function ShopClient() {
                 </span>
               </label>
             </div>
-
           </div>
         </div>
       </aside>
 
       {/* Main Product Area */}
       <div className="flex-1 w-full min-w-0 flex flex-col gap-6">
-        
         {/* Mobile Filter & Search Header */}
         <div className="md:hidden flex flex-col gap-3">
           <form action="/shop" method="GET" className="relative w-full">
@@ -291,11 +375,11 @@ export default function ShopClient() {
               {activeCategoryTitle}
             </h1>
             <p className="text-xs text-brand-charcoal/50 font-medium mt-0.5">
-              Showing {sortedProducts.length} wholesale products
+              Showing {totalProducts} wholesale products
             </p>
           </div>
 
-          {/* Luxury Sort By Dropdown */}
+          {/* Sort By Dropdown */}
           <div className="flex items-center gap-3 text-sm">
             <span className="text-brand-charcoal/60 font-medium text-xs uppercase tracking-wider">Sort by:</span>
             <div className="relative">
@@ -322,7 +406,7 @@ export default function ShopClient() {
               <div key={i} className="bg-white rounded-2xl p-4 border border-brand-linen animate-pulse h-72" />
             ))}
           </div>
-        ) : sortedProducts.length === 0 ? (
+        ) : products.length === 0 ? (
           <div className="bg-white rounded-2xl border border-brand-linen p-12 flex flex-col items-center justify-center text-center shadow-sm">
             <PackageSearch className="w-16 h-16 text-brand-charcoal/20 mb-4" />
             <h3 className="text-xl font-bold text-brand-charcoal mb-2 font-serif">No products match your filters</h3>
@@ -335,56 +419,33 @@ export default function ShopClient() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-            {sortedProducts.map((product) => (
-              <Link 
-                key={product.id} 
-                href={`/products/${product.id}`} 
-                className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
-              >
-                <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
-                  <Image 
-                    src={product.image || "/og-image.jpg"} 
-                    alt={product.name} 
-                    fill
-                    unoptimized={true}
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null; // Prevent infinite loop
-                      target.src = "/og-image.jpg";
-                      target.srcset = "";
-                    }}
+          <>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+              {products.map((product, index) => {
+                const isLast = index === products.length - 1;
+                return (
+                  <ProductCard 
+                    key={product.id} 
+                    product={product} 
+                    index={index} 
+                    ref={isLast ? lastProductElementRef : null} 
                   />
-                  {product.bulkDiscountAvailable && (
-                    <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
-                      <Tag className="w-3 h-3" /> Bulk Discount
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-3 md:p-5 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 line-clamp-1">
-                      {product.category}
-                    </span>
-                  </div>
-                  <h2 className="font-semibold text-brand-charcoal mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-brand-orange transition-colors">
-                    {product.name}
-                  </h2>
-                  <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
-                    <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
-                    {product.maxDiscount > 0 && (
-                      <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
-                        Up to {product.maxDiscount}%
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+            
+            {loadingMore && (
+              <div className="flex justify-center items-center py-6 w-full">
+                <Loader2 className="w-6 h-6 animate-spin text-brand-orange" />
+              </div>
+            )}
+            
+            {!hasMore && products.length > 0 && (
+              <div className="text-center py-6 text-brand-charcoal/40 text-sm font-medium">
+                You've reached the end of the catalog.
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -468,7 +529,7 @@ export default function ShopClient() {
                     onClick={() => setIsMobileFilterOpen(false)}
                     className="flex-[2] py-3.5 rounded-xl font-bold text-white bg-brand-orange shadow-lg shadow-brand-orange/20 min-h-[50px] active:scale-[0.98] transition-transform"
                   >
-                    Show Results ({filteredProducts.length})
+                    Show Results ({totalProducts})
                   </button>
                 </div>
               </div>
