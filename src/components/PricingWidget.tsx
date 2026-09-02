@@ -83,7 +83,19 @@ export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; 
         <div className="text-right flex-1 w-full sm:w-auto hidden md:block">
           <div className="text-sm text-brand-charcoal/50 font-medium mb-1">Subtotal</div>
           <div className="text-2xl font-bold text-brand-charcoal mb-4">₹{subtotal.toLocaleString()}</div>
-          <button className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2">
+          <button 
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('event', 'add_to_cart', {
+                  currency: 'INR',
+                  value: subtotal,
+                  items: [{ price: currentTier.price, quantity }]
+                });
+              }
+              alert("Added to Cart successfully! (Demo)");
+            }}
+            className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2"
+          >
             <ShoppingCart className="w-5 h-5" /> Add to Cart
           </button>
         </div>
@@ -96,7 +108,19 @@ export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; 
         <span className="text-[10px] font-bold text-brand-charcoal/50 uppercase tracking-wider">Subtotal</span>
         <span className="text-lg font-bold text-brand-charcoal">₹{subtotal.toLocaleString()}</span>
       </div>
-      <button className="bg-brand-orange text-white px-6 py-3.5 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 min-h-[48px]">
+      <button 
+        onClick={() => {
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'add_to_cart', {
+              currency: 'INR',
+              value: subtotal,
+              items: [{ price: currentTier.price, quantity }]
+            });
+          }
+          alert("Added to Cart successfully! (Demo)");
+        }}
+        className="bg-brand-orange text-white px-6 py-3.5 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 min-h-[48px]"
+      >
         <ShoppingCart className="w-5 h-5" /> Add to Cart
       </button>
     </div>

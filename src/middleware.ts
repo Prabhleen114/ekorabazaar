@@ -16,13 +16,16 @@ export async function middleware(request: NextRequest) {
     const sessionCookie = request.cookies.get('session')?.value
     
     if (!sessionCookie) {
-      return NextResponse.redirect(new URL('/login', request.url))
+      const loginUrl = new URL('/login', request.url)
+      loginUrl.search = request.nextUrl.search // Preserve UTM params
+      return NextResponse.redirect(loginUrl)
     }
 
     const session = await decrypt(sessionCookie)
     if (!session) {
-      // Clear invalid cookie implicitly by redirecting to a login route that clears it, or just redirect.
-      return NextResponse.redirect(new URL('/login', request.url))
+      const loginUrl = new URL('/login', request.url)
+      loginUrl.search = request.nextUrl.search
+      return NextResponse.redirect(loginUrl)
     }
 
     // Role-based route protection

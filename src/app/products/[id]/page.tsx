@@ -8,7 +8,8 @@ import { Metadata } from "next";
 import ProductImageClient from "@/components/ProductImageClient";
 import Link from "next/link";
 import serialize from "serialize-javascript";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MessageCircle } from "lucide-react";
+import { TrackViewItem } from "@/components/GA4Tracker";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -135,6 +136,7 @@ export default async function ProductDetailsPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
+      <TrackViewItem item={displayProduct} />
       
       {/* Inject JSON-LD Schema for SEO Engine */}
       <script
@@ -198,6 +200,29 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
 
           <PricingWidget tiers={displayProduct.tiers} moq={product.moq} />
+
+          <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h4 className="font-bold text-brand-charcoal">Supplier: {product.seller?.brandName || "Verified Ekora Supplier"}</h4>
+              <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
+            </div>
+            <Link 
+              href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi, I'm interested in bulk ordering ${displayProduct.name} (ID: ${product.id})`)}`}
+              target="_blank"
+              rel="noopener noreferrer" 
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).gtag) {
+                  (window as any).gtag('event', 'contact_supplier', {
+                    item_id: product.id,
+                    supplier_id: product.sellerId
+                  });
+                }
+              }}
+              className="flex items-center gap-2 bg-stone-100 hover:bg-stone-200 text-brand-charcoal px-5 py-2.5 rounded-xl font-semibold transition-colors w-full sm:w-auto justify-center"
+            >
+              <MessageCircle className="w-4 h-4" /> Send Enquiry
+            </Link>
+          </div>
           
           {/* Details / Specifications (Collapsible on Mobile) */}
           <div className="mt-8 space-y-4">

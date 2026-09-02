@@ -1,9 +1,11 @@
 import type { MetadataRoute } from 'next';
-import { mockProducts } from '@/lib/products';
+import prisma from '@/lib/db';
+import { ProductStatus } from '@prisma/client';
+import { ALL_CATEGORIES } from '@/lib/categories';
 
 const BASE_URL = 'https://www.ekorabazaar.in';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const staticRoutes: {
@@ -35,12 +37,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }));
 
-  const productPages: MetadataRoute.Sitemap = mockProducts.map((product: { id: string }) => ({
+  const products = await prisma.product.findMany({
+    where: { status: ProductStatus.PUBLISHED, seller: { accountStatus: 'ACTIVE' } },
+    select: { id: true, updatedAt: true },
+  });
+
+  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${BASE_URL}/products/${product.id}`,
-    lastModified,
+    lastModified: product.updatedAt,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
 
-  return [...staticPages, ...productPages];
+  const wholesalePages: MetadataRoute.Sitemap = ALL_CATEGORIES.map((cat) => ({
+    url: `${BASE_URL}/wholesale/${cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    lastModified,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+
+  const guidePages: MetadataRoute.Sitemap = ALL_CATEGORIES.map((cat) => ({
+    url: `${BASE_URL}/guides/${cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...productPages, ...wholesalePages, ...guidePages];
 }

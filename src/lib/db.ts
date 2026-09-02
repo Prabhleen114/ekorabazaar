@@ -9,10 +9,12 @@ function getPrismaClient(): PrismaClient {
     // Determine the best direct database connection string.
     // If Vercel sets DATABASE_URL to a prisma:// accelerate URL, we bypass it for adapter-pg.
     // DIRECT_URL and POSTGRES_URL_NON_POOLING are standard fallbacks for direct PostgreSQL.
-    const connectionString = process.env.DIRECT_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL
+    // We prefer DATABASE_URL (transaction-mode pooler) because we use pg.Pool.
+    // DIRECT_URL should only be used by prisma migrate.
+    const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL_NON_POOLING || process.env.DIRECT_URL
 
     if (connectionString && !connectionString.startsWith('prisma://')) {
-      const pool = new pg.Pool({ connectionString })
+      const pool = new pg.Pool({ connectionString, max: 2 }) // limit pool size for build
       const adapter = new PrismaPg(pool)
       globalForPrisma.prisma = new PrismaClient({ adapter })
     } else {
