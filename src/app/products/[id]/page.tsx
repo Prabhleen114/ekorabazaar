@@ -207,7 +207,7 @@ export default async function ProductDetailsPage({ params }: Props) {
               <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
             </div>
             <Link 
-              href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi, I'm interested in bulk ordering ${displayProduct.name} (ID: ${product.id})`)}`}
+              href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi, I'm interested in bulk ordering ${displayProduct.name} (ID: ${product.id})`)}`}
               target="_blank"
               rel="noopener noreferrer" 
               onClick={() => {

@@ -167,7 +167,7 @@ Email
 techekora@gmail.com
 
 WhatsApp
-+91 7783053603
++91 9041500605
 
 Address
 Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar - 842001
