@@ -29,6 +29,16 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
       return NextResponse.json({ error: "Your account must be active to edit products." }, { status: 403 })
     }
 
+    if (stock !== undefined && (isNaN(parseInt(stock, 10)) || parseInt(stock, 10) < 0)) {
+      return NextResponse.json({ error: "Stock must be a valid non-negative number." }, { status: 400 })
+    }
+    if (moq !== undefined && (isNaN(parseInt(moq, 10)) || parseInt(moq, 10) <= 0)) {
+      return NextResponse.json({ error: "MOQ must be a valid positive number." }, { status: 400 })
+    }
+    if (price !== undefined && (isNaN(parseInt(price, 10)) || parseInt(price, 10) <= 0)) {
+      return NextResponse.json({ error: "Price must be a valid positive number." }, { status: 400 })
+    }
+
     const updateData: any = {
       ...(title && { title: title.trim() }),
       ...(description !== undefined && { description: description?.trim() || null }),

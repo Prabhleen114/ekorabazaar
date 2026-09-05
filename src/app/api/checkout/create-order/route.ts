@@ -15,6 +15,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "No items in checkout." }, { status: 400 })
     }
 
+    for (const item of items) {
+      if (!item.productId || typeof item.quantity !== 'number' || item.quantity <= 0 || !Number.isInteger(item.quantity)) {
+        return NextResponse.json({ error: "Invalid item quantity." }, { status: 400 })
+      }
+    }
+
     // Step 1: Validate inventory, product status, and seller status transactionally
     // We cannot trust frontend prices or seller IDs
     let totalAmount = 0

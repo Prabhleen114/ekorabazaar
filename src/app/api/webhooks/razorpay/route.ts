@@ -84,12 +84,20 @@ export async function POST(req: Request) {
 
         // --- Process CHECKOUT PAYMENT ---
         if (payment.type === 'CUSTOMER_ORDER' && payment.orderId && payment.order) {
-          // We must do inventory deduction IF it wasn't done by the frontend
+          
+          const paymentUpdateResult = await tx.payment.updateMany({
+            where: { id: payment.id, status: PaymentStatus.PENDING },
+            data: { status: PaymentStatus.CAPTURED, razorpayPaymentId }
+          })
+
+          if (paymentUpdateResult.count === 0) {
+            // Already captured concurrently by frontend
+            return
+          }
+
+          // We must do inventory deduction because we won the lock
           for (const item of payment.order.items) {
             const product = await tx.product.findUnique({ where: { id: item.productId } })
-            // Note: If a webhook is processing, and stock goes below zero, 
-            // a robust system might trigger a refund if stock cannot be fulfilled.
-            // For simplicity, we just decrement here assuming frontend handles primary path.
             if (product && product.stock >= item.quantity) {
               await tx.product.update({
                 where: { id: item.productId },
@@ -97,11 +105,6 @@ export async function POST(req: Request) {
               })
             }
           }
-
-          await tx.payment.update({
-            where: { id: payment.id },
-            data: { status: PaymentStatus.CAPTURED, razorpayPaymentId }
-          })
 
           await tx.order.update({
             where: { id: payment.orderId },

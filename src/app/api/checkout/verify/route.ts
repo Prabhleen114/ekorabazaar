@@ -42,6 +42,20 @@ export async function POST(req: Request) {
         return { alreadyVerified: true, orderId: payment.orderId }
       }
 
+      // Optimistic lock: attempt to transition status from PENDING to CAPTURED
+      const paymentUpdateResult = await tx.payment.updateMany({
+        where: { id: payment.id, status: PaymentStatus.PENDING },
+        data: {
+          status: PaymentStatus.CAPTURED,
+          razorpayPaymentId,
+        }
+      })
+
+      if (paymentUpdateResult.count === 0) {
+        // Another process (e.g., webhook) already verified this payment concurrently.
+        return { alreadyVerified: true, orderId: payment.orderId }
+      }
+
       // Decrement inventory safely (Inventory Protection)
       for (const item of payment.order.items) {
         // Find product to check stock first
@@ -60,15 +74,6 @@ export async function POST(req: Request) {
           }
         })
       }
-
-      // Mark payment as SUCCESS
-      await tx.payment.update({
-        where: { id: payment.id },
-        data: {
-          status: PaymentStatus.CAPTURED,
-          razorpayPaymentId,
-        }
-      })
 
       // Mark Order as PAID
       await tx.order.update({
