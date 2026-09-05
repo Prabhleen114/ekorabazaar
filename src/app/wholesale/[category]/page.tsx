@@ -2,12 +2,13 @@ import { ALL_CATEGORIES } from "@/lib/categories";
 import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
+import serialize from "serialize-javascript";
+import { generateCategoryMetadata } from "@/lib/seo";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { Metadata } from "next";
-import serialize from "serialize-javascript";
 
 type Props = {
   params: Promise<{ category: string }>;
@@ -27,22 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Wholesale Category Not Found" };
   }
 
-  const title = `Wholesale ${categoryObj.label} Suppliers in India | Ekora Bazaar B2B`;
-  const description = `Buy ${categoryObj.label} in bulk at wholesale prices from verified manufacturers and suppliers in India. Secure B2B transactions on Ekora Bazaar.`;
-  const url = `https://www.ekorabazaar.in/wholesale/${slug}`;
-
-  return {
-    title,
-    description,
-    keywords: [`wholesale ${categoryObj.label}`, `${categoryObj.label} supplier India`, `${categoryObj.label} manufacturer`, `buy ${categoryObj.label} in bulk`],
-    alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      type: "website",
-    }
-  };
+  return generateCategoryMetadata(categoryObj.label, slug);
 }
 
 export async function generateStaticParams() {

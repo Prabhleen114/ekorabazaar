@@ -1,4 +1,5 @@
 import { ALL_CATEGORIES } from "@/lib/categories";
+import { generateGuideMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
@@ -23,21 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Guide Not Found" };
   }
 
-  const title = `The Ultimate B2B Buying Guide for ${categoryObj.label} in India`;
-  const description = `Learn how to source and buy wholesale ${categoryObj.label} efficiently in India. Essential tips for B2B buyers on Ekora Bazaar.`;
-  const url = `https://www.ekorabazaar.in/guides/${slug}`;
-
-  return {
-    title,
-    description,
-    alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      type: "article",
-    }
-  };
+  return generateGuideMetadata(categoryObj.label, slug);
 }
 
 export async function generateStaticParams() {

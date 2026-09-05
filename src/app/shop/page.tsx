@@ -6,6 +6,7 @@ import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
 import { Suspense } from "react";
 import serialize from "serialize-javascript";
+import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Shop Premium Raw Materials & Craft Supplies | Ekora Wholesale",
@@ -36,47 +37,13 @@ export default async function ShopPage() {
     "name": "Wholesale Raw Materials Catalog",
     "url": "https://www.ekorabazaar.in/shop",
     "description": "Premium craft supplies and raw materials for creators.",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": dbProducts.map((product, index) => {
-        const effectivePrice = (product.customerPrice ?? product.price) / 100;
-        return {
-          "@type": "ListItem",
-          "position": index + 1,
-          "item": {
-            "@type": "Product",
-            "name": product.title,
-            "image": product.imageUrl || "https://www.ekorabazaar.in/og-image.jpg",
-            "url": `https://www.ekorabazaar.in/products/${product.id}`,
-            "offers": {
-              "@type": "Offer",
-              "price": effectivePrice,
-              "priceCurrency": "INR"
-            }
-          }
-        };
-      })
-    }
+    "mainEntity": generateItemListSchema(dbProducts, "Wholesale Raw Materials Catalog", "https://www.ekorabazaar.in/shop")
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.ekorabazaar.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Shop",
-        "item": "https://www.ekorabazaar.in/shop"
-      }
-    ]
-  };
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.ekorabazaar.in" },
+    { name: "Shop", url: "https://www.ekorabazaar.in/shop" }
+  ]);
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">

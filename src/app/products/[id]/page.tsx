@@ -10,6 +10,7 @@ import Link from "next/link";
 import serialize from "serialize-javascript";
 import { ChevronRight, MessageCircle } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
+import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -27,38 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Product Not Found | Ekora Bazaar" };
   }
 
-  const imageUrl = product.imageUrl || "https://www.ekorabazaar.in/og-image.jpg";
-
-  return {
-    title: `${product.title} | Ekora Wholesale`,
-    description: product.description || "Premium wholesale material",
-    keywords: [product.title, "wholesale raw materials", "Ekora"],
-    alternates: {
-      canonical: `https://www.ekorabazaar.in/products/${id}`,
-    },
-    openGraph: {
-      title: `${product.title} - Buy Wholesale on Ekora`,
-      description: product.description || "Premium wholesale material",
-      url: `https://www.ekorabazaar.in/products/${id}`,
-      type: "article",
-      images: [
-        {
-          url: imageUrl,
-          secureUrl: imageUrl,
-          width: 800,
-          height: 800,
-          alt: product.title,
-          type: "image/jpeg",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.title} - Buy Wholesale on Ekora`,
-      description: product.description || "Premium wholesale material",
-      images: [imageUrl],
-    },
-  };
+  return generateProductMetadata(product);
 }
 
 export default async function ProductDetailsPage({ params }: Props) {
@@ -95,43 +65,13 @@ export default async function ProductDetailsPage({ params }: Props) {
   };
 
   // Pre-populated JSON-LD Schema
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": displayProduct.name,
-    "image": displayProduct.image,
-    "description": displayProduct.description || "",
-    "offers": {
-      "@type": "Offer",
-      "price": displayProduct.price,
-      "priceCurrency": "INR"
-    }
-  };
+  const jsonLd = generateProductSchema(product, product.seller?.brandName);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.ekorabazaar.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Shop",
-        "item": "https://www.ekorabazaar.in/shop"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": displayProduct.name,
-        "item": `https://www.ekorabazaar.in/products/${product.id}`
-      }
-    ]
-  };
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.ekorabazaar.in" },
+    { name: "Shop", url: "https://www.ekorabazaar.in/shop" },
+    { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${product.id}` }
+  ]);
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
