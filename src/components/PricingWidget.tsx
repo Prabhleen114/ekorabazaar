@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Loader2 } from "lucide-react";
+import { useRazorpayCheckout } from "@/hooks/useRazorpayCheckout";
 
 type Tier = {
   minQty: number;
@@ -10,8 +11,33 @@ type Tier = {
   discountPct: number;
 };
 
-export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; tiers: Tier[]; moq?: number }) {
+export default function PricingWidget({ productId, tiers, moq = 1 }: { productId?: string; basePrice?: number; tiers: Tier[]; moq?: number }) {
   const [quantity, setQuantity] = useState(moq);
+  const { checkout, isProcessing } = useRazorpayCheckout();
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleCheckout = () => {
+    if (!productId) {
+      alert("Product ID is missing.");
+      return;
+    }
+    
+    setErrorMsg("");
+
+    checkout({
+      apiCreateRoute: "/api/checkout/create-order",
+      apiVerifyRoute: "/api/checkout/verify",
+      createPayload: { items: [{ productId, quantity }] },
+      name: "Ekora Bazaar Checkout",
+      description: `Purchase ${quantity} units`,
+      onSuccess: (data) => {
+        alert("Payment verified successfully! Order ID: " + data.orderId);
+      },
+      onError: (err) => {
+        setErrorMsg(err);
+      }
+    });
+  };
 
   const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];
   const subtotal = currentTier.price * quantity;
@@ -83,20 +109,14 @@ export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; 
         <div className="text-right flex-1 w-full sm:w-auto hidden md:block">
           <div className="text-sm text-brand-charcoal/50 font-medium mb-1">Subtotal</div>
           <div className="text-2xl font-bold text-brand-charcoal mb-4">₹{subtotal.toLocaleString()}</div>
+          {errorMsg && <div className="text-red-500 text-xs font-semibold mb-2">{errorMsg}</div>}
           <button 
-            onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).gtag) {
-                (window as any).gtag('event', 'add_to_cart', {
-                  currency: 'INR',
-                  value: subtotal,
-                  items: [{ price: currentTier.price, quantity }]
-                });
-              }
-              alert("Added to Cart successfully! (Demo)");
-            }}
-            className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2"
+            onClick={handleCheckout}
+            disabled={isProcessing}
+            className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            <ShoppingCart className="w-5 h-5" /> Add to Cart
+            {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
+            {isProcessing ? "Processing..." : "Buy Now"}
           </button>
         </div>
       </div>
@@ -108,21 +128,17 @@ export default function PricingWidget({ tiers, moq = 1 }: { basePrice?: number; 
         <span className="text-[10px] font-bold text-brand-charcoal/50 uppercase tracking-wider">Subtotal</span>
         <span className="text-lg font-bold text-brand-charcoal">₹{subtotal.toLocaleString()}</span>
       </div>
-      <button 
-        onClick={() => {
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'add_to_cart', {
-              currency: 'INR',
-              value: subtotal,
-              items: [{ price: currentTier.price, quantity }]
-            });
-          }
-          alert("Added to Cart successfully! (Demo)");
-        }}
-        className="bg-brand-orange text-white px-6 py-3.5 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 min-h-[48px]"
-      >
-        <ShoppingCart className="w-5 h-5" /> Add to Cart
-      </button>
+      <div className="flex flex-col gap-1 items-end">
+        {errorMsg && <span className="text-red-500 text-[10px] font-semibold">{errorMsg}</span>}
+        <button 
+          onClick={handleCheckout}
+          disabled={isProcessing}
+          className="bg-brand-orange text-white px-6 py-3.5 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
+          {isProcessing ? "Processing..." : "Buy Now"}
+        </button>
+      </div>
     </div>
     </>
   );

@@ -4,6 +4,7 @@ import { useOnboarding } from "../../context/OnboardingContext";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, ShieldCheck, Loader2 } from "lucide-react";
 import { CONSENT_VERSION } from "@/lib/consentVersion";
+import { useRazorpayCheckout } from "@/hooks/useRazorpayCheckout";
 
 export default function StepPayment() {
   const { data, updateData, setCurrentStep } = useOnboarding();
@@ -12,6 +13,7 @@ export default function StepPayment() {
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const { checkout, isProcessing: isRazorpayLoading } = useRazorpayCheckout();
 
   const handlePayment = async () => {
     setHasAttemptedSubmit(true);
@@ -68,9 +70,30 @@ export default function StepPayment() {
         throw new Error(result.error || "Submission failed.");
       }
 
-      // Simulate payment gateway handoff delay (replace with Razorpay/Cashfree SDK)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setCurrentStep(10);
+      // Step 2: Authenticate so we can create order
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, password: data.password })
+      });
+      if (!loginRes.ok) throw new Error("Failed to authenticate for payment");
+
+      // Step 3: Open Razorpay
+      checkout({
+        apiCreateRoute: "/api/seller/payment/create-order",
+        apiVerifyRoute: "/api/seller/payment/verify",
+        createPayload: {}, // No payload needed for onboarding fee
+        name: "Ekora Bazaar Onboarding",
+        description: "Founding Creator Fee",
+        onSuccess: () => {
+          setCurrentStep(10); // Success step
+        },
+        onError: (err) => {
+          setError(err);
+          setIsSubmitting(false);
+        }
+      });
+      
     } catch (err: unknown) {
       console.error(err);
       const message = err instanceof Error ? err.message : "Failed to submit application. Please try again.";
@@ -236,10 +259,10 @@ export default function StepPayment() {
 
         <button
           onClick={handlePayment}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isRazorpayLoading}
           className="w-full flex items-center justify-center gap-2 py-4 bg-brand-charcoal text-white rounded-xl font-bold hover:bg-black transition-all shadow-xl shadow-brand-charcoal/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? (
+          {isSubmitting || isRazorpayLoading ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" /> Processing...
             </>
