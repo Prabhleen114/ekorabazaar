@@ -1,6 +1,6 @@
 import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
@@ -16,9 +16,42 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+async function handleLegacyRedirect(id: string) {
+  if (!/^\d+$/.test(id)) return false;
+
+  try {
+    const legacyProducts = (await import('@/lib/data/products.json')).default;
+    const legacyProduct = legacyProducts.find((p: any) => String(p.id) === String(id));
+    
+    if (legacyProduct && (legacyProduct.name || legacyProduct.title)) {
+      const modernProduct = await prisma.product.findFirst({
+        where: { 
+          title: legacyProduct.name || legacyProduct.title,
+          status: 'PUBLISHED'
+        },
+        select: { id: true }
+      });
+
+      if (modernProduct) {
+        permanentRedirect(`/products/${modernProduct.id}`);
+      }
+    }
+  } catch (e) {
+    console.error("Legacy redirect error", e);
+  }
+  
+  notFound();
+}
+
 // Generate SEO Metadata dynamically
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
+  
+  // Try catching legacy numeric IDs during metadata generation
+  if (/^\d+$/.test(id)) {
+    await handleLegacyRedirect(id);
+  }
+
   const product = await prisma.product.findUnique({
     where: { id },
     include: { seller: true }
@@ -33,6 +66,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductDetailsPage({ params }: Props) {
   const { id } = await params;
+
+  // Enforce legacy redirect checks inside the page component as well
+  if (/^\d+$/.test(id)) {
+    await handleLegacyRedirect(id);
+  }
+
   const product = await prisma.product.findUnique({
     where: { id },
     include: { seller: true }

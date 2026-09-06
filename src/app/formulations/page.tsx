@@ -1,7 +1,7 @@
 import BuyerNavbar from "@/components/BuyerNavbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 
 
 type Formulation = {
@@ -54,10 +54,10 @@ export default function FormulationsPage() {
             >
               <div className="aspect-[4/3] bg-brand-charcoal/5 relative overflow-hidden">
                 {formulation.imageUrl ? (
-                  <Image 
+                  <ProductImageClient 
                     src={formulation.imageUrl} 
                     alt={formulation.title} 
-                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
