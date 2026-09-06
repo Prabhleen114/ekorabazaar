@@ -49,6 +49,14 @@ export function useRazorpayCheckout() {
       
       const createData = await resCreate.json();
 
+      // Guest user — redirect to /login and return to this product page after sign-in
+      if (resCreate.status === 401) {
+        setIsProcessing(false);
+        const returnUrl = encodeURIComponent(window.location.pathname);
+        window.location.href = `/login?redirect=${returnUrl}`;
+        return;
+      }
+
       if (!resCreate.ok) {
         throw new Error(createData.error || "Failed to create order");
       }

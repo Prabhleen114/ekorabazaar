@@ -1,15 +1,17 @@
-'use client'
+﻿'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirect') // e.g. /products/<uuid>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -31,8 +33,11 @@ export default function LoginPage() {
         throw new Error(data.error || 'Failed to login')
       }
 
-      if (data.success && data.redirectUrl) {
-        router.push(data.redirectUrl)
+      if (data.success) {
+        // If the user was redirected here from a product page (or similar), send them back there.
+        // Otherwise fall back to the role-based destination from the API.
+        const destination = redirectTo || data.redirectUrl || '/'
+        router.push(destination)
         router.refresh()
       }
     } catch (err: any) {
@@ -150,5 +155,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   )
 }
