@@ -6,6 +6,7 @@ import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
 import { Metadata } from "next";
 import ProductImageClient from "@/components/ProductImageClient";
+import ContactSupplierButton from "@/components/ContactSupplierButton";
 import Link from "next/link";
 import serialize from "serialize-javascript";
 import { ChevronRight, MessageCircle } from "lucide-react";
@@ -186,22 +187,11 @@ export default async function ProductDetailsPage({ params }: Props) {
               <h4 className="font-bold text-brand-charcoal">Supplier: {product.seller?.brandName || "Verified Ekora Supplier"}</h4>
               <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
             </div>
-            <Link 
-              href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi, I'm interested in bulk ordering ${displayProduct.name} (ID: ${product.id})`)}`}
-              target="_blank"
-              rel="noopener noreferrer" 
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).gtag) {
-                  (window as any).gtag('event', 'contact_supplier', {
-                    item_id: product.id,
-                    supplier_id: product.sellerId
-                  });
-                }
-              }}
-              className="flex items-center gap-2 bg-stone-100 hover:bg-stone-200 text-brand-charcoal px-5 py-2.5 rounded-xl font-semibold transition-colors w-full sm:w-auto justify-center"
-            >
-              <MessageCircle className="w-4 h-4" /> Send Enquiry
-            </Link>
+            <ContactSupplierButton 
+              productName={displayProduct.name} 
+              productId={product.id} 
+              sellerId={product.sellerId} 
+            />
           </div>
           
           {/* Details / Specifications (Collapsible on Mobile) */}
