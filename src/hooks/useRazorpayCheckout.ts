@@ -53,7 +53,10 @@ export function useRazorpayCheckout() {
         throw new Error(createData.error || "Failed to create order");
       }
 
-      const { orderId, amount, currency } = createData;
+      // Both /api/checkout/create-order and /api/seller/payment/create-order return razorpayOrderId
+      const { razorpayOrderId, orderId, paymentId, amount, currency } = createData;
+      
+      const rzpOrderId = razorpayOrderId || createData.id;
 
       // Ensure public key is available
       const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
@@ -68,7 +71,7 @@ export function useRazorpayCheckout() {
         currency: currency || "INR",
         name: options.name || "Ekora Bazaar",
         description: options.description || "Checkout Payment",
-        order_id: orderId,
+        order_id: rzpOrderId,
         handler: async function (response: any) {
           try {
             // Modal blocks the UI, but handler is async
@@ -76,10 +79,11 @@ export function useRazorpayCheckout() {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature,
-                orderId: orderId, // Pass back internal tracking ID if needed
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+                orderId: orderId, // internal order/payment reference
+                paymentId: paymentId
               }),
             });
             
