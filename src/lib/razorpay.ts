@@ -17,8 +17,7 @@ export function verifyRazorpaySignature(
   signature: string
 ): boolean {
   if (!process.env.RAZORPAY_KEY_SECRET) {
-    console.warn("RAZORPAY_KEY_SECRET is not set. Bypassing real verification (DEV ONLY).");
-    return signature === "mock_signature_for_testing";
+    throw new Error("Razorpay configuration is missing on the server.");
   }
 
   const payload = `${orderId}|${paymentId}`
@@ -38,8 +37,7 @@ export function verifyWebhookSignature(
   signature: string
 ): boolean {
   if (!process.env.RAZORPAY_WEBHOOK_SECRET) {
-    console.warn("RAZORPAY_WEBHOOK_SECRET is not set. Bypassing real verification (DEV ONLY).");
-    return signature === "mock_webhook_signature_for_testing";
+    throw new Error("Razorpay Webhook Secret is not configured.");
   }
 
   const expectedSignature = crypto

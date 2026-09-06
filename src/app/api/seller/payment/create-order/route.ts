@@ -23,18 +23,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid application status for payment." }, { status: 400 })
     }
 
-    let rzpOrderId = "mock_rzp_order_id_" + Date.now()
-
-    if (razorpay) {
-      const options = {
-        amount: SELLER_ONBOARDING_FEE,
-        currency: "INR",
-        receipt: `seller_reg_${seller.id.substring(0,10)}_${Date.now()}`
-      };
-      
-      const order = await razorpay.orders.create(options);
-      rzpOrderId = order.id
+    if (!razorpay) {
+      throw new Error("Payment gateway is not configured.")
     }
+
+    const options = {
+      amount: SELLER_ONBOARDING_FEE,
+      currency: "INR",
+      receipt: `seller_reg_${seller.id.substring(0,10)}_${Date.now()}`
+    };
+    
+    const order = await razorpay.orders.create(options);
+    const rzpOrderId = order.id
 
     // Create an internal payment record (Unverified)
     const payment = await prisma.payment.create({

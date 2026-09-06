@@ -64,18 +64,18 @@ export async function POST(req: Request) {
     })
 
     // Create Razorpay Order
-    let rzpOrderId = "mock_rzp_checkout_order_" + Date.now()
-
-    if (razorpay) {
-      const options = {
-        amount: totalAmount, // in paise
-        currency: "INR",
-        receipt: `order_${session.userId?.substring(0,8)}_${Date.now()}`
-      };
-      
-      const rzpOrder = await razorpay.orders.create(options);
-      rzpOrderId = rzpOrder.id
+    if (!razorpay) {
+      throw new Error("Payment gateway is not configured.")
     }
+
+    const options = {
+      amount: totalAmount, // in paise
+      currency: "INR",
+      receipt: `order_${session.userId?.substring(0,8)}_${Date.now()}`
+    };
+    
+    const rzpOrder = await razorpay.orders.create(options);
+    const rzpOrderId = rzpOrder.id
 
     // Create Internal Order, OrderItems, and Payment record atomically
     const [createdOrder, createdPayment] = await prisma.$transaction(async (tx) => {

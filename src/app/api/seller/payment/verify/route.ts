@@ -41,14 +41,18 @@ export async function POST(req: Request) {
         return { alreadyVerified: true, payment }
       }
 
-      // Update payment
-      const updatedPayment = await tx.payment.update({
-        where: { id: payment.id },
+      // Optimistic lock
+      const updatedPaymentResult = await tx.payment.updateMany({
+        where: { id: payment.id, status: PaymentStatus.PENDING },
         data: {
           status: PaymentStatus.CAPTURED,
           razorpayPaymentId,
         }
       })
+
+      if (updatedPaymentResult.count === 0) {
+        return { alreadyVerified: true, payment }
+      }
 
       // Update seller status (move to UNDER_REVIEW, NOT active)
       if (payment.sellerId) {
@@ -60,7 +64,7 @@ export async function POST(req: Request) {
         })
       }
 
-      return { alreadyVerified: false, payment: updatedPayment }
+      return { alreadyVerified: false, payment }
     })
 
     return NextResponse.json({ success: true, message: "Payment verified successfully.", result })
