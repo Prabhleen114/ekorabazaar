@@ -96,7 +96,7 @@ export default async function ProductDetailsPage({ params }: Props) {
     tiers: Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
       ? (product.wholesaleTiers as any[]).map(t => ({
           ...t,
-          price: t.price ? t.price : effectivePrice,
+          price: t.price ? Math.round(t.price / 100) : effectivePrice,
           minQty: t.minQty || product.moq
         }))
       : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }],
