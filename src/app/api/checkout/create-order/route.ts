@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await requireAuth()
 
     const body = await req.json()
-    const { items } = body // { productId, quantity }[]
+    const { items, addressId } = body // { productId, quantity }[], optional addressId
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: "No items in checkout." }, { status: 400 })
@@ -19,6 +19,15 @@ export async function POST(req: Request) {
       if (!item.productId || typeof item.quantity !== 'number' || item.quantity <= 0 || !Number.isInteger(item.quantity)) {
         return NextResponse.json({ error: "Invalid item quantity." }, { status: 400 })
       }
+    }
+
+    let addressSnapshot = null
+    if (addressId) {
+      const address = await prisma.address.findUnique({ where: { id: addressId } })
+      if (!address || address.userId !== session.userId) {
+        return NextResponse.json({ error: "Invalid delivery address." }, { status: 400 })
+      }
+      addressSnapshot = address // Capture immutable snapshot
     }
 
     // Step 1: Validate inventory, product status, and seller status transactionally
@@ -86,6 +95,8 @@ export async function POST(req: Request) {
           subtotal: totalAmount,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
+          addressId: addressId || null,
+          addressSnapshot: addressSnapshot ? JSON.parse(JSON.stringify(addressSnapshot)) : null,
           items: {
             create: validOrderItems
           }
@@ -103,6 +114,21 @@ export async function POST(req: Request) {
           razorpayOrderId: rzpOrderId,
         }
       })
+
+      // If the checkout was successful, optionally clear cart items that were purchased
+      try {
+        const cart = await tx.cart.findUnique({ where: { userId: session.userId! } })
+        if (cart) {
+          await tx.cartItem.deleteMany({
+            where: {
+              cartId: cart.id,
+              productId: { in: items.map((i: any) => i.productId) }
+            }
+          })
+        }
+      } catch (err) {
+        console.error("Failed to clear cart items after order creation", err)
+      }
 
       return [order, payment]
     })

@@ -100,6 +100,8 @@ model User {
   orders        Order[]
   payments      Payment[]
   adminProducts Product[] @relation("AdminCreatedProducts")
+  addresses     Address[]
+  cart          Cart?
 }
 
 model Seller {
@@ -174,6 +176,8 @@ model Product {
 
   category          String?       @default("General Silicone Moulds")
 
+  cartItems         CartItem[]
+
   classificationConfidence ClassificationConfidence @default(UNCLASSIFIED)
   classificationStatus     ClassificationStatus     @default(NEEDS_REVIEW)
 
@@ -214,6 +218,11 @@ model Order {
   shipping        Int         @default(0)
   total           Int
   currency        String      @default("INR")
+
+  // Delivery address: FK (nullable) + immutable snapshot captured at checkout
+  addressId       String?
+  address         Address?    @relation(fields: [addressId], references: [id])
+  addressSnapshot Json?       // snapshot so historical orders are unaffected by address edits
 
   razorpayOrderId String?     @unique
   
@@ -276,4 +285,55 @@ model WebhookEvent {
   processed   Boolean  @default(false)
   createdAt   DateTime @default(now())
   processedAt DateTime?
+}
+
+// ----------------------------------------------------------------------
+// CUSTOMER MODELS
+// ----------------------------------------------------------------------
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  name      String   // Recipient full name
+  phone     String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  pincode   String
+  country   String   @default("India")
+  isDefault Boolean  @default(false)
+
+  orders    Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Cart {
+  id        String     @id @default(uuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
 }

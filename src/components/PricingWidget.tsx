@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Minus, Plus, ShoppingCart, Loader2 } from "lucide-react";
 import { useRazorpayCheckout } from "@/hooks/useRazorpayCheckout";
+import { useRouter } from "next/navigation";
 
 type Tier = {
   minQty: number;
@@ -16,27 +17,48 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
   const { checkout, isProcessing } = useRazorpayCheckout();
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleCheckout = () => {
-    if (!productId) {
-      alert("Product ID is missing.");
+  const router = useRouter();
+
+  const handleAction = async (actionType: 'cart' | 'buy_now') => {
+    if (!productId) return;
+    
+    if (actionType === 'cart') {
+      try {
+        const res = await fetch('/api/cart', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId, quantity })
+        });
+        if (res.status === 401 || res.status === 403) {
+          router.push(`/login?redirect=/products/${productId}`);
+          return;
+        }
+        if (!res.ok) throw new Error('Failed to add to cart');
+        router.push('/cart');
+      } catch (err: any) {
+        setErrorMsg(err.message);
+      }
       return;
     }
-    
-    setErrorMsg("");
 
-    checkout({
-      apiCreateRoute: "/api/checkout/create-order",
-      apiVerifyRoute: "/api/checkout/verify",
-      createPayload: { items: [{ productId, quantity }] },
-      name: "Ekora Bazaar Checkout",
-      description: `Purchase ${quantity} units`,
-      onSuccess: (data) => {
-        alert("Payment verified successfully! Order ID: " + data.orderId);
-      },
-      onError: (err) => {
-        setErrorMsg(err);
+    if (actionType === 'buy_now') {
+      // For buy now, we want them to go to checkout page so they can select address.
+      // But we don't have a direct product checkout yet. Adding to cart and redirecting to checkout is best.
+      try {
+        const res = await fetch('/api/cart', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId, quantity })
+        });
+        if (res.status === 401 || res.status === 403) {
+          router.push(`/login?redirect=/products/${productId}`);
+          return;
+        }
+        router.push('/checkout');
+      } catch (err: any) {
+        setErrorMsg(err.message);
       }
-    });
+    }
   };
 
   const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];
@@ -110,14 +132,23 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
           <div className="text-sm text-brand-charcoal/50 font-medium mb-1">Subtotal</div>
           <div className="text-2xl font-bold text-brand-charcoal mb-4">₹{subtotal.toLocaleString()}</div>
           {errorMsg && <div className="text-red-500 text-xs font-semibold mb-2">{errorMsg}</div>}
-          <button 
-            onClick={handleCheckout}
-            disabled={isProcessing}
-            className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
-            {isProcessing ? "Processing..." : "Buy Now"}
-          </button>
+          <div className="flex flex-col gap-2">
+            <button 
+              onClick={() => handleAction('cart')}
+              disabled={isProcessing}
+              className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
+              {isProcessing ? "Adding..." : "Add to Cart"}
+            </button>
+            <button 
+              onClick={() => handleAction('buy_now')}
+              disabled={isProcessing}
+              className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -128,16 +159,24 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
         <span className="text-[10px] font-bold text-brand-charcoal/50 uppercase tracking-wider">Subtotal</span>
         <span className="text-lg font-bold text-brand-charcoal">₹{subtotal.toLocaleString()}</span>
       </div>
-      <div className="flex flex-col gap-1 items-end">
+      <div className="flex flex-col gap-1 items-end flex-1 ml-4">
         {errorMsg && <span className="text-red-500 text-[10px] font-semibold">{errorMsg}</span>}
-        <button 
-          onClick={handleCheckout}
-          disabled={isProcessing}
-          className="bg-brand-orange text-white px-6 py-3.5 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
-        >
-          {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
-          {isProcessing ? "Processing..." : "Buy Now"}
-        </button>
+        <div className="flex gap-2 w-full justify-end">
+          <button 
+            onClick={() => handleAction('cart')}
+            disabled={isProcessing}
+            className="bg-brand-charcoal text-white px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            <ShoppingCart className="w-5 h-5" />
+          </button>
+          <button 
+            onClick={() => handleAction('buy_now')}
+            disabled={isProcessing}
+            className="flex-1 bg-brand-orange text-white px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg shadow-brand-orange/20 min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
+          </button>
+        </div>
       </div>
     </div>
     </>

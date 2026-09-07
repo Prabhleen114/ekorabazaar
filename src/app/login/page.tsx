@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -146,8 +146,11 @@ function LoginForm() {
               </div>
             </div>
 
-            <div className="mt-6 text-center">
-              <Link href="/sell/start-selling" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <div className="mt-6 flex items-center justify-between text-sm">
+              <Link href={`/signup${redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`} className="font-medium text-brand-orange hover:text-brand-terracotta">
+                New customer? Sign up
+              </Link>
+              <Link href="/sell/start-selling" className="text-gray-600 hover:text-gray-900">
                 Apply to become a seller
               </Link>
             </div>
