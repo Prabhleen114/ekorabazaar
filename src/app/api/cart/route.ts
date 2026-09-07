@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireCustomer } from '@/lib/auth'
+import { calculateItemPrice } from '@/lib/pricing'
 import { ProductStatus, SellerAccountStatus } from '@prisma/client'
 
 export async function GET() {
@@ -15,6 +16,7 @@ export async function GET() {
               select: {
                 id: true, title: true, imageUrl: true, price: true,
                 customerPrice: true, stock: true, status: true,
+                wholesaleTiers: true,
                 seller: { select: { accountStatus: true } }
               }
             }
@@ -26,7 +28,7 @@ export async function GET() {
 
     let totalAmount = 0
     const items = cart.items.map(item => {
-      const effectivePrice = item.product.customerPrice ?? item.product.price
+      const effectivePrice = calculateItemPrice(item.product, item.quantity)
       const isAvailable = item.product.status === ProductStatus.PUBLISHED &&
         item.product.stock >= item.quantity &&
         (!item.product.seller || item.product.seller.accountStatus === SellerAccountStatus.ACTIVE)
@@ -68,7 +70,7 @@ export async function POST(req: Request) {
 
     await prisma.cartItem.upsert({
       where: { cartId_productId: { cartId: cart.id, productId } },
-      update: { quantity },
+      update: { quantity: { increment: quantity } },
       create: { cartId: cart.id, productId, quantity }
     })
 

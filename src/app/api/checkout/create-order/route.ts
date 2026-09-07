@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
+import { calculateItemPrice } from '@/lib/pricing'
 import { razorpay } from '@/lib/razorpay'
 import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountStatus } from '@prisma/client'
 
@@ -58,7 +59,7 @@ export async function POST(req: Request) {
           throw new Error(`Insufficient stock for ${product.title}.`)
         }
 
-        const effectivePrice = product.customerPrice ?? product.price
+        const effectivePrice = calculateItemPrice(product, item.quantity)
         const subtotal = effectivePrice * item.quantity
         totalAmount += subtotal
 
@@ -72,13 +73,17 @@ export async function POST(req: Request) {
       }
     })
 
+    const finalAmountPaise = Math.round(totalAmount)
+
+    console.log("[DEBUG] Runtime RAZORPAY_KEY_ID:", process.env.RAZORPAY_KEY_ID?.substring(0, 15) + "...");
+
     // Create Razorpay Order
     if (!razorpay) {
       throw new Error("Payment gateway is not configured.")
     }
 
     const options = {
-      amount: totalAmount, // in paise
+      amount: finalAmountPaise, // strictly in integer paise
       currency: "INR",
       receipt: `order_${session.userId?.substring(0,8)}_${Date.now()}`
     };
@@ -91,8 +96,8 @@ export async function POST(req: Request) {
       const order = await tx.order.create({
         data: {
           customerId: session.userId!,
-          total: totalAmount,
-          subtotal: totalAmount,
+          total: finalAmountPaise,
+          subtotal: finalAmountPaise,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
           addressId: addressId || null,
@@ -107,7 +112,7 @@ export async function POST(req: Request) {
         data: {
           userId: session.userId!,
           orderId: order.id,
-          amount: totalAmount,
+          amount: finalAmountPaise,
           currency: 'INR',
           type: PaymentType.CUSTOMER_ORDER,
           status: PaymentStatus.PENDING,
@@ -138,14 +143,18 @@ export async function POST(req: Request) {
       orderId: createdOrder.id,
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,
-      amount: totalAmount
+      amount: finalAmountPaise
     })
   } catch (error: any) {
     console.error("Create Checkout Order Error:", error)
     if (error.message === "UNAUTHORIZED") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+    
+    // Extract actual error from Razorpay SDK if available
+    const errorMsg = error.error?.description || error.message || "Internal Server Error";
+    
     // Return standard error to client
-    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 })
+    return NextResponse.json({ error: errorMsg }, { status: 500 })
   }
 }

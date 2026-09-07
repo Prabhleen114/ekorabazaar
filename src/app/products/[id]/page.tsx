@@ -180,7 +180,7 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
 
           {/* Add to Cart Widget */}
-          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={product.moq} />
+          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={product.moq} category={displayProduct.category} />
 
           <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>

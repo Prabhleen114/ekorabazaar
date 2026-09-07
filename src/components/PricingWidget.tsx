@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus, ShoppingCart, Loader2 } from "lucide-react";
-import { useRazorpayCheckout } from "@/hooks/useRazorpayCheckout";
+import { Minus, Plus, ShoppingCart, Loader2, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 type Tier = {
@@ -12,10 +11,12 @@ type Tier = {
   discountPct: number;
 };
 
-export default function PricingWidget({ productId, tiers, moq = 1 }: { productId?: string; basePrice?: number; tiers: Tier[]; moq?: number }) {
+export default function PricingWidget({ productId, tiers, moq = 1, category }: { productId?: string; basePrice?: number; tiers: Tier[]; moq?: number; category?: string }) {
   const [quantity, setQuantity] = useState(moq);
-  const { checkout, isProcessing } = useRazorpayCheckout();
   const [errorMsg, setErrorMsg] = useState("");
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isAddedSuccess, setIsAddedSuccess] = useState(false);
+  const [isBuyingNow, setIsBuyingNow] = useState(false);
 
   const router = useRouter();
 
@@ -23,6 +24,8 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
     if (!productId) return;
     
     if (actionType === 'cart') {
+      setIsAddingToCart(true);
+      setErrorMsg("");
       try {
         const res = await fetch('/api/cart', {
           method: 'POST',
@@ -34,16 +37,30 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
           return;
         }
         if (!res.ok) throw new Error('Failed to add to cart');
-        router.push('/cart');
+        
+        setIsAddedSuccess(true);
+        
+        setTimeout(() => {
+          // Attempt to go back smoothly if they came from our shop
+          if (document.referrer && document.referrer.includes(window.location.host) && document.referrer.includes('/shop')) {
+            router.back();
+          } else if (category) {
+            router.push(`/shop?category=${encodeURIComponent(category)}`);
+          } else {
+            router.push('/shop');
+          }
+        }, 1200);
+
       } catch (err: any) {
         setErrorMsg(err.message);
+        setIsAddingToCart(false);
       }
       return;
     }
 
     if (actionType === 'buy_now') {
-      // For buy now, we want them to go to checkout page so they can select address.
-      // But we don't have a direct product checkout yet. Adding to cart and redirecting to checkout is best.
+      setIsBuyingNow(true);
+      setErrorMsg("");
       try {
         const res = await fetch('/api/cart', {
           method: 'POST',
@@ -54,15 +71,19 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
           router.push(`/login?redirect=/products/${productId}`);
           return;
         }
+        if (!res.ok) throw new Error('Failed to proceed to checkout');
         router.push('/checkout');
       } catch (err: any) {
         setErrorMsg(err.message);
+        setIsBuyingNow(false);
       }
     }
   };
 
   const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];
   const subtotal = currentTier.price * quantity;
+
+  const isProcessing = isAddingToCart || isBuyingNow || isAddedSuccess;
 
   return (
     <>
@@ -136,17 +157,17 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
             <button 
               onClick={() => handleAction('cart')}
               disabled={isProcessing}
-              className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              className={`w-full text-white py-3.5 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-90 disabled:cursor-not-allowed ${isAddedSuccess ? "bg-emerald-600 hover:bg-emerald-700" : "bg-brand-charcoal hover:bg-brand-charcoal/90"}`}
             >
-              {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />} 
-              {isProcessing ? "Adding..." : "Add to Cart"}
+              {isAddingToCart ? <Loader2 className="w-5 h-5 animate-spin" /> : (isAddedSuccess ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />)} 
+              {isAddingToCart ? "Adding..." : (isAddedSuccess ? "Added to cart ✓" : "Add to Cart")}
             </button>
             <button 
               onClick={() => handleAction('buy_now')}
               disabled={isProcessing}
               className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Buy Now
+              {isBuyingNow ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
             </button>
           </div>
         </div>
@@ -165,16 +186,16 @@ export default function PricingWidget({ productId, tiers, moq = 1 }: { productId
           <button 
             onClick={() => handleAction('cart')}
             disabled={isProcessing}
-            className="bg-brand-charcoal text-white px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
+            className={`${isAddedSuccess ? "bg-emerald-600 text-white" : "bg-brand-charcoal text-white"} px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg min-h-[48px] disabled:opacity-90 disabled:cursor-not-allowed`}
           >
-            <ShoppingCart className="w-5 h-5" />
+            {isAddingToCart ? <Loader2 className="w-5 h-5 animate-spin" /> : (isAddedSuccess ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />)}
           </button>
           <button 
             onClick={() => handleAction('buy_now')}
             disabled={isProcessing}
             className="flex-1 bg-brand-orange text-white px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg shadow-brand-orange/20 min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
+            {isBuyingNow ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
           </button>
         </div>
       </div>
