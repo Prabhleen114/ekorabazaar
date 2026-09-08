@@ -59,14 +59,14 @@ export default function Footer() {
                 Muzaffarpur, Bihar - 842001
               </p>
               <p className="pt-1">
-                <a href="tel:+917783053603" className="hover:text-brand-charcoal transition-colors">+91 7783053603</a>
+                <a href="tel:+919041500605" className="hover:text-brand-charcoal transition-colors">+91 9041500605</a>
               </p>
               <p>
                 <a href="mailto:techekora@gmail.com" className="hover:text-brand-charcoal transition-colors">techekora@gmail.com</a>
               </p>
               <div className="pt-2">
                 <a 
-                  href="https://wa.me/917783053603?text=Hi%20Ekora!%20I'm%20interested%20in%20becoming%20a%20Founding%20Creator."
+                  href="https://wa.me/919041500605?text=Hi%20Ekora!%20I'm%20interested%20in%20becoming%20a%20Founding%20Creator."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block transition-transform hover:scale-105"

@@ -1,6 +1,7 @@
 import OnboardingContainer from "./OnboardingContainer";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 import type { Metadata } from "next";
 import serialize from "serialize-javascript";
 
@@ -62,8 +63,14 @@ export default function StartSellingPage() {
           <h1 className="text-4xl md:text-5xl font-bold font-serif tracking-tight text-brand-charcoal mb-4">
             Creator Onboarding
           </h1>
-          <p className="text-lg md:text-xl text-brand-charcoal/60 leading-relaxed">
+          <p className="text-lg md:text-xl text-brand-charcoal/60 leading-relaxed mb-4">
             Apply to become a Founding Creator. Your progress is saved automatically.
+          </p>
+          <p className="text-sm font-medium text-brand-charcoal/70">
+            Already a creator?{" "}
+            <Link href="/login" className="text-brand-orange hover:underline font-bold">
+              Creator Login
+            </Link>
           </p>
         </div>
       </section>

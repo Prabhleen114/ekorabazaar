@@ -1,120 +1,106 @@
-import { NextRequest, NextResponse } from "next/server";
-import { CONSENT_VERSION } from "@/lib/consentVersion";
-import fs from "fs";
-import path from "path";
+import { NextResponse } from 'next/server'
+import prisma from '@/lib/db'
+import { getSession, createSession } from '@/lib/session'
+import { requireAuth } from '@/lib/auth'
+import { SellerApplicationStatus, SellerAccountStatus } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
-/**
- * POST /api/seller-application
- *
- * Server-side entry point for all seller onboarding submissions.
- *
- * Consent enforcement (P0):
- *  - mandatoryAccepted must be boolean true (not string, not null)
- *  - version must match CONSENT_VERSION
- *  - timestamp is discarded from client and replaced server-side
- *
- * The client-side checkbox remains the UX gate. This route is the
- * authoritative enforcement layer that cannot be bypassed via browser.
- */
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const session = await getSession()
+    const body = await req.json()
+    const { brandName, legalName, address, gstNumber, panNumber, email, password } = body
 
-    // ── Consent Validation ──────────────────────────────────────────────────
-    const consent = body.legalConsent;
+    let currentUserId = session?.userId
 
-    // Case C: legalConsent missing entirely
-    if (!consent || typeof consent !== "object") {
-      return NextResponse.json(
-        { error: "Missing legal consent. Consent is required to submit an application." },
-        { status: 400 }
-      );
-    }
-
-    // Case B & D: mandatoryAccepted must be exactly boolean true
-    if (consent.mandatoryAccepted !== true) {
-      return NextResponse.json(
-        { error: "Mandatory legal consent must be explicitly accepted." },
-        { status: 400 }
-      );
-    }
-
-    // Case F: consent version must match the current policy version
-    if (consent.version !== CONSENT_VERSION) {
-      return NextResponse.json(
-        {
-          error: `Consent version mismatch. Expected ${CONSENT_VERSION}, received ${consent.version ?? "(missing)"}.`,
-        },
-        { status: 400 }
-      );
-    }
-
-    // Case E: marketingAccepted must be a boolean (true or false both accepted)
-    if (typeof consent.marketingAccepted !== "boolean") {
-      return NextResponse.json(
-        { error: "marketingAccepted must be a boolean." },
-        { status: 400 }
-      );
-    }
-
-    // ── Application Data Validation ─────────────────────────────────────────
-    const { fullName, email, mobile, brandName } = body;
-    if (!fullName || !email || !mobile || !brandName) {
-      return NextResponse.json(
-        { error: "Missing required application fields: fullName, email, mobile, brandName." },
-        { status: 400 }
-      );
-    }
-
-    // ── Build the document ────────────────────────────────────────
-    // Destructure to explicitly exclude any client-supplied legalConsent object.
-    // We build the consent record ourselves server-side.
-    const {
-      legalConsent: _clientConsent, // intentionally discarded
-      ...applicationFields
-    } = body;
-
-    const docData = {
-      id: Math.random().toString(36).substring(2, 9),
-      ...applicationFields,
-      status: "Payment Pending",
-      applicationStage: "Submitted",
-      source: "seller-onboarding",
-      // Server-side timestamps — cannot be forged by client
-      createdAt: new Date().toISOString(),
-      legalConsent: {
-        version: CONSENT_VERSION,               // from server constant, not client
-        timestamp: new Date().toISOString(),    // generated server-side
-        mandatoryAccepted: true,                // validated above
-        marketingAccepted: consent.marketingAccepted,
-      },
-    };
-
-    // ── Persistence Layer ───────────────────────────────────────────
-    // Using local JSON file for persistence as per project architecture.
-    try {
-      const filePath = path.join(process.cwd(), "applications.json");
-      let currentApps = [];
-      if (fs.existsSync(filePath)) {
-        const fileContent = fs.readFileSync(filePath, "utf-8");
-        currentApps = JSON.parse(fileContent || "[]");
+    // If not authenticated, we must create a new user account
+    if (!currentUserId) {
+      if (!email || !password) {
+        return NextResponse.json({ error: "Authentication required or missing account creation fields." }, { status: 400 })
       }
-      currentApps.push(docData);
-      fs.writeFileSync(filePath, JSON.stringify(currentApps, null, 2), "utf-8");
-    } catch (fsErr) {
-      console.error("Failed to write to local applications.json:", fsErr);
-      return NextResponse.json(
-        { error: "Failed to persist application. Please try again." },
-        { status: 500 }
-      );
+
+      // Check for duplicate email
+      const existingUser = await prisma.user.findUnique({ where: { email } })
+      if (existingUser) {
+        return NextResponse.json({ error: "An account with this email already exists. Please log in." }, { status: 409 })
+      }
+
+      // Hash password and create User
+      const passwordHash = await bcrypt.hash(password, 10)
+      const newUser = await prisma.user.create({
+        data: {
+          email,
+          passwordHash,
+          role: 'SELLER'
+        }
+      })
+
+      currentUserId = newUser.id
     }
 
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (err) {
-    console.error("Seller application API error:", err);
-    return NextResponse.json(
-      { error: "Internal server error. Please try again." },
-      { status: 500 }
-    );
+    // Create or update the seller application
+    const seller = await prisma.seller.upsert({
+      where: { userId: currentUserId },
+      update: {
+        brandName,
+        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
+      },
+      create: {
+        id: `EKO-SELL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
+        userId: currentUserId,
+        brandName,
+        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
+        accountStatus: SellerAccountStatus.DISABLED,
+      },
+    })
+
+    const business = await prisma.sellerBusiness.upsert({
+      where: { sellerId: seller.id },
+      update: {
+        legalName,
+        address,
+        gstin: gstNumber || panNumber || '',
+      },
+      create: {
+        sellerId: seller.id,
+        legalName,
+        businessType: 'INDIVIDUAL', // default or extract from body if available
+        address,
+        gstin: gstNumber || panNumber || '',
+      },
+    })
+
+    // Do NOT automatically create a session.
+    // The creator must manually log in from the success page.
+
+    return NextResponse.json({ success: true, sellerId: seller.id, status: seller.applicationStatus })
+  } catch (error: any) {
+    console.error("Seller Application API Error:", error)
+    if (error.message === "UNAUTHORIZED") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const session = await requireAuth()
+
+    const seller = await prisma.seller.findUnique({
+      where: { userId: session.userId! },
+      include: { businessDetails: true }
+    })
+
+    if (!seller) {
+      return NextResponse.json({ error: "Seller application not found" }, { status: 404 })
+    }
+
+    return NextResponse.json({ success: true, application: seller })
+  } catch (error: any) {
+    if (error.message === "UNAUTHORIZED") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }

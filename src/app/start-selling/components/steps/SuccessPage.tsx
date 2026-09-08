@@ -28,7 +28,7 @@ export default function SuccessPage() {
       </h1>
       
       <p className="text-lg text-brand-charcoal/60 max-w-xl mx-auto mb-10 leading-relaxed">
-        Your onboarding request has been received. You will receive updates via Email and WhatsApp throughout the process.
+        Your creator application has been received and your account has been created. Once your application is approved, you can access your Seller Dashboard.
       </p>
 
       <div className="bg-white p-8 rounded-3xl border border-brand-linen shadow-sm max-w-lg w-full mb-10 text-left">
@@ -48,12 +48,21 @@ export default function SuccessPage() {
         </ul>
       </div>
 
-      <Link 
-        href="/"
-        className="flex items-center gap-2 px-8 py-4 bg-brand-charcoal text-white rounded-xl font-bold hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-md shadow-brand-charcoal/20"
-      >
-        <Home className="w-5 h-5" /> Return Home
-      </Link>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link 
+          href="/"
+          className="flex items-center gap-2 px-8 py-4 bg-white border border-brand-linen text-brand-charcoal rounded-xl font-bold hover:bg-black/5 transition-all shadow-sm"
+        >
+          <Home className="w-5 h-5" /> Return Home
+        </Link>
+
+        <Link 
+          href="/login"
+          className="flex items-center gap-2 px-8 py-4 bg-brand-charcoal text-white rounded-xl font-bold hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-md shadow-brand-charcoal/20"
+        >
+          Creator Login
+        </Link>
+      </div>
     </div>
   );
 }

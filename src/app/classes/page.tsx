@@ -380,7 +380,7 @@ export default function ClassesPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a 
-              href="https://wa.me/919465533394?text=Hi%20Ekora!%20I'd%20like%20to%20enroll%20in%20a%20class."
+              href="https://wa.me/919041500605?text=Hi%20Ekora!%20I'd%20like%20to%20enroll%20in%20a%20class."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-4 text-base font-bold transition-all shadow-lg hover:shadow-brand-orange/20"

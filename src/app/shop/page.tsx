@@ -2,9 +2,11 @@ import { Metadata } from "next";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ShopClient from "./ShopClient";
-import { mockProducts } from "@/lib/products";
+import prisma from "@/lib/db";
+import { ProductStatus } from "@prisma/client";
 import { Suspense } from "react";
 import serialize from "serialize-javascript";
+import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Shop Premium Raw Materials & Craft Supplies | Ekora Wholesale",
@@ -20,51 +22,28 @@ export const metadata: Metadata = {
   }
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const dbProducts = await prisma.product.findMany({
+    where: { 
+      status: ProductStatus.PUBLISHED,
+      seller: { accountStatus: 'ACTIVE' }
+    },
+    take: 20
+  });
+
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Wholesale Raw Materials Catalog",
     "url": "https://www.ekorabazaar.in/shop",
     "description": "Premium craft supplies and raw materials for creators.",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": mockProducts.slice(0, 20).map((product, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": {
-          "@type": "Product",
-          "name": product.name,
-          "image": product.image,
-          "url": `https://www.ekorabazaar.in/products/${product.id}`,
-          "offers": {
-            "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "INR"
-          }
-        }
-      }))
-    }
+    "mainEntity": generateItemListSchema(dbProducts, "Wholesale Raw Materials Catalog", "https://www.ekorabazaar.in/shop")
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.ekorabazaar.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Shop",
-        "item": "https://www.ekorabazaar.in/shop"
-      }
-    ]
-  };
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.ekorabazaar.in" },
+    { name: "Shop", url: "https://www.ekorabazaar.in/shop" }
+  ]);
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">

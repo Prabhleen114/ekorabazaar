@@ -78,6 +78,12 @@ export default function Navbar() {
           {/* Right: CTA & Mobile Toggle */}
           <div className="flex-1 flex justify-end items-center gap-4">
             <Link
+              href="/login"
+              className="hidden md:inline-flex items-center justify-center text-brand-charcoal hover:text-brand-orange font-semibold text-sm transition-colors"
+            >
+              Creator Login
+            </Link>
+            <Link
               href="/sell/start-selling"
               className="hidden md:inline-flex items-center justify-center bg-brand-orange hover:bg-brand-terracotta text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all shadow-md shadow-brand-orange/10 hover:scale-[1.02]"
             >
@@ -118,7 +124,14 @@ export default function Navbar() {
               ))}
             </div>
             
-            <div className="pb-12 mt-auto">
+            <div className="pb-12 mt-auto flex flex-col gap-3">
+              <Link
+                href="/login"
+                className="flex items-center justify-center bg-white text-brand-charcoal border border-brand-linen rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-linen/30 transition-all text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Creator Login
+              </Link>
               <Link
                 href="/sell/start-selling"
                 className="flex items-center justify-center bg-brand-orange text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-terracotta transition-all shadow-lg shadow-brand-orange/15 text-center"

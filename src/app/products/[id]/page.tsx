@@ -1,112 +1,122 @@
-import { getProductById } from "@/lib/products";
-import { notFound } from "next/navigation";
+import prisma from "@/lib/db";
+import { ProductStatus } from "@prisma/client";
+import { notFound, permanentRedirect } from "next/navigation";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
 import { Metadata } from "next";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
+import ContactSupplierButton from "@/components/ContactSupplierButton";
 import Link from "next/link";
 import serialize from "serialize-javascript";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MessageCircle } from "lucide-react";
+import { TrackViewItem } from "@/components/GA4Tracker";
+import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
+async function handleLegacyRedirect(id: string) {
+  if (!/^\d+$/.test(id)) return false;
+
+  try {
+    const legacyProducts = (await import('@/lib/data/products.json')).default;
+    const legacyProduct = legacyProducts.find((p: any) => String(p.id) === String(id));
+    
+    if (legacyProduct && (legacyProduct.name || legacyProduct.title)) {
+      const modernProduct = await prisma.product.findFirst({
+        where: { 
+          title: legacyProduct.name || legacyProduct.title,
+          status: 'PUBLISHED'
+        },
+        select: { id: true }
+      });
+
+      if (modernProduct) {
+        permanentRedirect(`/products/${modernProduct.id}`);
+      }
+    }
+  } catch (e) {
+    console.error("Legacy redirect error", e);
+  }
+  
+  notFound();
+}
+
 // Generate SEO Metadata dynamically
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const product = getProductById(id);
   
-  if (!product) {
+  // Try catching legacy numeric IDs during metadata generation
+  if (/^\d+$/.test(id)) {
+    await handleLegacyRedirect(id);
+  }
+
+  const product = await prisma.product.findUnique({
+    where: { id },
+    include: { seller: true }
+  });
+  
+  if (!product || product.status !== ProductStatus.PUBLISHED || product.seller?.accountStatus !== 'ACTIVE') {
     return { title: "Product Not Found | Ekora Bazaar" };
   }
 
-  return {
-    title: `${product.name} | Ekora Wholesale`,
-    description: product.description,
-    keywords: product.tags || [product.name, product.category, "wholesale raw materials", "Ekora"],
-    alternates: {
-      canonical: `https://www.ekorabazaar.in/products/${id}`,
-    },
-    openGraph: {
-      title: `${product.name} - Buy Wholesale on Ekora`,
-      description: product.description,
-      url: `https://www.ekorabazaar.in/products/${id}`,
-      type: "article",
-      images: [
-        {
-          url: product.image || "https://www.ekorabazaar.in/og-image.jpg",
-          secureUrl: product.image || "https://www.ekorabazaar.in/og-image.jpg",
-          width: 800,
-          height: 800,
-          alt: product.name,
-          type: "image/jpeg",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.name} - Buy Wholesale on Ekora`,
-      description: product.description,
-      images: [product.image || "https://www.ekorabazaar.in/og-image.jpg"],
-    },
-  };
+  return generateProductMetadata(product);
 }
 
 export default async function ProductDetailsPage({ params }: Props) {
   const { id } = await params;
-  const product = getProductById(id);
 
-  if (!product) {
+  // Enforce legacy redirect checks inside the page component as well
+  if (/^\d+$/.test(id)) {
+    await handleLegacyRedirect(id);
+  }
+
+  const product = await prisma.product.findUnique({
+    where: { id },
+    include: { seller: true }
+  });
+
+  if (!product || product.status !== ProductStatus.PUBLISHED || product.seller?.accountStatus !== 'ACTIVE') {
     notFound();
   }
 
-  // Pre-populated JSON-LD Schema
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": product.name,
-    "image": product.image,
-    "description": product.description,
-    "keywords": product.tags ? product.tags.join(', ') : "",
-    "offers": {
-      "@type": "AggregateOffer",
-      "offerCount": product.tiers.length,
-      "lowPrice": product.tiers[product.tiers.length - 1].price,
-      "highPrice": product.tiers[0].price,
-      "priceCurrency": "INR"
-    }
+  const effectivePrice = (product.customerPrice ?? product.price) / 100;
+  const imageUrl = product.imageUrl || "/og-image.jpg";
+  const category = "General"; // Map from DB or default
+
+  const displayProduct = {
+    ...product,
+    name: product.title,
+    image: imageUrl,
+    category: category,
+    tags: [],
+    price: effectivePrice,
+    tiers: Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
+      ? (product.wholesaleTiers as any[]).map(t => ({
+          ...t,
+          price: t.price ? Math.round(t.price / 100) : effectivePrice,
+          minQty: t.minQty || product.moq
+        }))
+      : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }],
+    fragranceNotes: null as any,
+    usageLevels: null as any
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.ekorabazaar.in"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Shop",
-        "item": "https://www.ekorabazaar.in/shop"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": product.name,
-        "item": `https://www.ekorabazaar.in/products/${product.id}`
-      }
-    ]
-  };
+  // Pre-populated JSON-LD Schema
+  const jsonLd = generateProductSchema(product, product.seller?.brandName);
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.ekorabazaar.in" },
+    { name: "Shop", url: "https://www.ekorabazaar.in/shop" },
+    { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${product.id}` }
+  ]);
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
+      <TrackViewItem item={displayProduct} />
       
       {/* Inject JSON-LD Schema for SEO Engine */}
       <script
@@ -118,9 +128,9 @@ export default async function ProductDetailsPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
       />
       {/* Visually hidden SEO tags */}
-      {product.tags && (
+      {displayProduct.tags && displayProduct.tags.length > 0 && (
         <div className="sr-only" aria-hidden="true">
-          {product.tags.join(', ')}
+          {displayProduct.tags.join(', ')}
         </div>
       )}
 
@@ -129,13 +139,9 @@ export default async function ProductDetailsPage({ params }: Props) {
         <div className="w-full md:w-1/2">
           {/* Edge-to-edge on mobile, rounded on desktop */}
           <div className="aspect-square bg-white md:rounded-3xl md:border border-brand-linen flex items-center justify-center p-0 md:p-8 md:sticky md:top-32 shadow-none md:shadow-sm overflow-hidden relative">
-            <Image 
-              src={product.image || "/og-image.jpg"} 
-              alt={product.name} 
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover md:object-contain" 
+            <ProductImageClient 
+              src={displayProduct.image} 
+              alt={displayProduct.name} 
             />
           </div>
         </div>
@@ -147,31 +153,31 @@ export default async function ProductDetailsPage({ params }: Props) {
             <Link href="/" className="hover:text-brand-orange transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3 mx-0.5" />
             <Link href="/shop" className="hover:text-brand-orange transition-colors">Shop</Link>
-            {product.department && (
+            {displayProduct.department && (
               <>
                 <ChevronRight className="w-3 h-3 mx-0.5" />
-                <Link href={`/shop?department=${encodeURIComponent(product.department)}`} className="hover:text-brand-orange transition-colors">{product.department}</Link>
+                <Link href={`/shop?department=${encodeURIComponent(displayProduct.department)}`} className="hover:text-brand-orange transition-colors">{displayProduct.department}</Link>
               </>
             )}
             <ChevronRight className="w-3 h-3 mx-0.5" />
-            <Link href={`/shop?category=${encodeURIComponent(product.category)}`} className="hover:text-brand-orange transition-colors">{product.category}</Link>
+            <Link href={`/shop?category=${encodeURIComponent(displayProduct.category)}`} className="hover:text-brand-orange transition-colors">{displayProduct.category}</Link>
           </nav>
           
           <div className="mb-2 flex items-center gap-2 flex-wrap">
-            {product.department && (
+            {displayProduct.department && (
               <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 bg-brand-bg px-2 py-0.5 rounded border border-brand-linen">
-                {product.department}
+                {displayProduct.department}
               </span>
             )}
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{product.category}</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{displayProduct.category}</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-3 md:mb-4">
-            {product.name}
+            {displayProduct.name}
           </h1>
           
           <div className="hidden md:block">
             <p className="text-brand-charcoal/70 leading-relaxed mb-6">
-              {product.description}
+              {displayProduct.description}
             </p>
           </div>
 
@@ -184,7 +190,20 @@ export default async function ProductDetailsPage({ params }: Props) {
             </div>
           </div>
 
-          <PricingWidget basePrice={product.price} tiers={product.tiers} />
+          {/* Add to Cart Widget */}
+          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={product.moq} category={displayProduct.category} />
+
+          <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h4 className="font-bold text-brand-charcoal">Supplier: {product.seller?.brandName || "Verified Ekora Supplier"}</h4>
+              <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
+            </div>
+            <ContactSupplierButton 
+              productName={displayProduct.name} 
+              productId={product.id} 
+              sellerId={product.sellerId} 
+            />
+          </div>
           
           {/* Details / Specifications (Collapsible on Mobile) */}
           <div className="mt-8 space-y-4">
@@ -197,12 +216,12 @@ export default async function ProductDetailsPage({ params }: Props) {
                 </span>
               </summary>
               <div className="p-4 pt-0 text-brand-charcoal/70 leading-relaxed text-sm border-t border-brand-linen">
-                {product.description}
+                {displayProduct.description}
               </div>
             </details>
 
             {/* Fragrance Notes */}
-            {product.fragranceNotes && (
+            {displayProduct.fragranceNotes && (
               <details className="group bg-white border border-brand-linen rounded-2xl overflow-hidden md:border-none md:bg-transparent [&_summary::-webkit-details-marker]:hidden" open>
                 <summary className="font-bold text-base md:font-serif md:text-xl text-brand-charcoal p-4 md:p-0 md:mb-6 cursor-pointer flex justify-between items-center bg-stone-50 md:bg-transparent group-open:bg-white md:pointer-events-none transition-colors">
                   <span className="md:bg-rose-50 md:text-rose-900 md:py-2.5 md:px-6 md:rounded-xl md:border md:border-rose-100 md:shadow-sm md:w-full md:text-center md:block">Fragrance Notes</span>
@@ -215,19 +234,19 @@ export default async function ProductDetailsPage({ params }: Props) {
                     <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                       <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Top Notes</h4>
                       <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(product.fragranceNotes.top) ? product.fragranceNotes.top.join(", ") : product.fragranceNotes.top}
+                        {Array.isArray(displayProduct.fragranceNotes.top) ? displayProduct.fragranceNotes.top.join(", ") : displayProduct.fragranceNotes.top}
                       </p>
                     </div>
                     <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                       <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Heart Notes</h4>
                       <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(product.fragranceNotes.heart) ? product.fragranceNotes.heart.join(", ") : product.fragranceNotes.heart}
+                        {Array.isArray(displayProduct.fragranceNotes.heart) ? displayProduct.fragranceNotes.heart.join(", ") : displayProduct.fragranceNotes.heart}
                       </p>
                     </div>
                     <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
                       <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Base Notes</h4>
                       <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(product.fragranceNotes.base) ? product.fragranceNotes.base.join(", ") : product.fragranceNotes.base}
+                        {Array.isArray(displayProduct.fragranceNotes.base) ? displayProduct.fragranceNotes.base.join(", ") : displayProduct.fragranceNotes.base}
                       </p>
                     </div>
                   </div>
@@ -236,7 +255,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             )}
 
             {/* Recommended Usage */}
-            {product.usageLevels && (
+            {displayProduct.usageLevels && (
               <details className="group bg-white border border-brand-linen rounded-2xl overflow-hidden md:border-none md:bg-transparent [&_summary::-webkit-details-marker]:hidden" open>
                 <summary className="font-bold text-base md:font-serif md:text-xl text-brand-charcoal p-4 md:p-0 md:mb-6 cursor-pointer flex justify-between items-center bg-stone-50 md:bg-transparent group-open:bg-white md:pointer-events-none transition-colors">
                   <span className="md:bg-brand-linen/30 md:py-2.5 md:px-6 md:rounded-xl md:w-full md:text-center md:block">Recommended Usage</span>
@@ -254,7 +273,7 @@ export default async function ProductDetailsPage({ params }: Props) {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-brand-linen bg-white">
-                        {Object.entries(product.usageLevels).map(([app, usage]) => (
+                        {Object.entries(displayProduct.usageLevels).map(([app, usage]) => (
                           <tr key={app} className="hover:bg-brand-bg/50 transition-colors">
                             <td className="px-4 md:px-6 py-3 font-medium text-brand-charcoal text-xs md:text-sm">{app}</td>
                             <td className="px-4 md:px-6 py-3 text-right font-bold text-brand-orange text-xs md:text-sm">{usage as string}</td>

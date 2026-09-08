@@ -9,6 +9,7 @@ export default function CookieConsent() {
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
     if (!consent) {
+      // eslint-disable-next-line
       setShowConsent(true);
     }
   }, []);

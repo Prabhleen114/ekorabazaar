@@ -4,19 +4,31 @@ import { useOnboarding } from "../../context/OnboardingContext";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, ShieldCheck, Loader2 } from "lucide-react";
 import { CONSENT_VERSION } from "@/lib/consentVersion";
+import { useRazorpayCheckout } from "@/hooks/useRazorpayCheckout";
 
 export default function StepPayment() {
-  const { data, setCurrentStep } = useOnboarding();
+  const { data, updateData, setCurrentStep } = useOnboarding();
   const [agreedMandatory, setAgreedMandatory] = useState(false);
   const [agreedMarketing, setAgreedMarketing] = useState(false);
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const { checkout, isProcessing: isRazorpayLoading } = useRazorpayCheckout();
 
   const handlePayment = async () => {
     setHasAttemptedSubmit(true);
 
     // Client-side gate — UX validation before the network call
+    if (!data.password || data.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+    
+    if (data.password !== data.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     if (!agreedMandatory) {
       setError("Please agree to the mandatory legal terms to continue.");
       return;
@@ -58,9 +70,30 @@ export default function StepPayment() {
         throw new Error(result.error || "Submission failed.");
       }
 
-      // Simulate payment gateway handoff delay (replace with Razorpay/Cashfree SDK)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setCurrentStep(10);
+      // Step 2: Authenticate so we can create order
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, password: data.password })
+      });
+      if (!loginRes.ok) throw new Error("Failed to authenticate for payment");
+
+      // Step 3: Open Razorpay
+      checkout({
+        apiCreateRoute: "/api/seller/payment/create-order",
+        apiVerifyRoute: "/api/seller/payment/confirm-payment",
+        createPayload: {}, // No payload needed for onboarding fee
+        name: "Ekora Bazaar Onboarding",
+        description: "Founding Creator Fee",
+        onSuccess: () => {
+          setCurrentStep(10); // Success step
+        },
+        onError: (err) => {
+          setError(err);
+          setIsSubmitting(false);
+        }
+      });
+      
     } catch (err: unknown) {
       console.error(err);
       const message = err instanceof Error ? err.message : "Failed to submit application. Please try again.";
@@ -104,6 +137,53 @@ export default function StepPayment() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Account Creation Section */}
+        <div className="mb-8">
+          <h3 className="text-xl font-bold font-serif text-brand-charcoal mb-4">Create Your Account</h3>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Email Address</label>
+              <input
+                type="email"
+                value={data.email}
+                disabled
+                className="w-full px-4 py-3 rounded-xl border border-brand-linen bg-brand-bg/50 text-brand-charcoal/60 cursor-not-allowed"
+              />
+              <p className="text-xs text-brand-charcoal/50 mt-1">This will be your login email.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Password *</label>
+                <input
+                  type="password"
+                  value={data.password || ""}
+                  onChange={(e) => updateData({ password: e.target.value })}
+                  placeholder="Min 8 characters"
+                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 bg-brand-bg/50 transition-all ${
+                    hasAttemptedSubmit && (!data.password || data.password.length < 8)
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-brand-linen focus:ring-brand-charcoal"
+                  }`}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-brand-charcoal mb-1.5">Confirm Password *</label>
+                <input
+                  type="password"
+                  value={data.confirmPassword || ""}
+                  onChange={(e) => updateData({ confirmPassword: e.target.value })}
+                  placeholder="Confirm your password"
+                  className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 bg-brand-bg/50 transition-all ${
+                    hasAttemptedSubmit && (data.password !== data.confirmPassword || !data.confirmPassword)
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-brand-linen focus:ring-brand-charcoal"
+                  }`}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -179,10 +259,10 @@ export default function StepPayment() {
 
         <button
           onClick={handlePayment}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isRazorpayLoading}
           className="w-full flex items-center justify-center gap-2 py-4 bg-brand-charcoal text-white rounded-xl font-bold hover:bg-black transition-all shadow-xl shadow-brand-charcoal/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? (
+          {isSubmitting || isRazorpayLoading ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" /> Processing...
             </>

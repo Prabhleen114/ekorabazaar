@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import dataRaw from "@/lib/data/formulations.json";
+import ProductImageClient from "@/components/ProductImageClient";
 
 type Formulation = {
   title: string;
@@ -66,11 +67,11 @@ export default async function FormulationSinglePage({ params }: { params: Promis
           </header>
 
           {formulation.imageUrl && (
-            <div className="w-full mb-12">
-              <img 
+            <div className="w-full mb-12 aspect-[16/9] relative rounded-2xl overflow-hidden shadow-md max-h-[500px]">
+              <ProductImageClient 
                 src={formulation.imageUrl}
                 alt={formulation.title}
-                className="w-full h-auto rounded-2xl shadow-md object-cover max-h-[500px]"
+                sizes="(max-width: 1024px) 100vw, 800px"
               />
             </div>
           )}

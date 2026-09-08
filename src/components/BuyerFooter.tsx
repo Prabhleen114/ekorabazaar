@@ -70,14 +70,14 @@ export default function BuyerFooter() {
                 Muzaffarpur, Bihar - 842001
               </p>
               <p className="pt-1">
-                <a href="tel:+919465533394" className="hover:text-brand-charcoal transition-colors">+91 9465533394</a>
+                <a href="tel:+919041500605" className="hover:text-brand-charcoal transition-colors">+91 9041500605</a>
               </p>
               <p>
                 <a href="mailto:support@ekorabazaar.com" className="hover:text-brand-charcoal transition-colors">support@ekorabazaar.com</a>
               </p>
               <div className="pt-2">
                 <a 
-                  href="https://wa.me/919465533394?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
+                  href="https://wa.me/919041500605?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block transition-transform hover:scale-105"

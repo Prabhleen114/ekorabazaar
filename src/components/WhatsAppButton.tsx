@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
     ? "Hi Ekora! I'm interested in becoming a Founding Creator." 
     : "HI! i have a query";
     
-  const whatsappUrl = `https://wa.me/917783053603?text=${encodeURIComponent(text)}`;
+  const whatsappUrl = `https://wa.me/919041500605?text=${encodeURIComponent(text)}`;
 
   return (
     <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 flex items-center justify-end pointer-events-none">

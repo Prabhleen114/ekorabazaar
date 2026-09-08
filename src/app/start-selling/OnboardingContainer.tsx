@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useEffect } from "react";
 import { OnboardingProvider, useOnboarding } from "./context/OnboardingContext";
 import ProgressIndicator from "./components/ProgressIndicator";
 import {
@@ -17,6 +17,34 @@ import {
 
 function OnboardingContent() {
   const { currentStep } = useOnboarding();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      if (currentStep === 1) {
+        (window as any).gtag('event', 'tutorial_begin', {
+          event_category: 'Onboarding'
+        });
+      }
+      if (currentStep === 9) {
+        (window as any).gtag('event', 'begin_checkout', {
+          value: 499,
+          currency: 'INR',
+          items: [{ item_name: 'Ekora Seller Onboarding Fee' }]
+        });
+      }
+      if (currentStep === 10) {
+        (window as any).gtag('event', 'sign_up', {
+          method: 'creator_application'
+        });
+        (window as any).gtag('event', 'purchase', {
+          transaction_id: 'ONB_' + Date.now(),
+          value: 499,
+          currency: 'INR',
+          items: [{ item_name: 'Ekora Seller Onboarding Fee' }]
+        });
+      }
+    }
+  }, [currentStep]);
 
   return (
     <div className="w-full relative">

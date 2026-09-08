@@ -63,6 +63,18 @@ https://www.ekorabazaar.in/sell/categories
 Custom Gifts
 https://www.ekorabazaar.in/sell/categories
 
+Wholesale Fragrance Oils
+https://www.ekorabazaar.in/wholesale/fragrance-oils
+
+Wholesale Essential Oils
+https://www.ekorabazaar.in/wholesale/essential-oils
+
+Wholesale Silicone Moulds
+https://www.ekorabazaar.in/wholesale/candle-pillar-moulds
+
+Wholesale Candle Wax
+https://www.ekorabazaar.in/wholesale/premium-bases-waxes
+
 IMPORTANT URLS
 
 Home
@@ -155,7 +167,7 @@ Email
 techekora@gmail.com
 
 WhatsApp
-+91 7783053603
++91 9041500605
 
 Address
 Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar - 842001
