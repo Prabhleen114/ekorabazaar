@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { 
@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { DEPARTMENTS, DISCIPLINE_HUBS, DisciplineConfig } from "@/lib/taxonomy";
+import { DEPARTMENTS, DISCIPLINE_HUBS, DisciplineConfig, getDepartmentForCategory } from "@/lib/taxonomy";
 
 type Product = {
   id: string;
@@ -47,6 +47,17 @@ export default function ShopClient() {
   
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [facets, setFacets] = useState<{
+    departments: Record<string, number>;
+    categories: Record<string, number>;
+    disciplines: Record<string, number>;
+  } | null>(null);
+
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [sortBy, setSortBy] = useState("recommended");
   
   // Primary Taxonomy Filters
@@ -76,52 +87,120 @@ export default function ShopClient() {
     }
   }, [isMobileFilterOpen, isMobileSortOpen]);
 
-  // Initial Fetch & URL Parameter Sync
+  // Sync state from URL params
   useEffect(() => {
-    fetch(`/api/products?t=${Date.now()}`)
-      .then(res => res.json())
-      .then(data => {
-        const prodList = Array.isArray(data) ? data : (data?.products && Array.isArray(data.products) ? data.products : []);
-        setProducts(prodList);
-        setLoading(false);
+    const discParam = searchParams.get("discipline");
+    const deptParam = searchParams.get("department");
+    const catParam = searchParams.get("category");
+    const qParam = searchParams.get("q");
 
-        // Read URL params
-        const discParam = searchParams.get("discipline");
-        const deptParam = searchParams.get("department");
-        const catParam = searchParams.get("category");
-        const qParam = searchParams.get("q");
+    setSelectedDiscipline(discParam || null);
+    setSelectedDepartment(deptParam ? decodeURIComponent(deptParam) : null);
+    setSelectedCategory(catParam ? decodeURIComponent(catParam) : null);
+    setSearchQuery(qParam ? decodeURIComponent(qParam) : "");
 
-        setSelectedDiscipline(discParam || null);
-        setSelectedDepartment(deptParam ? decodeURIComponent(deptParam) : null);
-        setSelectedCategory(catParam ? decodeURIComponent(catParam) : null);
-        setSearchQuery(qParam ? decodeURIComponent(qParam) : "");
-
-        // If department or category is selected, expand that department
-        if (deptParam) {
-          setExpandedDepts(prev => ({ ...prev, [decodeURIComponent(deptParam)]: true }));
-        } else if (catParam) {
-          const decodedCat = decodeURIComponent(catParam);
-          const parentDept = DEPARTMENTS.find(d => d.subcategories.includes(decodedCat));
-          if (parentDept) {
-            setExpandedDepts(prev => ({ ...prev, [parentDept.name]: true }));
-          }
-        }
-      });
+    if (deptParam) {
+      setExpandedDepts(prev => ({ ...prev, [decodeURIComponent(deptParam)]: true }));
+    } else if (catParam) {
+      const decodedCat = decodeURIComponent(catParam);
+      const parentDept = DEPARTMENTS.find(d => d.subcategories.includes(decodedCat));
+      if (parentDept) {
+        setExpandedDepts(prev => ({ ...prev, [parentDept.name]: true }));
+      }
+    }
   }, [searchParams]);
 
-  // Count products per department & category dynamically
+  // Progressive Chunk Loading (Infinite Scroll)
+  const loadProducts = useCallback(async (pageToLoad: number, append: boolean) => {
+    if (append) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+    }
+
+    try {
+      const params = new URLSearchParams();
+      params.set("page", String(pageToLoad));
+      params.set("limit", "48");
+
+      if (selectedDiscipline) params.set("discipline", selectedDiscipline);
+      if (selectedDepartment) params.set("department", selectedDepartment);
+      if (selectedCategory) params.set("category", selectedCategory);
+      if (searchQuery) params.set("q", searchQuery);
+      if (priceOption !== "all") params.set("priceOption", priceOption);
+      if (priceOption === "custom") {
+        if (minPrice) params.set("minPrice", minPrice);
+        if (maxPrice) params.set("maxPrice", maxPrice);
+      }
+      if (inStockOnly) params.set("inStockOnly", "true");
+      if (sortBy) params.set("sortBy", sortBy);
+
+      const res = await fetch(`/api/products?${params.toString()}`);
+      const data = await res.json();
+      const newItems: Product[] = data.items || data.products || [];
+
+      if (append) {
+        setProducts(prev => [...prev, ...newItems]);
+      } else {
+        setProducts(newItems);
+      }
+
+      setTotalProducts(data.total ?? data.pagination?.total ?? newItems.length);
+      setHasMore(data.pagination?.hasMore ?? (data.pagination?.hasNextPage ?? false));
+      if (data.facets) {
+        setFacets(data.facets);
+      }
+    } catch (err) {
+      console.error("Failed to load products chunk:", err);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  }, [selectedDiscipline, selectedDepartment, selectedCategory, searchQuery, priceOption, minPrice, maxPrice, inStockOnly, sortBy]);
+
+  // Refetch page 1 on filter changes
+  useEffect(() => {
+    setPage(1);
+    loadProducts(1, false);
+  }, [loadProducts]);
+
+  // IntersectionObserver for Infinite Scroll
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore && !loading && !loadingMore) {
+        setPage(prevPage => {
+          const nextPage = prevPage + 1;
+          loadProducts(nextPage, true);
+          return nextPage;
+        });
+      }
+    }, { rootMargin: "400px" });
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [hasMore, loading, loadingMore, loadProducts]);
+
+  // Dynamic Facets & Taxonomy Counts
   const taxonomyCounts = useMemo(() => {
+    if (facets) {
+      return {
+        deptCounts: facets.departments || {},
+        catCounts: facets.categories || {},
+        discCounts: facets.disciplines || {}
+      };
+    }
+
     const deptCounts: Record<string, number> = {};
     const catCounts: Record<string, number> = {};
     const discCounts: Record<string, number> = {};
 
     products.forEach(p => {
-      if (p.department) {
-        deptCounts[p.department] = (deptCounts[p.department] || 0) + 1;
-      }
-      if (p.category) {
-        catCounts[p.category] = (catCounts[p.category] || 0) + 1;
-      }
+      const dept = p.department || getDepartmentForCategory(p.category);
+      if (dept) deptCounts[dept] = (deptCounts[dept] || 0) + 1;
+      if (p.category) catCounts[p.category] = (catCounts[p.category] || 0) + 1;
       if (p.disciplines) {
         p.disciplines.forEach(d => {
           discCounts[d] = (discCounts[d] || 0) + 1;
@@ -130,7 +209,7 @@ export default function ShopClient() {
     });
 
     return { deptCounts, catCounts, discCounts };
-  }, [products]);
+  }, [facets, products]);
 
   // Active discipline object
   const activeDisciplineInfo: DisciplineConfig | undefined = useMemo(() => {
@@ -189,59 +268,8 @@ export default function ShopClient() {
     router.push("/shop", { scroll: false });
   };
 
-  // Filter Logic
-  const filteredProducts = products.filter(p => {
-    // Discipline filter
-    if (selectedDiscipline && (!p.disciplines || !p.disciplines.includes(selectedDiscipline))) {
-      return false;
-    }
-
-    // Department filter
-    if (selectedDepartment && p.department !== selectedDepartment) {
-      return false;
-    }
-
-    // Category / Sub-category filter
-    if (selectedCategory && p.category.toLowerCase() !== selectedCategory.toLowerCase()) {
-      return false;
-    }
-
-    // Search Query
-    if (searchQuery) {
-      const qLower = searchQuery.toLowerCase();
-      const matchName = p.name.toLowerCase().includes(qLower);
-      const matchCat = p.category && p.category.toLowerCase().includes(qLower);
-      const matchDept = p.department && p.department.toLowerCase().includes(qLower);
-      if (!matchName && !matchCat && !matchDept) return false;
-    }
-
-    // Price Brackets
-    if (priceOption === "under_500" && p.price >= 500) return false;
-    if (priceOption === "500_1500" && (p.price < 500 || p.price > 1500)) return false;
-    if (priceOption === "1500_3000" && (p.price < 1500 || p.price > 3000)) return false;
-    if (priceOption === "over_3000" && p.price <= 3000) return false;
-
-    if (priceOption === "custom") {
-      const minVal = parseFloat(minPrice);
-      const maxVal = parseFloat(maxPrice);
-      if (!isNaN(minVal) && minVal > 0 && p.price < minVal) return false;
-      if (!isNaN(maxVal) && maxVal > 0 && p.price > maxVal) return false;
-    }
-
-    // Stock Filter
-    if (inStockOnly && p.inStock === false) return false;
-
-    return true;
-  });
-
-  // Sorting Logic
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price_asc") return a.price - b.price;
-    if (sortBy === "price_desc") return b.price - a.price;
-    if (sortBy === "newest") return parseInt(b.id || "0") - parseInt(a.id || "0");
-    if (sortBy === "discount_desc") return b.maxDiscount - a.maxDiscount;
-    return 0; // recommended / featured
-  });
+  // Products are already multi-axis filtered and sorted server-side
+  const sortedProducts = products;
 
   const activeFilterCount = 
     (selectedDiscipline ? 1 : 0) +
@@ -589,7 +617,7 @@ export default function ShopClient() {
                 {activeTitle}
               </h1>
               <p className="text-xs text-brand-charcoal/50 font-medium mt-0.5">
-                Showing {sortedProducts.length} wholesale products
+                Showing {sortedProducts.length} of {totalProducts} wholesale products
                 {selectedDepartment && !selectedCategory && ` in ${selectedDepartment}`}
               </p>
             </div>
@@ -634,49 +662,66 @@ export default function ShopClient() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-              {sortedProducts.map((product) => (
-                <Link 
-                  key={product.id} 
-                  href={`/products/${product.id}`} 
-                  className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
-                >
-                  <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
-                    <Image 
-                      src={product.image || "/og-image.jpg"} 
-                      alt={product.name} 
-                      fill 
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                    />
-                    {product.bulkDiscountAvailable && (
-                      <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
-                        <Tag className="w-3 h-3" /> Bulk Tier
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-3 md:p-5 flex-1 flex flex-col">
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-orange line-clamp-1">
-                        {product.category}
-                      </span>
-                    </div>
-                    <h2 className="font-semibold text-brand-charcoal mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-brand-orange transition-colors">
-                      {product.name}
-                    </h2>
-                    <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
-                      <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
-                      {product.maxDiscount > 0 && (
-                        <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
-                          Up to {product.maxDiscount}% off
-                        </span>
+            <>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                {sortedProducts.map((product) => (
+                  <Link 
+                    key={product.id} 
+                    href={`/products/${product.id}`} 
+                    className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
+                  >
+                    <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
+                      <Image 
+                        src={product.image || "/og-image.jpg"} 
+                        alt={product.name} 
+                        fill 
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      {product.bulkDiscountAvailable && (
+                        <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                          <Tag className="w-3 h-3" /> Bulk Tier
+                        </div>
                       )}
                     </div>
+
+                    <div className="p-3 md:p-5 flex-1 flex flex-col">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-orange line-clamp-1">
+                          {product.category}
+                        </span>
+                      </div>
+                      <h2 className="font-semibold text-brand-charcoal mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-brand-orange transition-colors">
+                        {product.name}
+                      </h2>
+                      <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
+                        <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
+                        {product.maxDiscount > 0 && (
+                          <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
+                            Up to {product.maxDiscount}% off
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Infinite Scroll Sentinel & Progressive Chunk Loader */}
+              <div ref={sentinelRef} className="w-full py-8 flex flex-col items-center justify-center">
+                {loadingMore && (
+                  <div className="flex items-center gap-2.5 text-sm font-semibold text-brand-charcoal/70 bg-white px-5 py-2.5 rounded-full border border-brand-linen shadow-sm">
+                    <div className="w-4 h-4 border-2 border-brand-orange border-t-transparent rounded-full animate-spin" />
+                    Loading more craft supplies...
                   </div>
-                </Link>
-              ))}
-            </div>
+                )}
+                {!hasMore && sortedProducts.length > 0 && (
+                  <div className="text-xs font-semibold text-brand-charcoal/40 bg-brand-linen/30 px-4 py-1.5 rounded-full">
+                    ✓ You&apos;ve viewed all {totalProducts} products
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -807,7 +852,7 @@ export default function ShopClient() {
                     onClick={() => setIsMobileFilterOpen(false)}
                     className="flex-[2] py-3.5 rounded-xl font-bold text-white bg-brand-orange shadow-lg shadow-brand-orange/20 min-h-[50px] active:scale-[0.98] transition-transform"
                   >
-                    Show Results ({filteredProducts.length})
+                    Show Results ({totalProducts})
                   </button>
                 </div>
               </div>

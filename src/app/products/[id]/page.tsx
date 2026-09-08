@@ -14,106 +14,148 @@ import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
 
+import catalogProducts from "@/lib/data/products.json";
+
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-async function handleLegacyRedirect(id: string) {
-  if (!/^\d+$/.test(id)) return false;
-
+async function getProductData(id: string) {
+  // 1. Try DB first
   try {
-    const legacyProducts = (await import('@/lib/data/products.json')).default;
-    const legacyProduct = legacyProducts.find((p: any) => String(p.id) === String(id));
-    
-    if (legacyProduct && (legacyProduct.name || legacyProduct.title)) {
-      const modernProduct = await prisma.product.findFirst({
-        where: { 
-          title: legacyProduct.name || legacyProduct.title,
-          status: 'PUBLISHED'
-        },
-        select: { id: true }
-      });
+    const product = await prisma.product.findUnique({
+      where: { id },
+      include: { seller: true }
+    });
 
-      if (modernProduct) {
-        permanentRedirect(`/products/${modernProduct.id}`);
-      }
+    if (product && product.status === ProductStatus.PUBLISHED && product.seller?.accountStatus === 'ACTIVE') {
+      const effectivePrice = (product.customerPrice ?? product.price) / 100;
+      const imageUrl = product.imageUrl || "/og-image.jpg";
+      const category = product.category || "General Silicone Moulds";
+      const department = getDepartmentForCategory(category) || "Precision Studio Moulds";
+
+      const tiers = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
+        ? (product.wholesaleTiers as any[]).map(t => ({
+            ...t,
+            price: t.price ? Math.round(t.price / 100) : effectivePrice,
+            minQty: t.minQty || product.moq
+          }))
+        : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }];
+
+      return {
+        rawProduct: product,
+        id: product.id,
+        name: product.title,
+        image: imageUrl,
+        category,
+        department,
+        tags: [] as string[],
+        price: effectivePrice,
+        moq: product.moq || 1,
+        tiers,
+        description: product.description || "",
+        supplierName: product.seller?.brandName || "Verified Ekora Supplier",
+        sellerId: product.sellerId,
+        inStock: product.stock > 0,
+        fragranceNotes: null as any,
+        usageLevels: null as any
+      };
     }
-  } catch (e) {
-    console.error("Legacy redirect error", e);
+  } catch (err) {
+    // Database query fallback
   }
-  
-  notFound();
+
+  // 2. Fallback to active catalog (2,374 SKUs in products.json)
+  const item = (catalogProducts as any[]).find(p => String(p.id) === String(id));
+  if (item) {
+    const priceVal = typeof item.price === "number" ? item.price : parseFloat(item.price || "0");
+    const category = item.category || "General Silicone Moulds";
+    const department = item.department || getDepartmentForCategory(category) || "Precision Studio Moulds";
+    const tiers = Array.isArray(item.tiers) && item.tiers.length > 0
+      ? item.tiers
+      : [{ price: priceVal, minQty: 1, maxQty: null, discountPct: 0 }];
+
+    const fakePrismaProduct: any = {
+      id: String(item.id),
+      title: item.name || "Untitled Product",
+      category,
+      price: Math.round(priceVal * 100),
+      customerPrice: Math.round(priceVal * 100),
+      imageUrl: item.image || "/og-image.jpg",
+      description: item.description || "",
+      stock: 500,
+      status: ProductStatus.PUBLISHED,
+      moq: item.moq || 1,
+      wholesaleTiers: tiers,
+      seller: { brandName: "Ekora Official Supplier", accountStatus: "ACTIVE" }
+    };
+
+    return {
+      rawProduct: fakePrismaProduct,
+      id: String(item.id),
+      name: item.name || "Untitled Product",
+      image: item.image || "/og-image.jpg",
+      category,
+      department,
+      tags: Array.isArray(item.tags) ? item.tags : [],
+      price: priceVal,
+      moq: item.moq || 1,
+      tiers,
+      description: item.description || "",
+      supplierName: "Ekora Official Supplier",
+      sellerId: "EKO-OFFICIAL-01",
+      inStock: item.inStock !== false,
+      fragranceNotes: null as any,
+      usageLevels: null as any
+    };
+  }
+
+  return null;
 }
 
 // Generate SEO Metadata dynamically
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  
-  // Try catching legacy numeric IDs during metadata generation
-  if (/^\d+$/.test(id)) {
-    await handleLegacyRedirect(id);
-  }
+  const productData = await getProductData(id);
 
-  const product = await prisma.product.findUnique({
-    where: { id },
-    include: { seller: true }
-  });
-  
-  if (!product || product.status !== ProductStatus.PUBLISHED || product.seller?.accountStatus !== 'ACTIVE') {
+  if (!productData) {
     return { title: "Product Not Found | Ekora Bazaar" };
   }
 
-  return generateProductMetadata(product);
+  return generateProductMetadata(productData.rawProduct);
 }
 
 export default async function ProductDetailsPage({ params }: Props) {
   const { id } = await params;
+  const productData = await getProductData(id);
 
-  // Enforce legacy redirect checks inside the page component as well
-  if (/^\d+$/.test(id)) {
-    await handleLegacyRedirect(id);
-  }
-
-  const product = await prisma.product.findUnique({
-    where: { id },
-    include: { seller: true }
-  });
-
-  if (!product || product.status !== ProductStatus.PUBLISHED || product.seller?.accountStatus !== 'ACTIVE') {
+  if (!productData) {
     notFound();
   }
 
-  const effectivePrice = (product.customerPrice ?? product.price) / 100;
-  const imageUrl = product.imageUrl || "/og-image.jpg";
-  const category = product.category || "General Silicone Moulds";
-  const department = getDepartmentForCategory(category);
-
   const displayProduct = {
-    ...product,
-    name: product.title,
-    image: imageUrl,
-    category: category,
-    department: department,
-    tags: [],
-    price: effectivePrice,
-    tiers: Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
-      ? (product.wholesaleTiers as any[]).map(t => ({
-          ...t,
-          price: t.price ? Math.round(t.price / 100) : effectivePrice,
-          minQty: t.minQty || product.moq
-        }))
-      : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }],
-    fragranceNotes: null as any,
-    usageLevels: null as any
+    id: productData.id,
+    name: productData.name,
+    image: productData.image,
+    category: productData.category,
+    department: productData.department,
+    tags: productData.tags,
+    price: productData.price,
+    tiers: productData.tiers,
+    description: productData.description,
+    fragranceNotes: productData.fragranceNotes,
+    usageLevels: productData.usageLevels
   };
 
   // Pre-populated JSON-LD Schema
-  const jsonLd = generateProductSchema(product, product.seller?.brandName);
+  const jsonLd = generateProductSchema(productData.rawProduct, productData.supplierName);
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://www.ekorabazaar.in" },
     { name: "Shop", url: "https://www.ekorabazaar.in/shop" },
-    { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${product.id}` }
+    { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${productData.id}` }
   ]);
 
   return (
@@ -137,20 +179,22 @@ export default async function ProductDetailsPage({ params }: Props) {
         </div>
       )}
 
-      <div className="pt-16 md:pt-28 pb-32 md:pb-20 px-0 md:px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-0 md:gap-12">
-        {/* Product Image Gallery (Optimized) */}
+      {/* Optimized PDP Layout: Reduced top padding and streamlined layout */}
+      <div className="pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-6 md:gap-12">
+        {/* Product Image Gallery (Optimized viewport-fit) */}
         <div className="w-full md:w-1/2">
-          {/* Edge-to-edge on mobile, rounded on desktop */}
-          <div className="aspect-square bg-white md:rounded-3xl md:border border-brand-linen flex items-center justify-center p-0 md:p-8 md:sticky md:top-32 shadow-none md:shadow-sm overflow-hidden relative">
+          {/* Edge-to-edge on mobile, rounded on desktop, sticky top-20 right under navbar */}
+          <div className="aspect-square max-h-[75vh] md:max-h-[500px] w-full bg-white md:rounded-3xl md:border border-brand-linen flex items-center justify-center p-2 md:p-6 md:sticky md:top-20 shadow-none md:shadow-sm overflow-hidden relative">
             <ProductImageClient 
               src={displayProduct.image} 
               alt={displayProduct.name} 
+              priority={true}
             />
           </div>
         </div>
 
         {/* Product Info & Pricing */}
-        <div className="w-full md:w-1/2 px-5 md:px-0 pt-6 md:pt-0">
+        <div className="w-full md:w-1/2 px-1 md:px-0 pt-2 md:pt-0">
           {/* Visual Breadcrumbs */}
           <nav aria-label="Breadcrumb" className="flex items-center text-xs font-semibold text-brand-charcoal/50 mb-4 flex-wrap gap-1">
             <Link href="/" className="hover:text-brand-orange transition-colors">Home</Link>
@@ -194,17 +238,17 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
 
           {/* Add to Cart Widget */}
-          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={product.moq} category={displayProduct.category} />
+          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={productData.moq} category={displayProduct.category} />
 
           <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h4 className="font-bold text-brand-charcoal">Supplier: {product.seller?.brandName || "Verified Ekora Supplier"}</h4>
+              <h4 className="font-bold text-brand-charcoal">Supplier: {productData.supplierName}</h4>
               <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
             </div>
             <ContactSupplierButton 
               productName={displayProduct.name} 
-              productId={product.id} 
-              sellerId={product.sellerId} 
+              productId={productData.id} 
+              sellerId={productData.sellerId} 
             />
           </div>
           
