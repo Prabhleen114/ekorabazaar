@@ -90,7 +90,7 @@ export default function CheckoutPage() {
 
     checkout({
       apiCreateRoute: '/api/checkout/create-order',
-      apiVerifyRoute: '/api/checkout/verify',
+      apiVerifyRoute: '/api/checkout/confirm-payment',
       createPayload: { 
         items: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
         addressId: selectedAddressId

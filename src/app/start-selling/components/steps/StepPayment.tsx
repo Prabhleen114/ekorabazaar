@@ -81,7 +81,7 @@ export default function StepPayment() {
       // Step 3: Open Razorpay
       checkout({
         apiCreateRoute: "/api/seller/payment/create-order",
-        apiVerifyRoute: "/api/seller/payment/verify",
+        apiVerifyRoute: "/api/seller/payment/confirm-payment",
         createPayload: {}, // No payload needed for onboarding fee
         name: "Ekora Bazaar Onboarding",
         description: "Founding Creator Fee",

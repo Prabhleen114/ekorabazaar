@@ -120,21 +120,7 @@ export async function POST(req: Request) {
         }
       })
 
-      // If the checkout was successful, optionally clear cart items that were purchased
-      try {
-        const cart = await tx.cart.findUnique({ where: { userId: session.userId! } })
-        if (cart) {
-          await tx.cartItem.deleteMany({
-            where: {
-              cartId: cart.id,
-              productId: { in: items.map((i: any) => i.productId) }
-            }
-          })
-        }
-      } catch (err) {
-        console.error("Failed to clear cart items after order creation", err)
-      }
-
+      // Cart clearing moved to successful payment verification (verify route)
       return [order, payment]
     })
 

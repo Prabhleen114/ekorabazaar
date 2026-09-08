@@ -79,9 +79,25 @@ export async function POST(req: Request) {
       await tx.order.update({
         where: { id: payment.orderId! },
         data: {
-          status: OrderStatus.PAID
+          status: OrderStatus.PAID,
+          paymentStatus: PaymentStatus.CAPTURED
         }
       })
+
+      // Clear the purchased items from the customer's cart now that payment is verified
+      try {
+        const cart = await tx.cart.findUnique({ where: { userId: session.userId } })
+        if (cart) {
+          await tx.cartItem.deleteMany({
+            where: {
+              cartId: cart.id,
+              productId: { in: payment.order.items.map(i => i.productId) }
+            }
+          })
+        }
+      } catch (err) {
+        console.error("Failed to clear cart items after payment verification", err)
+      }
 
       return { alreadyVerified: false, orderId: payment.orderId }
     })

@@ -95,19 +95,34 @@ export function useRazorpayCheckout() {
               }),
             });
             
-            const verifyData = await resVerify.json();
+            let verifyData;
+            try {
+              verifyData = await resVerify.json();
+            } catch (jsonErr) {
+              // If it's a 500 error or Vercel proxy error, it might not be JSON
+              throw new Error(`Server returned status ${resVerify.status} during verification. Please check your order history.`);
+            }
 
             if (!resVerify.ok) {
               throw new Error(verifyData.error || "Payment verification failed.");
             }
 
+            // Step 4: Verification Success
+            setIsProcessing(false);
             if (options.onSuccess) {
               options.onSuccess(verifyData);
             }
           } catch (err: any) {
             console.error("Verification error:", err);
+            
+            let errorMsg = err.message || "Payment verification failed due to network error.";
+            // Specific Adblocker/Network drop check
+            if (errorMsg === "Failed to fetch") {
+              errorMsg = "Network error or request blocked by an extension. Your payment is safe and will be synced shortly. Please check your order history.";
+            }
+
             if (options.onError) {
-              options.onError(err.message || "Payment verification failed.");
+              options.onError(errorMsg);
             }
           } finally {
             setIsProcessing(false);
