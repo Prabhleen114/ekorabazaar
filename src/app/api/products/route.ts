@@ -124,24 +124,30 @@ export async function GET(req: NextRequest) {
       });
 
       for (const p of dbProducts) {
-        if (!allProducts.some(item => item.id === p.id)) {
-          const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
-          const dept = getDepartmentForCategory(p.category) || "Precision Studio Moulds";
-          allProducts.push({
-            id: p.id,
-            name: p.title,
-            category: p.category || "General Silicone Moulds",
-            department: dept,
-            disciplines: [],
-            price: effectivePriceINR,
-            image: p.imageUrl || "/og-image.jpg",
-            inStock: p.stock > 0,
-            bulkDiscountAvailable: Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0,
-            maxDiscount: 0,
-            description: p.description || "",
-            tags: [],
-            tiers: (p.wholesaleTiers as any[]) || []
-          });
+        const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
+        const dept = getDepartmentForCategory(p.category) || "Precision Studio Moulds";
+        const mappedDbProduct = {
+          id: p.id,
+          name: p.title,
+          category: p.category || "General Silicone Moulds",
+          department: dept,
+          disciplines: [],
+          price: effectivePriceINR,
+          image: p.imageUrl || "/og-image.jpg",
+          inStock: p.stock > 0,
+          bulkDiscountAvailable: Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0,
+          maxDiscount: 0,
+          description: p.description || "",
+          tags: [],
+          tiers: (p.wholesaleTiers as any[]) || []
+        };
+        
+        const existingIndex = allProducts.findIndex(item => item.id === p.id);
+        if (existingIndex !== -1) {
+          // DB takes absolute precedence over JSON catalog
+          allProducts[existingIndex] = mappedDbProduct;
+        } else {
+          allProducts.push(mappedDbProduct);
         }
       }
     } catch (dbErr) {
