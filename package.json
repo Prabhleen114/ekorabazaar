@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "npx prisma generate && next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "npx prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.10",
     "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
+    "prisma": "^7.9.1",
     "@supabase/supabase-js": "^2.112.3",
     "bcrypt": "^6.0.0",
     "canvas": "^3.2.3",
@@ -49,7 +50,6 @@
     "cheerio": "^1.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
-    "prisma": "^7.9.1",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
