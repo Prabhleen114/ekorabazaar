@@ -617,8 +617,13 @@ export default function ShopClient() {
                 {activeTitle}
               </h1>
               <p className="text-xs text-brand-charcoal/50 font-medium mt-0.5">
-                Showing {sortedProducts.length} of {totalProducts} wholesale products
-                {selectedDepartment && !selectedCategory && ` in ${selectedDepartment}`}
+                {loading ? "Searching..." : (
+                  <>
+                    {totalProducts.toLocaleString()} product{totalProducts !== 1 ? "s" : ""}
+                    {searchQuery && <> for &ldquo;{searchQuery}&rdquo;</>}
+                    {selectedDepartment && !selectedCategory && !searchQuery && ` in ${selectedDepartment}`}
+                  </>
+                )}
               </p>
             </div>
 
@@ -626,12 +631,15 @@ export default function ShopClient() {
             <div className="flex items-center gap-3 text-sm">
               <span className="text-brand-charcoal/60 font-medium text-xs uppercase tracking-wider">Sort by:</span>
               <div className="relative">
-                <select 
+                <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="appearance-none bg-brand-bg border border-brand-linen rounded-xl pl-4 pr-10 py-2 text-sm font-semibold text-brand-charcoal focus:outline-none focus:border-brand-orange cursor-pointer shadow-sm"
                 >
-                  <option value="recommended">Featured / Bestselling</option>
+                  {searchQuery
+                    ? <option value="recommended">Relevance</option>
+                    : <option value="recommended">Featured / Bestselling</option>
+                  }
                   <option value="price_asc">Price: Low to High</option>
                   <option value="price_desc">Price: High to Low</option>
                   <option value="newest">Newest Arrivals</option>
@@ -652,10 +660,26 @@ export default function ShopClient() {
           ) : sortedProducts.length === 0 ? (
             <div className="bg-white rounded-2xl border border-brand-linen p-12 flex flex-col items-center justify-center text-center shadow-sm">
               <PackageSearch className="w-16 h-16 text-brand-charcoal/20 mb-4" />
-              <h3 className="text-xl font-bold text-brand-charcoal mb-2 font-serif">No products match your criteria</h3>
-              <p className="text-brand-charcoal/60 mb-6 text-sm">Try choosing another craft studio, broadening your price range, or clearing active filters.</p>
-              <button 
-                onClick={clearAllFilters} 
+              {searchQuery ? (
+                <>
+                  <h3 className="text-xl font-bold text-brand-charcoal mb-2 font-serif">
+                    No results for &ldquo;{searchQuery}&rdquo;
+                  </h3>
+                  <p className="text-brand-charcoal/60 mb-2 text-sm max-w-sm">
+                    Check your spelling, try a more general term, or browse by category below.
+                  </p>
+                  <p className="text-brand-charcoal/40 mb-6 text-xs max-w-sm">
+                    Tip: try &ldquo;fragrance oil&rdquo;, &ldquo;silicone mould&rdquo;, or &ldquo;candle wax&rdquo;
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-xl font-bold text-brand-charcoal mb-2 font-serif">No products match your filters</h3>
+                  <p className="text-brand-charcoal/60 mb-6 text-sm">Try choosing another craft studio, broadening your price range, or clearing active filters.</p>
+                </>
+              )}
+              <button
+                onClick={clearAllFilters}
                 className="bg-brand-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-terracotta transition-colors shadow-md shadow-brand-orange/20 text-sm"
               >
                 Clear All Filters

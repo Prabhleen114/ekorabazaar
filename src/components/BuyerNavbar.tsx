@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Search, GraduationCap, Sparkles, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap, Sparkles, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TopUtilityBar from "./TopUtilityBar";
 import { DEPARTMENTS, DISCIPLINE_HUBS } from "@/lib/taxonomy";
+import NavbarSearchBox from "./NavbarSearchBox";
 
 export default function BuyerNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -294,19 +295,9 @@ export default function BuyerNavbar() {
             </Link>
           </nav>
 
-          {/* Right: Search Input & Mobile Hamburger */}
+          {/* Right: Search & Mobile Hamburger */}
           <div className="flex-1 flex justify-end items-center gap-4">
-            <form action="/shop" method="GET" className="hidden lg:flex items-center relative">
-              <input 
-                type="text" 
-                name="q" 
-                placeholder="Search materials, moulds, scents..." 
-                className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-10 py-1.5 text-sm font-medium focus:outline-none focus:border-brand-orange w-52 transition-all focus:w-64" 
-              />
-              <button type="submit" className="absolute right-3 text-brand-charcoal/50 hover:text-brand-orange">
-                <Search className="w-4 h-4" />
-              </button>
-            </form>
+            <NavbarSearchBox />
 
             <button
               className="md:hidden p-3 -mr-3 text-brand-charcoal focus:outline-none flex items-center justify-center min-w-[44px] min-h-[44px]"
