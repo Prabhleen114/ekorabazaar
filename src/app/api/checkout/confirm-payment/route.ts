@@ -102,6 +102,18 @@ export async function POST(req: Request) {
       return { alreadyVerified: false, orderId: payment.orderId }
     })
 
+    // 3. Ensure Admin Notification Email is sent
+    // Note: ensureAdminNotification uses an outbox/lock pattern to guarantee exactly-once delivery
+    if (result.orderId) {
+      try {
+        const { ensureAdminNotification } = await import('@/lib/email');
+        // Await to ensure Vercel serverless function doesn't sleep before sending
+        await ensureAdminNotification(result.orderId);
+      } catch (emailErr) {
+        console.error("Failed to dynamically import email lib:", emailErr);
+      }
+    }
+
     return NextResponse.json({ success: true, message: "Checkout payment verified.", orderId: result.orderId })
   } catch (error: any) {
     console.error("Verify Checkout Payment Error:", error)

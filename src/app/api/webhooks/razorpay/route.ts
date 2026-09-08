@@ -32,14 +32,25 @@ export async function POST(req: Request) {
     })
 
     if (existingEvent) {
-      // We already processed this event successfully, return 200 immediately
+      // Event already processed. But let's ensure the admin email didn't fail previously.
+      if (event.event === 'payment.captured' || event.event === 'order.paid') {
+        const payload = event.payload.payment.entity;
+        const razorpayOrderId = payload.order_id;
+        if (razorpayOrderId) {
+          const payment = await prisma.payment.findUnique({ where: { razorpayOrderId } });
+          if (payment && payment.orderId) {
+            const { ensureAdminNotification } = await import('@/lib/email');
+            await ensureAdminNotification(payment.orderId);
+          }
+        }
+      }
       return NextResponse.json({ success: true, message: "Event already processed" })
     }
 
     // 3. Process the event based on type
     const payload = event.payload.payment.entity
 
-    await prisma.$transaction(async (tx) => {
+    const txResult = await prisma.$transaction(async (tx) => {
       // Log event
       await tx.webhookEvent.create({
         data: {
@@ -66,7 +77,8 @@ export async function POST(req: Request) {
         }
 
         if (payment.status === PaymentStatus.CAPTURED) {
-          return // Already handled by frontend verification
+          // Already handled by frontend verification, but ensure email was sent
+          return { justCapturedOrderId: payment.orderId }
         }
 
         // --- Process SELLER ONBOARDING PAYMENT ---
@@ -92,7 +104,7 @@ export async function POST(req: Request) {
 
           if (paymentUpdateResult.count === 0) {
             // Already captured concurrently by frontend
-            return
+            return { justCapturedOrderId: null }
           }
 
           // We must do inventory deduction because we won the lock
@@ -108,8 +120,10 @@ export async function POST(req: Request) {
 
           await tx.order.update({
             where: { id: payment.orderId },
-            data: { status: OrderStatus.PAID }
+            data: { status: OrderStatus.PAID, paymentStatus: PaymentStatus.CAPTURED }
           })
+
+          return { justCapturedOrderId: payment.orderId }
         }
       } else if (event.event === 'payment.failed') {
         const razorpayOrderId = payload.order_id
@@ -125,7 +139,17 @@ export async function POST(req: Request) {
           })
         }
       }
+      return { justCapturedOrderId: null }
     })
+
+    if (txResult?.justCapturedOrderId) {
+      try {
+        const { ensureAdminNotification } = await import('@/lib/email');
+        await ensureAdminNotification(txResult.justCapturedOrderId);
+      } catch (emailErr) {
+        console.error("Failed to dynamically import email lib in webhook:", emailErr);
+      }
+    }
 
     return NextResponse.json({ success: true })
   } catch (error: any) {
