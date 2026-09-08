@@ -1,0 +1,15 @@
+e05ccd6 feat: link 80+ new Gemini AI fragrance oil covers and update products.json
+15fd46b feat(products): bulk import 354 new products from clean_products.csv
+df83b5f feat: complete bespoke image linking and compile fixes
+2e45e4b Progress update: added python generator and checkpointed Groq descriptions
+2f650c3 fix: append tags to fragrance oil names strictly as requested
+ebe0a8d feat: clean 108 fragrance oil products — remove brands, add filters/notes/usage/descriptions
+4204e33 feat: upgrade all fragrance oils with dynamic fragrance notes, usage levels UI, and premium images
+ec2fdec fix: replace product 6 image with generic unbranded photo
+ee8def2 fix: bust api cache on shop page and replace product 21 image
+67b383b fix: restore image links by only sanitizing text fields for branded keywords
+403f412 chore: remove branded keywords from product data
+2182968 cost ++
+6205174 cost ++
+aa7e734 feat: Add soap base products and update buyer navbar
+f6e144b feat: Import 400 products and add SEO tags

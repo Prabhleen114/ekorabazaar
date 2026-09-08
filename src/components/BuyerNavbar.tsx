@@ -2,16 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Search, GraduationCap } from "lucide-react";
+import { Menu, X, ChevronDown, Search, GraduationCap, Sparkles, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TopUtilityBar from "./TopUtilityBar";
+import { DEPARTMENTS, DISCIPLINE_HUBS } from "@/lib/taxonomy";
 
 export default function BuyerNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isDepartmentsOpen, setIsDepartmentsOpen] = useState(false);
+  const [isCraftOpen, setIsCraftOpen] = useState(false);
   const [isAcademyOpen, setIsAcademyOpen] = useState(false);
+  const [mobileSectionOpen, setMobileSectionOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +37,7 @@ export default function BuyerNavbar() {
       <TopUtilityBar />
       <header
         className={`sticky top-0 inset-x-0 z-50 transition-all duration-300 ${
-          isScrolled || mobileMenuOpen ? "bg-white border-b border-brand-linen shadow-sm" : "bg-white/90 backdrop-blur-md border-b border-brand-linen/60"
+          isScrolled || mobileMenuOpen ? "bg-white border-b border-brand-linen shadow-sm" : "bg-white/95 backdrop-blur-md border-b border-brand-linen/60"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
@@ -57,34 +60,35 @@ export default function BuyerNavbar() {
             </Link>
           </div>
 
-          {/* Center: Desktop Nav Items & Mega Menu Trigger */}
-          <nav className="hidden md:flex justify-center items-center gap-8 h-full">
-            {/* Top-Level Categories Mega Menu Dropdown */}
+          {/* Center: Desktop Nav Items & Mega Menu Triggers */}
+          <nav className="hidden md:flex justify-center items-center gap-7 h-full">
+            
+            {/* 1. Craft Studios Dropdown */}
             <div 
               className="relative h-full flex items-center"
-              onMouseEnter={() => setIsCategoriesOpen(true)}
-              onMouseLeave={() => setIsCategoriesOpen(false)}
+              onMouseEnter={() => setIsCraftOpen(true)}
+              onMouseLeave={() => setIsCraftOpen(false)}
             >
               <button
-                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                className={`relative flex items-center gap-1.5 text-sm font-medium h-full transition-colors ${
-                  isCategoriesOpen ? "text-brand-orange" : "text-brand-charcoal/80 hover:text-brand-charcoal"
+                onClick={() => setIsCraftOpen(!isCraftOpen)}
+                className={`relative flex items-center gap-1.5 text-sm font-semibold h-full transition-colors ${
+                  isCraftOpen ? "text-brand-orange" : "text-brand-charcoal/80 hover:text-brand-charcoal"
                 }`}
               >
-                <span>Shop</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? "rotate-180 text-brand-orange" : ""}`} />
-                {isCategoriesOpen && (
+                <Sparkles className="w-3.5 h-3.5 text-brand-orange" />
+                <span>Craft Studios</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isCraftOpen ? "rotate-180 text-brand-orange" : ""}`} />
+                {isCraftOpen && (
                   <motion.div
-                    layoutId="activeUnderline"
+                    layoutId="activeUnderlineCraft"
                     className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-orange"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
               </button>
 
-              {/* Full-Width Mega Menu Dropdown Container */}
               <AnimatePresence>
-                {isCategoriesOpen && (
+                {isCraftOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,129 +96,54 @@ export default function BuyerNavbar() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="fixed top-24 left-0 right-0 w-full bg-white/98 backdrop-blur-xl border-b border-brand-linen shadow-2xl z-50 overflow-hidden"
                   >
-                    <div className="max-w-7xl mx-auto px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
-                      {/* Column 1: Premium Bases & Raw Materials */}
-                      <div>
-                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
-                          Bases &amp; Waxes
-                        </h3>
-                        <ul className="space-y-2.5">
-                          {[
-                            { label: "Bases & Waxes", category: "Premium Bases & Waxes" },
-                            { label: "Containers & Packaging", category: "Containers & Packaging" },
-                            { label: "Pigments & Colors", category: "Pigments & Colors" },
-                            { label: "Candle Accessories & Wicks", category: "Candle Making Accessories" },
-                          ].map((item) => (
-                            <li key={item.label}>
-                              <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
-                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                    <div className="max-w-7xl mx-auto px-8 py-8">
+                      <div className="flex items-center justify-between pb-4 mb-6 border-b border-brand-linen">
+                        <div>
+                          <span className="text-[11px] font-bold uppercase tracking-widest text-brand-orange block mb-0.5">
+                            Shop by Discipline
+                          </span>
+                          <h3 className="font-serif text-2xl font-bold text-brand-charcoal">
+                            Dedicated Craft Studios
+                          </h3>
+                        </div>
+                        <Link 
+                          href="/shop" 
+                          className="text-xs font-bold text-brand-charcoal/70 hover:text-brand-orange flex items-center gap-1 transition-colors"
+                        >
+                          Browse Full Catalog <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
                       </div>
 
-                      {/* Column 2: Scents, Colors & Botanicals */}
-                      <div>
-                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
-                          Scents &amp; Botanicals
-                        </h3>
-                        <ul className="space-y-2.5">
-                          <li>
-                            <div className="flex flex-col">
-                              <Link
-                                href="/shop"
-                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange leading-relaxed transition-colors flex items-center"
-                              >
-                                Premium Oils &amp; Flavours
-                                <span className="inline-flex items-center justify-center bg-[#e0f2fe] text-[#0369a1] text-[10px] font-bold px-2 py-0.5 rounded-full ml-2 tracking-wide uppercase">
-                                  NEW
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        {DISCIPLINE_HUBS.map((hub) => (
+                          <Link
+                            key={hub.id}
+                            href={`/shop?discipline=${hub.id}`}
+                            className="group p-5 rounded-2xl border border-brand-linen bg-white hover:border-brand-orange/50 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                          >
+                            <div>
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="text-2xl">{hub.icon}</span>
+                                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${hub.badgeBg} ${hub.badgeText} ${hub.borderCol}`}>
+                                  Studio
                                 </span>
-                              </Link>
-                              <ul className="ml-3 mt-1.5 space-y-1 border-l-2 border-brand-linen pl-3">
-                                {[
-                                  { label: "Fragrance Oils", category: "Fragrance Oils" },
-                                  { label: "Essential Oils", category: "Essential Oils" },
-                                  { label: "Food Safe Flavour Oils", category: "Food Safe Flavour Oil" },
-                                ].map((sub) => (
-                                  <li key={sub.label}>
-                                    <Link
-                                      href={`/shop?category=${encodeURIComponent(sub.category)}`}
-                                      className="font-sans font-normal text-xs text-brand-charcoal/50 hover:text-brand-orange block py-0.5 leading-normal transition-colors"
-                                    >
-                                      {sub.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
+                              </div>
+                              <h4 className="font-serif text-lg font-bold text-brand-charcoal group-hover:text-brand-orange transition-colors">
+                                {hub.name}
+                              </h4>
+                              <p className="text-xs font-semibold text-brand-charcoal/60 mt-1 mb-2">
+                                {hub.tagline}
+                              </p>
+                              <p className="text-xs text-brand-charcoal/50 leading-relaxed line-clamp-2">
+                                {hub.description}
+                              </p>
                             </div>
-                          </li>
-                          {[
-                            { label: "Hydrosols", category: "Hydrosols" },
-                            { label: "Dried Botanicals", category: "DRY FLOWERS" },
-                          ].map((item) => (
-                            <li key={item.label}>
-                              <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
-                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Column 3: Silicone Moulds (Direct from Category Import) */}
-                      <div>
-                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
-                          Silicone Moulds
-                        </h3>
-                        <ul className="space-y-2.5">
-                          {[
-                            { label: "Candle & Pillar Moulds", category: "Candle & Pillar Moulds" },
-                            { label: "Culinary & Fondant Moulds", category: "Culinary & Fondant Moulds" },
-                            { label: "Eco-Resin & Stone Moulds", category: "Eco-Resin & Stone Moulds" },
-                            { label: "Soap & Bar Moulds", category: "Soap & Bar Moulds" },
-                            { label: "General Silicone Moulds", category: "General Silicone Moulds" },
-                          ].map((item) => (
-                            <li key={item.label}>
-                              <Link
-                                href={`/shop?category=${encodeURIComponent(item.category)}`}
-                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Column 4: Discovery & Packaging */}
-                      <div>
-                        <h3 className="font-sans font-bold text-base text-brand-charcoal tracking-tight mb-4">
-                          Discovery &amp; Packaging
-                        </h3>
-                        <ul className="space-y-2.5">
-                          {[
-                            { label: "Containers & Jars", category: "PACKAGING & CONTAINERS" },
-                            { label: "Discovery Kits", href: "/classes" },
-                            { label: "The Academy (Classes)", href: "/classes" },
-                            { label: "Free Formulations", href: "/formulations" },
-                          ].map((item) => (
-                            <li key={item.label}>
-                              <Link
-                                href={item.href || `/shop?category=${encodeURIComponent(item.category || '')}`}
-                                className="font-sans font-normal text-sm text-brand-charcoal/70 hover:text-brand-orange block leading-relaxed transition-colors"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                            <div className="mt-4 pt-3 border-t border-brand-linen/60 flex items-center justify-between text-xs font-bold text-brand-orange group-hover:translate-x-0.5 transition-transform">
+                              <span>Enter Studio</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </div>
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </motion.div>
@@ -222,7 +151,92 @@ export default function BuyerNavbar() {
               </AnimatePresence>
             </div>
 
-            {/* Discovery Kits */}
+            {/* 2. Departments Mega Menu Dropdown */}
+            <div 
+              className="relative h-full flex items-center"
+              onMouseEnter={() => setIsDepartmentsOpen(true)}
+              onMouseLeave={() => setIsDepartmentsOpen(false)}
+            >
+              <button
+                onClick={() => setIsDepartmentsOpen(!isDepartmentsOpen)}
+                className={`relative flex items-center gap-1.5 text-sm font-medium h-full transition-colors ${
+                  isDepartmentsOpen ? "text-brand-orange" : "text-brand-charcoal/80 hover:text-brand-charcoal"
+                }`}
+              >
+                <span>Departments</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDepartmentsOpen ? "rotate-180 text-brand-orange" : ""}`} />
+                {isDepartmentsOpen && (
+                  <motion.div
+                    layoutId="activeUnderlineDept"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-orange"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+
+              <AnimatePresence>
+                {isDepartmentsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="fixed top-24 left-0 right-0 w-full bg-white/98 backdrop-blur-xl border-b border-brand-linen shadow-2xl z-50 overflow-hidden"
+                  >
+                    <div className="max-w-7xl mx-auto px-8 py-8">
+                      <div className="flex items-center justify-between pb-3 mb-6 border-b border-brand-linen">
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-brand-charcoal/50">
+                          Raw Materials &amp; Studio Equipment Architecture
+                        </span>
+                        <Link 
+                          href="/shop" 
+                          className="text-xs font-bold text-brand-charcoal/70 hover:text-brand-orange flex items-center gap-1 transition-colors"
+                        >
+                          View All Departments <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 text-left">
+                        {DEPARTMENTS.map((dept) => (
+                          <div key={dept.name} className="flex flex-col">
+                            <Link
+                              href={`/shop?department=${encodeURIComponent(dept.name)}`}
+                              className="font-serif font-bold text-sm text-brand-charcoal hover:text-brand-orange tracking-tight mb-2.5 transition-colors block border-b border-brand-linen/60 pb-1.5"
+                            >
+                              {dept.name}
+                            </Link>
+                            <ul className="space-y-1.5 flex-1">
+                              {dept.subcategories.slice(0, 6).map((sub) => (
+                                <li key={sub}>
+                                  <Link
+                                    href={`/shop?category=${encodeURIComponent(sub)}`}
+                                    className="text-xs text-brand-charcoal/65 hover:text-brand-orange block py-0.5 leading-snug transition-colors"
+                                  >
+                                    {sub}
+                                  </Link>
+                                </li>
+                              ))}
+                              {dept.subcategories.length > 6 && (
+                                <li>
+                                  <Link
+                                    href={`/shop?department=${encodeURIComponent(dept.name)}`}
+                                    className="text-[11px] font-semibold text-brand-orange hover:underline block pt-1"
+                                  >
+                                    + {dept.subcategories.length - 6} more
+                                  </Link>
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 3. Discovery Kits */}
             <Link
               href="/classes"
               className="text-sm font-medium text-brand-charcoal/70 hover:text-brand-charcoal transition-colors py-5"
@@ -230,7 +244,7 @@ export default function BuyerNavbar() {
               Discovery Kits
             </Link>
 
-            {/* The Academy Dropdown */}
+            {/* 4. The Academy Dropdown */}
             <div 
               className="relative h-full flex items-center"
               onMouseEnter={() => setIsAcademyOpen(true)}
@@ -271,7 +285,7 @@ export default function BuyerNavbar() {
               </AnimatePresence>
             </div>
 
-            {/* About Us */}
+            {/* 5. About Us */}
             <Link
               href="/sell/platform"
               className="text-sm font-medium text-brand-charcoal/70 hover:text-brand-charcoal transition-colors py-5"
@@ -280,14 +294,14 @@ export default function BuyerNavbar() {
             </Link>
           </nav>
 
-          {/* Right: Search Input */}
+          {/* Right: Search Input & Mobile Hamburger */}
           <div className="flex-1 flex justify-end items-center gap-4">
             <form action="/shop" method="GET" className="hidden lg:flex items-center relative">
               <input 
                 type="text" 
                 name="q" 
-                placeholder="Search raw materials..." 
-                className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-10 py-1.5 text-sm font-medium focus:outline-none focus:border-brand-orange w-48 transition-all focus:w-64" 
+                placeholder="Search materials, moulds, scents..." 
+                className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-10 py-1.5 text-sm font-medium focus:outline-none focus:border-brand-orange w-52 transition-all focus:w-64" 
               />
               <button type="submit" className="absolute right-3 text-brand-charcoal/50 hover:text-brand-orange">
                 <Search className="w-4 h-4" />
@@ -316,30 +330,98 @@ export default function BuyerNavbar() {
             className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col overflow-y-auto"
           >
             <div className="flex flex-col gap-4 flex-1 pb-12">
+              
+              {/* Mobile Craft Studios */}
+              <div className="border-b border-brand-linen pb-4">
+                <button
+                  onClick={() => setMobileSectionOpen(mobileSectionOpen === "crafts" ? null : "crafts")}
+                  className="w-full flex items-center justify-between text-lg font-bold font-serif text-brand-charcoal py-2"
+                >
+                  <span className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-brand-orange" />
+                    Craft Studios
+                  </span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileSectionOpen === "crafts" ? "rotate-180" : ""}`} />
+                </button>
+                {mobileSectionOpen === "crafts" && (
+                  <div className="mt-2 space-y-2 pl-4 border-l-2 border-brand-orange/30">
+                    {DISCIPLINE_HUBS.map((hub) => (
+                      <Link
+                        key={hub.id}
+                        href={`/shop?discipline=${hub.id}`}
+                        className="flex items-center gap-2 text-sm font-semibold text-brand-charcoal/80 hover:text-brand-orange py-1.5"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span>{hub.icon}</span>
+                        <span>{hub.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Departments */}
+              <div className="border-b border-brand-linen pb-4">
+                <button
+                  onClick={() => setMobileSectionOpen(mobileSectionOpen === "departments" ? null : "departments")}
+                  className="w-full flex items-center justify-between text-lg font-bold font-serif text-brand-charcoal py-2"
+                >
+                  <span>Departments</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileSectionOpen === "departments" ? "rotate-180" : ""}`} />
+                </button>
+                {mobileSectionOpen === "departments" && (
+                  <div className="mt-2 space-y-3 pl-4 border-l-2 border-brand-linen">
+                    {DEPARTMENTS.map((dept) => (
+                      <div key={dept.name} className="py-1">
+                        <Link
+                          href={`/shop?department=${encodeURIComponent(dept.name)}`}
+                          className="text-sm font-bold text-brand-charcoal hover:text-brand-orange block mb-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {dept.name}
+                        </Link>
+                        <div className="flex flex-wrap gap-1.5">
+                          {dept.subcategories.slice(0, 4).map((sub) => (
+                            <Link
+                              key={sub}
+                              href={`/shop?category=${encodeURIComponent(sub)}`}
+                              className="text-[11px] bg-brand-bg text-brand-charcoal/70 px-2 py-0.5 rounded"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {sub}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <Link
                 href="/shop"
-                className="text-2xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
+                className="text-xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Explore Shop
+                Browse All Products
               </Link>
               <Link
                 href="/classes"
-                className="text-2xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
+                className="text-xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Discovery Kits
               </Link>
               <Link
                 href="/formulations"
-                className="text-2xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
+                className="text-xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 The Academy (Formulations)
               </Link>
               <Link
                 href="/sell/platform"
-                className="text-2xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors min-h-[44px] flex items-center"
+                className="text-xl font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us

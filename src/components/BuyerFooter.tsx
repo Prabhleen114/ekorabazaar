@@ -32,10 +32,10 @@ export default function BuyerFooter() {
           <div>
             <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Shop</h4>
             <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
-              <li><Link href="/shop?category=fragrances" className="hover:text-brand-charcoal transition-colors">Fragrances</Link></li>
-              <li><Link href="/shop?category=resins" className="hover:text-brand-charcoal transition-colors">Resins & Epoxies</Link></li>
-              <li><Link href="/shop?category=waxes" className="hover:text-brand-charcoal transition-colors">Waxes</Link></li>
-              <li><Link href="/shop?category=molds" className="hover:text-brand-charcoal transition-colors">Silicone Molds</Link></li>
+              <li><Link href="/shop?department=Scent%20%26%20Flavor%20Lab" className="hover:text-brand-charcoal transition-colors">Scent &amp; Flavor Lab</Link></li>
+              <li><Link href="/shop?discipline=candle-studio" className="hover:text-brand-charcoal transition-colors">The Candle Studio</Link></li>
+              <li><Link href="/shop?discipline=soap-atelier" className="hover:text-brand-charcoal transition-colors">The Soap Atelier</Link></li>
+              <li><Link href="/shop?department=Precision%20Studio%20Moulds" className="hover:text-brand-charcoal transition-colors">Precision Moulds</Link></li>
             </ul>
           </div>
 

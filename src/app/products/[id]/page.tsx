@@ -143,15 +143,26 @@ export default async function ProductDetailsPage({ params }: Props) {
         {/* Product Info & Pricing */}
         <div className="w-full md:w-1/2 px-5 md:px-0 pt-6 md:pt-0">
           {/* Visual Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center text-xs font-semibold text-brand-charcoal/50 mb-4">
+          <nav aria-label="Breadcrumb" className="flex items-center text-xs font-semibold text-brand-charcoal/50 mb-4 flex-wrap gap-1">
             <Link href="/" className="hover:text-brand-orange transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3 mx-1" />
+            <ChevronRight className="w-3 h-3 mx-0.5" />
             <Link href="/shop" className="hover:text-brand-orange transition-colors">Shop</Link>
-            <ChevronRight className="w-3 h-3 mx-1" />
+            {product.department && (
+              <>
+                <ChevronRight className="w-3 h-3 mx-0.5" />
+                <Link href={`/shop?department=${encodeURIComponent(product.department)}`} className="hover:text-brand-orange transition-colors">{product.department}</Link>
+              </>
+            )}
+            <ChevronRight className="w-3 h-3 mx-0.5" />
             <Link href={`/shop?category=${encodeURIComponent(product.category)}`} className="hover:text-brand-orange transition-colors">{product.category}</Link>
           </nav>
           
-          <div className="mb-2">
+          <div className="mb-2 flex items-center gap-2 flex-wrap">
+            {product.department && (
+              <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 bg-brand-bg px-2 py-0.5 rounded border border-brand-linen">
+                {product.department}
+              </span>
+            )}
             <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{product.category}</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-3 md:mb-4">
