@@ -81,7 +81,8 @@ export default function ShopClient() {
     fetch(`/api/products?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
-        setProducts(data);
+        const prodList = Array.isArray(data) ? data : (data?.products && Array.isArray(data.products) ? data.products : []);
+        setProducts(prodList);
         setLoading(false);
 
         // Read URL params

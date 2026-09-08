@@ -142,3 +142,14 @@ export const DISCIPLINE_HUBS: DisciplineConfig[] = [
     borderCol: "border-purple-200",
   },
 ];
+
+export function getDepartmentForCategory(category?: string | null): string | undefined {
+  if (!category) return undefined;
+  for (const dept of DEPARTMENTS) {
+    if (dept.subcategories.includes(category)) {
+      return dept.name;
+    }
+  }
+  return undefined;
+}
+

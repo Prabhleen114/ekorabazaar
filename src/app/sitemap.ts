@@ -35,17 +35,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
-  const products = await prisma.product.findMany({
-    where: { status: ProductStatus.PUBLISHED, seller: { accountStatus: 'ACTIVE' } },
-    select: { id: true, updatedAt: true },
-  });
+  let productPages: MetadataRoute.Sitemap = [];
+  try {
+    const products = await prisma.product.findMany({
+      where: { status: ProductStatus.PUBLISHED, seller: { accountStatus: 'ACTIVE' } },
+      select: { id: true, updatedAt: true },
+    });
 
-  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${BASE_URL}/products/${product.id}`,
-    lastModified: product.updatedAt,
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+    productPages = products.map((product) => ({
+      url: `${BASE_URL}/products/${product.id}`,
+      lastModified: product.updatedAt,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }));
+  } catch (err) {
+    console.warn("Could not load dynamic products for sitemap during build:", err);
+  }
 
   const wholesalePages: MetadataRoute.Sitemap = ALL_CATEGORIES.map((cat) => ({
     url: `${BASE_URL}/wholesale/${cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,

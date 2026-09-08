@@ -12,6 +12,7 @@ import serialize from "serialize-javascript";
 import { ChevronRight, MessageCircle } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
+import { getDepartmentForCategory } from "@/lib/taxonomy";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -84,13 +85,15 @@ export default async function ProductDetailsPage({ params }: Props) {
 
   const effectivePrice = (product.customerPrice ?? product.price) / 100;
   const imageUrl = product.imageUrl || "/og-image.jpg";
-  const category = "General"; // Map from DB or default
+  const category = product.category || "General Silicone Moulds";
+  const department = getDepartmentForCategory(category);
 
   const displayProduct = {
     ...product,
     name: product.title,
     image: imageUrl,
     category: category,
+    department: department,
     tags: [],
     price: effectivePrice,
     tiers: Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0

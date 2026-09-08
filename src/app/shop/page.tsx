@@ -23,13 +23,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ShopPage() {
-  const dbProducts = await prisma.product.findMany({
-    where: { 
-      status: ProductStatus.PUBLISHED,
-      seller: { accountStatus: 'ACTIVE' }
-    },
-    take: 20
-  });
+  let dbProducts: any[] = [];
+  try {
+    dbProducts = await prisma.product.findMany({
+      where: { 
+        status: ProductStatus.PUBLISHED,
+        seller: { accountStatus: 'ACTIVE' }
+      },
+      take: 20
+    });
+  } catch (err) {
+    console.warn("Could not load dbProducts for shop at build time:", err);
+  }
 
   const collectionSchema = {
     "@context": "https://schema.org",

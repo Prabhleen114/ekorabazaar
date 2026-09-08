@@ -46,16 +46,21 @@ export default async function WholesaleCategoryPage({ params }: Props) {
   }
 
   // Fetch top products in this category
-  const products = await prisma.product.findMany({
-    where: {
-      category: categoryObj.id,
-      status: ProductStatus.PUBLISHED,
-      seller: { accountStatus: 'ACTIVE' }
-    },
-    include: { seller: true },
-    take: 12,
-    orderBy: { createdAt: 'desc' }
-  });
+  let products: any[] = [];
+  try {
+    products = await prisma.product.findMany({
+      where: {
+        category: categoryObj.id,
+        status: ProductStatus.PUBLISHED,
+        seller: { accountStatus: 'ACTIVE' }
+      },
+      include: { seller: true },
+      take: 12,
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (err) {
+    console.warn(`Could not load products for wholesale category ${categoryObj.label} at build time:`, err);
+  }
 
   const structuredData = {
     "@context": "https://schema.org",
