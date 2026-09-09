@@ -18,11 +18,30 @@ import catalogProducts from "@/lib/data/products.json";
 
 export const revalidate = 3600;
 
+export interface ProductDetailView {
+  rawProduct: any;
+  id: string;
+  name: string;
+  image: string;
+  category: string;
+  department: string;
+  tags: string[];
+  price: number;
+  moq: number;
+  tiers: any[];
+  description: string;
+  supplierName: string;
+  sellerId: string | null;
+  inStock: boolean;
+  fragranceNotes: any;
+  usageLevels: any;
+}
+
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-async function getProductData(id: string) {
+async function getProductData(id: string): Promise<ProductDetailView | null> {
   // 1. Try DB first
   try {
     const product = await prisma.product.findUnique({

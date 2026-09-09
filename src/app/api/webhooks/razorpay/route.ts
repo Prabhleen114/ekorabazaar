@@ -137,6 +137,13 @@ export async function POST(req: Request) {
             where: { id: payment.id },
             data: { status: PaymentStatus.FAILED }
           })
+
+          if (payment.orderId) {
+            await tx.order.update({
+              where: { id: payment.orderId },
+              data: { paymentStatus: PaymentStatus.FAILED }
+            })
+          }
         }
       }
       return { justCapturedOrderId: null }

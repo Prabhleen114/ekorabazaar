@@ -36,6 +36,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function sanitizeHtml(html: string): string {
+  if (!html) return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<(object|embed|applet|meta|link|base)[^>]*>/gi, '')
+    .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"')
+    .replace(/\s+on[a-z]+\s*=\s*(["'][^"']*["']|[^\s>]+)/gi, '');
+}
+
 export default async function FormulationSinglePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data: Formulation[] = dataRaw as Formulation[];
@@ -76,10 +87,10 @@ export default async function FormulationSinglePage({ params }: { params: Promis
             </div>
           )}
 
-          {/* Render the scraped HTML content directly */}
+          {/* Render the sanitized HTML content */}
           <div 
             className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-brand-charcoal prose-p:text-brand-charcoal/80 prose-p:leading-relaxed prose-a:text-brand-orange hover:prose-a:text-brand-orange/80 prose-li:text-brand-charcoal/80 prose-img:rounded-xl prose-img:shadow-sm"
-            dangerouslySetInnerHTML={{ __html: formulation.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(formulation.content) }}
           />
         </article>
       </main>

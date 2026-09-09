@@ -21,7 +21,10 @@ export default function SellerProductForm({ initialData = null }: { initialData?
   const [uploading, setUploading] = useState(false)
   
   const [tiers, setTiers] = useState<any[]>(
-    initialData?.wholesaleTiers || []
+    (initialData?.wholesaleTiers || []).map((t: any) => ({
+      ...t,
+      price: t.price != null ? (t.price >= 100 && (initialData?.price || 0) >= 100 ? (t.price / 100).toString() : t.price.toString()) : ''
+    }))
   )
 
   const [loading, setLoading] = useState(false)
@@ -95,9 +98,9 @@ export default function SellerProductForm({ initialData = null }: { initialData?
       const method = isEditing ? 'PATCH' : 'POST'
 
       const processedTiers = tiers.map(t => ({
-        minQty: parseInt(t.minQty),
-        maxQty: t.maxQty ? parseInt(t.maxQty) : null,
-        price: parseFloat(t.price) || 0,
+        minQty: parseInt(t.minQty, 10) || 1,
+        maxQty: t.maxQty ? parseInt(t.maxQty, 10) : null,
+        price: Math.round((parseFloat(t.price) || 0) * 100),
         discountPct: parseFloat(t.discountPct) || 0
       }))
 

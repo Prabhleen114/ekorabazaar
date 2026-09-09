@@ -9,7 +9,26 @@ const protectedRoutes = ['/admin', '/seller/dashboard']
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Quick check if the route is protected
+  // 1. Protect Sensitive API routes at the Edge perimeter
+  if (pathname.startsWith('/api/admin') || pathname.startsWith('/api/seller')) {
+    const sessionCookie = request.cookies.get('session')?.value
+    if (!sessionCookie) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    const session = await decrypt(sessionCookie)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    if (pathname.startsWith('/api/admin') && session.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 })
+    }
+    if (pathname.startsWith('/api/seller') && session.role !== 'SELLER' && session.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Forbidden: Seller access required' }, { status: 403 })
+    }
+    return NextResponse.next()
+  }
+
+  // 2. Protect UI routes with clean redirects to login
   const isProtected = protectedRoutes.some(route => pathname.startsWith(route))
   
   if (isProtected) {
@@ -30,22 +49,22 @@ export async function middleware(request: NextRequest) {
 
     // Role-based route protection
     if (pathname.startsWith('/admin') && session.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/', request.url)) // Or a 403 Forbidden page
+      return NextResponse.redirect(new URL('/', request.url))
     }
 
-    if (pathname.startsWith('/seller') && session.role !== 'SELLER') {
+    if (pathname.startsWith('/seller') && session.role !== 'SELLER' && session.role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/', request.url))
     }
   }
-
-  // Inject session details into headers for API routes to consume,
-  // bypassing the need to read cookies twice.
-  // Actually, for API routes, we can just read the cookie directly using `getSession()` in `src/lib/session.ts`
-  // so we don't necessarily have to inject headers, but it's a valid pattern.
 
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/admin/:path*',
+    '/seller/dashboard/:path*',
+    '/api/admin/:path*',
+    '/api/seller/:path*'
+  ],
 }

@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireCustomer } from '@/lib/auth'
 
@@ -13,12 +13,20 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ itemId
       return NextResponse.json({ error: 'Invalid quantity' }, { status: 400 })
     }
 
+    if (quantity > 1000) {
+      return NextResponse.json({ error: 'Maximum allowed quantity is 1,000 units' }, { status: 400 })
+    }
+
     const item = await prisma.cartItem.findUnique({
       where: { id: itemId },
-      include: { cart: true }
+      include: { cart: true, product: true }
     })
     if (!item || item.cart.userId !== session.userId) {
       return NextResponse.json({ error: 'Item not found' }, { status: 404 })
+    }
+
+    if (item.product && item.product.stock < quantity) {
+      return NextResponse.json({ error: `Only ${item.product.stock} units available in stock` }, { status: 400 })
     }
 
     await prisma.cartItem.update({ where: { id: itemId }, data: { quantity } })

@@ -8,8 +8,20 @@ export const razorpay = process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_
     })
   : null; // Fallback for when credentials are not yet available
 
+function safeCompareHex(a: string, b: string): boolean {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  try {
+    const bufA = Buffer.from(a, 'hex');
+    const bufB = Buffer.from(b, 'hex');
+    if (bufA.length !== bufB.length) return false;
+    return crypto.timingSafeEqual(bufA, bufB);
+  } catch {
+    return false;
+  }
+}
+
 /**
- * Verifies a Razorpay signature using the server-side secret.
+ * Verifies a Razorpay signature using the server-side secret with timing-safe comparison.
  */
 export function verifyRazorpaySignature(
   orderId: string,
@@ -26,11 +38,11 @@ export function verifyRazorpaySignature(
     .update(payload)
     .digest('hex')
 
-  return expectedSignature === signature
+  return safeCompareHex(expectedSignature, signature)
 }
 
 /**
- * Verifies a Razorpay webhook signature.
+ * Verifies a Razorpay webhook signature with timing-safe comparison.
  */
 export function verifyWebhookSignature(
   rawBody: string,
@@ -45,5 +57,5 @@ export function verifyWebhookSignature(
     .update(rawBody)
     .digest('hex')
 
-  return expectedSignature === signature
+  return safeCompareHex(expectedSignature, signature)
 }

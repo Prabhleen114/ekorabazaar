@@ -2,9 +2,17 @@ import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 import { Role } from '@prisma/client'
 
-// Use a secure secret in production.
-const secretKey = process.env.JWT_SECRET || 'ekorabazaar_super_secret_dev_key_only'
-const key = new TextEncoder().encode(secretKey)
+function getSecretKey(): Uint8Array {
+  const secret = process.env.JWT_SECRET
+  if (!secret) {
+    return new TextEncoder().encode(
+      process.env.NODE_ENV === 'production'
+        ? 'ekorabazaar_production_build_placeholder_key_change_me'
+        : 'ekorabazaar_dev_secret_key_change_in_production'
+    )
+  }
+  return new TextEncoder().encode(secret)
+}
 
 export interface SessionPayload {
   userId: string
@@ -14,6 +22,10 @@ export interface SessionPayload {
 }
 
 export async function encrypt(payload: SessionPayload) {
+  if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
+    console.error('CRITICAL SECURITY ALERT: JWT_SECRET environment variable is not set in production!')
+  }
+  const key = getSecretKey()
   return await new SignJWT(payload as unknown as Record<string, unknown>)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
@@ -23,6 +35,7 @@ export async function encrypt(payload: SessionPayload) {
 
 export async function decrypt(input: string): Promise<SessionPayload | null> {
   try {
+    const key = getSecretKey()
     const { payload } = await jwtVerify(input, key, {
       algorithms: ['HS256'],
     })
