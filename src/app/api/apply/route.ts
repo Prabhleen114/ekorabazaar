@@ -2,9 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = getClientIp(req);
+    const limitResult = rateLimit(`apply:${ip}`, { limit: 5, windowMs: 60000 });
+    if (!limitResult.success) {
+      return NextResponse.json(
+        { error: `Too many submissions. Please wait ${limitResult.reset} seconds before trying again.` },
+        { 
+          status: 429,
+          headers: { 'Retry-After': String(limitResult.reset) }
+        }
+      );
+    }
+
     const body = await req.json();
     const { name, handle, category, description, email, isCreator, isWholesale, source } = body;
 

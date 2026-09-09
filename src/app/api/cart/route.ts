@@ -3,6 +3,7 @@ import prisma from '@/lib/db'
 import { requireCustomer } from '@/lib/auth'
 import { calculateItemPrice } from '@/lib/pricing'
 import { ProductStatus, SellerAccountStatus } from '@prisma/client'
+import catalogProducts from '@/lib/data/products.json'
 
 export async function GET() {
   try {
@@ -54,7 +55,54 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid product or quantity' }, { status: 400 })
     }
 
-    const product = await prisma.product.findUnique({ where: { id: productId } })
+    let product = await prisma.product.findUnique({ where: { id: productId } })
+
+    // Fallback: If not yet synced in DB, check catalogProducts (2,374 SKUs)
+    if (!product) {
+      const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(productId));
+      if (catalogItem) {
+        if (catalogItem.isQuoteOnly || catalogItem.price <= 0 || catalogItem.inStock === false) {
+          return NextResponse.json({ error: 'This product is available on quotation only. Please request a quote.' }, { status: 400 });
+        }
+
+        const officialUser = await prisma.user.upsert({
+          where: { email: 'official@ekorabazaar.in' },
+          update: {},
+          create: { email: 'official@ekorabazaar.in', role: 'SELLER' }
+        });
+        const officialSeller = await prisma.seller.upsert({
+          where: { id: 'EKO-OFFICIAL-01' },
+          update: {},
+          create: {
+            id: 'EKO-OFFICIAL-01',
+            userId: officialUser.id,
+            brandName: 'Ekora Official Supplier',
+            accountStatus: 'ACTIVE',
+            applicationStatus: 'APPROVED'
+          }
+        });
+
+        const rawPricePaise = Math.round((typeof catalogItem.price === 'number' ? catalogItem.price : parseFloat(catalogItem.price || '0')) * 100);
+        product = await prisma.product.upsert({
+          where: { id: String(catalogItem.id) },
+          update: {},
+          create: {
+            id: String(catalogItem.id),
+            title: catalogItem.name || 'Untitled Product',
+            price: rawPricePaise,
+            customerPrice: rawPricePaise,
+            stock: 500,
+            status: ProductStatus.PUBLISHED,
+            sellerId: officialSeller.id,
+            source: 'EKORA_OFFICIAL',
+            category: catalogItem.category || 'General Silicone Moulds',
+            imageUrl: catalogItem.image || '/og-image.jpg',
+            wholesaleTiers: catalogItem.tiers || []
+          }
+        });
+      }
+    }
+
     if (!product || product.status !== ProductStatus.PUBLISHED) {
       return NextResponse.json({ error: 'Product not available' }, { status: 400 })
     }

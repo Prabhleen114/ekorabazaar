@@ -38,6 +38,13 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
     if (price !== undefined && (isNaN(parseInt(price, 10)) || parseInt(price, 10) <= 0)) {
       return NextResponse.json({ error: "Price must be a valid positive number." }, { status: 400 })
     }
+    if (wholesaleTiers !== undefined && Array.isArray(wholesaleTiers)) {
+      for (const tier of wholesaleTiers) {
+        if (!tier.minQty || tier.minQty < 1 || typeof tier.price !== 'number' || tier.price <= 0) {
+          return NextResponse.json({ error: "Each wholesale tier must have a valid minQty and positive price." }, { status: 400 })
+        }
+      }
+    }
 
     const updateData: any = {
       ...(title && { title: title.trim() }),

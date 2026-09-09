@@ -4,6 +4,7 @@ import { requireAuth } from '@/lib/auth'
 import { calculateItemPrice } from '@/lib/pricing'
 import { razorpay } from '@/lib/razorpay'
 import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountStatus } from '@prisma/client'
+import catalogProducts from '@/lib/data/products.json'
 
 export async function POST(req: Request) {
   try {
@@ -38,10 +39,51 @@ export async function POST(req: Request) {
 
     await prisma.$transaction(async (tx) => {
       for (const item of items) {
-        const product = await tx.product.findUnique({
+        let product = await tx.product.findUnique({
           where: { id: item.productId },
           include: { seller: true }
         })
+
+        if (!product) {
+          const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(item.productId));
+          if (catalogItem && !catalogItem.isQuoteOnly && catalogItem.price > 0 && catalogItem.inStock !== false) {
+            const officialUser = await tx.user.upsert({
+              where: { email: 'official@ekorabazaar.in' },
+              update: {},
+              create: { email: 'official@ekorabazaar.in', role: 'SELLER' }
+            });
+            const officialSeller = await tx.seller.upsert({
+              where: { id: 'EKO-OFFICIAL-01' },
+              update: {},
+              create: {
+                id: 'EKO-OFFICIAL-01',
+                userId: officialUser.id,
+                brandName: 'Ekora Official Supplier',
+                accountStatus: 'ACTIVE',
+                applicationStatus: 'APPROVED'
+              }
+            });
+            const rawPricePaise = Math.round((typeof catalogItem.price === 'number' ? catalogItem.price : parseFloat(catalogItem.price || '0')) * 100);
+            product = await tx.product.upsert({
+              where: { id: String(catalogItem.id) },
+              update: {},
+              create: {
+                id: String(catalogItem.id),
+                title: catalogItem.name || 'Untitled Product',
+                price: rawPricePaise,
+                customerPrice: rawPricePaise,
+                stock: 500,
+                status: ProductStatus.PUBLISHED,
+                sellerId: officialSeller.id,
+                source: 'EKORA_OFFICIAL',
+                category: catalogItem.category || 'General Silicone Moulds',
+                imageUrl: catalogItem.image || '/og-image.jpg',
+                wholesaleTiers: catalogItem.tiers || []
+              },
+              include: { seller: true }
+            });
+          }
+        }
 
         if (!product) {
           throw new Error(`Product ${item.productId} not found.`)

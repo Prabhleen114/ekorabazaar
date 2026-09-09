@@ -1,10 +1,23 @@
-﻿import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import bcrypt from 'bcrypt'
 import { createSession } from '@/lib/session'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(req: Request) {
   try {
+    const ip = getClientIp(req);
+    const limitResult = rateLimit(`signup:${ip}`, { limit: 5, windowMs: 60000 });
+    if (!limitResult.success) {
+      return NextResponse.json(
+        { error: `Too many accounts created from this IP. Please try again in ${limitResult.reset} seconds.` },
+        { 
+          status: 429,
+          headers: { 'Retry-After': String(limitResult.reset) }
+        }
+      );
+    }
+
     const body = await req.json()
     const { email, password } = body
 
