@@ -43,6 +43,9 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
         if (!tier.minQty || tier.minQty < 1 || typeof tier.price !== 'number' || tier.price <= 0) {
           return NextResponse.json({ error: "Each wholesale tier must have a valid minQty and positive price." }, { status: 400 })
         }
+        if (product.status === ProductStatus.PUBLISHED && tier.minQty < 2) {
+          return NextResponse.json({ error: "Wholesale tiers for published products must require a minimum quantity of 2 or more." }, { status: 400 })
+        }
       }
     }
 

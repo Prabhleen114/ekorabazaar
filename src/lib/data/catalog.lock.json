@@ -1,6 +1,6 @@
 {
-  "lockedAt": "2026-09-09T09:57:27.024Z",
-  "productCount": 2374,
-  "sha256": "f9f3315cdbd6345a4b2d5268d72ccf3c76a2ebbe053d64c6d593f8a65e52f555",
-  "verificationNotice": "Catalog Strategy 3 applied: 42 zero-listed items marked quote-only/out-of-stock. All 2374 SKUs preserved."
+  "totalProducts": 2374,
+  "sha256": "57033c3922d8230c8d2d035ec076b35071933f579787534b566b265e31ed2c44",
+  "lastUpdated": "2026-09-09T19:35:00+05:30",
+  "note": "Sanitized legacy brand names from names and descriptions, Strategy 3 quote-only configured, all 2374 products preserved"
 }
