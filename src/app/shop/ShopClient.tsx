@@ -32,6 +32,7 @@ type Product = {
   maxDiscount: number;
   image: string;
   inStock?: boolean;
+  isQuoteOnly?: boolean;
   scentFamily?: string;
   noteLevel?: string;
   isBlend?: boolean;
@@ -702,11 +703,15 @@ export default function ShopClient() {
                         sizes="(max-width: 768px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500" 
                       />
-                      {product.bulkDiscountAvailable && (
+                      {product.isQuoteOnly || product.price === 0 ? (
+                        <div className="absolute top-3 left-3 bg-amber-700/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                          Quote Only
+                        </div>
+                      ) : product.bulkDiscountAvailable ? (
                         <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
                           <Tag className="w-3 h-3" /> Bulk Tier
                         </div>
-                      )}
+                      ) : null}
                     </div>
 
                     <div className="p-3 md:p-5 flex-1 flex flex-col">
@@ -719,11 +724,19 @@ export default function ShopClient() {
                         {product.name}
                       </h2>
                       <div className="mt-auto pt-2 md:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-brand-linen">
-                        <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
-                        {product.maxDiscount > 0 && (
-                          <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
-                            Up to {product.maxDiscount}% off
+                        {product.isQuoteOnly || product.price === 0 ? (
+                          <span className="font-semibold text-xs md:text-sm text-amber-800 bg-amber-50 border border-amber-200/60 px-2 py-0.5 rounded-md">
+                            Quote on Request
                           </span>
+                        ) : (
+                          <>
+                            <span className="font-bold text-base md:text-lg text-brand-charcoal">₹{product.price}</span>
+                            {product.maxDiscount > 0 && (
+                              <span className="text-[10px] md:text-xs font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 md:px-2 md:py-1 rounded self-start sm:self-auto">
+                                Up to {product.maxDiscount}% off
+                              </span>
+                            )}
+                          </>
                         )}
                       </div>
                     </div>

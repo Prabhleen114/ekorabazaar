@@ -33,6 +33,7 @@ export interface ProductDetailView {
   supplierName: string;
   sellerId: string | null;
   inStock: boolean;
+  isQuoteOnly?: boolean;
   fragranceNotes: any;
   usageLevels: any;
 }
@@ -78,6 +79,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         supplierName: product.seller?.brandName || "Verified Ekora Supplier",
         sellerId: product.sellerId,
         inStock: product.stock > 0,
+        isQuoteOnly: false,
         fragranceNotes: null as any,
         usageLevels: null as any
       };
@@ -90,11 +92,14 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
   const item = (catalogProducts as any[]).find(p => String(p.id) === String(id));
   if (item) {
     const priceVal = typeof item.price === "number" ? item.price : parseFloat(item.price || "0");
+    const isQuoteOnly = item.isQuoteOnly === true || priceVal === 0 || item.inStock === false;
     const category = item.category || "General Silicone Moulds";
     const department = item.department || getDepartmentForCategory(category) || "Precision Studio Moulds";
-    const tiers = Array.isArray(item.tiers) && item.tiers.length > 0
-      ? item.tiers
-      : [{ price: priceVal, minQty: 1, maxQty: null, discountPct: 0 }];
+    const tiers = isQuoteOnly
+      ? []
+      : (Array.isArray(item.tiers) && item.tiers.length > 0
+          ? item.tiers
+          : [{ price: priceVal, minQty: 1, maxQty: null, discountPct: 0 }]);
 
     const fakePrismaProduct: any = {
       id: String(item.id),
@@ -104,7 +109,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       customerPrice: Math.round(priceVal * 100),
       imageUrl: item.image || "/og-image.jpg",
       description: item.description || "",
-      stock: 500,
+      stock: isQuoteOnly ? 0 : 500,
       status: ProductStatus.PUBLISHED,
       moq: item.moq || 1,
       wholesaleTiers: tiers,
@@ -125,7 +130,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       description: item.description || "",
       supplierName: "Ekora Official Supplier",
       sellerId: "EKO-OFFICIAL-01",
-      inStock: item.inStock !== false,
+      inStock: item.inStock !== false && !isQuoteOnly,
+      isQuoteOnly,
       fragranceNotes: null as any,
       usageLevels: null as any
     };
@@ -165,7 +171,9 @@ export default async function ProductDetailsPage({ params }: Props) {
     tiers: productData.tiers,
     description: productData.description,
     fragranceNotes: productData.fragranceNotes,
-    usageLevels: productData.usageLevels
+    usageLevels: productData.usageLevels,
+    isQuoteOnly: productData.isQuoteOnly,
+    inStock: productData.inStock
   };
 
   // Pre-populated JSON-LD Schema
@@ -247,17 +255,38 @@ export default async function ProductDetailsPage({ params }: Props) {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 mb-8 text-sm">
-            <div className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span> In Stock
+          {displayProduct.isQuoteOnly || !displayProduct.inStock ? (
+            <div className="flex items-center gap-4 mb-8 text-sm">
+              <div className="flex items-center gap-1.5 text-amber-800 bg-amber-50 border border-amber-200/60 px-3 py-1.5 rounded-lg font-semibold">
+                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                Custom Wholesale Quote on Request
+              </div>
+              <div className="text-brand-charcoal/50 text-xs">
+                Direct Sourcing Inquiry
+              </div>
             </div>
-            <div className="text-brand-charcoal/50">
-              Ships in 24 hours
+          ) : (
+            <div className="flex items-center gap-4 mb-8 text-sm">
+              <div className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span> In Stock
+              </div>
+              <div className="text-brand-charcoal/50">
+                Ships in 24 hours
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Add to Cart Widget */}
-          <PricingWidget productId={displayProduct.id} tiers={displayProduct.tiers} moq={productData.moq} category={displayProduct.category} />
+          {/* Add to Cart / Quote Widget */}
+          <PricingWidget 
+            productId={displayProduct.id} 
+            productName={displayProduct.name}
+            sellerId={productData.sellerId}
+            tiers={displayProduct.tiers} 
+            moq={productData.moq} 
+            category={displayProduct.category} 
+            isQuoteOnly={displayProduct.isQuoteOnly}
+            inStock={displayProduct.inStock}
+          />
 
           <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>

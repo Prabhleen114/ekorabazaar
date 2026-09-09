@@ -26,6 +26,7 @@ export interface CatalogProduct {
   description: string;
   tags: string[];
   tiers: any[];
+  isQuoteOnly: boolean;
 }
 
 // Module-Level In-Memory Singleton: parsed once across warm serverless invocations
@@ -47,8 +48,9 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
 
   const catalog: CatalogProduct[] = (catalogProducts as any[]).map(p => {
     let priceVal = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
-    if (isNaN(priceVal) || priceVal < 0) priceVal = 299;
+    if (isNaN(priceVal) || priceVal < 0) priceVal = 0;
     
+    const isQuoteOnly = p.isQuoteOnly === true || priceVal === 0 || p.inStock === false;
     const category = p.category || "General Silicone Moulds";
     const department = p.department || getDepartmentForCategory(category) || "Precision Studio Moulds";
     const disciplines = Array.isArray(p.disciplines) ? p.disciplines : [];
@@ -67,12 +69,13 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
       disciplines,
       price: priceVal,
       image: p.image || p.imageUrl || "/og-image.jpg",
-      inStock: p.inStock !== false,
-      bulkDiscountAvailable: p.bulkDiscountAvailable ?? (Array.isArray(p.tiers) && p.tiers.length > 1),
-      maxDiscount: p.maxDiscount ?? 0,
+      inStock: p.inStock !== false && !isQuoteOnly,
+      bulkDiscountAvailable: isQuoteOnly ? false : (p.bulkDiscountAvailable ?? (Array.isArray(p.tiers) && p.tiers.length > 1)),
+      maxDiscount: isQuoteOnly ? 0 : (p.maxDiscount ?? 0),
       description: p.description || "",
       tags: Array.isArray(p.tags) ? p.tags : [],
-      tiers: Array.isArray(p.tiers) ? p.tiers : []
+      tiers: isQuoteOnly ? [] : (Array.isArray(p.tiers) ? p.tiers : []),
+      isQuoteOnly
     };
   });
 
@@ -196,6 +199,7 @@ export async function GET(req: NextRequest) {
       for (const p of dbProducts) {
         const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
         const dept = getDepartmentForCategory(p.category) || "Precision Studio Moulds";
+        const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
         const mappedDbProduct = {
           id: p.id,
           name: p.title,
@@ -204,12 +208,13 @@ export async function GET(req: NextRequest) {
           disciplines: [],
           price: effectivePriceINR,
           image: p.imageUrl || "/og-image.jpg",
-          inStock: p.stock > 0,
-          bulkDiscountAvailable: Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0,
+          inStock: p.stock > 0 && !isQuoteOnly,
+          bulkDiscountAvailable: isQuoteOnly ? false : (Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0),
           maxDiscount: 0,
           description: p.description || "",
           tags: [],
-          tiers: (p.wholesaleTiers as any[]) || []
+          tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
+          isQuoteOnly
         };
         
         const existingIndex = allProducts.findIndex(item => item.id === p.id);
@@ -290,7 +295,11 @@ export async function GET(req: NextRequest) {
       filtered.length = 0;
       scored.forEach(({ product }) => filtered.push(product));
     } else if (sortBy === "price_asc") {
-      filtered.sort((a, b) => a.price - b.price);
+      filtered.sort((a, b) => {
+        if (a.isQuoteOnly && !b.isQuoteOnly) return 1;
+        if (!a.isQuoteOnly && b.isQuoteOnly) return -1;
+        return a.price - b.price;
+      });
     } else if (sortBy === "price_desc") {
       filtered.sort((a, b) => b.price - a.price);
     } else if (sortBy === "newest") {

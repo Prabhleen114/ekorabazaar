@@ -58,6 +58,9 @@ export async function POST(req: Request) {
     if (!product || product.status !== ProductStatus.PUBLISHED) {
       return NextResponse.json({ error: 'Product not available' }, { status: 400 })
     }
+    if (product.price <= 0 || (product.customerPrice !== null && product.customerPrice <= 0)) {
+      return NextResponse.json({ error: 'This product is available on quotation only. Please request a quote.' }, { status: 400 })
+    }
     if (product.stock < quantity) {
       return NextResponse.json({ error: `Only ${product.stock} units available` }, { status: 400 })
     }

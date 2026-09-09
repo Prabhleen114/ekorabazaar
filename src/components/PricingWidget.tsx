@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus, ShoppingCart, Loader2, Check } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Loader2, Check, MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 type Tier = {
@@ -11,7 +11,26 @@ type Tier = {
   discountPct: number;
 };
 
-export default function PricingWidget({ productId, tiers, moq = 1, category }: { productId?: string; basePrice?: number; tiers: Tier[]; moq?: number; category?: string }) {
+export default function PricingWidget({ 
+  productId, 
+  productName,
+  sellerId,
+  tiers = [], 
+  moq = 1, 
+  category,
+  isQuoteOnly = false,
+  inStock = true
+}: { 
+  productId?: string; 
+  productName?: string;
+  sellerId?: string | null;
+  basePrice?: number; 
+  tiers: Tier[]; 
+  moq?: number; 
+  category?: string;
+  isQuoteOnly?: boolean;
+  inStock?: boolean;
+}) {
   const [quantity, setQuantity] = useState(moq);
   const [errorMsg, setErrorMsg] = useState("");
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -19,6 +38,66 @@ export default function PricingWidget({ productId, tiers, moq = 1, category }: {
   const [isBuyingNow, setIsBuyingNow] = useState(false);
 
   const router = useRouter();
+
+  if (isQuoteOnly || !inStock || !tiers || tiers.length === 0) {
+    const whatsappUrl = `https://wa.me/919041500605?text=${encodeURIComponent(
+      `Hi, I would like to request a wholesale quotation for ${productName || "this product"} (Product ID: ${productId || "N/A"}). Please share MOQ, tier pricing, and availability.`
+    )}`;
+
+    return (
+      <>
+        <div className="bg-brand-bg rounded-2xl p-6 border border-brand-linen mt-8 shadow-xs">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-2.5 py-1 rounded-md">
+              Wholesale Sourcing
+            </span>
+          </div>
+          <h3 className="text-xl font-bold text-brand-charcoal font-serif mb-2">
+            Pricing on Direct Quotation
+          </h3>
+          <p className="text-sm text-brand-charcoal/70 leading-relaxed mb-6">
+            This craft item is sourced on custom wholesale demand. Submit a quotation request to receive volume tier pricing, sample availability, and direct dispatch lead times from our verified craft suppliers.
+          </p>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 px-6 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2.5 text-center"
+          >
+            <MessageCircle className="w-5 h-5 text-emerald-400" />
+            Request Wholesale Quote on WhatsApp
+          </a>
+
+          <div className="mt-4 pt-4 border-t border-brand-linen/60 flex items-center justify-between text-xs text-brand-charcoal/60 flex-wrap gap-2">
+            <span>✓ Verified Supplier Direct</span>
+            <span>✓ Volume Tier Discounts</span>
+            <span>✓ Safe GST Invoicing</span>
+          </div>
+        </div>
+
+        {/* Mobile Sticky Quote Bar */}
+        <div 
+          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-brand-linen p-4 z-40 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)] flex items-center justify-between"
+          style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}
+        >
+          <div className="flex flex-col">
+            <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wider">Pricing</span>
+            <span className="text-base font-bold text-brand-charcoal">On Request</span>
+          </div>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-brand-charcoal text-white px-5 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg min-h-[48px] text-sm"
+          >
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
+            Request Quote
+          </a>
+        </div>
+      </>
+    );
+  }
 
   const handleAction = async (actionType: 'cart' | 'buy_now') => {
     if (!productId) return;
