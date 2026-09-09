@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import serialize from "serialize-javascript";
 import "./globals.css";
@@ -187,6 +188,7 @@ export default function RootLayout({
         {children}
         <WhatsAppButton />
         <CookieConsent />
+        <Analytics />
         {process.env.NODE_ENV === "production" && (
           <GoogleAnalytics gaId="G-YTRDDR6JBB" />
         )}
