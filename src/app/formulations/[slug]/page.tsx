@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import dataRaw from "@/lib/data/formulations.json";
 import ProductImageClient from "@/components/ProductImageClient";
+import DOMPurify from "isomorphic-dompurify";
 
 type Formulation = {
   title: string;
@@ -38,13 +39,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function sanitizeHtml(html: string): string {
   if (!html) return '';
-  return html
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
-    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
-    .replace(/<(object|embed|applet|meta|link|base)[^>]*>/gi, '')
-    .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"')
-    .replace(/\s+on[a-z]+\s*=\s*(["'][^"']*["']|[^\s>]+)/gi, '');
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      'h1','h2','h3','h4','h5','h6','p','br','hr','ul','ol','li','a',
+      'strong','em','b','i','u','span','div','table','thead','tbody',
+      'tr','th','td','img','blockquote','pre','code','sub','sup'
+    ],
+    ALLOWED_ATTR: ['href','src','alt','title','class','id','target','rel','width','height'],
+    ALLOW_DATA_ATTR: false,
+  });
 }
 
 export default async function FormulationSinglePage({ params }: { params: Promise<{ slug: string }> }) {

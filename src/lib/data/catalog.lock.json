@@ -1,6 +1,6 @@
 {
   "totalProducts": 2374,
-  "sha256": "57033c3922d8230c8d2d035ec076b35071933f579787534b566b265e31ed2c44",
-  "lastUpdated": "2026-09-09T19:35:00+05:30",
-  "note": "Sanitized legacy brand names from names and descriptions, Strategy 3 quote-only configured, all 2374 products preserved"
+  "sha256": "9eb734c89f86bf9d7e11fb73adb129a13b96d63bc7ed79535f738e036e557294",
+  "lastUpdated": "2026-09-09T20:59:48.859926",
+  "note": "Sanitized JKB supplier codes from names and descriptions, all 2374 products preserved"
 }

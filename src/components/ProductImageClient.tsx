@@ -24,7 +24,6 @@ export default function ProductImageClient({
       alt={alt} 
       fill
       priority={priority}
-      unoptimized={true}
       sizes={sizes}
       className={className} 
       onError={() => setImgSrc("/og-image.jpg")}

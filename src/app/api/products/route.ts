@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/db";
-import { ProductStatus } from "@prisma/client";
+import { ProductStatus, Prisma } from "@prisma/client";
 import { getDepartmentForCategory, DEPARTMENTS } from "@/lib/taxonomy";
 import catalogProducts from "@/lib/data/products.json";
 import {
@@ -128,44 +128,51 @@ export async function GET(req: NextRequest) {
       let dbProducts: any[] = [];
 
       if (hasSearch && normalizedQ) {
-        // --- FUZZY SEARCH (pg_trgm) ---
-        // Use raw SQL to leverage PostgreSQL similarity() for unknown typos
-        let sql = `SELECT p.id, p.title, p.category, p.price, p."customerPrice", p.stock, p."imageUrl", p."wholesaleTiers", p.description 
-                   FROM "Product" p 
-                   INNER JOIN "Seller" s ON p."sellerId" = s.id 
-                   WHERE p.status = 'PUBLISHED' AND s."accountStatus" = 'ACTIVE'`;
-        
+        // --- PARAMETERIZED FUZZY SEARCH (pg_trgm) ---
+        // Uses Prisma.sql tagged template for SQL injection protection
+        const conditions: ReturnType<typeof Prisma.sql>[] = [
+          Prisma.sql`p.status = 'PUBLISHED' AND s."accountStatus" = 'ACTIVE'`
+        ];
+
         if (category) {
-          sql += ` AND p.category = '${category.replace(/'/g, "''")}'`;
+          conditions.push(Prisma.sql`p.category = ${category}`);
         } else if (department) {
           const cats = DEPARTMENTS.find(d => d.name === department)?.subcategories || [];
           if (cats.length > 0) {
-            const catList = cats.map(c => `'${c.replace(/'/g, "''")}'`).join(',');
-            sql += ` AND p.category IN (${catList})`;
+            conditions.push(Prisma.sql`p.category IN (${Prisma.join(cats)})`);
           }
         }
-        if (inStockOnly) sql += ` AND p.stock > 0`;
+        if (inStockOnly) {
+          conditions.push(Prisma.sql`p.stock > 0`);
+        }
 
         const tokenGroups = expandQueryTokenGroups(normalizedQ);
         for (const group of tokenGroups) {
-          const groupConds = [];
+          const groupConds: ReturnType<typeof Prisma.sql>[] = [];
           for (const token of group) {
-            const clean = token.replace(/'/g, "''");
-            groupConds.push(`p.title ILIKE '%${clean}%'`);
-            groupConds.push(`p.category ILIKE '%${clean}%'`);
-            groupConds.push(`p.description ILIKE '%${clean}%'`);
-            if (clean.length >= 4) {
-              groupConds.push(`similarity(p.title, '${clean}') > 0.3`);
-              groupConds.push(`similarity(p.category, '${clean}') > 0.3`);
+            const likePattern = `%${token}%`;
+            groupConds.push(Prisma.sql`p.title ILIKE ${likePattern}`);
+            groupConds.push(Prisma.sql`p.category ILIKE ${likePattern}`);
+            groupConds.push(Prisma.sql`p.description ILIKE ${likePattern}`);
+            if (token.length >= 4) {
+              groupConds.push(Prisma.sql`similarity(p.title, ${token}) > 0.3`);
+              groupConds.push(Prisma.sql`similarity(p.category, ${token}) > 0.3`);
             }
           }
-          sql += ` AND (${groupConds.join(' OR ')})`;
+          if (groupConds.length > 0) {
+            conditions.push(Prisma.sql`(${Prisma.join(groupConds, ' OR ')})`);
+          }
         }
 
-        // Limit the results to avoid fetching too many rows on a broad search
-        sql += ` LIMIT 2500`;
+        const whereClause = Prisma.join(conditions, ' AND ');
 
-        dbProducts = await prisma.$queryRawUnsafe(sql);
+        dbProducts = await prisma.$queryRaw`
+          SELECT p.id, p.title, p.category, p.price, p."customerPrice", p.stock, p."imageUrl", p."wholesaleTiers", p.description 
+          FROM "Product" p 
+          INNER JOIN "Seller" s ON p."sellerId" = s.id 
+          WHERE ${whereClause}
+          LIMIT 2500
+        `;
       } else {
         // --- EXACT FILTERING ---
         const dbWhere: any = {

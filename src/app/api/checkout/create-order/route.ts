@@ -78,7 +78,10 @@ export async function POST(req: Request) {
                 source: 'EKORA_OFFICIAL',
                 category: catalogItem.category || 'General Silicone Moulds',
                 imageUrl: catalogItem.image || '/og-image.jpg',
-                wholesaleTiers: catalogItem.tiers || []
+                wholesaleTiers: (catalogItem.tiers || []).map((t: any) => ({
+                  ...t,
+                  price: Math.round((Number(t.price) || 0) * 100)
+                }))
               },
               include: { seller: true }
             });
@@ -101,6 +104,15 @@ export async function POST(req: Request) {
           throw new Error(`Insufficient stock for ${product.title}.`)
         }
 
+        // RESERVE STOCK NOW: Atomically decrement to prevent oversell race condition
+        const reserveResult = await tx.product.updateMany({
+          where: { id: product.id, stock: { gte: item.quantity } },
+          data: { stock: { decrement: item.quantity } }
+        })
+        if (reserveResult.count === 0) {
+          throw new Error(`Insufficient stock for ${product.title} (concurrent reservation).`)
+        }
+
         const effectivePrice = calculateItemPrice(product, item.quantity)
         const subtotal = effectivePrice * item.quantity
         totalAmount += subtotal
@@ -117,7 +129,7 @@ export async function POST(req: Request) {
 
     const finalAmountPaise = Math.round(totalAmount)
 
-    console.log("[DEBUG] Runtime RAZORPAY_KEY_ID:", process.env.RAZORPAY_KEY_ID?.substring(0, 15) + "...");
+    // Razorpay key validated at import time via razorpay.ts
 
     // Create Razorpay Order
     if (!razorpay) {

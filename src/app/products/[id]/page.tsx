@@ -281,12 +281,40 @@ export default async function ProductDetailsPage({ params }: Props) {
             productId={displayProduct.id} 
             productName={displayProduct.name}
             sellerId={productData.sellerId}
+            basePrice={displayProduct.price}
             tiers={displayProduct.tiers} 
             moq={productData.moq} 
             category={displayProduct.category} 
             isQuoteOnly={displayProduct.isQuoteOnly}
             inStock={displayProduct.inStock}
           />
+
+          {/* Trust factors — placed near purchase CTA above fold */}
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
+              <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M10 2v2a3 3 0 0 0 3 3h1a3 3 0 0 0 3-3V2M9 14h6M9 18h6M14 2h.01"/><path d="M8.5 2h7l4.5 18a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2z"/></svg>
+              </div>
+              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Lab Tested</h4>
+              <p className="text-[9px] text-brand-charcoal/50 leading-tight">COA &amp; MSDS</p>
+            </div>
+
+            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
+              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Batch Matched</h4>
+              <p className="text-[9px] text-brand-charcoal/50 leading-tight">100% Consistent</p>
+            </div>
+
+            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
+              <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+              </div>
+              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Instant Docs</h4>
+              <p className="text-[9px] text-brand-charcoal/50 leading-tight">COA PDF Included</p>
+            </div>
+          </div>
 
           <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
@@ -380,39 +408,6 @@ export default async function ProductDetailsPage({ params }: Props) {
                 </div>
               </details>
             )}
-          </div>
-
-          {/* Trust factors */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-brand-linen pt-8">
-            <div className="bg-white p-5 rounded-2xl border border-brand-linen shadow-sm flex items-start gap-3">
-              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M10 2v2a3 3 0 0 0 3 3h1a3 3 0 0 0 3-3V2M9 14h6M9 18h6M14 2h.01"/><path d="M8.5 2h7l4.5 18a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2z"/></svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-xs text-brand-charcoal mb-0.5">Lab Tested</h4>
-                <p className="text-[11px] text-brand-charcoal/60 leading-relaxed">COA &amp; MSDS batch certified.</p>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-2xl border border-brand-linen shadow-sm flex items-start gap-3">
-              <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-xs text-brand-charcoal mb-0.5">Batch Matched</h4>
-                <p className="text-[11px] text-brand-charcoal/60 leading-relaxed">100% consistent formulation.</p>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-2xl border border-brand-linen shadow-sm flex items-start gap-3">
-              <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-xs text-brand-charcoal mb-0.5">Instant Docs</h4>
-                <p className="text-[11px] text-brand-charcoal/60 leading-relaxed">COA PDF included with order.</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

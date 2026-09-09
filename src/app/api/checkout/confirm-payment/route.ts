@@ -56,24 +56,8 @@ export async function POST(req: Request) {
         return { alreadyVerified: true, orderId: payment.orderId }
       }
 
-      // Decrement inventory safely (Inventory Protection)
-      for (const item of payment.order.items) {
-        // Find product to check stock first
-        const product = await tx.product.findUnique({ where: { id: item.productId } })
-        if (!product || product.stock < item.quantity) {
-          throw new Error(`Insufficient stock for product ${item.productId} during payment verification.`)
-        }
-
-        // Decrement stock
-        await tx.product.update({
-          where: { id: item.productId },
-          data: {
-            stock: {
-              decrement: item.quantity
-            }
-          }
-        })
-      }
+      // Stock was already reserved atomically during order creation (create-order route).
+      // No second decrement needed. The reservation pattern prevents oversell.
 
       // Mark Order as PAID
       await tx.order.update({

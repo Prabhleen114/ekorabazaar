@@ -15,6 +15,7 @@ export default function PricingWidget({
   productId, 
   productName,
   sellerId,
+  basePrice,
   tiers = [], 
   moq = 1, 
   category,
@@ -119,16 +120,11 @@ export default function PricingWidget({
         
         setIsAddedSuccess(true);
         
+        // Show success state for 2.5s, then reset button — user stays on PDP
         setTimeout(() => {
-          // Attempt to go back smoothly if they came from our shop
-          if (document.referrer && document.referrer.includes(window.location.host) && document.referrer.includes('/shop')) {
-            router.back();
-          } else if (category) {
-            router.push(`/shop?category=${encodeURIComponent(category)}`);
-          } else {
-            router.push('/shop');
-          }
-        }, 1200);
+          setIsAddedSuccess(false);
+          setIsAddingToCart(false);
+        }, 2500);
 
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -159,8 +155,9 @@ export default function PricingWidget({
     }
   };
 
-  const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || tiers[0];
-  const subtotal = currentTier.price * quantity;
+  const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || null;
+  const displayPrice = currentTier ? currentTier.price : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
+  const subtotal = displayPrice * quantity;
 
   const isProcessing = isAddingToCart || isBuyingNow || isAddedSuccess;
 

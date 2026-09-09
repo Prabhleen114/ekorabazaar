@@ -107,16 +107,8 @@ export async function POST(req: Request) {
             return { justCapturedOrderId: null }
           }
 
-          // We must do inventory deduction because we won the lock
-          for (const item of payment.order.items) {
-            const product = await tx.product.findUnique({ where: { id: item.productId } })
-            if (product && product.stock >= item.quantity) {
-              await tx.product.update({
-                where: { id: item.productId },
-                data: { stock: { decrement: item.quantity } }
-              })
-            }
-          }
+          // Stock was already reserved atomically during order creation.
+          // No second decrement needed here.
 
           await tx.order.update({
             where: { id: payment.orderId },
@@ -129,7 +121,8 @@ export async function POST(req: Request) {
         const razorpayOrderId = payload.order_id
 
         const payment = await tx.payment.findUnique({
-          where: { razorpayOrderId }
+          where: { razorpayOrderId },
+          include: { order: { include: { items: true } } }
         })
 
         if (payment && payment.status === PaymentStatus.PENDING) {
@@ -141,8 +134,18 @@ export async function POST(req: Request) {
           if (payment.orderId) {
             await tx.order.update({
               where: { id: payment.orderId },
-              data: { paymentStatus: PaymentStatus.FAILED }
+              data: { paymentStatus: PaymentStatus.FAILED, status: OrderStatus.CANCELLED }
             })
+
+            // Restore pre-reserved stock since payment failed
+            if (payment.order) {
+              for (const item of payment.order.items) {
+                await tx.product.update({
+                  where: { id: item.productId },
+                  data: { stock: { increment: item.quantity } }
+                })
+              }
+            }
           }
         }
       }

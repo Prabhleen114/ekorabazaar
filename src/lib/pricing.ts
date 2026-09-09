@@ -15,12 +15,10 @@ export function calculateItemPrice(
     });
 
     if (matchingTier && matchingTier.price != null) {
-      let tierPrice = Number(matchingTier.price);
-      // Unit normalization safeguard: If basePrice is in paise (e.g. 4600) and tierPrice is in rupees (e.g. 43),
-      // harmonize tierPrice to paise so currency unit remains consistent.
-      if (basePrice >= 100 && tierPrice > 0 && tierPrice * 20 < basePrice) {
-        tierPrice = Math.round(tierPrice * 100);
-      }
+      const tierPrice = Number(matchingTier.price);
+      // All tier prices MUST be in paise (same unit as basePrice).
+      // Seller form converts rupees→paise on submit.
+      // Catalog JSON tiers are converted at ingestion in create-order route.
       effectivePrice = tierPrice;
     }
     // Note: If quantity does not meet any tier's minQty, effectivePrice strictly remains basePrice.
