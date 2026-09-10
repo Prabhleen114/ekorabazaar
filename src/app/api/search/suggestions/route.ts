@@ -108,15 +108,16 @@ export async function GET(req: NextRequest) {
 
     // Also fetch top 3 matching products from PostgreSQL directly
     try {
-      const cleanQ = query.replace(/'/g, "''");
-      const dbMatches = await prisma.$queryRawUnsafe<any[]>(`
+      // Use parameterized Prisma query to prevent SQL injection
+      const likePattern = `%${query}%`;
+      const dbMatches = await prisma.$queryRaw<any[]>`
         SELECT id, title
         FROM "Product"
         WHERE status = 'PUBLISHED'
-          AND (title ILIKE '%${cleanQ}%' OR similarity(title, '${cleanQ}') > 0.3)
-        ORDER BY similarity(title, '${cleanQ}') DESC
+          AND (title ILIKE ${likePattern} OR similarity(title, ${query}) > 0.3)
+        ORDER BY similarity(title, ${query}) DESC
         LIMIT 4
-      `);
+      `;
 
       for (const row of dbMatches) {
         if (!topSuggestions.some(s => s.href === '/products/' + row.id)) {

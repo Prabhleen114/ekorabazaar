@@ -11,13 +11,15 @@ function getPrismaClient(): PrismaClient {
     // DIRECT_URL and POSTGRES_URL_NON_POOLING are standard fallbacks for direct PostgreSQL.
     // We prefer DATABASE_URL (transaction-mode pooler) because we use pg.Pool.
     // DIRECT_URL should only be used by prisma migrate.
-    const connectionString = 
-      process.env.DATABASE_URL || 
-      process.env.POSTGRES_URL_NON_POOLING || 
-      process.env.DIRECT_URL || 
-      "postgresql://postgres:postgres@localhost:5432/placeholder";
+    const connectionString = process.env.POSTGRES_URL_NON_POOLING || process.env.DIRECT_URL || process.env.DATABASE_URL
+    if (!connectionString) {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('CRITICAL CONFIG ERROR: Database connection string is missing in production.')
+      }
+    }
+    const finalConnectionString = connectionString || "postgresql://postgres:postgres@localhost:5432/placeholder"
 
-    const pool = new pg.Pool({ connectionString, max: 2 }) // limit pool size for build
+    const pool = new pg.Pool({ connectionString: finalConnectionString, max: 2 }) // limit pool size for build
     const adapter = new PrismaPg(pool)
     globalForPrisma.prisma = new PrismaClient({ adapter })
   }

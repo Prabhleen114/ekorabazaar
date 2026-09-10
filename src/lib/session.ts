@@ -5,11 +5,10 @@ import { Role } from '@prisma/client'
 function getSecretKey(): Uint8Array {
   const secret = process.env.JWT_SECRET
   if (!secret) {
-    return new TextEncoder().encode(
-      process.env.NODE_ENV === 'production'
-        ? 'ekorabazaar_production_build_placeholder_key_change_me'
-        : 'ekorabazaar_dev_secret_key_change_in_production'
-    )
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('CRITICAL SECURITY ERROR: JWT_SECRET environment variable is not set in production!')
+    }
+    return new TextEncoder().encode('ekorabazaar_dev_secret_key_change_in_production')
   }
   return new TextEncoder().encode(secret)
 }
@@ -22,9 +21,6 @@ export interface SessionPayload {
 }
 
 export async function encrypt(payload: SessionPayload) {
-  if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
-    console.error('CRITICAL SECURITY ALERT: JWT_SECRET environment variable is not set in production!')
-  }
   const key = getSecretKey()
   return await new SignJWT(payload as unknown as Record<string, unknown>)
     .setProtectedHeader({ alg: 'HS256' })

@@ -9,19 +9,6 @@ interface RateLimitRecord {
 
 const rateLimitStore = new Map<string, RateLimitRecord>();
 
-// Cleanup stale entries every 5 minutes to prevent memory leaks
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, record] of rateLimitStore.entries()) {
-      record.timestamps = record.timestamps.filter(ts => now - ts < 300000); // 5 min
-      if (record.timestamps.length === 0) {
-        rateLimitStore.delete(key);
-      }
-    }
-  }, 300000);
-}
-
 export interface RateLimitOptions {
   limit: number;       // Max number of requests allowed
   windowMs: number;    // Time window in milliseconds
@@ -69,13 +56,18 @@ export function rateLimit(identifier: string, options: RateLimitOptions): RateLi
 }
 
 export function getClientIp(req: Request): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    return forwarded.split(",")[0].trim();
+  // Check Vercel's verified IP header first to prevent spoofing via x-forwarded-for
+  const vercelIp = req.headers.get("x-vercel-forwarded-for");
+  if (vercelIp) {
+    return vercelIp.split(",")[0].trim();
   }
   const realIp = req.headers.get("x-real-ip");
   if (realIp) {
     return realIp.trim();
+  }
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    return forwarded.split(",")[0].trim();
   }
   return "127.0.0.1";
 }

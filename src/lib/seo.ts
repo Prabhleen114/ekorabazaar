@@ -120,15 +120,6 @@ export function generateProductSchema(product: any, sellerName?: string) {
     };
   }
 
-  // AggregateRating to satisfy Google Search Console Rich Results requirements
-  schema.aggregateRating = {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "86",
-    "bestRating": "5",
-    "worstRating": "1"
-  };
-
   return schema;
 }
 
