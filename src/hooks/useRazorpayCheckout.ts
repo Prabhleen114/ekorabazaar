@@ -137,7 +137,8 @@ export function useRazorpayCheckout() {
           },
         },
         theme: {
-          color: "#ea580c", // brand-orange
+          color: "#252525", // Ekora charcoal
+          backdrop_color: "#F8F6F2", // warm off-white
         },
       };
 
