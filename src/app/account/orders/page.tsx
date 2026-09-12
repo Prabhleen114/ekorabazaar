@@ -32,6 +32,8 @@ export default function OrdersPage() {
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' })
+    const { notifyCartUpdated } = await import('@/lib/guest-cart')
+    notifyCartUpdated()
     router.push('/')
     router.refresh()
   }

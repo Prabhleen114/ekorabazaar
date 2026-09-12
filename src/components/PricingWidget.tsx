@@ -113,12 +113,25 @@ export default function PricingWidget({
           body: JSON.stringify({ productId, quantity })
         });
         if (res.status === 401 || res.status === 403) {
-          router.push(`/login?redirect=/products/${productId}`);
+          const { addGuestCartItem } = await import('@/lib/guest-cart');
+          addGuestCartItem({
+            productId,
+            quantity,
+            title: productName,
+            basePrice
+          });
+          setIsAddedSuccess(true);
+          setTimeout(() => {
+            setIsAddedSuccess(false);
+            setIsAddingToCart(false);
+          }, 2500);
           return;
         }
         if (!res.ok) throw new Error('Failed to add to cart');
         
         setIsAddedSuccess(true);
+        const { notifyCartUpdated } = await import('@/lib/guest-cart');
+        notifyCartUpdated();
         
         // Show success state for 2.5s, then reset button — user stays on PDP
         setTimeout(() => {
@@ -143,10 +156,19 @@ export default function PricingWidget({
           body: JSON.stringify({ productId, quantity })
         });
         if (res.status === 401 || res.status === 403) {
-          router.push(`/login?redirect=/products/${productId}`);
+          const { addGuestCartItem } = await import('@/lib/guest-cart');
+          addGuestCartItem({
+            productId,
+            quantity,
+            title: productName,
+            basePrice
+          });
+          router.push('/checkout');
           return;
         }
         if (!res.ok) throw new Error('Failed to proceed to checkout');
+        const { notifyCartUpdated } = await import('@/lib/guest-cart');
+        notifyCartUpdated();
         router.push('/checkout');
       } catch (err: any) {
         setErrorMsg(err.message);

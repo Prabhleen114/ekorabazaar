@@ -32,6 +32,23 @@ function SignupForm() {
       }
 
       if (data.success) {
+        // Sync guest cart
+        const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
+        const guestItems = getGuestCart()
+        
+        if (guestItems.length > 0) {
+          try {
+            await fetch('/api/cart/sync', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ items: guestItems })
+            })
+            clearGuestCart()
+          } catch (syncErr) {
+            console.error('Failed to sync guest cart', syncErr)
+          }
+        }
+
         const destination = redirectTo || data.redirectUrl || '/'
         router.push(destination)
         router.refresh()

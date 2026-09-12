@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import TopUtilityBar from "./TopUtilityBar";
 import { DEPARTMENTS, DISCIPLINE_HUBS } from "@/lib/taxonomy";
 import NavbarSearchBox from "./NavbarSearchBox";
+import CartIcon from "./CartIcon";
 
 export default function BuyerNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -295,9 +296,10 @@ export default function BuyerNavbar() {
             </Link>
           </nav>
 
-          {/* Right: Search & Mobile Hamburger */}
-          <div className="flex-1 flex justify-end items-center gap-4">
+          {/* Right: Search, Cart & Mobile Hamburger */}
+          <div className="flex-1 flex justify-end items-center gap-2 md:gap-4">
             <NavbarSearchBox />
+            <CartIcon />
 
             <button
               className="md:hidden p-3 -mr-3 text-brand-charcoal focus:outline-none flex items-center justify-center min-w-[44px] min-h-[44px]"

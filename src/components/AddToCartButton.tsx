@@ -19,8 +19,14 @@ export default function AddToCartButton({ productId, inStock }: { productId: str
       })
 
       if (res.status === 401 || res.status === 403) {
-        // Redirect to login if unauthenticated or forbidden (seller)
-        router.push(`/login?redirect=/products/${productId}`)
+        // Fallback to guest cart
+        import('@/lib/guest-cart').then(({ addGuestCartItem }) => {
+          addGuestCartItem({
+            productId,
+            quantity: 1
+          })
+          router.push('/cart')
+        });
         return
       }
 
@@ -30,6 +36,7 @@ export default function AddToCartButton({ productId, inStock }: { productId: str
       }
 
       // Success
+      import('@/lib/guest-cart').then(({ notifyCartUpdated }) => notifyCartUpdated());
       router.push('/cart')
     } catch (err: any) {
       setError(err.message)

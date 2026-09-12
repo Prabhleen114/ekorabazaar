@@ -10,17 +10,48 @@ export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [isGuest, setIsGuest] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
     fetchCart()
+
+    const handleCartUpdate = () => fetchCart()
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'ekora_guest_cart') fetchCart()
+    }
+
+    window.addEventListener('cart-updated', handleCartUpdate)
+    window.addEventListener('storage', handleStorage)
+
+    return () => {
+      window.removeEventListener('cart-updated', handleCartUpdate)
+      window.removeEventListener('storage', handleStorage)
+    }
   }, [])
 
   const fetchCart = async () => {
     try {
       const res = await fetch('/api/cart')
       if (res.status === 401 || res.status === 403) {
-        router.push('/login?redirect=/cart')
+        setIsGuest(true)
+        const { getGuestCart } = await import('@/lib/guest-cart')
+        const guestItems = getGuestCart()
+        
+        if (guestItems.length === 0) {
+          setItems([])
+          setTotal(0)
+          return
+        }
+
+        const guestRes = await fetch('/api/cart/guest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: guestItems })
+        })
+        const guestData = await guestRes.json()
+        setItems(guestData.items || [])
+        setTotal(guestData.totalAmount || 0)
         return
       }
       const data = await res.json()
@@ -33,24 +64,40 @@ export default function CartPage() {
     }
   }
 
-  const updateQuantity = async (itemId: string, newQty: number) => {
+  const updateQuantity = async (itemId: string, newQty: number, productId: string) => {
     if (newQty < 1) return
     try {
-      await fetch(`/api/cart/${itemId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quantity: newQty })
-      })
-      fetchCart()
+      if (isGuest) {
+        const { updateGuestCartItemQty } = await import('@/lib/guest-cart')
+        updateGuestCartItemQty(productId, newQty)
+        fetchCart()
+      } else {
+        await fetch(`/api/cart/${itemId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ quantity: newQty })
+        })
+        const { notifyCartUpdated } = await import('@/lib/guest-cart')
+        notifyCartUpdated()
+        fetchCart()
+      }
     } catch (err) {
       console.error(err)
     }
   }
 
-  const removeItem = async (itemId: string) => {
+  const removeItem = async (itemId: string, productId: string) => {
     try {
-      await fetch(`/api/cart/${itemId}`, { method: 'DELETE' })
-      fetchCart()
+      if (isGuest) {
+        const { removeGuestCartItem } = await import('@/lib/guest-cart')
+        removeGuestCartItem(productId)
+        fetchCart()
+      } else {
+        await fetch(`/api/cart/${itemId}`, { method: 'DELETE' })
+        const { notifyCartUpdated } = await import('@/lib/guest-cart')
+        notifyCartUpdated()
+        fetchCart()
+      }
     } catch (err) {
       console.error(err)
     }
@@ -97,15 +144,15 @@ export default function CartPage() {
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <div className="flex items-center bg-brand-bg rounded-lg border border-brand-linen">
-                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable}>
                       <Minus className="w-3 h-3" />
                     </button>
                     <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable}>
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <button onClick={() => removeItem(item.id)} className="text-red-400 hover:text-red-600 p-1">
+                  <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
