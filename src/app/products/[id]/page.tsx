@@ -14,7 +14,8 @@ import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
 import TechnicalDocsSection from "@/components/TechnicalDocsSection";
-import ProductFaqSection, { getCategoryFaqs } from "@/components/ProductFaqSection";
+import ProductFaqSection from "@/components/ProductFaqSection";
+import { getCategoryFaqs } from "@/lib/faqs";
 
 import catalogProducts from "@/lib/data/products.json";
 
