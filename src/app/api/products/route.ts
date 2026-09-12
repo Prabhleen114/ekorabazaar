@@ -37,6 +37,15 @@ let cachedFacets: {
   disciplines: Record<string, number>;
 } | null = null;
 
+function normalizeProductCore(text: string): string {
+  const base = (text || "").split(/[|—–]/)[0].toUpperCase();
+  return base
+    .replace(/\b(VEDINI|JINDEAL|LYBA|EKORA\s*BAZAAR|EKORA)\b/g, "")
+    .replace(/\b(WITH\s+MARKINGS|WITH\s+JUG\s+BEAKER\s+MARKINGS|WITH\s+BEAKER\s+MARKINGS)\b/g, "")
+    .replace(/\b(FOR\s+DIY\s+CANDLE\s+MAKING|FOR\s+CANDLE\s+MAKING|FOR\s+SOAP\s+MAKING|FOR\s+RESIN\s+ART)\b/g, "")
+    .replace(/[^A-Z0-9]/g, "");
+}
+
 function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cachedFacets } {
   if (cachedCatalog && cachedFacets) {
     return { catalog: cachedCatalog, facets: cachedFacets };
@@ -45,8 +54,18 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
   const deptCounts: Record<string, number> = {};
   const catCounts: Record<string, number> = {};
   const discCounts: Record<string, number> = {};
+  const seenCores = new Set<string>();
 
-  const catalog: CatalogProduct[] = (catalogProducts as any[]).map(p => {
+  const catalog: CatalogProduct[] = [];
+
+  for (const p of (catalogProducts as any[])) {
+    const rawName = p.name || p.title || "Untitled Product";
+    const core = normalizeProductCore(rawName);
+    if (core.length >= 8) {
+      if (seenCores.has(core)) continue;
+      seenCores.add(core);
+    }
+
     let priceVal = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
     if (isNaN(priceVal) || priceVal < 0) priceVal = 0;
     
@@ -61,9 +80,9 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
       discCounts[d] = (discCounts[d] || 0) + 1;
     });
 
-    return {
+    catalog.push({
       id: String(p.id),
-      name: p.name || p.title || "Untitled Product",
+      name: rawName,
       category,
       department,
       disciplines,
@@ -76,8 +95,8 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
       tags: Array.isArray(p.tags) ? p.tags : [],
       tiers: isQuoteOnly ? [] : (Array.isArray(p.tiers) ? p.tiers : []),
       isQuoteOnly
-    };
-  });
+    });
+  }
 
   cachedCatalog = catalog;
   cachedFacets = { departments: deptCounts, categories: catCounts, disciplines: discCounts };
@@ -224,7 +243,10 @@ export async function GET(req: NextRequest) {
           isQuoteOnly
         };
         
-        const existingIndex = allProducts.findIndex(item => item.id === p.id);
+        const pCore = normalizeProductCore(p.title);
+        const existingIndex = allProducts.findIndex(item => 
+          item.id === p.id || (pCore.length >= 8 && normalizeProductCore(item.name) === pCore)
+        );
         if (existingIndex !== -1) {
           allProducts[existingIndex] = mappedDbProduct;
         } else {
@@ -234,6 +256,22 @@ export async function GET(req: NextRequest) {
     } catch (dbErr) {
       // DB unavailable: catalog-only mode
     }
+
+    // 2.1 Deduplicate catalog products by core title so duplicate items are never shown
+    const seenCores = new Set<string>();
+    const deduplicatedProducts: typeof allProducts = [];
+    for (const item of allProducts) {
+      const core = normalizeProductCore(item.name);
+      if (core.length >= 8) {
+        if (seenCores.has(core)) {
+          continue;
+        }
+        seenCores.add(core);
+      }
+      deduplicatedProducts.push(item);
+    }
+    allProducts.length = 0;
+    allProducts.push(...deduplicatedProducts);
 
     // 3. Apply filters
     const filtered = allProducts.filter(p => {

@@ -1216,7 +1216,7 @@
     "price": 58,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-01-at-1.29.20-PM-247x296.jpeg",
     "tiers": [
       {
         "minQty": 1,
@@ -9745,7 +9745,7 @@
     "price": 72,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/Diffuser-stick-white-black-brown-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -10705,7 +10705,7 @@
     "price": 47,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/50ml-diffuser-bottle-reed-diffuser-bottle-glass-diffuser-bottle-golden-cap-diffuser-bottle-2-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -10800,7 +10800,7 @@
     "price": 34,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/50ml-difuser-bottle-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -12254,7 +12254,7 @@
     "price": 29,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01thRepr279qbWdLxuE_2221351267755-0-cib-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -12421,7 +12421,7 @@
     "price": 98,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/ChatGPT-Image-May-17-2026-02_46_14-PM-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -12509,7 +12509,7 @@
     "price": 46,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01dtegbp279qbfMLRgS_2221351267755-0-cib-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -16339,7 +16339,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/04/frosted-perfume-bottle-30ml-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -22264,7 +22264,7 @@
     "price": 29,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=800&q=80",
+    "image": "https://jindeal.com/wp-content/uploads/2026/04/perfume-spray-bottle-10ml-247x296.png",
     "tiers": [
       {
         "minQty": 1,
@@ -32955,32 +32955,32 @@
     "isQuoteOnly": false
   },
   {
-    "id": "415",
-    "name": "PALMAROSA ESSENTIAL OIL – 100% PURE NATURAL & UNDILUTED FOR SKIN CARE & HAIR",
+    "id": "795",
+    "name": "Palmarosa Essential Oil 100 Pure Natural & Undiluted For Skin Care & Hair",
     "category": "Essential Oils",
-    "description": "Premium quality palmarosa essential oil – 100% pure natural & undiluted for skin care & hair sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 169,
+    "description": "Premium quality palmarosa essential oil 100 pure natural & undiluted for skin care & hair sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 486,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-palmarosa-essential-oil.png",
+    "maxDiscount": 15,
+    "image": "https://jindeal.com/wp-content/uploads/2023/04/palmarosa-essential-oil-500x500-1-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 9,
-        "price": 169,
+        "maxQty": 11,
+        "price": 486,
         "discountPct": 0
       },
       {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 161,
-        "discountPct": 5
+        "minQty": 12,
+        "maxQty": 51,
+        "price": 437,
+        "discountPct": 10
       },
       {
-        "minQty": 50,
+        "minQty": 52,
         "maxQty": null,
-        "price": 152,
-        "discountPct": 10
+        "price": 413,
+        "discountPct": 15
       }
     ],
     "tags": [
@@ -32990,38 +32990,17 @@
       "100",
       "pure",
       "natural",
+      "&",
       "undiluted",
       "for",
       "skin",
       "care",
       "hair",
-      "oils",
       "wholesale",
-      "b2b",
       "bulk",
-      "supplies",
-      "raw materials",
-      "india",
       "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "organic",
-      "maker",
-      "creator",
-      "small business"
+      "essential oil",
+      "all"
     ],
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
@@ -54566,7 +54545,7 @@
     "price": 571,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/Clove Leaf.png",
     "tiers": [
       {
         "minQty": 1,
@@ -55970,7 +55949,7 @@
     "price": 377,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/Geranium.png",
     "tiers": [
       {
         "minQty": 1,
@@ -57589,63 +57568,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "698",
-    "name": "Sea Salt Candle F O",
-    "category": "Fragrance Oils",
-    "description": "Premium quality sea salt candle f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 457,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/Sea Salt.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 457,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 411,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 388,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "skin safe",
-      "candle",
-      "sea",
-      "salt",
-      "f",
-      "o",
-      "wholesale",
-      "bulk",
-      "premium",
-      "fragrance oil",
-      "all"
-    ],
-    "scentFamily": "Aquatic",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "699",
     "name": "Pure Orange F O",
     "category": "Fragrance Oils",
@@ -57653,7 +57575,7 @@
     "price": 282,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/Pure Anise.png",
     "tiers": [
       {
         "minQty": 1,
@@ -58517,69 +58439,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "714",
-    "name": "Green Tea & Lemon Candle & Cosmetic F O",
-    "category": "Fragrance Oils",
-    "description": "Premium quality green tea & lemon candle & cosmetic f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 555,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/Green Tea & Lemon.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 555,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 499,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 471,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "skin safe",
-      "cold process stable",
-      "candle",
-      "green",
-      "tea",
-      "&",
-      "lemon",
-      "cosmetic",
-      "f",
-      "o",
-      "wholesale",
-      "bulk",
-      "premium",
-      "fragrance oil",
-      "all"
-    ],
-    "scentFamily": "Citrus",
-    "noteLevel": "Top Note",
-    "isBlend": true,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "715",
     "name": "Lush Bomb F O",
     "category": "Fragrance Oils",
@@ -58988,66 +58847,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "722",
-    "name": "Pumpkin Pie Cosmetic And Candle F O",
-    "category": "Fragrance Oils",
-    "description": "Premium quality pumpkin pie cosmetic and candle f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 155,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/Pumpkin Pie.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 155,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 139,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 131,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "skin safe",
-      "cold process stable",
-      "candle",
-      "pumpkin",
-      "pie",
-      "cosmetic",
-      "and",
-      "f",
-      "o",
-      "wholesale",
-      "bulk",
-      "premium",
-      "fragrance oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "723",
     "name": "Frangipani F O",
     "category": "Fragrance Oils",
@@ -59374,64 +59173,6 @@
     "scentFamily": "Other",
     "noteLevel": "Heart/Middle Note",
     "isBlend": true,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "729",
-    "name": "Saffron Cedar F O",
-    "category": "Fragrance Oils",
-    "description": "Premium quality saffron cedar f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 280,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/Saffron Cedar.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 280,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 252,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 238,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "skin safe",
-      "cold process stable",
-      "candle",
-      "saffron",
-      "cedar",
-      "f",
-      "o",
-      "wholesale",
-      "bulk",
-      "premium",
-      "fragrance oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
     "applications": [
       "Cold Process Soap",
       "Soy Candles",
@@ -62473,32 +62214,32 @@
     "isQuoteOnly": false
   },
   {
-    "id": "784",
-    "name": "Amber Glass Jar Bottle With Gold Color Dropper For Essential Oils Fragrances Perfumes Serum Bottles",
+    "id": "1051",
+    "name": "AMBER GLASS JAR BOTTLE WITH GOLD COLOR DROPPER FOR ESSENTIAL OILS, FRAGRANCES, PERFUMES, SERUM BOTTLES",
     "category": "Attar & Perfume Bottles",
-    "description": "Premium quality amber glass jar bottle with gold color dropper for essential oils fragrances perfumes serum bottles sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 525,
+    "description": "Premium quality amber glass jar bottle with gold color dropper for essential oils, fragrances, perfumes, serum bottles sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 20,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2022/02/41GBNjoesL._SL1000_-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 525,
+        "price": 20,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 472,
-        "discountPct": 10
+        "price": 19,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 446,
-        "discountPct": 15
+        "price": 18,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -62506,30 +62247,37 @@
       "glass",
       "jar",
       "bottle",
-      "with",
       "gold",
       "color",
       "dropper",
-      "for",
       "essential",
       "oils",
       "fragrances",
       "perfumes",
       "serum",
       "bottles",
+      "packaging",
+      "containers",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [
@@ -62593,73 +62341,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "786",
-    "name": "Strawberry Bubblegum Flavour Oil For Lip Balm Candy Bakery & Diy Cosmetics Sweet Fruity Aroma",
-    "category": "Food-Grade Flavor Oils",
-    "description": "Premium quality strawberry bubblegum flavour oil for lip balm candy bakery & diy cosmetics sweet fruity aroma sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 476,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/Strawberry.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 476,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 428,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 404,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "skin safe",
-      "strawberry",
-      "bubblegum",
-      "flavour",
-      "oil",
-      "for",
-      "lip",
-      "balm",
-      "candy",
-      "bakery",
-      "&",
-      "diy",
-      "cosmetics",
-      "sweet",
-      "fruity",
-      "aroma",
-      "wholesale",
-      "bulk",
-      "premium",
-      "fragrance oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": true,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "787",
     "name": "10ml Roll-on Glass Perfume Bottle",
     "category": "Attar & Perfume Bottles",
@@ -62710,65 +62391,6 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "788",
-    "name": "Turmeric Root Essential Oil 100 Pure & Natural",
-    "category": "Essential Oils",
-    "description": "Premium quality turmeric root essential oil 100 pure & natural sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 322,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 322,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 289,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 273,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "turmeric",
-      "root",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "&",
-      "natural",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
       "soap-atelier"
     ],
     "isQuoteOnly": false
@@ -62931,40 +62553,36 @@
     "isQuoteOnly": false
   },
   {
-    "id": "792",
-    "name": "10 Ml Roll On Glass Bottle Clear Transparent Empty Refillable Reusable For Under Eye Perfumes Attar Travel Lip Gloss Diy Cosmetics Essential Oils",
+    "id": "1022",
+    "name": "10 ML ROLL ON GLASS BOTTLE, CLEAR TRANSPARENT, EMPTY REFILLABLE, REUSABLE FOR UNDER EYE, PERFUMES, ATTAR, TRAVEL, LIP GLOSS, DIY, COSMETICS, ESSENTIAL OILS",
     "category": "Fragrance Oils",
-    "description": "Premium quality 10 ml roll on glass bottle clear transparent empty refillable reusable for under eye perfumes attar travel lip gloss diy cosmetics essential oils sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 591,
+    "description": "Premium quality 10 ml roll on glass bottle, clear transparent, empty refillable, reusable for under eye, perfumes, attar, travel, lip gloss, diy, cosmetics, essential oils sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 22,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2023/08/1ppuv_512-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 591,
+        "price": 22,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 531,
-        "discountPct": 10
+        "price": 21,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 502,
-        "discountPct": 15
+        "price": 20,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "skin safe",
-      "10",
-      "ml",
       "roll",
-      "on",
       "glass",
       "bottle",
       "clear",
@@ -62972,7 +62590,6 @@
       "empty",
       "refillable",
       "reusable",
-      "for",
       "under",
       "eye",
       "perfumes",
@@ -62980,24 +62597,31 @@
       "travel",
       "lip",
       "gloss",
-      "diy",
       "cosmetics",
       "essential",
       "oils",
+      "packaging",
+      "containers",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Scent & Flavor Lab",
     "disciplines": [
@@ -63049,253 +62673,6 @@
     ],
     "department": "Casting Mediums & Raw Bases",
     "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "794",
-    "name": "Myrrh Essential Oil 100 Pure Natural & Undiluted For Skin Care & Hair",
-    "category": "Essential Oils",
-    "description": "Premium quality myrrh essential oil 100 pure natural & undiluted for skin care & hair sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 455,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-myrrh-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 455,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 409,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 386,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "myrrh",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Base Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "795",
-    "name": "Palmarosa Essential Oil 100 Pure Natural & Undiluted For Skin Care & Hair",
-    "category": "Essential Oils",
-    "description": "Premium quality palmarosa essential oil 100 pure natural & undiluted for skin care & hair sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 486,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 486,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 437,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 413,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "palmarosa",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "796",
-    "name": "Rosewood Essential Oil",
-    "category": "Essential Oils",
-    "description": "Premium quality rosewood essential oil sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 552,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-pure-rosewood-essential-oil.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 552,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 496,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 469,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "rosewood",
-      "essential",
-      "oil",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Floral",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "797",
-    "name": "Rosewood Essential Oil 100 Pure Natural & Undiluted For Skin Care & Hair",
-    "category": "Essential Oils",
-    "description": "Premium quality rosewood essential oil 100 pure natural & undiluted for skin care & hair sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 289,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rosewood-essential-oil.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 289,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 260,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 245,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "rosewood",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Floral",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
       "soap-atelier"
     ],
     "isQuoteOnly": false
@@ -63857,134 +63234,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "809",
-    "name": "Mandarin Essential Oil 100 Pure Natural & Undiluted Oil For Skin Care & Hair Care",
-    "category": "Essential Oils",
-    "description": "Premium quality mandarin essential oil 100 pure natural & undiluted oil for skin care & hair care sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 490,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-mandarin-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 490,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 441,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 416,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "mandarin",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Citrus",
-    "noteLevel": "Top Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "810",
-    "name": "Myrrh Essential Oil 100 Pure Natural & Undiluted Oil For Skin Care & Hair Care",
-    "category": "Essential Oils",
-    "description": "Premium quality myrrh essential oil 100 pure natural & undiluted oil for skin care & hair care sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 191,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-myrrh-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 191,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 171,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 162,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "myrrh",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Base Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "811",
     "name": "Rose Essential Oil Pure And Natural Therapeutic Grade For Skin Care Hair Care",
     "category": "Essential Oils",
@@ -63992,7 +63241,7 @@
     "price": 459,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
     "tiers": [
       {
         "minQty": 1,
@@ -64042,201 +63291,6 @@
       "Lip Balms"
     ],
     "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "812",
-    "name": "Cinnamon Bark Essential Oil 100 Pure Natural & Undiluted Oil For Skin Care & Hair Care",
-    "category": "Essential Oils",
-    "description": "Premium quality cinnamon bark essential oil 100 pure natural & undiluted oil for skin care & hair care sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 574,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-cinnamon-bark-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 574,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 516,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 487,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "cinnamon",
-      "bark",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "natural",
-      "&",
-      "undiluted",
-      "for",
-      "skin",
-      "care",
-      "hair",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Spicy",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "scentCollection": "The Apothecary",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "813",
-    "name": "Neroli Essential Oil 100 Pure For Clear Face Glowing Skin Certified Organic Essential Oils",
-    "category": "Essential Oils",
-    "description": "Premium quality neroli essential oil 100 pure for clear face glowing skin certified organic essential oils sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 231,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-neroli-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 231,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 207,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 196,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "neroli",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "for",
-      "clear",
-      "face",
-      "glowing",
-      "skin",
-      "certified",
-      "organic",
-      "oils",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Floral",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers",
-      "Lip Balms"
-    ],
-    "scentCollection": "The Botanical Garden",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "814",
-    "name": "Saffron Essential Oil 100 Pure & Natural Therapeutic Grade For Hair & Skin Care",
-    "category": "Essential Oils",
-    "description": "Premium quality saffron essential oil 100 pure & natural therapeutic grade for hair & skin care sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 263,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 263,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 236,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 223,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "saffron",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "&",
-      "natural",
-      "therapeutic",
-      "grade",
-      "for",
-      "hair",
-      "skin",
-      "care",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
     "department": "Scent & Flavor Lab",
     "disciplines": [
       "candle-studio",
@@ -64298,311 +63352,6 @@
       "Soy Candles",
       "Reed Diffusers"
     ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "816",
-    "name": "Clary Sage Essential Oil 100 Pure Distilled Essential Oils",
-    "category": "Essential Oils",
-    "description": "Premium quality clary sage essential oil 100 pure distilled essential oils sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 236,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-clary-sage-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 236,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 212,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 200,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "clary",
-      "sage",
-      "essential",
-      "oil",
-      "100",
-      "pure",
-      "distilled",
-      "oils",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Herbaceous",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "scentCollection": "The Apothecary",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "817",
-    "name": "Cardamom Essential Oil Steam Distilled 100 Pure And Natural",
-    "category": "Essential Oils",
-    "description": "Premium quality cardamom essential oil steam distilled 100 pure and natural sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 544,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-cardamom-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 544,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 489,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 462,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "cardamom",
-      "essential",
-      "oil",
-      "steam",
-      "distilled",
-      "100",
-      "pure",
-      "and",
-      "natural",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Spicy",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "scentCollection": "The Apothecary",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "818",
-    "name": "Black Pepper Essential Oil Steam Distilled 100 Pure And Natural",
-    "category": "Essential Oils",
-    "description": "Premium quality black pepper essential oil steam distilled 100 pure and natural sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 377,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-black-pepper-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 377,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 339,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 320,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "black",
-      "pepper",
-      "essential",
-      "oil",
-      "steam",
-      "distilled",
-      "100",
-      "pure",
-      "and",
-      "natural",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Spicy",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "scentCollection": "The Apothecary",
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "819",
-    "name": "Pure Bay Leaf Essential Oil Steam Distilled 100 Pure And Natural",
-    "category": "Essential Oils",
-    "description": "Premium quality pure bay leaf essential oil steam distilled 100 pure and natural sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 366,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-bay-leaf-essential-oil.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 366,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 329,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 311,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "pure",
-      "bay",
-      "leaf",
-      "essential",
-      "oil",
-      "steam",
-      "distilled",
-      "100",
-      "and",
-      "natural",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Other",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "820",
-    "name": "Pure Anise Essential Oil Steam Distilled 100 Pure And Natural",
-    "category": "Essential Oils",
-    "description": "Premium quality pure anise essential oil steam distilled 100 pure and natural sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 156,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "/images/products/essential oils/anise essential oil.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 156,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 140,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 132,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "pure",
-      "anise",
-      "essential",
-      "oil",
-      "steam",
-      "distilled",
-      "100",
-      "and",
-      "natural",
-      "wholesale",
-      "bulk",
-      "premium",
-      "essential oil",
-      "all"
-    ],
-    "scentFamily": "Spicy",
-    "noteLevel": "Heart/Middle Note",
-    "isBlend": false,
-    "applications": [
-      "Cold Process Soap",
-      "Soy Candles",
-      "Reed Diffusers"
-    ],
-    "scentCollection": "The Apothecary",
     "department": "Scent & Flavor Lab",
     "disciplines": [
       "candle-studio",
@@ -65210,46 +63959,60 @@
     "isQuoteOnly": false
   },
   {
-    "id": "832",
-    "name": "Dmdm Hydantoin Cosmetic Grade Preservative",
+    "id": "1214",
+    "name": "DMDM HYDANTOIN – COSMETIC GRADE PRESERVATIVE",
     "category": "Cosmetic Preservatives & Chemicals",
-    "description": "Premium quality dmdm hydantoin cosmetic grade preservative sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 301,
+    "description": "Premium quality dmdm hydantoin – cosmetic grade preservative sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 59,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2025/03/DALL·E-2025-03-20-12.04.19-A-high-quality-product-image-of-a-cosmetic-grade-preservative-DMDM-Hydantoin-in-a-clear-plastic-bottle-with-a-white-cap.-The-label-features-the-prod-247x296.webp",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 301,
+        "price": 59,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 270,
-        "discountPct": 10
+        "price": 56,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 255,
-        "discountPct": 15
+        "price": 53,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "skin safe",
       "dmdm",
       "hydantoin",
       "cosmetic",
       "grade",
       "preservative",
+      "craft",
+      "supplies",
       "wholesale",
+      "b2b",
       "bulk",
+      "raw materials",
+      "india",
       "premium",
-      "other",
-      "all"
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Casting Mediums & Raw Bases",
     "disciplines": [
@@ -65565,61 +64328,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "839",
-    "name": "Golden Flat Lotus Metal Candle Bowl Urli Decorative Candle Container For Diy Candle Making",
-    "category": "Metal Containers & Tins",
-    "description": "Premium quality golden flat lotus metal candle bowl urli decorative candle container for diy candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 537,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 537,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 483,
-        "discountPct": 10
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 456,
-        "discountPct": 15
-      }
-    ],
-    "tags": [
-      "candle",
-      "golden",
-      "flat",
-      "lotus",
-      "metal",
-      "bowl",
-      "urli",
-      "decorative",
-      "container",
-      "for",
-      "diy",
-      "making",
-      "wholesale",
-      "bulk",
-      "premium",
-      "other",
-      "all"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "840",
     "name": "Long Stick Candle Silicone Mold",
     "category": "Candle & Pillar Moulds",
@@ -65716,56 +64424,70 @@
     "isQuoteOnly": false
   },
   {
-    "id": "842",
-    "name": "Premium New Wooden Heart Shape Candle Bowl Rustic Handcrafted Dough Bowl For Soy Beeswax & Luxury Multi-wick Candle Making",
+    "id": "1284",
+    "name": "PREMIUM NEW WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING",
     "category": "Wick Systems & Hardware",
-    "description": "Premium quality premium new wooden heart shape candle bowl rustic handcrafted dough bowl for soy beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 192,
+    "description": "Premium quality premium new wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 78,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-07-at-6.20.59-PM-2-247x296.jpeg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 192,
+        "price": 78,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 172,
-        "discountPct": 10
+        "price": 74,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 163,
-        "discountPct": 15
+        "price": 70,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "candle",
       "premium",
-      "new",
       "wooden",
       "heart",
       "shape",
+      "candle",
       "bowl",
       "rustic",
       "handcrafted",
       "dough",
-      "for",
       "soy",
       "beeswax",
-      "&",
       "luxury",
-      "multi-wick",
+      "multi",
+      "wick",
       "making",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
-      "wax",
-      "all"
+      "supplies",
+      "raw materials",
+      "india",
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Tools & Studio Equipment",
     "disciplines": [
@@ -65774,55 +64496,70 @@
     "isQuoteOnly": false
   },
   {
-    "id": "843",
-    "name": "Premium Wooden Heart Shape Candle Bowl Rustic Handcrafted Dough Bowl For Soy Beeswax & Luxury Multi-wick Candle Making",
+    "id": "1281",
+    "name": "PREMIUM WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING",
     "category": "Wick Systems & Hardware",
-    "description": "Premium quality premium wooden heart shape candle bowl rustic handcrafted dough bowl for soy beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 467,
+    "description": "Premium quality premium wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 155,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-11-2025-10_26_24-PM-247x296.png",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 467,
+        "price": 155,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 420,
-        "discountPct": 10
+        "price": 147,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 396,
-        "discountPct": 15
+        "price": 140,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "candle",
       "premium",
       "wooden",
       "heart",
       "shape",
+      "candle",
       "bowl",
       "rustic",
       "handcrafted",
       "dough",
-      "for",
       "soy",
       "beeswax",
-      "&",
       "luxury",
-      "multi-wick",
+      "multi",
+      "wick",
       "making",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
-      "wax",
-      "all"
+      "supplies",
+      "raw materials",
+      "india",
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Tools & Studio Equipment",
     "disciplines": [
@@ -65979,49 +64716,62 @@
     "isQuoteOnly": false
   },
   {
-    "id": "847",
-    "name": "3d Lotus Shaped Soap Silicone Mold Diy Candle Mold",
+    "id": "1374",
+    "name": "3D LOTUS SHAPED SOAP SILICONE MOLD, DIY CANDLE MOLD",
     "category": "Soap & Bar Moulds",
-    "description": "Premium quality 3d lotus shaped soap silicone mold diy candle mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 228,
+    "description": "Premium quality 3d lotus shaped soap silicone mold, diy candle mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 299,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2024/02/3D-Lotus-Shaped-Soap-Silicone-Moldes-DIY-Candle-Mold-Handmade-Gypsum-Bolo-Chocolate-Baking-Tool-247x296.webp",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 228,
+        "price": 299,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 205,
-        "discountPct": 10
+        "price": 284,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 193,
-        "discountPct": 15
+        "price": 269,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "candle",
-      "3d",
       "lotus",
       "shaped",
       "soap",
       "silicone",
       "mold",
-      "diy",
-      "jkb-759",
+      "candle",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "molds",
-      "all"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Precision Studio Moulds",
     "disciplines": [
@@ -66309,32 +65059,32 @@
     "isQuoteOnly": false
   },
   {
-    "id": "853",
-    "name": "Chrysanthemum Silicone Mold Flower Fondant Cake Baking Mold",
+    "id": "1891",
+    "name": "CHRYSANTHEMUM SILICONE MOLD, FLOWER FONDANT CAKE BAKING MOLD",
     "category": "Culinary & Fondant Moulds",
-    "description": "Premium quality chrysanthemum silicone mold flower fondant cake baking mold 208 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 393,
+    "description": "Premium quality chrysanthemum silicone mold, flower fondant cake baking mold 208 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 119,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2023/05/11126126030_1394587503-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 393,
+        "price": 119,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 353,
-        "discountPct": 10
+        "price": 113,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 334,
-        "discountPct": 15
+        "price": 107,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -66345,12 +65095,27 @@
       "fondant",
       "cake",
       "baking",
-      "208",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "molds",
-      "all"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Precision Studio Moulds",
     "disciplines": [
@@ -66983,48 +65748,61 @@
     "isQuoteOnly": false
   },
   {
-    "id": "867",
-    "name": "Amber Glass Candle Jar 100ml & 150ml Sizes",
+    "id": "990",
+    "name": "AMBER GLASS CANDLE JAR – 100ML & 150ML SIZES",
     "category": "Candle Jars & Containers",
-    "description": "Premium quality amber glass candle jar 100ml & 150ml sizes sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 299,
+    "description": "Premium quality amber glass candle jar – 100ml & 150ml sizes sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 44,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-23-at-3.56.56-PM-1-1-247x296.jpeg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 299,
+        "price": 44,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 269,
-        "discountPct": 10
+        "price": 42,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 254,
-        "discountPct": 15
+        "price": 40,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "candle",
       "amber",
       "glass",
+      "candle",
       "jar",
-      "100ml",
-      "&",
-      "150ml",
       "sizes",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "packaging",
-      "all"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [
@@ -69616,44 +68394,41 @@
     "isQuoteOnly": false
   },
   {
-    "id": "922",
-    "name": "4 Dual Face Sun & Moon Face Soap Molds For Soap Making Bath Bomb Molds For Homemade Bath Bombs Lotion Bar Diy Resin Making Wax Polymer Clay",
+    "id": "1157",
+    "name": "4 DUAL FACE, SUN & MOON FACE SOAP MOLDS FOR SOAP MAKING, BATH BOMB MOLDS FOR HOMEMADE BATH BOMBS,LOTION BAR,DIY RESIN MAKING,WAX, POLYMER CLAY",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality 4 dual face sun & moon face soap molds for soap making bath bomb molds for homemade bath bombs lotion bar diy resin making wax polymer clay sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 201,
+    "description": "Premium quality 4 dual face, sun & moon face soap molds for soap making, bath bomb molds for homemade bath bombs,lotion bar,diy resin making,wax, polymer clay sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "price": 299,
     "bulkDiscountAvailable": true,
-    "maxDiscount": 15,
-    "image": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2022/05/O1CN01il5cXJ27QKPIq2xXO_956437791-0-cib-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 201,
+        "price": 299,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 180,
-        "discountPct": 10
+        "price": 284,
+        "discountPct": 5
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 170,
-        "discountPct": 15
+        "price": 269,
+        "discountPct": 10
       }
     ],
     "tags": [
-      "4",
       "dual",
       "face",
       "sun",
-      "&",
       "moon",
       "soap",
       "molds",
-      "for",
       "making",
       "bath",
       "bomb",
@@ -69661,16 +68436,32 @@
       "bombs",
       "lotion",
       "bar",
-      "diy",
       "resin",
       "wax",
       "polymer",
       "clay",
-      "jkb-312",
+      "candle",
+      "mould",
       "wholesale",
+      "b2b",
       "bulk",
+      "supplies",
+      "raw materials",
+      "india",
       "premium",
-      "all"
+      "craft",
+      "handmade",
+      "artisan",
+      "manufacturing",
+      "manufacturer",
+      "distributor",
+      "vendor",
+      "sourcing",
+      "factory price",
+      "discount",
+      "quality",
+      "ekora",
+      "eco-friendly"
     ],
     "department": "Precision Studio Moulds",
     "disciplines": [
@@ -71022,76 +69813,6 @@
     "department": "Casting Mediums & Raw Bases",
     "disciplines": [
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "951",
-    "name": "50ML CLEAR GLASS REED DIFFUSER BOTTLE – EMPTY AROMA DIFFUSER BOTTLE FOR HOME FRAGRANCE & DIY REED DIFFUSERS(ONLY BOTTLE)",
-    "category": "Diffuser Bottles & Accessories",
-    "description": "Premium quality 50ml clear glass reed diffuser bottle – empty aroma diffuser bottle for home fragrance & diy reed diffusers(only bottle) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 31,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/50ml-difuser-bottle-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 31,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 29,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 28,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "clear",
-      "glass",
-      "reed",
-      "diffuser",
-      "bottle",
-      "empty",
-      "aroma",
-      "home",
-      "fragrance",
-      "diffusers",
-      "only",
-      "packaging",
-      "containers",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
     ],
     "isQuoteOnly": false
   },
@@ -72766,85 +71487,6 @@
     "isQuoteOnly": true
   },
   {
-    "id": "977",
-    "name": "WIDE MOUTH CANDLE GLASS JAR WITH CORK LID OPTION – RUSTIC SALT CONTAINER WITH EASY ACCESS OPENING FOR KITCHEN & TABLE USE (BLACK MATT)",
-    "category": "Lids, Caps & Closures",
-    "description": "Premium quality wide mouth candle glass jar with cork lid option – rustic salt container with easy access opening for kitchen & table use (black matt) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 65,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-21-at-10.33.03-PM-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 65,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 62,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 58,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "wide",
-      "mouth",
-      "candle",
-      "glass",
-      "jar",
-      "cork",
-      "lid",
-      "option",
-      "rustic",
-      "salt",
-      "container",
-      "easy",
-      "access",
-      "opening",
-      "kitchen",
-      "table",
-      "black",
-      "matt",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "978",
     "name": "SHOT GLASSES COOL SHOT GLASSES 70ML, TEQUILA SHOT GLASSES WITH HEAVY BASE, GIFT FOR MEN",
     "category": "Candle Jars & Containers",
@@ -73647,69 +72289,6 @@
     "department": "Vessels & Packaging Studio",
     "disciplines": [
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "990",
-    "name": "AMBER GLASS CANDLE JAR – 100ML & 150ML SIZES",
-    "category": "Candle Jars & Containers",
-    "description": "Premium quality amber glass candle jar – 100ml & 150ml sizes sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 44,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-23-at-3.56.56-PM-1-1-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 44,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 42,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 40,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "amber",
-      "glass",
-      "candle",
-      "jar",
-      "sizes",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
     ],
     "isQuoteOnly": false
   },
@@ -75794,84 +74373,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1022",
-    "name": "10 ML ROLL ON GLASS BOTTLE, CLEAR TRANSPARENT, EMPTY REFILLABLE, REUSABLE FOR UNDER EYE, PERFUMES, ATTAR, TRAVEL, LIP GLOSS, DIY, COSMETICS, ESSENTIAL OILS",
-    "category": "Fragrance Oils",
-    "description": "Premium quality 10 ml roll on glass bottle, clear transparent, empty refillable, reusable for under eye, perfumes, attar, travel, lip gloss, diy, cosmetics, essential oils sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 22,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/08/1ppuv_512-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 22,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 21,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 20,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "roll",
-      "glass",
-      "bottle",
-      "clear",
-      "transparent",
-      "empty",
-      "refillable",
-      "reusable",
-      "under",
-      "eye",
-      "perfumes",
-      "attar",
-      "travel",
-      "lip",
-      "gloss",
-      "cosmetics",
-      "essential",
-      "oils",
-      "packaging",
-      "containers",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1023",
     "name": "TEST TUBES WITH CORK LID, SET OF",
     "category": "Lids, Caps & Closures",
@@ -77686,78 +76187,6 @@
       "resin-lab",
       "soap-atelier",
       "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1051",
-    "name": "AMBER GLASS JAR BOTTLE WITH GOLD COLOR DROPPER FOR ESSENTIAL OILS, FRAGRANCES, PERFUMES, SERUM BOTTLES",
-    "category": "Attar & Perfume Bottles",
-    "description": "Premium quality amber glass jar bottle with gold color dropper for essential oils, fragrances, perfumes, serum bottles sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 20,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/02/41GBNjoesL._SL1000_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 20,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 19,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 18,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "amber",
-      "glass",
-      "jar",
-      "bottle",
-      "gold",
-      "color",
-      "dropper",
-      "essential",
-      "oils",
-      "fragrances",
-      "perfumes",
-      "serum",
-      "bottles",
-      "packaging",
-      "containers",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "soap-atelier"
     ],
     "isQuoteOnly": false
   },
@@ -85019,83 +83448,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1157",
-    "name": "4 DUAL FACE, SUN & MOON FACE SOAP MOLDS FOR SOAP MAKING, BATH BOMB MOLDS FOR HOMEMADE BATH BOMBS,LOTION BAR,DIY RESIN MAKING,WAX, POLYMER CLAY",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality 4 dual face, sun & moon face soap molds for soap making, bath bomb molds for homemade bath bombs,lotion bar,diy resin making,wax, polymer clay sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/O1CN01il5cXJ27QKPIq2xXO_956437791-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 299,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 284,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 269,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "dual",
-      "face",
-      "sun",
-      "moon",
-      "soap",
-      "molds",
-      "making",
-      "bath",
-      "bomb",
-      "homemade",
-      "bombs",
-      "lotion",
-      "bar",
-      "resin",
-      "wax",
-      "polymer",
-      "clay",
-      "candle",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1158",
     "name": "LOVE HEART RESIN JAR SILICONE MOLDS CUP MOLDS FOR EPOXY RESIN CUP VALENTINE PENCIL CUP STORAGE JAR HOME DECORATION",
     "category": "Eco-Resin & Stone Moulds",
@@ -88854,68 +87206,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1214",
-    "name": "DMDM HYDANTOIN – COSMETIC GRADE PRESERVATIVE",
-    "category": "Cosmetic Preservatives & Chemicals",
-    "description": "Premium quality dmdm hydantoin – cosmetic grade preservative sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 59,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/03/DALL·E-2025-03-20-12.04.19-A-high-quality-product-image-of-a-cosmetic-grade-preservative-DMDM-Hydantoin-in-a-clear-plastic-bottle-with-a-white-cap.-The-label-features-the-prod-247x296.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 59,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 56,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 53,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "dmdm",
-      "hydantoin",
-      "cosmetic",
-      "grade",
-      "preservative",
-      "craft",
-      "supplies",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "raw materials",
-      "india",
-      "premium",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1215",
     "name": "CANDLE COLOR POWDER PIGMENTS 500GM EACH",
     "category": "Micas & Pigments",
@@ -92290,81 +90580,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1266",
-    "name": "PREMIUM LIQUID CANDLE COLOR COLOUR – HIGHLY PIGMENTED, 13 SHADES– FOR SOY, PARAFFIN, BEESWAX & GEL CANDLES 30ML EACH(SAMPLE PACK)",
-    "category": "Micas & Pigments",
-    "description": "Premium quality premium liquid candle color colour – highly pigmented, 13 shades– for soy, paraffin, beeswax & gel candles 30ml each(sample pack) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 959,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/06/Copilot_20250626_173106-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 959,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 911,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 863,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "premium",
-      "liquid",
-      "candle",
-      "color",
-      "colour",
-      "highly",
-      "pigmented",
-      "shades",
-      "soy",
-      "paraffin",
-      "beeswax",
-      "gel",
-      "candles",
-      "each",
-      "sample",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Color & Pigment Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1267",
     "name": "CARTOON BEAR WCM267/",
     "category": "Candle & Pillar Moulds",
@@ -93273,78 +91488,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1281",
-    "name": "PREMIUM WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING",
-    "category": "Wick Systems & Hardware",
-    "description": "Premium quality premium wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 155,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-11-2025-10_26_24-PM-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 155,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 147,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 140,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "premium",
-      "wooden",
-      "heart",
-      "shape",
-      "candle",
-      "bowl",
-      "rustic",
-      "handcrafted",
-      "dough",
-      "soy",
-      "beeswax",
-      "luxury",
-      "multi",
-      "wick",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Tools & Studio Equipment",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1282",
     "name": "RABBIT WITH BOQUET-10.2*6.8*6 CM WCM254",
     "category": "Candle & Pillar Moulds",
@@ -93463,78 +91606,6 @@
       "eco-friendly"
     ],
     "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1284",
-    "name": "PREMIUM NEW WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING",
-    "category": "Wick Systems & Hardware",
-    "description": "Premium quality premium new wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 78,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-07-at-6.20.59-PM-2-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 78,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 74,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 70,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "premium",
-      "wooden",
-      "heart",
-      "shape",
-      "candle",
-      "bowl",
-      "rustic",
-      "handcrafted",
-      "dough",
-      "soy",
-      "beeswax",
-      "luxury",
-      "multi",
-      "wick",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Tools & Studio Equipment",
     "disciplines": [
       "candle-studio"
     ],
@@ -93662,74 +91733,6 @@
     "department": "Casting Mediums & Raw Bases",
     "disciplines": [
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1287",
-    "name": "SILICONE MEASURING CUP 600ML WITH JUG BEAKER MARKINGS",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality silicone measuring cup 600ml with jug beaker markings sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 227,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/04/silicone-measuring-cup-600ml-vedini-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 227,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 216,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 204,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "silicone",
-      "measuring",
-      "cup",
-      "jug",
-      "beaker",
-      "markings",
-      "candle",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
     ],
     "isQuoteOnly": false
   },
@@ -98925,70 +96928,6 @@
     ],
     "inStock": false,
     "isQuoteOnly": true
-  },
-  {
-    "id": "1374",
-    "name": "3D LOTUS SHAPED SOAP SILICONE MOLD, DIY CANDLE MOLD",
-    "category": "Soap & Bar Moulds",
-    "description": "Premium quality 3d lotus shaped soap silicone mold, diy candle mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/02/3D-Lotus-Shaped-Soap-Silicone-Moldes-DIY-Candle-Mold-Handmade-Gypsum-Bolo-Chocolate-Baking-Tool-247x296.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 299,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 284,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 269,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "lotus",
-      "shaped",
-      "soap",
-      "silicone",
-      "mold",
-      "candle",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
   },
   {
     "id": "1375",
@@ -106861,70 +104800,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1492",
-    "name": "TULIP BOUQUET CANDLE SILICON CANDLE MOLD",
-    "category": "Candle & Pillar Moulds",
-    "description": "Premium quality tulip bouquet candle silicon candle mold 5271 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 395,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/01/O1CN01hv4ASp1yWRaANfn2R_2220886816586-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 395,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 375,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 356,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "tulip",
-      "bouquet",
-      "candle",
-      "silicon",
-      "mold",
-      "jkb",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1493",
     "name": "BABY PRAM CANDLE SILICONE MOLD CFM",
     "category": "Candle & Pillar Moulds",
@@ -107120,69 +104995,6 @@
       "resin-lab",
       "soap-atelier",
       "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1496",
-    "name": "PEONY FLOWER CANDLE SILICON MOLD",
-    "category": "Candle & Pillar Moulds",
-    "description": "Premium quality peony flower candle silicon mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/12/O1CN01IfXBkC1bqq3RJzKth_2212035233517-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 299,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 284,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 269,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "peony",
-      "flower",
-      "candle",
-      "silicon",
-      "mold",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
     ],
     "isQuoteOnly": false
   },
@@ -108622,74 +106434,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1519",
-    "name": "CONCRETE AND RESIN LOTUS CANDLE HOLDER FLOWER STORAGE BOX MOLD SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality concrete and resin lotus candle holder flower storage box mold silicone mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 239,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/04/O1CN014Ahic61P7hNLsEXVQ_2968401794-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 239,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 227,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 215,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "resin",
-      "lotus",
-      "candle",
-      "holder",
-      "flower",
-      "storage",
-      "box",
-      "mold",
-      "silicone",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1520",
     "name": "6 CAVITY OVAL SHAPE SILICONE MOLD",
     "category": "General Silicone Moulds",
@@ -109971,72 +107715,6 @@
         "minQty": 52,
         "maxQty": null,
         "price": 377,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "inch",
-      "stripped",
-      "candle",
-      "pillar",
-      "polycarbonate",
-      "mold",
-      "making",
-      "candles",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1540",
-    "name": "3 INCH * 3 INCH STRIPPED CANDLE PILLAR POLYCARBONATE MOLD FOR MAKING CANDLES",
-    "category": "Candle & Pillar Moulds",
-    "description": "Premium quality 3 inch * 3 inch stripped candle pillar polycarbonate mold for making candles sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 263,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/08/result_0-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 263,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 250,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 237,
         "discountPct": 10
       }
     ],
@@ -134478,72 +132156,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1891",
-    "name": "CHRYSANTHEMUM SILICONE MOLD, FLOWER FONDANT CAKE BAKING MOLD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Premium quality chrysanthemum silicone mold, flower fondant cake baking mold 208 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/05/11126126030_1394587503-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 119,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 113,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 107,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "chrysanthemum",
-      "silicone",
-      "mold",
-      "flower",
-      "fondant",
-      "cake",
-      "baking",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1892",
     "name": "10 CAVITY BUILDING BLOCKS ROBOT 3D SILICONE MOLD CHOCOLATE TRAY BROWNIE DESSERT PASTRIES MOLD CAKE DECORATION TOOL",
     "category": "Eco-Resin & Stone Moulds",
@@ -142623,45 +140235,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2024",
-    "name": "Hibiscus Flower Silicone Mold for Resin, Candle, Soap & Fondant Crafts | CFM441",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "High-durability silicone mold for eco-resin, jesmonite, concrete, and plaster casting.",
-    "price": 168,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPT_Image_Jun_2_2026_10_32_20_AM.png?v=1780377761&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "eco-resin",
-      "silicone mold",
-      "jesmonite mold",
-      "concrete tray",
-      "craft supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2025",
     "name": "7 Cavity Candle Flower Silicone Mold for Resin, Fondant & Craft Projects | CFM440",
     "category": "Eco-Resin & Stone Moulds",
@@ -145080,45 +142653,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2087",
-    "name": "4-Cavity Pokemon Silicone Mold | SSM266",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "High-durability silicone mold for eco-resin, jesmonite, concrete, and plaster casting.",
-    "price": 168,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/WhatsApp_Image_2026-04-06_at_2.50.35_PM.jpg?v=1775469619&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "eco-resin",
-      "silicone mold",
-      "jesmonite mold",
-      "concrete tray",
-      "craft supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2088",
     "name": "Retro Bus Flowerpot Silicone Mold",
     "category": "Eco-Resin & Stone Moulds",
@@ -146718,1442 +144252,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2129",
-    "name": "ROUND WINDOW TIN CONTAINER 90×60MM | CLEAR LID METAL TIN BOX FOR CANDLES, WAX MELTS, SOAP, COOKIES, GIFT PACKAGING & STORAGE",
-    "category": "Metal Containers & Tins",
-    "description": "Verified wholesale round window tin container 90×60mm | clear lid metal tin box for candles, wax melts, soap, cookies, gift packaging & storage for serious craft creators and manufacturers.",
-    "price": 54,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2130",
-    "name": "PREMIUM FROSTED GLASS CANDLE JAR WITH METAL LID (120ML) | BLACK, GOLD & SILVER LID | EMPTY CANDLE CONTAINER FOR SOY WAX, SCENTED CANDLES & DIY CANDLE MAKING",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale premium frosted glass candle jar with metal lid (120ml) | black, gold & silver lid | empty candle container for soy wax, scented candles & diy candle making for serious craft creators and manufacturers.",
-    "price": 42,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2131",
-    "name": "8ML LUXURY ELECTROPLATED GLASS ROLL ON PERFUME BOTTLE WITH GOLDEN CROWN CAP | EMPTY ATTAR, ESSENTIAL OIL & FRAGRANCE BOTTLE",
-    "category": "Essential Oils",
-    "description": "Verified wholesale 8ml luxury electroplated glass roll on perfume bottle with golden crown cap | empty attar, essential oil & fragrance bottle for serious craft creators and manufacturers.",
-    "price": 54,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2132",
-    "name": "10ML HANGING CAR DIFFUSER BOTTLE | FROSTED GLASS AROMATHERAPY BOTTLE WITH WOODEN ROUND CAP & HANGING ROPE FOR CAR PERFUME, ESSENTIAL OILS & AIR FRESHENER",
-    "category": "Essential Oils",
-    "description": "Verified wholesale 10ml hanging car diffuser bottle | frosted glass aromatherapy bottle with wooden round cap & hanging rope for car perfume, essential oils & air freshener for serious craft creators and manufacturers.",
-    "price": 47,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2133",
-    "name": "TG1092-2.5A RHOMBUS GLASS DESSERT CUP WITH LID | 51–100ML PUDDING BOWL, ICE CREAM CUP & SNACK SERVING JAR",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale tg1092-2.5a rhombus glass dessert cup with lid | 51–100ml pudding bowl, ice cream cup & snack serving jar for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2134",
-    "name": "TG1060 GLASS CANDY JAR WITH LID | CRYSTAL SNACK STORAGE JAR | 400ML DECORATIVE GLASS JAR FOR CANDY, DRY FRUITS, JEWELLERY & HOME DÉCOR",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale tg1060 glass candy jar with lid | crystal snack storage jar | 400ml decorative glass jar for candy, dry fruits, jewellery & home décor for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2135",
-    "name": "120ML AMBER GLASS CANDLE JAR – UNIQUE JAR FOR CANDLE MAKING, AROMATHERAPY & GIFTING (BLACK, GOLDEN & SILVER CAP OPTIONS)",
-    "category": "Lids, Caps & Closures",
-    "description": "Verified wholesale 120ml amber glass candle jar – unique jar for candle making, aromatherapy & gifting (black, golden & silver cap options) for serious craft creators and manufacturers.",
-    "price": 44,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2136",
-    "name": "FROSTED CORK GLASS JAR – 100ML | PREMIUM STORAGE JAR FOR CANDLES, HONEY & DIY PACKAGING",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale frosted cork glass jar – 100ml | premium storage jar for candles, honey & diy packaging for serious craft creators and manufacturers.",
-    "price": 43,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2137",
-    "name": "VERTICAL STRIPED GLASS CANDLE CUP – NORDIC INS STYLE AROMATHERAPY CANDLE JAR | HEAT RESISTANT DECORATIVE CANDLE HOLDER",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale vertical striped glass candle cup – nordic ins style aromatherapy candle jar | heat resistant decorative candle holder for serious craft creators and manufacturers.",
-    "price": 26,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2138",
-    "name": "GLASS CANDY JAR BOWL WITH LID | 250 ML CLEAR SCRATCH‑RESISTANT GLASS | IDEAL FOR HOME, OFFICE & RESTAURANT STORAGE",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale glass candy jar bowl with lid | 250 ml clear scratch‑resistant glass | ideal for home, office & restaurant storage for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2139",
-    "name": "AMBER GLASS CREAM JAR WITH BLACK LID | COSMETIC CONTAINER FOR FACE CREAM, BALM & SKINCARE PACKAGING",
-    "category": "Cosmetic Jars & Bottles",
-    "description": "Verified wholesale amber glass cream jar with black lid | cosmetic container for face cream, balm & skincare packaging for serious craft creators and manufacturers.",
-    "price": 41,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2140",
-    "name": "WOODEN LID 73MM | BAMBOO CAP FOR CANDLE JAR 65MM BOTTOM | AIRTIGHT COSMETIC JAR LID",
-    "category": "Lids, Caps & Closures",
-    "description": "Verified wholesale wooden lid 73mm | bamboo cap for candle jar 65mm bottom | airtight cosmetic jar lid for serious craft creators and manufacturers.",
-    "price": 38,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2141",
-    "name": "5ML LIP BALM CONTAINER CHOPSTICK CHAPSTICK TUBE | EMPTY LIPSTICK TUBE PP MATERIAL | DIY LIP BALM & LIP GLOSS PACKAGING | 5G TWIST-UP COSMETIC TUBES WHOLESALE",
-    "category": "Cosmetic Jars & Bottles",
-    "description": "Verified wholesale 5ml lip balm container chopstick chapstick tube | empty lipstick tube pp material | diy lip balm & lip gloss packaging | 5g twist-up cosmetic tubes wholesale for serious craft creators and manufacturers.",
-    "price": 10,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2142",
-    "name": "10ML ROLL-ON GLASS PERFUME BOTTLE (SQUARE & ROUND DESIGN) | GOLDEN ATTAR BOTTLE WITH ROLLER BALL | REFILLABLE ESSENTIAL OIL CONTAINER",
-    "category": "Essential Oils",
-    "description": "Verified wholesale 10ml roll-on glass perfume bottle (square & round design) | golden attar bottle with roller ball | refillable essential oil container for serious craft creators and manufacturers.",
-    "price": 54,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2143",
-    "name": "150ML CRYSTAL GLASS CANDY JAR WITH LID | DECORATIVE STORAGE JAR | LUXURY SUGAR / DRY FRUIT / CANDLE CONTAINER (TG1030-2.5)",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale 150ml crystal glass candy jar with lid | decorative storage jar | luxury sugar / dry fruit / candle container (tg1030-2.5) for serious craft creators and manufacturers.",
-    "price": 114,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2144",
-    "name": "CRYSTAL GLASS CANDY JAR WITH LID 150ML | DECORATIVE STORAGE JAR | TG1030-2.5 SUGAR / DRY FRUIT / CANDLE JAR (PACK OF 6)",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale crystal glass candy jar with lid 150ml | decorative storage jar | tg1030-2.5 sugar / dry fruit / candle jar (pack of 6) for serious craft creators and manufacturers.",
-    "price": 419,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2145",
-    "name": "8 ML SQUARE GLASS SPRAY PERFUME BOTTLE | REFILLABLE FINE MIST ATOMIZER",
-    "category": "Attar & Perfume Bottles",
-    "description": "Verified wholesale 8 ml square glass spray perfume bottle | refillable fine mist atomizer for serious craft creators and manufacturers.",
-    "price": 18,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2146",
-    "name": "METAL EYELET BUCKLE – PACK OF 100PCS | DURABLE METAL EYELETS FOR LEATHERCRAFT, GARMENT, BAGS, DIY ACCESSORIES & CRAFT PROJECTS",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale metal eyelet buckle – pack of 100pcs | durable metal eyelets for leathercraft, garment, bags, diy accessories & craft projects for serious craft creators and manufacturers.",
-    "price": 78,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2147",
-    "name": "TRANSPARENT PVC SOAP & CANDLE BOX 10.3 × 10.3 × 5.5 CM | CLEAR PLASTIC PACKAGING BOX FOR HANDMADE SOAPS, CANDLES & GIFTS (PACK OF 10)",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale transparent pvc soap & candle box 10.3 × 10.3 × 5.5 cm | clear plastic packaging box for handmade soaps, candles & gifts (pack of 10) for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2148",
-    "name": "TRANSPARENT PVC SWEET BOX 7.6 × 7.6 × 3.6 CM | CLEAR PLASTIC GIFT & CANDLE PACKAGING BOX | FOOD GRADE DISPLAY BOX(PACK OF 10)",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale transparent pvc sweet box 7.6 × 7.6 × 3.6 cm | clear plastic gift & candle packaging box | food grade display box(pack of 10) for serious craft creators and manufacturers.",
-    "price": 95,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2149",
-    "name": "DIYA URLI BOX | DAISY CANDLE BOX | 2.5 INCH DIYA BOX PVC BOX",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale diya urli box | daisy candle box | 2.5 inch diya box pvc box for serious craft creators and manufacturers.",
-    "price": 83,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2150",
-    "name": "COPPER-IRON METAL CANDLE JAR 4 INCH*2 INCH– PREMIUM RUSTIC CANDLE CONTAINER FOR CANDLE MAKING, HOME DÉCOR, GIFTING & AROMATHERAPY",
-    "category": "Metal Containers & Tins",
-    "description": "Verified wholesale copper-iron metal candle jar 4 inch*2 inch– premium rustic candle container for candle making, home décor, gifting & aromatherapy for serious craft creators and manufacturers.",
-    "price": 155,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2151",
-    "name": "HANGING DIFFUSER 1 PCS – CAR & ROOM AIR FRESHENER BOTTLES | REFILLABLE FRAGRANCE DIFFUSER FOR CARS, CLOSETS, BATHROOMS – PREMIUM SCENT RELEASE",
-    "category": "Diffuser Bottles & Accessories",
-    "description": "Verified wholesale hanging diffuser 1 pcs – car & room air freshener bottles | refillable fragrance diffuser for cars, closets, bathrooms – premium scent release for serious craft creators and manufacturers.",
-    "price": 54,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2152",
-    "name": "AMBER GLASS CANDLE JAR – 100ML & 150ML SIZES | WITH PLASTIC OR ALUMINUM CAP | IDEAL FOR CANDLE MAKING, AROMATHERAPY & STORAGE",
-    "category": "Lids, Caps & Closures",
-    "description": "Verified wholesale amber glass candle jar – 100ml & 150ml sizes | with plastic or aluminum cap | ideal for candle making, aromatherapy & storage for serious craft creators and manufacturers.",
-    "price": 44,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2153",
-    "name": "200ML RED FROSTED GLASS CANDLE JAR – WITH & WITHOUT CORK | CHRISTMAS ELEGANT JAR FOR CANDLE MAKING, GIFTING & HOME DECOR",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale 200ml red frosted glass candle jar – with & without cork | christmas elegant jar for candle making, gifting & home decor for serious craft creators and manufacturers.",
-    "price": 38,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2154",
-    "name": "120ML CLEAR UNIQUE GLASS CANDLE JAR – WITH BLACK, GOLDEN & SILVER CAP OPTIONS | JAR FOR CANDLE MAKING, GIFTING & HOME DECOR",
-    "category": "Lids, Caps & Closures",
-    "description": "Verified wholesale 120ml clear unique glass candle jar – with black, golden & silver cap options | jar for candle making, gifting & home decor for serious craft creators and manufacturers.",
-    "price": 26,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2155",
-    "name": "RETICULATED HEART-SHAPED AROMATHERAPY CANDLE CUP SILICONE MOLD",
-    "category": "Candle & Pillar Moulds",
-    "description": "Verified wholesale reticulated heart-shaped aromatherapy candle cup silicone mold for serious craft creators and manufacturers.",
-    "price": 179,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2156",
-    "name": "VEDINE PINE CONE PINE NUT HAZELNUT STORAGE BOX AROMATHERAPY CANDLE CUP SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale vedine pine cone pine nut hazelnut storage box aromatherapy candle cup silicone mold for serious craft creators and manufacturers.",
-    "price": 335,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2157",
-    "name": "ROUND BOW BUBBLE BEAD COASTER INS STYLE AROMATHERAPY PLASTER DISH SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale round bow bubble bead coaster ins style aromatherapy plaster dish silicone mold for serious craft creators and manufacturers.",
-    "price": 179,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2158",
-    "name": "SQUARE BOW BUBBLE BEAD COASTER INS STYLE AROMATHERAPY PLASTER DISH SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale square bow bubble bead coaster ins style aromatherapy plaster dish silicone mold for serious craft creators and manufacturers.",
-    "price": 179,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2159",
-    "name": "CONCRETE BEAR SCARF SWEATER BEAR AROMATHERAPY JAR STORAGE JAR MIRROR SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale concrete bear scarf sweater bear aromatherapy jar storage jar mirror silicone mold for serious craft creators and manufacturers.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2160",
-    "name": "CONCRETE PUFFY HEART CUP AROMATHERAPY CANDLE CUP PLASTER STORAGE JAR MIRROR SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale concrete puffy heart cup aromatherapy candle cup plaster storage jar mirror silicone mold for serious craft creators and manufacturers.",
-    "price": 431,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2161",
-    "name": "CUT SURFACE VASE PEN HOLDER SHAPED STORAGE JAR GYPSUM AROMATHERAPY CANDLE CUP SILICONE MOLD",
-    "category": "Candle & Pillar Moulds",
-    "description": "Verified wholesale cut surface vase pen holder shaped storage jar gypsum aromatherapy candle cup silicone mold for serious craft creators and manufacturers.",
-    "price": 383,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2162",
-    "name": "CONCRETE LOVE PATTERN STORAGE BOX DIY AROMATHERAPY GYPSUM CANDLE CUP STORAGE JAR SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale concrete love pattern storage box diy aromatherapy gypsum candle cup storage jar silicone mold for serious craft creators and manufacturers.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2163",
-    "name": "GYPSUM DOUBLE MOUTH FLOWERPOT POTTED PLANT STORAGE BOX DIY AROMATHERAPY CANDLE CUP ORNAMENTS SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale gypsum double mouth flowerpot potted plant storage box diy aromatherapy candle cup ornaments silicone mold for serious craft creators and manufacturers.",
-    "price": 335,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2164",
-    "name": "CONCRETE IRREGULAR VERTICAL STRIPE STORAGE BOWL AROMATHERAPY GYPSUM CANDLE CUP FLOWERPOT SILICONE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale concrete irregular vertical stripe storage bowl aromatherapy gypsum candle cup flowerpot silicone mold for serious craft creators and manufacturers.",
-    "price": 263,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2165",
-    "name": "SUCCULENT FLOWER CACTUS CACTUS FONDANT SILICONE CAKE SOFT POTTERY SOFT CANDY CLAY AROMATHERAPY PLASTER PENDANT MOLD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale succulent flower cactus cactus fondant silicone cake soft pottery soft candy clay aromatherapy plaster pendant mold for serious craft creators and manufacturers.",
-    "price": 419,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2166",
-    "name": "KAJU KATLI SHAPED WHITE SMALL SILICON CANDLE SWEETS MOULD | ALSO CAN BE USED FOR CLAY, RESIN, CERAMIC ART | MULTIPURPOSE, FLEXIBLE,REUSABLE AND EASY TO USE MOLD",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale kaju katli shaped white small silicon candle sweets mould | also can be used for clay, resin, ceramic art | multipurpose, flexible,reusable and easy to use mold for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2167",
     "name": "CHRISTMAS CANDLE MOLDS SANTA CLAUS CANDLE MOLDS WITH BACKPACK XMAS CANDLE MAKING MOULDS SILICONE 3D DIY RESIN CASTING MOULDS SILICONE MOULDS FOR CANDLE MAKING (STANDING SANTA CLAUS)",
     "category": "Eco-Resin & Stone Moulds",
@@ -148187,158 +144285,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2168",
-    "name": "MOTHER AND DAUGHTER CANDLE MOLDS I 3D ABSTRACT LOVE & GROW UP SILICONE WAX EPOXY MOULD I FOR DIY HANDMADE ORNAMENT, CAKE DÉCOR, AROMATHERAPY, SOAP, RESIN ART CRAFT MAKING, HOME DECORATION",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale mother and daughter candle molds i 3d abstract love & grow up silicone wax epoxy mould i for diy handmade ornament, cake décor, aromatherapy, soap, resin art craft making, home decoration for serious craft creators and manufacturers.",
-    "price": 275,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2169",
-    "name": "ICEBERG CANDLE SILICONE MOLDS FOR MAKING CANDLE ICE BLOCK CAKE RESIN PILLAR AROMATHERAPY CANDLES WAX SOAP FLOWER SPECIMEN CLAY CRAFT",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale iceberg candle silicone molds for making candle ice block cake resin pillar aromatherapy candles wax soap flower specimen clay craft for serious craft creators and manufacturers.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2170",
-    "name": "PLUMERIA FLOWER MOULD CANDLE MAKING MOLDS FOR DIY SCENTED CANDLE WAX WAXMELTS AROMATHERAPY EPOXY RESIN CRAFTS HOME DECOR GIFTS KEYCHAIN HANDMADE SOAP BATH BOMBS CLAY CHOCOLATE FONDANT CAKE MOLDS",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale plumeria flower mould candle making molds for diy scented candle wax waxmelts aromatherapy epoxy resin crafts home decor gifts keychain handmade soap bath bombs clay chocolate fondant cake molds for serious craft creators and manufacturers.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2171",
-    "name": "PILLAR SHAPE CANDLE MOLDS | 3D FONDANT SILICONE CUBE BUBBLE GEOMETRIC BALL WAX MOULD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale pillar shape candle molds | 3d fondant silicone cube bubble geometric ball wax mould for serious craft creators and manufacturers.",
-    "price": 540,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
       "stone-studio"
     ],
     "isQuoteOnly": false
@@ -149441,46 +145387,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2201",
-    "name": "BOUQUET WITH HEART WCM426 | ELEGANT ARTIFICIAL FLOWER ARRANGEMENT SILICON MOULD",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale bouquet with heart wcm426 | elegant artificial flower arrangement silicon mould for serious craft creators and manufacturers.",
-    "price": 419,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2202",
     "name": "RECTANGLE DESIGNER 6 CAVITY SOAP MAKING HEAVY WT SILICONE MOULD APPOX 110GMS",
     "category": "Soap & Bar Moulds",
@@ -149551,44 +145457,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2204",
-    "name": "8 CAVITY LOVE HEART SHAPE SILICONE MOUSSE CAKE MOULD FOR BAKING | TRUFFLE MOULD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale 8 cavity love heart shape silicone mousse cake mould for baking | truffle mould for serious craft creators and manufacturers.",
-    "price": 239,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
       "stone-studio"
     ],
     "isQuoteOnly": false
@@ -149706,43 +145574,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2208",
-    "name": "LIQUID COLOR PIGMENTS FOR CONCRETE, ECO CASTING POWDER, JESMONITE, CLAY & PLASTER – 30ML | 10 VIBRANT SHADES BY",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale liquid color pigments for concrete, eco casting powder, jesmonite, clay & plaster – 30ml | 10 vibrant shades by for serious craft creators and manufacturers.",
-    "price": 83,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2209",
     "name": "SMALL SIZE FISH TAIL SILICONE MOULD MARINE SERIES HIPPOCAMPUS STARFISH FLIP SUGAR DECORATIVE TOOL CHOCOLATE DROP GUM GYPSUM",
     "category": "Culinary & Fondant Moulds",
@@ -149776,305 +145607,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2210",
-    "name": "BEAUTIFUL SMALL SUNFLOWER SILICONE GRINDING TOOLS CHOCOLATE PUDDING CHEESE FONDANT CAKE GUM DROPS AROMATHERAPY PLASTER DECORATION",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale beautiful small sunflower silicone grinding tools chocolate pudding cheese fondant cake gum drops aromatherapy plaster decoration for serious craft creators and manufacturers.",
-    "price": 107,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2211",
-    "name": "ART SPECIAL CONCRETE POWDER FOR DIY CANDLE JARS, JESMONITE & CEMENT CRAFTS | SMOOTH FINISH CASTING MATERIAL",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale art special concrete powder for diy candle jars, jesmonite & cement crafts | smooth finish casting material for serious craft creators and manufacturers.",
-    "price": 251,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2212",
-    "name": "ECO CRAFT CASTING POWDER (NATURAL WHITE) – SUPER FINE GRADE FOR JESMONITE, TRAYS, CANDLE JARS, PLANTERS & DIY CRAFTS | 3:1 CASTING POWDER BY 1KG",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale eco craft casting powder (natural white) – super fine grade for jesmonite, trays, candle jars, planters & diy crafts | 3:1 casting powder by 1kg for serious craft creators and manufacturers.",
-    "price": 102,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2213",
-    "name": "3D FONDANT HEART SHAPE SILICONE SCENTED MOULD I SPECIAL FOR VALENTINE’S DAY I FOR DIY HANDMADE ORNAMENT CAKE DÉCOR AROMATHERAPY SOAP RESIN ART CRAFT HOME PARTY DÉCOR",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale 3d fondant heart shape silicone scented mould i special for valentine’s day i for diy handmade ornament cake décor aromatherapy soap resin art craft home party décor for serious craft creators and manufacturers.",
-    "price": 299,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2214",
-    "name": "PREMIUM WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING | DECORATIVE & REUSABLE BOWL – 3 SIZES (10 CM, 15 CM, 18 CM)",
-    "category": "Wick Systems & Hardware",
-    "description": "Verified wholesale premium wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making | decorative & reusable bowl – 3 sizes (10 cm, 15 cm, 18 cm) for serious craft creators and manufacturers.",
-    "price": 155,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Tools & Studio Equipment",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2215",
-    "name": "PREMIUM NEW WOODEN HEART SHAPE CANDLE BOWL – RUSTIC HANDCRAFTED DOUGH BOWL FOR SOY, BEESWAX & LUXURY MULTI-WICK CANDLE MAKING | DECORATIVE & REUSABLE BOWL – 3 SIZES (10 CM, 14 CM, 20 CM)",
-    "category": "Wick Systems & Hardware",
-    "description": "Verified wholesale premium new wooden heart shape candle bowl – rustic handcrafted dough bowl for soy, beeswax & luxury multi-wick candle making | decorative & reusable bowl – 3 sizes (10 cm, 14 cm, 20 cm) for serious craft creators and manufacturers.",
-    "price": 78,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Tools & Studio Equipment",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2216",
-    "name": "TRIPLE BUTTER MELT & POUR SOAP BASE – COCOA, SHEA & MANGO BUTTER | SLS, SLES & PARABEN FREE | PREMIUM MOISTURIZING SOAP BASE FOR DIY & BUSINESS 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Verified wholesale triple butter melt & pour soap base – cocoa, shea & mango butter | sls, sles & paraben free | premium moisturizing soap base for diy & business 1kg for serious craft creators and manufacturers.",
-    "price": 296,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2217",
-    "name": "SILICONE MEASURING CUP 600ML WITH JUG BEAKER MARKINGS | CANDLE, RESIN & CONCRETE MIXING CUP",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale silicone measuring cup 600ml with jug beaker markings | candle, resin & concrete mixing cup for serious craft creators and manufacturers.",
-    "price": 227,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/og-image.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
       "stone-studio"
     ],
     "isQuoteOnly": false
@@ -152834,514 +148366,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2290",
-    "name": "Spiral Swirl Storage Jar Silicone Mold | ARM526",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale spiral swirl storage jar silicone mold | arm526 for serious craft creators and manufacturers.",
-    "price": 516,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM526-2.jpg?v=1774608460&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2291",
-    "name": "Candle Holder Silicone Mold | ARM525",
-    "category": "Candle & Pillar Moulds",
-    "description": "Verified wholesale candle holder silicone mold | arm525 for serious craft creators and manufacturers.",
-    "price": 204,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM525-2.png?v=1774607482&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2292",
-    "name": "T2 Bowknot Relief Silicone Tray Mold | ARM523",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale t2 bowknot relief silicone tray mold | arm523 for serious craft creators and manufacturers.",
-    "price": 378,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM523-2.png?v=1775811363&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2293",
-    "name": "T1 Bowknot Relief Silicone Tray Mold | ARM522",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale t1 bowknot relief silicone tray mold | arm522 for serious craft creators and manufacturers.",
-    "price": 432,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM522-2_1.png?v=1775711546&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2294",
-    "name": "Geometric Faceted Planter Mold | ARM521",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale geometric faceted planter mold | arm521 for serious craft creators and manufacturers.",
-    "price": 486,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM521-1.png?v=1774592942&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2295",
-    "name": "Nordic Round Circle Silicone Vase Mold( Small)| ARM520",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale nordic round circle silicone vase mold( small)| arm520 for serious craft creators and manufacturers.",
-    "price": 624,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM520-3.jpg?v=1774528339&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2296",
-    "name": "Kettle silicone mold | ARM519",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale kettle silicone mold | arm519 for serious craft creators and manufacturers.",
-    "price": 528,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM519-1.png?v=1774526721&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2297",
-    "name": "Round Bowl Shape Mold (Live, Hope, Praying Hands, Love) | ARM517",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale round bowl shape mold (live, hope, praying hands, love) | arm517 for serious craft creators and manufacturers.",
-    "price": 384,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM516-1_5e25d352-6629-4fed-b88b-4986b9133ab7.png?v=1775649892&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2298",
-    "name": "Round Bowl Shape Mold (Golden Bunny, Stay Free, Dream Big, Be Kind) | ARM516",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale round bowl shape mold (golden bunny, stay free, dream big, be kind) | arm516 for serious craft creators and manufacturers.",
-    "price": 384,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM516_306efa28-d9a7-4981-96be-5afb89445ba9.png?v=1774522264&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2299",
-    "name": "Camellia Flower Candle Holder Mould | ARM515",
-    "category": "Candle & Pillar Moulds",
-    "description": "Verified wholesale camellia flower candle holder mould | arm515 for serious craft creators and manufacturers.",
-    "price": 468,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM515-1_1.png?v=1774520603&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2300",
-    "name": "Pretty Bow Jar Silicone Mold | ARM514",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale pretty bow jar silicone mold | arm514 for serious craft creators and manufacturers.",
-    "price": 246,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM514.jpg?v=1775639836&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2301",
-    "name": "Cute Bow Jar Silicone Mold | ARM513",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale cute bow jar silicone mold | arm513 for serious craft creators and manufacturers.",
-    "price": 252,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM513-2.jpg?v=1775637619&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2302",
-    "name": "Garland Carousel Silicone Mold | ARM524",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale garland carousel silicone mold | arm524 for serious craft creators and manufacturers.",
-    "price": 324,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM524-2.jpg?v=1774860251&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2303",
     "name": "ARM512 resin and candle silicone bowl mould",
     "category": "Eco-Resin & Stone Moulds",
@@ -153491,834 +148515,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2307",
-    "name": "Space Adventure Silicone Mold – Rocket, Astronaut & UFO Shapes | ARM549",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale space adventure silicone mold – rocket, astronaut & ufo shapes | arm549 for serious craft creators and manufacturers.",
-    "price": 264,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/Screenshot2026-05-29111605.jpg?v=1780033991&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2308",
-    "name": "Astronaut & Rocket Shape Silicone Mold for Creative DIY | ARM548",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale astronaut & rocket shape silicone mold for creative diy | arm548 for serious craft creators and manufacturers.",
-    "price": 264,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/Screenshot2026-05-28145149.jpg?v=1779960582&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2309",
-    "name": "Classic Round Rakhi Silicone Mold | 6 Cavity | ARM547",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale classic round rakhi silicone mold | 6 cavity | arm547 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_06_15_45PM.png?v=1779540467&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2310",
-    "name": "Wave Edge Rectangle Rakhi Mold | 6 Cavity | ARM546",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale wave edge rectangle rakhi mold | 6 cavity | arm546 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_06_10_05PM.png?v=1779540196&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2311",
-    "name": "Vintage Oval Frame Rakhi Mold | 6 Cavity | ARM544",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale vintage oval frame rakhi mold | 6 cavity | arm544 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_06_03_05PM.png?v=1779539654&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2312",
-    "name": "Royal Scallop Rakhi Silicone Mold | 6 Cavity | ARM543",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale royal scallop rakhi silicone mold | 6 cavity | arm543 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/IMG_20260523_161520_jpg.jpg?v=1779539334&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2313",
-    "name": "Fancy Multi Style Rakhi Mold |ARM542",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale fancy multi style rakhi mold |arm542 for serious craft creators and manufacturers.",
-    "price": 92,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_05_26_44PM.png?v=1779538680&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2314",
-    "name": "Classic Square Rakhi Silicone Mold (5 Cavity) | ARM541",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale classic square rakhi silicone mold (5 cavity) | arm541 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/01_3593863e-24e8-41b4-a1e2-5eaf61851a90.jpg?v=1779539058&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2315",
-    "name": "Crystal Cut Rakhi Silicone Mold (6 cavity) | ARM540",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale crystal cut rakhi silicone mold (6 cavity) | arm540 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_05_09_20PM.png?v=1779536944&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2316",
-    "name": "Diamond Shape Rakhi Silicone Mold (6 Cavity) | ARM539",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale diamond shape rakhi silicone mold (6 cavity) | arm539 for serious craft creators and manufacturers.",
-    "price": 71,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay23_2026_05_03_53PM.png?v=1779536294&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2317",
-    "name": "Premium Multi Shape Rakhi Silicone Mold | ARM538",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale premium multi shape rakhi silicone mold | arm538 for serious craft creators and manufacturers.",
-    "price": 119,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/IMG_20260523_160454_jpg.jpg?v=1779535759&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2318",
-    "name": "\"Shubh Deepavali\" Hindi Calligraphy Silicone Mold | ARM537",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale \"shubh deepavali\" hindi calligraphy silicone mold | arm537 for serious craft creators and manufacturers.",
-    "price": 155,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay14_2026_06_21_48PMcopy.jpg?v=1778763549&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2319",
-    "name": "Premium Astronaut \"Travel in Space\" Silicone Mold | ARM536 (OWN)",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale premium astronaut \"travel in space\" silicone mold | arm536 (own) for serious craft creators and manufacturers.",
-    "price": 719,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ChatGPTImageMay12_2026_05_58_48PM.png?v=1778589760&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2320",
-    "name": "Retro Bus Flowerpot Silicone Mold | ARM518",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale retro bus flowerpot silicone mold | arm518 for serious craft creators and manufacturers.",
-    "price": 719,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM518-3.jpg?v=1774691692&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2321",
-    "name": "Velvet Heart Trinket Dish Mold | ARM533",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale velvet heart trinket dish mold | arm533 for serious craft creators and manufacturers.",
-    "price": 300,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM533-4.png?v=1775797302&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2322",
-    "name": "Ocean Wing Trinket Tray Mold | ARM532",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale ocean wing trinket tray mold | arm532 for serious craft creators and manufacturers.",
-    "price": 359,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM532-2.png?v=1774680955&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2323",
-    "name": "Narrow Angel Wing Mould | ARM531",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale narrow angel wing mould | arm531 for serious craft creators and manufacturers.",
-    "price": 378,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM531-4.png?v=1774679810&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2324",
-    "name": "Vintage Embossed Square Silicone Tray Mold | ARM530",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale vintage embossed square silicone tray mold | arm530 for serious craft creators and manufacturers.",
-    "price": 570,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM530-1_1.png?v=1774674582&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2325",
-    "name": "Vintage Embossed Round Silicone Tray Mold | ARM529",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale vintage embossed round silicone tray mold | arm529 for serious craft creators and manufacturers.",
-    "price": 467,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM529-3.jpg?v=1774614778&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2326",
-    "name": "Vintage Embossed Oval Silicone Tray Mold | ARM528",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale vintage embossed oval silicone tray mold | arm528 for serious craft creators and manufacturers.",
-    "price": 438,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM528-4.jpg?v=1774613377&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2327",
-    "name": "3D Puffy Heart Trinket Mold | ARM527",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale 3d puffy heart trinket mold | arm527 for serious craft creators and manufacturers.",
-    "price": 396,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ARM527-11.png?v=1774609953&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
       "stone-studio"
     ],
     "isQuoteOnly": false
@@ -154511,240 +148707,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2333",
-    "name": "Round Agate Edge Silicone Tray Mold for Resin| ARM563",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale round agate edge silicone tray mold for resin| arm563 for serious craft creators and manufacturers.",
-    "price": 554,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/02_f1b9a7b3-0880-48c6-b7bd-1c712b132b22.png?v=1783058276&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2334",
-    "name": "Cake Heart Gift jar Box Silicone Mold | ARM556",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale cake heart gift jar box silicone mold | arm556 for serious craft creators and manufacturers.",
-    "price": 719,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/IMG-4256.jpg?v=1786267138&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2335",
-    "name": "Daisy Flower Tray Silicone Mold | ARM555",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale daisy flower tray silicone mold | arm555 for serious craft creators and manufacturers.",
-    "price": 227,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/IMG-4253.webp?v=1786265974&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2336",
-    "name": "Flower Edge Dashboard Stand Mold | ARM553",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale flower edge dashboard stand mold | arm553 for serious craft creators and manufacturers.",
-    "price": 205,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/01_3eedbd69-b236-4c5e-987f-b6f8961c6f46.png?v=1781765000&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2337",
-    "name": "Scalloped Dashboard Stand Mold | ARM552",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale scalloped dashboard stand mold | arm552 for serious craft creators and manufacturers.",
-    "price": 246,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/01_59d4abba-cc35-425f-a8f1-91d24db8e53e.png?v=1781764012&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2338",
-    "name": "Round Dashboard Stand Mold | ARM551",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale round dashboard stand mold | arm551 for serious craft creators and manufacturers.",
-    "price": 223,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/01_44933ce5-6610-4d34-875d-0a3e34cd0fc0.png?v=1781762788&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier",
       "stone-studio"
     ],
     "isQuoteOnly": false

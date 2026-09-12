@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "shiprocket": {
+      "command": "node",
+      "args": [
+        "-r",
+        "tsconfig-paths/register",
+        "c:\\Users\\prabh\\Documents\\code projects\\ekorabazaar\\mcp\\shiprocket-mcp\\dist\\main.js"
+      ],
+      "cwd": "c:\\Users\\prabh\\Documents\\code projects\\ekorabazaar\\mcp\\shiprocket-mcp",
+      "env": {
+        "SELLER_EMAIL": "your_shiprocket_email@example.com",
+        "SELLER_PASSWORD": "your_shiprocket_password"
+      }
+    }
+  }
+}
