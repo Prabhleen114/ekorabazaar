@@ -11,8 +11,10 @@ import Link from "next/link";
 import serialize from "serialize-javascript";
 import { ChevronRight, MessageCircle } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
-import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
+import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
+import TechnicalDocsSection from "@/components/TechnicalDocsSection";
+import ProductFaqSection, { getCategoryFaqs } from "@/components/ProductFaqSection";
 
 import catalogProducts from "@/lib/data/products.json";
 
@@ -185,6 +187,9 @@ export default async function ProductDetailsPage({ params }: Props) {
     { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${productData.id}` }
   ]);
 
+  const productFaqs = getCategoryFaqs(displayProduct.name, displayProduct.category);
+  const faqSchema = generateFaqSchema(productFaqs);
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
@@ -198,6 +203,10 @@ export default async function ProductDetailsPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serialize(faqSchema, { isJSON: true }) }}
       />
       {/* Visually hidden SEO tags */}
       {displayProduct.tags && displayProduct.tags.length > 0 && (
@@ -245,9 +254,12 @@ export default async function ProductDetailsPage({ params }: Props) {
             )}
             <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{displayProduct.category}</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-3 md:mb-4">
-            {displayProduct.name}
+          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-1">
+            {displayProduct.name} <span className="text-brand-orange text-2xl md:text-3xl font-sans font-semibold">Wholesale India</span>
           </h1>
+          <p className="text-xs font-semibold text-brand-charcoal/60 mb-3 md:mb-4">
+            Bulk {displayProduct.category} for Small Businesses | Lab-Tested &amp; COA Certified Supplier
+          </p>
           
           <div className="hidden md:block">
             <p className="text-brand-charcoal/70 leading-relaxed mb-6">
@@ -410,6 +422,25 @@ export default async function ProductDetailsPage({ params }: Props) {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Lab-Tested & COA Certified Technical Documentation */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-10">
+        <TechnicalDocsSection
+          productId={displayProduct.id}
+          productName={displayProduct.name}
+          category={displayProduct.category}
+        />
+      </div>
+
+      {/* Pre-Purchase Technical Q&As (Contextual Long-Tail Creator Questions) */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-16">
+        <ProductFaqSection
+          productName={displayProduct.name}
+          category={displayProduct.category}
+          department={displayProduct.department}
+          price={displayProduct.price}
+        />
       </div>
 
       <BuyerFooter />

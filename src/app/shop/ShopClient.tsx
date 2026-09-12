@@ -252,6 +252,17 @@ export default function ShopClient() {
     router.push(`/shop?${params.toString()}`, { scroll: false });
   };
 
+  const setSearch = (term: string) => {
+    setSearchQuery(term);
+    const params = new URLSearchParams(window.location.search);
+    if (term) {
+      params.set("q", term);
+    } else {
+      params.delete("q");
+    }
+    router.push(`/shop?${params.toString()}`, { scroll: false });
+  };
+
   const toggleDeptExpand = (deptName: string) => {
     setExpandedDepts(prev => ({ ...prev, [deptName]: !prev[deptName] }));
   };
@@ -409,7 +420,7 @@ export default function ShopClient() {
                 {searchQuery && (
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-brand-bg text-brand-charcoal px-2 py-1 rounded-lg border border-brand-linen">
                     &ldquo;{searchQuery}&rdquo;
-                    <X className="w-3 h-3 cursor-pointer" onClick={() => setSearchQuery("")} />
+                    <X className="w-3 h-3 cursor-pointer" onClick={() => setSearch("")} />
                   </span>
                 )}
               </div>
@@ -611,9 +622,9 @@ export default function ShopClient() {
             </div>
           </div>
 
-          {/* Desktop Header Bar (Title & Sort Dropdown) */}
+          {/* Desktop Header Bar (Title, In-Shop Search & Sort Dropdown) */}
           <div className="hidden md:flex justify-between items-center bg-white p-4 px-6 rounded-2xl border border-brand-linen gap-4 shadow-sm">
-            <div>
+            <div className="shrink-0 min-w-[200px]">
               <h1 className="text-xl font-bold font-serif text-brand-charcoal">
                 {activeTitle}
               </h1>
@@ -628,8 +639,43 @@ export default function ShopClient() {
               </p>
             </div>
 
+            {/* Desktop Prominent In-Shop Search Input */}
+            <div className="flex-1 max-w-md mx-2">
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const input = form.elements.namedItem("shop-search") as HTMLInputElement;
+                  if (input) {
+                    setSearch(input.value.trim());
+                  }
+                }}
+                className="relative flex items-center"
+              >
+                <input
+                  type="text"
+                  name="shop-search"
+                  defaultValue={searchQuery}
+                  key={searchQuery}
+                  placeholder="Search products in this collection..."
+                  className="w-full bg-brand-bg/80 border border-brand-linen rounded-xl pl-9 pr-8 py-2 text-xs font-medium focus:outline-none focus:border-brand-orange focus:bg-white transition-all shadow-inner"
+                />
+                <Search className="w-3.5 h-3.5 absolute left-3 text-brand-charcoal/40" />
+                {searchQuery ? (
+                  <button
+                    type="button"
+                    onClick={() => setSearch("")}
+                    className="absolute right-2.5 text-brand-charcoal/40 hover:text-brand-charcoal p-1"
+                    title="Clear search"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                ) : null}
+              </form>
+            </div>
+
             {/* Sort By Dropdown */}
-            <div className="flex items-center gap-3 text-sm">
+            <div className="flex items-center gap-3 text-sm shrink-0">
               <span className="text-brand-charcoal/60 font-medium text-xs uppercase tracking-wider">Sort by:</span>
               <div className="relative">
                 <select

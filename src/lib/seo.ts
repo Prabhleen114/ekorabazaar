@@ -49,13 +49,13 @@ export function generateStandardMetadata(
 }
 
 /**
- * Generate dynamic Product Metadata
+ * Generate dynamic Product Metadata targeting B2B & Wholesale commercial intent
  */
 export function generateProductMetadata(product: any): Metadata {
-  const title = `Buy ${product.title} Online | ${SITE_NAME}`;
-  const description = product.description 
-    ? (product.description.length > 155 ? product.description.substring(0, 155) + '...' : product.description)
-    : `Buy premium ${product.title} online at wholesale prices on ${SITE_NAME}.`;
+  const categoryStr = product.category ? `Bulk ${product.category} Supplier` : 'Wholesale Raw Materials';
+  const title = `${product.title} Wholesale India | ${categoryStr} | ${SITE_NAME}`;
+  
+  const description = `Buy ${product.title} in bulk at wholesale tier pricing in India. Lab-tested & COA certified batch reports, tiered volume discounts, GST invoices, low MOQ & fast 24hr dispatch for small businesses and creators.`;
   
   const imageUrl = product.imageUrl || DEFAULT_OG_IMAGE;
   const path = `/products/${product.id}`;
@@ -67,8 +67,8 @@ export function generateProductMetadata(product: any): Metadata {
  * Generate dynamic Category Metadata
  */
 export function generateCategoryMetadata(categoryName: string, categorySlug: string): Metadata {
-  const title = `${categoryName} Online | Shop on ${SITE_NAME}`;
-  const description = `Discover premium ${categoryName} for creators and small businesses. Buy high-quality raw materials and craft supplies online on ${SITE_NAME}.`;
+  const title = `${categoryName} Wholesale India | Bulk Supplier | ${SITE_NAME}`;
+  const description = `Discover lab-tested wholesale ${categoryName} for small businesses and creators. Low MOQ, batch-tested COA certified materials, and volume tier pricing on ${SITE_NAME}.`;
   
   const path = `/wholesale/${categorySlug}`;
   return generateStandardMetadata(title, description, path);
@@ -86,41 +86,154 @@ export function generateGuideMetadata(guideTitle: string, guideSlug: string): Me
 }
 
 /**
- * Generate Product Structured Data (Schema.org)
+ * Generate Product Structured Data (Schema.org) with B2B wholesale tier pricing
  */
 export function generateProductSchema(product: any, sellerName?: string) {
-  const price = (product.customerPrice ?? product.price) / 100;
+  const basePrice = (product.customerPrice ?? product.price) / 100;
+  const isAvailable = product.stock > 0 || product.inStock !== false;
   
-  // Basic strict Google Merchant Center requirements
-  const schema: any = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": product.title,
-    "image": product.imageUrl ? [product.imageUrl] : [DEFAULT_OG_IMAGE],
-    "description": product.description || `Premium ${product.title}`,
-    "sku": product.id,
-    "offers": {
-      "@type": "Offer",
-      "url": `${BASE_URL}/products/${product.id}`,
-      "priceCurrency": "INR",
-      "price": price,
-      "itemCondition": "https://schema.org/NewCondition",
-      "availability": product.stock > 0 || !product.stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+  const returnPolicy = {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": "IN",
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 7,
+    "returnMethod": "https://schema.org/ReturnByMail",
+    "returnFees": "https://schema.org/FreeReturn"
+  };
+
+  const shippingDetails = {
+    "@type": "OfferShippingDetails",
+    "shippingRate": {
+      "@type": "MonetaryAmount",
+      "value": 0,
+      "currency": "INR"
+    },
+    "shippingDestination": {
+      "@type": "DefinedRegion",
+      "addressCountry": "IN"
+    },
+    "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": {
+        "@type": "QuantitativeValue",
+        "minValue": 0,
+        "maxValue": 1,
+        "unitCode": "DAY"
+      },
+      "transitTime": {
+        "@type": "QuantitativeValue",
+        "minValue": 2,
+        "maxValue": 5,
+        "unitCode": "DAY"
+      }
     }
   };
 
-  if (sellerName) {
-    schema.brand = {
-      "@type": "Brand",
-      "name": sellerName
+  const rawTiers: any[] = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
+    ? product.wholesaleTiers
+    : (Array.isArray(product.tiers) && product.tiers.length > 0 ? product.tiers : []);
+
+  let offers: any;
+
+  if (rawTiers.length > 1) {
+    // Generate tiered B2B wholesale offers
+    offers = rawTiers.map((tier: any, idx: number) => {
+      const tierPrice = typeof tier.price === 'number' 
+        ? (tier.price > 1000 ? Math.round(tier.price / 100) : tier.price)
+        : basePrice;
+      const minQ = tier.minQty || (idx === 0 ? 1 : 12);
+      const maxQ = tier.maxQty || null;
+
+      const offerObj: any = {
+        "@type": "Offer",
+        "name": `Tier ${idx + 1} Wholesale (${minQ}${maxQ ? `-${maxQ}` : '+'} units)`,
+        "url": `${BASE_URL}/products/${product.id}`,
+        "priceCurrency": "INR",
+        "price": tierPrice,
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        "eligibleQuantity": {
+          "@type": "QuantitativeValue",
+          "minValue": minQ,
+          ...(maxQ ? { "maxValue": maxQ } : {}),
+          "unitCode": "C62"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": tierPrice,
+          "priceCurrency": "INR",
+          "referenceQuantity": {
+            "@type": "QuantitativeValue",
+            "value": 1,
+            "unitCode": "C62"
+          }
+        },
+        "hasMerchantReturnPolicy": returnPolicy,
+        "shippingDetails": shippingDetails
+      };
+
+      if (sellerName) {
+        offerObj.seller = {
+          "@type": "Organization",
+          "name": sellerName
+        };
+      }
+
+      return offerObj;
+    });
+  } else {
+    offers = {
+      "@type": "Offer",
+      "url": `${BASE_URL}/products/${product.id}`,
+      "priceCurrency": "INR",
+      "price": basePrice,
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "hasMerchantReturnPolicy": returnPolicy,
+      "shippingDetails": shippingDetails
     };
-    schema.offers.seller = {
-      "@type": "Organization",
-      "name": sellerName
-    };
+
+    if (sellerName) {
+      offers.seller = {
+        "@type": "Organization",
+        "name": sellerName
+      };
+    }
   }
 
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${product.title} Wholesale India`,
+    "image": product.imageUrl ? [product.imageUrl] : [DEFAULT_OG_IMAGE],
+    "description": product.description || `Lab-tested ${product.title} available in bulk wholesale for small businesses in India.`,
+    "sku": String(product.id),
+    "brand": {
+      "@type": "Brand",
+      "name": sellerName || "Ekora Bazaar"
+    },
+    "offers": offers
+  };
+
   return schema;
+}
+
+/**
+ * Generate FAQPage Structured Data (Schema.org) for Pre-Purchase Q&As
+ */
+export function generateFaqSchema(faqs: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
 }
 
 /**
