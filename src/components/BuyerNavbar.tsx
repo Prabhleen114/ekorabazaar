@@ -2,7 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, GraduationCap, Sparkles, ArrowRight } from "lucide-react";
+import { 
+  Menu, 
+  X, 
+  ChevronDown, 
+  GraduationCap, 
+  Sparkles, 
+  ArrowRight,
+  User,
+  ShoppingBag,
+  Package,
+  MapPin,
+  LogOut,
+  Phone
+} from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TopUtilityBar from "./TopUtilityBar";
@@ -16,7 +29,37 @@ export default function BuyerNavbar() {
   const [isDepartmentsOpen, setIsDepartmentsOpen] = useState(false);
   const [isCraftOpen, setIsCraftOpen] = useState(false);
   const [isAcademyOpen, setIsAcademyOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [mobileSectionOpen, setMobileSectionOpen] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [cartCount, setCartCount] = useState<number>(0);
+
+  useEffect(() => {
+    // Check auth
+    fetch('/api/auth/me')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.user) setCurrentUser(data.user);
+      })
+      .catch(() => {});
+
+    // Check cart count
+    fetch('/api/cart')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.items && Array.isArray(data.items)) {
+          const totalQty = data.items.reduce((acc: number, item: any) => acc + (item.quantity || 1), 0);
+          setCartCount(totalQty);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleNavbarLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    setCurrentUser(null);
+    window.location.href = '/';
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -296,9 +339,143 @@ export default function BuyerNavbar() {
             </Link>
           </nav>
 
-          {/* Right: Search, Cart & Mobile Hamburger */}
-          <div className="flex-1 flex justify-end items-center gap-2 md:gap-4">
+          {/* Right: Search, Cart, Profile & Mobile Hamburger */}
+          <div className="flex-1 flex justify-end items-center gap-2 sm:gap-4">
             <NavbarSearchBox />
+
+            {/* Profile Dropdown (Myntra Style) */}
+            <div 
+              className="relative flex items-center"
+              onMouseEnter={() => setIsProfileOpen(true)}
+              onMouseLeave={() => setIsProfileOpen(false)}
+            >
+              <Link
+                href={currentUser ? "/account" : "/login"}
+                onClick={() => setIsProfileOpen(false)}
+                className="flex flex-col items-center justify-center text-brand-charcoal/80 hover:text-brand-charcoal transition-colors px-1.5 py-1 min-w-[42px]"
+                aria-label="User profile"
+              >
+                <User className="w-5 h-5" />
+                <span className="text-[10px] font-bold mt-0.5 tracking-tight">Profile</span>
+              </Link>
+
+              <AnimatePresence>
+                {isProfileOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="absolute top-11 right-0 w-72 bg-white rounded-2xl border border-brand-linen shadow-2xl p-5 z-50 text-left"
+                  >
+                    {currentUser ? (
+                      <div>
+                        <div className="pb-3 border-b border-brand-linen">
+                          <p className="font-serif font-bold text-base text-brand-charcoal">
+                            Hello, {currentUser.displayName || 'Creator'}
+                          </p>
+                          <p className="text-xs text-brand-charcoal/60 truncate mt-0.5">
+                            {currentUser.email}
+                          </p>
+                        </div>
+
+                        <div className="py-2 space-y-1">
+                          <Link
+                            href="/account?tab=orders"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-brand-charcoal/80 hover:text-brand-orange hover:bg-brand-bg transition-colors"
+                          >
+                            <Package className="w-4 h-4 text-brand-orange" />
+                            <span>My Orders</span>
+                          </Link>
+                          <Link
+                            href="/account?tab=addresses"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-brand-charcoal/80 hover:text-brand-orange hover:bg-brand-bg transition-colors"
+                          >
+                            <MapPin className="w-4 h-4 text-brand-orange" />
+                            <span>Saved Addresses</span>
+                          </Link>
+                          <Link
+                            href="/account?tab=profile"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-brand-charcoal/80 hover:text-brand-orange hover:bg-brand-bg transition-colors"
+                          >
+                            <User className="w-4 h-4 text-brand-orange" />
+                            <span>Personal Details</span>
+                          </Link>
+                          <a
+                            href="https://wa.me/919041500605"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-brand-charcoal/80 hover:text-brand-orange hover:bg-brand-bg transition-colors"
+                          >
+                            <Phone className="w-4 h-4 text-emerald-600" />
+                            <span>Contact Concierge</span>
+                          </a>
+                        </div>
+
+                        <div className="pt-2 border-t border-brand-linen">
+                          <button
+                            onClick={handleNavbarLogout}
+                            className="w-full flex items-center gap-2 px-2.5 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors"
+                          >
+                            <LogOut className="w-3.5 h-3.5" />
+                            <span>Sign Out</span>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="pb-3 mb-3 border-b border-brand-linen">
+                          <h4 className="font-serif font-bold text-sm text-brand-charcoal">
+                            Welcome
+                          </h4>
+                          <p className="text-[11px] text-brand-charcoal/60 mt-0.5">
+                            To access account and manage orders
+                          </p>
+                          <Link
+                            href="/login"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="mt-3 w-full inline-flex items-center justify-center py-2.5 px-4 rounded-xl bg-brand-charcoal hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                          >
+                            LOGIN / SIGNUP
+                          </Link>
+                        </div>
+
+                        <div className="space-y-1">
+                          <Link
+                            href="/login?redirect=/account?tab=orders"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-medium text-brand-charcoal/80 hover:text-brand-orange transition-colors"
+                          >
+                            <span>Orders</span>
+                          </Link>
+                          <Link
+                            href="/login?redirect=/account?tab=addresses"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-medium text-brand-charcoal/80 hover:text-brand-orange transition-colors"
+                          >
+                            <span>Saved Addresses</span>
+                          </Link>
+                          <a
+                            href="https://wa.me/919041500605"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-medium text-brand-charcoal/80 hover:text-brand-orange transition-colors"
+                          >
+                            <span>Contact Support</span>
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <CartIcon />
 
             <button
@@ -419,6 +596,61 @@ export default function BuyerNavbar() {
               >
                 About Us
               </Link>
+
+              {/* Mobile Account / Profile Section */}
+              <div className="border-t border-brand-linen pt-4 mt-2 space-y-2">
+                {currentUser ? (
+                  <>
+                    <div className="px-1 py-1 text-xs text-brand-charcoal/60">
+                      Signed in as <strong className="text-brand-charcoal">{currentUser.email}</strong>
+                    </div>
+                    <Link
+                      href="/account?tab=orders"
+                      className="text-lg font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-1 flex items-center gap-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Package className="w-4 h-4 text-brand-orange" />
+                      My Orders
+                    </Link>
+                    <Link
+                      href="/account?tab=addresses"
+                      className="text-lg font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-1 flex items-center gap-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <MapPin className="w-4 h-4 text-brand-orange" />
+                      Saved Addresses
+                    </Link>
+                    <Link
+                      href="/account?tab=profile"
+                      className="text-lg font-bold font-serif text-brand-charcoal hover:text-brand-orange transition-colors py-1 flex items-center gap-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <User className="w-4 h-4 text-brand-orange" />
+                      Personal Details
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        handleNavbarLogout();
+                      }}
+                      className="text-sm font-semibold text-red-600 hover:text-red-700 py-1 flex items-center gap-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <div className="flex gap-2">
+                    <Link
+                      href="/login"
+                      className="flex-1 text-center bg-brand-charcoal text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Login / Sign Up
+                    </Link>
+                  </div>
+                )}
+              </div>
 
               <div className="border-t border-brand-linen pt-4 mt-2">
                 <Link
