@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { usePageEngagement, trackWhatsAppClick } from "@/lib/tracking";
 
 export default function WhatsAppButton() {
   const pathname = usePathname();
+  usePageEngagement();
   const isSellPage = pathname === '/sell' || pathname?.startsWith('/sell/');
   
   const text = isSellPage 
@@ -14,12 +16,17 @@ export default function WhatsAppButton() {
     
   const whatsappUrl = `https://wa.me/919041500605?text=${encodeURIComponent(text)}`;
 
+  const handleClick = () => {
+    trackWhatsAppClick({ location: "floating" });
+  };
+
   return (
     <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 flex items-center justify-end pointer-events-none">
       <motion.a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleClick}
         className="pointer-events-auto block transition-all duration-300 drop-shadow-xl"
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -1,9 +1,9 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Minus, Plus, ShoppingCart, Loader2, Check, MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
+import { trackWhatsAppClick, trackEvent } from "@/lib/tracking";
 
 type Tier = {
   minQty: number;
@@ -38,8 +38,24 @@ export default function PricingWidget({
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isAddedSuccess, setIsAddedSuccess] = useState(false);
   const [isBuyingNow, setIsBuyingNow] = useState(false);
+  const hasTrackedTierView = useRef(false);
 
   const router = useRouter();
+
+  // Track tier_pricing_view when wholesale tiers are visible to user
+  useEffect(() => {
+    if (!hasTrackedTierView.current && tiers && tiers.length > 0) {
+      hasTrackedTierView.current = true;
+      trackEvent("tier_pricing_view", {
+        productId,
+        productName,
+        category,
+        tiersCount: tiers.length,
+        basePrice,
+        tiers,
+      });
+    }
+  }, [productId, productName, category, basePrice, tiers]);
 
   if (isQuoteOnly || !inStock || !tiers || tiers.length === 0) {
     const whatsappUrl = `https://wa.me/919041500605?text=${encodeURIComponent(
@@ -65,6 +81,13 @@ export default function PricingWidget({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick({
+              location: "pdp_quote",
+              productId,
+              productName,
+              category,
+              extra: { basePrice, moq }
+            })}
             className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 px-6 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2.5 text-center"
           >
             <MessageCircle className="w-5 h-5 text-emerald-400" />
@@ -91,6 +114,13 @@ export default function PricingWidget({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick({
+              location: "pdp_quote_sticky",
+              productId,
+              productName,
+              category,
+              extra: { basePrice, moq }
+            })}
             className="bg-brand-charcoal text-white px-5 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg min-h-[48px] text-sm"
           >
             <MessageCircle className="w-4 h-4 text-emerald-400" />
@@ -101,8 +131,41 @@ export default function PricingWidget({
     );
   }
 
+  const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || null;
+  const displayPrice = currentTier ? currentTier.price : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
+  const subtotal = displayPrice * quantity;
+
+  const handleQuantityChange = (newQty: number) => {
+    const validQty = Math.max(moq, newQty);
+    if (validQty !== quantity) {
+      const prevTier = currentTier;
+      const nextTier = tiers.find(t => validQty >= t.minQty && (t.maxQty === null || validQty <= t.maxQty)) || null;
+      trackEvent("quantity_change", {
+        productId,
+        productName,
+        oldQty: quantity,
+        newQty: validQty,
+        fromTier: prevTier ? prevTier.minQty : null,
+        toTier: nextTier ? nextTier.minQty : null,
+        tierCrossed: prevTier?.minQty !== nextTier?.minQty,
+      });
+      setQuantity(validQty);
+    }
+  };
+
   const handleAction = async (actionType: 'cart' | 'buy_now') => {
     if (!productId) return;
+
+    trackEvent("add_to_cart", {
+      productId,
+      productName,
+      quantity,
+      unitPrice: displayPrice,
+      subtotal,
+      isBuyNow: actionType === 'buy_now',
+      tierMinQty: currentTier?.minQty || null,
+      discountPct: currentTier?.discountPct || 0,
+    });
     
     if (actionType === 'cart') {
       setIsAddingToCart(true);
@@ -239,10 +302,6 @@ export default function PricingWidget({
     }
   };
 
-  const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || null;
-  const displayPrice = currentTier ? currentTier.price : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
-  const subtotal = displayPrice * quantity;
-
   const isProcessing = isAddingToCart || isBuyingNow || isAddedSuccess;
 
   return (
@@ -256,8 +315,16 @@ export default function PricingWidget({
           return (
             <div 
               key={idx} 
-              className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
-                isActive ? "bg-white border-brand-orange shadow-sm" : "border-transparent text-brand-charcoal/60"
+              onMouseEnter={() => trackEvent("tier_pricing_hover", {
+                productId,
+                productName,
+                tierMinQty: tier.minQty,
+                tierMaxQty: tier.maxQty,
+                price: tier.price,
+                discountPct: tier.discountPct,
+              })}
+              className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                isActive ? "bg-white border-brand-orange shadow-sm" : "border-transparent text-brand-charcoal/60 hover:bg-white/60"
               }`}
             >
               <div className="flex items-center gap-4">
@@ -283,7 +350,7 @@ export default function PricingWidget({
           <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/50 block mb-2">Quantity</label>
           <div className="flex items-center bg-white border border-brand-linen rounded-xl overflow-hidden h-12 w-36">
             <button 
-              onClick={() => setQuantity(Math.max(moq, quantity - 1))}
+              onClick={() => handleQuantityChange(quantity - 1)}
               className="w-12 h-full flex items-center justify-center text-brand-charcoal/50 hover:bg-brand-linen/50 hover:text-brand-charcoal transition-colors min-w-[44px]"
             >
               <Minus className="w-4 h-4" />
@@ -291,11 +358,11 @@ export default function PricingWidget({
             <input 
               type="number" 
               value={quantity}
-              onChange={(e) => setQuantity(Math.max(moq, parseInt(e.target.value) || moq))}
+              onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
               className="flex-1 w-full text-center font-semibold text-brand-charcoal focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             />
             <button 
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={() => handleQuantityChange(quantity + 1)}
               className="w-12 h-full flex items-center justify-center text-brand-charcoal/50 hover:bg-brand-linen/50 hover:text-brand-charcoal transition-colors min-w-[44px]"
             >
               <Plus className="w-4 h-4" />

@@ -31,6 +31,10 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           <Link href="/admin/products" className="block px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white">
             Product Approvals
           </Link>
+          <Link href="/admin/intelligence" className="px-4 py-2 text-sm font-medium text-amber-300 bg-gray-700/50 rounded-lg hover:bg-gray-700 hover:text-white flex items-center justify-between">
+            <span>Customer Intelligence</span>
+            <span className="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">B2B</span>
+          </Link>
         </nav>
 
         <div className="p-4 border-t border-gray-700">

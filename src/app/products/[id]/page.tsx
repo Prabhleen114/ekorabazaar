@@ -53,7 +53,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       include: { seller: true }
     });
 
-    if (product && product.status === ProductStatus.PUBLISHED && product.seller?.accountStatus === 'ACTIVE') {
+    if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
       const effectivePrice = (product.customerPrice ?? product.price) / 100;
       const imageUrl = product.imageUrl || "/og-image.jpg";
       const category = product.category || "General Silicone Moulds";

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileText, Download, ShieldCheck, CheckCircle2, ExternalLink, X, Printer, Eye } from "lucide-react";
+import { trackEvent } from "@/lib/tracking";
 
 interface Props {
   productId: string;
@@ -125,7 +126,17 @@ export default function TechnicalDocsSection({ productId, productName, category 
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setPreviewDoc({ url: doc.href, title: doc.title })}
+                  onClick={() => {
+                    trackEvent("coa_click", {
+                      productId,
+                      productName,
+                      docType: doc.type,
+                      docTitle: doc.title,
+                      url: doc.href,
+                      action: "view",
+                    });
+                    setPreviewDoc({ url: doc.href, title: doc.title });
+                  }}
                   className="inline-flex items-center gap-1 text-xs font-semibold text-brand-charcoal hover:text-brand-orange transition-colors"
                 >
                   <Eye className="w-3.5 h-3.5" />
@@ -137,6 +148,16 @@ export default function TechnicalDocsSection({ productId, productName, category 
                   target="_blank"
                   rel="noopener noreferrer"
                   download={doc.filename}
+                  onClick={() => {
+                    trackEvent("coa_click", {
+                      productId,
+                      productName,
+                      docType: doc.type,
+                      docTitle: doc.title,
+                      url: doc.href,
+                      action: "download",
+                    });
+                  }}
                   className="inline-flex items-center gap-1 text-xs font-bold text-brand-orange hover:text-brand-orange/80 transition-colors"
                 >
                   <Download className="w-3.5 h-3.5" />

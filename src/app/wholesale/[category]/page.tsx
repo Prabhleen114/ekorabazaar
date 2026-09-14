@@ -52,7 +52,10 @@ export default async function WholesaleCategoryPage({ params }: Props) {
       where: {
         category: categoryObj.id,
         status: ProductStatus.PUBLISHED,
-        seller: { accountStatus: 'ACTIVE' }
+        OR: [
+          { sellerId: null },
+          { seller: { accountStatus: 'ACTIVE' } }
+        ]
       },
       include: { seller: true },
       take: 12,

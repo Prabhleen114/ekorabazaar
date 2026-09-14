@@ -28,7 +28,10 @@ export default async function ShopPage() {
     dbProducts = await prisma.product.findMany({
       where: { 
         status: ProductStatus.PUBLISHED,
-        seller: { accountStatus: 'ACTIVE' }
+        OR: [
+          { sellerId: null },
+          { seller: { accountStatus: 'ACTIVE' } }
+        ]
       },
       take: 20
     });

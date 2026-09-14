@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
+import { Minus, Plus, Trash2, ShoppingBag, Truck } from 'lucide-react'
 import { TrackViewCart } from '@/components/GA4Tracker'
+import { trackEvent } from '@/lib/tracking'
 
 export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
@@ -52,12 +53,28 @@ export default function CartPage() {
         })
         const guestData = await guestRes.json()
         setItems(guestData.items || [])
-        setTotal(guestData.totalAmount || 0)
+        const gTotal = guestData.totalAmount || 0
+        setTotal(gTotal)
+        if (gTotal > 0 && gTotal < 200000) {
+          trackEvent("shipping_threshold_view", {
+            cart_value: gTotal / 100,
+            amount_to_free_shipping: (200000 - gTotal) / 100,
+            threshold: 2000,
+          })
+        }
         return
       }
       const data = await res.json()
       setItems(data.items || [])
-      setTotal(data.totalAmount || 0)
+      const cTotal = data.totalAmount || 0
+      setTotal(cTotal)
+      if (cTotal > 0 && cTotal < 200000) {
+        trackEvent("shipping_threshold_view", {
+          cart_value: cTotal / 100,
+          amount_to_free_shipping: (200000 - cTotal) / 100,
+          threshold: 2000,
+        })
+      }
     } catch (err) {
       console.error(err)
     } finally {
@@ -67,6 +84,14 @@ export default function CartPage() {
 
   const updateQuantity = async (itemId: string, newQty: number, productId: string) => {
     if (newQty < 1) return
+    const currentItem = items.find(i => i.id === itemId || i.productId === productId)
+    trackEvent("quantity_change", {
+      productId,
+      product_id: productId,
+      old_qty: currentItem?.quantity || 1,
+      new_qty: newQty,
+      source: "cart",
+    })
     try {
       if (isGuest) {
         const { updateGuestCartItemQty } = await import('@/lib/guest-cart')
@@ -168,9 +193,37 @@ export default function CartPage() {
               <span className="text-brand-charcoal/70">Subtotal</span>
               <span className="font-bold">₹{(total / 100).toLocaleString()}</span>
             </div>
+            {/* Free Shipping Progress Indicator */}
+            <div className="my-5 p-4 rounded-xl bg-brand-bg border border-brand-linen">
+              {total >= 200000 ? (
+                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
+                  <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>You've unlocked <strong>Free Standard Shipping</strong>!</span>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-medium text-brand-charcoal">
+                    <span className="flex items-center gap-1.5">
+                      <Truck className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                      <span>Add <strong>₹{((200000 - total) / 100).toLocaleString()}</strong> for Free Shipping</span>
+                    </span>
+                    <span className="text-[11px] font-bold text-brand-orange">
+                      {Math.min(100, Math.round((total / 200000) * 100))}%
+                    </span>
+                  </div>
+                  <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-brand-orange transition-all duration-300 rounded-full" 
+                      style={{ width: `${Math.min(100, Math.round((total / 200000) * 100))}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link 
               href="/checkout"
-              className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md mt-6"
+              className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md mt-4"
             >
               Proceed to Checkout
             </Link>

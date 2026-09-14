@@ -96,6 +96,24 @@ export async function POST(req: Request) {
       } catch (emailErr) {
         console.error("Failed to dynamically import email lib:", emailErr);
       }
+
+      // 4. Log purchase event into Customer Intelligence Layer
+      try {
+        await prisma.event.create({
+          data: {
+            userId: session.userId,
+            sessionId: "checkout_" + result.orderId,
+            eventName: "purchase",
+            metadata: {
+              orderId: result.orderId,
+              razorpayOrderId,
+              razorpayPaymentId,
+            },
+          },
+        });
+      } catch (eventErr) {
+        // Non-blocking telemetry
+      }
     }
 
     return NextResponse.json({ success: true, message: "Checkout payment verified.", orderId: result.orderId })

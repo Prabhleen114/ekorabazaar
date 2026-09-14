@@ -8,7 +8,6 @@ import {
   expandQueryTokens,
   expandQueryTokenGroups,
   scoreProduct,
-  autocorrectTokenGroups,
 } from "@/lib/search";
 
 export const dynamic = 'force-dynamic';
@@ -30,7 +29,7 @@ export interface CatalogProduct {
   isQuoteOnly: boolean;
 }
 
-// Module-Level In-Memory Singleton: parsed once across warm serverless invocations
+// Module-Level In-Memory Singleton: parsed once across warm serverless invocations for fallback & facets
 let cachedCatalog: CatalogProduct[] | null = null;
 let cachedFacets: {
   departments: Record<string, number>;
@@ -106,130 +105,140 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: typeof cach
 }
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  
+  // Pagination
+  const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
+  const rawLimit = searchParams.get("limit");
+  let limit = 48;
+  if (rawLimit === "all") {
+    limit = 5000;
+  } else if (rawLimit) {
+    const parsed = parseInt(rawLimit, 10);
+    if (!isNaN(parsed) && parsed > 0) {
+      limit = Math.min(parsed, 5000);
+    }
+  }
+  const skip = (page - 1) * limit;
+
+  // Filter params
+  const category   = searchParams.get("category");
+  const department = searchParams.get("department");
+  const discipline = searchParams.get("discipline");
+  const priceOption  = searchParams.get("priceOption");
+  const minPrice     = searchParams.get("minPrice");
+  const maxPrice     = searchParams.get("maxPrice");
+  const inStockOnly  = searchParams.get("inStockOnly") === "true";
+  const sortBy       = searchParams.get("sortBy") || "recommended";
+
+  // --- Search: validate, normalize, expand with synonyms ---
+  const rawQ       = searchParams.get("q");
+  const normalizedQ = sanitizeSearchQuery(rawQ);
+  const searchTokens = normalizedQ ? expandQueryTokens(normalizedQ) : [];
+  const hasSearch  = normalizedQ !== null && normalizedQ.length > 0;
+
+  const { facets: baseFacets } = getSingletonCatalog();
+
+  // 1. Try Direct Database-First Pagination (PostgreSQL)
   try {
-    const { searchParams } = new URL(req.url);
-    
-    // Pagination
-    const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
-    const rawLimit = searchParams.get("limit");
-    let limit = 48;
-    if (rawLimit === "all") {
-      limit = 5000;
-    } else if (rawLimit) {
-      const parsed = parseInt(rawLimit, 10);
-      if (!isNaN(parsed) && parsed > 0) {
-        limit = Math.min(parsed, 5000);
+    const dbWhere: any = {
+      status: ProductStatus.PUBLISHED,
+      OR: [
+        { sellerId: null },
+        { seller: { accountStatus: 'ACTIVE' } }
+      ]
+    };
+
+    // Category / Department Filters
+    if (category) {
+      dbWhere.category = category;
+    } else if (department) {
+      const cats = DEPARTMENTS.find(d => d.name.toLowerCase() === department.toLowerCase())?.subcategories || [];
+      if (cats.length > 0) {
+        dbWhere.category = { in: cats };
       }
     }
-    const skip = (page - 1) * limit;
 
-    // Filter params
-    const category   = searchParams.get("category");
-    const department = searchParams.get("department");
-    const discipline = searchParams.get("discipline");
-    const priceOption  = searchParams.get("priceOption");
-    const minPrice     = searchParams.get("minPrice");
-    const maxPrice     = searchParams.get("maxPrice");
-    const inStockOnly  = searchParams.get("inStockOnly") === "true";
-    const sortBy       = searchParams.get("sortBy") || "recommended";
+    // Availability Filter
+    if (inStockOnly) {
+      dbWhere.stock = { gt: 0 };
+    }
 
-    // --- Search: validate, normalize, expand with synonyms ---
-    const rawQ       = searchParams.get("q");
-    const normalizedQ = sanitizeSearchQuery(rawQ);
-    const searchTokens = normalizedQ ? expandQueryTokens(normalizedQ) : [];
-    const hasSearch  = normalizedQ !== null && normalizedQ.length > 0;
+    // Price Filter (prices stored in paise)
+    if (priceOption === "under_500") {
+      dbWhere.price = { lt: 50000 };
+    } else if (priceOption === "500_1500") {
+      dbWhere.price = { gte: 50000, lte: 150000 };
+    } else if (priceOption === "1500_3000") {
+      dbWhere.price = { gte: 150000, lte: 300000 };
+    } else if (priceOption === "over_3000") {
+      dbWhere.price = { gt: 300000 };
+    } else if (priceOption === "custom") {
+      const minVal = parseFloat(minPrice || "");
+      const maxVal = parseFloat(maxPrice || "");
+      const priceFilter: any = {};
+      if (!isNaN(minVal) && minVal > 0) priceFilter.gte = Math.round(minVal * 100);
+      if (!isNaN(maxVal) && maxVal > 0) priceFilter.lte = Math.round(maxVal * 100);
+      if (Object.keys(priceFilter).length > 0) dbWhere.price = priceFilter;
+    }
 
-    // 1. Get Singleton Catalog & Pre-computed Base Facets
-    const { catalog: baseCatalog, facets: baseFacets } = getSingletonCatalog();
-    let allProducts = [...baseCatalog];
+    // Multi-token Search Filter
+    if (hasSearch && normalizedQ) {
+      const orClauses: any[] = [
+        { title: { contains: normalizedQ, mode: 'insensitive' } },
+        { category: { contains: normalizedQ, mode: 'insensitive' } },
+        { description: { contains: normalizedQ, mode: 'insensitive' } }
+      ];
 
-    // 2. Merge published DB products (DB always wins over JSON catalog on ID collision)
-    let dbProducts: any[] = [];
-    try {
-
-      if (hasSearch && normalizedQ) {
-        // --- PARAMETERIZED FUZZY SEARCH (pg_trgm) ---
-        // Uses Prisma.sql tagged template for SQL injection protection
-        const conditions: ReturnType<typeof Prisma.sql>[] = [
-          Prisma.sql`p.status = 'PUBLISHED' AND s."accountStatus" = 'ACTIVE'`
-        ];
-
-        if (category) {
-          conditions.push(Prisma.sql`p.category = ${category}`);
-        } else if (department) {
-          const cats = DEPARTMENTS.find(d => d.name === department)?.subcategories || [];
-          if (cats.length > 0) {
-            conditions.push(Prisma.sql`p.category IN (${Prisma.join(cats)})`);
-          }
+      for (const token of searchTokens) {
+        if (token.length >= 2) {
+          orClauses.push({ title: { contains: token, mode: 'insensitive' } });
+          orClauses.push({ category: { contains: token, mode: 'insensitive' } });
         }
-        if (inStockOnly) {
-          conditions.push(Prisma.sql`p.stock > 0`);
-        }
-
-        const tokenGroups = expandQueryTokenGroups(normalizedQ);
-        for (const group of tokenGroups) {
-          const groupConds: ReturnType<typeof Prisma.sql>[] = [];
-          for (const token of group) {
-            const likePattern = `%${token}%`;
-            groupConds.push(Prisma.sql`p.title ILIKE ${likePattern}`);
-            groupConds.push(Prisma.sql`p.category ILIKE ${likePattern}`);
-            groupConds.push(Prisma.sql`p.description ILIKE ${likePattern}`);
-            if (token.length >= 4) {
-              groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.title) > 0.49`);
-              groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.category) > 0.49`);
-            }
-          }
-          if (groupConds.length > 0) {
-            conditions.push(Prisma.sql`(${Prisma.join(groupConds, ' OR ')})`);
-          }
-        }
-
-        const whereClause = Prisma.join(conditions, ' AND ');
-
-        dbProducts = await prisma.$queryRaw`
-          SELECT p.id, p.title, p.category, p.price, p."customerPrice", p.stock, p."imageUrl", p."wholesaleTiers", p.description,
-                 strict_word_similarity(${normalizedQ}, p.title) as db_score
-          FROM "Product" p 
-          INNER JOIN "Seller" s ON p."sellerId" = s.id 
-          WHERE ${whereClause}
-          ORDER BY strict_word_similarity(${normalizedQ}, p.title) DESC
-          LIMIT 2500
-        `;
-      } else {
-        // --- EXACT FILTERING ---
-        const dbWhere: any = {
-          status: ProductStatus.PUBLISHED,
-          seller: { accountStatus: 'ACTIVE' },
-        };
-        if (category) {
-          dbWhere.category = category;
-        } else if (department) {
-          const cats = DEPARTMENTS.find(d => d.name === department)?.subcategories || [];
-          dbWhere.category = { in: cats };
-        }
-        if (inStockOnly) dbWhere.stock = { gt: 0 };
-
-        dbProducts = await prisma.product.findMany({
-          where: dbWhere,
-          select: {
-            id: true,
-            title: true,
-            category: true,
-            price: true,
-            customerPrice: true,
-            stock: true,
-            imageUrl: true,
-            wholesaleTiers: true,
-            description: true,
-          }
-        });
       }
 
-      for (const p of dbProducts) {
+      dbWhere.AND = [{ OR: orClauses }];
+    }
+
+    // Ordering
+    let orderBy: any = { createdAt: 'desc' };
+    if (sortBy === 'price_asc') {
+      orderBy = { price: 'asc' };
+    } else if (sortBy === 'price_desc') {
+      orderBy = { price: 'desc' };
+    } else if (sortBy === 'newest') {
+      orderBy = { createdAt: 'desc' };
+    }
+
+    // Direct Database Query with Take & Skip
+    const [total, dbProducts] = await Promise.all([
+      prisma.product.count({ where: dbWhere }),
+      prisma.product.findMany({
+        where: dbWhere,
+        skip,
+        take: limit,
+        orderBy,
+        select: {
+          id: true,
+          title: true,
+          category: true,
+          price: true,
+          customerPrice: true,
+          stock: true,
+          imageUrl: true,
+          wholesaleTiers: true,
+          description: true,
+        }
+      })
+    ]);
+
+    // If database returned records and no specialized studio discipline is requested, map and return them
+    if (!discipline && (total > 0 || (category || department || priceOption || hasSearch || inStockOnly))) {
+      const items = dbProducts.map(p => {
         const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
         const dept = getDepartmentForCategory(p.category) || "Precision Studio Moulds";
         const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
-        const mappedDbProduct = {
+        return {
           id: p.id,
           name: p.title,
           category: p.category || "General Silicone Moulds",
@@ -243,171 +252,119 @@ export async function GET(req: NextRequest) {
           description: p.description || "",
           tags: [],
           tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
-          isQuoteOnly,
-          isDbMatch: true,
-          dbScore: p.db_score ? Number(p.db_score) : 0
+          isQuoteOnly
         };
-        
-        const pCore = normalizeProductCore(p.title);
-        const existingIndex = allProducts.findIndex(item => 
-          item.id === p.id || (pCore.length >= 8 && normalizeProductCore(item.name) === pCore)
-        );
-        if (existingIndex !== -1) {
-          allProducts[existingIndex] = mappedDbProduct;
-        } else {
-          allProducts.push(mappedDbProduct);
-        }
-      }
-    } catch (dbErr) {
-      // DB unavailable: catalog-only mode
-    }
-
-    // 2.1 Deduplicate catalog products by core title so duplicate items are never shown
-    const seenCores = new Set<string>();
-    const deduplicatedProducts: typeof allProducts = [];
-    for (const item of allProducts) {
-      const core = normalizeProductCore(item.name);
-      if (core.length >= 8) {
-        if (seenCores.has(core)) {
-          continue;
-        }
-        seenCores.add(core);
-      }
-      deduplicatedProducts.push(item);
-    }
-    allProducts.length = 0;
-    allProducts.push(...deduplicatedProducts);
-
-    // 3. Apply filters
-    const filtered = allProducts.filter(p => {
-      // Category filter (exact match)
-      if (category && p.category.toLowerCase() !== category.toLowerCase()) {
-        return false;
-      }
-
-      // Department filter (exact match)
-      if (department && p.department.toLowerCase() !== department.toLowerCase()) {
-        return false;
-      }
-
-      // Discipline filter
-      if (discipline && (!p.disciplines || !p.disciplines.includes(discipline))) {
-        return false;
-      }
-
-      // Search: multi-token match across name, category, department, tags, description
-      // DB matches already passed strict PostgreSQL filtering (including fuzzy).
-      if (hasSearch && normalizedQ && !(p as any).isDbMatch) {
-        const name        = p.name.toLowerCase();
-        const cat         = (p.category || '').toLowerCase();
-        const dept        = (p.department || '').toLowerCase();
-        const desc        = (p.description || '').toLowerCase();
-        const tagStr      = (p.tags || []).map((t: string) => t.toLowerCase()).join(' ');
-
-        const tokenGroups = expandQueryTokenGroups(normalizedQ);
-        const matches = tokenGroups.every(group => 
-          group.some(token =>
-            name.includes(token) ||
-            cat.includes(token) ||
-            dept.includes(token) ||
-            tagStr.includes(token) ||
-            desc.includes(token)
-          )
-        );
-
-        if (!matches) return false;
-      }
-
-      // In-stock filter
-      if (inStockOnly && !p.inStock) return false;
-
-      // Price brackets
-      if (priceOption === "under_500"  && p.price >= 500) return false;
-      if (priceOption === "500_1500"   && (p.price < 500  || p.price > 1500)) return false;
-      if (priceOption === "1500_3000"  && (p.price < 1500 || p.price > 3000)) return false;
-      if (priceOption === "over_3000"  && p.price <= 3000) return false;
-      if (priceOption === "custom") {
-        const minVal = parseFloat(minPrice || "");
-        const maxVal = parseFloat(maxPrice || "");
-        if (!isNaN(minVal) && minVal > 0 && p.price < minVal) return false;
-        if (!isNaN(maxVal) && maxVal > 0 && p.price > maxVal) return false;
-      }
-
-      return true;
-    });
-
-    // 4. Sort
-    if (hasSearch && normalizedQ && sortBy === "recommended") {
-      const tokenGroups = expandQueryTokenGroups(normalizedQ);
-      // Generate corrected token groups dynamically based on DB results to restore precise JS ranking for typos
-      const dbTitles = dbProducts.map((p: any) => p.title || '');
-      const correctedTokenGroups = dbTitles.length > 0 ? autocorrectTokenGroups(tokenGroups, dbTitles) : tokenGroups;
-      
-      // Relevance sort: score each product, sort descending
-      const scored = filtered.map(p => ({
-        product: p,
-        score: scoreProduct(p, normalizedQ, correctedTokenGroups) + ((p as any).dbScore ? Number((p as any).dbScore) * 100 : 0)
-      }));
-      scored.sort((a, b) => b.score - a.score);
-      filtered.length = 0;
-      scored.forEach(({ product }) => filtered.push(product));
-    } else if (sortBy === "price_asc") {
-      filtered.sort((a, b) => {
-        if (a.isQuoteOnly && !b.isQuoteOnly) return 1;
-        if (!a.isQuoteOnly && b.isQuoteOnly) return -1;
-        return a.price - b.price;
       });
-    } else if (sortBy === "price_desc") {
-      filtered.sort((a, b) => b.price - a.price);
-    } else if (sortBy === "newest") {
-      // For JSON catalog products (numeric IDs), higher = newer.
-      // For DB products (UUID), we fall back to string comparison.
-      filtered.sort((a, b) => {
-        const aNum = parseInt(a.id, 10);
-        const bNum = parseInt(b.id, 10);
-        if (!isNaN(aNum) && !isNaN(bNum)) return bNum - aNum;
-        return b.id > a.id ? 1 : -1;
-      });
-    } else if (sortBy === "discount_desc") {
-      filtered.sort((a, b) => b.maxDiscount - a.maxDiscount);
-    }
-    // sortBy === "recommended" without search: preserve catalog order
 
-    // 5. Paginate
-    const total       = filtered.length;
-    const totalPages  = Math.ceil(total / limit);
-    const paginated   = filtered.slice(skip, skip + limit);
-    const hasMore     = skip + limit < total;
+      const totalPages = Math.ceil(total / limit);
+      const hasMore = skip + limit < total;
 
-    return NextResponse.json({
-      items: paginated,
-      products: paginated,
-      total,
-      pagination: {
-        page,
-        limit,
+      return NextResponse.json({
+        items,
+        products: items,
         total,
-        totalPages,
-        hasMore,
-        hasNextPage: hasMore
-      },
-      facets: baseFacets,
-      // Echo back parsed search metadata for debugging/UI
-      searchMeta: hasSearch ? {
-        query: normalizedQ,
-        tokens: searchTokens,
-        expanded: searchTokens.length > (normalizedQ ? normalizedQ.split(' ').length : 0)
-      } : null
-    }, {
-      headers: {
-        // Shorter cache for search queries; longer for catalog browsing
-        "Cache-Control": hasSearch
-          ? "public, s-maxage=60, stale-while-revalidate=300"
-          : "public, s-maxage=300, stale-while-revalidate=86400",
-      }
-    });
-  } catch (error) {
-    console.error("Products API error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages,
+          hasMore,
+          hasNextPage: hasMore
+        },
+        facets: baseFacets,
+        searchMeta: hasSearch ? {
+          query: normalizedQ,
+          tokens: searchTokens,
+          expanded: searchTokens.length > (normalizedQ ? normalizedQ.split(' ').length : 0)
+        } : null
+      }, {
+        headers: {
+          "Cache-Control": hasSearch
+            ? "public, s-maxage=60, stale-while-revalidate=300"
+            : "public, s-maxage=300, stale-while-revalidate=86400",
+        }
+      });
+    }
+  } catch (dbErr) {
+    // Database unavailable or offline: gracefully continue to static catalog fallback below
+    console.warn("DB query unavailable, falling back to static catalog:", (dbErr as any)?.message);
   }
+
+  // 2. Fallback: Static Catalog Mode (products.json)
+  const { catalog: baseCatalog } = getSingletonCatalog();
+  const allProducts = [...baseCatalog];
+
+  const filtered = allProducts.filter(p => {
+    if (category && p.category.toLowerCase() !== category.toLowerCase()) return false;
+    if (department && p.department.toLowerCase() !== department.toLowerCase()) return false;
+    if (discipline && (!p.disciplines || !p.disciplines.includes(discipline))) return false;
+    if (hasSearch && normalizedQ) {
+      const name   = p.name.toLowerCase();
+      const cat    = (p.category || '').toLowerCase();
+      const desc   = (p.description || '').toLowerCase();
+      const tagStr = (p.tags || []).map((t: string) => t.toLowerCase()).join(' ');
+      const matches = searchTokens.some(token =>
+        name.includes(token) || cat.includes(token) || tagStr.includes(token) || desc.includes(token)
+      );
+      if (!matches) return false;
+    }
+    if (inStockOnly && !p.inStock) return false;
+    if (priceOption === "under_500"  && p.price >= 500) return false;
+    if (priceOption === "500_1500"   && (p.price < 500  || p.price > 1500)) return false;
+    if (priceOption === "1500_3000"  && (p.price < 1500 || p.price > 3000)) return false;
+    if (priceOption === "over_3000"  && p.price <= 3000) return false;
+    if (priceOption === "custom") {
+      const minVal = parseFloat(minPrice || "");
+      const maxVal = parseFloat(maxPrice || "");
+      if (!isNaN(minVal) && minVal > 0 && p.price < minVal) return false;
+      if (!isNaN(maxVal) && maxVal > 0 && p.price > maxVal) return false;
+    }
+    return true;
+  });
+
+  if (hasSearch && normalizedQ && sortBy === "recommended") {
+    const tokenGroups = expandQueryTokenGroups(normalizedQ);
+    const scored = filtered.map(p => ({
+      product: p,
+      score: scoreProduct(p, normalizedQ, tokenGroups)
+    }));
+    scored.sort((a, b) => b.score - a.score);
+    filtered.length = 0;
+    scored.forEach(({ product }) => filtered.push(product));
+  } else if (sortBy === "price_asc") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "price_desc") {
+    filtered.sort((a, b) => b.price - a.price);
+  }
+
+  const total = filtered.length;
+  const totalPages = Math.ceil(total / limit);
+  const paginated = filtered.slice(skip, skip + limit);
+  const hasMore = skip + limit < total;
+
+  return NextResponse.json({
+    items: paginated,
+    products: paginated,
+    total,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages,
+      hasMore,
+      hasNextPage: hasMore
+    },
+    facets: baseFacets,
+    searchMeta: hasSearch ? {
+      query: normalizedQ,
+      tokens: searchTokens,
+      expanded: searchTokens.length > (normalizedQ ? normalizedQ.split(' ').length : 0)
+    } : null
+  }, {
+    headers: {
+      "Cache-Control": hasSearch
+        ? "public, s-maxage=60, stale-while-revalidate=300"
+        : "public, s-maxage=300, stale-while-revalidate=86400",
+    }
+  });
 }

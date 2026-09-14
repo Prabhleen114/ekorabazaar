@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export default function GA4Tracker() {
+function GA4TrackerContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -18,6 +18,14 @@ export default function GA4Tracker() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+export default function GA4Tracker() {
+  return (
+    <Suspense fallback={null}>
+      <GA4TrackerContent />
+    </Suspense>
+  );
 }
 
 export function TrackViewItem({ item }: { item: any }) {

@@ -1,10 +1,10 @@
 'use client'
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
-import { Check, Plus, Loader2 } from 'lucide-react'
+import { Check, Plus, Loader2, Building2, ShieldCheck } from 'lucide-react'
 import { TrackBeginCheckout } from '@/components/GA4Tracker'
+import { trackEvent } from '@/lib/tracking'
 
 export default function CheckoutPage() {
   const [items, setItems] = useState<any[]>([])
@@ -15,6 +15,15 @@ export default function CheckoutPage() {
   const [showNewAddressForm, setShowNewAddressForm] = useState(false)
   const [newAddress, setNewAddress] = useState({ name: '', phone: '', line1: '', line2: '', city: '', state: '', pincode: '' })
   
+  // GST & Business Invoicing State
+  const [showGstForm, setShowGstForm] = useState(false)
+  const [gstin, setGstin] = useState('')
+  const [businessName, setBusinessName] = useState('')
+  const gstFocusedRef = useRef(false)
+  const paymentCompletedRef = useRef(false)
+  const cartTotalRef = useRef(0)
+  const itemCountRef = useRef(0)
+
   const [loading, setLoading] = useState(true)
   const [errorMsg, setErrorMsg] = useState('')
   const router = useRouter()
@@ -22,6 +31,22 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     fetchData()
+
+    return () => {
+      if (!paymentCompletedRef.current && cartTotalRef.current > 0) {
+        if (gstFocusedRef.current) {
+          trackEvent("gst_field_abandon", {
+            cart_total: cartTotalRef.current / 100,
+            item_count: itemCountRef.current,
+          })
+        }
+        trackEvent("checkout_step_abandon", {
+          step: "payment",
+          cart_total: cartTotalRef.current / 100,
+          item_count: itemCountRef.current,
+        })
+      }
+    }
   }, [])
 
   const fetchData = async () => {
@@ -45,8 +70,17 @@ export default function CheckoutPage() {
         return
       }
 
+      const cartTotal = cartData.totalAmount || 0
       setItems(availableItems)
-      setTotal(cartData.totalAmount || 0)
+      setTotal(cartTotal)
+      cartTotalRef.current = cartTotal
+      itemCountRef.current = availableItems.length
+
+      // Telemetry: begin_checkout event
+      trackEvent("begin_checkout", {
+        cart_total: cartTotal / 100,
+        item_count: availableItems.length,
+      })
       
       const userAddrs = addrData.addresses || []
       setAddresses(userAddrs)
@@ -108,7 +142,9 @@ export default function CheckoutPage() {
       apiVerifyRoute: '/api/checkout/confirm-payment',
       createPayload: { 
         items: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
-        addressId: selectedAddressId
+        addressId: selectedAddressId,
+        gstin: gstin.trim() || undefined,
+        businessName: businessName.trim() || undefined,
       },
       name: 'Ekora Bazaar Checkout',
       description: `Payment for ${items.length} items`,
@@ -126,6 +162,13 @@ export default function CheckoutPage() {
             }))
           });
         });
+        paymentCompletedRef.current = true
+        trackEvent("purchase", {
+          order_id: data.orderId,
+          cart_total: total / 100,
+          item_count: items.length,
+          gst_provided: !!gstin.trim(),
+        })
         router.push('/account/orders')
       },
       onError: (err) => {
@@ -194,6 +237,71 @@ export default function CheckoutPage() {
                   {addresses.length > 0 && <button type="button" onClick={() => setShowNewAddressForm(false)} className="text-gray-500">Cancel</button>}
                 </div>
               </form>
+            )}
+          </div>
+
+          {/* GST & B2B INVOICING SECTION */}
+          <div className="bg-white p-6 rounded-2xl border border-brand-linen shadow-sm">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-brand-bg flex items-center justify-center text-brand-orange">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold">Business GST Invoicing (Optional)</h2>
+                  <p className="text-xs text-brand-charcoal/60">Claim 18% GST Input Tax Credit on your wholesale purchase</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowGstForm(!showGstForm)}
+                className="text-xs font-semibold text-brand-orange hover:underline"
+              >
+                {showGstForm ? 'Collapse' : '+ Add GSTIN'}
+              </button>
+            </div>
+
+            {showGstForm && (
+              <div className="mt-5 pt-5 border-t border-brand-linen space-y-4 max-w-lg">
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70 block mb-1">
+                    GSTIN (15 Digits)
+                  </label>
+                  <input
+                    type="text"
+                    maxLength={15}
+                    placeholder="e.g. 07AAAAA0000A1Z5"
+                    value={gstin}
+                    onFocus={() => {
+                      if (!gstFocusedRef.current) {
+                        gstFocusedRef.current = true
+                        trackEvent("gst_field_focus", {
+                          cart_total: total / 100,
+                          item_count: items.length,
+                        })
+                      }
+                    }}
+                    onChange={(e) => setGstin(e.target.value.toUpperCase())}
+                    className="w-full border border-brand-linen rounded-xl p-3 text-sm font-mono uppercase focus:border-brand-orange focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70 block mb-1">
+                    Registered Business Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Acme Craft Industries LLP"
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
+                    className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none"
+                  />
+                </div>
+                <div className="flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-200">
+                  <ShieldCheck className="w-4 h-4 shrink-0" />
+                  <span>GST invoice will be generated and dispatched with your order.</span>
+                </div>
+              </div>
             )}
           </div>
         </div>

@@ -26,7 +26,15 @@ export default async function AdminOverviewPage() {
     prisma.seller.count({ where: { applicationStatus: 'UNDER_REVIEW' } }),
     prisma.seller.count({ where: { accountStatus: 'ACTIVE' } }),
     prisma.seller.count({ where: { accountStatus: 'SUSPENDED' } }),
-    prisma.product.count({ where: { status: 'PUBLISHED' } }),
+    prisma.product.count({
+      where: {
+        status: 'PUBLISHED',
+        OR: [
+          { sellerId: null },
+          { seller: { accountStatus: 'ACTIVE' } }
+        ]
+      }
+    }),
     prisma.product.count({ where: { status: 'PENDING_APPROVAL' } }),
     prisma.order.count(),
     prisma.order.count({ where: { status: OrderStatus.PAID } }),

@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { OnboardingProvider, useOnboarding } from "./context/OnboardingContext";
 import ProgressIndicator from "./components/ProgressIndicator";
+import { trackEvent } from "@/lib/tracking";
 import {
   StepPersonal,
   StepBusiness,
@@ -19,6 +20,14 @@ function OnboardingContent() {
   const { currentStep } = useOnboarding();
 
   useEffect(() => {
+    if (currentStep === 1) {
+      trackEvent("seller_apply_start", { step: 1, flow: "creator_onboarding" });
+    } else if (currentStep === 9) {
+      trackEvent("begin_checkout", { step: 9, fee: 499, item: "Ekora Seller Onboarding Fee" });
+    } else if (currentStep === 10) {
+      trackEvent("purchase", { step: 10, fee: 499, item: "Ekora Seller Onboarding Fee" });
+    }
+
     if (typeof window !== 'undefined' && (window as any).gtag) {
       if (currentStep === 1) {
         (window as any).gtag('event', 'tutorial_begin', {

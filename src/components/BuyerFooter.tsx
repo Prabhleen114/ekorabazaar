@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { trackWhatsAppClick } from "@/lib/tracking";
 
 export default function BuyerFooter() {
   return (
@@ -80,6 +83,7 @@ export default function BuyerFooter() {
                   href="https://wa.me/919041500605?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick({ location: "buyer_footer" })}
                   className="inline-block transition-transform hover:scale-105"
                   title="WhatsApp click to chat"
                 >
