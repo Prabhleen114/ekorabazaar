@@ -8,6 +8,7 @@ import {
   expandQueryTokens,
   expandQueryTokenGroups,
   scoreProduct,
+  autocorrectTokenGroups,
 } from "@/lib/search";
 
 export const dynamic = 'force-dynamic';
@@ -143,8 +144,8 @@ export async function GET(req: NextRequest) {
     let allProducts = [...baseCatalog];
 
     // 2. Merge published DB products (DB always wins over JSON catalog on ID collision)
+    let dbProducts: any[] = [];
     try {
-      let dbProducts: any[] = [];
 
       if (hasSearch && normalizedQ) {
         // --- PARAMETERIZED FUZZY SEARCH (pg_trgm) ---
@@ -174,8 +175,8 @@ export async function GET(req: NextRequest) {
             groupConds.push(Prisma.sql`p.category ILIKE ${likePattern}`);
             groupConds.push(Prisma.sql`p.description ILIKE ${likePattern}`);
             if (token.length >= 4) {
-              groupConds.push(Prisma.sql`similarity(p.title, ${token}) > 0.3`);
-              groupConds.push(Prisma.sql`similarity(p.category, ${token}) > 0.3`);
+              groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.title) > 0.49`);
+              groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.category) > 0.49`);
             }
           }
           if (groupConds.length > 0) {
@@ -186,10 +187,12 @@ export async function GET(req: NextRequest) {
         const whereClause = Prisma.join(conditions, ' AND ');
 
         dbProducts = await prisma.$queryRaw`
-          SELECT p.id, p.title, p.category, p.price, p."customerPrice", p.stock, p."imageUrl", p."wholesaleTiers", p.description 
+          SELECT p.id, p.title, p.category, p.price, p."customerPrice", p.stock, p."imageUrl", p."wholesaleTiers", p.description,
+                 strict_word_similarity(${normalizedQ}, p.title) as db_score
           FROM "Product" p 
           INNER JOIN "Seller" s ON p."sellerId" = s.id 
           WHERE ${whereClause}
+          ORDER BY strict_word_similarity(${normalizedQ}, p.title) DESC
           LIMIT 2500
         `;
       } else {
@@ -240,7 +243,9 @@ export async function GET(req: NextRequest) {
           description: p.description || "",
           tags: [],
           tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
-          isQuoteOnly
+          isQuoteOnly,
+          isDbMatch: true,
+          dbScore: p.db_score ? Number(p.db_score) : 0
         };
         
         const pCore = normalizeProductCore(p.title);
@@ -291,21 +296,23 @@ export async function GET(req: NextRequest) {
       }
 
       // Search: multi-token match across name, category, department, tags, description
-      // A product matches if ANY expanded token is found in ANY searchable field.
-      // (Ranking by how many tokens match is handled below, not at filter stage.)
-      if (hasSearch && normalizedQ) {
+      // DB matches already passed strict PostgreSQL filtering (including fuzzy).
+      if (hasSearch && normalizedQ && !(p as any).isDbMatch) {
         const name        = p.name.toLowerCase();
         const cat         = (p.category || '').toLowerCase();
         const dept        = (p.department || '').toLowerCase();
         const desc        = (p.description || '').toLowerCase();
         const tagStr      = (p.tags || []).map((t: string) => t.toLowerCase()).join(' ');
 
-        const matches = searchTokens.some(token =>
-          name.includes(token) ||
-          cat.includes(token) ||
-          dept.includes(token) ||
-          tagStr.includes(token) ||
-          desc.includes(token)
+        const tokenGroups = expandQueryTokenGroups(normalizedQ);
+        const matches = tokenGroups.every(group => 
+          group.some(token =>
+            name.includes(token) ||
+            cat.includes(token) ||
+            dept.includes(token) ||
+            tagStr.includes(token) ||
+            desc.includes(token)
+          )
         );
 
         if (!matches) return false;
@@ -331,10 +338,15 @@ export async function GET(req: NextRequest) {
 
     // 4. Sort
     if (hasSearch && normalizedQ && sortBy === "recommended") {
+      const tokenGroups = expandQueryTokenGroups(normalizedQ);
+      // Generate corrected token groups dynamically based on DB results to restore precise JS ranking for typos
+      const dbTitles = dbProducts.map((p: any) => p.title || '');
+      const correctedTokenGroups = dbTitles.length > 0 ? autocorrectTokenGroups(tokenGroups, dbTitles) : tokenGroups;
+      
       // Relevance sort: score each product, sort descending
       const scored = filtered.map(p => ({
         product: p,
-        score: scoreProduct(p, normalizedQ, searchTokens)
+        score: scoreProduct(p, normalizedQ, correctedTokenGroups) + ((p as any).dbScore ? Number((p as any).dbScore) * 100 : 0)
       }));
       scored.sort((a, b) => b.score - a.score);
       filtered.length = 0;

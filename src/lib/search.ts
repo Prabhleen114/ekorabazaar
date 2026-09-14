@@ -192,9 +192,9 @@ export function sanitizeSearchQuery(raw: string | null | undefined): string | nu
 export function scoreProduct(
   product: { name: string; category: string; department?: string; tags?: string[]; description?: string; inStock?: boolean },
   normalizedQuery: string,
-  tokens: string[]
+  tokenGroups: string[][]
 ): number {
-  if (!normalizedQuery || tokens.length === 0) return 0;
+  if (!normalizedQuery || tokenGroups.length === 0) return 0;
 
   const name        = (product.name        || '').toLowerCase();
   const category    = (product.category    || '').toLowerCase();
@@ -204,31 +204,165 @@ export function scoreProduct(
 
   let score = 0;
 
-  // Exact full name match
-  if (name === normalizedQuery) score += 100;
-  // Name contains the full query
-  else if (name.includes(normalizedQuery)) score += 40;
+  // 1. EXACT INTENT MATCHES (Highest Priority)
+  // Reconstruct the conceptually corrected query (first token of each group represents the primary intent)
+  const correctedQuery = tokenGroups.map(g => g[0]).join(' ');
 
-  // Exact category match
-  if (category.includes(normalizedQuery)) score += 50;
-
-  // Per-token scoring
-  let nameTokenHits = 0;
-  let descHits = 0;
-  for (const token of tokens) {
-    if (token.length < 2) continue;
-    if (name.includes(token)) { score += 10; nameTokenHits++; }
-    if (category.includes(token)) score += 6;
-    if (department.includes(token)) score += 4;
-    if (tags.includes(token)) score += 4;
-    if (description.includes(token) && descHits < 4) { score += 2; descHits++; }
+  if (name === normalizedQuery || name === correctedQuery) score += 500;
+  else if (name.includes(normalizedQuery) || name.includes(correctedQuery)) {
+    // If the full phrase is in the title, it's an extremely strong match
+    score += 200;
+    // Bonus if it starts with the query (e.g. "Rose Fragrance Oil - 100ml")
+    if (name.startsWith(normalizedQuery) || name.startsWith(correctedQuery)) score += 50;
   }
 
-  // Bonus: all tokens matched in name
-  if (nameTokenHits === tokens.length && tokens.length > 1) score += 30;
+  // Very strong bonus if the corrected intent matches the product's actual category
+  if (
+    category.includes(normalizedQuery) || 
+    category.includes(correctedQuery) || 
+    tokenGroups.some(g => g.some(t => t.length > 3 && (category.includes(t) || department.includes(t))))
+  ) {
+    score += 100;
+  }
 
-  // In-stock small bonus
-  if (product.inStock) score += 1;
+  // 2. GENERIC WORD HANDLING
+  const GENERIC_TERMS = new Set(['oil', 'fragrance', 'scent', 'aroma', 'parfum', 'perfume', 'bottle', 'jar', 'mould', 'mold', 'powder', 'liquid', 'base', 'pack', 'bulk']);
+
+  // 3. GROUP-LEVEL SCORING
+  let titleGroupsMatched = 0;
+  
+  for (const group of tokenGroups) {
+    let groupMatchedInTitle = false;
+    let groupMatchedInDesc = false;
+    let groupScore = 0;
+    
+    // Check if the group as a whole represents a generic concept
+    // E.g., if group is ['fragrance', 'scent', 'perfume'], it's a generic concept if it's a single word group.
+    const isGenericGroup = group.some(t => GENERIC_TERMS.has(t));
+
+    for (const token of group) {
+      if (token.length < 2) continue;
+      
+      const isGeneric = GENERIC_TERMS.has(token);
+      let tokenScore = 0;
+
+      // Title matches are king
+      if (name.includes(token)) {
+        groupMatchedInTitle = true;
+        // Exact token boundary match is better than substring (e.g. 'oil' vs 'soil')
+        const isWordBoundary = new RegExp(`\\b${token}\\b`, 'i').test(name);
+        
+        if (isGeneric) {
+          tokenScore = isWordBoundary ? 15 : 10;
+        } else {
+          tokenScore = isWordBoundary ? 50 : 30; 
+        }
+      }
+      
+      // Category matches
+      if (category.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 10 : 25);
+      if (department.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 5 : 15);
+      if (tags.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 5 : 15);
+      
+      // Description matches (very weak)
+      if (description.includes(token)) {
+        groupMatchedInDesc = true;
+        if (tokenScore === 0) tokenScore = isGeneric ? 2 : 5;
+      }
+      
+      // Take the highest score within the synonym group (don't stack synonyms)
+      if (tokenScore > groupScore) groupScore = tokenScore;
+    }
+    
+    if (groupMatchedInTitle) titleGroupsMatched++;
+    score += groupScore;
+  }
+
+  // 4. MULTI-WORD CONTEXT MULTIPLIERS
+  // If the query has multiple distinct concepts (groups) and they ALL match the title, 
+  // this is a massive signal that the product is exactly what they want.
+  if (tokenGroups.length > 1 && titleGroupsMatched === tokenGroups.length) {
+    score += 150; 
+  } else if (tokenGroups.length > 2 && titleGroupsMatched >= 2) {
+    // Partial but strong multi-word match
+    score += 50;
+  }
+
+  // 5. PENALIZE ACCESSORIES/PACKAGING FOR MATERIAL QUERIES
+  const ACCESSORY_TERMS = ['bottle', 'jar', 'tin', 'container', 'packaging', 'box', 'diffuser', 'stick', 'soap', 'spray', 'pump', 'cap', 'dropper'];
+  const queryHasAccessoryTerm = tokenGroups.some(group => group.some(t => ACCESSORY_TERMS.includes(t)));
+  
+  if (!queryHasAccessoryTerm) {
+    const hasAccessoryInName = ACCESSORY_TERMS.some(t => new RegExp(`\\b${t}s?\\b`, 'i').test(name));
+    const hasAccessoryInCategory = ACCESSORY_TERMS.some(t => 
+      new RegExp(`\\b${t}s?\\b`, 'i').test(category) || 
+      new RegExp(`\\b${t}s?\\b`, 'i').test(department)
+    );
+
+    if (hasAccessoryInName) {
+      score -= 100; // Large penalty if accessory term is in the actual title
+    } else if (hasAccessoryInCategory) {
+      score -= 30; // Small penalty if it just happens to live in an accessory category
+    }
+  }
+
+  // 6. IN-STOCK BONUS
+  if (product.inStock) score += 5;
 
   return score;
+}
+
+export function getTrigrams(str: string): Set<string> {
+  const s = '  ' + str.toLowerCase() + ' ';
+  const res = new Set<string>();
+  for (let i = 0; i < s.length - 2; i++) res.add(s.slice(i, i + 3));
+  return res;
+}
+
+export function trigramSimilarity(s1: string, s2: string): number {
+  if (!s1 || !s2) return 0;
+  const t1 = getTrigrams(s1);
+  const t2 = getTrigrams(s2);
+  let inter = 0;
+  for (const t of t1) if (t2.has(t)) inter++;
+  return inter / (t1.size + t2.size - inter);
+}
+
+export function autocorrectTokenGroups(tokenGroups: string[][], catalogTitles: string[]): string[][] {
+  return tokenGroups.map(group => {
+    const newGroup = [...group];
+    for (const token of group) {
+      if (token.length < 4) continue;
+      
+      let bestWord = token;
+      let bestSim = 0;
+      
+      for (const title of catalogTitles) {
+        const words = title.toLowerCase().split(/[^a-z0-9]+/);
+        for (const w of words) {
+          if (w.length < 4) continue;
+          // Exact match means no need to correct this token
+          if (w === token) {
+            bestSim = 1;
+            bestWord = w;
+            break;
+          }
+          const sim = trigramSimilarity(token, w);
+          if (sim > bestSim) {
+            bestSim = sim;
+            bestWord = w;
+          }
+        }
+        if (bestSim === 1) break;
+      }
+      
+      if (bestSim > 0.49 && bestWord !== token) {
+        newGroup.push(bestWord);
+        // Inject synonyms of the corrected word
+        const syns = expandQueryTokens(bestWord);
+        newGroup.push(...syns);
+      }
+    }
+    return Array.from(new Set(newGroup));
+  });
 }

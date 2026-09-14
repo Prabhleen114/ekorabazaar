@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import catalogProducts from "@/lib/data/products.json";
 import { DEPARTMENTS } from "@/lib/taxonomy";
-import { sanitizeSearchQuery, expandQueryTokens } from "@/lib/search";
+import { sanitizeSearchQuery, expandQueryTokens, expandQueryTokenGroups, scoreProduct, autocorrectTokenGroups } from "@/lib/search";
 import prisma from "@/lib/db";
-import { ProductStatus } from "@prisma/client";
+import { ProductStatus, Prisma } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
@@ -86,6 +86,7 @@ export async function GET(req: NextRequest) {
     }
 
     const query = normalized.substring(0, 150).toLowerCase();
+    const tokenGroups = expandQueryTokenGroups(query);
     const tokens = expandQueryTokens(query);
 
     const index = buildSuggestionIndex();
@@ -96,6 +97,14 @@ export async function GET(req: NextRequest) {
     for (const entry of index) {
       const label = entry.label.toLowerCase();
       const cat = (entry.category || "").toLowerCase();
+      
+      // Must match at least one token from EVERY group
+      const matchesAll = tokenGroups.every(group =>
+        group.some(token => label.includes(token) || cat.includes(token))
+      );
+      
+      if (!matchesAll) continue;
+
       let score = 0;
 
       // Exact phrase match
@@ -127,23 +136,52 @@ export async function GET(req: NextRequest) {
 
     // Database lookup for recently published seller products
     try {
-      const dbMatches = await prisma.product.findMany({
-        where: {
-          status: ProductStatus.PUBLISHED,
-          title: { contains: normalized, mode: "insensitive" }
-        },
-        select: {
-          id: true,
-          title: true,
-          category: true,
-          price: true,
-          customerPrice: true,
-          imageUrl: true
-        },
-        take: 4
+      const conditions: any[] = [
+        Prisma.sql`p.status = 'PUBLISHED'`
+      ];
+      
+      for (const group of tokenGroups) {
+        const groupConds: any[] = [];
+        for (const token of group) {
+          const likePattern = `%${token}%`;
+          groupConds.push(Prisma.sql`p.title ILIKE ${likePattern}`);
+          if (token.length >= 4) {
+            groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.title) > 0.49`);
+          }
+        }
+        if (groupConds.length > 0) {
+          conditions.push(Prisma.sql`(${Prisma.join(groupConds, ' OR ')})`);
+        }
+      }
+      
+      const whereClause = Prisma.join(conditions, ' AND ');
+      const dbMatches = await prisma.$queryRaw<any[]>`
+        SELECT p.id, p.title, p.category, p.price, p."customerPrice", p."imageUrl", p.description,
+               strict_word_similarity(${normalized}, p.title) as db_score
+        FROM "Product" p
+        WHERE ${whereClause}
+        ORDER BY strict_word_similarity(${normalized}, p.title) DESC
+        LIMIT 15
+      `;
+      
+      const dbTitles = dbMatches.map(p => p.title || '');
+      const correctedTokenGroups = dbTitles.length > 0 ? autocorrectTokenGroups(tokenGroups, dbTitles) : tokenGroups;
+      
+      const scoredDbMatches = dbMatches.map(p => {
+        const prod = {
+          name: p.title,
+          category: p.category,
+          description: p.description || '',
+          inStock: true
+        };
+        return {
+          row: p,
+          score: scoreProduct(prod, normalized, correctedTokenGroups) + (p.db_score ? Number(p.db_score) * 100 : 0)
+        };
       });
+      scoredDbMatches.sort((a, b) => b.score - a.score);
 
-      for (const row of dbMatches) {
+      for (const { row } of scoredDbMatches.slice(0, 5)) {
         const productHref = "/products/" + row.id;
         if (!topSuggestions.some(s => s.href === productHref)) {
           topSuggestions.push({
