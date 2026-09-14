@@ -114,6 +114,40 @@ export default function OrdersPage() {
                     <p className="text-sm text-brand-charcoal/80 mt-1">Phone: {order.addressSnapshot.phone}</p>
                   </div>
                 )}
+
+                {order.shippingStatus && order.shippingStatus !== 'NOT_CREATED' && (
+                  <div className="mt-6 pt-6 border-t border-brand-linen bg-blue-50/30 -mx-6 mb-[-1.5rem] p-6 rounded-b-2xl">
+                    <h3 className="text-sm font-bold uppercase tracking-wider mb-3 text-brand-charcoal/70 flex items-center gap-2">
+                      <Package className="w-4 h-4" /> Shipping Status
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <p className="text-gray-500 text-xs mb-1">Status</p>
+                        <p className="font-semibold text-blue-700">{order.shippingStatus.replace(/_/g, ' ')}</p>
+                      </div>
+                      {order.courierName && (
+                        <div>
+                          <p className="text-gray-500 text-xs mb-1">Courier</p>
+                          <p className="font-medium text-gray-900">{order.courierName}</p>
+                        </div>
+                      )}
+                      {order.awbCode && (
+                        <div>
+                          <p className="text-gray-500 text-xs mb-1">Tracking Code (AWB)</p>
+                          <p className="font-mono text-gray-900">{order.awbCode}</p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {order.trackingUrl && (
+                      <div className="mt-4">
+                        <a href={order.trackingUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 bg-white border border-blue-200 text-blue-700 text-xs font-bold rounded-lg hover:bg-blue-50 transition-colors">
+                          Track Shipment
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}

@@ -167,6 +167,12 @@ model Product {
   moq               Int           @default(1)
   wholesaleTiers    Json?         // Array of { minQty, maxQty, price, discountPct }
   
+  // Shipping details
+  weightKg          Float?
+  lengthCm          Float?
+  breadthCm         Float?
+  heightCm          Float?
+
   // Ownership
   sellerId          String?
   seller            Seller?       @relation("SellerProducts", fields: [sellerId], references: [id])
@@ -206,6 +212,18 @@ model PriceChangeRequest {
   reviewedBy      String?
 }
 
+enum ShippingStatus {
+  NOT_CREATED
+  CREATED
+  AWB_ASSIGNED
+  PICKUP_SCHEDULED
+  SHIPPED
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+  EXCEPTION
+}
+
 model Order {
   id              String      @id @default(uuid())
   customerId      String
@@ -226,6 +244,16 @@ model Order {
 
   razorpayOrderId String?     @unique
   
+  // Shipping details
+  shippingStatus    ShippingStatus @default(NOT_CREATED)
+  shiprocketOrderId String?
+  shipmentId        String?
+  awbCode           String?
+  courierName       String?
+  trackingUrl       String?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+
   items           OrderItem[]
   payments        Payment[]
 

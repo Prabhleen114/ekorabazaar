@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import ShippingActions from './ShippingActions'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -261,6 +262,15 @@ export default function AdminOrderDetailPage() {
               )}
             </div>
           </div>
+
+          <ShippingActions 
+            orderId={order.id} 
+            status={order.shippingStatus} 
+            awb={order.awbCode} 
+            courier={order.courierName} 
+            shiprocketId={order.shiprocketOrderId} 
+            shipmentId={order.shipmentId} 
+          />
 
         </div>
       </div>

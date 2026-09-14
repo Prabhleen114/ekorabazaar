@@ -100,3 +100,96 @@ export async function trackShipment(awbOrOrderId: string) {
     return null;
   }
 }
+
+/**
+ * Create a new custom order in Shiprocket
+ */
+export async function createShiprocketOrder(payload: any) {
+  const token = await getShiprocketToken();
+  if (!token) throw new Error('Shiprocket authentication failed');
+
+  const res = await fetch(`${SHIPROCKET_API_BASE}/orders/create/adhoc`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error('Shiprocket order create error:', errorText);
+    throw new Error(`Failed to create Shiprocket order: ${errorText}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Generate AWB for a shipment
+ */
+export async function generateAWB(shipmentId: string) {
+  const token = await getShiprocketToken();
+  if (!token) throw new Error('Shiprocket authentication failed');
+
+  const res = await fetch(`${SHIPROCKET_API_BASE}/courier/assign/awb`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ shipment_id: shipmentId }),
+  });
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`AWB Assignment failed: ${errorText}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Request pickup for a shipment
+ */
+export async function requestPickup(shipmentId: string) {
+  const token = await getShiprocketToken();
+  if (!token) throw new Error('Shiprocket authentication failed');
+
+  const res = await fetch(`${SHIPROCKET_API_BASE}/courier/generate/pickup`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ shipment_id: [shipmentId] }),
+  });
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Pickup request failed: ${errorText}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Generate shipping label
+ */
+export async function generateLabel(shipmentId: string) {
+  const token = await getShiprocketToken();
+  if (!token) throw new Error('Shiprocket authentication failed');
+
+  const res = await fetch(`${SHIPROCKET_API_BASE}/courier/generate/label`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ shipment_id: [shipmentId] }),
+  });
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Label generation failed: ${errorText}`);
+  }
+  return await res.json();
+}
