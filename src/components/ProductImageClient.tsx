@@ -16,7 +16,7 @@ export default function ProductImageClient({
   sizes?: string;
   priority?: boolean;
 }) {
-  const [imgSrc, setImgSrc] = useState(src || "/og-image.jpg");
+  const [imgSrc, setImgSrc] = useState(src || "/placeholder-product.svg");
 
   return (
     <Image 
@@ -26,7 +26,7 @@ export default function ProductImageClient({
       priority={priority}
       sizes={sizes}
       className={className} 
-      onError={() => setImgSrc("/og-image.jpg")}
+      onError={() => setImgSrc("/placeholder-product.svg")}
     />
   );
 }
