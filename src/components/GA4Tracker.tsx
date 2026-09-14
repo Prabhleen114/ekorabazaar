@@ -46,3 +46,41 @@ export function TrackViewItem({ item }: { item: any }) {
   
   return null;
 }
+
+export function TrackViewCart({ items, value }: { items: any[], value: number }) {
+  useEffect(() => {
+    if (items && items.length > 0) {
+      sendGAEvent('event', 'view_cart', {
+        currency: 'INR',
+        value: value,
+        items: items.map(item => ({
+          item_id: item.productId || item.id,
+          item_name: item.product?.title || item.title,
+          price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+          quantity: item.quantity
+        }))
+      });
+    }
+  }, [items, value]);
+  
+  return null;
+}
+
+export function TrackBeginCheckout({ items, value }: { items: any[], value: number }) {
+  useEffect(() => {
+    if (items && items.length > 0) {
+      sendGAEvent('event', 'begin_checkout', {
+        currency: 'INR',
+        value: value,
+        items: items.map(item => ({
+          item_id: item.productId || item.id,
+          item_name: item.product?.title || item.title,
+          price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+          quantity: item.quantity
+        }))
+      });
+    }
+  }, [items, value]);
+  
+  return null;
+}

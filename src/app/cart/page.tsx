@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
+import { TrackViewCart } from '@/components/GA4Tracker'
 
 export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
@@ -32,7 +33,7 @@ export default function CartPage() {
 
   const fetchCart = async () => {
     try {
-      const res = await fetch('/api/cart')
+      const res = await fetch('/api/cart', { cache: 'no-store' })
       if (res.status === 401 || res.status === 403) {
         setIsGuest(true)
         const { getGuestCart } = await import('@/lib/guest-cart')
@@ -111,6 +112,7 @@ export default function CartPage() {
         <ShoppingBag className="w-8 h-8 text-brand-orange" />
         Your Cart
       </h1>
+      <TrackViewCart items={items} value={total / 100} />
 
       {items.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-2xl border border-brand-linen shadow-sm">

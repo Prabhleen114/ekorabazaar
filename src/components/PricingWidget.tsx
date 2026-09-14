@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Minus, Plus, ShoppingCart, Loader2, Check, MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { sendGAEvent } from "@next/third-parties/google";
 
 type Tier = {
   minQty: number;
@@ -121,6 +122,21 @@ export default function PricingWidget({
             basePrice
           });
           setIsAddedSuccess(true);
+          
+          sendGAEvent('event', 'add_to_cart', {
+            currency: 'INR',
+            value: displayPrice * quantity,
+            items: [
+              {
+                item_id: productId,
+                item_name: productName,
+                item_category: category,
+                price: displayPrice,
+                quantity: quantity
+              }
+            ]
+          });
+
           setTimeout(() => {
             setIsAddedSuccess(false);
             setIsAddingToCart(false);
@@ -133,6 +149,20 @@ export default function PricingWidget({
         const { notifyCartUpdated } = await import('@/lib/guest-cart');
         notifyCartUpdated();
         
+        sendGAEvent('event', 'add_to_cart', {
+          currency: 'INR',
+          value: displayPrice * quantity,
+          items: [
+            {
+              item_id: productId,
+              item_name: productName,
+              item_category: category,
+              price: displayPrice,
+              quantity: quantity
+            }
+          ]
+        });
+
         // Show success state for 2.5s, then reset button — user stays on PDP
         setTimeout(() => {
           setIsAddedSuccess(false);
@@ -163,12 +193,44 @@ export default function PricingWidget({
             title: productName,
             basePrice
           });
+          
+          sendGAEvent('event', 'add_to_cart', {
+            currency: 'INR',
+            value: displayPrice * quantity,
+            items: [
+              { item_id: productId, item_name: productName, item_category: category, price: displayPrice, quantity }
+            ]
+          });
+          sendGAEvent('event', 'begin_checkout', {
+            currency: 'INR',
+            value: displayPrice * quantity,
+            items: [
+              { item_id: productId, item_name: productName, item_category: category, price: displayPrice, quantity }
+            ]
+          });
+
           router.push('/checkout');
           return;
         }
         if (!res.ok) throw new Error('Failed to proceed to checkout');
         const { notifyCartUpdated } = await import('@/lib/guest-cart');
         notifyCartUpdated();
+        
+        sendGAEvent('event', 'add_to_cart', {
+          currency: 'INR',
+          value: displayPrice * quantity,
+          items: [
+            { item_id: productId, item_name: productName, item_category: category, price: displayPrice, quantity }
+          ]
+        });
+        sendGAEvent('event', 'begin_checkout', {
+          currency: 'INR',
+          value: displayPrice * quantity,
+          items: [
+            { item_id: productId, item_name: productName, item_category: category, price: displayPrice, quantity }
+          ]
+        });
+
         router.push('/checkout');
       } catch (err: any) {
         setErrorMsg(err.message);

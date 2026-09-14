@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
 import { Check, Plus, Loader2 } from 'lucide-react'
+import { TrackBeginCheckout } from '@/components/GA4Tracker'
 
 export default function CheckoutPage() {
   const [items, setItems] = useState<any[]>([])
@@ -87,6 +88,20 @@ export default function CheckoutPage() {
       return
     }
     setErrorMsg('')
+    
+    import('@next/third-parties/google').then(({ sendGAEvent }) => {
+      sendGAEvent('event', 'add_payment_info', {
+        currency: 'INR',
+        value: total / 100,
+        payment_type: 'Razorpay',
+        items: items.map(item => ({
+          item_id: item.productId || item.id,
+          item_name: item.product?.title || item.title,
+          price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+          quantity: item.quantity
+        }))
+      });
+    });
 
     checkout({
       apiCreateRoute: '/api/checkout/create-order',
@@ -98,6 +113,19 @@ export default function CheckoutPage() {
       name: 'Ekora Bazaar Checkout',
       description: `Payment for ${items.length} items`,
       onSuccess: (data) => {
+        import('@next/third-parties/google').then(({ sendGAEvent }) => {
+          sendGAEvent('event', 'purchase', {
+            transaction_id: data.orderId,
+            value: total / 100,
+            currency: 'INR',
+            items: items.map(item => ({
+              item_id: item.productId || item.id,
+              item_name: item.product?.title || item.title,
+              price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+              quantity: item.quantity
+            }))
+          });
+        });
         router.push('/account/orders')
       },
       onError: (err) => {
@@ -111,6 +139,7 @@ export default function CheckoutPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold font-serif mb-8">Checkout</h1>
+      <TrackBeginCheckout items={items} value={total / 100} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
