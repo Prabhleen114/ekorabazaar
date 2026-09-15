@@ -321,7 +321,7 @@ export default function NavbarSearchBox() {
                         alt={s.label}
                         width={40}
                         height={40}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain p-0.5"
                         unoptimized
                       />
                     </div>

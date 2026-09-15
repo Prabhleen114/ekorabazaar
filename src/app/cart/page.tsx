@@ -157,7 +157,7 @@ export default function CartPage() {
               <div key={item.id} className="bg-white p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-4 items-center">
                 <div className="w-20 h-20 rounded-xl overflow-hidden bg-brand-bg relative flex-shrink-0">
                   {item.product.imageUrl ? (
-                    <Image src={item.product.imageUrl} alt={item.product.title} fill className="object-cover" />
+                    <Image src={item.product.imageUrl} alt={item.product.title} fill className="object-contain p-1" />
                   ) : (
                     <div className="w-full h-full bg-gray-200" />
                   )}

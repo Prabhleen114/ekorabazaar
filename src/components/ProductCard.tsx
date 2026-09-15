@@ -24,14 +24,14 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
       href={`/products/${product.id}`}
       className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
     >
-      <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
+      <div className="aspect-square bg-[#fbfaf8] relative flex items-center justify-center p-2.5 overflow-hidden">
         <Image
           src={product.imageUrl || "/og-image.jpg"}
           alt={product.title}
           fill
           unoptimized={isExternalImage}
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
           loading={index < 8 ? "eager" : "lazy"}
         />
         {bulkDiscountAvailable && (

@@ -741,13 +741,13 @@ export default function ShopClient() {
                     href={`/products/${product.id}`} 
                     className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
                   >
-                    <div className="aspect-square bg-brand-bg relative flex items-center justify-center overflow-hidden">
+                    <div className="aspect-square bg-[#fbfaf8] relative flex items-center justify-center p-2.5 overflow-hidden">
                       <Image 
                         src={product.image || "/og-image.jpg"} 
                         alt={product.name} 
                         fill 
                         sizes="(max-width: 768px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                        className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300" 
                       />
                       {product.isQuoteOnly || product.price === 0 ? (
                         <div className="absolute top-3 left-3 bg-amber-700/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">

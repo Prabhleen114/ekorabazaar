@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function ProductImageClient({ 
   src, 
   alt,
-  className = "object-cover md:object-contain",
+  className = "object-contain p-2 md:p-4",
   sizes = "(max-width: 768px) 100vw, 50vw",
   priority = false
 }: { 

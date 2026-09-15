@@ -1134,7 +1134,7 @@
     "price": 389,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -3506,7 +3506,7 @@
     "price": 311,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Chamomile Essential Oil.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -4440,7 +4440,7 @@
     "price": 350,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -4679,7 +4679,7 @@
     "price": 298,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -5478,7 +5478,7 @@
     "price": 324,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -6280,7 +6280,7 @@
     "price": 467,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -11672,7 +11672,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -11835,7 +11835,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -12689,7 +12689,7 @@
     "price": 32,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -13878,7 +13878,7 @@
     "price": 259,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -17128,7 +17128,7 @@
     "price": 389,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Kesar.png",
+    "image": "/images/products/Kesar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -18866,7 +18866,7 @@
     "price": 116,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -19659,7 +19659,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-turmeric-root-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-turmeric-root-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -22916,7 +22916,7 @@
     "price": 909,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -23766,7 +23766,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -24623,7 +24623,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -29628,7 +29628,7 @@
     "price": 289,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Neem & Tulsi.png",
+    "image": "/images/products/Neem & Tulsi.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -30725,7 +30725,7 @@
     "price": 298,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -30805,7 +30805,7 @@
     "price": 116,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31033,7 +31033,7 @@
     "price": 168,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31109,7 +31109,7 @@
     "price": 298,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31340,7 +31340,7 @@
     "price": 298,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31571,7 +31571,7 @@
     "price": 321,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Red Wine.png",
+    "image": "/images/products/Red Wine.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31810,7 +31810,7 @@
     "price": 38,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -31887,7 +31887,7 @@
     "price": 298,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -32209,7 +32209,7 @@
     "price": 460,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-cinnamon-leaf-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-cinnamon-leaf-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -32381,7 +32381,7 @@
     "price": 138,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-clove-leaf-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-clove-leaf-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -32714,7 +32714,7 @@
     "price": 553,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-melissa-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-melissa-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -32883,7 +32883,7 @@
     "price": 269,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-oregano-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-oregano-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33038,7 +33038,7 @@
     "price": 61,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-pine-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-pine-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33126,7 +33126,7 @@
     "price": 928,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-geranium-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-geranium-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33213,7 +33213,7 @@
     "price": 736,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/Bois De Bois.png",
+    "image": "/images/products/essential oils/Bois De Bois.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33298,7 +33298,7 @@
     "price": 261,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-rosewood-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rosewood-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33476,7 +33476,7 @@
     "price": 276,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-thyme-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-thyme-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33742,7 +33742,7 @@
     "price": 499,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-manuka-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-manuka-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -33909,7 +33909,7 @@
     "price": 1288,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-labdanum-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-labdanum-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -34168,7 +34168,7 @@
     "price": 498,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-marjoram-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-marjoram-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -34609,7 +34609,7 @@
     "price": 844,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -34879,7 +34879,7 @@
     "price": 2454,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -35142,7 +35142,7 @@
     "price": 460,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-star-anise-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-star-anise-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -35231,7 +35231,7 @@
     "price": 259,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-spearmint-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-spearmint-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -35319,7 +35319,7 @@
     "price": 1841,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/Jasminum Grandiflorum.png",
+    "image": "/images/products/essential oils/Jasminum Grandiflorum.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -35579,7 +35579,7 @@
     "price": 1011,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-garlic-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-garlic-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37200,7 +37200,7 @@
     "price": 321,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-sweet-basil-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-sweet-basil-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37287,7 +37287,7 @@
     "price": 644,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-basil-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-basil-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37372,7 +37372,7 @@
     "price": 169,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-wintergreen-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-wintergreen-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37460,7 +37460,7 @@
     "price": 276,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-pure-anise-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-pure-anise-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37546,7 +37546,7 @@
     "price": 230,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-turmeric-leaf-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-turmeric-leaf-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37636,7 +37636,7 @@
     "price": 230,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-ajwain-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-ajwain-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37721,7 +37721,7 @@
     "price": 454,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Vetiver.png",
+    "image": "/images/products/Vetiver.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -37803,7 +37803,7 @@
     "price": 324,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-planifolia-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-planifolia-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -38052,7 +38052,7 @@
     "price": 168,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-ylang-ylang-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-ylang-ylang-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -38394,7 +38394,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Patchouli.png",
+    "image": "/images/products/Patchouli.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -38731,7 +38731,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Pure Orange.png",
+    "image": "/images/products/Pure Orange.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -38983,7 +38983,7 @@
     "price": 181,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-lemon-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lemon-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39148,7 +39148,7 @@
     "price": 181,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39231,7 +39231,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-tea-tree-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-tea-tree-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39315,7 +39315,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-rosemary-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rosemary-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39407,7 +39407,7 @@
     "price": 181,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-peppermint-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-peppermint-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39489,7 +39489,7 @@
     "price": 519,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Ladoo Sweet Mithai.png",
+    "image": "/images/products/Ladoo Sweet Mithai.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39609,7 +39609,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Pure Desire.png",
+    "image": "/images/products/Pure Desire.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39721,7 +39721,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lavender Vanilla.png",
+    "image": "/images/products/Lavender Vanilla.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39842,7 +39842,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Sea Salt.png",
+    "image": "/images/products/Sea Salt.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -39961,7 +39961,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Pure Orange.png",
+    "image": "/images/products/Pure Orange.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40081,7 +40081,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Mahogany Teakwood.png",
+    "image": "/images/products/Mahogany Teakwood.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40200,7 +40200,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple Cinnamon.png",
+    "image": "/images/products/Apple Cinnamon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40320,7 +40320,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Ice Cool.png",
+    "image": "/images/products/Ice Cool.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40437,7 +40437,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Blue Ocean.png",
+    "image": "/images/products/Blue Ocean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40554,7 +40554,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Insignia.png",
+    "image": "/images/products/Insignia.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40670,7 +40670,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Silky Sun.png",
+    "image": "/images/products/Silky Sun.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40787,7 +40787,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Inter Pool.png",
+    "image": "/images/products/Inter Pool.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -40904,7 +40904,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Dove Strong.png",
+    "image": "/images/products/Dove Strong.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41021,7 +41021,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Mimosa & Mandarin.png",
+    "image": "/images/products/Mimosa & Mandarin.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41143,7 +41143,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/White Linen.png",
+    "image": "/images/products/White Linen.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41263,7 +41263,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Masala Chai.png",
+    "image": "/images/products/Masala Chai.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41383,7 +41383,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Arctic Breeze.png",
+    "image": "/images/products/Arctic Breeze.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41503,7 +41503,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/French Lilac.png",
+    "image": "/images/products/French Lilac.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41743,7 +41743,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Gili Mitti.png",
+    "image": "/images/products/Gili Mitti.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41861,7 +41861,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Bamboo Leaf.png",
+    "image": "/images/products/Bamboo Leaf.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -41979,7 +41979,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Moringa Drumstick Flower.png",
+    "image": "/images/products/Moringa Drumstick Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42098,7 +42098,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Amber Noir.png",
+    "image": "/images/products/Amber Noir.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42216,7 +42216,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple Pie.png",
+    "image": "/images/products/Apple Pie.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42334,7 +42334,7 @@
     "price": 142,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Russian Leather.png",
+    "image": "/images/products/Russian Leather.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42452,7 +42452,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Green Tea & Lemon.png",
+    "image": "/images/products/Green Tea & Lemon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42573,7 +42573,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lush Bomb.png",
+    "image": "/images/products/Lush Bomb.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42693,7 +42693,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Vetiver.png",
+    "image": "/images/products/Vetiver.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42814,7 +42814,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Vanilla SPC.png",
+    "image": "/images/products/Vanilla SPC.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -42935,7 +42935,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lavender Kashmir.png",
+    "image": "/images/products/Lavender Kashmir.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43057,7 +43057,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43172,7 +43172,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Ameer Al Oudh.png",
+    "image": "/images/products/Ameer Al Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43286,7 +43286,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Pumpkin Pie.png",
+    "image": "/images/products/Pumpkin Pie.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43405,7 +43405,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Frangipani.png",
+    "image": "/images/products/Frangipani.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43522,7 +43522,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/English Oakmoss.png",
+    "image": "/images/products/English Oakmoss.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43642,7 +43642,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Sensual Amber.png",
+    "image": "/images/products/Sensual Amber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43755,7 +43755,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Fun Loving.png",
+    "image": "/images/products/Fun Loving.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43868,7 +43868,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Saffron Cedar.png",
+    "image": "/images/products/Saffron Cedar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -43988,7 +43988,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Mango Punch.png",
+    "image": "/images/products/Mango Punch.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44108,7 +44108,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Peach Coconut.png",
+    "image": "/images/products/Peach Coconut.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44228,7 +44228,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Morning Flower.png",
+    "image": "/images/products/Morning Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44348,7 +44348,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cardamom & Saffron.png",
+    "image": "/images/products/Cardamom & Saffron.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44469,7 +44469,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/French Oak.png",
+    "image": "/images/products/French Oak.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44582,7 +44582,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Silky Musk.png",
+    "image": "/images/products/Silky Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44695,7 +44695,7 @@
     "price": 77,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -44820,7 +44820,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lotus Floral.png",
+    "image": "/images/products/Lotus Floral.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45048,7 +45048,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Green Apple.png",
+    "image": "/images/products/Green Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45276,7 +45276,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45400,7 +45400,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Black Oudh.png",
+    "image": "/images/products/Black Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45514,7 +45514,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Honeysuckle & Peach.png",
+    "image": "/images/products/Honeysuckle & Peach.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45628,7 +45628,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Nargis Flower.png",
+    "image": "/images/products/Nargis Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45753,7 +45753,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Gardenia & White Peach.png",
+    "image": "/images/products/Gardenia & White Peach.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45867,7 +45867,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Pink Sand.png",
+    "image": "/images/products/Pink Sand.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -45980,7 +45980,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Dewberry.png",
+    "image": "/images/products/Dewberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46092,7 +46092,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Mix Fruit 101.png",
+    "image": "/images/products/Mix Fruit 101.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46452,7 +46452,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Patchouli.png",
+    "image": "/images/products/Patchouli.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46567,7 +46567,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Coffee Bean.png",
+    "image": "/images/products/Coffee Bean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46680,7 +46680,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Choco Musk.png",
+    "image": "/images/products/Choco Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46793,7 +46793,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Real Lemon.png",
+    "image": "/images/products/Real Lemon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -46908,7 +46908,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Green Tea & Lemon.png",
+    "image": "/images/products/Green Tea & Lemon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47033,7 +47033,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47145,7 +47145,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/White Lily.png",
+    "image": "/images/products/White Lily.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47258,7 +47258,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/White Musk.png",
+    "image": "/images/products/White Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47484,7 +47484,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47609,7 +47609,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lavender Yardle.png",
+    "image": "/images/products/Lavender Yardle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47724,7 +47724,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Sandalwood & Saffron.png",
+    "image": "/images/products/Sandalwood & Saffron.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -47839,7 +47839,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Kesar.png",
+    "image": "/images/products/Kesar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48190,7 +48190,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Red Wine.png",
+    "image": "/images/products/Red Wine.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48303,7 +48303,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Sandal Florence.png",
+    "image": "/images/products/Sandal Florence.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48528,7 +48528,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48652,7 +48652,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Real Rose.png",
+    "image": "/images/products/Real Rose.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48767,7 +48767,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Fasli Gulaab.png",
+    "image": "/images/products/Fasli Gulaab.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -48880,7 +48880,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Spanish Kesar.png",
+    "image": "/images/products/Spanish Kesar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49108,7 +49108,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Rose Bulgarian.png",
+    "image": "/images/products/Rose Bulgarian.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49235,7 +49235,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Neem & Tulsi.png",
+    "image": "/images/products/Neem & Tulsi.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49349,7 +49349,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Honey & Milk.png",
+    "image": "/images/products/Honey & Milk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49470,7 +49470,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Golden Women.png",
+    "image": "/images/products/Golden Women.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49583,7 +49583,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Iris Lime.png",
+    "image": "/images/products/Iris Lime.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49698,7 +49698,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lavender Kashmir.png",
+    "image": "/images/products/Lavender Kashmir.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49824,7 +49824,7 @@
     "price": 194,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49955,7 +49955,7 @@
     "price": 246,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50073,7 +50073,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50321,7 +50321,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Roasted Coffee.png",
+    "image": "/images/products/Roasted Coffee.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50439,7 +50439,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Musk Gold.png",
+    "image": "/images/products/Musk Gold.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50559,7 +50559,7 @@
     "price": 129,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Jasmine Knight.png",
+    "image": "/images/products/Jasmine Knight.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50681,7 +50681,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Fresh Oudh.png",
+    "image": "/images/products/Fresh Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50795,7 +50795,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Cactus Bloom.png",
+    "image": "/images/products/Cactus Bloom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -50908,7 +50908,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Midnight Blue Citrus.png",
+    "image": "/images/products/Midnight Blue Citrus.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51024,7 +51024,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Butterfly Fragrance.png",
+    "image": "/images/products/Butterfly Fragrance.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51148,7 +51148,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Temple Fragrance.png",
+    "image": "/images/products/Temple Fragrance.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51376,7 +51376,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Mulberry Vanilla.png",
+    "image": "/images/products/Mulberry Vanilla.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51491,7 +51491,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Lavender Florence.png",
+    "image": "/images/products/Lavender Florence.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51606,7 +51606,7 @@
     "price": 155,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51719,7 +51719,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Orange & Cinnamon.png",
+    "image": "/images/products/Orange & Cinnamon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51847,7 +51847,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Clean Ocean.png",
+    "image": "/images/products/Clean Ocean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -51960,7 +51960,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Bubble Gum.png",
+    "image": "/images/products/Bubble Gum.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52073,7 +52073,7 @@
     "price": 259,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/Aqua Fresh.png",
+    "image": "/images/products/Aqua Fresh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52187,7 +52187,7 @@
     "price": 506,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52247,7 +52247,7 @@
     "price": 567,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -52368,7 +52368,7 @@
     "price": 422,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52430,7 +52430,7 @@
     "price": 251,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -52490,7 +52490,7 @@
     "price": 202,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -52551,7 +52551,7 @@
     "price": 321,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -52612,7 +52612,7 @@
     "price": 273,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Diced Pineapple.png",
+    "image": "/images/products/Diced Pineapple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52676,7 +52676,7 @@
     "price": 246,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Strawberry Lush.png",
+    "image": "/images/products/Strawberry Lush.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52739,7 +52739,7 @@
     "price": 556,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -52799,7 +52799,7 @@
     "price": 599,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52862,7 +52862,7 @@
     "price": 526,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Orchid Bloom.png",
+    "image": "/images/products/Orchid Bloom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -52987,7 +52987,7 @@
     "price": 118,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -53048,7 +53048,7 @@
     "price": 577,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Sea Salt.png",
+    "image": "/images/products/Sea Salt.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53109,7 +53109,7 @@
     "price": 437,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -53170,7 +53170,7 @@
     "price": 562,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Jasmine Knight.png",
+    "image": "/images/products/Jasmine Knight.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53233,7 +53233,7 @@
     "price": 109,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Arctic Breeze.png",
+    "image": "/images/products/Arctic Breeze.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53294,7 +53294,7 @@
     "price": 139,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -53357,7 +53357,7 @@
     "price": 216,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Roasted Coffee.png",
+    "image": "/images/products/Roasted Coffee.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53420,7 +53420,7 @@
     "price": 538,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Pure Desire.png",
+    "image": "/images/products/Pure Desire.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53478,7 +53478,7 @@
     "price": 278,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Musk Gold.png",
+    "image": "/images/products/Musk Gold.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53539,7 +53539,7 @@
     "price": 490,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -53602,7 +53602,7 @@
     "price": 127,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/White Musk.png",
+    "image": "/images/products/White Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53665,7 +53665,7 @@
     "price": 506,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -53728,7 +53728,7 @@
     "price": 338,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53792,7 +53792,7 @@
     "price": 246,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/White Linen.png",
+    "image": "/images/products/White Linen.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53855,7 +53855,7 @@
     "price": 389,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53919,7 +53919,7 @@
     "price": 489,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -53984,7 +53984,7 @@
     "price": 589,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -54047,7 +54047,7 @@
     "price": 388,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54111,7 +54111,7 @@
     "price": 512,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -54174,7 +54174,7 @@
     "price": 152,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54237,7 +54237,7 @@
     "price": 165,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Patchouli.png",
+    "image": "/images/products/Patchouli.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54493,7 +54493,7 @@
     "price": 244,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Russian Leather.png",
+    "image": "/images/products/Russian Leather.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54556,7 +54556,7 @@
     "price": 217,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Saffron Cedar.png",
+    "image": "/images/products/Saffron Cedar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54615,7 +54615,7 @@
     "price": 397,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54680,7 +54680,7 @@
     "price": 541,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54745,7 +54745,7 @@
     "price": 470,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54811,7 +54811,7 @@
     "price": 288,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -54874,7 +54874,7 @@
     "price": 339,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -54940,7 +54940,7 @@
     "price": 223,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -55002,7 +55002,7 @@
     "price": 247,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Pumpkin Pie.png",
+    "image": "/images/products/Pumpkin Pie.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55065,7 +55065,7 @@
     "price": 307,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Peach Coconut.png",
+    "image": "/images/products/Peach Coconut.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55128,7 +55128,7 @@
     "price": 395,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -55191,7 +55191,7 @@
     "price": 327,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -55320,7 +55320,7 @@
     "price": 115,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55385,7 +55385,7 @@
     "price": 214,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Musk Gold.png",
+    "image": "/images/products/Musk Gold.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55448,7 +55448,7 @@
     "price": 268,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -55511,7 +55511,7 @@
     "price": 107,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Morning Flower.png",
+    "image": "/images/products/Morning Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55574,7 +55574,7 @@
     "price": 149,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55639,7 +55639,7 @@
     "price": 582,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mango Punch.png",
+    "image": "/images/products/Mango Punch.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55702,7 +55702,7 @@
     "price": 295,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Masala Chai.png",
+    "image": "/images/products/Masala Chai.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55765,7 +55765,7 @@
     "price": 525,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Vetiver.png",
+    "image": "/images/products/Vetiver.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -55829,7 +55829,7 @@
     "price": 430,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -55892,7 +55892,7 @@
     "price": 538,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -56022,7 +56022,7 @@
     "price": 515,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56087,7 +56087,7 @@
     "price": 467,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56152,7 +56152,7 @@
     "price": 419,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lush Bomb.png",
+    "image": "/images/products/Lush Bomb.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56215,7 +56215,7 @@
     "price": 559,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56280,7 +56280,7 @@
     "price": 302,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56409,7 +56409,7 @@
     "price": 448,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -56472,7 +56472,7 @@
     "price": 301,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -56599,7 +56599,7 @@
     "price": 206,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Green Tea & Lemon.png",
+    "image": "/images/products/Green Tea & Lemon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -56793,7 +56793,7 @@
     "price": 181,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -56856,7 +56856,7 @@
     "price": 506,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -56919,7 +56919,7 @@
     "price": 555,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/French Lilac.png",
+    "image": "/images/products/French Lilac.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57046,7 +57046,7 @@
     "price": 540,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Frangipani.png",
+    "image": "/images/products/Frangipani.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57175,7 +57175,7 @@
     "price": 358,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/English Oakmoss.png",
+    "image": "/images/products/English Oakmoss.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57238,7 +57238,7 @@
     "price": 249,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57300,7 +57300,7 @@
     "price": 226,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57365,7 +57365,7 @@
     "price": 553,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57427,7 +57427,7 @@
     "price": 308,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57490,7 +57490,7 @@
     "price": 545,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57553,7 +57553,7 @@
     "price": 591,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57682,7 +57682,7 @@
     "price": 337,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cardamom & Saffron.png",
+    "image": "/images/products/Cardamom & Saffron.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -57746,7 +57746,7 @@
     "price": 389,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57809,7 +57809,7 @@
     "price": 485,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57872,7 +57872,7 @@
     "price": 528,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57935,7 +57935,7 @@
     "price": 286,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -57998,7 +57998,7 @@
     "price": 265,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple Pie.png",
+    "image": "/images/products/Apple Pie.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58061,7 +58061,7 @@
     "price": 477,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -58125,7 +58125,7 @@
     "price": 574,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58188,7 +58188,7 @@
     "price": 485,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple Cinnamon.png",
+    "image": "/images/products/Apple Cinnamon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58250,7 +58250,7 @@
     "price": 274,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Amber Noir.png",
+    "image": "/images/products/Amber Noir.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58313,7 +58313,7 @@
     "price": 434,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lavender Vanilla.png",
+    "image": "/images/products/Lavender Vanilla.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58437,7 +58437,7 @@
     "price": 367,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mahogany Teakwood.png",
+    "image": "/images/products/Mahogany Teakwood.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58497,7 +58497,7 @@
     "price": 481,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Ice Cool.png",
+    "image": "/images/products/Ice Cool.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58557,7 +58557,7 @@
     "price": 231,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Blue Ocean.png",
+    "image": "/images/products/Blue Ocean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58617,7 +58617,7 @@
     "price": 423,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Insignia.png",
+    "image": "/images/products/Insignia.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58676,7 +58676,7 @@
     "price": 300,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Silky Sun.png",
+    "image": "/images/products/Silky Sun.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58736,7 +58736,7 @@
     "price": 539,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Inter Pool.png",
+    "image": "/images/products/Inter Pool.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58796,7 +58796,7 @@
     "price": 187,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Dove Strong.png",
+    "image": "/images/products/Dove Strong.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58856,7 +58856,7 @@
     "price": 541,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mimosa & Mandarin.png",
+    "image": "/images/products/Mimosa & Mandarin.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58920,7 +58920,7 @@
     "price": 519,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/White Linen.png",
+    "image": "/images/products/White Linen.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -58981,7 +58981,7 @@
     "price": 430,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Masala Chai.png",
+    "image": "/images/products/Masala Chai.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59042,7 +59042,7 @@
     "price": 387,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/French Lilac.png",
+    "image": "/images/products/French Lilac.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59164,7 +59164,7 @@
     "price": 170,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Bamboo Leaf.png",
+    "image": "/images/products/Bamboo Leaf.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59227,7 +59227,7 @@
     "price": 564,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Moringa Drumstick Flower.png",
+    "image": "/images/products/Moringa Drumstick Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59291,7 +59291,7 @@
     "price": 585,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lush Bomb.png",
+    "image": "/images/products/Lush Bomb.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59352,7 +59352,7 @@
     "price": 162,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Vetiver.png",
+    "image": "/images/products/Vetiver.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59414,7 +59414,7 @@
     "price": 304,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Vanilla SPC.png",
+    "image": "/images/products/Vanilla SPC.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59476,7 +59476,7 @@
     "price": 156,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lavender Kashmir.png",
+    "image": "/images/products/Lavender Kashmir.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59539,7 +59539,7 @@
     "price": 275,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cherry Blossom.png",
+    "image": "/images/products/Cherry Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59600,7 +59600,7 @@
     "price": 335,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Ameer Al Oudh.png",
+    "image": "/images/products/Ameer Al Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59661,7 +59661,7 @@
     "price": 107,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Fresh Oudh.png",
+    "image": "/images/products/Fresh Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59720,7 +59720,7 @@
     "price": 166,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Frangipani.png",
+    "image": "/images/products/Frangipani.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59780,7 +59780,7 @@
     "price": 343,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cactus Blossom.png",
+    "image": "/images/products/Cactus Blossom.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59839,7 +59839,7 @@
     "price": 437,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Sensual Amber.png",
+    "image": "/images/products/Sensual Amber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59899,7 +59899,7 @@
     "price": 152,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Fun Loving.png",
+    "image": "/images/products/Fun Loving.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -59959,7 +59959,7 @@
     "price": 192,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Midnight Blue Citrus.png",
+    "image": "/images/products/Midnight Blue Citrus.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60019,7 +60019,7 @@
     "price": 476,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -60077,7 +60077,7 @@
     "price": 186,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mango Punch.png",
+    "image": "/images/products/Mango Punch.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60138,7 +60138,7 @@
     "price": 273,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Peach Coconut.png",
+    "image": "/images/products/Peach Coconut.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60199,7 +60199,7 @@
     "price": 317,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Morning Flower.png",
+    "image": "/images/products/Morning Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60260,7 +60260,7 @@
     "price": 415,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cardamom & Saffron.png",
+    "image": "/images/products/Cardamom & Saffron.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60323,7 +60323,7 @@
     "price": 419,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/French Oak.png",
+    "image": "/images/products/French Oak.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60381,7 +60381,7 @@
     "price": 184,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -60439,7 +60439,7 @@
     "price": 441,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60499,7 +60499,7 @@
     "price": 391,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Silky Musk.png",
+    "image": "/images/products/Silky Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60557,7 +60557,7 @@
     "price": 562,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60615,7 +60615,7 @@
     "price": 438,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lotus Floral.png",
+    "image": "/images/products/Lotus Floral.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60675,7 +60675,7 @@
     "price": 558,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -60733,7 +60733,7 @@
     "price": 433,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60852,7 +60852,7 @@
     "price": 170,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60909,7 +60909,7 @@
     "price": 160,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Black Oudh.png",
+    "image": "/images/products/Black Oudh.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -60968,7 +60968,7 @@
     "price": 291,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Honeysuckle & Peach.png",
+    "image": "/images/products/Honeysuckle & Peach.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61028,7 +61028,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Nargis Flower.png",
+    "image": "/images/products/Nargis Flower.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61086,7 +61086,7 @@
     "price": 344,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Gardenia & White Peach.png",
+    "image": "/images/products/Gardenia & White Peach.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61146,7 +61146,7 @@
     "price": 182,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Pink Sand.png",
+    "image": "/images/products/Pink Sand.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61204,7 +61204,7 @@
     "price": 439,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Dewberry.png",
+    "image": "/images/products/Dewberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61262,7 +61262,7 @@
     "price": 163,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mulberry Vanilla.png",
+    "image": "/images/products/Mulberry Vanilla.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61322,7 +61322,7 @@
     "price": 172,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Mix Fruit 101.png",
+    "image": "/images/products/Mix Fruit 101.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61381,7 +61381,7 @@
     "price": 522,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -61442,7 +61442,7 @@
     "price": 486,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -61500,7 +61500,7 @@
     "price": 159,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Orange & Cinnamon.png",
+    "image": "/images/products/Orange & Cinnamon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61563,7 +61563,7 @@
     "price": 135,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Patchouli.png",
+    "image": "/images/products/Patchouli.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61623,7 +61623,7 @@
     "price": 128,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Coffee Bean.png",
+    "image": "/images/products/Coffee Bean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61681,7 +61681,7 @@
     "price": 446,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Choco Musk.png",
+    "image": "/images/products/Choco Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61739,7 +61739,7 @@
     "price": 166,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Real Lemon.png",
+    "image": "/images/products/Real Lemon.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61799,7 +61799,7 @@
     "price": 561,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -61857,7 +61857,7 @@
     "price": 522,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Strawberry.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61914,7 +61914,7 @@
     "price": 216,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/White Lily.png",
+    "image": "/images/products/White Lily.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -61972,7 +61972,7 @@
     "price": 549,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/White Musk.png",
+    "image": "/images/products/White Musk.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62030,7 +62030,7 @@
     "price": 430,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -62088,7 +62088,7 @@
     "price": 576,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Milk Soap.png",
+    "image": "/images/products/Milk Soap.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62146,7 +62146,7 @@
     "price": 446,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lavender Yardle.png",
+    "image": "/images/products/Lavender Yardle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62206,7 +62206,7 @@
     "price": 499,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Sandalwood & Saffron.png",
+    "image": "/images/products/Sandalwood & Saffron.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62267,7 +62267,7 @@
     "price": 592,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Kesar.png",
+    "image": "/images/products/Kesar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62325,7 +62325,7 @@
     "price": 379,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -62384,7 +62384,7 @@
     "price": 164,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -62442,7 +62442,7 @@
     "price": 544,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Red Wine.png",
+    "image": "/images/products/Red Wine.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62500,7 +62500,7 @@
     "price": 232,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Sandal Florence.png",
+    "image": "/images/products/Sandal Florence.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62558,7 +62558,7 @@
     "price": 300,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -62616,7 +62616,7 @@
     "price": 134,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Apple.png",
+    "image": "/images/products/Apple.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62673,7 +62673,7 @@
     "price": 547,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Real Rose.png",
+    "image": "/images/products/Real Rose.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62733,7 +62733,7 @@
     "price": 512,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Fasli Gulaab.png",
+    "image": "/images/products/Fasli Gulaab.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62791,7 +62791,7 @@
     "price": 475,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Kesar.png",
+    "image": "/images/products/Kesar.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62849,7 +62849,7 @@
     "price": 311,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -62909,7 +62909,7 @@
     "price": 144,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Rose Bulgarian.png",
+    "image": "/images/products/Rose Bulgarian.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -62969,7 +62969,7 @@
     "price": 258,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Neem & Tulsi.png",
+    "image": "/images/products/Neem & Tulsi.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63029,7 +63029,7 @@
     "price": 484,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fragrance_oils_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -63089,7 +63089,7 @@
     "price": 342,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Golden Women.png",
+    "image": "/images/products/Golden Women.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63147,7 +63147,7 @@
     "price": 398,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Iris Lime.png",
+    "image": "/images/products/Iris Lime.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63207,7 +63207,7 @@
     "price": 166,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63339,7 +63339,7 @@
     "price": 243,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/12/30ml-50ml-100ml-120ml-150ml-Aluminum-Spray-Bottle-Portable-Mini-Perfume-Bottles-Empty-Refillable-Cosmetic-Sprayer.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -63396,7 +63396,7 @@
     "price": 157,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63452,7 +63452,7 @@
     "price": 431,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63577,7 +63577,7 @@
     "price": 285,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63689,7 +63689,7 @@
     "price": 434,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63733,7 +63733,7 @@
     "price": 532,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63783,7 +63783,7 @@
     "price": 575,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63833,7 +63833,7 @@
     "price": 385,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63882,7 +63882,7 @@
     "price": 193,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63931,7 +63931,7 @@
     "price": 198,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -63980,7 +63980,7 @@
     "price": 524,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64030,7 +64030,7 @@
     "price": 351,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64079,7 +64079,7 @@
     "price": 439,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64134,7 +64134,7 @@
     "price": 258,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64183,7 +64183,7 @@
     "price": 459,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64373,7 +64373,7 @@
     "price": 178,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/candle_moulds_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/05/Vedini-6-small-oval-DIY-handmade-essential-oil-soap-mold3-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -64434,7 +64434,7 @@
     "price": 287,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64548,7 +64548,7 @@
     "price": 434,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Lavender Florence.png",
+    "image": "/images/products/Lavender Florence.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64609,7 +64609,7 @@
     "price": 510,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64669,7 +64669,7 @@
     "price": 165,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Clean Ocean.png",
+    "image": "/images/products/Clean Ocean.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64728,7 +64728,7 @@
     "price": 167,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Bubble Gum.png",
+    "image": "/images/products/Bubble Gum.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64787,7 +64787,7 @@
     "price": 544,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64831,7 +64831,7 @@
     "price": 426,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -64938,7 +64938,7 @@
     "price": 125,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -64989,7 +64989,7 @@
     "price": 511,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -65040,7 +65040,7 @@
     "price": 569,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -65084,7 +65084,7 @@
     "price": 230,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2026/07/Vedini-Premium-Gold-Metal-Candle-Bowl-247x296.jpeg",
     "tiers": [
       {
         "minQty": 1,
@@ -65135,7 +65135,7 @@
     "price": 286,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -65180,12 +65180,12 @@
   {
     "id": "841",
     "name": "Diffuser Base For Small Areas & Car",
-    "category": "Candle Waxes & Additives",
+    "category": "Diffuser Bottles & Accessories",
     "description": "Premium quality diffuser base for small areas & car sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
     "price": 158,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/12/30ml-50ml-100ml-120ml-150ml-Aluminum-Spray-Bottle-Portable-Mini-Perfume-Bottles-Empty-Refillable-Cosmetic-Sprayer.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65220,9 +65220,9 @@
       "bases",
       "all"
     ],
-    "department": "Casting Mediums & Raw Bases",
+    "department": "Vessels & Packaging Studio",
     "disciplines": [
-      "candle-studio"
+      "home-fragrance"
     ],
     "isQuoteOnly": false
   },
@@ -65378,7 +65378,7 @@
     "price": 445,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -65432,7 +65432,7 @@
     "price": 159,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -65478,7 +65478,7 @@
     "price": 122,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/02/Vedini-Refillable-Plastic-Bottles-new-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65591,7 +65591,7 @@
     "price": 294,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fondant_moulds_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65647,7 +65647,7 @@
     "price": 328,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/candle_moulds_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -65698,7 +65698,7 @@
     "price": 393,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fondant_moulds_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65752,7 +65752,7 @@
     "price": 217,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/fondant_moulds_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65811,7 +65811,7 @@
     "price": 201,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/resin_stone_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65933,7 +65933,7 @@
     "price": 257,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://d384u2mq2suvbq.cloudfront.net/public/spree/products/7538/large/464-wax-in-bowl.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66029,7 +66029,7 @@
     "price": 410,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2021/12/Body-Butter-Feature-Photo-2-1024x683-1.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -66078,7 +66078,7 @@
     "price": 125,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66122,7 +66122,7 @@
     "price": 510,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2021/12/Body-Butter-Feature-Photo-2-1024x683-1.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -66167,7 +66167,7 @@
     "price": 332,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/4/411257988/IU/BQ/FZ/50226535/sulphate-free-shower-gel-base-500x500.png",
     "tiers": [
       {
         "minQty": 1,
@@ -66214,7 +66214,7 @@
     "price": 545,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
     "tiers": [
       {
         "minQty": 1,
@@ -66261,7 +66261,7 @@
     "price": 424,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66307,7 +66307,7 @@
     "price": 452,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
     "tiers": [
       {
         "minQty": 1,
@@ -66355,7 +66355,7 @@
     "price": 591,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66462,7 +66462,7 @@
     "price": 553,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66507,7 +66507,7 @@
     "price": 380,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/containers_tins_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2026/07/Vedini-Premium-Gold-Metal-Candle-Bowl-247x296.jpeg",
     "tiers": [
       {
         "minQty": 1,
@@ -66553,7 +66553,7 @@
     "price": 442,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66597,7 +66597,7 @@
     "price": 292,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66641,7 +66641,7 @@
     "price": 379,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66687,7 +66687,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66733,7 +66733,7 @@
     "price": 447,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66779,7 +66779,7 @@
     "price": 294,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -66826,7 +66826,7 @@
     "price": 402,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66871,7 +66871,7 @@
     "price": 313,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66917,7 +66917,7 @@
     "price": 376,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -66962,7 +66962,7 @@
     "price": 219,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67008,7 +67008,7 @@
     "price": 171,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67056,7 +67056,7 @@
     "price": 474,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67103,7 +67103,7 @@
     "price": 430,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67147,7 +67147,7 @@
     "price": 126,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67200,7 +67200,7 @@
     "price": 351,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67254,7 +67254,7 @@
     "price": 203,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67308,7 +67308,7 @@
     "price": 376,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67363,7 +67363,7 @@
     "price": 242,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67417,7 +67417,7 @@
     "price": 311,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67471,7 +67471,7 @@
     "price": 241,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67524,7 +67524,7 @@
     "price": 505,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67577,7 +67577,7 @@
     "price": 320,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67631,7 +67631,7 @@
     "price": 107,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67685,7 +67685,7 @@
     "price": 518,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67731,7 +67731,7 @@
     "price": 350,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67779,7 +67779,7 @@
     "price": 297,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67827,7 +67827,7 @@
     "price": 333,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cucumber.png",
+    "image": "/images/products/Cucumber.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -67876,7 +67876,7 @@
     "price": 539,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
     "tiers": [
       {
         "minQty": 1,
@@ -67922,7 +67922,7 @@
     "price": 540,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -67969,7 +67969,7 @@
     "price": 406,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -68017,7 +68017,7 @@
     "price": 157,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -68062,7 +68062,7 @@
     "price": 437,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68106,7 +68106,7 @@
     "price": 429,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/paintings.png",
+    "image": "/images/paintings.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68155,7 +68155,7 @@
     "price": 246,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/candle_moulds_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -68304,7 +68304,7 @@
     "price": 439,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68355,7 +68355,7 @@
     "price": 562,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-ylang-ylang-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-ylang-ylang-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68401,7 +68401,7 @@
     "price": 376,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-spearmint-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-spearmint-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68447,7 +68447,7 @@
     "price": 158,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68493,7 +68493,7 @@
     "price": 320,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Patchouli.png",
+    "image": "/images/products/Patchouli.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68539,7 +68539,7 @@
     "price": 260,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-palmarosa-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-palmarosa-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68631,7 +68631,7 @@
     "price": 441,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68951,7 +68951,7 @@
     "price": 564,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69080,7 +69080,7 @@
     "price": 247,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69171,7 +69171,7 @@
     "price": 192,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69216,7 +69216,7 @@
     "price": 435,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Vetiver.png",
+    "image": "/images/products/Vetiver.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69305,7 +69305,7 @@
     "price": 568,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-tea-tree-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-tea-tree-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69350,7 +69350,7 @@
     "price": 573,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.png",
+    "image": "/images/base-bottle.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69398,7 +69398,7 @@
     "price": 128,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.png",
+    "image": "/images/products/Aloe Vera.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69449,7 +69449,7 @@
     "price": 550,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -69492,7 +69492,7 @@
     "price": 359,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/candle_moulds_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -69539,7 +69539,7 @@
     "price": 296,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -69592,7 +69592,7 @@
     "price": 377,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/resin_stone_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -69645,7 +69645,7 @@
     "price": 145,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/resin_stone_bg.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -69701,7 +69701,7 @@
     "price": 458,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/4/411257988/IU/BQ/FZ/50226535/sulphate-free-shower-gel-base-500x500.png",
     "tiers": [
       {
         "minQty": 1,
@@ -69746,7 +69746,7 @@
     "price": 115,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69794,7 +69794,7 @@
     "price": 202,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -69843,7 +69843,7 @@
     "price": 148,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69887,7 +69887,7 @@
     "price": 403,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -69935,7 +69935,7 @@
     "price": 435,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
     "tiers": [
       {
         "minQty": 1,
@@ -69981,7 +69981,7 @@
     "price": 492,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -70032,7 +70032,7 @@
     "price": 359,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -70078,7 +70078,7 @@
     "price": 528,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -70125,7 +70125,7 @@
     "price": 363,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -70173,7 +70173,7 @@
     "price": 519,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/bases_waxes_bg.jpg",
+    "image": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
     "tiers": [
       {
         "minQty": 1,
@@ -70221,7 +70221,7 @@
     "price": 164,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.png",
+    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -144481,7 +144481,7 @@
     "price": 239,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144519,7 +144519,7 @@
     "price": 383,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2025/09/616R2DnKhuL._AC_SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144556,7 +144556,7 @@
     "price": 420,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/11/tree-247x296.png",
     "inStock": true,
     "tiers": [
       {
@@ -144594,7 +144594,7 @@
     "price": 299,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/06/61C0jo08c8L._SL1000_-1-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144632,7 +144632,7 @@
     "price": 263,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144671,7 +144671,7 @@
     "price": 71,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144708,7 +144708,7 @@
     "price": 275,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144747,7 +144747,7 @@
     "price": 83,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144784,7 +144784,7 @@
     "price": 239,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144822,7 +144822,7 @@
     "price": 299,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144860,7 +144860,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144897,7 +144897,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144934,7 +144934,7 @@
     "price": 239,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -144971,7 +144971,7 @@
     "price": 540,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145008,7 +145008,7 @@
     "price": 420,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/05/6105PNZjOL._SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145045,7 +145045,7 @@
     "price": 359,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-6-Cavity-Superman-Symbol-Shape-Soap-Making-Silicone-Mould-1-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145082,7 +145082,7 @@
     "price": 179,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145122,7 +145122,7 @@
     "price": 179,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145159,7 +145159,7 @@
     "price": 299,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145196,7 +145196,7 @@
     "price": 383,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145233,7 +145233,7 @@
     "price": 300,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145273,7 +145273,7 @@
     "price": 383,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145310,7 +145310,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/10/heart2-scaled-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145347,7 +145347,7 @@
     "price": 239,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/05/13205620100_1394587503-1-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145385,7 +145385,7 @@
     "price": 71,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145422,7 +145422,7 @@
     "price": 467,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145459,7 +145459,7 @@
     "price": 407,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145496,7 +145496,7 @@
     "price": 479,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-6-Cavities-Square-Shape-Soap-Making-Silicone-Mould-3-247x212.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145533,7 +145533,7 @@
     "price": 179,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/08/51ONmumZjOL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145570,7 +145570,7 @@
     "price": 263,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/08/Hd2b20ec812984c1e9a3c20acc212fe49V-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145607,7 +145607,7 @@
     "price": 263,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/08/20220516_152733_470x-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145644,7 +145644,7 @@
     "price": 539,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2026/01/O1CN01qgY7c11EQW5L8oNsi_2215542500346-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145682,7 +145682,7 @@
     "price": 299,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/02/Screenshot_2-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145719,7 +145719,7 @@
     "price": 203,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/05/Vedini-6-even-gardenia-frangipani-silicone-cake-mold-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145757,7 +145757,7 @@
     "price": 275,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2026/03/O1CN01vMUUXY2KpbiLuVpY6_2219396619606-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145794,7 +145794,7 @@
     "price": 107,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -145832,7 +145832,7 @@
     "price": 299,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/og-image.jpg",
+    "image": "https://jindeal.com/wp-content/uploads/2024/07/51uJXhZOejL._AC_SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {

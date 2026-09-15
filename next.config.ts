@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "www.ekorabazaar.in" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "*.supabase.co" },
+      { protocol: "https", hostname: "naumenterprises.com" },
+      { protocol: "https", hostname: "soapytwist.com" },
+      { protocol: "https", hostname: "*.imimg.com" },
+      { protocol: "https", hostname: "*.cloudfront.net" },
+      { protocol: "https", hostname: "*.media-amazon.com" },
+      { protocol: "https", hostname: "m.media-amazon.com" },
     ],
   },
   async headers() {
@@ -21,6 +27,14 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/images/:path*.png",
+        destination: "/images/:path*.webp",
       },
     ];
   },
