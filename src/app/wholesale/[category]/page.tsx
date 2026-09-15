@@ -1,4 +1,4 @@
-import { ALL_CATEGORIES } from "@/lib/categories";
+import { ALL_CATEGORIES, normalizeCategoryName } from "@/lib/categories";
 import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
@@ -7,6 +7,7 @@ import { generateCategoryMetadata } from "@/lib/seo";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ProductCard from "@/components/ProductCard";
+import catalogProducts from "@/lib/data/products.json";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -16,8 +17,9 @@ type Props = {
 
 // Convert slug back to Category Name for matching
 function slugToCategoryLabel(slug: string) {
-  return ALL_CATEGORIES.find(c => c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug) || 
-         ALL_CATEGORIES.find(c => c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+  const norm = slug.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return ALL_CATEGORIES.find(c => c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm) || 
+         ALL_CATEGORIES.find(c => c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -45,12 +47,14 @@ export default async function WholesaleCategoryPage({ params }: Props) {
     notFound();
   }
 
+  const canonicalCategory = normalizeCategoryName(categoryObj.id);
+
   // Fetch top products in this category
   let products: any[] = [];
   try {
     products = await prisma.product.findMany({
       where: {
-        category: categoryObj.id,
+        category: canonicalCategory,
         status: ProductStatus.PUBLISHED,
         OR: [
           { sellerId: null },
@@ -63,6 +67,23 @@ export default async function WholesaleCategoryPage({ params }: Props) {
     });
   } catch (err) {
     console.warn(`Could not load products for wholesale category ${categoryObj.label} at build time:`, err);
+  }
+
+  // Fallback to static catalog if DB returned 0 products
+  if (products.length === 0) {
+    const matching = (catalogProducts as any[]).filter(p => {
+      const pCat = normalizeCategoryName(p.category);
+      return pCat === canonicalCategory || p.category === categoryObj.id || p.category === categoryObj.label;
+    }).slice(0, 12);
+
+    products = matching.map(p => ({
+      id: String(p.id),
+      title: p.name || p.title,
+      category: p.category,
+      price: Math.round((typeof p.price === 'number' ? p.price : parseFloat(p.price || '0')) * 100),
+      imageUrl: p.image || p.imageUrl || '/og-image.jpg',
+      wholesaleTiers: p.tiers || []
+    }));
   }
 
   const structuredData = {

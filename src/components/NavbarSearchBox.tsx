@@ -193,7 +193,7 @@ export default function NavbarSearchBox() {
           aria-expanded={showDropdown}
           aria-haspopup="listbox"
           aria-autocomplete="list"
-          className="bg-brand-bg border border-brand-linen rounded-full pl-4 pr-16 py-1.5 text-xs md:text-sm font-medium focus:outline-none focus:border-brand-orange w-48 md:w-56 transition-all duration-300 focus:w-72 lg:focus:w-80 shadow-inner"
+          className="bg-stone-50/90 hover:bg-stone-100/80 border border-stone-200/90 focus:bg-white focus:border-amber-600 focus:ring-2 focus:ring-amber-500/15 rounded-full pl-4 pr-16 py-2 text-xs md:text-sm font-medium text-stone-900 placeholder:text-stone-400 focus:outline-none w-52 md:w-64 lg:w-72 xl:w-80 transition-all duration-300 focus:w-72 md:focus:w-80 lg:focus:w-96"
         />
 
         {/* Clear input button */}
@@ -205,7 +205,7 @@ export default function NavbarSearchBox() {
               setSuggestions([]);
               inputRef.current?.focus();
             }}
-            className="absolute right-8 text-brand-charcoal/40 hover:text-brand-charcoal transition-colors p-1"
+            className="absolute right-8 text-stone-400 hover:text-stone-700 transition-colors p-1"
             aria-label="Clear search"
           >
             <X className="w-3.5 h-3.5" />
@@ -213,7 +213,7 @@ export default function NavbarSearchBox() {
         ) : (
           /* Ctrl+K shortcut badge when idle */
           !isFocused && (
-            <span className="hidden md:inline-flex items-center gap-0.5 absolute right-8 text-[10px] text-brand-charcoal/40 bg-white border border-brand-linen rounded px-1.5 py-0.5 pointer-events-none font-mono font-bold shadow-xs">
+            <span className="hidden lg:inline-flex items-center gap-0.5 absolute right-8 text-[10px] text-stone-400 bg-white border border-stone-200 rounded px-1.5 py-0.5 pointer-events-none font-mono font-medium shadow-xs">
               <span>Ctrl</span>
               <span>K</span>
             </span>
@@ -222,7 +222,7 @@ export default function NavbarSearchBox() {
 
         <button
           type="submit"
-          className="absolute right-2.5 text-brand-charcoal/50 hover:text-brand-orange transition-colors p-1"
+          className="absolute right-2.5 text-stone-400 hover:text-amber-600 transition-colors p-1"
           aria-label="Submit search"
         >
           <Search className="w-4 h-4" />
