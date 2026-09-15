@@ -85,14 +85,34 @@ export default function ShopClient() {
     } catch (e) {}
   };
 
-  // Primary Taxonomy Filters
-  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  // Primary Taxonomy Filters — initialized from URL immediately to avoid a double-fetch
+  // on first page load (reading searchParams in useState initializer prevents the race
+  // condition where loadProducts fires before the sync useEffect sets state).
+  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(
+    () => searchParams.get("discipline") || null
+  );
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
+    () => searchParams.get("department") ? decodeURIComponent(searchParams.get("department")!) : null
+  );
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    () => searchParams.get("category") ? decodeURIComponent(searchParams.get("category")!) : null
+  );
+  const [searchQuery, setSearchQuery] = useState(
+    () => searchParams.get("q") ? decodeURIComponent(searchParams.get("q")!) : ""
+  );
   
   // Expanded department accordions in filter drawer
-  const [expandedDepts, setExpandedDepts] = useState<Record<string, boolean>>({});
+  const [expandedDepts, setExpandedDepts] = useState<Record<string, boolean>>(() => {
+    const deptParam = searchParams.get("department");
+    const catParam = searchParams.get("category");
+    if (deptParam) return { [decodeURIComponent(deptParam)]: true };
+    if (catParam) {
+      const decodedCat = decodeURIComponent(catParam);
+      const parentDept = DEPARTMENTS.find(d => d.subcategories.includes(decodedCat));
+      if (parentDept) return { [parentDept.name]: true };
+    }
+    return {};
+  });
 
   // Price & Stock
   const [priceOption, setPriceOption] = useState<PriceOption>("all");
@@ -112,7 +132,7 @@ export default function ShopClient() {
     }
   }, [isFilterDrawerOpen, isMobileSortOpen]);
 
-  // Sync state from URL params
+  // Keep state in sync when URL changes (e.g. browser back/forward or programmatic navigation)
   useEffect(() => {
     const discParam = searchParams.get("discipline");
     const deptParam = searchParams.get("department");

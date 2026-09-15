@@ -38,6 +38,10 @@ let cachedFacets: {
   disciplines: Record<string, number>;
 } | null = null;
 
+// Seller product cache: refreshed every 60s to avoid per-request DB round-trips
+let cachedSellerProducts: CatalogProduct[] | null = null;
+let cachedSellerProductsAt = 0;
+
 function normalizeProductCore(text: string): string {
   const base = (text || "").split(/[|—–]/)[0].toUpperCase();
   return base
@@ -143,47 +147,66 @@ export async function GET(req: NextRequest) {
   const { catalog: baseCatalog, facets: baseFacets } = getSingletonCatalog();
   let allProducts: CatalogProduct[] = [...baseCatalog];
 
-  // Merge any active 3rd-party marketplace seller products if available
-  try {
-    const dbSellerProducts = await prisma.product.findMany({
-      where: {
-        sellerId: { not: null },
-        status: ProductStatus.PUBLISHED,
-        seller: { accountStatus: 'ACTIVE' }
-      },
-      include: { seller: true },
-      take: 200
-    });
+  // Merge any active 3rd-party marketplace seller products if available.
+  // We cache this per warm serverless instance with a 60-second TTL to avoid
+  // a live Supabase round-trip on every single page load.
+  let sellerProductsFromDB: CatalogProduct[] = [];
+  const now = Date.now();
+  if (!cachedSellerProducts || (now - cachedSellerProductsAt) > 60_000) {
+    try {
+      const dbSellerProducts = await Promise.race([
+        prisma.product.findMany({
+          where: {
+            sellerId: { not: null },
+            status: ProductStatus.PUBLISHED,
+            seller: { accountStatus: 'ACTIVE' }
+          },
+          include: { seller: true },
+          take: 200
+        }),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error("DB timeout")), 1500)
+        )
+      ]);
 
-    if (dbSellerProducts && dbSellerProducts.length > 0) {
-      const mappedSellerProducts: CatalogProduct[] = dbSellerProducts.map(p => {
-        const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
-        const cat = normalizeCategoryName(p.category) || "General Silicone Moulds";
-        const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
-        const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
-        return {
-          id: p.id,
-          name: p.title,
-          category: cat,
-          department: dept,
-          disciplines: [],
-          price: effectivePriceINR,
-          image: p.imageUrl || "/og-image.jpg",
-          inStock: p.stock > 0 && !isQuoteOnly,
-          bulkDiscountAvailable: isQuoteOnly ? false : (Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0),
-          maxDiscount: 0,
-          description: p.description || "",
-          tags: [],
-          tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
-          isQuoteOnly
-        };
-      });
-
-      // Prepend third-party seller items
-      allProducts = [...mappedSellerProducts, ...baseCatalog];
+      if (Array.isArray(dbSellerProducts) && dbSellerProducts.length > 0) {
+        sellerProductsFromDB = dbSellerProducts.map(p => {
+          const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
+          const cat = normalizeCategoryName(p.category) || "General Silicone Moulds";
+          const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
+          const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
+          return {
+            id: p.id,
+            name: p.title,
+            category: cat,
+            department: dept,
+            disciplines: [],
+            price: effectivePriceINR,
+            image: p.imageUrl || "/og-image.jpg",
+            inStock: p.stock > 0 && !isQuoteOnly,
+            bulkDiscountAvailable: isQuoteOnly ? false : (Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0),
+            maxDiscount: 0,
+            description: p.description || "",
+            tags: [],
+            tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
+            isQuoteOnly
+          };
+        });
+      }
+      cachedSellerProducts = sellerProductsFromDB;
+      cachedSellerProductsAt = now;
+    } catch (_err) {
+      // DB offline, slow, or timed out — serve from JSON catalog only
+      if (cachedSellerProducts) {
+        sellerProductsFromDB = cachedSellerProducts; // use stale if available
+      }
     }
-  } catch (err) {
-    // Database offline or query bypassed, continue smoothly with catalog
+  } else {
+    sellerProductsFromDB = cachedSellerProducts;
+  }
+
+  if (sellerProductsFromDB.length > 0) {
+    allProducts = [...sellerProductsFromDB, ...baseCatalog];
   }
 
   // Filter catalog
