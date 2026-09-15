@@ -68205,7 +68205,7 @@
     "price": 382,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-sandalwood-essential-oil.webp",
+    "image": "/images/products/hydrosols/sandalwood-extracts.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68244,7 +68244,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/sandalwood-extracts.webp"
   },
   {
     "id": "905",
@@ -68254,7 +68255,7 @@
     "price": 313,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Chamomile Essential Oil.png",
+    "image": "/images/products/hydrosols/chamomile-extracts.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68294,7 +68295,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/chamomile-extracts.webp"
   },
   {
     "id": "906",
@@ -68304,7 +68306,7 @@
     "price": 439,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.webp",
+    "image": "/images/products/hydrosols/aloe-vera-extracts.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68345,7 +68347,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/aloe-vera-extracts.webp"
   },
   {
     "id": "907",
@@ -68355,7 +68358,7 @@
     "price": 562,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-ylang-ylang-essential-oil.webp",
+    "image": "/images/products/hydrosols/ylang-ylang-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68391,7 +68394,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/ylang-ylang-hydrosol.webp"
   },
   {
     "id": "908",
@@ -68401,7 +68405,7 @@
     "price": 376,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-spearmint-essential-oil.webp",
+    "image": "/images/products/hydrosols/spearmint-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68437,7 +68441,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/spearmint-hydrosol.webp"
   },
   {
     "id": "909",
@@ -68447,7 +68452,7 @@
     "price": 158,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+    "image": "/images/products/hydrosols/rosemary-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68483,7 +68488,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/rosemary-hydrosol.webp"
   },
   {
     "id": "910",
@@ -68493,7 +68499,7 @@
     "price": 320,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Patchouli.webp",
+    "image": "/images/products/hydrosols/patchouli-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68529,7 +68535,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/patchouli-hydrosol.webp"
   },
   {
     "id": "911",
@@ -68539,7 +68546,7 @@
     "price": 260,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-palmarosa-essential-oil.webp",
+    "image": "/images/products/hydrosols/palmarosa-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68575,7 +68582,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/palmarosa-hydrosol.webp"
   },
   {
     "id": "912",
@@ -68585,7 +68593,7 @@
     "price": 331,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lime-essential-oil.webp",
+    "image": "/images/products/hydrosols/lime-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68621,7 +68629,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/lime-hydrosol.webp"
   },
   {
     "id": "913",
@@ -68631,7 +68640,7 @@
     "price": 441,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.webp",
+    "image": "/images/products/hydrosols/kewra-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68667,7 +68676,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/kewra-hydrosol.webp"
   },
   {
     "id": "914",
@@ -68677,7 +68687,7 @@
     "price": 138,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-helichrysum-essential-oil.webp",
+    "image": "/images/products/hydrosols/helichrysum-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68713,7 +68723,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/helichrysum-hydrosol.webp"
   },
   {
     "id": "915",
@@ -68723,7 +68734,7 @@
     "price": 354,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-frankincense-essential-oil.webp",
+    "image": "/images/products/hydrosols/frankincense-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68759,7 +68770,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/frankincense-hydrosol.webp"
   },
   {
     "id": "916",
@@ -68769,7 +68781,7 @@
     "price": 169,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-clove-bud-essential-oil.webp",
+    "image": "/images/products/hydrosols/clove-bud-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68805,7 +68817,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/clove-bud-hydrosol.webp"
   },
   {
     "id": "917",
@@ -68815,7 +68828,7 @@
     "price": 359,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-cinnamon-bark-essential-oil.webp",
+    "image": "/images/products/hydrosols/cinnamon-bark-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68850,7 +68863,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/cinnamon-bark-hydrosol.webp"
   },
   {
     "id": "918",
@@ -68860,7 +68874,7 @@
     "price": 116,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-bergamot-essential-oil.webp",
+    "image": "/images/products/hydrosols/bergamot-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68896,7 +68910,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/bergamot-hydrosol.webp"
   },
   {
     "id": "919",
@@ -68906,7 +68921,7 @@
     "price": 325,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-neroli-essential-oil.webp",
+    "image": "/images/products/hydrosols/neroli-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -68941,7 +68956,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/neroli-hydrosol.webp"
   },
   {
     "id": "920",
@@ -69080,7 +69096,7 @@
     "price": 247,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/base-bottle.webp",
+    "image": "/images/products/hydrosols/jasmine-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69115,7 +69131,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/jasmine-hydrosol.webp"
   },
   {
     "id": "924",
@@ -69125,7 +69142,7 @@
     "price": 371,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-cedarwood-essential-oil.webp",
+    "image": "/images/products/hydrosols/cedarwood-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69161,7 +69178,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/cedarwood-hydrosol.webp"
   },
   {
     "id": "925",
@@ -69171,7 +69189,7 @@
     "price": 192,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+    "image": "/images/products/hydrosols/lavender-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69206,7 +69224,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/lavender-hydrosol.webp"
   },
   {
     "id": "926",
@@ -69216,7 +69235,7 @@
     "price": 435,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Vetiver.webp",
+    "image": "/images/products/hydrosols/vetiver-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69250,7 +69269,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/vetiver-hydrosol.webp"
   },
   {
     "id": "927",
@@ -69260,7 +69280,7 @@
     "price": 551,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-sandalwood-essential-oil.webp",
+    "image": "/images/products/hydrosols/sandalwood-organic-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69295,7 +69315,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/sandalwood-organic-hydrosol.webp"
   },
   {
     "id": "928",
@@ -69305,7 +69326,7 @@
     "price": 568,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/essential oils/ekora-bazaar-tea-tree-essential-oil.webp",
+    "image": "/images/products/hydrosols/tea-tree-hydrosol.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -69340,7 +69361,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "imageUrl": "/images/products/hydrosols/tea-tree-hydrosol.webp"
   },
   {
     "id": "929",
