@@ -232,9 +232,35 @@ export async function GET(req: NextRequest) {
     filtered.length = 0;
     scored.forEach(({ product }) => filtered.push(product));
   } else if (sortBy === "price_asc") {
-    filtered.sort((a, b) => a.price - b.price);
+    filtered.sort((a, b) => {
+      // Prioritize items with positive prices, put quote-only (price <= 0) at the end
+      if (a.price <= 0 && b.price > 0) return 1;
+      if (b.price <= 0 && a.price > 0) return -1;
+      return a.price - b.price;
+    });
   } else if (sortBy === "price_desc") {
     filtered.sort((a, b) => b.price - a.price);
+  } else if (sortBy === "newest") {
+    filtered.sort((a, b) => {
+      const idA = parseInt(a.id, 10);
+      const idB = parseInt(b.id, 10);
+      if (!isNaN(idA) && !isNaN(idB)) return idB - idA;
+      return b.id.localeCompare(a.id);
+    });
+  } else if (sortBy === "discount_desc") {
+    filtered.sort((a, b) => (b.maxDiscount || 0) - (a.maxDiscount || 0));
+  } else if (sortBy === "name_asc") {
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === "name_desc") {
+    filtered.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (sortBy === "recommended") {
+    filtered.sort((a, b) => {
+      if (a.inStock && !b.inStock) return -1;
+      if (!a.inStock && b.inStock) return 1;
+      if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
+      if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
+      return 0;
+    });
   }
 
   const total = filtered.length;
