@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { FLAG_DEFINITIONS } from "@/lib/intelligence";
+import { WHATSAPP_TEMPLATES } from "@/lib/intelligence-messages";
 
 export const dynamic = "force-dynamic";
 
@@ -100,15 +101,26 @@ export async function GET(req: NextRequest) {
       const customerPhone = primaryAddress?.phone || "N/A";
       const customerLocation = primaryAddress ? `${primaryAddress.city}, ${primaryAddress.state}` : "Unknown";
 
+      const evidence: string[] = Array.isArray(item.evidence)
+        ? (item.evidence as any[]).map((e) => String(e))
+        : [String(item.evidence)];
+
+      // Generate personalized WhatsApp message for this specific customer + flag
+      const templateDef = WHATSAPP_TEMPLATES[item.flag];
+      const waTemplate = templateDef
+        ? templateDef.message(customerName, evidence)
+        : `Hi ${customerName}, this is the Ekora Wholesale team. We wanted to reach out regarding your recent activity on our platform. How can we help?`;
+
       return {
         id: `${item.userId}_${item.flag}`,
         userId: item.userId,
         flag: item.flag,
         flagMeta: def,
-        evidence: Array.isArray(item.evidence) ? item.evidence : [String(item.evidence)],
+        evidence,
         resolved: item.resolved,
         firstDetectedAt: item.firstDetectedAt,
         lastUpdatedAt: item.lastUpdatedAt,
+        waTemplate,
         customer: {
           name: customerName,
           email: item.user.email,
