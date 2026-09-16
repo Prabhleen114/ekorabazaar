@@ -6,7 +6,7 @@ import { decrypt } from '@/lib/session'
 // Protect these routes
 const protectedRoutes = ['/admin', '/seller/dashboard']
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   
   // 1. Protect Sensitive API routes at the Edge perimeter
