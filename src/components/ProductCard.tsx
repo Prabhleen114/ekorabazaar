@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Tag } from "lucide-react";
 
 type Product = {
   id: string;
@@ -16,49 +15,48 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
   const isExternalImage = Boolean(product.imageUrl && product.imageUrl.startsWith("http"));
   const effectivePrice = product.price / 100;
   
-  // Check if bulk discount is available
+  // Check if bulk discount tier is available
   const bulkDiscountAvailable = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0;
 
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300 flex flex-col"
+      className="group bg-white border border-stone-200/80 hover:border-stone-400 transition-all duration-300 flex flex-col"
     >
-      <div className="aspect-square bg-[#fbfaf8] relative flex items-center justify-center p-2.5 overflow-hidden">
+      <div className="aspect-[4/5] bg-stone-50/60 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
         <Image
           src={product.imageUrl || "/og-image.jpg"}
           alt={product.title}
           fill
           unoptimized={isExternalImage}
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-          className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
+          className="object-contain p-2 group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
         />
         {bulkDiscountAvailable && (
-          <div className="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
-            <Tag className="w-3 h-3" /> Bulk Discount
+          <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
+            Tier Available
           </div>
         )}
       </div>
-      <div className="p-3 md:p-5 flex-1 flex flex-col">
-        <div className="flex justify-between items-start mb-1">
-          <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 line-clamp-1">
-            {product.category}
+
+      <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+        <div>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono line-clamp-1 block mb-1">
+            {product.category || "Studio Raw Material"}
           </span>
+          <h3 className="font-serif text-sm md:text-base text-stone-900 line-clamp-1 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors">
+            {product.title}
+          </h3>
         </div>
-        <h3 className="font-serif font-bold text-sm md:text-base text-brand-charcoal mb-auto line-clamp-2 leading-snug">
-          {product.title}
-        </h3>
         
-        <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-brand-linen flex items-center justify-between">
-          <div>
-            <span className="text-[10px] font-bold text-brand-charcoal/40 uppercase tracking-wider block mb-0.5">
-              From
-            </span>
-            <span className="font-bold text-brand-charcoal text-sm md:text-base">
-              ₹{effectivePrice}
-            </span>
-          </div>
+        <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
+          <span className="text-sm font-medium text-stone-900 font-mono">
+            ₹{effectivePrice}
+          </span>
+          <span className="text-[11px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
+            VIEW &rarr;
+          </span>
         </div>
       </div>
     </Link>

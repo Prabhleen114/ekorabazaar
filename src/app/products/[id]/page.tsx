@@ -219,12 +219,11 @@ export default async function ProductDetailsPage({ params }: Props) {
         </div>
       )}
 
-      {/* Optimized PDP Layout: Reduced top padding and streamlined layout */}
-      <div className="pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-6 md:gap-12">
-        {/* Product Image Gallery (Optimized viewport-fit) */}
+      {/* Optimized PDP Layout: Reduced top padding and streamlined editorial atelier layout */}
+      <div className="pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8 lg:gap-14">
+        {/* Product Image Gallery (Architectural Framing) */}
         <div className="w-full md:w-1/2">
-          {/* Edge-to-edge on mobile, rounded on desktop, sticky top-20 right under navbar */}
-          <div className="aspect-square max-h-[75vh] md:max-h-[500px] w-full bg-white md:rounded-3xl md:border border-brand-linen flex items-center justify-center p-2 md:p-6 md:sticky md:top-20 shadow-none md:shadow-sm overflow-hidden relative">
+          <div className="aspect-square md:aspect-[4/5] w-full bg-stone-50/50 border border-stone-200/80 flex items-center justify-center p-4 md:p-8 md:sticky md:top-24 overflow-hidden relative">
             <ProductImageClient 
               src={displayProduct.image} 
               alt={displayProduct.name} 
@@ -233,62 +232,52 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Product Info & Pricing */}
+        {/* Product Info & Formulation Panel */}
         <div className="w-full md:w-1/2 px-1 md:px-0 pt-2 md:pt-0">
           {/* Visual Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center text-xs font-semibold text-brand-charcoal/50 mb-4 flex-wrap gap-1">
-            <Link href="/" className="hover:text-brand-orange transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3 mx-0.5" />
-            <Link href="/shop" className="hover:text-brand-orange transition-colors">Shop</Link>
+          <nav aria-label="Breadcrumb" className="flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-mono mb-4 flex-wrap gap-1.5">
+            <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/shop" className="hover:text-stone-900 transition-colors">Shop</Link>
             {displayProduct.department && (
               <>
-                <ChevronRight className="w-3 h-3 mx-0.5" />
-                <Link href={`/shop?department=${encodeURIComponent(displayProduct.department)}`} className="hover:text-brand-orange transition-colors">{displayProduct.department}</Link>
+                <span>/</span>
+                <Link href={`/shop?department=${encodeURIComponent(displayProduct.department)}`} className="hover:text-stone-900 transition-colors">{displayProduct.department}</Link>
               </>
             )}
-            <ChevronRight className="w-3 h-3 mx-0.5" />
-            <Link href={`/shop?category=${encodeURIComponent(displayProduct.category)}`} className="hover:text-brand-orange transition-colors">{displayProduct.category}</Link>
+            <span>/</span>
+            <span className="text-stone-700">{displayProduct.category}</span>
           </nav>
           
-          <div className="mb-2 flex items-center gap-2 flex-wrap">
-            {displayProduct.department && (
-              <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 bg-brand-bg px-2 py-0.5 rounded border border-brand-linen">
-                {displayProduct.department}
-              </span>
-            )}
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">{displayProduct.category}</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-1">
-            {displayProduct.name} <span className="text-brand-orange text-2xl md:text-3xl font-sans font-semibold">Wholesale India</span>
-          </h1>
-          <p className="text-xs font-semibold text-brand-charcoal/60 mb-3 md:mb-4">
-            Bulk {displayProduct.category} for Small Businesses | Lab-Tested &amp; COA Certified Supplier
-          </p>
-          
-          <div className="hidden md:block">
-            <p className="text-brand-charcoal/70 leading-relaxed mb-6">
-              {displayProduct.description}
+          <div className="mb-2">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
+              {displayProduct.category} &bull; Formulation Grade
+            </span>
+            <h1 className="font-serif text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-2">
+              {displayProduct.name}
+            </h1>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-mono mb-4">
+              Direct Manufacturer Batch Tested &bull; COA Verified
             </p>
+          </div>
+          
+          <div className="text-stone-600 font-light text-xs md:text-sm leading-relaxed mb-6 border-y border-stone-200/70 py-4">
+            <p>{displayProduct.description}</p>
           </div>
 
           {displayProduct.isQuoteOnly || !displayProduct.inStock ? (
-            <div className="flex items-center gap-4 mb-8 text-sm">
-              <div className="flex items-center gap-1.5 text-amber-800 bg-amber-50 border border-amber-200/60 px-3 py-1.5 rounded-lg font-semibold">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <div className="flex items-center gap-3 mb-4 text-xs font-mono">
+              <span className="border border-stone-300 px-2.5 py-1 text-stone-700 bg-stone-50">
                 Custom Wholesale Quote on Request
-              </div>
-              <div className="text-brand-charcoal/50 text-xs">
-                Direct Sourcing Inquiry
-              </div>
+              </span>
             </div>
           ) : (
-            <div className="flex items-center gap-4 mb-8 text-sm">
-              <div className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span> In Stock
-              </div>
-              <div className="text-brand-charcoal/50">
-                Ships in 24 hours
-              </div>
+            <div className="flex items-center gap-4 mb-4 text-[11px] font-mono text-stone-600">
+              <span className="flex items-center gap-1.5 text-stone-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8C734B]"></span> In Stock at Atelier
+              </span>
+              <span>&bull;</span>
+              <span>Ships in 24 Hours</span>
             </div>
           )}
 
@@ -306,37 +295,26 @@ export default async function ProductDetailsPage({ params }: Props) {
             inStock={displayProduct.inStock}
           />
 
-          {/* Trust factors — placed near purchase CTA above fold */}
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
-              <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M10 2v2a3 3 0 0 0 3 3h1a3 3 0 0 0 3-3V2M9 14h6M9 18h6M14 2h.01"/><path d="M8.5 2h7l4.5 18a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2z"/></svg>
-              </div>
-              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Lab Tested</h4>
-              <p className="text-[9px] text-brand-charcoal/50 leading-tight">COA &amp; MSDS</p>
+          {/* Trust factors — Quiet hairline divider matrix */}
+          <div className="mt-6 border border-stone-200 divide-x divide-stone-200 grid grid-cols-3 bg-white text-center py-3.5">
+            <div className="px-2">
+              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Lab Tested</h4>
+              <p className="text-[9px] text-stone-400 font-mono">COA &amp; MSDS</p>
             </div>
-
-            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
-              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Batch Matched</h4>
-              <p className="text-[9px] text-brand-charcoal/50 leading-tight">100% Consistent</p>
+            <div className="px-2">
+              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Batch Matched</h4>
+              <p className="text-[9px] text-stone-400 font-mono">100% Consistent</p>
             </div>
-
-            <div className="bg-white p-3 rounded-xl border border-brand-linen shadow-sm flex flex-col items-center text-center gap-1">
-              <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
-              </div>
-              <h4 className="font-bold text-[11px] text-brand-charcoal leading-tight">Instant Docs</h4>
-              <p className="text-[9px] text-brand-charcoal/50 leading-tight">COA PDF Included</p>
+            <div className="px-2">
+              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Instant Docs</h4>
+              <p className="text-[9px] text-stone-400 font-mono">PDF Included</p>
             </div>
           </div>
 
-          <div className="mt-4 bg-white p-6 rounded-2xl border border-brand-linen shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-4 border border-stone-200 p-4 bg-white flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
-              <h4 className="font-bold text-brand-charcoal">Supplier: {productData.supplierName}</h4>
-              <p className="text-xs text-brand-charcoal/60">100% Secure B2B Transactions</p>
+              <span className="text-[10px] uppercase tracking-widest text-stone-400 font-mono block">Supplier</span>
+              <h4 className="font-serif text-sm text-stone-900">{productData.supplierName}</h4>
             </div>
             <ContactSupplierButton 
               productName={displayProduct.name} 
@@ -345,78 +323,57 @@ export default async function ProductDetailsPage({ params }: Props) {
             />
           </div>
           
-          {/* Details / Specifications (Collapsible on Mobile) */}
-          <div className="mt-8 space-y-4">
-            {/* Description (Mobile Only) */}
-            <details className="md:hidden group bg-white border border-brand-linen rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-              <summary className="font-bold text-base text-brand-charcoal p-4 cursor-pointer flex justify-between items-center bg-stone-50 group-open:bg-white transition-colors">
-                Product Description
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="p-4 pt-0 text-brand-charcoal/70 leading-relaxed text-sm border-t border-brand-linen">
-                {displayProduct.description}
-              </div>
-            </details>
-
-            {/* Fragrance Notes */}
-            {displayProduct.fragranceNotes && (
-              <details className="group bg-white border border-brand-linen rounded-2xl overflow-hidden md:border-none md:bg-transparent [&_summary::-webkit-details-marker]:hidden" open>
-                <summary className="font-bold text-base md:font-serif md:text-xl text-brand-charcoal p-4 md:p-0 md:mb-6 cursor-pointer flex justify-between items-center bg-stone-50 md:bg-transparent group-open:bg-white md:pointer-events-none transition-colors">
-                  <span className="md:bg-rose-50 md:text-rose-900 md:py-2.5 md:px-6 md:rounded-xl md:border md:border-rose-100 md:shadow-sm md:w-full md:text-center md:block">Fragrance Notes</span>
-                  <span className="transition group-open:rotate-180 md:hidden">
-                    <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                  </span>
-                </summary>
-                <div className="p-4 pt-0 md:p-0 border-t border-brand-linen md:border-none text-brand-charcoal/70 text-sm">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mt-2 md:mt-0">
-                    <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
-                      <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Top Notes</h4>
-                      <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(displayProduct.fragranceNotes.top) ? displayProduct.fragranceNotes.top.join(", ") : displayProduct.fragranceNotes.top}
-                      </p>
-                    </div>
-                    <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
-                      <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Heart Notes</h4>
-                      <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(displayProduct.fragranceNotes.heart) ? displayProduct.fragranceNotes.heart.join(", ") : displayProduct.fragranceNotes.heart}
-                      </p>
-                    </div>
-                    <div className="bg-white p-4 md:p-5 rounded-xl md:rounded-2xl border border-brand-linen text-center shadow-sm hover:border-rose-200 transition-colors">
-                      <h4 className="text-[10px] font-bold tracking-widest text-brand-charcoal/50 uppercase mb-2 md:mb-3">Base Notes</h4>
-                      <p className="font-medium text-brand-charcoal text-sm leading-relaxed">
-                        {Array.isArray(displayProduct.fragranceNotes.base) ? displayProduct.fragranceNotes.base.join(", ") : displayProduct.fragranceNotes.base}
-                      </p>
-                    </div>
-                  </div>
+          {/* Olfactory Notes Pyramid (Diptyque 3-Part Minimalist Grid) */}
+          {displayProduct.fragranceNotes && (
+            <div className="mt-8">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-2">
+                Olfactory Composition
+              </span>
+              <div className="border border-stone-200 divide-x divide-stone-200 grid grid-cols-3 bg-white text-center py-4">
+                <div className="px-3">
+                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Top Notes</h4>
+                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
+                    {Array.isArray(displayProduct.fragranceNotes.top) ? displayProduct.fragranceNotes.top.join(", ") : displayProduct.fragranceNotes.top}
+                  </p>
                 </div>
-              </details>
-            )}
+                <div className="px-3">
+                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Heart Notes</h4>
+                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
+                    {Array.isArray(displayProduct.fragranceNotes.heart) ? displayProduct.fragranceNotes.heart.join(", ") : displayProduct.fragranceNotes.heart}
+                  </p>
+                </div>
+                <div className="px-3">
+                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Base Notes</h4>
+                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
+                    {Array.isArray(displayProduct.fragranceNotes.base) ? displayProduct.fragranceNotes.base.join(", ") : displayProduct.fragranceNotes.base}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
-            {/* Recommended Usage */}
+          {/* Technical Dossier Collapsible Drawers */}
+          <div className="mt-8 border-t border-stone-200 divide-y divide-stone-200">
             {displayProduct.usageLevels && (
-              <details className="group bg-white border border-brand-linen rounded-2xl overflow-hidden md:border-none md:bg-transparent [&_summary::-webkit-details-marker]:hidden" open>
-                <summary className="font-bold text-base md:font-serif md:text-xl text-brand-charcoal p-4 md:p-0 md:mb-6 cursor-pointer flex justify-between items-center bg-stone-50 md:bg-transparent group-open:bg-white md:pointer-events-none transition-colors">
-                  <span className="md:bg-brand-linen/30 md:py-2.5 md:px-6 md:rounded-xl md:w-full md:text-center md:block">Recommended Usage</span>
-                  <span className="transition group-open:rotate-180 md:hidden">
-                    <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                  </span>
+              <details className="group py-4">
+                <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+                  <span>+ Recommended Usage Limits (IFRA Standards)</span>
+                  <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
                 </summary>
-                <div className="p-4 pt-0 md:p-0 border-t border-brand-linen md:border-none">
-                  <div className="overflow-hidden rounded-xl md:rounded-2xl border border-brand-linen shadow-sm mt-2 md:mt-0">
-                    <table className="w-full text-sm text-left">
-                      <thead className="bg-brand-linen/40 text-brand-charcoal/60 uppercase text-[10px] font-bold tracking-wider">
+                <div className="pt-4">
+                  <div className="border border-stone-200 overflow-hidden">
+                    <table className="w-full text-xs text-left font-mono">
+                      <thead className="bg-stone-50 text-stone-500 uppercase text-[9px] tracking-wider border-b border-stone-200">
                         <tr>
-                          <th className="px-4 md:px-6 py-3 md:py-4">Application</th>
-                          <th className="px-4 md:px-6 py-3 md:py-4 text-right">Recommended Usage</th>
+                          <th className="px-4 py-2.5">Application</th>
+                          <th className="px-4 py-2.5 text-right">Max Safe Usage</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-brand-linen bg-white">
+                      <tbody className="divide-y divide-stone-200 bg-white">
                         {Object.entries(displayProduct.usageLevels).map(([app, usage]) => (
-                          <tr key={app} className="hover:bg-brand-bg/50 transition-colors">
-                            <td className="px-4 md:px-6 py-3 font-medium text-brand-charcoal text-xs md:text-sm">{app}</td>
-                            <td className="px-4 md:px-6 py-3 text-right font-bold text-brand-orange text-xs md:text-sm">{usage as string}</td>
+                          <tr key={app} className="hover:bg-stone-50/50">
+                            <td className="px-4 py-2.5 text-stone-800">{app}</td>
+                            <td className="px-4 py-2.5 text-right font-medium text-[#8C734B]">{usage as string}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -425,9 +382,34 @@ export default async function ProductDetailsPage({ params }: Props) {
                 </div>
               </details>
             )}
+
+            <details className="group py-4">
+              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+                <span>+ Batch Compliance &amp; Technical Data Sheet (TDS)</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+              </summary>
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2 font-mono">
+                <p>&bull; Gas Chromatography &bull; Mass Spectrometry (GC-MS) batch matched.</p>
+                <p>&bull; Phthalate-Free &bull; Cruelty-Free &bull; 100% Uncut Pure Formulation Grade.</p>
+                <p>&bull; Certificate of Analysis (COA) generated per production lot.</p>
+              </div>
+            </details>
+
+            <details className="group py-4">
+              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+                <span>+ Studio Storage &amp; Shelf Life</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+              </summary>
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-mono">
+                Store in original amber glass or food-grade HDPE container at 15&deg;C&ndash;25&deg;C away from direct UV exposure. Optimal shelf life is 24 months from batch distillation date.
+              </div>
+            </details>
           </div>
         </div>
       </div>
+
+
+
 
       {/* Lab-Tested & COA Certified Technical Documentation */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-10">

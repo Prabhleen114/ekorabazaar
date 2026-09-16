@@ -325,18 +325,18 @@ export default function PricingWidget({
 
   return (
     <>
-      <div className="bg-brand-bg rounded-2xl p-6 border border-brand-linen mt-8">
+      <div className="bg-white p-6 border border-stone-200 mt-6 space-y-6">
         {variants && variants.length > 0 && (
-          <div className="mb-6 pb-6 border-b border-brand-linen">
-            <div className="flex items-center justify-between mb-3">
-              <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70">
-                Choose Your Quantity
+          <div className="pb-5 border-b border-stone-200">
+            <div className="flex items-center justify-between mb-2.5">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono">
+                Volume Variant
               </label>
-              <span className="text-xs font-semibold text-brand-orange">
-                Selected: {selectedVariant?.size}
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono">
+                {selectedVariant?.size}
               </span>
             </div>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {variants.map((v, idx) => {
                 const isSelected = selectedVariant?.size === v.size;
                 return (
@@ -352,10 +352,10 @@ export default function PricingWidget({
                         price: v.price
                       });
                     }}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+                    className={`px-3 py-2 text-xs font-mono transition-all border ${
                       isSelected
-                        ? "bg-brand-charcoal text-white border-brand-charcoal shadow-sm"
-                        : "bg-white text-brand-charcoal/80 border-brand-linen hover:border-brand-charcoal/40 hover:bg-stone-50"
+                        ? "bg-stone-900 text-stone-50 border-stone-900"
+                        : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"
                     }`}
                   >
                     {v.size}
@@ -366,126 +366,145 @@ export default function PricingWidget({
           </div>
         )}
 
-        <h3 className="font-bold text-brand-charcoal mb-4">Wholesale Pricing Tiers</h3>
-        
-        <div className="space-y-2 mb-6">
-          {activeTiers.map((tier, idx) => {
-          const isActive = currentTier === tier;
-          return (
-            <div 
-              key={idx} 
-              onMouseEnter={() => trackEvent("tier_pricing_hover", {
-                productId,
-                productName,
-                tierMinQty: tier.minQty,
-                tierMaxQty: tier.maxQty,
-                price: tier.price,
-                discountPct: tier.discountPct,
-              })}
-              className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
-                isActive ? "bg-white border-brand-orange shadow-sm" : "border-transparent text-brand-charcoal/60 hover:bg-white/60"
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <span className={`font-semibold ${isActive ? "text-brand-orange" : ""}`}>
-                  {tier.maxQty ? `${tier.minQty} - ${tier.maxQty}` : `${tier.minQty}+`} units
-                </span>
-                {tier.discountPct > 0 && (
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">
-                    {tier.discountPct}% OFF
-                  </span>
-                )}
-              </div>
-              <div className={`font-bold ${isActive ? "text-brand-charcoal" : ""}`}>
-                ₹{tier.price} <span className="text-xs font-normal opacity-70">/ unit</span>
-              </div>
+        {/* Quiet Apothecary Wholesale Matrix */}
+        {activeTiers && activeTiers.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono">
+                Wholesale Volume Slabs
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono">
+                Direct Sourcing
+              </span>
             </div>
-          );
-        })}
-      </div>
+            
+            <div className="border border-stone-200 divide-y divide-stone-200">
+              {activeTiers.map((tier, idx) => {
+                const isActive = currentTier === tier;
+                return (
+                  <div 
+                    key={idx} 
+                    onClick={() => handleQuantityChange(tier.minQty)}
+                    onMouseEnter={() => trackEvent("tier_pricing_hover", {
+                      productId,
+                      productName,
+                      tierMinQty: tier.minQty,
+                      tierMaxQty: tier.maxQty,
+                      price: tier.price,
+                      discountPct: tier.discountPct,
+                    })}
+                    className={`flex items-center justify-between p-3 text-xs transition-colors cursor-pointer ${
+                      isActive ? "bg-stone-100/80 font-medium text-stone-900" : "bg-white text-stone-600 hover:bg-stone-50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-stone-900">
+                        {tier.maxQty ? `${tier.minQty} - ${tier.maxQty}` : `${tier.minQty}+`} units
+                      </span>
+                      {tier.discountPct > 0 && (
+                        <span className="text-[9px] uppercase tracking-widest px-1.5 py-0.5 border border-stone-300 text-stone-600 font-mono">
+                          {tier.discountPct}% Tier
+                        </span>
+                      )}
+                    </div>
+                    <span className="font-mono text-stone-900">
+                      ₹{tier.price} <span className="text-[10px] text-stone-400">/ unit</span>
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
-      <div className="pt-6 border-t border-brand-linen flex flex-col sm:flex-row gap-4 items-end sm:items-center justify-between">
-        <div>
-          <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/50 block mb-2">Quantity</label>
-          <div className="flex items-center bg-white border border-brand-linen rounded-xl overflow-hidden h-12 w-36">
-            <button 
-              onClick={() => handleQuantityChange(quantity - 1)}
-              className="w-12 h-full flex items-center justify-center text-brand-charcoal/50 hover:bg-brand-linen/50 hover:text-brand-charcoal transition-colors min-w-[44px]"
-            >
-              <Minus className="w-4 h-4" />
-            </button>
-            <input 
-              type="number" 
-              value={quantity}
-              onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
-              className="flex-1 w-full text-center font-semibold text-brand-charcoal focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-            />
-            <button 
-              onClick={() => handleQuantityChange(quantity + 1)}
-              className="w-12 h-full flex items-center justify-center text-brand-charcoal/50 hover:bg-brand-linen/50 hover:text-brand-charcoal transition-colors min-w-[44px]"
-            >
-              <Plus className="w-4 h-4" />
-            </button>
+        {/* Quantity and Subtotal */}
+        <div className="pt-5 border-t border-stone-200 flex flex-col sm:flex-row gap-5 items-stretch sm:items-center justify-between">
+          <div>
+            <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-2">
+              Batch Quantity
+            </label>
+            <div className="flex items-center border border-stone-300 h-11 w-32 bg-white">
+              <button 
+                onClick={() => handleQuantityChange(quantity - 1)}
+                className="w-10 h-full flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
+                aria-label="Decrease quantity"
+              >
+                <Minus className="w-3.5 h-3.5" />
+              </button>
+              <input 
+                type="number" 
+                value={quantity}
+                onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
+                className="flex-1 w-full text-center text-xs font-mono font-medium text-stone-900 focus:outline-none"
+              />
+              <button 
+                onClick={() => handleQuantityChange(quantity + 1)}
+                className="w-10 h-full flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
+                aria-label="Increase quantity"
+              >
+                <Plus className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="text-right">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-0.5">
+              Order Subtotal
+            </div>
+            <div className="text-2xl font-mono font-medium text-stone-900">
+              ₹{subtotal.toLocaleString()}
+            </div>
           </div>
         </div>
 
-        {/* Mobile: Subtotal shown inline (above sticky bar) */}
-        <div className="md:hidden text-right flex-1 w-full">
-          <div className="text-sm text-brand-charcoal/50 font-medium mb-1">Subtotal</div>
-          <div className="text-2xl font-bold text-brand-charcoal">₹{subtotal.toLocaleString()}</div>
-        </div>
+        {errorMsg && <div className="text-stone-800 text-xs font-mono bg-stone-100 p-2 border border-stone-300">{errorMsg}</div>}
 
-        <div className="text-right flex-1 w-full sm:w-auto hidden md:block">
-          <div className="text-sm text-brand-charcoal/50 font-medium mb-1">Subtotal</div>
-          <div className="text-2xl font-bold text-brand-charcoal mb-4">₹{subtotal.toLocaleString()}</div>
-          {errorMsg && <div className="text-red-500 text-xs font-semibold mb-2">{errorMsg}</div>}
-          <div className="flex flex-col gap-2">
-            <button 
-              onClick={() => handleAction('cart')}
-              disabled={isProcessing}
-              className={`w-full text-white py-3.5 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-90 disabled:cursor-not-allowed ${isAddedSuccess ? "bg-emerald-600 hover:bg-emerald-700" : "bg-brand-charcoal hover:bg-brand-charcoal/90"}`}
-            >
-              {isAddingToCart ? <Loader2 className="w-5 h-5 animate-spin" /> : (isAddedSuccess ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />)} 
-              {isAddingToCart ? "Adding..." : (isAddedSuccess ? "Added to cart ✓" : "Add to Cart")}
-            </button>
-            <button 
-              onClick={() => handleAction('buy_now')}
-              disabled={isProcessing}
-              className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md shadow-brand-orange/15 hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-            >
-              {isBuyingNow ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Mobile Sticky Add to Cart Bar */}
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-brand-linen p-4 z-40 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)] flex items-center justify-between" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}>
-      <div className="flex flex-col">
-        <span className="text-[10px] font-bold text-brand-charcoal/50 uppercase tracking-wider">Subtotal</span>
-        <span className="text-lg font-bold text-brand-charcoal">₹{subtotal.toLocaleString()}</span>
-      </div>
-      <div className="flex flex-col gap-1 items-end flex-1 ml-4">
-        {errorMsg && <span className="text-red-500 text-[10px] font-semibold">{errorMsg}</span>}
-        <div className="flex gap-2 w-full justify-end">
+        {/* Architectural CTAs */}
+        <div className="space-y-2 pt-2">
           <button 
             onClick={() => handleAction('cart')}
             disabled={isProcessing}
-            className={`${isAddedSuccess ? "bg-emerald-600 text-white" : "bg-brand-charcoal text-white"} px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg min-h-[48px] disabled:opacity-90 disabled:cursor-not-allowed`}
+            className="w-full bg-stone-900 text-stone-50 hover:bg-stone-800 text-xs uppercase tracking-[0.2em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
           >
-            {isAddingToCart ? <Loader2 className="w-5 h-5 animate-spin" /> : (isAddedSuccess ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />)}
+            {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />)} 
+            <span>{isAddingToCart ? "Adding to Batch..." : (isAddedSuccess ? "Added to Atelier Cart ✓" : "Add to Cart")}</span>
           </button>
           <button 
             onClick={() => handleAction('buy_now')}
             disabled={isProcessing}
-            className="flex-1 bg-brand-orange text-white px-4 py-3 rounded-xl font-semibold active:scale-[0.98] transition-all flex items-center justify-center shadow-lg shadow-brand-orange/20 min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-stone-50 text-xs uppercase tracking-[0.18em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
           >
-            {isBuyingNow ? <Loader2 className="w-5 h-5 animate-spin" /> : "Buy Now"}
+            {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Direct Checkout"}
           </button>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Sticky Action Bar */}
+      <div 
+        className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 z-40 flex items-center justify-between" 
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+      >
+        <div className="flex flex-col">
+          <span className="text-[9px] uppercase tracking-widest text-stone-400 font-mono">Subtotal</span>
+          <span className="text-base font-mono font-medium text-stone-900">₹{subtotal.toLocaleString()}</span>
+        </div>
+        <div className="flex gap-2 items-center">
+          <button 
+            onClick={() => handleAction('cart')}
+            disabled={isProcessing}
+            className="bg-stone-900 text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
+          >
+            {isAddedSuccess ? "Added ✓" : "Add to Cart"}
+          </button>
+          <button 
+            onClick={() => handleAction('buy_now')}
+            disabled={isProcessing}
+            className="border border-stone-900 text-stone-900 px-4 py-3 text-xs uppercase tracking-widest font-mono min-h-[44px]"
+          >
+            Buy
+          </button>
+        </div>
+      </div>
     </>
   );
 }

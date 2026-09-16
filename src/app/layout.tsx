@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
@@ -12,9 +12,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 const BASE_URL = "https://www.ekorabazaar.in";
@@ -183,7 +184,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
+        className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
       >
         {children}
         <WhatsAppButton />

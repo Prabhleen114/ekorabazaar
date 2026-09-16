@@ -618,51 +618,56 @@ export default function ShopClient() {
                 <Link 
                   key={product.id} 
                   href={`/products/${product.id}`} 
-                  className="group bg-white rounded-2xl overflow-hidden border border-stone-200/90 hover:border-amber-600/50 hover:shadow-xl transition-all duration-300 flex flex-col"
+                  className="group bg-white border border-stone-200/80 hover:border-stone-400 transition-all duration-300 flex flex-col"
                 >
-                  <div className="aspect-square bg-[#fbfaf8] relative flex items-center justify-center p-3 overflow-hidden">
+                  <div className="aspect-[4/5] bg-stone-50/60 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
                     <Image 
                       src={product.image || "/og-image.jpg"} 
                       alt={product.name} 
                       fill 
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-300" 
+                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-700 ease-out" 
                     />
                     {product.isQuoteOnly || product.price === 0 ? (
-                      <div className="absolute top-3 left-3 bg-stone-800/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                      <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
                         Quote Only
                       </div>
                     ) : product.bulkDiscountAvailable ? (
-                      <div className="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-sm">
-                        <Tag className="w-3 h-3" /> Bulk Tier
+                      <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
+                        Tier Available
                       </div>
                     ) : null}
                   </div>
 
-                  <div className="p-4 md:p-5 flex-1 flex flex-col">
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-amber-700 line-clamp-1">
+                  <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono line-clamp-1 block mb-1">
                         {product.category}
                       </span>
+                      <h2 className="font-serif text-sm md:text-base text-stone-900 line-clamp-2 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors leading-snug">
+                        {product.name}
+                      </h2>
                     </div>
-                    <h2 className="font-semibold text-stone-900 mb-1 md:mb-2 line-clamp-2 text-sm md:text-base leading-tight md:leading-snug group-hover:text-amber-700 transition-colors">
-                      {product.name}
-                    </h2>
-                    <div className="mt-auto pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 border-t border-stone-100">
+                    <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
                       {product.isQuoteOnly || product.price === 0 ? (
-                        <span className="font-semibold text-xs md:text-sm text-amber-800 bg-amber-50 border border-amber-200/60 px-2 py-0.5 rounded-md">
+                        <span className="text-xs text-stone-600 font-mono">
                           Quote on Request
                         </span>
                       ) : (
-                        <>
-                          <span className="font-bold text-base md:text-lg text-stone-900">₹{product.price}</span>
-                          {product.maxDiscount > 0 && (
-                            <span className="text-[10px] md:text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md self-start sm:self-auto">
-                              Up to {product.maxDiscount}% off
+                        <div>
+                          <span className="font-medium text-sm md:text-base text-stone-900 font-mono">
+                            ₹{product.price}
+                          </span>
+                          {product.bulkDiscountAvailable && (
+                            <span className="text-[10px] text-stone-400 font-mono block">
+                              12+ Volume Tier
                             </span>
                           )}
-                        </>
+                        </div>
                       )}
+                      <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
+                        VIEW &rarr;
+                      </span>
                     </div>
                   </div>
                 </Link>

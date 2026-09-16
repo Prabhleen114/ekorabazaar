@@ -2,372 +2,295 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import Image from "next/image";
-import { 
-  Sparkles, 
-  Factory, 
-  ArrowRight, 
-  Droplets, 
-  Flame, 
-  Box, 
-  Gem, 
-  Package, 
-  FlaskConical, 
-  Leaf, 
-  Layers, 
-  Store,
-  Lock,
-  CheckCircle2,
-  Search
-} from "lucide-react";
-import { DISCIPLINE_HUBS } from "@/lib/taxonomy";
-
+import { ArrowRight, Sparkles, Check, ChevronRight } from "lucide-react";
+import catalogProducts from "@/lib/data/products.json";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ekora Bazaar | Premium Raw Materials & Wholesale Craft Supplies",
+  title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Atelier",
   description:
-    "India's premier wholesale marketplace for creators. Buy batch-tested candle wax, resin, molds, soap base and craft supplies at wholesale prices.",
+    "Direct manufacturer raw materials for modern makers. 100% soy wax, IFRA certified fragrance oils, cosmetic bases, and silicone moulds.",
 };
 
-export default function BuyerHomePage() {
-  const craftCategories = [
-    { 
-      name: "Fragrance Oils", 
-      href: "/shop?category=Fragrance%20Oils", 
-      count: "301 Blends", 
-      icon: Droplets, 
-      color: "bg-rose-50 text-rose-600 border-rose-100",
-      bgImage: "/images/fragrance_oils_bg.jpg"
-    },
-    { 
-      name: "Candle Moulds", 
-      href: "/shop?category=Candle%20%26%20Pillar%20Moulds", 
-      count: "229 Designs", 
-      icon: Flame, 
-      color: "bg-amber-50 text-amber-600 border-amber-100",
-      bgImage: "/images/candle_moulds_bg.jpg"
-    },
-    { 
-      name: "Fondant Moulds", 
-      href: "/shop?category=Culinary%20%26%20Fondant%20Moulds", 
-      count: "354 Designs", 
-      icon: Box, 
-      color: "bg-blue-50 text-blue-600 border-blue-100",
-      bgImage: "/images/fondant_moulds_bg.jpg"
-    },
-    { 
-      name: "Resin & Stone", 
-      href: "/shop?category=Eco-Resin%20%26%20Stone%20Moulds", 
-      count: "602 Designs", 
-      icon: Gem, 
-      color: "bg-purple-50 text-purple-600 border-purple-100",
-      bgImage: "/images/resin_stone_bg.jpg"
-    },
-    { 
-      name: "Casting Bases", 
-      href: "/shop?department=Casting%20Mediums%20%26%20Raw%20Bases", 
-      count: "Waxes & Bases", 
-      icon: Sparkles, 
-      color: "bg-emerald-50 text-emerald-600 border-emerald-100",
-      bgImage: "/images/bases_waxes_bg.jpg"
-    },
-    { 
-      name: "Jars & Packaging", 
-      href: "/shop?department=Vessels%20%26%20Packaging%20Studio", 
-      count: "219 Items", 
-      icon: Package, 
-      color: "bg-orange-50 text-orange-600 border-orange-100",
-      bgImage: "/images/containers_tins_bg.jpg"
-    },
-  ];
+const CORE_DISCIPLINES = [
+  { name: "Candle Studio", href: "/shop?discipline=candle-studio" },
+  { name: "Soap Atelier", href: "/shop?discipline=soap-atelier" },
+  { name: "Fragrance & Botanicals", href: "/shop?category=Fragrance%20Oils" },
+  { name: "Moulds & Casting", href: "/shop?category=Eco-Resin%20%26%20Stone%20Moulds" },
+  { name: "Vessels & Packaging", href: "/shop?department=Vessels%20%26%20Packaging%20Studio" },
+  { name: "Discovery Kits", href: "/classes" },
+];
 
-  const trustBadges = [
-    { icon: FlaskConical, title: "Lab-Tested & COA Certified", desc: "Batch test reports available on all raw materials" },
-    { icon: Leaf, title: "IFRA Compliant Formulation", desc: "Certified safe for candles, soaps & cosmetic use" },
-    { icon: Factory, title: "Direct Manufacturer Sourcing", desc: "No middleman markups — direct factory pricing" },
-    { icon: Layers, title: "Wholesale Tier Pricing", desc: "Automatic volume discounts at 12+ & 52+ units" },
-  ];
+export default function BuyerHomePage() {
+  // Select top 4 curated formulation essentials for the trending shelf
+  const trendingProductIds = ["790", "904", "907", "905"];
+  const trendingProducts = trendingProductIds
+    .map((id) => (catalogProducts as any[]).find((p) => String(p.id) === id))
+    .filter(Boolean);
 
   return (
-    <main className="min-h-screen bg-brand-bg flex flex-col">
+    <main className="min-h-screen bg-[#FAF8F5] text-[#181715] flex flex-col font-sans selection:bg-[#E8E5DF] selection:text-[#181715]">
       <BuyerNavbar />
 
-      {/* 1. HERO SECTION (Headline + Search + Process Cards) */}
-      <section className="pt-8 md:pt-14 pb-8 md:pb-12 px-5 md:px-6 max-w-6xl mx-auto w-full text-center space-y-6 md:space-y-8">
-        
-        {/* Top Tagline / Category Breadcrumb */}
-        <div className="inline-flex items-center gap-2 bg-white border border-brand-linen text-brand-charcoal/80 rounded-full px-4 py-1.5 text-xs font-semibold shadow-xs">
-          <Sparkles className="w-3.5 h-3.5 text-brand-orange" />
-          <span>India&apos;s Dedicated B2B Creator Sourcing Hub</span>
-        </div>
-
-        {/* Hero Title & Subheading */}
-        <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-charcoal tracking-tight leading-[1.15]">
-            Wholesale Raw Materials &amp; Precision Moulds for Modern Artisans.
-          </h1>
-          <p className="text-sm md:text-lg text-brand-charcoal/70 max-w-xl mx-auto font-normal leading-relaxed">
-            Batch-tested soy waxes, skin-safe cosmetic fragrances, and heavy-gauge silicone moulds with wholesale tier pricing.
-          </p>
-
-          {/* Quick Search Bar */}
-          <div className="pt-2 max-w-lg mx-auto">
-            <form action="/shop" method="GET" className="relative flex items-center">
-              <input 
-                type="text" 
-                name="q" 
-                placeholder="Search by material (e.g. Soy Wax, Myrrh, Silicone Mold)..." 
-                className="w-full bg-white border border-brand-linen rounded-2xl pl-11 pr-24 py-3.5 text-sm font-medium text-brand-charcoal focus:outline-none focus:border-brand-orange shadow-sm"
-              />
-              <Search className="w-4 h-4 text-brand-charcoal/40 absolute left-4 pointer-events-none" />
-              <button 
-                type="submit" 
-                className="absolute right-2 bg-brand-orange text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl hover:bg-brand-terracotta transition-colors"
+      {/* 1. DISCIPLINE DIRECTORY BAR (Instant Taxonomy Access) */}
+      <div className="w-full border-b border-stone-200/80 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between overflow-x-auto hide-scrollbar gap-6 md:gap-8">
+          <div className="flex items-center gap-6 md:gap-8 min-w-max mx-auto">
+            {CORE_DISCIPLINES.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.href}
+                className="text-[11px] font-medium uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 transition-colors py-1 relative group"
               >
-                Search
-              </button>
-            </form>
+                {item.name}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-stone-900 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Hero Cards Grid (Candle Studio & Soap Atelier) */}
-        <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+      {/* 2. ABOVE-THE-FOLD HERO SPLIT SECTION */}
+      <section className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Candle Making Process Card */}
-          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-6 md:p-10 flex flex-col justify-end min-h-[320px] md:min-h-[380px] group shadow-md hover:shadow-2xl transition-all duration-300">
-            <Image 
-              src="/images/candle_making_process.jpg" 
-              alt="Artisan Candle Making Process" 
-              fill 
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/95 via-brand-charcoal/60 to-transparent z-10" />
-            
-            <div className="relative z-20 text-white space-y-2.5 text-left">
-              <div className="inline-flex items-center gap-1.5 bg-amber-500/30 border border-amber-400/50 text-amber-300 rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-                <Flame className="w-3.5 h-3.5" /> The Candle Studio
-              </div>
-              <h2 className="text-2xl md:text-4xl font-serif font-bold text-white leading-tight">
-                Artisan Candle Pouring &amp; Mold Casting
-              </h2>
-              <p className="text-xs md:text-sm text-white/85 max-w-md leading-relaxed">
-                100% natural soy wax, heat-resistant silicone pillar molds, and IFRA-tested fragrance oils optimized for clean hot scent throw.
-              </p>
-              <div className="pt-2">
-                <Link 
-                  href="/shop?discipline=candle-studio" 
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-terracotta px-5 py-3 rounded-xl border border-white/20 transition-all shadow-md shadow-brand-orange/30 active:scale-[0.98]"
-                >
-                  <span>Enter Candle Studio</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+          {/* Left: Editorial Hero Visual (55% on desktop) */}
+          <div className="lg:col-span-7">
+            <div className="relative aspect-[4/3] w-full bg-stone-100/70 border border-stone-200/70 overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,23,21,0.06)]">
+              <Image
+                src="/images/hero_studio_collection.webp"
+                alt="Ekora Bazaar Artisanal Studio Collection on Limestone Riser"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
+              />
+              <div className="absolute top-4 left-4 border border-stone-300/80 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/90 backdrop-blur-xs font-mono">
+                Studio Edition 2026
               </div>
             </div>
           </div>
 
-          {/* Soap Making Process Card */}
-          <div className="relative rounded-3xl overflow-hidden border border-brand-linen p-6 md:p-10 flex flex-col justify-end min-h-[320px] md:min-h-[380px] group shadow-md hover:shadow-2xl transition-all duration-300">
-            <Image 
-              src="/images/soap_making_process.jpg" 
-              alt="Cold Process Organic Soap Making" 
-              fill 
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/95 via-brand-charcoal/60 to-transparent z-10" />
+          {/* Right: Conversion Anchor (45% on desktop) */}
+          <div className="lg:col-span-5 flex flex-col justify-center text-left space-y-5 lg:pl-4">
             
-            <div className="relative z-20 text-white space-y-2.5 text-left">
-              <div className="inline-flex items-center gap-1.5 bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5" /> The Soap &amp; Bath Atelier
-              </div>
-              <h2 className="text-2xl md:text-4xl font-serif font-bold text-white leading-tight">
-                Cold Process Soap Swirling &amp; Loaf Casting
-              </h2>
-              <p className="text-xs md:text-sm text-white/85 max-w-md leading-relaxed">
-                Clear &amp; opaque Melt &amp; Pour soap bases, shampoo bases, silicone bar molds, and skin-safe colorants for luxury batch production.
-              </p>
-              <div className="pt-2">
-                <Link 
-                  href="/shop?discipline=soap-atelier" 
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-terracotta px-5 py-3 rounded-xl border border-white/20 transition-all shadow-md shadow-brand-orange/30 active:scale-[0.98]"
-                >
-                  <span>Enter Soap Atelier</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            <div className="space-y-2">
+              <span className="font-serif italic text-lg md:text-xl text-[#8C734B] block">
+                Formulation Essentials
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#181715] tracking-tight font-normal leading-[1.12]">
+                STUDIO FAVOURITES FROM ₹249
+              </h1>
             </div>
+
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500 leading-relaxed font-mono">
+              BATCH-TESTED RAW MATERIALS FOR SERIOUS MAKERS. NO COMMISSIONS. NO MARGIN MARKS.
+            </p>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Link
+                href="/shop"
+                className="inline-flex items-center justify-center gap-3 bg-[#181715] text-stone-100 hover:bg-stone-800 text-xs uppercase tracking-[0.2em] px-8 py-4 transition-colors text-center"
+              >
+                <span>EXPLORE BESTSELLERS</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/classes"
+                className="inline-flex items-center justify-center border border-stone-300 text-stone-800 hover:border-stone-900 hover:text-stone-950 text-xs uppercase tracking-[0.18em] px-6 py-4 transition-colors text-center"
+              >
+                <span>DISCOVERY KITS</span>
+              </Link>
+            </div>
+
+            {/* Micro value badges */}
+            <div className="pt-3 border-t border-stone-200/60 flex items-center gap-6 text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> IFRA Certified
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> 24-Hour Dispatch
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> Direct Factory
+              </span>
+            </div>
+
           </div>
 
         </div>
       </section>
 
-      {/* 2. DEDICATED CRAFT DISCIPLINE HUBS ROW */}
-      <section className="py-8 px-5 md:px-6 max-w-6xl mx-auto w-full">
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1">
-              Curated Craft Workspaces
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold font-serif text-brand-charcoal">
-              Shop by Craft Studio
-            </h2>
+      {/* 3. TRENDING IN THE STUDIO (Horizontal Shelf Immediately Below Hero) */}
+      <section className="w-full bg-white border-y border-stone-200/80 py-10 md:py-14">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          
+          <div className="flex items-end justify-between mb-8 pb-4 border-b border-stone-200">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
+                Real-Time Maker Demand
+              </span>
+              <h2 className="font-serif text-2xl md:text-3xl text-stone-900 font-normal tracking-tight">
+                TRENDING IN THE STUDIO
+              </h2>
+            </div>
+            <Link
+              href="/shop"
+              className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors"
+            >
+              View All 2,229 SKUs &rarr;
+            </Link>
           </div>
-          <Link href="/shop" className="text-xs font-bold text-brand-charcoal/70 hover:text-brand-orange flex items-center gap-1 transition-colors">
-            All Disciplines <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {trendingProducts.map((p: any) => {
+              const price = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
+              const hasTiers = Array.isArray(p.tiers) && p.tiers.length > 1;
+              const bulkPrice = hasTiers ? p.tiers[1]?.price : null;
+
+              return (
+                <Link
+                  key={p.id}
+                  href={`/products/${p.id}`}
+                  className="group flex flex-col bg-white border border-stone-200/70 hover:border-stone-400 transition-colors"
+                >
+                  {/* Aspect Ratio Image Container */}
+                  <div className="aspect-[4/5] bg-stone-50/70 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
+                    <Image
+                      src={p.image || "/og-image.jpg"}
+                      alt={p.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    {hasTiers && (
+                      <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
+                        Tier Available
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono block mb-1">
+                        {p.category}
+                      </span>
+                      <h3 className="font-serif text-sm md:text-base text-stone-900 line-clamp-1 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors">
+                        {p.name}
+                      </h3>
+                    </div>
+
+                    <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
+                      <div>
+                        <span className="text-sm font-medium text-stone-900">
+                          ₹{price}
+                        </span>
+                        {bulkPrice && (
+                          <span className="text-[11px] text-stone-500 font-mono block">
+                            From ₹{bulkPrice} (12+)
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[11px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
+                        VIEW &rarr;
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. BOTANICAL & MATERIAL PROVENANCE (Trust Architecture) */}
+      <section className="max-w-7xl mx-auto w-full px-4 md:px-8 py-14 md:py-20">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-[#8C734B] font-mono block">
+            Purity &bull; Traceability &bull; Testing
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl text-stone-900 font-normal tracking-tight">
+            The Atelier Standard
+          </h2>
+          <p className="text-xs md:text-sm text-stone-600 font-light max-w-md mx-auto">
+            Every raw ingredient in our catalog undergoes rigorous batch verification before listing.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {DISCIPLINE_HUBS.map((hub) => (
-            <Link
-              key={hub.id}
-              href={`/shop?discipline=${hub.id}`}
-              className="group p-5 rounded-2xl border border-brand-linen bg-white hover:border-brand-orange/50 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              title: "COA & Gas Chromatography",
+              desc: "Batch-specific analysis reports available for direct download on technical raw materials.",
+              label: "01 // VERIFICATION"
+            },
+            {
+              title: "IFRA 51st Amendment Safe",
+              desc: "Perfumer and cosmetician formulation safe limits certified for candles, soaps, and skin application.",
+              label: "02 // SAFETY"
+            },
+            {
+              title: "Zero-Middleman Sourcing",
+              desc: "Direct distillery and refinery pipeline eliminates secondary markups and tampering.",
+              label: "03 // DIRECT"
+            },
+            {
+              title: "Automated Volume Tiers",
+              desc: "Transparent tier discounts configured at 12+ and 52+ units with no gatekept quotes.",
+              label: "04 // SCALE"
+            }
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-stone-200/80 p-6 flex flex-col justify-between space-y-4"
             >
+              <span className="text-[10px] font-mono tracking-[0.2em] text-[#8C734B]">
+                {item.label}
+              </span>
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{hub.icon}</span>
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${hub.badgeBg} ${hub.badgeText} ${hub.borderCol}`}>
-                    Studio
-                  </span>
-                </div>
-                <h3 className="font-serif text-lg font-bold text-brand-charcoal group-hover:text-brand-orange transition-colors">
-                  {hub.name}
+                <h3 className="font-serif text-base text-stone-900 font-normal mb-2">
+                  {item.title}
                 </h3>
-                <p className="text-xs font-semibold text-brand-charcoal/60 mt-0.5 mb-2 line-clamp-1">
-                  {hub.tagline}
-                </p>
-                <p className="text-xs text-brand-charcoal/50 leading-relaxed line-clamp-2">
-                  {hub.description}
+                <p className="text-xs text-stone-600 leading-relaxed font-light">
+                  {item.desc}
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-brand-linen/60 flex items-center justify-between text-xs font-bold text-brand-orange group-hover:translate-x-0.5 transition-transform">
-                <span>Enter Studio</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* 3. CRAFT PRODUCTS / CATEGORIES OVERVIEW SECTION */}
-      <section className="py-8 md:py-12 px-5 md:px-6 max-w-6xl mx-auto w-full border-t border-brand-linen">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1">Catalog Overview</span>
-            <h2 className="text-2xl md:text-3xl font-bold font-serif text-brand-charcoal">Master Departments</h2>
-          </div>
-          <Link href="/shop" className="hidden sm:inline-flex items-center gap-2 text-brand-orange font-semibold hover:gap-3 transition-all text-sm">
-            View All Catalog <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-5">
-          {craftCategories.map((cat, i) => {
-            const Icon = cat.icon;
-            return (
-              <Link 
-                key={i} 
-                href={cat.href} 
-                className="group relative bg-white rounded-2xl p-4 md:p-5 border border-brand-linen hover:border-brand-orange/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center overflow-hidden min-h-[170px] justify-center"
-              >
-                {/* Semi-Transparent Background Product Photo */}
-                <div className="absolute inset-0 z-0 overflow-hidden">
-                  <Image 
-                    src={cat.bgImage} 
-                    alt={cat.name} 
-                    fill 
-                    sizes="(max-width: 768px) 50vw, 16vw"
-                    className="object-cover opacity-25 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500 pointer-events-none" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/80 to-white/60 group-hover:from-white/90 group-hover:via-white/70 transition-colors" />
-                </div>
-
-                {/* Content Overlay */}
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className={`w-11 h-11 rounded-xl ${cat.color} border flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 shadow-sm backdrop-blur-xs`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold text-brand-charcoal mb-1 text-sm md:text-base leading-tight drop-shadow-xs">{cat.name}</h3>
-                  <p className="text-[11px] font-bold text-brand-orange uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md border border-brand-linen/60 shadow-2xs">
-                    {cat.count}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 text-center sm:hidden">
-          <Link href="/shop" className="inline-flex items-center justify-center bg-brand-charcoal text-white rounded-xl px-6 py-3 font-semibold w-full text-sm">
-            View All Products
-          </Link>
-        </div>
-      </section>
-
-      {/* 4. BUILD TRUST SECTION */}
-      <section className="bg-white border-y border-brand-linen py-8 md:py-12 px-5 md:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 block mb-1">Quality Assurance</span>
-            <h2 className="text-2xl md:text-4xl font-serif font-bold text-brand-charcoal mb-2">Why Serious Creators Trust Ekora</h2>
-            <p className="text-xs md:text-sm text-brand-charcoal/60">Every raw ingredient in our catalog undergoes rigorous batch verification before listing.</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {trustBadges.map((badge, idx) => {
-              const Icon = badge.icon;
-              return (
-                <div key={idx} className="bg-brand-bg rounded-2xl p-5 md:p-6 border border-brand-linen/60 flex flex-col items-start text-left">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-brand-linen flex items-center justify-center text-brand-charcoal mb-3 shadow-sm">
-                    <Icon className="w-5 h-5 text-brand-orange" />
-                  </div>
-                  <h3 className="font-bold text-brand-charcoal text-sm md:text-base mb-1">{badge.title}</h3>
-                  <p className="text-xs text-brand-charcoal/60 leading-relaxed">{badge.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. SELLER & SUPPLIER CTA SECTION (Frontpage Seller Flow) */}
-      <section className="py-10 md:py-14 px-5 md:px-6 max-w-6xl mx-auto w-full">
-        <div className="bg-brand-charcoal text-white rounded-3xl p-6 md:p-12 relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center relative z-10">
-            <div className="lg:col-span-8 space-y-3 text-left">
-              <span className="inline-flex items-center gap-2 border border-white/20 bg-white/10 rounded-full px-3.5 py-1 text-xs font-semibold text-brand-orange uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" /> Founding Supplier Circle
+      {/* 5. SUPPLIER & DISTILLER INTAKE (Architectural Atelier Style) */}
+      <section className="w-full bg-[#181715] text-stone-100 py-14 md:py-20 border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-8 space-y-4 text-left">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[#8C734B] font-mono block">
+                Founding Manufacturer Circle
               </span>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
-                Are You a Raw Material Supplier or Manufacturer?
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-white leading-tight">
+                Supply Verified Creators &amp; Artisans Across India.
               </h2>
-              <p className="text-xs md:text-base text-white/70 max-w-xl leading-relaxed">
-                Join India&apos;s premier B2B creator sourcing marketplace. List your catalog, manage wholesale volume tiers, and connect directly with thousands of independent makers.
+              <p className="text-xs md:text-sm text-stone-400 font-light max-w-xl leading-relaxed">
+                Connect your distillery, laboratory, or precision mould foundry directly to thousands of verified makers. Manage volume tiers and technical documentation with zero commissions.
               </p>
-              <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-white/80">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Lifetime Zero Commission</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Direct Creator Orders</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Batch COA Indexing</span>
-              </div>
             </div>
-            <div className="lg:col-span-4 flex flex-col gap-3 justify-center items-start lg:items-end">
-              <Link 
-                href="/sell" 
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-terracotta text-white font-bold px-7 py-4 rounded-2xl shadow-xl shadow-brand-orange/20 transition-all text-sm uppercase tracking-wider active:scale-[0.98]"
+
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center lg:items-end">
+              <Link
+                href="/sell"
+                className="inline-flex items-center justify-center border border-stone-400 text-stone-100 hover:bg-stone-100 hover:text-stone-900 text-xs uppercase tracking-[0.2em] px-8 py-4 transition-colors text-center"
               >
-                <Store className="w-4 h-4" />
-                <span>Apply as Supplier</span>
+                <span>APPLY AS SUPPLIER &rarr;</span>
               </Link>
-              <p className="text-[11px] text-white/50 flex items-center gap-1">
-                <Lock className="w-3 h-3" /> Strict verification &bull; Indian GST required
-              </p>
+              <span className="text-[10px] text-stone-500 font-mono tracking-widest text-center lg:text-right">
+                GST VERIFICATION REQUIRED
+              </span>
             </div>
+
           </div>
         </div>
       </section>

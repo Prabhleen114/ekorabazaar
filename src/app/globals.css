@@ -3,21 +3,24 @@
 
 @theme inline {
   --color-background: #FAF8F5;
-  --color-foreground: #2D2B2A;
+  --color-foreground: #181715;
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   
   --color-brand-bg: #FAF8F5;
-  --color-brand-linen: #EADED2;
-  --color-brand-charcoal: #2D2B2A;
-  --color-brand-sage: #7E8A73;
-  --color-brand-terracotta: #C47D68;
-  --color-brand-orange: #FF5A00;
+  --color-brand-linen: #E8E5DF;
+  --color-brand-charcoal: #181715;
+  --color-brand-umber: #4A4742;
+  --color-brand-brass: #8C734B;
+  --color-brand-stone: #78746D;
+  --color-brand-sage: #6B7265;
+  --color-brand-terracotta: #8C734B;
+  --color-brand-orange: #8C734B;
 }
 
 :root {
   --background: #FAF8F5;
-  --foreground: #2D2B2A;
+  --foreground: #181715;
 }
 
 @font-face {
