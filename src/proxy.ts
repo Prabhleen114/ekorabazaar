@@ -4,7 +4,7 @@ import { decrypt } from '@/lib/session'
 
 
 // Protect these routes
-const protectedRoutes = ['/admin', '/seller/dashboard']
+const protectedRoutes = ['/admin', '/seller/dashboard', '/checkout', '/account']
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -36,14 +36,14 @@ export async function proxy(request: NextRequest) {
     
     if (!sessionCookie) {
       const loginUrl = new URL('/login', request.url)
-      loginUrl.search = request.nextUrl.search // Preserve UTM params
+      loginUrl.searchParams.set('redirect', pathname)
       return NextResponse.redirect(loginUrl)
     }
 
     const session = await decrypt(sessionCookie)
     if (!session) {
       const loginUrl = new URL('/login', request.url)
-      loginUrl.search = request.nextUrl.search
+      loginUrl.searchParams.set('redirect', pathname)
       return NextResponse.redirect(loginUrl)
     }
 
@@ -65,6 +65,8 @@ export const config = {
     '/admin/:path*',
     '/seller/dashboard/:path*',
     '/api/admin/:path*',
-    '/api/seller/:path*'
+    '/api/seller/:path*',
+    '/checkout',
+    '/account/:path*',
   ],
 }
