@@ -110,7 +110,7 @@ export default function BuyerNavbar() {
             : "bg-white border-b border-stone-200/70"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between relative">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between relative">
           {/* Left: Brand Logo */}
           <div className="flex-1 flex justify-start items-center">
             <Link
@@ -127,14 +127,13 @@ export default function BuyerNavbar() {
                 width={124}
                 height={40}
                 priority
-                className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity"
-                style={{ height: "38px", width: "auto" }}
+                className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity max-h-6 md:max-h-7 w-auto"
               />
             </Link>
           </div>
 
           {/* Center: Desktop Navigation Bar */}
-          <nav className="hidden md:flex justify-center items-center gap-7 h-full">
+          <nav className="hidden md:flex justify-center items-center space-x-8 h-full">
             
             {/* 1. Craft Studios Mega Menu Trigger */}
             <div 
@@ -146,17 +145,16 @@ export default function BuyerNavbar() {
                 onClick={() => (activeMenu === "craft" ? closeMenu() : handleMouseEnter("craft"))}
                 aria-expanded={activeMenu === "craft"}
                 aria-haspopup="true"
-                className={`relative flex items-center gap-1.5 text-sm font-semibold h-full transition-colors ${
-                  activeMenu === "craft" ? "text-amber-700" : "text-stone-700 hover:text-stone-950"
+                className={`relative flex items-center gap-1.5 text-[12px] tracking-[0.18em] uppercase font-medium h-full transition-colors ${
+                  activeMenu === "craft" ? "text-stone-950 font-semibold" : "text-stone-700 hover:text-stone-950"
                 }`}
               >
-                <Sparkles className={`w-3.5 h-3.5 transition-colors ${activeMenu === "craft" ? "text-amber-600" : "text-amber-500"}`} />
                 <span>Craft Studios</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === "craft" ? "rotate-180 text-amber-700" : "text-stone-400"}`} />
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeMenu === "craft" ? "rotate-180 text-stone-900" : "text-stone-400"}`} />
                 {activeMenu === "craft" && (
                   <motion.div
                     layoutId="activeUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-600 rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-stone-900"
                     transition={{ type: "spring", stiffness: 450, damping: 35 }}
                   />
                 )}
@@ -173,16 +171,16 @@ export default function BuyerNavbar() {
                 onClick={() => (activeMenu === "departments" ? closeMenu() : handleMouseEnter("departments"))}
                 aria-expanded={activeMenu === "departments"}
                 aria-haspopup="true"
-                className={`relative flex items-center gap-1.5 text-sm font-medium h-full transition-colors ${
-                  activeMenu === "departments" ? "text-amber-700 font-semibold" : "text-stone-700 hover:text-stone-950"
+                className={`relative flex items-center gap-1.5 text-[12px] tracking-[0.18em] uppercase font-medium h-full transition-colors ${
+                  activeMenu === "departments" ? "text-stone-950 font-semibold" : "text-stone-700 hover:text-stone-950"
                 }`}
               >
                 <span>Departments</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === "departments" ? "rotate-180 text-amber-700" : "text-stone-400"}`} />
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeMenu === "departments" ? "rotate-180 text-stone-900" : "text-stone-400"}`} />
                 {activeMenu === "departments" && (
                   <motion.div
                     layoutId="activeUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-600 rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-stone-900"
                     transition={{ type: "spring", stiffness: 450, damping: 35 }}
                   />
                 )}
@@ -193,7 +191,7 @@ export default function BuyerNavbar() {
             <Link
               href="/classes"
               onClick={closeMenu}
-              className="text-sm font-medium text-stone-700 hover:text-stone-950 transition-colors py-5"
+              className="text-[12px] tracking-[0.18em] uppercase text-stone-700 hover:text-stone-950 font-medium transition-colors py-5"
             >
               Discovery Kits
             </Link>
@@ -208,16 +206,16 @@ export default function BuyerNavbar() {
                 onClick={() => (activeMenu === "academy" ? closeMenu() : handleMouseEnter("academy"))}
                 aria-expanded={activeMenu === "academy"}
                 aria-haspopup="true"
-                className={`relative flex items-center gap-1 text-sm font-medium h-full transition-colors ${
-                  activeMenu === "academy" ? "text-amber-700 font-semibold" : "text-stone-700 hover:text-stone-950"
+                className={`relative flex items-center gap-1 text-[12px] tracking-[0.18em] uppercase font-medium h-full transition-colors ${
+                  activeMenu === "academy" ? "text-stone-950 font-semibold" : "text-stone-700 hover:text-stone-950"
                 }`}
               >
                 <span>The Academy</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === "academy" ? "rotate-180 text-amber-700" : "text-stone-400"}`} />
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeMenu === "academy" ? "rotate-180 text-stone-900" : "text-stone-400"}`} />
                 {activeMenu === "academy" && (
                   <motion.div
                     layoutId="activeUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-600 rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-stone-900"
                     transition={{ type: "spring", stiffness: 450, damping: 35 }}
                   />
                 )}
@@ -232,39 +230,39 @@ export default function BuyerNavbar() {
                     transition={{ duration: 0.15, ease: "easeOut" }}
                     onMouseEnter={() => handleMouseEnter("academy")}
                     onMouseLeave={handleMouseLeave}
-                    className="absolute top-14 left-0 w-64 bg-white rounded-2xl border border-stone-200 shadow-2xl p-2.5 z-50"
+                    className="absolute top-14 left-0 w-64 bg-white rounded-none border border-stone-200 shadow-xl p-2.5 z-50"
                   >
                     <Link
                       href="/formulations"
                       onClick={closeMenu}
-                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-stone-50 transition-colors group"
+                      className="flex items-start gap-3 p-3 hover:bg-stone-50 transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                      <div className="w-8 h-8 bg-stone-100 flex items-center justify-center text-stone-800 shrink-0 mt-0.5">
                         <GraduationCap className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-stone-900 group-hover:text-amber-700 transition-colors">
+                        <div className="text-xs font-semibold text-stone-900 group-hover:text-stone-950 transition-colors">
                           Free Formulations
                         </div>
                         <div className="text-[11px] text-stone-500 font-normal leading-snug mt-0.5">
-                          Lab-tested recipes, percentages &amp; step-by-step methods
+                          Lab-tested recipes &amp; percentages
                         </div>
                       </div>
                     </Link>
                     <Link
                       href="/classes"
                       onClick={closeMenu}
-                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-stone-50 transition-colors group"
+                      className="flex items-start gap-3 p-3 hover:bg-stone-50 transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700 shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                      <div className="w-8 h-8 bg-stone-100 flex items-center justify-center text-stone-800 shrink-0 mt-0.5">
                         <Sparkles className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-stone-900 group-hover:text-amber-700 transition-colors">
+                        <div className="text-xs font-semibold text-stone-900 group-hover:text-stone-950 transition-colors">
                           A to Z Masterclasses
                         </div>
                         <div className="text-[11px] text-stone-500 font-normal leading-snug mt-0.5">
-                          Professional workshops and foundational artisan guides
+                          Professional workshops &amp; artisan guides
                         </div>
                       </div>
                     </Link>
@@ -277,14 +275,14 @@ export default function BuyerNavbar() {
             <Link
               href="/sell/platform"
               onClick={closeMenu}
-              className="text-sm font-medium text-stone-700 hover:text-stone-950 transition-colors py-5"
+              className="text-[12px] tracking-[0.18em] uppercase text-stone-700 hover:text-stone-950 font-medium transition-colors py-5"
             >
               About Us
             </Link>
           </nav>
 
           {/* Right: Search, Cart, Profile & Mobile Hamburger */}
-          <div className="flex-1 flex justify-end items-center gap-2 sm:gap-4">
+          <div className="flex-1 flex justify-end items-center space-x-3 sm:space-x-5">
             <NavbarSearchBox />
 
             {/* Profile Dropdown */}
@@ -296,11 +294,11 @@ export default function BuyerNavbar() {
               <Link
                 href={currentUser ? "/account" : "/login"}
                 onClick={closeMenu}
-                className="flex flex-col items-center justify-center text-stone-700 hover:text-amber-700 transition-colors px-2 py-1 min-w-[44px] rounded-lg hover:bg-stone-50"
+                className="flex flex-col items-center justify-center text-stone-700 hover:text-stone-950 transition-colors p-1"
                 aria-label="User profile"
               >
-                <User className="w-5 h-5 text-stone-700" />
-                <span className="text-[10px] font-semibold mt-0.5 tracking-tight">Profile</span>
+                <User className="w-4 h-4 text-stone-700 hover:text-stone-950" />
+                <span className="text-[9px] uppercase tracking-widest text-stone-500 mt-0.5 font-mono">Account</span>
               </Link>
 
               <AnimatePresence>
@@ -451,61 +449,42 @@ export default function BuyerNavbar() {
               transition={{ duration: 0.16, ease: "easeOut" }}
               onMouseEnter={() => handleMouseEnter("craft")}
               onMouseLeave={handleMouseLeave}
-              className="absolute top-full left-0 right-0 w-full bg-white border-b border-stone-200 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)] z-50 overflow-hidden"
+              className="absolute top-full left-0 right-0 w-full bg-[#FAF8F5] border-b border-stone-200/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] z-50 overflow-hidden"
             >
-              <div className="max-w-7xl mx-auto px-6 md:px-8 py-7">
-                <div className="flex items-center justify-between pb-4 mb-5 border-b border-stone-200/80">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-amber-600 block mb-0.5">
-                      Shop by Discipline
-                    </span>
-                    <h3 className="font-serif text-xl md:text-2xl font-bold text-stone-900 tracking-tight">
-                      Dedicated Craft Studios
-                    </h3>
-                  </div>
-                  <Link 
-                    href="/shop" 
-                    onClick={closeMenu}
-                    className="text-xs font-bold text-stone-600 hover:text-amber-700 flex items-center gap-1.5 transition-colors group"
-                  >
-                    <span>Browse Full Catalog</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-5">
                   {DISCIPLINE_HUBS.map((hub) => (
                     <Link
                       key={hub.id}
                       href={`/shop?discipline=${hub.id}`}
                       onClick={closeMenu}
-                      className="group p-4 rounded-xl border border-stone-200/90 bg-white hover:border-amber-500/70 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between"
+                      className="group flex flex-col py-1 text-left transition-colors"
                     >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-stone-100 flex items-center justify-center text-lg group-hover:bg-amber-50 group-hover:scale-105 transition-all">
-                            {hub.icon}
-                          </div>
-                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${hub.badgeBg} ${hub.badgeText} ${hub.borderCol}`}>
-                            Studio
-                          </span>
-                        </div>
-                        <h4 className="font-serif text-[15px] font-bold text-stone-900 group-hover:text-amber-700 transition-colors leading-snug">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <span className="font-serif text-[15px] font-medium text-stone-900 group-hover:text-[#8C734B] transition-colors leading-snug">
                           {hub.name}
-                        </h4>
-                        <p className="text-[11px] font-medium text-stone-600 mt-1 mb-1.5 line-clamp-1">
-                          {hub.tagline}
-                        </p>
-                        <p className="text-[11px] text-stone-500 leading-relaxed line-clamp-2">
-                          {hub.description}
-                        </p>
+                        </span>
+                        <ArrowRight className="w-3 h-3 text-stone-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0" />
                       </div>
-                      <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold text-amber-600 group-hover:text-amber-700">
-                        <span>Enter Studio</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </div>
+                      <span className="text-[11px] text-stone-500 font-mono tracking-tight mt-0.5 line-clamp-1 group-hover:text-stone-700 transition-colors">
+                        {hub.tagline}
+                      </span>
                     </Link>
                   ))}
+                </div>
+
+                <div className="border-t border-stone-200/70 pt-3.5 mt-5 flex items-center justify-between">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono">
+                    8 Dedicated Craft Hubs &bull; Direct Factory Sourcing
+                  </div>
+                  <Link
+                    href="/shop"
+                    onClick={closeMenu}
+                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-mono flex items-center gap-1.5 transition-colors group"
+                  >
+                    <span>Browse Complete Catalog (2,229 SKUs)</span>
+                    <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -522,59 +501,48 @@ export default function BuyerNavbar() {
               transition={{ duration: 0.16, ease: "easeOut" }}
               onMouseEnter={() => handleMouseEnter("departments")}
               onMouseLeave={handleMouseLeave}
-              className="absolute top-full left-0 right-0 w-full bg-white border-b border-stone-200 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)] z-50 overflow-hidden max-h-[calc(100vh-80px)] overflow-y-auto"
+              className="absolute top-full left-0 right-0 w-full bg-[#FAF8F5] border-b border-stone-200/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] z-50 overflow-hidden"
             >
-              <div className="max-w-7xl mx-auto px-6 md:px-8 py-7">
-                <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-stone-200/80">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">
-                    Raw Materials &amp; Studio Equipment Architecture
-                  </span>
-                  <Link 
-                    href="/shop" 
-                    onClick={closeMenu}
-                    className="text-xs font-bold text-stone-600 hover:text-amber-700 flex items-center gap-1.5 transition-colors group"
-                  >
-                    <span>View All Departments</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-left">
+              <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-6 text-left items-start">
                   {DEPARTMENTS.map((dept) => (
-                    <div key={dept.name} className="flex flex-col">
+                    <div key={dept.name} className="flex flex-col items-start">
                       <Link
                         href={`/shop?department=${encodeURIComponent(dept.name)}`}
                         onClick={closeMenu}
-                        className="font-serif font-bold text-sm text-stone-900 hover:text-amber-700 tracking-tight mb-2.5 transition-colors block border-b border-stone-200/80 pb-1.5"
+                        className="font-serif font-medium text-[13.5px] text-stone-900 hover:text-[#8C734B] tracking-tight mb-2 transition-colors block border-b border-stone-200/80 pb-1.5 w-full"
                       >
                         {dept.name}
                       </Link>
-                      <ul className="space-y-1.5 flex-1">
-                        {dept.subcategories.slice(0, 6).map((sub) => (
+                      <ul className="space-y-1.5 w-full">
+                        {dept.subcategories.map((sub) => (
                           <li key={sub}>
                             <Link
                               href={`/shop?category=${encodeURIComponent(sub)}`}
                               onClick={closeMenu}
-                              className="text-xs text-stone-600 hover:text-amber-700 hover:translate-x-0.5 block py-0.5 leading-snug transition-all"
+                              className="text-[12px] text-stone-600 hover:text-stone-950 block py-0.5 leading-snug transition-colors"
                             >
                               {sub}
                             </Link>
                           </li>
                         ))}
-                        {dept.subcategories.length > 6 && (
-                          <li>
-                            <Link
-                              href={`/shop?department=${encodeURIComponent(dept.name)}`}
-                              onClick={closeMenu}
-                              className="text-[11px] font-semibold text-amber-600 hover:underline block pt-1"
-                            >
-                              + {dept.subcategories.length - 6} more
-                            </Link>
-                          </li>
-                        )}
                       </ul>
                     </div>
                   ))}
+                </div>
+
+                <div className="border-t border-stone-200/70 pt-3.5 mt-5 flex items-center justify-between">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono">
+                    Raw Materials &bull; Botanical Extracts &bull; Precision Moulds
+                  </div>
+                  <Link
+                    href="/shop"
+                    onClick={closeMenu}
+                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-mono flex items-center gap-1.5 transition-colors group"
+                  >
+                    <span>View All Departments</span>
+                    <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -590,7 +558,7 @@ export default function BuyerNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-0 top-16 bg-stone-950/40 backdrop-blur-xs z-40 pointer-events-auto"
+            className="fixed inset-0 top-20 bg-stone-950/30 backdrop-blur-xs z-40 pointer-events-auto"
             onClick={closeMenu}
           />
         )}
@@ -658,11 +626,11 @@ export default function BuyerNavbar() {
                           {dept.name}
                         </Link>
                         <div className="flex flex-wrap gap-1.5">
-                          {dept.subcategories.slice(0, 4).map((sub) => (
+                          {dept.subcategories.map((sub) => (
                             <Link
                               key={sub}
                               href={`/shop?category=${encodeURIComponent(sub)}`}
-                              className="text-[11px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded-md"
+                              className="text-[11px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded-md hover:bg-stone-200 transition-colors"
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               {sub}

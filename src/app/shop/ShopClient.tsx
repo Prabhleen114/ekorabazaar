@@ -348,14 +348,14 @@ export default function ShopClient() {
   const getGridColsClass = () => {
     switch (gridCols) {
       case 2:
-        return "grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6";
+        return "grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10";
       case 3:
-        return "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6";
+        return "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10";
       case 5:
-        return "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-5";
+        return "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10";
       case 4:
       default:
-        return "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6";
+        return "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10";
     }
   };
 
@@ -618,15 +618,16 @@ export default function ShopClient() {
                 <Link 
                   key={product.id} 
                   href={`/products/${product.id}`} 
-                  className="group bg-white border border-stone-200/80 hover:border-stone-400 transition-all duration-300 flex flex-col"
+                  className="group flex flex-col transition-all duration-300"
                 >
-                  <div className="aspect-[4/5] bg-stone-50/60 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
+                  <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
                     <Image 
                       src={product.image || "/og-image.jpg"} 
                       alt={product.name} 
                       fill 
+                      quality={85}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-700 ease-out" 
+                      className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
                     />
                     {product.isQuoteOnly || product.price === 0 ? (
                       <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
@@ -639,34 +640,26 @@ export default function ShopClient() {
                     ) : null}
                   </div>
 
-                  <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono line-clamp-1 block mb-1">
-                        {product.category}
-                      </span>
-                      <h2 className="font-serif text-sm md:text-base text-stone-900 line-clamp-2 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors leading-snug">
-                        {product.name}
-                      </h2>
-                    </div>
-                    <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+                      {product.category}
+                    </span>
+                    <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+                      {product.name}
+                    </h2>
+                    <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
                       {product.isQuoteOnly || product.price === 0 ? (
-                        <span className="text-xs text-stone-600 font-mono">
-                          Quote on Request
-                        </span>
+                        <span>Quote on Request</span>
                       ) : (
-                        <div>
-                          <span className="font-medium text-sm md:text-base text-stone-900 font-mono">
-                            ₹{product.price}
-                          </span>
+                        <>
+                          <span>₹{product.price}</span>
                           {product.bulkDiscountAvailable && (
-                            <span className="text-[10px] text-stone-400 font-mono block">
-                              12+ Volume Tier
-                            </span>
+                            <span className="text-[10px] text-stone-400">12+ Tier</span>
                           )}
-                        </div>
+                        </>
                       )}
-                      <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
-                        VIEW &rarr;
+                      <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
+                        View &rarr;
                       </span>
                     </div>
                   </div>

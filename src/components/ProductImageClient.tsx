@@ -24,6 +24,7 @@ export default function ProductImageClient({
       alt={alt} 
       fill
       priority={priority}
+      quality={85}
       sizes={sizes}
       className={className} 
       onError={() => setImgSrc("/placeholder-product.svg")}

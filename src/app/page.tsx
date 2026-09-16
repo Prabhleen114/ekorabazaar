@@ -2,7 +2,7 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles, Check, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import catalogProducts from "@/lib/data/products.json";
 import type { Metadata } from "next";
 
@@ -34,8 +34,8 @@ export default function BuyerHomePage() {
 
       {/* 1. DISCIPLINE DIRECTORY BAR (Instant Taxonomy Access) */}
       <div className="w-full border-b border-stone-200/80 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between overflow-x-auto hide-scrollbar gap-6 md:gap-8">
-          <div className="flex items-center gap-6 md:gap-8 min-w-max mx-auto">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex items-center justify-between overflow-x-auto hide-scrollbar">
+          <div className="flex items-center space-x-8 min-w-max mx-auto">
             {CORE_DISCIPLINES.map((item, idx) => (
               <Link
                 key={idx}
@@ -50,164 +50,144 @@ export default function BuyerHomePage() {
         </div>
       </div>
 
-      {/* 2. ABOVE-THE-FOLD HERO SPLIT SECTION */}
-      <section className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      {/* 2. HERO BANNER: VIEWPORT-CALIBRATED SPLIT (< 580px Height On Desktop) */}
+      <div className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 mt-4">
+        <div className="relative w-full h-[480px] md:h-[540px] lg:h-[580px] bg-[#FAF8F5] border border-stone-200/80 overflow-hidden flex flex-col md:flex-row items-center">
           
-          {/* Left: Editorial Hero Visual (55% on desktop) */}
-          <div className="lg:col-span-7">
-            <div className="relative aspect-[4/3] w-full bg-stone-100/70 border border-stone-200/70 overflow-hidden shadow-[0_4px_24px_-8px_rgba(24,23,21,0.06)]">
-              <Image
-                src="/images/hero_studio_collection.webp"
-                alt="Ekora Bazaar Artisanal Studio Collection on Limestone Riser"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover"
-              />
-              <div className="absolute top-4 left-4 border border-stone-300/80 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/90 backdrop-blur-xs font-mono">
-                Studio Edition 2026
-              </div>
+          {/* Visual Column (Left, 55% Width on Desktop) */}
+          <div className="w-full md:w-[55%] h-[260px] md:h-full relative flex items-center justify-center p-6 md:p-12">
+            <Image
+              src="/images/hero_studio_collection.webp"
+              alt="Ekora Bazaar Artisanal Studio Collection on Limestone Riser"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="object-contain max-h-[85%] max-w-[85%] drop-shadow-md"
+            />
+            <div className="absolute top-4 left-4 border border-stone-300 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/90 backdrop-blur-xs font-mono">
+              Studio Edition 2026
             </div>
           </div>
 
-          {/* Right: Conversion Anchor (45% on desktop) */}
-          <div className="lg:col-span-5 flex flex-col justify-center text-left space-y-5 lg:pl-4">
-            
-            <div className="space-y-2">
-              <span className="font-serif italic text-lg md:text-xl text-[#8C734B] block">
-                Formulation Essentials
-              </span>
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#181715] tracking-tight font-normal leading-[1.12]">
-                STUDIO FAVOURITES FROM ₹249
-              </h1>
-            </div>
-
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500 leading-relaxed font-mono">
+          {/* Typography & Conversion Column (Right, 45% Width on Desktop) */}
+          <div className="w-full md:w-[45%] h-full flex flex-col justify-center px-6 md:px-12 lg:px-16 py-8">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 mb-2 font-mono">
+              FORMULATION ESSENTIALS
+            </span>
+            <span className="font-serif italic text-2xl md:text-3xl text-stone-600 -mb-1">
+              Direct Manufacturer Sourcing
+            </span>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-900 leading-[1.1] tracking-tight mb-3">
+              STUDIO FAVOURITES FROM ₹249
+            </h1>
+            <p className="text-xs uppercase tracking-[0.2em] text-stone-600 mb-6 font-medium font-mono">
               BATCH-TESTED RAW MATERIALS FOR SERIOUS MAKERS. NO COMMISSIONS. NO MARGIN MARKS.
             </p>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="flex items-center gap-3">
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center gap-3 bg-[#181715] text-stone-100 hover:bg-stone-800 text-xs uppercase tracking-[0.2em] px-8 py-4 transition-colors text-center"
+                className="w-fit bg-stone-900 text-white px-8 py-3.5 text-[11px] uppercase tracking-[0.2em] hover:bg-stone-800 transition-colors inline-flex items-center gap-2"
               >
                 <span>EXPLORE BESTSELLERS</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/classes"
-                className="inline-flex items-center justify-center border border-stone-300 text-stone-800 hover:border-stone-900 hover:text-stone-950 text-xs uppercase tracking-[0.18em] px-6 py-4 transition-colors text-center"
+                className="w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors"
               >
                 <span>DISCOVERY KITS</span>
               </Link>
             </div>
 
-            {/* Micro value badges */}
-            <div className="pt-3 border-t border-stone-200/60 flex items-center gap-6 text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> IFRA Certified
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> 24-Hour Dispatch
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#8C734B] rounded-full" /> Direct Factory
-              </span>
+            {/* Subtle verification footer in conversion column */}
+            <div className="mt-8 pt-4 border-t border-stone-200/70 flex items-center gap-6 text-[10px] uppercase tracking-[0.18em] text-stone-500 font-mono">
+              <span>IFRA Certified</span>
+              <span>&bull;</span>
+              <span>24H Dispatch</span>
+              <span>&bull;</span>
+              <span>Direct Factory</span>
             </div>
-
           </div>
 
         </div>
-      </section>
+      </div>
 
       {/* 3. TRENDING IN THE STUDIO (Horizontal Shelf Immediately Below Hero) */}
-      <section className="w-full bg-white border-y border-stone-200/80 py-10 md:py-14">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          
-          <div className="flex items-end justify-between mb-8 pb-4 border-b border-stone-200">
-            <div>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
-                Real-Time Maker Demand
-              </span>
-              <h2 className="font-serif text-2xl md:text-3xl text-stone-900 font-normal tracking-tight">
-                TRENDING IN THE STUDIO
-              </h2>
-            </div>
-            <Link
-              href="/shop"
-              className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors"
-            >
-              View All 2,229 SKUs &rarr;
-            </Link>
+      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-10 md:py-14">
+        <div className="flex items-end justify-between mb-6 pb-3 border-b border-stone-200">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
+              Real-Time Demand
+            </span>
+            <h2 className="font-serif text-2xl md:text-3xl text-stone-900 font-normal tracking-tight">
+              TRENDING IN THE STUDIO
+            </h2>
           </div>
+          <Link
+            href="/shop"
+            className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors font-mono"
+          >
+            View All 2,229 SKUs &rarr;
+          </Link>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {trendingProducts.map((p: any) => {
-              const price = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
-              const hasTiers = Array.isArray(p.tiers) && p.tiers.length > 1;
-              const bulkPrice = hasTiers ? p.tiers[1]?.price : null;
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10">
+          {trendingProducts.map((p: any) => {
+            const price = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
+            const hasTiers = Array.isArray(p.tiers) && p.tiers.length > 1;
+            const bulkPrice = hasTiers ? p.tiers[1]?.price : null;
 
-              return (
-                <Link
-                  key={p.id}
-                  href={`/products/${p.id}`}
-                  className="group flex flex-col bg-white border border-stone-200/70 hover:border-stone-400 transition-colors"
-                >
-                  {/* Aspect Ratio Image Container */}
-                  <div className="aspect-[4/5] bg-stone-50/70 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
-                    <Image
-                      src={p.image || "/og-image.jpg"}
-                      alt={p.name}
-                      fill
-                      sizes="(max-width: 640px) 50vw, 25vw"
-                      className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                    {hasTiers && (
-                      <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
-                        Tier Available
-                      </div>
-                    )}
-                  </div>
+            return (
+              <Link
+                key={p.id}
+                href={`/products/${p.id}`}
+                className="group flex flex-col transition-all duration-300"
+              >
+                <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
+                  <Image
+                    src={p.image || "/og-image.jpg"}
+                    alt={p.name}
+                    fill
+                    quality={85}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {hasTiers && (
+                    <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
+                      Tier Available
+                    </div>
+                  )}
+                </div>
 
-                  {/* Card Content */}
-                  <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+                    {p.category}
+                  </span>
+                  <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+                    {p.name}
+                  </h3>
+                  <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono block mb-1">
-                        {p.category}
-                      </span>
-                      <h3 className="font-serif text-sm md:text-base text-stone-900 line-clamp-1 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors">
-                        {p.name}
-                      </h3>
+                      <span>₹{price}</span>
+                      {bulkPrice && (
+                        <span className="text-[10px] text-stone-400 ml-2">From ₹{bulkPrice} (12+)</span>
+                      )}
                     </div>
-
-                    <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
-                      <div>
-                        <span className="text-sm font-medium text-stone-900">
-                          ₹{price}
-                        </span>
-                        {bulkPrice && (
-                          <span className="text-[11px] text-stone-500 font-mono block">
-                            From ₹{bulkPrice} (12+)
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-[11px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
-                        VIEW &rarr;
-                      </span>
-                    </div>
+                    <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
+                      View &rarr;
+                    </span>
                   </div>
-                </Link>
-              );
-            })}
-          </div>
-
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
       {/* 4. BOTANICAL & MATERIAL PROVENANCE (Trust Architecture) */}
-      <section className="max-w-7xl mx-auto w-full px-4 md:px-8 py-14 md:py-20">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+      <section className="max-w-[1400px] mx-auto w-full px-4 sm:px-8 lg:px-12 py-10 md:py-14 border-t border-stone-200/80">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
           <span className="text-[10px] uppercase tracking-[0.22em] text-[#8C734B] font-mono block">
             Purity &bull; Traceability &bull; Testing
           </span>
@@ -262,9 +242,9 @@ export default function BuyerHomePage() {
         </div>
       </section>
 
-      {/* 5. SUPPLIER & DISTILLER INTAKE (Architectural Atelier Style) */}
-      <section className="w-full bg-[#181715] text-stone-100 py-14 md:py-20 border-t border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+      {/* 5. SUPPLIER & DISTILLER INTAKE */}
+      <section className="w-full bg-[#181715] text-stone-100 py-10 md:py-14 border-t border-stone-800">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-8 space-y-4 text-left">

@@ -21,16 +21,17 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group bg-white border border-stone-200/80 hover:border-stone-400 transition-all duration-300 flex flex-col"
+      className="group flex flex-col transition-all duration-300"
     >
-      <div className="aspect-[4/5] bg-stone-50/60 relative flex items-center justify-center p-4 overflow-hidden border-b border-stone-200/40">
+      <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
         <Image
           src={product.imageUrl || "/og-image.jpg"}
           alt={product.title}
           fill
           unoptimized={isExternalImage}
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-          className="object-contain p-2 group-hover:scale-105 transition-transform duration-700 ease-out"
+          quality={85}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
         />
         {bulkDiscountAvailable && (
@@ -40,22 +41,17 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
         )}
       </div>
 
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
-        <div>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono line-clamp-1 block mb-1">
-            {product.category || "Studio Raw Material"}
-          </span>
-          <h3 className="font-serif text-sm md:text-base text-stone-900 line-clamp-1 font-normal tracking-tight group-hover:text-[#8C734B] transition-colors">
-            {product.title}
-          </h3>
-        </div>
-        
-        <div className="pt-2 border-t border-stone-100 flex items-center justify-between">
-          <span className="text-sm font-medium text-stone-900 font-mono">
-            ₹{effectivePrice}
-          </span>
-          <span className="text-[11px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors font-mono">
-            VIEW &rarr;
+      <div className="flex flex-col">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+          {product.category || "Studio Raw Material"}
+        </span>
+        <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+          {product.title}
+        </h3>
+        <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
+          <span>₹{effectivePrice}</span>
+          <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
+            View &rarr;
           </span>
         </div>
       </div>
