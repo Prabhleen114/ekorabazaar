@@ -27,6 +27,7 @@ export const DEPARTMENTS: DepartmentConfig[] = [
       "Candle Waxes & Additives",
       "Artisan Soap Bases",
       "Skincare & Body Bases",
+      "Body & Facial Scrubs",
       "Haircare & Wash Bases",
       "Raw Butters & Carrier Oils",
       "Cosmetic Preservatives & Chemicals",

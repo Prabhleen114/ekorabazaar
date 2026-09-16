@@ -5,6 +5,7 @@ export const CATEGORIES = {
     { label: "Candle Waxes & Additives", id: "Candle Waxes & Additives" },
     { label: "Artisan Soap Bases", id: "Artisan Soap Bases" },
     { label: "Skincare & Body Bases", id: "Skincare & Body Bases" },
+    { label: "Body & Facial Scrubs", id: "Body & Facial Scrubs" },
     { label: "Haircare & Wash Bases", id: "Haircare & Wash Bases" },
     { label: "Raw Butters & Carrier Oils", id: "Raw Butters & Carrier Oils" },
     { label: "Cosmetic Preservatives & Chemicals", id: "Cosmetic Preservatives & Chemicals" },
@@ -94,6 +95,13 @@ const CATEGORY_ALIASES: Record<string, string> = {
   "eco-resin & stone moulds": "Eco-Resin & Stone Moulds",
   "fondant moulds": "Culinary & Fondant Moulds",
   "culinary & fondant moulds": "Culinary & Fondant Moulds",
+  "scrubs": "Body & Facial Scrubs",
+  "scrub": "Body & Facial Scrubs",
+  "body & facial scrubs": "Body & Facial Scrubs",
+  "facial scrubs": "Body & Facial Scrubs",
+  "body scrubs": "Body & Facial Scrubs",
+  "scrubs & exfoliators": "Body & Facial Scrubs",
+  "liquid & cream base": "Body & Facial Scrubs",
 };
 
 export function normalizeCategoryName(raw: string | null | undefined): string {
