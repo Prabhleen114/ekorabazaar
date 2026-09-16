@@ -1,0 +1,16 @@
+name: Hourly Intelligence Cron
+
+on:
+  schedule:
+    # Runs at the top of every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-intelligence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Ekora Intelligence Cron Job
+        run: |
+          curl -s -X GET "https://www.ekorabazaar.in/api/cron/intelligence" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET || '263uhdgqusyaht1afa' }}"
