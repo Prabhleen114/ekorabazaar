@@ -12,12 +12,19 @@ type Tier = {
   discountPct: number;
 };
 
+export type ProductVariant = {
+  size: string;
+  price: number;
+  tiers?: Tier[];
+};
+
 export default function PricingWidget({ 
   productId, 
   productName,
   sellerId,
   basePrice,
   tiers = [], 
+  variants = [],
   moq = 1, 
   category,
   isQuoteOnly = false,
@@ -28,11 +35,15 @@ export default function PricingWidget({
   sellerId?: string | null;
   basePrice?: number; 
   tiers: Tier[]; 
+  variants?: ProductVariant[];
   moq?: number; 
   category?: string;
   isQuoteOnly?: boolean;
   inStock?: boolean;
 }) {
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
+    variants && variants.length > 0 ? variants[0] : null
+  );
   const [quantity, setQuantity] = useState(moq);
   const [errorMsg, setErrorMsg] = useState("");
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -41,6 +52,14 @@ export default function PricingWidget({
   const hasTrackedTierView = useRef(false);
 
   const router = useRouter();
+
+  // Active tiers and price derived from selectedVariant if present
+  const activeTiers = (selectedVariant && selectedVariant.tiers && selectedVariant.tiers.length > 0)
+    ? selectedVariant.tiers
+    : tiers;
+  const activeBasePrice = selectedVariant
+    ? selectedVariant.price
+    : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
 
   // Track tier_pricing_view when wholesale tiers are visible to user
   useEffect(() => {
@@ -131,15 +150,15 @@ export default function PricingWidget({
     );
   }
 
-  const currentTier = tiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || null;
-  const displayPrice = currentTier ? currentTier.price : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
+  const currentTier = activeTiers.find(t => quantity >= t.minQty && (t.maxQty === null || quantity <= t.maxQty)) || null;
+  const displayPrice = currentTier ? currentTier.price : activeBasePrice;
   const subtotal = displayPrice * quantity;
 
   const handleQuantityChange = (newQty: number) => {
     const validQty = Math.max(moq, newQty);
     if (validQty !== quantity) {
       const prevTier = currentTier;
-      const nextTier = tiers.find(t => validQty >= t.minQty && (t.maxQty === null || validQty <= t.maxQty)) || null;
+      const nextTier = activeTiers.find(t => validQty >= t.minQty && (t.maxQty === null || validQty <= t.maxQty)) || null;
       trackEvent("quantity_change", {
         productId,
         productName,
@@ -307,10 +326,50 @@ export default function PricingWidget({
   return (
     <>
       <div className="bg-brand-bg rounded-2xl p-6 border border-brand-linen mt-8">
-      <h3 className="font-bold text-brand-charcoal mb-4">Wholesale Pricing Tiers</h3>
-      
-      <div className="space-y-2 mb-6">
-        {tiers.map((tier, idx) => {
+        {variants && variants.length > 0 && (
+          <div className="mb-6 pb-6 border-b border-brand-linen">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70">
+                Size
+              </label>
+              <span className="text-xs font-semibold text-brand-orange">
+                Selected: {selectedVariant?.size}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
+              {variants.map((v, idx) => {
+                const isSelected = selectedVariant?.size === v.size;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setSelectedVariant(v);
+                      trackEvent("variant_select", {
+                        productId,
+                        productName,
+                        size: v.size,
+                        price: v.price
+                      });
+                    }}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+                      isSelected
+                        ? "bg-brand-charcoal text-white border-brand-charcoal shadow-sm"
+                        : "bg-white text-brand-charcoal/80 border-brand-linen hover:border-brand-charcoal/40 hover:bg-stone-50"
+                    }`}
+                  >
+                    {v.size}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <h3 className="font-bold text-brand-charcoal mb-4">Wholesale Pricing Tiers</h3>
+        
+        <div className="space-y-2 mb-6">
+          {activeTiers.map((tier, idx) => {
           const isActive = currentTier === tier;
           return (
             <div 
