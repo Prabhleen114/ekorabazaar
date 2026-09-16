@@ -330,7 +330,7 @@ export default function PricingWidget({
           <div className="mb-6 pb-6 border-b border-brand-linen">
             <div className="flex items-center justify-between mb-3">
               <label className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70">
-                Size
+                Choose Your Quantity
               </label>
               <span className="text-xs font-semibold text-brand-orange">
                 Selected: {selectedVariant?.size}
