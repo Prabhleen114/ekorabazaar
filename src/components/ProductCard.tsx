@@ -15,9 +15,6 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
   const isExternalImage = Boolean(product.imageUrl && product.imageUrl.startsWith("http"));
   const effectivePrice = product.price / 100;
   
-  // Check if bulk discount tier is available
-  const bulkDiscountAvailable = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0;
-
   return (
     <Link
       href={`/products/${product.id}`}
@@ -34,11 +31,6 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
         />
-        {bulkDiscountAvailable && (
-          <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
-            Tier Available
-          </div>
-        )}
       </div>
 
       <div className="flex flex-col">

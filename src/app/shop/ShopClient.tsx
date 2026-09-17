@@ -633,10 +633,6 @@ export default function ShopClient() {
                       <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
                         Quote Only
                       </div>
-                    ) : product.bulkDiscountAvailable ? (
-                      <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
-                        Tier Available
-                      </div>
                     ) : null}
                   </div>
 

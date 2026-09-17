@@ -153,11 +153,6 @@ export default function BuyerHomePage() {
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  {hasTiers && (
-                    <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
-                      Tier Available
-                    </div>
-                  )}
                 </div>
 
                 <div className="flex flex-col">
