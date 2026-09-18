@@ -89,7 +89,7 @@
     "price": 90,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/07/Vedini-Premium-Gold-Metal-Candle-Bowl-247x296.jpeg",
+    "image": "/images/products/premium-gold-metal-candle-bowl.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -1706,7 +1706,7 @@
     "variants": [
       {
         "size": "1 Kg",
-        "raw_price": 219.0,
+        "raw_price": 219,
         "price": 263,
         "tiers": [
           {
@@ -30245,7 +30245,7 @@
     "price": 324,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/02/71z1WvYKItL._AC_SX679_-247x296.jpg",
+    "image": "/images/products/metal-bucket-5pcs.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -89916,7 +89916,7 @@
     "price": 239,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/09/e9ceda2a-3320-49ac-8eca-ab48a3fe426f-247x296.png",
+    "image": "/images/products/vedini-candle-shiner.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -95661,7 +95661,7 @@
     "variants": [
       {
         "size": "1 Kg",
-        "raw_price": 379.0,
+        "raw_price": 379,
         "price": 455,
         "tiers": [
           {
@@ -155569,7 +155569,7 @@
     "variants": [
       {
         "size": "1 Kg",
-        "raw_price": 219.0,
+        "raw_price": 219,
         "price": 263,
         "tiers": [
           {
@@ -155663,7 +155663,7 @@
     "variants": [
       {
         "size": "1 Kg",
-        "raw_price": 499.0,
+        "raw_price": 499,
         "price": 599,
         "tiers": [
           {
@@ -156970,7 +156970,7 @@
     "variants": [
       {
         "size": "1 Kg",
-        "raw_price": 379.0,
+        "raw_price": 379,
         "price": 455,
         "tiers": [
           {
