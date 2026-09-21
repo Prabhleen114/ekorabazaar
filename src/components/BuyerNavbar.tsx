@@ -124,10 +124,11 @@ export default function BuyerNavbar() {
               <Image 
                 src="/images/logo.jpg" 
                 alt="Ekora Bazaar" 
-                width={124}
-                height={40}
+                width={140}
+                height={38}
                 priority
-                className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity max-h-6 md:max-h-7 w-auto"
+                className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity"
+                style={{ height: "38px", width: "auto" }}
               />
             </Link>
           </div>

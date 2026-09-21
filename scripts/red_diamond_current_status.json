@@ -1,0 +1,1451 @@
+{
+  "totalRedDiamond": 205,
+  "stillInCatalog": 193,
+  "removedFromCatalog": 12,
+  "imageBreakdown": {
+    "unsplash_photo": 59,
+    "custom_local_image": 90,
+    "jindeal_supplier": 17,
+    "/images/base-bottle.webp": 10,
+    "/images/paintings.webp": 12,
+    "https://5.imimg.com/data5/SELLER/Default/2024/4/411257988/IU/BQ/FZ/50226535/sulphate-free-shower-gel-base-500x500.png": 2,
+    "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048": 3
+  },
+  "products": [
+    {
+      "id": "600",
+      "name": "Acquadi Men F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "601",
+      "name": "Coffee Chocolate F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-coffee-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "602",
+      "name": "Rose Vanilla F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "603",
+      "name": "Peony Blossom F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "604",
+      "name": "Tickless Berry F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "605",
+      "name": "Cherry Silk F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "608",
+      "name": "Ladoo Sweet Mithaee F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "611",
+      "name": "Neroli F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-neroli-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "612",
+      "name": "Nag Champa F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "614",
+      "name": "Twilight Bloom F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "617",
+      "name": "Dipropylene Glycol High Purity Solvent For F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "619",
+      "name": "Pure Desire F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Pure Desire.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "621",
+      "name": "Winter Breeze Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "623",
+      "name": "White Oudh Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "624",
+      "name": "Vanilla Straight Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "626",
+      "name": "Vanilla Bread Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "627",
+      "name": "Vanilla Ice Cream Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "628",
+      "name": "Tobacco Oudh Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "629",
+      "name": "Tuberose Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "630",
+      "name": "Teak Wood Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "633",
+      "name": "Spicy Bergamot Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-bergamot-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "634",
+      "name": "Sandalwood Dreams Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-sandalwood-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "635",
+      "name": "Sandalwood Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-sandalwood-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "638",
+      "name": "Rose Musk Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "639",
+      "name": "Rosemary Sage Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "640",
+      "name": "Rose Eco + Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "641",
+      "name": "Pumpkin Spice Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "642",
+      "name": "Rose Crystal Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "643",
+      "name": "Pomegranate Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "646",
+      "name": "Oudh Straight Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "647",
+      "name": "Orange Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "649",
+      "name": "Orange Vanilla Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "651",
+      "name": "Mountain Cedar Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "653",
+      "name": "Morning Rose Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "657",
+      "name": "Mango Flora Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "658",
+      "name": "Mango Coconut Cr Me Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "659",
+      "name": "Mandarin Mimosa Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-mandarin-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "660",
+      "name": "Lavender Straight Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "661",
+      "name": "Lavender Tobacco Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "663",
+      "name": "Lavender Afternoon Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "664",
+      "name": "Lavender Driftwood Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "666",
+      "name": "Kiwi Fig Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "667",
+      "name": "Herb Tea Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "668",
+      "name": "Ginger Bread Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-ginger-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "670",
+      "name": "Hazelnut Coffee Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-coffee-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "672",
+      "name": "Geeli Mitti Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "673",
+      "name": "Fresh Watermelon Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "675",
+      "name": "Eucalyptus Mint Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-eucalyptus-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "677",
+      "name": "Frankincense Resin Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-frankincense-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "680",
+      "name": "Dark Rose Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "681",
+      "name": "Coconut Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "683",
+      "name": "Carribean Saffron Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-saffron-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "684",
+      "name": "Cocoa Butter Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "687",
+      "name": "Blue Spruce Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "688",
+      "name": "Autumn Leaves Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "689",
+      "name": "Banana Pie Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "690",
+      "name": "Blackberry Forest Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "692",
+      "name": "Agarwood And Gaiac Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "696",
+      "name": "New Aqua Fresh Cd Candle F O",
+      "category": "Fragrance Oils",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "711",
+      "name": "Hazelnut Coffee F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-coffee-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "721",
+      "name": "Fresh Oudh Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Fresh Oudh.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "728",
+      "name": "Butterfly Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "735",
+      "name": "Temple Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "736",
+      "name": "Rose Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "740",
+      "name": "Romantic Mogra F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "742",
+      "name": "Ginger & Lime F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-ginger-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "750",
+      "name": "Mulberry Vanilla Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Mulberry Vanilla.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "752",
+      "name": "Kiwi Fig F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "753",
+      "name": "Sea Breeze F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "754",
+      "name": "Orange & Cinnamon Cd Candle F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Orange & Cinnamon.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "759",
+      "name": "Green Tea F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "763",
+      "name": "White Soap F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "768",
+      "name": "Citrus Fruit Fm F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "769",
+      "name": "Gentlemens Tonic F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "772",
+      "name": "Papaya Sk F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "777",
+      "name": "Jasmine Flower F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "780",
+      "name": "Honey And Milk F O",
+      "category": "Fragrance Oils",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "781",
+      "name": "Golden Women F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Golden Women.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "782",
+      "name": "Iris Lime F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/Iris Lime.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "783",
+      "name": "Lavender Gb F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "785",
+      "name": "Premium Reed Diffuser Sticks High Absorbency Fibre Reeds For Aroma Diffusers & Home Fragrance",
+      "category": "Diffuser Bottles & Accessories",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "787",
+      "name": "10ml Roll-on Glass Perfume Bottle",
+      "category": "Attar & Perfume Bottles",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "789",
+      "name": "Reed Diffuser Base Liquid Instant Throw Long-lasting Diffusion Unscented Diffuser Making Liquid For Diy Reed & Car Diffusers",
+      "category": "Diffuser Bottles & Accessories",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2022/12/30ml-50ml-100ml-120ml-150ml-Aluminum-Spray-Bottle-Portable-Mini-Perfume-Bottles-Empty-Refillable-Cosmetic-Sprayer.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "790",
+      "name": "Perfume Base Liquid (99% Ethanol Perfumer's Alcohol) - Professional Grade for Long Lasting EDP & EDT Making (1 Kg)",
+      "category": "Attar & Perfume Bottles",
+      "currentImage": "/images/products/perfume-base-liquid-formulation-edp-edt.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "791",
+      "name": "Amla Oil",
+      "category": "Soap Making Tools",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "793",
+      "name": "Flax Seed Oil Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "799",
+      "name": "Shea Oil",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "800",
+      "name": "Sea Buckthorn Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "801",
+      "name": "Pumpkin Seed Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Candle Jars & Containers",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "802",
+      "name": "Marula Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "803",
+      "name": "Fractionated Coconut Carrier Oil Natural Skin Moisturizer",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "804",
+      "name": "Chaulmoogra Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "805",
+      "name": "Green Tea Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "806",
+      "name": "Borage Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "807",
+      "name": "Black Seed Oil Kalonji Oil For Hair Growth Cold Pressed 100 Pure And Natural",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "808",
+      "name": "Bakuchi Oil Natural Therapeutic Grade Cold Pressed",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "822",
+      "name": "6 Cavity Small Oval Diy Handmade Essential Oil Soap Mould",
+      "category": "Soap & Bar Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2022/05/Vedini-6-small-oval-DIY-handmade-essential-oil-soap-mold3-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "823",
+      "name": "Coconut Oil Pale Yellow In Colour",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "826",
+      "name": "Vanilla Mt F O",
+      "category": "Fragrance Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-vanilla-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "829",
+      "name": "New Aqua Fresh F O",
+      "category": "Fragrance Oils",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "830",
+      "name": "Apricot Oil",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "831",
+      "name": "Onion Hair Oil",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "833",
+      "name": "18mm Singl Seal Cap And Clear Inner Lid For Euro Dropper",
+      "category": "Lids, Caps & Closures",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "834",
+      "name": "18mm Double Seal Cap And Clear Inner Lid For Euro Dropper",
+      "category": "Lids, Caps & Closures",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "835",
+      "name": "Polysorbate 20",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "836",
+      "name": "Empty Amber Glass Bottle 18mm Neck Cosmetic Container",
+      "category": "Cosmetic Jars & Bottles",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2026/07/Vedini-Premium-Gold-Metal-Candle-Bowl-247x296.jpeg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "837",
+      "name": "18mm Golden Glass Dropper With Black Rubber-only Dropper",
+      "category": "Cosmetic Jars & Bottles",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "838",
+      "name": "Empty Glass Bottle With Euro Dropper Amber Color Reusable",
+      "category": "Cosmetic Jars & Bottles",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "840",
+      "name": "Long Stick Candle Silicone Mold",
+      "category": "Candle & Pillar Moulds",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "841",
+      "name": "Diffuser Base For Small Areas & Car",
+      "category": "Diffuser Bottles & Accessories",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2022/12/30ml-50ml-100ml-120ml-150ml-Aluminum-Spray-Bottle-Portable-Mini-Perfume-Bottles-Empty-Refillable-Cosmetic-Sprayer.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "844",
+      "name": "Isopropyl Myristate Lightweight Emollient & Solvent For Cosmetics Topicals & Personal Care",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "845",
+      "name": "R o s e W a x",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/rose-wax.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "846",
+      "name": "Transparent Refillable Plastic Bottles 24mm Neck",
+      "category": "Cosmetic Jars & Bottles",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2020/02/Vedini-Refillable-Plastic-Bottles-new-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "848",
+      "name": "4 Square Waffle Silicone Cake Mold Handmade Baking Biscuit Mold High Temperature Resistant Muffin Mold",
+      "category": "Culinary & Fondant Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "849",
+      "name": "Silicone Folding Funnel Kitchen Use",
+      "category": "General Silicone Moulds",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "850",
+      "name": "4 Cavity 3d Maple Leaf Cupcakes Candy Fondant Chocolate Molds Silicone Mold",
+      "category": "Culinary & Fondant Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "851",
+      "name": "4 Cavity 3d Heart Shape Silicone Hanging And Wax Sachet Cake Mold Soap Candle Silicone Mold",
+      "category": "Culinary & Fondant Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "852",
+      "name": "4 Cavity Heart Shape Candle Soap Resin Silicone Valentine Hanging And Wax Sachet Mold",
+      "category": "Eco-Resin & Stone Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "854",
+      "name": "464 Soy Wax Natural Soy Wax Granule for Candle Making",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/464-soy-wax-natural-soy-wax-granule-for-candle-mak.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "855",
+      "name": "Premium Aluminium Bottle With Multiple Option",
+      "category": "Cosmetic Jars & Bottles",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2022/12/30ml-50ml-100ml-120ml-150ml-Aluminum-Spray-Bottle-Portable-Mini-Perfume-Bottles-Empty-Refillable-Cosmetic-Sprayer.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "856",
+      "name": "Melted Body Butter Bath Base Off White",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2021/12/Body-Butter-Feature-Photo-2-1024x683-1.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "857",
+      "name": "Soy Butter Wax",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/soy-butter-wax.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "858",
+      "name": "Body Butter Base",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2021/12/Body-Butter-Feature-Photo-2-1024x683-1.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "859",
+      "name": "Silicone 48 Cavity Small Donut Mold Fondant Chocolate Resin Clay Candle Mold Diy Kitchen Baking",
+      "category": "Eco-Resin & Stone Moulds",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "860",
+      "name": "Body Wash Shower Gel Base",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://5.imimg.com/data5/SELLER/Default/2024/4/411257988/IU/BQ/FZ/50226535/sulphate-free-shower-gel-base-500x500.png",
+      "status": "in_catalog"
+    },
+    {
+      "id": "861",
+      "name": "Premium Cream Base With Skin Rejuvenation",
+      "category": "Skincare & Body Bases",
+      "currentImage": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
+      "status": "in_catalog"
+    },
+    {
+      "id": "862",
+      "name": "Soy Wax White Chunk AA+",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/soy-wax-white-chunk-aa.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "863",
+      "name": "Cream Base Sulfate And Paraben Free",
+      "category": "Skincare & Body Bases",
+      "currentImage": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
+      "status": "in_catalog"
+    },
+    {
+      "id": "864",
+      "name": "Ultra Clear Soap Base",
+      "category": "Artisan Soap Bases",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "865",
+      "name": "120ml Amber Glass Candle Jar Unique Jar For Candle Making & Gifting",
+      "category": "Candle Jars & Containers",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "866",
+      "name": "Diethyl Phthalate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "868",
+      "name": "Olivem 1000 Emulsifier",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "869",
+      "name": "30ml Clear Glass Bottle",
+      "category": "Cosmetic Jars & Bottles",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2026/07/Vedini-Premium-Gold-Metal-Candle-Bowl-247x296.jpeg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "870",
+      "name": "Potassium Sorbate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "871",
+      "name": "Sodium Benzoate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "872",
+      "name": "Rose Hibiscus Manjishta Gel Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "873",
+      "name": "Green Tea Moringa Gel Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "874",
+      "name": "Papaya Turmeric Licorice Gel Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "876",
+      "name": "Under Eye Gel Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "877",
+      "name": "Hemp Green Tea Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "878",
+      "name": "Turmeric Kokum Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "879",
+      "name": "Mango Almond Honey Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "880",
+      "name": "Cocoa Choco Lotion Bases Skin Type Dry",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "882",
+      "name": "Plain Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "883",
+      "name": "Anti-dandruff Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "884",
+      "name": "Hair Growth Serum Bases Colour Light Green Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "885",
+      "name": "Anti Acne Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "886",
+      "name": "Anti Stretch Marks Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "887",
+      "name": "Skin Firming Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "888",
+      "name": "Under Eye Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "889",
+      "name": "Anti-ageing Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "890",
+      "name": "Anti-wrinkle Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "891",
+      "name": "Spot Correction Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "892",
+      "name": "Skin Glow Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "893",
+      "name": "Foaming Gel Scrub Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/foaming-gel-scrub-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "894",
+      "name": "Green Tea Moringa Scrub Gel Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/green-tea-moringa-scrub-gel-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "895",
+      "name": "Papaya Turmeric Licorice Scrub Gel Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/papaya-turmeric-licorice-scrub-gel-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "897",
+      "name": "Foaming Scrub Cream Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/foaming-scrub-cream-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "898",
+      "name": "Skin Glow Sugar Scrub Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/skin-glow-sugar-scrub-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "899",
+      "name": "Hemp And Green Tea Scrub Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/hemp-and-green-tea-scrub-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "900",
+      "name": "Foot Scrub Base",
+      "category": "Body & Facial Scrubs",
+      "currentImage": "/images/products/scrubs/foot-scrub-base.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "901",
+      "name": "Triethanolamine Tea",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "902",
+      "name": "Papaya Leaf Powder",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/paintings.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "903",
+      "name": "Geometric Wave Twirl Silicone Candle Mold",
+      "category": "Candle & Pillar Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "904",
+      "name": "Sandalwood Natural Extracts Water Soluble 10 By",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/sandalwood-extracts.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "907",
+      "name": "Ylang Ylang Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/ylang-ylang-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "908",
+      "name": "Spearmint Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/spearmint-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "909",
+      "name": "Rosemary Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/rosemary-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "911",
+      "name": "Palmarosa Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/palmarosa-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "912",
+      "name": "Lime Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/lime-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "913",
+      "name": "Kewra Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/kewra-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "914",
+      "name": "Helichrysum Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/helichrysum-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "915",
+      "name": "Frankincense Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/frankincense-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "916",
+      "name": "Clove Bud Hydrosol Water By",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/clove-bud-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "917",
+      "name": "Cinnamon Bark Hydrosol By",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/cinnamon-bark-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "918",
+      "name": "Bergamot Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/bergamot-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "919",
+      "name": "Neroli Hydrosol By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/neroli-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "920",
+      "name": "Orange Natural Flavor For Lip Balm And Cosmetics",
+      "category": "Food-Grade Flavor Oils",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "921",
+      "name": "9 Cavity Round Soap Mold Diy Handmade Soap Making Forms 3d Silicone Molds",
+      "category": "Soap & Bar Moulds",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "923",
+      "name": "Jasmine Hydrosol By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/jasmine-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "924",
+      "name": "Cedarwood Hydrosol Water By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/cedarwood-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "925",
+      "name": "Lavender Hydrosol By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/lavender-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "927",
+      "name": "Sandalwood Hydrosol By Organic",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/sandalwood-organic-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "928",
+      "name": "Tea Tree Hydrosol By",
+      "category": "Hydrosols & Floral Waters",
+      "currentImage": "/images/products/hydrosols/tea-tree-hydrosol.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "929",
+      "name": "Dry Jasmine Flower",
+      "category": "Dried Botanicals & Additives",
+      "currentImage": "/images/base-bottle.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "931",
+      "name": "Avocado Butter",
+      "category": "Raw Butters & Carrier Oils",
+      "currentImage": "/images/products/butters/avocado-butter-avcado-butter-avacado-butter.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "932",
+      "name": "Natural Coconut Wax",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/n-a-t-u-r-a-l-c-o-c-o-n-u-t-w-a-x.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "933",
+      "name": "24 Cavity Rose And Heart Shape Silicone Valentine Chocolate Mold",
+      "category": "Culinary & Fondant Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "934",
+      "name": "40 Cavity Nicole Square Rectangle Shape Silicon Resin Mold Silicon Chocolate Moulds",
+      "category": "Eco-Resin & Stone Moulds",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    },
+    {
+      "id": "935",
+      "name": "15 Cavity Heart Shape Silicone Resin Mold Silicon Valentine Chocolate Molds",
+      "category": "Eco-Resin & Stone Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "936",
+      "name": "15 Cavity Heart With Raindrop Shape Silicon Resin Mold Valentine Silicone Chocolate Moulds",
+      "category": "Eco-Resin & Stone Moulds",
+      "currentImage": "https://jindeal.com/wp-content/uploads/2024/12/519bcZNVqTL-247x296.jpg",
+      "status": "in_catalog"
+    },
+    {
+      "id": "937",
+      "name": "Pearly Shampoo Base",
+      "category": "Haircare & Wash Bases",
+      "currentImage": "https://5.imimg.com/data5/SELLER/Default/2024/4/411257988/IU/BQ/FZ/50226535/sulphate-free-shower-gel-base-500x500.png",
+      "status": "in_catalog"
+    },
+    {
+      "id": "938",
+      "name": "Dry Lavender Buds",
+      "category": "Dried Botanicals & Additives",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-lavender-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "939",
+      "name": "Hand Wash Base Chloride And Paraben Free",
+      "category": "Haircare & Wash Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "940",
+      "name": "Premium Rose Water",
+      "category": "Soap Making Tools",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "941",
+      "name": "Lotion Base Sulfate And Paraben Free",
+      "category": "Skincare & Body Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "942",
+      "name": "Shea Butter Cream Base",
+      "category": "Skincare & Body Bases",
+      "currentImage": "http://soapytwist.com/cdn/shop/files/Soapy_Twist_Premium_cream_Base.jpg?v=1740373869&width=2048",
+      "status": "in_catalog"
+    },
+    {
+      "id": "943",
+      "name": "100 Organic Natural Pure Beeswax Slab Yellow Ip Grade",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "944",
+      "name": "Soy Wax White Flakes",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/soy-wax-white-chunk-aa.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "945",
+      "name": "Paraffin Wax Pellets White Granule/ Chunks(Mix of both)",
+      "category": "Candle Waxes & Additives",
+      "currentImage": "/images/products/waxes/paraffin-wax-pellets-white-granule-chunksmix-of-bo.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "946",
+      "name": "Sulfate Free Hand Wash Base Transparent",
+      "category": "Haircare & Wash Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "947",
+      "name": "Sulfate Free Face Wash Base Transparent",
+      "category": "Haircare & Wash Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "status": "in_catalog"
+    },
+    {
+      "id": "948",
+      "name": "Rose Clay Powder For Face Pack And Mask",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-rose-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "949",
+      "name": "Sandalwood Powder For Face Pack",
+      "category": "Micas & Pigments",
+      "currentImage": "/images/products/essential oils/ekora-bazaar-sandalwood-essential-oil.webp",
+      "status": "in_catalog"
+    },
+    {
+      "id": "950",
+      "name": "Raw Shea Butter From Africa",
+      "category": "Raw Butters & Carrier Oils",
+      "originalRedImage": "https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "status": "removed_or_deleted"
+    }
+  ]
+}

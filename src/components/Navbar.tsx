@@ -46,14 +46,14 @@ export default function Navbar() {
           {/* Left: Brand */}
           <div className="flex-1 flex justify-start">
             <Link
-              href="/sell"
+              href="/"
               className="flex items-center"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Image 
                 src="/images/logo.jpg" 
                 alt="Ekora Bazaar" 
-                width={120}
+                width={140}
                 height={40}
                 priority
                 className="object-contain mix-blend-multiply"

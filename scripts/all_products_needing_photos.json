@@ -1,0 +1,697 @@
+{
+  "total": 84,
+  "byType": {
+    "unsplash.com": 62,
+    "base-bottle": 10,
+    "paintings": 12
+  },
+  "byCat": {
+    "General Silicone Moulds": 2,
+    "Diffuser Bottles & Accessories": 1,
+    "Lids, Caps & Closures": 3,
+    "Fragrance Oils": 42,
+    "Soap Making Tools": 1,
+    "Micas & Pigments": 12,
+    "Cosmetic Preservatives & Chemicals": 7,
+    "Cosmetic Jars & Bottles": 1,
+    "Skincare & Body Bases": 9,
+    "Food-Grade Flavor Oils": 1,
+    "Dried Botanicals & Additives": 1,
+    "Haircare & Wash Bases": 3,
+    "Candle Waxes & Additives": 1
+  },
+  "products": [
+    {
+      "id": "6",
+      "name": "PLATINUM CURED LIQUID SILICONE RUBBER 15 SHORE A (1A:1B) FOR MOLD MAKING",
+      "category": "General Silicone Moulds",
+      "department": "Precision Studio Moulds",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "79",
+      "name": "10ML HANGING CAR DIFFUSER BOTTLE",
+      "category": "Diffuser Bottles & Accessories",
+      "department": "Vessels & Packaging Studio",
+      "currentImage": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "159",
+      "name": "9ML HANGING CAR PERFUME BOTTLE – ROUND DIAMOND CUT GLASS AIR FRESHENER BOTTLE WITH WOODEN CAP & ROPE (REFILLABLE)",
+      "category": "Lids, Caps & Closures",
+      "department": "Vessels & Packaging Studio",
+      "currentImage": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?w=800&q=80",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "600",
+      "name": "Acquadi Men F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "603",
+      "name": "Peony Blossom F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "604",
+      "name": "Tickless Berry F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "605",
+      "name": "Cherry Silk F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "608",
+      "name": "Ladoo Sweet Mithaee F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "612",
+      "name": "Nag Champa F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "614",
+      "name": "Twilight Bloom F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "617",
+      "name": "Dipropylene Glycol High Purity Solvent For F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "621",
+      "name": "Winter Breeze Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "623",
+      "name": "White Oudh Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "628",
+      "name": "Tobacco Oudh Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "630",
+      "name": "Teak Wood Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "641",
+      "name": "Pumpkin Spice Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "643",
+      "name": "Pomegranate Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "646",
+      "name": "Oudh Straight Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "647",
+      "name": "Orange Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "651",
+      "name": "Mountain Cedar Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "657",
+      "name": "Mango Flora Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "658",
+      "name": "Mango Coconut Cr Me Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "666",
+      "name": "Kiwi Fig Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "667",
+      "name": "Herb Tea Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "672",
+      "name": "Geeli Mitti Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "673",
+      "name": "Fresh Watermelon Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "681",
+      "name": "Coconut Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "684",
+      "name": "Cocoa Butter Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "687",
+      "name": "Blue Spruce Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "688",
+      "name": "Autumn Leaves Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "689",
+      "name": "Banana Pie Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "690",
+      "name": "Blackberry Forest Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "692",
+      "name": "Agarwood And Gaiac Candle & Cosmetic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "728",
+      "name": "Butterfly Candle F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "735",
+      "name": "Temple Candle F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "740",
+      "name": "Romantic Mogra F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "752",
+      "name": "Kiwi Fig F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "753",
+      "name": "Sea Breeze F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "759",
+      "name": "Green Tea F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "763",
+      "name": "White Soap F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "768",
+      "name": "Citrus Fruit Fm F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "769",
+      "name": "Gentlemens Tonic F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "772",
+      "name": "Papaya Sk F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "777",
+      "name": "Jasmine Flower F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "780",
+      "name": "Honey And Milk F O",
+      "category": "Fragrance Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "791",
+      "name": "Amla Oil",
+      "category": "Soap Making Tools",
+      "department": "Tools & Studio Equipment",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "823",
+      "name": "Coconut Oil Pale Yellow In Colour",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "833",
+      "name": "18mm Singl Seal Cap And Clear Inner Lid For Euro Dropper",
+      "category": "Lids, Caps & Closures",
+      "department": "Vessels & Packaging Studio",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "834",
+      "name": "18mm Double Seal Cap And Clear Inner Lid For Euro Dropper",
+      "category": "Lids, Caps & Closures",
+      "department": "Vessels & Packaging Studio",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "835",
+      "name": "Polysorbate 20",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "837",
+      "name": "18mm Golden Glass Dropper With Black Rubber-only Dropper",
+      "category": "Cosmetic Jars & Bottles",
+      "department": "Vessels & Packaging Studio",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "844",
+      "name": "Isopropyl Myristate Lightweight Emollient & Solvent For Cosmetics Topicals & Personal Care",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "849",
+      "name": "Silicone Folding Funnel Kitchen Use",
+      "category": "General Silicone Moulds",
+      "department": "Precision Studio Moulds",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "866",
+      "name": "Diethyl Phthalate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "868",
+      "name": "Olivem 1000 Emulsifier",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "870",
+      "name": "Potassium Sorbate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "871",
+      "name": "Sodium Benzoate",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "873",
+      "name": "Green Tea Moringa Gel Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "874",
+      "name": "Papaya Turmeric Licorice Gel Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "876",
+      "name": "Under Eye Gel Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "877",
+      "name": "Hemp Green Tea Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "878",
+      "name": "Turmeric Kokum Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "879",
+      "name": "Mango Almond Honey Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "880",
+      "name": "Cocoa Choco Lotion Bases Skin Type Dry",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "882",
+      "name": "Plain Lotion Bases",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "883",
+      "name": "Anti-dandruff Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "884",
+      "name": "Hair Growth Serum Bases Colour Light Green Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "885",
+      "name": "Anti Acne Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "886",
+      "name": "Anti Stretch Marks Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "887",
+      "name": "Skin Firming Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "888",
+      "name": "Under Eye Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "889",
+      "name": "Anti-ageing Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "890",
+      "name": "Anti-wrinkle Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "891",
+      "name": "Spot Correction Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "892",
+      "name": "Skin Glow Serum Bases Colour Light Brownish Solubility Water",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "901",
+      "name": "Triethanolamine Tea",
+      "category": "Cosmetic Preservatives & Chemicals",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "902",
+      "name": "Papaya Leaf Powder",
+      "category": "Micas & Pigments",
+      "department": "Color & Pigment Studio",
+      "currentImage": "/images/paintings.webp",
+      "placeholderType": "paintings"
+    },
+    {
+      "id": "920",
+      "name": "Orange Natural Flavor For Lip Balm And Cosmetics",
+      "category": "Food-Grade Flavor Oils",
+      "department": "Scent & Flavor Lab",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "929",
+      "name": "Dry Jasmine Flower",
+      "category": "Dried Botanicals & Additives",
+      "department": "Tools & Studio Equipment",
+      "currentImage": "/images/base-bottle.webp",
+      "placeholderType": "base-bottle"
+    },
+    {
+      "id": "939",
+      "name": "Hand Wash Base Chloride And Paraben Free",
+      "category": "Haircare & Wash Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "941",
+      "name": "Lotion Base Sulfate And Paraben Free",
+      "category": "Skincare & Body Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "943",
+      "name": "100 Organic Natural Pure Beeswax Slab Yellow Ip Grade",
+      "category": "Candle Waxes & Additives",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "946",
+      "name": "Sulfate Free Hand Wash Base Transparent",
+      "category": "Haircare & Wash Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    },
+    {
+      "id": "947",
+      "name": "Sulfate Free Face Wash Base Transparent",
+      "category": "Haircare & Wash Bases",
+      "department": "Casting Mediums & Raw Bases",
+      "currentImage": "https://images.unsplash.com/photo-1605388043694-1b777a80b852?auto=format&fit=crop&q=80&w=800",
+      "placeholderType": "unsplash.com"
+    }
+  ]
+}
