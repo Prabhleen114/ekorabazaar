@@ -22,6 +22,13 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(new URL('/login?error=missing_code', origin))
     }
 
+    // CSRF State Verification — compare incoming state with the cookie we set
+    const storedState = req.cookies.get('oauth_state')?.value
+    if (!storedState || !stateParam || storedState !== stateParam) {
+      console.warn('Google OAuth CSRF mismatch: state parameter does not match stored cookie')
+      return NextResponse.redirect(new URL('/login?error=csrf_mismatch', origin))
+    }
+
     // Decode state destination
     let redirectTo = '/'
     if (stateParam) {

@@ -3,6 +3,7 @@ import prisma from '@/lib/db'
 import bcrypt from 'bcrypt'
 import { createSession } from '@/lib/session'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { validateBody, SignupSchema } from '@/lib/validation'
 
 export async function POST(req: Request) {
   try {
@@ -18,8 +19,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json()
-    const { email, password, name, phone, businessName } = body
+    const rawBody = await req.json()
+    const validation = validateBody(SignupSchema, rawBody)
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 })
+    }
+    const { email, password, name, phone } = validation.data
+    const businessName = typeof rawBody.businessName === 'string' ? rawBody.businessName.trim().slice(0, 150) : null
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 })

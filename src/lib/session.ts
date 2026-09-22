@@ -5,10 +5,11 @@ import { Role } from '@prisma/client'
 function getSecretKey(): Uint8Array {
   const secret = process.env.JWT_SECRET
   if (!secret) {
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error('CRITICAL SECURITY ERROR: JWT_SECRET environment variable is not set in production!')
-    }
-    return new TextEncoder().encode('ekorabazaar_dev_secret_key_change_in_production')
+    throw new Error(
+      'CRITICAL SECURITY ERROR: JWT_SECRET environment variable is not set. ' +
+      'Please add a strong random secret to your .env file. ' +
+      'Generate one with: openssl rand -hex 64'
+    )
   }
   return new TextEncoder().encode(secret)
 }

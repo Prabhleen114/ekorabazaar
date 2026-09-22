@@ -43,13 +43,13 @@ export async function POST(req: Request) {
       where: { userId: currentUserId },
       update: {
         brandName,
-        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
+        applicationStatus: SellerApplicationStatus.DRAFT,
       },
       create: {
         id: `EKO-SELL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
         userId: currentUserId,
         brandName,
-        applicationStatus: SellerApplicationStatus.UNDER_REVIEW,
+        applicationStatus: SellerApplicationStatus.DRAFT,
         accountStatus: SellerAccountStatus.DISABLED,
       },
     })

@@ -28,6 +28,7 @@ export default function AdminOrdersPage() {
   const [orders,     setOrders]     = useState<any[]>([])
   const [counts,     setCounts]     = useState<Record<string, number>>({ PAID: 0, PAYMENT_PENDING: 0, CANCELLED: 0, ALL: 0 })
   const [loading,    setLoading]    = useState(true)
+  const [errorMsg,   setErrorMsg]   = useState('')
   const [activeTab,  setActiveTab]  = useState<TabStatus>('PAID')
   const [page,       setPage]       = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -41,7 +42,12 @@ export default function AdminOrdersPage() {
   async function fetchCounts() {
     try {
       const res  = await fetch('/api/admin/orders?page=1&limit=2000')
-      if (!res.ok) return
+      if (!res.ok) {
+        if (res.status === 401 || res.status === 403) {
+          setErrorMsg('Session expired or unauthorized. Please re-login.')
+        }
+        return
+      }
       const data = await res.json()
       const all: any[] = data.orders || []
       const c = { PAID: 0, PAYMENT_PENDING: 0, CANCELLED: 0, ALL: all.length }
@@ -56,14 +62,23 @@ export default function AdminOrdersPage() {
 
   async function fetchOrders(pageNum: number, tab: TabStatus) {
     setLoading(true)
+    setErrorMsg('')
     try {
       const statusParam = tab !== 'ALL' ? ('&status=' + tab) : ''
       const res  = await fetch('/api/admin/orders?page=' + pageNum + '&limit=20' + statusParam)
-      if (!res.ok) throw new Error('Failed to fetch orders')
+      if (!res.ok) {
+        if (res.status === 401 || res.status === 403) {
+          throw new Error('Admin session expired. Please log in again.')
+        }
+        throw new Error('Failed to fetch orders from server.')
+      }
       const data = await res.json()
       setOrders(data.orders || [])
       setTotalPages(data.pagination?.totalPages || 1)
-    } catch (err) { console.error(err) }
+    } catch (err: any) { 
+      console.error(err)
+      setErrorMsg(err.message || 'Error loading orders')
+    }
     finally { setLoading(false) }
   }
 
@@ -82,6 +97,18 @@ export default function AdminOrdersPage() {
           Refresh
         </button>
       </div>
+
+      {errorMsg && (
+        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm flex items-center justify-between">
+          <span>{errorMsg}</span>
+          <button 
+            onClick={handleRefresh}
+            className="underline font-bold hover:text-red-950 ml-4"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex flex-wrap gap-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit">

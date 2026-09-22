@@ -5,23 +5,18 @@ import { calculateItemPrice } from '@/lib/pricing'
 import { razorpay } from '@/lib/razorpay'
 import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountStatus } from '@prisma/client'
 import catalogProducts from '@/lib/data/products.json'
+import { validateBody, CreateOrderSchema } from '@/lib/validation'
 
 export async function POST(req: Request) {
   try {
     const session = await requireAuth()
 
-    const body = await req.json()
-    const { items, addressId } = body // { productId, quantity }[], optional addressId
-
-    if (!items || !Array.isArray(items) || items.length === 0) {
-      return NextResponse.json({ error: "No items in checkout." }, { status: 400 })
+    const rawBody = await req.json()
+    const validation = validateBody(CreateOrderSchema, rawBody)
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 })
     }
-
-    for (const item of items) {
-      if (!item.productId || typeof item.quantity !== 'number' || item.quantity <= 0 || !Number.isInteger(item.quantity)) {
-        return NextResponse.json({ error: "Invalid item quantity." }, { status: 400 })
-      }
-    }
+    const { items, addressId } = validation.data
 
     let addressSnapshot = null
     if (addressId) {
