@@ -137,32 +137,32 @@ function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-screen w-full bg-white font-sans text-neutral-950 antialiased selection:bg-neutral-900 selection:text-white relative">
+    <div className="flex h-screen max-h-screen w-full bg-white font-sans text-neutral-950 antialiased selection:bg-neutral-900 selection:text-white relative overflow-hidden">
       {/* Left Form Section */}
-      <div className="flex w-full flex-col lg:w-1/2">
+      <div className="flex w-full flex-col justify-between lg:w-1/2 h-full p-6 sm:p-8 lg:p-10 relative overflow-y-auto lg:overflow-hidden">
         {/* Header Branding */}
-        <div className="p-6 md:p-10 absolute md:top-4 md:left-4 top-2 left-2 z-10">
+        <div className="w-full flex items-center justify-start shrink-0">
           <Link href="/" className="inline-block group">
-            <span className="text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-neutral-900 hover:text-neutral-600 transition-colors">
+            <span className="text-base sm:text-lg lg:text-xl font-bold tracking-tight text-neutral-900 hover:text-neutral-600 transition-colors">
               EKORA BAZAAR
             </span>
           </Link>
         </div>
 
         {/* Form Container */}
-        <div className="flex flex-1 items-center justify-center p-6 md:p-10 mt-16 md:mt-12">
+        <div className="flex flex-1 items-center justify-center w-full my-auto py-2">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full max-w-[420px]"
+            className="w-full max-w-[380px] sm:max-w-[400px]"
           >
             {/* Titles */}
-            <motion.div variants={itemVariants} className="mb-6 text-center">
-              <h1 className="mb-1 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+            <motion.div variants={itemVariants} className="mb-4 text-center">
+              <h1 className="mb-1 text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">
                 Sign In to Account
               </h1>
-              <p className="text-sm text-neutral-500">
+              <p className="text-xs sm:text-sm text-neutral-500">
                 Access your studio orders, pricing &amp; wholesale catalog
               </p>
             </motion.div>
@@ -171,19 +171,19 @@ function LoginForm() {
             {displayedError && (
               <motion.div
                 variants={itemVariants}
-                className="mb-4 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs leading-relaxed"
+                className="mb-3 p-3 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs leading-relaxed"
               >
                 {displayedError}
               </motion.div>
             )}
 
             {/* Google Login Button */}
-            <motion.div variants={itemVariants} className="mb-4">
+            <motion.div variants={itemVariants} className="mb-3">
               <a
                 href={googleAuthUrl}
-                className="flex w-full items-center justify-center gap-3 rounded-full border border-neutral-200 bg-white px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 active:bg-neutral-100 shadow-xs"
+                className="flex w-full items-center justify-center gap-2.5 rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 active:bg-neutral-100 shadow-2xs"
               >
-                <GoogleIcon className="text-lg" />
+                <GoogleIcon className="text-base sm:text-lg" />
                 Login with Google
               </a>
             </motion.div>
@@ -191,22 +191,22 @@ function LoginForm() {
             {/* Divider */}
             <motion.div
               variants={itemVariants}
-              className="relative mb-6 flex items-center"
+              className="relative my-3 flex items-center"
             >
               <div className="grow border-t border-neutral-200"></div>
-              <span className="px-4 text-sm text-neutral-400">or</span>
+              <span className="px-3 text-xs text-neutral-400">or</span>
               <div className="grow border-t border-neutral-200"></div>
             </motion.div>
 
             {/* Form */}
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-1"
               >
                 <label
                   htmlFor="email"
-                  className="text-sm font-medium text-neutral-800"
+                  className="text-xs font-medium text-neutral-700"
                 >
                   Email
                 </label>
@@ -218,17 +218,17 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
+                  className="w-full rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
                 />
               </motion.div>
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-1"
               >
                 <label
                   htmlFor="password"
-                  className="text-sm font-medium text-neutral-800"
+                  className="text-xs font-medium text-neutral-700"
                 >
                   Password
                 </label>
@@ -240,16 +240,16 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="w-full rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
+                  className="w-full rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
                 />
               </motion.div>
 
               {/* Submit Button */}
-              <motion.div variants={itemVariants} className="mt-2">
+              <motion.div variants={itemVariants} className="mt-1">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-full bg-gradient-to-b from-[#3a3a3a] to-[#121212] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
+                  className="w-full rounded-full bg-gradient-to-b from-[#3a3a3a] to-[#121212] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                 >
                   {loading ? 'Signing In...' : 'Sign In'}
                 </button>
@@ -259,7 +259,7 @@ function LoginForm() {
             {/* Footer Links */}
             <motion.div
               variants={itemVariants}
-              className="mt-6 text-sm text-neutral-500 text-center flex flex-col gap-2"
+              className="mt-4 text-xs text-neutral-500 text-center flex flex-col gap-1.5"
             >
               <div>
                 Don&apos;t have an account?{' '}
@@ -273,7 +273,7 @@ function LoginForm() {
               <div>
                 <Link
                   href="/sell/start-selling"
-                  className="text-xs text-neutral-400 hover:text-neutral-700 underline transition-colors"
+                  className="text-[11px] text-neutral-400 hover:text-neutral-700 underline transition-colors"
                 >
                   Raw Material Manufacturer? Apply as Seller
                 </Link>
@@ -281,10 +281,13 @@ function LoginForm() {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Bottom spacer to mirror header on desktop */}
+        <div className="hidden lg:block shrink-0 h-4"></div>
       </div>
 
       {/* Right Image Section */}
-      <div className="hidden lg:block lg:w-1/2 p-4">
+      <div className="hidden lg:block lg:w-1/2 p-3 lg:p-4 h-full">
         <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
           <img
             src="https://assets.watermelon.sh/auth-7.avif"

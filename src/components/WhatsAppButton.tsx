@@ -8,6 +8,9 @@ import { usePageEngagement, trackWhatsAppClick } from "@/lib/tracking";
 export default function WhatsAppButton() {
   const pathname = usePathname();
   usePageEngagement();
+  const isAuthPage = pathname === '/login' || pathname === '/signup';
+  if (isAuthPage) return null;
+
   const isSellPage = pathname === '/sell' || pathname?.startsWith('/sell/');
   
   const text = isSellPage 

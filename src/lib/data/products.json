@@ -496,7 +496,7 @@
     "price": 110,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/eco-craft-casting-powder.webp",
+    "image": "/images/products/eco-craft-casting-powder-cover.png",
     "tiers": [
       {
         "minQty": 1,
