@@ -129,7 +129,7 @@ export default function CheckoutPage() {
     import('@next/third-parties/google').then(({ sendGAEvent }) => {
       sendGAEvent('event', 'add_payment_info', {
         currency: 'INR',
-        value: total / 100,
+        value: (total / 100) + 80,
         payment_type: 'Razorpay',
         items: items.map(item => ({
           item_id: item.productId || item.id,
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
         import('@next/third-parties/google').then(({ sendGAEvent }) => {
           sendGAEvent('event', 'purchase', {
             transaction_id: data.orderId,
-            value: total / 100,
+            value: (total / 100) + 80,
             currency: 'INR',
             items: items.map(item => ({
               item_id: item.productId || item.id,
@@ -174,7 +174,7 @@ export default function CheckoutPage() {
         paymentCompletedRef.current = true
         trackEvent("purchase", {
           order_id: data.orderId,
-          cart_total: total / 100,
+          cart_total: (total / 100) + 80,
           item_count: items.length,
           gst_provided: !!gstin.trim(),
         })
@@ -350,9 +350,17 @@ export default function CheckoutPage() {
             </div>
 
             <div className="border-t border-brand-linen pt-4 mb-6">
+              <div className="flex justify-between text-sm mb-2 text-brand-charcoal/70">
+                <span>Subtotal</span>
+                <span>₹{(total / 100).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between text-sm mb-4 text-brand-charcoal/70">
+                <span>Standard Shipping</span>
+                <span>₹80</span>
+              </div>
               <div className="flex justify-between text-lg font-bold">
                 <span>Total</span>
-                <span>₹{(total / 100).toLocaleString()}</span>
+                <span>₹{((total / 100) + 80).toLocaleString()}</span>
               </div>
             </div>
 

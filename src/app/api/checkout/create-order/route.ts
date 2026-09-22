@@ -127,7 +127,8 @@ export async function POST(req: Request) {
       }
     })
 
-    const finalAmountPaise = Math.round(totalAmount)
+    const shippingFeePaise = 8000; // 80 INR Standard Shipping
+    const finalAmountPaise = Math.round(totalAmount) + shippingFeePaise;
 
     // Razorpay key validated at import time via razorpay.ts
 
@@ -151,7 +152,8 @@ export async function POST(req: Request) {
         data: {
           customerId: session.userId!,
           total: finalAmountPaise,
-          subtotal: finalAmountPaise,
+          subtotal: Math.round(totalAmount),
+          shipping: shippingFeePaise,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
           addressId: addressId || null,
