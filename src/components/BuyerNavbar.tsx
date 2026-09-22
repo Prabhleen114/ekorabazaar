@@ -188,13 +188,13 @@ export default function BuyerNavbar() {
               </button>
             </div>
 
-            {/* 3. Discovery Kits */}
+            {/* 3. New Arrivals */}
             <Link
-              href="/classes"
+              href="/shop?sort=new"
               onClick={closeMenu}
               className="text-[12px] tracking-[0.18em] uppercase text-stone-700 hover:text-stone-950 font-medium transition-colors py-5"
             >
-              Discovery Kits
+              New Arrivals
             </Link>
 
             {/* 4. The Academy Dropdown */}
@@ -260,10 +260,10 @@ export default function BuyerNavbar() {
                       </div>
                       <div>
                         <div className="text-xs font-semibold text-stone-900 group-hover:text-stone-950 transition-colors">
-                          A to Z Masterclasses
+                          Discovery Kits &amp; Masterclasses
                         </div>
                         <div className="text-[11px] text-stone-500 font-normal leading-snug mt-0.5">
-                          Professional workshops &amp; artisan guides
+                          Professional workshops &amp; artisan kits
                         </div>
                       </div>
                     </Link>
@@ -272,13 +272,13 @@ export default function BuyerNavbar() {
               </AnimatePresence>
             </div>
 
-            {/* 5. About Us */}
+            {/* 5. Sell With Us */}
             <Link
               href="/sell/platform"
               onClick={closeMenu}
               className="text-[12px] tracking-[0.18em] uppercase text-stone-700 hover:text-stone-950 font-medium transition-colors py-5"
             >
-              About Us
+              Sell With Us
             </Link>
           </nav>
 
@@ -652,25 +652,25 @@ export default function BuyerNavbar() {
                 Browse All Products
               </Link>
               <Link
-                href="/classes"
+                href="/shop?sort=new"
                 className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Discovery Kits
+                New Arrivals
               </Link>
               <Link
                 href="/formulations"
                 className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                The Academy (Formulations)
+                The Academy
               </Link>
               <Link
                 href="/sell/platform"
                 className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                About Us
+                Sell With Us
               </Link>
 
               {/* Mobile Account / Profile Section */}
@@ -719,23 +719,13 @@ export default function BuyerNavbar() {
                   <div className="flex gap-2">
                     <Link
                       href="/login"
-                      className="flex-1 text-center bg-stone-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider"
+                      className="flex-1 text-center bg-stone-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Login / Sign Up
                     </Link>
                   </div>
                 )}
-              </div>
-
-              <div className="border-t border-stone-200 pt-4 mt-2">
-                <Link
-                  href="/sell"
-                  className="flex items-center justify-center bg-stone-900 hover:bg-black text-white rounded-xl px-6 py-3.5 text-sm font-bold w-full transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Become a Seller
-                </Link>
               </div>
             </div>
           </motion.div>

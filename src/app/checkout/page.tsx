@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
 import { Check, Plus, Loader2, Building2, ShieldCheck } from 'lucide-react'
 import { TrackBeginCheckout } from '@/components/GA4Tracker'
@@ -11,6 +12,7 @@ export default function CheckoutPage() {
   const [total, setTotal] = useState(0)
   const [addresses, setAddresses] = useState<any[]>([])
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null)
+  const [needsAuth, setNeedsAuth] = useState(false)
   
   const [showNewAddressForm, setShowNewAddressForm] = useState(false)
   const [newAddress, setNewAddress] = useState({ name: '', phone: '', line1: '', line2: '', city: '', state: '', pincode: '' })
@@ -57,7 +59,8 @@ export default function CheckoutPage() {
       ])
 
       if (cartRes.status === 401 || cartRes.status === 403) {
-        router.push('/login?redirect=/checkout')
+        setNeedsAuth(true)
+        setLoading(false)
         return
       }
 
@@ -137,6 +140,8 @@ export default function CheckoutPage() {
       });
     });
 
+    const activeAddr = addresses.find((a: any) => a.id === selectedAddressId)
+
     checkout({
       apiCreateRoute: '/api/checkout/create-order',
       apiVerifyRoute: '/api/checkout/confirm-payment',
@@ -148,6 +153,10 @@ export default function CheckoutPage() {
       },
       name: 'Ekora Bazaar Checkout',
       description: `Payment for ${items.length} items`,
+      prefill: activeAddr ? {
+        name: activeAddr.name,
+        contact: activeAddr.phone,
+      } : undefined,
       onSuccess: (data) => {
         import('@next/third-parties/google').then(({ sendGAEvent }) => {
           sendGAEvent('event', 'purchase', {
@@ -184,6 +193,23 @@ export default function CheckoutPage() {
       <h1 className="text-3xl font-bold font-serif mb-8">Checkout</h1>
       <TrackBeginCheckout items={items} value={total / 100} />
 
+      {needsAuth ? (
+        <div className="bg-white p-8 rounded-2xl border border-brand-linen shadow-sm max-w-md mx-auto text-center mt-12">
+          <h2 className="text-2xl font-bold font-serif mb-2">Sign in to checkout</h2>
+          <p className="text-sm text-brand-charcoal/70 mb-6">Create an account or log in to securely save your order details and track delivery.</p>
+          <div className="flex flex-col gap-3">
+            <Link href="/login?redirect=/checkout" className="w-full bg-brand-charcoal text-white py-3.5 rounded-xl font-bold text-sm hover:bg-brand-charcoal/90 transition-colors inline-block">
+              Log In to Continue
+            </Link>
+            <Link href="/signup?redirect=/checkout" className="w-full bg-white border border-brand-charcoal text-brand-charcoal py-3.5 rounded-xl font-bold text-sm hover:bg-brand-bg transition-colors inline-block">
+              Create Account
+            </Link>
+          </div>
+          <p className="text-xs text-brand-charcoal/50 mt-6">
+            B2B accounts get access to order history, one-click reordering, and GST invoicing.
+          </p>
+        </div>
+      ) : (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           
@@ -222,19 +248,19 @@ export default function CheckoutPage() {
               </>
             ) : (
               <form onSubmit={handleSaveAddress} className="space-y-4 max-w-lg">
-                <div><label className="text-sm font-medium">Full Name</label><input required value={newAddress.name} onChange={e=>setNewAddress({...newAddress, name: e.target.value})} className="w-full border rounded p-2" /></div>
-                <div><label className="text-sm font-medium">Phone Number</label><input required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border rounded p-2" /></div>
-                <div><label className="text-sm font-medium">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border rounded p-2" /></div>
-                <div><label className="text-sm font-medium">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border rounded p-2" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Full Name</label><input required value={newAddress.name} onChange={e=>setNewAddress({...newAddress, name: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div><label className="text-sm font-medium">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border rounded p-2" /></div>
-                  <div><label className="text-sm font-medium">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border rounded p-2" /></div>
+                  <div><label className="text-sm font-medium mb-1 block">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                  <div><label className="text-sm font-medium mb-1 block">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 </div>
-                <div><label className="text-sm font-medium">Pincode</label><input required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border rounded p-2" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Pincode</label><input required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 
                 <div className="pt-4 flex gap-4">
-                  <button type="submit" className="bg-brand-charcoal text-white px-6 py-2 rounded font-medium">Save Address</button>
-                  {addresses.length > 0 && <button type="button" onClick={() => setShowNewAddressForm(false)} className="text-gray-500">Cancel</button>}
+                  <button type="submit" className="bg-brand-charcoal text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-charcoal/90 transition-colors">Save Address</button>
+                  {addresses.length > 0 && <button type="button" onClick={() => setShowNewAddressForm(false)} className="text-gray-500 hover:text-gray-800">Cancel</button>}
                 </div>
               </form>
             )}
@@ -344,6 +370,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+      )}
     </div>
   )
 }

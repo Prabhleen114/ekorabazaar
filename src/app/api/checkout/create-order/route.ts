@@ -178,12 +178,22 @@ export async function POST(req: Request) {
       return [order, payment]
     })
 
+    const customer = await prisma.user.findUnique({
+      where: { id: session.userId! },
+      select: { name: true, email: true, phone: true }
+    })
+
     return NextResponse.json({ 
       success: true, 
       orderId: createdOrder.id,
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,
-      amount: finalAmountPaise
+      amount: finalAmountPaise,
+      customer: {
+        name: (addressSnapshot as any)?.name || customer?.name || '',
+        email: customer?.email || '',
+        phone: (addressSnapshot as any)?.phone || customer?.phone || ''
+      }
     })
   } catch (error: any) {
     console.error("Create Checkout Order Error:", error)

@@ -24,6 +24,7 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { DEPARTMENTS, DISCIPLINE_HUBS, DisciplineConfig, getDepartmentForCategory } from "@/lib/taxonomy";
+import QuickAddButton from "@/components/QuickAddButton";
 
 type Product = {
   id: string;
@@ -100,6 +101,20 @@ export default function ShopClient() {
   const [searchQuery, setSearchQuery] = useState(
     () => searchParams.get("q") ? decodeURIComponent(searchParams.get("q")!) : ""
   );
+  const [searchInput, setSearchInput] = useState(searchQuery);
+  const searchDebounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setSearchInput(searchQuery);
+  }, [searchQuery]);
+
+  const handleSearchChange = (val: string) => {
+    setSearchInput(val);
+    if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    searchDebounceRef.current = setTimeout(() => {
+      setSearch(val.trim());
+    }, 350);
+  };
   
   // Expanded department accordions in filter drawer
   const [expandedDepts, setExpandedDepts] = useState<Record<string, boolean>>(() => {
@@ -390,27 +405,28 @@ export default function ShopClient() {
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const form = e.currentTarget;
-                  const input = form.elements.namedItem("shop-search") as HTMLInputElement;
-                  if (input) {
-                    setSearch(input.value.trim());
-                  }
+                  if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+                  setSearch(searchInput.trim());
                 }}
                 className="relative flex items-center"
               >
                 <input
                   type="text"
                   name="shop-search"
-                  defaultValue={searchQuery}
-                  key={searchQuery}
+                  value={searchInput}
+                  onChange={(e) => handleSearchChange(e.target.value)}
                   placeholder="Search products..."
-                  className="w-full bg-stone-50 border border-stone-200 rounded-xl pl-8 pr-7 py-2 text-xs font-medium focus:outline-none focus:border-amber-600 focus:bg-white transition-all shadow-2xs"
+                  className="w-full bg-stone-50 border border-stone-200 rounded-xl pl-8 pr-7 py-2 text-xs font-medium focus:outline-none focus:border-brand-orange focus:bg-white transition-all shadow-2xs"
                 />
                 <Search className="w-3.5 h-3.5 absolute left-2.5 text-stone-400" />
-                {searchQuery ? (
+                {searchInput ? (
                   <button
                     type="button"
-                    onClick={() => setSearch("")}
+                    onClick={() => {
+                      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+                      setSearchInput("");
+                      setSearch("");
+                    }}
                     className="absolute right-2 text-stone-400 hover:text-stone-700 p-0.5"
                     title="Clear search"
                   >
@@ -620,7 +636,7 @@ export default function ShopClient() {
                   href={`/products/${product.id}`} 
                   className="group flex flex-col transition-all duration-300"
                 >
-                  <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
+                  <div className="aspect-[4/5] w-full bg-white relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
                     <Image 
                       src={product.image || "/og-image.jpg"} 
                       alt={product.name} 
@@ -658,6 +674,9 @@ export default function ShopClient() {
                         View &rarr;
                       </span>
                     </div>
+                    {!(product.isQuoteOnly || product.price === 0) && (
+                      <QuickAddButton productId={String(product.id)} productName={product.name} basePrice={product.price} category={product.category} />
+                    )}
                   </div>
                 </Link>
               ))}

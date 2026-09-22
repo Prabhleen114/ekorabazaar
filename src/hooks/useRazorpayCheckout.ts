@@ -9,6 +9,11 @@ export interface CheckoutOptions {
   onError?: (error: string) => void;
   name?: string;
   description?: string;
+  prefill?: {
+    name?: string;
+    email?: string;
+    contact?: string;
+  };
 }
 
 export function useRazorpayCheckout() {
@@ -80,6 +85,11 @@ export function useRazorpayCheckout() {
         name: options.name || "Ekora Bazaar",
         description: options.description || "Checkout Payment",
         order_id: rzpOrderId,
+        prefill: {
+          name: options.prefill?.name || createData.customer?.name || "",
+          email: options.prefill?.email || createData.customer?.email || "",
+          contact: options.prefill?.contact || createData.customer?.phone || "",
+        },
         handler: async function (response: any) {
           try {
             // Modal blocks the UI, but handler is async

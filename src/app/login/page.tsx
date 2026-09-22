@@ -1,22 +1,62 @@
 'use client'
 
 import { useState, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { motion, type Variants } from 'motion/react'
+
+// Simple Google SVG Icon
+const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" {...props}>
+    <path
+      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+      fill="#4285F4"
+    />
+    <path
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.16v2.84C3.99 20.53 7.7 23 12 23z"
+      fill="#34A853"
+    />
+    <path
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.16C1.43 8.55 1 10.22 1 12s.43 3.45 1.16 4.93l3.68-2.84z"
+      fill="#FBBC05"
+    />
+    <path
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.68 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+      fill="#EA4335"
+    />
+  </svg>
+)
 
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get('redirect') // e.g. /products/<uuid>
+  const redirectTo = searchParams.get('redirect')
+  const urlError = searchParams.get('error')
+
+  const getErrorMessage = (errCode: string | null) => {
+    if (!errCode) return ''
+    if (errCode === 'oauth_not_configured') {
+      return 'Google Sign-In is being configured. Please use email/password or try again shortly.'
+    }
+    if (errCode === 'token_exchange_failed' || errCode === 'oauth_init_failed') {
+      return 'Google authentication encountered an issue. Please try signing in again.'
+    }
+    return 'Authentication failed. Please verify your credentials.'
+  }
+
+  const displayedError = error || getErrorMessage(urlError)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // 8-second timeout controller to guarantee zero UI deadlock
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 8000)
 
     try {
       const res = await fetch('/api/auth/login', {
@@ -24,154 +64,233 @@ function LoginForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: email.trim(), password }),
+        signal: controller.signal,
       })
 
+      clearTimeout(timeoutId)
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to login')
+        throw new Error(data.error || 'Invalid email or password.')
       }
 
       if (data.success) {
-        // Sync guest cart
-        const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
-        const guestItems = getGuestCart()
-        
-        if (guestItems.length > 0) {
-          try {
+        // Sync guest cart if any items were staged before signing in
+        try {
+          const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
+          const guestItems = getGuestCart()
+          
+          if (guestItems && guestItems.length > 0) {
             await fetch('/api/cart/sync', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ items: guestItems })
             })
             clearGuestCart()
-          } catch (syncErr) {
-            console.error('Failed to sync guest cart', syncErr)
           }
+        } catch (syncErr) {
+          console.error('Non-critical guest cart sync error:', syncErr)
         }
 
-        // If the user was redirected here from a product page (or similar), send them back there.
-        // Otherwise fall back to the role-based destination from the API.
-        const destination = redirectTo || data.redirectUrl || '/'
-        router.push(destination)
-        router.refresh()
+        // Full browser navigation ensures session cookies hydrate cleanly without router freeze
+        // Prioritize role-based redirects (admin/seller) over a default '/' redirect
+        const destination = (data.redirectUrl && data.redirectUrl !== '/') 
+          ? data.redirectUrl 
+          : (redirectTo || '/');
+        window.location.href = destination
       }
     } catch (err: any) {
-      setError(err.message)
-    } finally {
+      if (err.name === 'AbortError') {
+        setError('Connection timed out. Please verify your connection and try again.')
+      } else {
+        setError(err.message || 'Unable to sign in. Please check your credentials.')
+      }
       setLoading(false)
     }
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
-      </div>
+  const googleAuthUrl = `/api/auth/google${redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {error && (
-              <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm text-red-700">{error}</p>
-                  </div>
-                </div>
-              </div>
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 24,
+      },
+    },
+  }
+
+  return (
+    <div className="flex min-h-screen w-full bg-white font-sans text-neutral-950 antialiased selection:bg-neutral-900 selection:text-white relative">
+      {/* Left Form Section */}
+      <div className="flex w-full flex-col lg:w-1/2">
+        {/* Header Branding */}
+        <div className="p-6 md:p-10 absolute md:top-4 md:left-4 top-2 left-2 z-10">
+          <Link href="/" className="inline-block group">
+            <span className="text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-neutral-900 hover:text-neutral-600 transition-colors">
+              EKORA BAZAAR
+            </span>
+          </Link>
+        </div>
+
+        {/* Form Container */}
+        <div className="flex flex-1 items-center justify-center p-6 md:p-10 mt-16 md:mt-12">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="w-full max-w-[420px]"
+          >
+            {/* Titles */}
+            <motion.div variants={itemVariants} className="mb-6 text-center">
+              <h1 className="mb-1 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+                Sign In to Account
+              </h1>
+              <p className="text-sm text-neutral-500">
+                Access your studio orders, pricing &amp; wholesale catalog
+              </p>
+            </motion.div>
+
+            {/* Error Notification */}
+            {displayedError && (
+              <motion.div
+                variants={itemVariants}
+                className="mb-4 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs leading-relaxed"
+              >
+                {displayedError}
+              </motion.div>
             )}
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <div className="mt-1">
+            {/* Google Login Button */}
+            <motion.div variants={itemVariants} className="mb-4">
+              <a
+                href={googleAuthUrl}
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-neutral-200 bg-white px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 active:bg-neutral-100 shadow-xs"
+              >
+                <GoogleIcon className="text-lg" />
+                Login with Google
+              </a>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              variants={itemVariants}
+              className="relative mb-6 flex items-center"
+            >
+              <div className="grow border-t border-neutral-200"></div>
+              <span className="px-4 text-sm text-neutral-400">or</span>
+              <div className="grow border-t border-neutral-200"></div>
+            </motion.div>
+
+            {/* Form */}
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col gap-2"
+              >
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-neutral-800"
+                >
+                  Email
+                </label>
                 <input
                   id="email"
-                  name="email"
                   type="email"
-                  autoComplete="email"
                   required
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900"
+                  placeholder="Enter your email"
+                  className="w-full rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
                 />
-              </div>
-            </div>
+              </motion.div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="mt-1">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col gap-2"
+              >
+                <label
+                  htmlFor="password"
+                  className="text-sm font-medium text-neutral-800"
+                >
+                  Password
+                </label>
                 <input
                   id="password"
-                  name="password"
                   type="password"
-                  autoComplete="current-password"
                   required
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900"
+                  placeholder="Enter your password"
+                  className="w-full rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm text-neutral-900 placeholder:text-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-all"
                 />
-              </div>
-            </div>
+              </motion.div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
-            </div>
+              {/* Submit Button */}
+              <motion.div variants={itemVariants} className="mt-2">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full rounded-full bg-gradient-to-b from-[#3a3a3a] to-[#121212] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Signing In...' : 'Sign In'}
+                </button>
+              </motion.div>
+            </form>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-              >
-                {loading ? 'Signing in...' : 'Sign in'}
-              </button>
-            </div>
-          </form>
-          
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
+            {/* Footer Links */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-6 text-sm text-neutral-500 text-center flex flex-col gap-2"
+            >
+              <div>
+                Don&apos;t have an account?{' '}
+                <Link
+                  href={`/signup${redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`}
+                  className="font-semibold text-neutral-900 hover:underline"
+                >
+                  Sign up
+                </Link>
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
-                  Don't have an account?
-                </span>
+              <div>
+                <Link
+                  href="/sell/start-selling"
+                  className="text-xs text-neutral-400 hover:text-neutral-700 underline transition-colors"
+                >
+                  Raw Material Manufacturer? Apply as Seller
+                </Link>
               </div>
-            </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
-            <div className="mt-6 flex items-center justify-between text-sm">
-              <Link href={`/signup${redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`} className="font-medium text-brand-orange hover:text-brand-terracotta">
-                New customer? Sign up
-              </Link>
-              <Link href="/sell/start-selling" className="text-gray-600 hover:text-gray-900">
-                Apply to become a seller
-              </Link>
-            </div>
-          </div>
+      {/* Right Image Section */}
+      <div className="hidden lg:block lg:w-1/2 p-4">
+        <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+          <img
+            src="https://assets.watermelon.sh/auth-7.avif"
+            alt="Ekora Studio background"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
     </div>
@@ -180,7 +299,13 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-white flex items-center justify-center text-sm font-medium text-neutral-400">
+          Loading...
+        </div>
+      }
+    >
       <LoginForm />
     </Suspense>
   )

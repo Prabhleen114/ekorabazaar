@@ -49,7 +49,9 @@ export default function PricingWidget({
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isAddedSuccess, setIsAddedSuccess] = useState(false);
   const [isBuyingNow, setIsBuyingNow] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(true);
   const hasTrackedTierView = useRef(false);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
 
@@ -60,6 +62,19 @@ export default function PricingWidget({
   const activeBasePrice = selectedVariant
     ? selectedVariant.price
     : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
+
+  useEffect(() => {
+    if (!ctaRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Hide sticky bar if main CTAs are visible
+        setShowStickyBar(!entries[0].isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(ctaRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Track tier_pricing_view when wholesale tiers are visible to user
   useEffect(() => {
@@ -407,9 +422,16 @@ export default function PricingWidget({
                         </span>
                       )}
                     </div>
-                    <span className="font-mono text-stone-900">
-                      ₹{tier.price} <span className="text-[10px] text-stone-400">/ unit</span>
-                    </span>
+                    <div className="flex flex-col items-end">
+                      <span className="font-mono text-stone-900">
+                        ₹{tier.price} <span className="text-[10px] text-stone-400">/ unit</span>
+                      </span>
+                      {tier.discountPct > 0 && (
+                        <span className="text-[9px] text-emerald-700 font-mono mt-0.5">
+                          Save ₹{((activeBasePrice - tier.price) * tier.minQty).toLocaleString()} on {tier.minQty} units
+                        </span>
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -456,55 +478,71 @@ export default function PricingWidget({
             </div>
           </div>
         </div>
+        
+        {/* Shipping Info */}
+        <div className="pt-4 border-t border-stone-200">
+          <p className="text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono text-center">
+            Free shipping on orders above ₹2,000 | ₹99 flat below
+          </p>
+        </div>
 
         {errorMsg && <div className="text-stone-800 text-xs font-mono bg-stone-100 p-2 border border-stone-300">{errorMsg}</div>}
 
         {/* Architectural CTAs */}
-        <div className="space-y-2 pt-2">
+        <div className="space-y-2 pt-2" ref={ctaRef}>
           <button 
             onClick={() => handleAction('cart')}
             disabled={isProcessing}
-            className="w-full bg-stone-900 text-stone-50 hover:bg-stone-800 text-xs uppercase tracking-[0.2em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
+            className="w-full bg-brand-orange text-stone-50 hover:bg-brand-terracotta text-xs uppercase tracking-[0.2em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
           >
             {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />)} 
-            <span>{isAddingToCart ? "Adding to Batch..." : (isAddedSuccess ? "Added to Atelier Cart ✓" : "Add to Cart")}</span>
+            <span>{isAddingToCart ? "Adding to Cart..." : (isAddedSuccess ? "Added to Cart ✓" : "Add to Cart")}</span>
           </button>
           <button 
             onClick={() => handleAction('buy_now')}
             disabled={isProcessing}
             className="w-full border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-stone-50 text-xs uppercase tracking-[0.18em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
           >
-            {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Direct Checkout"}
+            {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
           </button>
+        </div>
+        
+        {/* Trust Signals */}
+        <div className="pt-4 flex flex-col gap-2 border-t border-stone-200 text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono mt-4">
+          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> 24H Dispatch from Muzaffarpur</div>
+          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> COA & IFRA Certificates available</div>
+          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> Razorpay Secured Payment</div>
         </div>
       </div>
 
       {/* Mobile Sticky Action Bar */}
-      <div 
-        className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 z-40 flex items-center justify-between" 
-        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
-      >
-        <div className="flex flex-col">
-          <span className="text-[9px] uppercase tracking-widest text-stone-400 font-mono">Subtotal</span>
-          <span className="text-base font-mono font-medium text-stone-900">₹{subtotal.toLocaleString()}</span>
+      {showStickyBar && (
+        <div 
+          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 z-40 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]" 
+          style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+        >
+          <div className="flex flex-col">
+            <span className="text-[9px] uppercase tracking-widest text-stone-400 font-mono">Qty: {quantity} &bull; Total</span>
+            <span className="text-base font-mono font-medium text-stone-900">₹{subtotal.toLocaleString()}</span>
+          </div>
+          <div className="flex gap-2 items-center">
+            <button 
+              onClick={() => handleAction('cart')}
+              disabled={isProcessing}
+              className="bg-stone-900 text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
+            >
+              {isAddedSuccess ? "Added ✓" : "Add to Cart"}
+            </button>
+            <button 
+              onClick={() => handleAction('buy_now')}
+              disabled={isProcessing}
+              className="bg-brand-orange text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
+            >
+              {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
+            </button>
+          </div>
         </div>
-        <div className="flex gap-2 items-center">
-          <button 
-            onClick={() => handleAction('cart')}
-            disabled={isProcessing}
-            className="bg-stone-900 text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
-          >
-            {isAddedSuccess ? "Added ✓" : "Add to Cart"}
-          </button>
-          <button 
-            onClick={() => handleAction('buy_now')}
-            disabled={isProcessing}
-            className="border border-stone-900 text-stone-900 px-4 py-3 text-xs uppercase tracking-widest font-mono min-h-[44px]"
-          >
-            Buy
-          </button>
-        </div>
-      </div>
+      )}
     </>
   );
 }

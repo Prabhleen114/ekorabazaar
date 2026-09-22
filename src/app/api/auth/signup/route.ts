@@ -19,23 +19,59 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    const { email, password } = body
+    const { email, password, name, phone, businessName } = body
 
     if (!email || !password) {
-      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 })
-    }
-    if (typeof password !== 'string' || password.length < 8) {
-      return NextResponse.json({ error: 'Password must be at least 8 characters' }, { status: 400 })
+      return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 })
     }
 
-    const existing = await prisma.user.findUnique({ where: { email } })
-    if (existing) {
-      return NextResponse.json({ error: 'Email already in use' }, { status: 409 })
+    const normalizedEmail = email.toLowerCase().trim()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(normalizedEmail)) {
+      return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 })
+    }
+
+    if (typeof password !== 'string' || password.length < 8) {
+      return NextResponse.json({ error: 'Password must be at least 8 characters.' }, { status: 400 })
+    }
+
+    // Clean and validate phone if provided
+    let cleanedPhone: string | null = null
+    if (phone && typeof phone === 'string') {
+      const rawDigits = phone.replace(/\D/g, '')
+      if (rawDigits.length === 10) {
+        cleanedPhone = `+91${rawDigits}`
+      } else if (rawDigits.length === 12 && rawDigits.startsWith('91')) {
+        cleanedPhone = `+${rawDigits}`
+      } else if (rawDigits.length >= 7) {
+        cleanedPhone = phone.trim()
+      }
+    }
+
+    // Check existing email
+    const existingEmail = await prisma.user.findUnique({ where: { email: normalizedEmail } })
+    if (existingEmail) {
+      return NextResponse.json({ error: 'An account with this email already exists.' }, { status: 409 })
+    }
+
+    // Check existing phone if supplied
+    if (cleanedPhone) {
+      const existingPhone = await prisma.user.findUnique({ where: { phone: cleanedPhone } })
+      if (existingPhone) {
+        return NextResponse.json({ error: 'An account with this phone number already exists.' }, { status: 409 })
+      }
     }
 
     const passwordHash = await bcrypt.hash(password, 12)
     const user = await prisma.user.create({
-      data: { email, passwordHash, role: 'CUSTOMER' }
+      data: {
+        email: normalizedEmail,
+        passwordHash,
+        name: name ? String(name).trim() : null,
+        phone: cleanedPhone,
+        businessName: businessName ? String(businessName).trim() : null,
+        role: 'CUSTOMER',
+      }
     })
 
     await createSession({ userId: user.id, role: user.role, sellerId: null })

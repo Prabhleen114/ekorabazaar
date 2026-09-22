@@ -14,6 +14,9 @@ export async function GET() {
       select: {
         id: true,
         email: true,
+        name: true,
+        phone: true,
+        businessName: true,
         role: true,
         createdAt: true,
         seller: {
@@ -38,12 +41,16 @@ export async function GET() {
       return NextResponse.json({ user: null })
     }
 
-    const displayName = user.addresses?.[0]?.name || user.seller?.brandName || user.email.split('@')[0]
+    const displayName = user.name || user.addresses?.[0]?.name || user.seller?.brandName || user.email.split('@')[0]
+    const contactPhone = user.phone || user.addresses?.[0]?.phone || null
 
     return NextResponse.json({
       user: {
         id: user.id,
         email: user.email,
+        name: user.name || null,
+        phone: contactPhone,
+        businessName: user.businessName || null,
         role: user.role,
         displayName,
         createdAt: user.createdAt,
