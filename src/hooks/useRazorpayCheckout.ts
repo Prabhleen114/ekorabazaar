@@ -90,6 +90,8 @@ export function useRazorpayCheckout() {
           email: options.prefill?.email || createData.customer?.email || "",
           contact: options.prefill?.contact || createData.customer?.phone || "",
         },
+        callback_url: `${window.location.origin}/api/checkout/callback`,
+        redirect: true,
         handler: async function (response: any) {
           try {
             // Modal blocks the UI, but handler is async
