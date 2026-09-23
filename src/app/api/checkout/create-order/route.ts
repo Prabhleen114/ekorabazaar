@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
-import { calculateItemPrice } from '@/lib/pricing'
+import { calculateItemPrice, TEMP_FLAT_SHIPPING_CHARGE } from '@/lib/pricing'
 import { razorpay } from '@/lib/razorpay'
 import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountStatus } from '@prisma/client'
 import catalogProducts from '@/lib/data/products.json'
@@ -122,8 +122,9 @@ export async function POST(req: Request) {
       }
     })
 
-    const shippingFeePaise = 8000; // 80 INR Standard Shipping
-    const finalAmountPaise = Math.round(totalAmount) + shippingFeePaise;
+    const shippingChargePaise = TEMP_FLAT_SHIPPING_CHARGE * 100
+    const subtotalPaise = Math.round(totalAmount)
+    const finalAmountPaise = Math.round(totalAmount + shippingChargePaise)
 
     // Razorpay key validated at import time via razorpay.ts
 
@@ -147,8 +148,8 @@ export async function POST(req: Request) {
         data: {
           customerId: session.userId!,
           total: finalAmountPaise,
-          subtotal: Math.round(totalAmount),
-          shipping: shippingFeePaise,
+          subtotal: subtotalPaise,
+          shipping: shippingChargePaise,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
           addressId: addressId || null,

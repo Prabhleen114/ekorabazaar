@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
 import { Check, Plus, Loader2, Building2, ShieldCheck } from 'lucide-react'
-import { TrackBeginCheckout } from '@/components/GA4Tracker'
+import { TrackBeginCheckout } from "@/components/GA4Tracker"
+import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 
 export default function CheckoutPage() {
@@ -38,13 +39,13 @@ export default function CheckoutPage() {
       if (!paymentCompletedRef.current && cartTotalRef.current > 0) {
         if (gstFocusedRef.current) {
           trackEvent("gst_field_abandon", {
-            cart_total: cartTotalRef.current / 100,
+            cart_total: (cartTotalRef.current / 100) + TEMP_FLAT_SHIPPING_CHARGE,
             item_count: itemCountRef.current,
           })
         }
         trackEvent("checkout_step_abandon", {
           step: "payment",
-          cart_total: cartTotalRef.current / 100,
+          cart_total: (cartTotalRef.current / 100) + TEMP_FLAT_SHIPPING_CHARGE,
           item_count: itemCountRef.current,
         })
       }
@@ -81,7 +82,7 @@ export default function CheckoutPage() {
 
       // Telemetry: begin_checkout event
       trackEvent("begin_checkout", {
-        cart_total: cartTotal / 100,
+        cart_total: (cartTotal / 100) + TEMP_FLAT_SHIPPING_CHARGE,
         item_count: availableItems.length,
       })
       
@@ -129,7 +130,7 @@ export default function CheckoutPage() {
     import('@next/third-parties/google').then(({ sendGAEvent }) => {
       sendGAEvent('event', 'add_payment_info', {
         currency: 'INR',
-        value: (total / 100) + 80,
+        value: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
         payment_type: 'Razorpay',
         items: items.map(item => ({
           item_id: item.productId || item.id,
@@ -161,7 +162,7 @@ export default function CheckoutPage() {
         import('@next/third-parties/google').then(({ sendGAEvent }) => {
           sendGAEvent('event', 'purchase', {
             transaction_id: data.orderId,
-            value: (total / 100) + 80,
+            value: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
             currency: 'INR',
             items: items.map(item => ({
               item_id: item.productId || item.id,
@@ -174,7 +175,7 @@ export default function CheckoutPage() {
         paymentCompletedRef.current = true
         trackEvent("purchase", {
           order_id: data.orderId,
-          cart_total: (total / 100) + 80,
+          cart_total: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
           item_count: items.length,
           gst_provided: !!gstin.trim(),
         })
@@ -191,7 +192,7 @@ export default function CheckoutPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold font-serif mb-8">Checkout</h1>
-      <TrackBeginCheckout items={items} value={total / 100} />
+      <TrackBeginCheckout items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
 
       {needsAuth ? (
         <div className="bg-white p-8 rounded-2xl border border-brand-linen shadow-sm max-w-md mx-auto text-center mt-12">
@@ -302,7 +303,7 @@ export default function CheckoutPage() {
                       if (!gstFocusedRef.current) {
                         gstFocusedRef.current = true
                         trackEvent("gst_field_focus", {
-                          cart_total: total / 100,
+                          cart_total: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
                           item_count: items.length,
                         })
                       }
@@ -349,20 +350,20 @@ export default function CheckoutPage() {
               ))}
             </div>
 
-            <div className="border-t border-brand-linen pt-4 mb-6">
-              <div className="flex justify-between text-sm mb-2 text-brand-charcoal/70">
-                <span>Subtotal</span>
-                <span>₹{(total / 100).toLocaleString()}</span>
+            <div className="border-t border-brand-linen pt-4 mb-6 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-brand-charcoal/70">Subtotal</span>
+                  <span className="font-semibold">₹{(total / 100).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-brand-charcoal/70">Delivery</span>
+                  <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-lg font-bold pt-2 border-t border-brand-linen">
+                  <span>Total</span>
+                  <span>₹{((total / 100) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString()}</span>
+                </div>
               </div>
-              <div className="flex justify-between text-sm mb-4 text-brand-charcoal/70">
-                <span>Standard Shipping</span>
-                <span>₹80</span>
-              </div>
-              <div className="flex justify-between text-lg font-bold">
-                <span>Total</span>
-                <span>₹{((total / 100) + 80).toLocaleString()}</span>
-              </div>
-            </div>
 
             {errorMsg && <div className="text-red-500 text-sm font-semibold mb-4 bg-red-50 p-3 rounded">{errorMsg}</div>}
 

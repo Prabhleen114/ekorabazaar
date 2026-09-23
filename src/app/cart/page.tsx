@@ -1,11 +1,12 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Minus, Plus, Trash2, ShoppingBag, Truck } from 'lucide-react'
-import { TrackViewCart } from '@/components/GA4Tracker'
+import { TrackViewCart } from "@/components/GA4Tracker"
+import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 
 export default function CartPage() {
@@ -137,7 +138,7 @@ export default function CartPage() {
         <ShoppingBag className="w-8 h-8 text-brand-orange" />
         Your Cart
       </h1>
-      <TrackViewCart items={items} value={total / 100} />
+      <TrackViewCart items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
 
       {items.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-2xl border border-brand-linen shadow-sm">
@@ -201,37 +202,19 @@ export default function CartPage() {
 
           <div className="bg-white p-6 rounded-2xl border border-brand-linen shadow-sm h-fit sticky top-24">
             <h2 className="text-lg font-bold mb-4">Order Summary</h2>
-            <div className="flex justify-between mb-4 text-lg">
+            <div className="flex justify-between mb-2 text-sm">
               <span className="text-brand-charcoal/70">Subtotal</span>
-              <span className="font-bold">₹{(total / 100).toLocaleString()}</span>
+              <span className="font-semibold">₹{(total / 100).toLocaleString()}</span>
             </div>
-            {/* Free Shipping Progress Indicator */}
-            <div className="my-5 p-4 rounded-xl bg-brand-bg border border-brand-linen">
-              {total >= 200000 ? (
-                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
-                  <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>You've unlocked <strong>Free Standard Shipping</strong>!</span>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs font-medium text-brand-charcoal">
-                    <span className="flex items-center gap-1.5">
-                      <Truck className="w-3.5 h-3.5 text-brand-orange shrink-0" />
-                      <span>Add <strong>₹{((200000 - total) / 100).toLocaleString()}</strong> for Free Shipping</span>
-                    </span>
-                    <span className="text-[11px] font-bold text-brand-orange">
-                      {Math.min(100, Math.round((total / 200000) * 100))}%
-                    </span>
-                  </div>
-                  <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-brand-orange transition-all duration-300 rounded-full" 
-                      style={{ width: `${Math.min(100, Math.round((total / 200000) * 100))}%` }}
-                    />
-                  </div>
-                </div>
-              )}
+            <div className="flex justify-between mb-4 text-sm">
+              <span className="text-brand-charcoal/70">Delivery</span>
+              <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString()}</span>
             </div>
+            <div className="border-t border-brand-linen pt-4 flex justify-between mb-4 text-lg">
+              <span className="font-bold text-brand-charcoal">Total</span>
+              <span className="font-bold">₹{((total / 100) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString()}</span>
+            </div>
+            {/* Free Shipping Progress Indicator disabled for flat shipping */}
 
             <Link 
               href="/checkout"

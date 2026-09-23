@@ -1,3 +1,7 @@
+// Temporary shipping fallback until Shiprocket KYC is approved.
+// Amount in Indian Rupees (INR).
+export const TEMP_FLAT_SHIPPING_CHARGE = 90;
+
 export function calculateItemPrice(
   product: { price: number; customerPrice: number | null; wholesaleTiers: any },
   quantity: number
