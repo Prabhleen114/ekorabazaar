@@ -482,7 +482,7 @@ export default function PricingWidget({
         {/* Shipping Info */}
         <div className="pt-4 border-t border-stone-200">
           <p className="text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono text-center">
-            Free shipping on orders above ₹2,000 | ₹99 flat below
+            Standard flat shipping ₹80 across India | Dispatch in 24h
           </p>
         </div>
 
