@@ -30,6 +30,12 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null;
+            target.src = "/og-image.jpg";
+            target.srcset = "";
+          }}
         />
       </div>
 

@@ -34,7 +34,19 @@ export default async function AdminPriceRequestsPage() {
               <tr key={req.id}>
                 <td className="px-6 py-4 flex items-center gap-3">
                   <div className="w-10 h-10 bg-brand-bg rounded overflow-hidden relative">
-                    <Image src={req.product.imageUrl || '/og-image.jpg'} alt="Product" fill className="object-cover" unoptimized />
+                    <Image 
+                      src={req.product.imageUrl || '/og-image.jpg'} 
+                      alt="Product" 
+                      fill 
+                      className="object-cover" 
+                      unoptimized 
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = "/og-image.jpg";
+                        target.srcset = "";
+                      }}
+                    />
                   </div>
                   <div>
                     <div className="text-sm font-medium text-gray-900 truncate max-w-xs" title={req.product.title}>{req.product.title}</div>

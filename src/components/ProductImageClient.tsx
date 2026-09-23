@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProductImageClient({ 
   src, 
@@ -18,11 +18,16 @@ export default function ProductImageClient({
 }) {
   const [imgSrc, setImgSrc] = useState(src || "/placeholder-product.svg");
 
+  useEffect(() => {
+    setImgSrc(src || "/placeholder-product.svg");
+  }, [src]);
+
   return (
     <Image 
       src={imgSrc} 
       alt={alt} 
       fill
+      unoptimized={Boolean(imgSrc && imgSrc.startsWith("http"))}
       priority={priority}
       quality={85}
       sizes={sizes}

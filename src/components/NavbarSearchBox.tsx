@@ -323,6 +323,12 @@ export default function NavbarSearchBox() {
                         height={40}
                         className="w-full h-full object-contain p-0.5"
                         unoptimized
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null;
+                          target.src = "/og-image.jpg";
+                          target.srcset = "";
+                        }}
                       />
                     </div>
                   ) : (

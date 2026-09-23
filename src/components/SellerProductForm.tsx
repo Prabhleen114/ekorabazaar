@@ -148,7 +148,19 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           <div className="w-full sm:w-48 aspect-square rounded-2xl border-2 border-dashed border-brand-linen bg-stone-50 flex items-center justify-center relative overflow-hidden group">
             {imageUrl ? (
               <>
-                <Image src={imageUrl} alt="Preview" fill className="object-cover" unoptimized={imageUrl.startsWith('http')} />
+                <Image 
+                  src={imageUrl} 
+                  alt="Preview" 
+                  fill 
+                  className="object-cover" 
+                  unoptimized={imageUrl.startsWith('http')} 
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = "/og-image.jpg";
+                    target.srcset = "";
+                  }}
+                />
                 <button 
                   type="button" 
                   onClick={() => setImageUrl('')}
