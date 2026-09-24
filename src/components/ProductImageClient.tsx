@@ -29,7 +29,7 @@ export default function ProductImageClient({
       fill
       unoptimized={Boolean(imgSrc && imgSrc.startsWith("http"))}
       priority={priority}
-      quality={85}
+      quality={95}
       sizes={sizes}
       className={className} 
       onError={() => setImgSrc("/placeholder-product.svg")}

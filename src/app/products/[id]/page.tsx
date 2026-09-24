@@ -404,6 +404,16 @@ export default async function ProductDetailsPage({ params }: Props) {
                 Store in original amber glass or food-grade HDPE container at 15&deg;C&ndash;25&deg;C away from direct UV exposure. Optimal shelf life is 24 months from batch distillation date.
               </div>
             </details>
+
+            <details className="group py-4">
+              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+                <span>+ Returns &amp; Exchanges (B2B Policy)</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+              </summary>
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-mono">
+                Returns/exchanges are not available for standard wholesale and raw-material orders. Please verify product specifications, quantity, and requirements before placing the order.
+              </div>
+            </details>
           </div>
         </div>
       </div>

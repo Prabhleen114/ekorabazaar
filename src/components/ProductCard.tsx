@@ -27,7 +27,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           alt={product.title}
           fill
           unoptimized={isExternalImage}
-          quality={85}
+          quality={95}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
@@ -53,6 +53,11 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
             View &rarr;
           </span>
         </div>
+        {product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1 && (
+          <div className="mt-1 text-[9px] text-[#8C734B] font-mono uppercase tracking-widest">
+            Bulk Pricing Available
+          </div>
+        )}
       </div>
     </Link>
   );
