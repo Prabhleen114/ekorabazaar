@@ -95,17 +95,16 @@ export function generateProductSchema(product: any, sellerName?: string) {
   const returnPolicy = {
     "@type": "MerchantReturnPolicy",
     "applicableCountry": "IN",
-    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-    "merchantReturnDays": 7,
-    "returnMethod": "https://schema.org/ReturnByMail",
-    "returnFees": "https://schema.org/FreeReturn"
+    "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+    "merchantReturnDays": 0,
+    "description": "Returns/exchanges are not available for standard wholesale and raw-material orders."
   };
 
   const shippingDetails = {
     "@type": "OfferShippingDetails",
     "shippingRate": {
       "@type": "MonetaryAmount",
-      "value": 0,
+      "value": 90,
       "currency": "INR"
     },
     "shippingDestination": {
@@ -267,5 +266,15 @@ export function generateBreadcrumbSchema(crumbs: { name: string, url: string }[]
       "name": crumb.name,
       "item": crumb.url.startsWith('http') ? crumb.url : `${BASE_URL}${crumb.url}`
     }))
+  };
+}
+export function generateOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "WebSite"],
+    "name": SITE_NAME,
+    "url": BASE_URL,
+    "logo": "${BASE_URL}/og-image.jpg",
+    "description": "Ekora Bazaar is a B2B marketplace for wholesale products and raw materials. Connect with verified suppliers for bulk buying."
   };
 }

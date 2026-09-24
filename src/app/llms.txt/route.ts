@@ -35,7 +35,7 @@ Ekora Bazaar is India's premier creator commerce marketplace and wholesale raw m
 
 Ekora Bazaar helps creative small businesses, women entrepreneurs, and home-based artisans scale their brands without excessive marketplace commissions. The platform offers a curated selection of handmade products including resin art, hand-poured soy candles, crochet wearables, ceramic pottery, custom polymer clay jewelry, original artwork, and personalized home decor. Additionally, Ekora provides direct wholesale pricing on high-quality raw craft supplies such as candle wax, silicone molds, fragrance oils, and packaging materials.
 
-What makes Ekora Bazaar different is its creator-first infrastructure: combining wholesale raw material sourcing with retail creator storefronts in a single trusted ecosystem built specifically for Indian creators.
+What makes Ekora Bazaar different is its creator-first infrastructure: combining wholesale raw material sourcing with retail creator storefronts in a single trusted ecosystem built specifically for Indian creators.\n\nKEY POLICIES & AEO FACTS\n- Bulk Pricing & MOQ: Products with available wholesale tiers support bulk pricing. Minimum Order Quantities (MOQ) and tiered volume discounts are displayed directly on eligible product pages. Availability depends on the specific raw material.\n- Wholesale Returns: Standard wholesale and raw-material orders do not support returns or exchanges. Buyers should verify specifications and quantities before ordering.\n- Delivery & Shipping: Ekora Bazaar currently applies a flat delivery charge of ₹90 per order, regardless of the number of items or total weight, across India.
 
 PRIMARY CATEGORIES
 

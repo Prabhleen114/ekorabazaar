@@ -3,7 +3,7 @@ import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
 import serialize from "serialize-javascript";
-import { generateCategoryMetadata } from "@/lib/seo";
+import { generateCategoryMetadata, generateFaqSchema } from "@/lib/seo";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ProductCard from "@/components/ProductCard";
@@ -107,11 +107,26 @@ export default async function WholesaleCategoryPage({ params }: Props) {
     }
   };
 
+  const faqSchema = generateFaqSchema([
+    {
+      question: `How do I buy ${categoryObj.label} in bulk?`,
+      answer: `You can purchase ${categoryObj.label} in bulk directly on Ekora Bazaar. Simply browse our verified suppliers above, check their minimum order quantities (MOQ) and wholesale pricing tiers, and place your order securely through our platform.`
+    },
+    {
+      question: "Are the suppliers verified?",
+      answer: "Yes, every B2B supplier and manufacturer on Ekora Bazaar undergoes a strict verification process to ensure product quality and reliable shipping across India."
+    },
+    {
+      question: "Can I contact the manufacturer directly?",
+      answer: "Yes! Once you click on a product, you will see an option to send an enquiry or contact the supplier to discuss custom requirements before placing your wholesale order."
+    }
+  ]);
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
       
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize(structuredData, { isJSON: true }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize([structuredData, faqSchema], { isJSON: true }) }} />
 
       <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1">
         

@@ -11,7 +11,10 @@ export default function robots(): MetadataRoute.Robots {
           '/seller/dashboard/',
           '/admin/',
           '/start-selling', // application form
-          '/login'
+          '/login',
+          '/account/',
+          '/checkout/',
+          '/cart/'
         ],
       },
     ],

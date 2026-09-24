@@ -6,6 +6,8 @@ import { ArrowRight } from "lucide-react";
 import catalogProducts from "@/lib/data/products.json";
 import QuickAddButton from "@/components/QuickAddButton";
 import type { Metadata } from "next";
+import { generateOrganizationSchema } from "@/lib/seo";
+import serialize from "serialize-javascript";
 
 export const metadata: Metadata = {
   title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Atelier",
@@ -23,6 +25,7 @@ const CORE_DISCIPLINES = [
 ];
 
 export default function BuyerHomePage() {
+  const orgSchema = generateOrganizationSchema();
   // Select top 4 curated formulation essentials for the trending shelf
   const trendingProductIds = ["790", "904", "907", "905"];
   const trendingProducts = trendingProductIds
@@ -32,6 +35,7 @@ export default function BuyerHomePage() {
   return (
     <main className="min-h-screen bg-[#FAF8F5] text-[#181715] flex flex-col font-sans selection:bg-[#E8E5DF] selection:text-[#181715]">
       <BuyerNavbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize(orgSchema, { isJSON: true }) }} />
 
       {/* 1. DISCIPLINE DIRECTORY BAR (Instant Taxonomy Access) */}
       <div className="w-full border-b border-stone-200/80 bg-white relative">
@@ -260,6 +264,42 @@ export default function BuyerHomePage() {
       </section>
 
 
+
+      
+      {/* AEO (Answer Engine Optimization) FAQ & Entity Section */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-24" aria-labelledby="aeo-faq-heading">
+        <h2 id="aeo-faq-heading" className="sr-only">About Ekora Bazaar Wholesale & Raw Materials</h2>
+        
+        <div className="border-t border-stone-200 pt-16 grid grid-cols-1 md:grid-cols-2 gap-12 text-sm text-stone-600 font-serif">
+          <div>
+            <h3 className="text-stone-900 font-medium mb-3 text-base">What is Ekora Bazaar?</h3>
+            <p className="leading-relaxed">
+              Ekora Bazaar is a B2B marketplace for wholesale products and raw materials. We connect businesses, creators, and bulk buyers with verified Indian manufacturers and suppliers, specializing in candle-making, soap-making, and skincare ingredients.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-stone-900 font-medium mb-3 text-base">Does Ekora Bazaar support bulk buying?</h3>
+            <p className="leading-relaxed">
+              Yes, products with available wholesale tiers support bulk pricing. Minimum Order Quantities (MOQ) and tiered volume discounts are displayed directly on eligible product pages. Availability depends on the specific raw material or product.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-stone-900 font-medium mb-3 text-base">Does Ekora Bazaar offer returns on wholesale/raw-material orders?</h3>
+            <p className="leading-relaxed">
+              Standard wholesale and raw-material orders do not support returns or exchanges. Buyers should verify product specifications, technical data sheets, and quantities before placing their B2B order.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-stone-900 font-medium mb-3 text-base">How is delivery charged for bulk orders?</h3>
+            <p className="leading-relaxed">
+              Ekora Bazaar applies a temporary flat delivery charge of ₹90 per order, regardless of the number of items or total weight, while we complete our comprehensive shipping integration.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <BuyerFooter />
     </main>
