@@ -856,6 +856,7 @@ export default function ShopClient() {
                               {dept.subcategories.map(sub => {
                                 const isCatSelected = selectedCategory === sub;
                                 const subCount = taxonomyCounts.catCounts[sub] || 0;
+                                const isSubOption = sub === "Skin Safe Fragrances";
                                 return (
                                   <button
                                     key={sub}
@@ -865,12 +866,17 @@ export default function ShopClient() {
                                       setCategory(isCatSelected ? null : sub);
                                     }}
                                     className={`flex items-center justify-between w-full text-left text-xs py-1 transition-colors ${
+                                      isSubOption ? "pl-3 border-l border-amber-300/80 ml-1" : ""
+                                    } ${
                                       isCatSelected ? "text-amber-700 font-bold" : "text-stone-500 hover:text-stone-900"
                                     }`}
                                   >
-                                    <span className="truncate">{sub}</span>
+                                    <span className="truncate flex items-center gap-1">
+                                      {isSubOption && <span className="text-[10px] text-amber-700/80 font-mono">↳</span>}
+                                      <span>{sub}</span>
+                                    </span>
                                     {subCount > 0 && (
-                                      <span className="text-[10px] text-stone-400 shrink-0 ml-1">
+                                      <span className="text-[10px] text-stone-400 shrink-0 ml-1 font-mono">
                                         {subCount}
                                       </span>
                                     )}

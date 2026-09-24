@@ -12,6 +12,7 @@ export const CATEGORIES = {
   ],
   SCENTS_AND_BOTANICALS: [
     { label: "Fragrance Oils", id: "Fragrance Oils" },
+    { label: "Skin Safe Fragrances", id: "Skin Safe Fragrances" },
     { label: "Essential Oils", id: "Essential Oils" },
     { label: "Food-Grade Flavor Oils", id: "Food-Grade Flavor Oils" },
     { label: "Hydrosols & Floral Waters", id: "Hydrosols & Floral Waters" },
@@ -87,6 +88,10 @@ const CATEGORY_ALIASES: Record<string, string> = {
   "essential oils": "Essential Oils",
   "fragrance oil": "Fragrance Oils",
   "fragrance oils": "Fragrance Oils",
+  "skin safe fragrance": "Skin Safe Fragrances",
+  "skin safe fragrances": "Skin Safe Fragrances",
+  "skin safe fragrance oil": "Skin Safe Fragrances",
+  "skin safe fragrance oils": "Skin Safe Fragrances",
   "candle moulds": "Candle & Pillar Moulds",
   "candle & pillar moulds": "Candle & Pillar Moulds",
   "soap moulds": "Soap & Bar Moulds",

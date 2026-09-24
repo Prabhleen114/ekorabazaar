@@ -81,6 +81,9 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: NonNullable
 
     deptCounts[department] = (deptCounts[department] || 0) + 1;
     catCounts[category] = (catCounts[category] || 0) + 1;
+    if (category === "Skin Safe Fragrances") {
+      catCounts["Fragrance Oils"] = (catCounts["Fragrance Oils"] || 0) + 1;
+    }
     disciplines.forEach((d: string) => {
       discCounts[d] = (discCounts[d] || 0) + 1;
     });
@@ -211,8 +214,16 @@ export async function GET(req: NextRequest) {
 
   // Filter catalog
   const filtered = allProducts.filter(p => {
-    if (normalizedCategory && p.category.toLowerCase() !== normalizedCategory.toLowerCase()) {
-      return false;
+    if (normalizedCategory) {
+      const pCat = (p.category || "").toLowerCase();
+      const targetCat = normalizedCategory.toLowerCase();
+      if (targetCat === "fragrance oils") {
+        if (pCat !== "fragrance oils" && pCat !== "skin safe fragrances") {
+          return false;
+        }
+      } else if (pCat !== targetCat) {
+        return false;
+      }
     }
     if (department && p.department.toLowerCase() !== department.toLowerCase()) {
       return false;

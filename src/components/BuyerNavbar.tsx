@@ -516,17 +516,25 @@ export default function BuyerNavbar() {
                         {dept.name}
                       </Link>
                       <ul className="space-y-1.5 w-full">
-                        {dept.subcategories.map((sub) => (
-                          <li key={sub}>
-                            <Link
-                              href={`/shop?category=${encodeURIComponent(sub)}`}
-                              onClick={closeMenu}
-                              className="text-[12px] text-stone-600 hover:text-stone-950 block py-0.5 leading-snug transition-colors"
-                            >
-                              {sub}
-                            </Link>
-                          </li>
-                        ))}
+                        {dept.subcategories.map((sub) => {
+                          const isSubOption = sub === "Skin Safe Fragrances";
+                          return (
+                            <li key={sub} className={isSubOption ? "pl-2 border-l border-amber-300/80 my-0.5" : ""}>
+                              <Link
+                                href={`/shop?category=${encodeURIComponent(sub)}`}
+                                onClick={closeMenu}
+                                className={`text-[12px] ${
+                                  isSubOption 
+                                    ? "text-stone-500 hover:text-stone-950 font-medium flex items-center gap-1.5" 
+                                    : "text-stone-600 hover:text-stone-950"
+                                } block py-0.5 leading-snug transition-colors`}
+                              >
+                                {isSubOption && <span className="text-[10px] text-amber-700/80 font-mono">↳</span>}
+                                <span>{sub}</span>
+                              </Link>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   ))}
@@ -627,16 +635,24 @@ export default function BuyerNavbar() {
                           {dept.name}
                         </Link>
                         <div className="flex flex-wrap gap-1.5">
-                          {dept.subcategories.map((sub) => (
-                            <Link
-                              key={sub}
-                              href={`/shop?category=${encodeURIComponent(sub)}`}
-                              className="text-[11px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded-md hover:bg-stone-200 transition-colors"
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {sub}
-                            </Link>
-                          ))}
+                          {dept.subcategories.map((sub) => {
+                            const isSubOption = sub === "Skin Safe Fragrances";
+                            return (
+                              <Link
+                                key={sub}
+                                href={`/shop?category=${encodeURIComponent(sub)}`}
+                                className={`text-[11px] ${
+                                  isSubOption 
+                                    ? "bg-amber-50 text-amber-900 border border-amber-200/80 font-medium" 
+                                    : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                                } px-2 py-0.5 rounded-md transition-colors inline-flex items-center gap-1`}
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {isSubOption && <span className="text-[9px] text-amber-700 font-mono">↳</span>}
+                                <span>{sub}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}

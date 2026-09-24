@@ -39,6 +39,7 @@ export const DEPARTMENTS: DepartmentConfig[] = [
     description: "Concentrated fragrance blends, steam-distilled essential oils, food-grade flavors, and hydrosols.",
     subcategories: [
       "Fragrance Oils",
+      "Skin Safe Fragrances",
       "Essential Oils",
       "Food-Grade Flavor Oils",
       "Hydrosols & Floral Waters",
