@@ -28,7 +28,12 @@ import {
   BarChart3,
   Users,
   RefreshCw,
+  Filter,
+  Layers,
+  Activity,
+  ChevronRight,
 } from "lucide-react";
+import type { AnonymousSessionDropoff, SessionDropoffAnalyticsResult } from "@/lib/intelligence";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -63,16 +68,19 @@ interface Stats {
   total: number;
   pending: number;
   resolved: number;
+  totalTrackedVisitors?: number;
+  totalVisitorDropoffs?: number;
 }
 
 interface FunnelStage {
+  key: "browsed" | "cart" | "checkout" | "postOrder";
   label: string;
   sublabel: string;
   count: number;
   dropCount: number;
   dropReason: string;
   icon: React.ReactNode;
-  color: string;
+  color: "amber" | "orange" | "red" | "rose";
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────

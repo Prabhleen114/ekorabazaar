@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import prisma from "@/lib/db";
-import { FLAG_DEFINITIONS } from "@/lib/intelligence";
+import { FLAG_DEFINITIONS, getSessionDropoffAnalytics } from "@/lib/intelligence";
 import { WHATSAPP_TEMPLATES } from "@/lib/intelligence-messages";
 
 export const dynamic = "force-dynamic";
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
       };
     }
 
-    const [flags, totalCount, pendingCount, resolvedCount] = await Promise.all([
+    const [flags, totalCount, pendingCount, resolvedCount, dropoffAnalytics] = await Promise.all([
       prisma.customerFlag.findMany({
         where: whereClause,
         include: {
@@ -83,6 +83,7 @@ export async function GET(req: NextRequest) {
       prisma.customerFlag.count(),
       prisma.customerFlag.count({ where: { resolved: false } }),
       prisma.customerFlag.count({ where: { resolved: true } }),
+      getSessionDropoffAnalytics(),
     ]);
 
     // Format flags with definitions and human-readable metadata
@@ -138,8 +139,11 @@ export async function GET(req: NextRequest) {
         total: totalCount,
         pending: pendingCount,
         resolved: resolvedCount,
+        totalTrackedVisitors: dropoffAnalytics.totalSessions,
+        totalVisitorDropoffs: dropoffAnalytics.totalDropoffs,
       },
       flagDefinitions: FLAG_DEFINITIONS,
+      funnel: dropoffAnalytics,
     });
   } catch (error: any) {
     if (error.message === "UNAUTHORIZED" || error.message?.includes("Admin")) {
