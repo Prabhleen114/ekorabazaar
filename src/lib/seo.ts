@@ -52,7 +52,7 @@ export function generateStandardMetadata(
  * Generate dynamic Product Metadata targeting B2B & Wholesale commercial intent
  */
 export function generateProductMetadata(product: any): Metadata {
-  const title = `${product.title} | ${SITE_NAME}`;
+  const title = product.title;
   const description = `Source ${product.title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
   
   const imageUrl = product.imageUrl || DEFAULT_OG_IMAGE;
@@ -65,7 +65,7 @@ export function generateProductMetadata(product: any): Metadata {
  * Generate dynamic Category Metadata
  */
 export function generateCategoryMetadata(categoryName: string, categorySlug: string): Metadata {
-  const title = `${categoryName} Wholesale | Bulk Supplier India | ${SITE_NAME}`;
+  const title = `${categoryName} Wholesale | Bulk Supplier India`;
   const description = `Source wholesale ${categoryName} for small businesses and creators. Reliable supply, volume tier pricing, and fast delivery on ${SITE_NAME}.`;
   
   const path = `/wholesale/${categorySlug}`;
@@ -76,7 +76,7 @@ export function generateCategoryMetadata(categoryName: string, categorySlug: str
  * Generate dynamic Guide Metadata
  */
 export function generateGuideMetadata(guideTitle: string, guideSlug: string): Metadata {
-  const title = `${guideTitle} Buying Guide | ${SITE_NAME}`;
+  const title = `${guideTitle} Buying Guide`;
   const description = `Read our comprehensive buying guide on ${guideTitle}. Learn how to source the best materials for your business on ${SITE_NAME}.`;
   
   const path = `/guides/${guideSlug}`;
