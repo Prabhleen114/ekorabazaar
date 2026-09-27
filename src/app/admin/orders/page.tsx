@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
-type TabStatus = 'ALL' | 'PAYMENT_PENDING' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED' | 'REFUND_INITIATED' | 'REFUNDED'
+type TabStatus = 'ALL' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED' | 'REFUND_INITIATED' | 'REFUNDED'
 
 const TABS: { key: TabStatus; label: string }[] = [
   { key: 'ALL',              label: 'Total' },
-  { key: 'PAYMENT_PENDING',  label: 'Pending' },
   { key: 'PAID',             label: 'Confirmed' },
   { key: 'PROCESSING',       label: 'Processing' },
   { key: 'SHIPPED',          label: 'Shipped' },

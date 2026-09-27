@@ -10,13 +10,10 @@ export async function GET(req: Request) {
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
     const limit = Math.min(1000, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)))
     const skip = (page - 1) * limit
-    const status = searchParams.get('status') || null
 
-    // Only allow known OrderStatus values to prevent injection
-    const VALID_STATUSES = ['PAID', 'PROCESSING', 'SHIPPED', 'IN_TRANSIT', 'DELIVERED', 'CANCELLED', 'REFUND_INITIATED', 'REFUNDED']
-    const where: any = status && VALID_STATUSES.includes(status) ? { status: status as any } : { status: { not: 'PAYMENT_PENDING' } }
+    const where = { status: 'PAYMENT_PENDING' as any }
 
-    const [orders, total] = await Promise.all([
+    const [leads, total] = await Promise.all([
       prisma.order.findMany({
         skip,
         take: limit,
@@ -48,7 +45,7 @@ export async function GET(req: Request) {
     ])
 
     return NextResponse.json({
-      orders,
+      leads,
       pagination: {
         page,
         limit,
@@ -57,7 +54,7 @@ export async function GET(req: Request) {
       }
     })
   } catch (error: any) {
-    console.error('Admin orders fetch error:', error)
+    console.error('Admin leads fetch error:', error)
     if (error.message?.includes('FORBIDDEN') || error.message?.includes('UNAUTHORIZED')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }

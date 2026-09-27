@@ -6,7 +6,10 @@ export async function GET() {
   try {
     const session = await requireCustomer()
     const orders = await prisma.order.findMany({
-      where: { customerId: session.userId },
+      where: { 
+        customerId: session.userId,
+        status: { not: 'PAYMENT_PENDING' }
+      },
       include: {
         items: true,
         payments: { select: { status: true, type: true, amount: true } },
