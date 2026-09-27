@@ -2,34 +2,49 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
-type TabStatus = 'PAID' | 'PAYMENT_PENDING' | 'CANCELLED' | 'ALL'
+type TabStatus = 'ALL' | 'PAYMENT_PENDING' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED' | 'REFUND_INITIATED' | 'REFUNDED'
 
 const TABS: { key: TabStatus; label: string }[] = [
-  { key: 'PAID',            label: 'Confirmed / Paid Orders'  },
-  { key: 'PAYMENT_PENDING', label: 'Pending Orders'           },
-  { key: 'CANCELLED',       label: 'Payment Failed Orders'    },
-  { key: 'ALL',             label: 'All Orders'               },
+  { key: 'ALL',              label: 'Total' },
+  { key: 'PAYMENT_PENDING',  label: 'Pending' },
+  { key: 'PAID',             label: 'Confirmed' },
+  { key: 'PROCESSING',       label: 'Processing' },
+  { key: 'SHIPPED',          label: 'Shipped' },
+  { key: 'IN_TRANSIT',       label: 'In Transit' },
+  { key: 'DELIVERED',        label: 'Delivered' },
+  { key: 'CANCELLED',        label: 'Cancelled' },
+  { key: 'REFUND_INITIATED', label: 'Refund Initiated' },
+  { key: 'REFUNDED',         label: 'Refunded' },
 ]
 
 function orderStatusClass(status: string): string {
   if (status === 'PAID')            return 'bg-green-100 text-green-800'
   if (status === 'PAYMENT_PENDING') return 'bg-yellow-100 text-yellow-800'
   if (status === 'CANCELLED')       return 'bg-red-100 text-red-800'
+  if (status === 'PROCESSING')      return 'bg-blue-100 text-blue-800'
+  if (status === 'SHIPPED')         return 'bg-indigo-100 text-indigo-800'
+  if (status === 'IN_TRANSIT')      return 'bg-purple-100 text-purple-800'
+  if (status === 'DELIVERED')       return 'bg-green-100 text-green-800'
+  if (status === 'REFUND_INITIATED')return 'bg-orange-100 text-orange-800'
+  if (status === 'REFUNDED')        return 'bg-red-100 text-red-800'
   return 'bg-gray-100 text-gray-600'
-}
-
-function orderStatusLabel(status: string): string {
-  if (status === 'PAYMENT_PENDING') return 'PENDING'
-  return status
 }
 
 export default function AdminOrdersPage() {
   const [orders,     setOrders]     = useState<any[]>([])
-  const [counts,     setCounts]     = useState<Record<string, number>>({ PAID: 0, PAYMENT_PENDING: 0, CANCELLED: 0, ALL: 0 })
+  
+  // Initialize counts for all tabs
+  const defaultCounts = TABS.reduce((acc, tab) => {
+    acc[tab.key] = 0
+    return acc
+  }, {} as Record<string, number>)
+  
+  const [counts,     setCounts]     = useState<Record<string, number>>(defaultCounts)
   const [loading,    setLoading]    = useState(true)
   const [errorMsg,   setErrorMsg]   = useState('')
-  const [activeTab,  setActiveTab]  = useState<TabStatus>('PAID')
+  const [activeTab,  setActiveTab]  = useState<TabStatus>('ALL')
   const [page,       setPage]       = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
@@ -41,7 +56,7 @@ export default function AdminOrdersPage() {
 
   async function fetchCounts() {
     try {
-      const res  = await fetch('/api/admin/orders?page=1&limit=2000')
+      const res  = await fetch('/api/admin/orders?page=1&limit=5000')
       if (!res.ok) {
         if (res.status === 401 || res.status === 403) {
           setErrorMsg('Session expired or unauthorized. Please re-login.')
@@ -50,11 +65,14 @@ export default function AdminOrdersPage() {
       }
       const data = await res.json()
       const all: any[] = data.orders || []
-      const c = { PAID: 0, PAYMENT_PENDING: 0, CANCELLED: 0, ALL: all.length }
+      
+      const c = { ...defaultCounts }
+      c.ALL = all.length
+      
       all.forEach((o: any) => {
-        if      (o.status === 'PAID')            c.PAID++
-        else if (o.status === 'PAYMENT_PENDING') c.PAYMENT_PENDING++
-        else if (o.status === 'CANCELLED')       c.CANCELLED++
+        if (c[o.status] !== undefined) {
+          c[o.status]++
+        }
       })
       setCounts(c)
     } catch (e) { console.error(e) }
@@ -111,23 +129,23 @@ export default function AdminOrdersPage() {
       )}
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit">
+      <div className="flex flex-wrap gap-2 mb-6 w-full">
         {TABS.map(tab => {
           const isActive = activeTab === tab.key
           const tabCls = isActive
-            ? 'bg-white shadow text-gray-900'
-            : 'text-gray-500 hover:text-gray-700'
+            ? 'bg-gray-900 shadow-md text-white border-transparent'
+            : 'bg-white text-gray-600 hover:text-gray-900 hover:bg-gray-50 border-gray-200'
           const badgeCls = isActive
-            ? 'bg-gray-900 text-white'
-            : 'bg-gray-200 text-gray-600'
+            ? 'bg-white text-gray-900'
+            : 'bg-gray-100 text-gray-600'
           return (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={'px-4 py-2 rounded-md text-sm font-medium transition-colors ' + tabCls}
+              className={'px-3 py-2 rounded-lg text-sm font-medium transition-all border ' + tabCls}
             >
               {tab.label}
-              <span className={'ml-2 px-1.5 py-0.5 rounded text-xs font-bold ' + badgeCls}>
+              <span className={'ml-2 px-1.5 py-0.5 rounded-full text-xs font-bold ' + badgeCls}>
                 {counts[tab.key]}
               </span>
             </button>
@@ -182,7 +200,7 @@ export default function AdminOrdersPage() {
                     <td className="p-4 text-sm font-semibold text-gray-900">Rs. {totalINR}</td>
                     <td className="p-4">
                       <span className={'inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ' + orderStatusClass(order.status)}>
-                        {orderStatusLabel(order.status)}
+                        {getCustomerFacingOrderStatus(order.status as any)}
                       </span>
                     </td>
                     <td className="p-4">

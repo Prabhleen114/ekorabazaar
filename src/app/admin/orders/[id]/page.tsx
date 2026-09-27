@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import ShippingActions from './ShippingActions'
+import OrderStatusSelector from './OrderStatusSelector'
+import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -21,6 +23,12 @@ function orderStatusClass(status: string): string {
   if (status === 'CANCELLED')       return 'bg-red-100 text-red-800'
   if (status === 'FAILED')          return 'bg-red-100 text-red-800'
   if (status === 'PENDING')         return 'bg-yellow-100 text-yellow-800'
+  if (status === 'PROCESSING')      return 'bg-blue-100 text-blue-800'
+  if (status === 'SHIPPED')         return 'bg-indigo-100 text-indigo-800'
+  if (status === 'IN_TRANSIT')      return 'bg-purple-100 text-purple-800'
+  if (status === 'DELIVERED')       return 'bg-green-100 text-green-800'
+  if (status === 'REFUND_INITIATED')return 'bg-orange-100 text-orange-800'
+  if (status === 'REFUNDED')        return 'bg-red-100 text-red-800'
   return 'bg-gray-100 text-gray-600'
 }
 
@@ -103,9 +111,7 @@ export default function AdminOrderDetailPage() {
               {new Date(order.createdAt).toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'medium' })}
             </p>
           </div>
-          <span className={'inline-flex px-3 py-1 rounded-full text-sm font-bold ' + orderStatusClass(order.status)}>
-            {order.status}
-          </span>
+          <OrderStatusSelector orderId={order.id} currentStatus={order.status} />
         </div>
       </div>
 

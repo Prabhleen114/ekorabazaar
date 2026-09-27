@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireCustomer } from '@/lib/auth'
 
@@ -9,7 +9,8 @@ export async function GET() {
       where: { customerId: session.userId },
       include: {
         items: true,
-        payments: { select: { status: true, type: true, amount: true } }
+        payments: { select: { status: true, type: true, amount: true } },
+        statusHistory: { orderBy: { createdAt: 'desc' } }
       },
       orderBy: { createdAt: 'desc' }
     })

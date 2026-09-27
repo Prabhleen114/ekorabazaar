@@ -69,7 +69,10 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
-}
+  IN_TRANSIT
+  REFUND_INITIATED
+  REFUNDED
+  }
 
 enum ProductStatus {
   DRAFT
@@ -261,11 +264,22 @@ model Order {
   deliveredAt       DateTime?
 
   items           OrderItem[]
+    statusHistory   OrderStatusHistory[]
   payments        Payment[]
 
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   dispatchedAt    DateTime?
+}
+
+
+model OrderStatusHistory {
+  id        String      @id @default(uuid())
+  orderId   String
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    OrderStatus
+  notes     String?
+  createdAt DateTime    @default(now())
 }
 
 model OrderItem {
