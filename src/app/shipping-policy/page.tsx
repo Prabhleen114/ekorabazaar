@@ -1,33 +1,47 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { AlertCircle } from "lucide-react";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Shipping Policy | Ekora Bazaar",
-  description: "Read the Ekora Bazaar shipping policy.",
+  description: "Read the Ekora Bazaar shipping policy. We offer flat-rate shipping across India for wholesale raw materials and craft supplies.",
 };
 
 export default function ShippingPolicyPage() {
   return (
-    <main className="min-h-screen bg-brand-bg text-brand-charcoal">
-      <Navbar />
-      <div className="max-w-4xl mx-auto px-6 py-24 md:py-32 min-h-[60vh]">
+    <main className="min-h-screen bg-brand-bg text-brand-charcoal pt-32 pb-24">
+      <div className="max-w-4xl mx-auto px-4 md:px-8">
         <h1 className="text-4xl md:text-5xl font-bold font-serif mb-8 text-brand-charcoal">Shipping Policy</h1>
         
-        <div className="bg-orange-50 border border-brand-orange/30 rounded-2xl p-8 flex items-start gap-4 shadow-sm">
-          <AlertCircle className="w-6 h-6 text-brand-orange shrink-0 mt-1" />
-          <div>
-            <h2 className="text-xl font-bold text-brand-charcoal mb-2">Policy Currently Under Review</h2>
-            <p className="text-brand-charcoal/80 leading-relaxed mb-4">
-              Our shipping policy is currently being finalized by our legal and operations team to ensure we offer the best possible delivery experience for our customers.
-            </p>
-            <p className="text-brand-charcoal/80 leading-relaxed">
-              Once approved, the official legal text will be published on this page. If you have immediate questions regarding shipping timelines or costs, please contact our support team.
-            </p>
-          </div>
+        <div className="prose prose-orange max-w-none text-brand-charcoal/80">
+          <p className="text-lg">
+            At Ekora Bazaar, we strive to make sourcing wholesale raw materials and handmade products as seamless as possible. Our shipping policy is designed to be transparent and fair for small businesses and creators across India.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">1. Flat-Rate Shipping</h2>
+          <p>
+            We currently apply a <strong>flat delivery charge of ₹90 per order</strong>. This rate applies regardless of the number of items in your cart, the total weight of your package, or your location within India. 
+          </p>
+
+          <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">2. Processing & Dispatch Time</h2>
+          <p>
+            Orders are typically processed and dispatched within <strong>24 to 48 hours</strong> of payment confirmation. Our wholesale raw materials are shipped directly from our warehouse to ensure strict quality control and fast turnaround. Products ordered from independent creators may have specific preparation times listed on their respective product pages.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">3. Delivery Timelines</h2>
+          <p>
+            Once dispatched, standard delivery within India generally takes <strong>2 to 5 business days</strong>, depending on your region and accessibility. You will receive tracking information via email or SMS as soon as your order leaves our facility.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">4. Shipping Partners</h2>
+          <p>
+            We partner with reliable, national logistics providers to ensure your bulk supplies arrive safely. For particularly large wholesale orders (e.g., bulk waxes, heavy moulds), we use specialized freight carriers optimized for safe handling.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">5. International Shipping</h2>
+          <p>
+            At this time, Ekora Bazaar solely serves the Indian domestic market. We do not offer international shipping for our wholesale raw materials or retail products.
+          </p>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

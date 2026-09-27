@@ -52,10 +52,8 @@ export function generateStandardMetadata(
  * Generate dynamic Product Metadata targeting B2B & Wholesale commercial intent
  */
 export function generateProductMetadata(product: any): Metadata {
-  const categoryStr = product.category ? `Bulk ${product.category} Supplier` : 'Wholesale Raw Materials';
-  const title = `${product.title} Wholesale India | ${categoryStr} | ${SITE_NAME}`;
-  
-  const description = `Buy ${product.title} in bulk at wholesale tier pricing in India. Lab-tested & COA certified batch reports, tiered volume discounts, GST invoices, low MOQ & fast 24hr dispatch for small businesses and creators.`;
+  const title = `${product.title} | ${SITE_NAME}`;
+  const description = `Source ${product.title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
   
   const imageUrl = product.imageUrl || DEFAULT_OG_IMAGE;
   const path = `/products/${product.id}`;
@@ -67,8 +65,8 @@ export function generateProductMetadata(product: any): Metadata {
  * Generate dynamic Category Metadata
  */
 export function generateCategoryMetadata(categoryName: string, categorySlug: string): Metadata {
-  const title = `${categoryName} Wholesale India | Bulk Supplier | ${SITE_NAME}`;
-  const description = `Discover lab-tested wholesale ${categoryName} for small businesses and creators. Low MOQ, batch-tested COA certified materials, and volume tier pricing on ${SITE_NAME}.`;
+  const title = `${categoryName} Wholesale | Bulk Supplier India | ${SITE_NAME}`;
+  const description = `Source wholesale ${categoryName} for small businesses and creators. Reliable supply, volume tier pricing, and fast delivery on ${SITE_NAME}.`;
   
   const path = `/wholesale/${categorySlug}`;
   return generateStandardMetadata(title, description, path);
@@ -203,7 +201,7 @@ export function generateProductSchema(product: any, sellerName?: string) {
   const schema: any = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": `${product.title} Wholesale India`,
+    "name": product.title,
     "image": product.imageUrl ? [product.imageUrl] : [DEFAULT_OG_IMAGE],
     "description": product.description || `Lab-tested ${product.title} available in bulk wholesale for small businesses in India.`,
     "sku": String(product.id),
@@ -274,7 +272,7 @@ export function generateOrganizationSchema() {
     "@type": ["Organization", "WebSite"],
     "name": SITE_NAME,
     "url": BASE_URL,
-    "logo": "${BASE_URL}/og-image.jpg",
+    "logo": `${BASE_URL}/og-image.jpg`,
     "description": "Ekora Bazaar is a B2B marketplace for wholesale products and raw materials. Connect with verified suppliers for bulk buying."
   };
 }
