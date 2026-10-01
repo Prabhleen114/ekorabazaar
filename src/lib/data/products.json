@@ -1131,7 +1131,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "15",
@@ -1615,7 +1616,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "21",
@@ -3384,7 +3386,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "43",
@@ -3928,7 +3931,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "50",
@@ -4316,7 +4320,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "55",
@@ -7801,7 +7806,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "99",
@@ -7958,7 +7964,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "101",
@@ -8036,7 +8043,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "102",
@@ -8978,7 +8986,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "114",
@@ -11383,7 +11392,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "144",
@@ -11621,7 +11631,8 @@
       "culinary-chocolatier",
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "147",
@@ -11947,7 +11958,8 @@
       "culinary-chocolatier",
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "151",
@@ -13602,7 +13614,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "171",
@@ -14138,7 +14151,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "178",
@@ -16427,7 +16441,8 @@
     "disciplines": [
       "perfumery-attar"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "206",
@@ -16985,7 +17000,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "213",
@@ -18272,7 +18288,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "229",
@@ -18740,7 +18757,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "235",
@@ -19132,7 +19150,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "240",
@@ -20024,7 +20043,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "251",
@@ -20104,7 +20124,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "252",
@@ -20658,7 +20679,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "259",
@@ -24335,7 +24357,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "305",
@@ -25284,7 +25307,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "317",
@@ -26295,7 +26319,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "330",
@@ -26515,7 +26540,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "333",
@@ -26591,7 +26617,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "334",
@@ -26898,7 +26925,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "338",
@@ -26973,7 +27001,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "339",
@@ -32215,7 +32244,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "403",
@@ -74515,7 +74545,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "940",
@@ -75810,7 +75841,8 @@
     ],
     "department": "Tools & Studio Equipment",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "960",
@@ -75873,7 +75905,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "961",
@@ -76064,7 +76097,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "964",
@@ -76453,7 +76487,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "970",
@@ -79399,7 +79434,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1018",
@@ -80350,7 +80386,8 @@
       "perfumery-attar",
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1034",
@@ -83327,7 +83364,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1081",
@@ -88856,7 +88894,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1161",
@@ -95421,7 +95460,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1261",
@@ -96053,7 +96093,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1270",
@@ -97581,8 +97622,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "inStock": false,
-    "isQuoteOnly": true
+    "inStock": true,
+    "isQuoteOnly": false
   },
   {
     "id": "1293",
@@ -97680,8 +97721,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "inStock": false,
-    "isQuoteOnly": true
+    "inStock": true,
+    "isQuoteOnly": false
   },
   {
     "id": "1295",
@@ -98072,8 +98113,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "inStock": false,
-    "isQuoteOnly": true
+    "inStock": true,
+    "isQuoteOnly": false
   },
   {
     "id": "1303",
@@ -105578,7 +105619,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1420",
@@ -107914,7 +107956,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1455",
@@ -108719,7 +108762,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1467",
@@ -113076,7 +113120,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1536",
@@ -124888,7 +124933,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1707",
@@ -125938,7 +125984,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1722",
@@ -129886,7 +129933,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1778",
@@ -131009,7 +131057,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1794",
@@ -134040,7 +134089,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1838",
@@ -134666,7 +134716,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1847",
@@ -135780,7 +135831,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1863",
@@ -139977,7 +140029,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1924",
@@ -140042,7 +140095,8 @@
       "candle-studio",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1925",
@@ -140730,7 +140784,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1935",
@@ -142944,7 +142999,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1967",
@@ -157013,8 +157069,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "464",
       "artisan",

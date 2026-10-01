@@ -29,7 +29,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           unoptimized={isExternalImage}
           quality={95}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading={index < 8 ? "eager" : "lazy"}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
@@ -40,24 +40,27 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
         />
       </div>
 
-      <div className="flex flex-col">
-        <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+      <div className="flex flex-col flex-1">
+        <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
           {product.category || "Studio Raw Material"}
         </span>
-        <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+        <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
           {product.title}
         </h3>
-        <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
-          <span>₹{effectivePrice}</span>
+        
+        <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-mono">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <span className="font-bold text-sm text-stone-950">₹{effectivePrice}</span>
+            {product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1 && (
+              <span className="text-[10px] text-stone-500">
+                (From ₹{Math.round((product.wholesaleTiers[product.wholesaleTiers.length - 1].price || 0) / 100)})
+              </span>
+            )}
+          </div>
           <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
             View &rarr;
           </span>
         </div>
-        {product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1 && (
-          <div className="mt-1 text-[9px] text-[#8C734B] font-mono uppercase tracking-widest">
-            Bulk Pricing Available
-          </div>
-        )}
       </div>
     </Link>
   );

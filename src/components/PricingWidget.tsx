@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Minus, Plus, ShoppingCart, Loader2, Check, MessageCircle } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Loader2, Check, MessageCircle, Truck, ShieldCheck, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
 import { trackWhatsAppClick, trackEvent } from "@/lib/tracking";
@@ -340,7 +340,37 @@ export default function PricingWidget({
 
   return (
     <>
-      <div className="bg-white p-6 border border-stone-200 mt-6 space-y-6">
+      <div className="bg-white p-5 sm:p-6 border border-stone-200 mt-6 space-y-6 shadow-xs">
+        {/* 1. PRICE HIERARCHY HEADER */}
+        <div className="pb-4 border-b border-stone-200 flex items-baseline justify-between flex-wrap gap-2">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-1">
+              Unit Wholesale Price
+            </span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-mono font-bold text-stone-900">
+                ₹{displayPrice}
+              </span>
+              <span className="text-xs text-stone-500 font-mono">/ unit</span>
+              {currentTier && currentTier.discountPct > 0 && (
+                <span className="ml-1 text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
+                  Save {currentTier.discountPct}%
+                </span>
+              )}
+            </div>
+          </div>
+          {activeTiers.length > 1 && (
+            <div className="text-right">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono block">
+                Wholesale Tiers
+              </span>
+              <span className="text-xs font-mono text-stone-600">
+                From ₹{activeTiers[activeTiers.length - 1].price} at {activeTiers[activeTiers.length - 1].minQty}+ units
+              </span>
+            </div>
+          )}
+        </div>
+
         {variants && variants.length > 0 && (
           <div className="pb-5 border-b border-stone-200">
             <div className="flex items-center justify-between mb-2.5">
@@ -381,21 +411,27 @@ export default function PricingWidget({
           </div>
         )}
 
-        {/* Quiet Apothecary Wholesale Matrix */}
+        {/* 2. WHOLESALE VOLUME SLABS WITH EXPLICIT SAVINGS MATH */}
         {activeTiers && activeTiers.length > 0 && (
-          <div>
-            <div className="flex items-center justify-between mb-2.5">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono">
                 Wholesale Volume Slabs
               </span>
               <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono">
-                Direct Sourcing
+                Click slab to select
               </span>
             </div>
             
-            <div className="border border-stone-200 divide-y divide-stone-200">
+            <div className="space-y-2.5">
               {activeTiers.map((tier, idx) => {
                 const isActive = currentTier === tier;
+                const perUnitSavings = activeBasePrice - tier.price;
+                const totalTierSavings = perUnitSavings * tier.minQty;
+                const labelQty = tier.maxQty 
+                  ? `${tier.minQty}–${tier.maxQty} UNITS` 
+                  : `${tier.minQty}+ UNITS`;
+
                 return (
                   <div 
                     key={idx} 
@@ -408,29 +444,53 @@ export default function PricingWidget({
                       price: tier.price,
                       discountPct: tier.discountPct,
                     })}
-                    className={`flex items-center justify-between p-3 text-xs transition-colors cursor-pointer ${
-                      isActive ? "bg-stone-100/80 font-medium text-stone-900" : "bg-white text-stone-600 hover:bg-stone-50"
+                    className={`p-3.5 border transition-all cursor-pointer relative ${
+                      isActive 
+                        ? "border-stone-900 bg-[#FAF8F5] ring-1 ring-stone-900/10 shadow-2xs" 
+                        : "border-stone-200 bg-white hover:border-stone-400 hover:bg-stone-50/50"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-stone-900">
-                        {tier.maxQty ? `${tier.minQty} - ${tier.maxQty}` : `${tier.minQty}+`} units
-                      </span>
-                      {tier.discountPct > 0 && (
-                        <span className="text-[9px] uppercase tracking-widest px-1.5 py-0.5 border border-stone-300 text-stone-600 font-mono">
-                          {tier.discountPct}% Tier
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className={`text-xs font-mono font-bold ${isActive ? "text-stone-900" : "text-stone-700"}`}>
+                          {labelQty}
                         </span>
-                      )}
+                        {isActive && (
+                          <span className="text-[9px] uppercase tracking-widest bg-stone-900 text-stone-50 px-1.5 py-0.2 font-mono">
+                            Active Tier
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        {tier.discountPct > 0 ? (
+                          <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5">
+                            SAVE {tier.discountPct}%
+                          </span>
+                        ) : (
+                          <span className="text-xs font-mono text-stone-500">
+                            Standard price
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex flex-col items-end">
-                      <span className="font-mono text-stone-900">
-                        ₹{tier.price} <span className="text-[10px] text-stone-400">/ unit</span>
-                      </span>
-                      {tier.discountPct > 0 && (
-                        <span className="text-[9px] text-emerald-700 font-mono mt-0.5">
-                          Save ₹{((activeBasePrice - tier.price) * tier.minQty).toLocaleString()} on {tier.minQty} units
-                        </span>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-1 border-t border-stone-100 gap-1 text-xs font-mono">
+                      {perUnitSavings > 0 ? (
+                        <div className="text-stone-600 space-y-0.5 text-[11px]">
+                          <div>You save <span className="font-semibold text-emerald-700">₹{perUnitSavings}</span> per unit</div>
+                          <div>Save <span className="font-semibold text-emerald-700">₹{totalTierSavings.toLocaleString()}</span> when buying {tier.minQty} units</div>
+                        </div>
+                      ) : (
+                        <div className="text-stone-400 text-[11px]">
+                          Standard atelier price per unit
+                        </div>
                       )}
+                      
+                      <div className="text-right self-end sm:self-center mt-1 sm:mt-0">
+                        <span className={`text-xs sm:text-sm font-semibold font-mono ${isActive ? "text-stone-900" : "text-stone-700"}`}>
+                          You pay only <span className="text-base font-bold text-stone-950">₹{tier.price}</span> / unit
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );
@@ -439,79 +499,128 @@ export default function PricingWidget({
           </div>
         )}
 
-        {/* Quantity and Subtotal */}
-        <div className="pt-5 border-t border-stone-200 flex flex-col sm:flex-row gap-5 items-stretch sm:items-center justify-between">
-          <div>
-            <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-2">
-              Batch Quantity
-            </label>
-            <div className="flex items-center border border-stone-300 h-11 w-32 bg-white">
-              <button 
-                onClick={() => handleQuantityChange(quantity - 1)}
-                className="w-10 h-full flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
-                aria-label="Decrease quantity"
-              >
-                <Minus className="w-3.5 h-3.5" />
-              </button>
-              <input 
-                type="number" 
-                value={quantity}
-                onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
-                className="flex-1 w-full text-center text-xs font-mono font-medium text-stone-900 focus:outline-none"
-              />
-              <button 
-                onClick={() => handleQuantityChange(quantity + 1)}
-                className="w-10 h-full flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors"
-                aria-label="Increase quantity"
-              >
-                <Plus className="w-3.5 h-3.5" />
-              </button>
+        {/* 3. BATCH QUANTITY & ORDER SUBTOTAL (Tight Calculation Hierarchy) */}
+        <div className="p-4 bg-stone-50 border border-stone-200">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-1.5">
+                Batch Quantity
+              </label>
+              <div className="flex items-center border border-stone-300 h-11 w-36 bg-white">
+                <button 
+                  onClick={() => handleQuantityChange(quantity - 1)}
+                  className="w-11 h-full flex items-center justify-center text-stone-600 hover:text-stone-950 hover:bg-stone-50 transition-colors"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <input 
+                  type="number" 
+                  value={quantity}
+                  min={moq}
+                  onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
+                  className="flex-1 w-full text-center text-sm font-mono font-bold text-stone-900 focus:outline-none"
+                />
+                <button 
+                  onClick={() => handleQuantityChange(quantity + 1)}
+                  className="w-11 h-full flex items-center justify-center text-stone-600 hover:text-stone-950 hover:bg-stone-50 transition-colors"
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="text-right">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono mb-0.5">
+                Order Subtotal
+              </div>
+              <div className="text-2xl sm:text-3xl font-mono font-bold text-stone-950">
+                ₹{subtotal.toLocaleString()}
+              </div>
+              <div className="text-[11px] font-mono text-stone-500 mt-0.5">
+                ({quantity} &times; ₹{displayPrice}/unit)
+              </div>
             </div>
           </div>
 
-          <div className="text-right">
-            <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-0.5">
-              Order Subtotal
-            </div>
-            <div className="text-2xl font-mono font-medium text-stone-900">
-              ₹{subtotal.toLocaleString()}
-            </div>
+          {/* Shipping Info embedded directly in calculation */}
+          <div className="mt-3 pt-3 border-t border-stone-200 flex items-center justify-between text-[11px] font-mono text-stone-600 flex-wrap gap-1">
+            <span className="flex items-center gap-1.5">
+              <Truck className="w-3.5 h-3.5 text-stone-500" />
+              Standard Flat Shipping: <strong className="text-stone-900">₹80</strong> across India
+            </span>
+            <span className="text-emerald-700 font-medium">
+              &bull; Dispatches in 24 Hours
+            </span>
           </div>
-        </div>
-        
-        {/* Shipping Info */}
-        <div className="pt-4 border-t border-stone-200">
-          <p className="text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono text-center">
-            Standard flat shipping ₹80 across India | Dispatch in 24h
-          </p>
         </div>
 
         {errorMsg && <div className="text-stone-800 text-xs font-mono bg-stone-100 p-2 border border-stone-300">{errorMsg}</div>}
 
-        {/* Architectural CTAs */}
-        <div className="space-y-2 pt-2" ref={ctaRef}>
+        {/* 4. PRIMARY ACTIONS: ADD TO CART, BUY NOW, SEND BULK ENQUIRY */}
+        <div className="space-y-2.5 pt-1" ref={ctaRef}>
           <button 
             onClick={() => handleAction('cart')}
             disabled={isProcessing}
-            className="w-full bg-brand-orange text-stone-50 hover:bg-brand-terracotta text-xs uppercase tracking-[0.2em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
+            className="w-full bg-brand-orange text-stone-50 hover:bg-brand-terracotta text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75 shadow-xs"
           >
             {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />)} 
             <span>{isAddingToCart ? "Adding to Cart..." : (isAddedSuccess ? "Added to Cart ✓" : "Add to Cart")}</span>
           </button>
+          
           <button 
             onClick={() => handleAction('buy_now')}
             disabled={isProcessing}
-            className="w-full border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-stone-50 text-xs uppercase tracking-[0.18em] py-4 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
+            className="w-full border border-stone-900 bg-stone-900 text-stone-50 hover:bg-black text-xs uppercase tracking-[0.18em] font-semibold py-3.5 rounded-none transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-75"
           >
             {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
           </button>
+
+          {/* SEND BULK ENQUIRY (For custom orders / 50+ volume quotes) */}
+          <a
+            href={`https://wa.me/919041500605?text=${encodeURIComponent(
+              `Hi Ekora! I would like to place a bulk enquiry for ${productName || "this product"} (SKU: ${productId || "N/A"}) for ${quantity} units. Please share bulk availability and direct quotation.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick({
+              location: "pdp_bulk_enquiry",
+              productId,
+              productName,
+              category,
+              extra: { basePrice, moq, quantity }
+            })}
+            className="w-full border border-stone-300 text-stone-700 hover:border-stone-900 hover:text-stone-950 text-xs uppercase tracking-[0.18em] font-medium py-3 transition-colors duration-200 flex items-center justify-center gap-2 text-center bg-white"
+          >
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Send Bulk Enquiry</span>
+          </a>
         </div>
         
-        {/* Trust Signals */}
-        <div className="pt-4 flex flex-col gap-2 border-t border-stone-200 text-[10px] uppercase tracking-[0.15em] text-stone-500 font-mono mt-4">
-          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> 24H Dispatch from Muzaffarpur</div>
-          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> COA & IFRA Certificates available</div>
-          <div className="flex items-center gap-2"><Check className="w-3 h-3 text-emerald-600" /> Razorpay Secured Payment</div>
+        {/* 5. REASSURANCE TRUST CARDS (Elevated from tiny metadata) */}
+        <div className="pt-3 border-t border-stone-200 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
+            <Truck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">24H Dispatch</div>
+              <div className="text-[11px] text-stone-500 font-sans mt-0.5">Ships from Muzaffarpur</div>
+            </div>
+          </div>
+          <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">Certified Material</div>
+              <div className="text-[11px] text-stone-500 font-sans mt-0.5">COA + IFRA available</div>
+            </div>
+          </div>
+          <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
+            <Lock className="w-4 h-4 text-stone-700 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">Secure Payment</div>
+              <div className="text-[11px] text-stone-500 font-sans mt-0.5">Protected by Razorpay</div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -64,7 +64,11 @@ export default function ShopClient() {
   } | null>(null);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const [sortBy, setSortBy] = useState("recommended");
+  const [sortBy, setSortBy] = useState<string>(() => {
+    const s = searchParams.get("sort") || searchParams.get("sortBy");
+    if (s === "new") return "newest";
+    return s || "recommended";
+  });
   
   // Grid Density / Products per row (Default 4)
   const [gridCols, setGridCols] = useState<number>(4);
@@ -153,11 +157,17 @@ export default function ShopClient() {
     const deptParam = searchParams.get("department");
     const catParam = searchParams.get("category");
     const qParam = searchParams.get("q");
+    const sortParam = searchParams.get("sort") || searchParams.get("sortBy");
 
     setSelectedDiscipline(discParam || null);
     setSelectedDepartment(deptParam ? decodeURIComponent(deptParam) : null);
     setSelectedCategory(catParam ? decodeURIComponent(catParam) : null);
     setSearchQuery(qParam ? decodeURIComponent(qParam) : "");
+    if (sortParam) {
+      setSortBy(sortParam === "new" ? "newest" : sortParam);
+    } else {
+      setSortBy("recommended");
+    }
 
     if (deptParam) {
       setExpandedDepts(prev => ({ ...prev, [decodeURIComponent(deptParam)]: true }));
@@ -193,7 +203,10 @@ export default function ShopClient() {
         if (maxPrice) params.set("maxPrice", maxPrice);
       }
       if (inStockOnly) params.set("inStockOnly", "true");
-      if (sortBy) params.set("sortBy", sortBy);
+      if (sortBy) {
+        params.set("sortBy", sortBy);
+        params.set("sort", sortBy);
+      }
 
       const res = await fetch(`/api/products?${params.toString()}`);
       const data = await res.json();
@@ -325,6 +338,20 @@ export default function ShopClient() {
     router.push(`/shop?${params.toString()}`, { scroll: false });
   };
 
+  const handleSortChange = (newSort: string) => {
+    setSortBy(newSort);
+    const params = new URLSearchParams(window.location.search);
+    if (newSort && newSort !== "recommended") {
+      params.set("sort", newSort);
+      params.delete("sortBy");
+    } else {
+      params.delete("sort");
+      params.delete("sortBy");
+    }
+    const qs = params.toString();
+    router.push(qs ? `/shop?${qs}` : "/shop", { scroll: false });
+  };
+
   const toggleDeptExpand = (deptName: string) => {
     setExpandedDepts(prev => ({ ...prev, [deptName]: !prev[deptName] }));
   };
@@ -338,6 +365,7 @@ export default function ShopClient() {
     setMinPrice("");
     setMaxPrice("");
     setInStockOnly(false);
+    setSortBy("recommended");
     setIsFilterDrawerOpen(false);
     router.push("/shop", { scroll: false });
   };
@@ -459,7 +487,7 @@ export default function ShopClient() {
             <div className="relative">
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => handleSortChange(e.target.value)}
                 aria-label="Sort products"
                 className="appearance-none bg-white border border-stone-200 hover:border-stone-400 rounded-xl pl-3 pr-8 py-2 text-xs font-semibold text-stone-800 focus:outline-none focus:border-amber-600 cursor-pointer transition-colors shadow-2xs"
               >
@@ -529,11 +557,11 @@ export default function ShopClient() {
         {/* Active Filter Pills Bar (Compact & Sleek) */}
         {activeFilterCount > 0 && (
           <div className="flex flex-wrap items-center gap-2 pt-0.5">
-            <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-wider">Active:</span>
+            <span className="text-[11px] font-semibold text-stone-400 uppercase tracking-wider">Applied Filters:</span>
             {selectedDiscipline && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-amber-50 text-amber-900 border border-amber-200/80 px-2.5 py-1 rounded-lg">
-                <span>{activeDisciplineInfo?.name || selectedDiscipline}</span>
-                <button type="button" onClick={() => setDiscipline(null)} className="hover:text-amber-700">
+                <span>Studio: {activeDisciplineInfo?.name || selectedDiscipline}</span>
+                <button type="button" onClick={() => setDiscipline(null)} className="hover:text-amber-700" title="Remove studio filter">
                   <X className="w-3 h-3" />
                 </button>
               </span>
@@ -541,15 +569,15 @@ export default function ShopClient() {
             {selectedDepartment && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg">
                 <span>Dept: {selectedDepartment}</span>
-                <button type="button" onClick={() => setDepartment(null)} className="hover:text-stone-900">
+                <button type="button" onClick={() => setDepartment(null)} className="hover:text-stone-900" title="Remove department filter">
                   <X className="w-3 h-3" />
                 </button>
               </span>
             )}
             {selectedCategory && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg">
-                <span>{selectedCategory}</span>
-                <button type="button" onClick={() => setCategory(null)} className="hover:text-stone-900">
+                <span>Category: {selectedCategory}</span>
+                <button type="button" onClick={() => setCategory(null)} className="hover:text-stone-900" title="Remove category filter">
                   <X className="w-3 h-3" />
                 </button>
               </span>
@@ -557,7 +585,7 @@ export default function ShopClient() {
             {priceOption !== "all" && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg">
                 <span>Price: {priceOption.replace('_', ' ')}</span>
-                <button type="button" onClick={() => setPriceOption("all")} className="hover:text-stone-900">
+                <button type="button" onClick={() => setPriceOption("all")} className="hover:text-stone-900" title="Remove price filter">
                   <X className="w-3 h-3" />
                 </button>
               </span>
@@ -565,15 +593,15 @@ export default function ShopClient() {
             {inStockOnly && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg">
                 <span>In Stock Only</span>
-                <button type="button" onClick={() => setInStockOnly(false)} className="hover:text-stone-900">
+                <button type="button" onClick={() => setInStockOnly(false)} className="hover:text-stone-900" title="Remove stock filter">
                   <X className="w-3 h-3" />
                 </button>
               </span>
             )}
             {searchQuery && (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg">
-                <span>&ldquo;{searchQuery}&rdquo;</span>
-                <button type="button" onClick={() => setSearch("")} className="hover:text-stone-900">
+                <span>Search: &ldquo;{searchQuery}&rdquo;</span>
+                <button type="button" onClick={() => setSearch("")} className="hover:text-stone-900" title="Remove search term">
                   <X className="w-3 h-3" />
                 </button>
               </span>
@@ -644,7 +672,7 @@ export default function ShopClient() {
                       unoptimized={Boolean(product.image && product.image.startsWith("http"))}
                       quality={85}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.onerror = null;
@@ -659,30 +687,34 @@ export default function ShopClient() {
                     ) : null}
                   </div>
 
-                  <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+                  <div className="flex flex-col flex-1">
+                    <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
                       {product.category}
                     </span>
-                    <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+                    <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
                       {product.name}
                     </h2>
-                    <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
+                    <div className="text-xs font-mono text-stone-800 flex items-baseline justify-between mb-2">
                       {product.isQuoteOnly || product.price === 0 ? (
-                        <span>Quote on Request</span>
+                        <span className="text-stone-500 italic">Quote on Request</span>
                       ) : (
-                        <>
-                          <span>₹{product.price}</span>
+                        <div className="flex items-baseline gap-1.5 flex-wrap">
+                          <span className="font-bold text-sm text-stone-950">₹{product.price}</span>
                           {product.bulkDiscountAvailable && (
-                            <span className="text-[10px] text-stone-400">12+ Tier</span>
+                            <span className="text-[10px] text-stone-500">
+                              (12+ Tier)
+                            </span>
                           )}
-                        </>
+                        </div>
                       )}
                       <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
                         View &rarr;
                       </span>
                     </div>
                     {!(product.isQuoteOnly || product.price === 0) && (
-                      <QuickAddButton productId={String(product.id)} productName={product.name} basePrice={product.price} category={product.category} />
+                      <div className="mt-auto pt-1">
+                        <QuickAddButton productId={String(product.id)} productName={product.name} basePrice={product.price} category={product.category} />
+                      </div>
                     )}
                   </div>
                 </Link>

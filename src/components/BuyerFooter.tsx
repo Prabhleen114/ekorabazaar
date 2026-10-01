@@ -6,25 +6,25 @@ import { trackWhatsAppClick } from "@/lib/tracking";
 
 export default function BuyerFooter() {
   return (
-    <footer className="bg-brand-bg border-t border-brand-linen py-10 md:py-16">
+    <footer className="bg-brand-bg border-t border-brand-linen py-8 md:py-12">
       <div className="max-w-6xl mx-auto px-5 md:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12 mb-10 md:mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-6 md:gap-8 mb-8 md:mb-10">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-3">
               <Image 
                 src="/images/logo.jpg" 
                 alt="Ekora Bazaar" 
                 width={144}
                 height={48}
                 className="object-contain mix-blend-multiply"
-                style={{ height: "48px", width: "auto" }}
+                style={{ height: "42px", width: "auto" }}
               />
             </Link>
-            <p className="text-sm text-brand-charcoal/60 mb-6 max-w-xs leading-relaxed">
+            <p className="text-xs sm:text-sm text-brand-charcoal/60 mb-4 max-w-xs leading-relaxed">
               India&apos;s Premium Craft Supplies Marketplace. Batch-tested, reliable raw materials for serious creators.
             </p>
-            <div className="flex items-center gap-4 text-sm font-medium text-brand-charcoal/50">
+            <div className="flex items-center gap-4 text-xs sm:text-sm font-medium text-brand-charcoal/50">
               <a href="https://instagram.com/ekorabazaar" target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal transition-colors">Instagram</a>
               <a href="https://twitter.com/ekorabazaar" target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal transition-colors">Twitter</a>
               <a href="https://linkedin.com/company/ekora" target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal transition-colors">LinkedIn</a>
@@ -33,8 +33,8 @@ export default function BuyerFooter() {
 
           {/* Shop */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Shop</h4>
-            <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
+            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Shop</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-brand-charcoal/65 font-medium">
               <li><Link href="/shop?department=Scent%20%26%20Flavor%20Lab" className="hover:text-brand-charcoal transition-colors">Scent &amp; Flavor Lab</Link></li>
               <li><Link href="/shop?discipline=candle-studio" className="hover:text-brand-charcoal transition-colors">The Candle Studio</Link></li>
               <li><Link href="/shop?discipline=soap-atelier" className="hover:text-brand-charcoal transition-colors">The Soap Atelier</Link></li>
@@ -44,8 +44,8 @@ export default function BuyerFooter() {
 
           {/* Company */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Support</h4>
-            <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
+            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Support</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-brand-charcoal/65 font-medium">
               <li><a href="mailto:support@ekorabazaar.com" className="hover:text-brand-charcoal transition-colors">Help Center</a></li>
               <li><a href="mailto:support@ekorabazaar.com" className="hover:text-brand-charcoal transition-colors">Contact Us</a></li>
             </ul>
@@ -53,8 +53,8 @@ export default function BuyerFooter() {
 
           {/* Supplier Relations */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Supplier Relations</h4>
-            <ul className="space-y-4 text-sm text-brand-charcoal/60 font-medium">
+            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Supplier Relations</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-brand-charcoal/65 font-medium">
               <li><Link href="/sell" className="hover:text-brand-charcoal transition-colors text-brand-orange">Become a Seller</Link></li>
               <li><Link href="/sell/platform" className="hover:text-brand-charcoal transition-colors">Seller Tools</Link></li>
               <li><Link href="/sell/faq" className="hover:text-brand-charcoal transition-colors">Supplier FAQ</Link></li>

@@ -2,9 +2,10 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, Building2 } from "lucide-react";
 import catalogProducts from "@/lib/data/products.json";
 import QuickAddButton from "@/components/QuickAddButton";
+import HomepageFaqAccordion from "@/components/HomepageFaqAccordion";
 import type { Metadata } from "next";
 import { generateOrganizationSchema } from "@/lib/seo";
 import serialize from "serialize-javascript";
@@ -108,29 +109,29 @@ export default function BuyerHomePage() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/shop"
-                className="w-fit bg-brand-orange text-white px-8 py-3.5 text-[11px] uppercase tracking-[0.2em] hover:bg-brand-terracotta transition-colors inline-flex items-center gap-2"
+                className="w-full sm:w-fit bg-brand-orange text-white px-7 py-3.5 text-[11px] uppercase tracking-[0.2em] hover:bg-brand-terracotta transition-colors inline-flex items-center justify-center gap-2 text-center"
               >
                 <span>SHOP WHOLESALE CATALOG</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/classes"
-                className="w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors"
+                className="w-full sm:w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors text-center"
               >
                 <span>DISCOVERY KITS</span>
               </Link>
             </div>
 
-            {/* Subtle verification footer in conversion column */}
-            <div className="mt-8 pt-4 border-t border-stone-200/70 flex items-center gap-6 text-[10px] uppercase tracking-[0.18em] text-stone-500 font-mono">
-              <span>IFRA Certified</span>
-              <span>&bull;</span>
-              <span>24H Dispatch</span>
-              <span>&bull;</span>
-              <span>Direct Factory</span>
+            {/* Subtle verification footer with contextual icons */}
+            <div className="mt-8 pt-4 border-t border-stone-200/70 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.15em] text-stone-600 font-mono">
+              <span className="inline-flex items-center gap-1.5 font-medium"><ShieldCheck className="w-3.5 h-3.5 text-emerald-700" /> IFRA Certified</span>
+              <span className="text-stone-300">&bull;</span>
+              <span className="inline-flex items-center gap-1.5 font-medium"><Truck className="w-3.5 h-3.5 text-amber-700" /> 24H Dispatch</span>
+              <span className="text-stone-300">&bull;</span>
+              <span className="inline-flex items-center gap-1.5 font-medium"><Building2 className="w-3.5 h-3.5 text-stone-700" /> Direct Factory</span>
             </div>
           </div>
 
@@ -176,29 +177,31 @@ export default function BuyerHomePage() {
                     unoptimized={Boolean(p.image && p.image.startsWith("http"))}
                     quality={85}
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>
 
-                <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono mb-1 truncate">
+                <div className="flex flex-col flex-1">
+                  <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
                     {p.category}
                   </span>
-                  <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-1 mb-1.5 group-hover:text-[#8C734B] transition-colors">
+                  <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
                     {p.name}
                   </h3>
-                  <div className="text-xs font-light text-stone-700 flex items-center justify-between font-mono">
-                    <div>
-                      <span>₹{price}</span>
+                  <div className="text-xs font-mono text-stone-800 flex items-baseline justify-between mb-2">
+                    <div className="flex items-baseline gap-1.5 flex-wrap">
+                      <span className="font-bold text-sm text-stone-950">₹{price}</span>
                       {bulkPrice && (
-                        <span className="text-[10px] text-stone-400 ml-2">From ₹{bulkPrice} (12+)</span>
+                        <span className="text-[10px] text-stone-500">(From ₹{bulkPrice})</span>
                       )}
                     </div>
                     <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
                       View &rarr;
                     </span>
                   </div>
-                  <QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} />
+                  <div className="mt-auto pt-1">
+                    <QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} />
+                  </div>
                 </div>
               </Link>
             );
@@ -225,80 +228,63 @@ export default function BuyerHomePage() {
             {
               title: "COA & Gas Chromatography",
               desc: "Batch-specific analysis reports available for direct download on technical raw materials.",
-              label: "01 // VERIFICATION"
+              label: "01 // VERIFICATION",
+              href: "/formulations",
+              linkText: "View Documentation"
             },
             {
               title: "IFRA 51st Amendment Safe",
               desc: "Perfumer and cosmetician formulation safe limits certified for candles, soaps, and skin application.",
-              label: "02 // SAFETY"
+              label: "02 // SAFETY",
+              href: "/formulations",
+              linkText: "Review Safe Limits"
             },
             {
               title: "Zero-Middleman Sourcing",
               desc: "Direct distillery and refinery pipeline eliminates secondary markups and tampering.",
-              label: "03 // DIRECT"
+              label: "03 // DIRECT",
+              href: "/about",
+              linkText: "Our Sourcing Pipeline"
             },
             {
               title: "Automated Volume Tiers",
               desc: "Transparent tier discounts configured at 12+ and 52+ units with no gatekept quotes.",
-              label: "04 // SCALE"
+              label: "04 // SCALE",
+              href: "/shop",
+              linkText: "Browse Wholesale Slabs"
             }
           ].map((item, idx) => (
             <div
               key={idx}
-              className="bg-white border border-stone-200/80 p-6 flex flex-col justify-between space-y-4"
+              className="bg-white border border-stone-200/80 p-6 flex flex-col justify-between space-y-4 hover:border-stone-400 transition-colors"
             >
-              <span className="text-[10px] font-mono tracking-[0.2em] text-[#8C734B]">
-                {item.label}
-              </span>
               <div>
+                <span className="text-[10px] font-mono tracking-[0.2em] text-[#8C734B] block mb-2">
+                  {item.label}
+                </span>
                 <h3 className="font-serif text-base text-stone-900 font-normal mb-2">
                   {item.title}
                 </h3>
-                <p className="text-xs text-stone-600 leading-relaxed font-light">
+                <p className="text-xs text-stone-600 leading-relaxed font-light mb-4">
                   {item.desc}
                 </p>
               </div>
+              <Link 
+                href={item.href}
+                className="text-[11px] font-mono uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1.5 pt-2 border-t border-stone-100"
+              >
+                <span>{item.linkText}</span>
+                <ArrowRight className="w-3 h-3 text-[#8C734B]" />
+              </Link>
             </div>
           ))}
         </div>
       </section>
 
-
-
-      
       {/* AEO (Answer Engine Optimization) FAQ & Entity Section */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-24" aria-labelledby="aeo-faq-heading">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pb-20" aria-labelledby="aeo-faq-heading">
         <h2 id="aeo-faq-heading" className="sr-only">About Ekora Bazaar Wholesale & Raw Materials</h2>
-        
-        <div className="border-t border-stone-200 pt-16 grid grid-cols-1 md:grid-cols-2 gap-12 text-sm text-stone-600 font-serif">
-          <div>
-            <h3 className="text-stone-900 font-medium mb-3 text-base">What is Ekora Bazaar?</h3>
-            <p className="leading-relaxed">
-              Ekora Bazaar is a B2B marketplace for wholesale products and raw materials. We connect businesses, creators, and bulk buyers with verified Indian manufacturers and suppliers, specializing in candle-making, soap-making, and skincare ingredients.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-stone-900 font-medium mb-3 text-base">Does Ekora Bazaar support bulk buying?</h3>
-            <p className="leading-relaxed">
-              Yes, products with available wholesale tiers support bulk pricing. Minimum Order Quantities (MOQ) and tiered volume discounts are displayed directly on eligible product pages. Availability depends on the specific raw material or product.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-stone-900 font-medium mb-3 text-base">Does Ekora Bazaar offer returns on wholesale/raw-material orders?</h3>
-            <p className="leading-relaxed">
-              Standard wholesale and raw-material orders do not support returns or exchanges. Buyers should verify product specifications, technical data sheets, and quantities before placing their B2B order.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-stone-900 font-medium mb-3 text-base">How is delivery charged for bulk orders?</h3>
-            <p className="leading-relaxed">
-              Ekora Bazaar applies a temporary flat delivery charge of ₹90 per order, regardless of the number of items or total weight, while we complete our comprehensive shipping integration.
-            </p>
-          </div>
-        </div>
+        <HomepageFaqAccordion />
       </section>
 
       <BuyerFooter />

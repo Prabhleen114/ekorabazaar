@@ -138,7 +138,13 @@ export async function GET(req: NextRequest) {
   const minPrice      = searchParams.get("minPrice");
   const maxPrice      = searchParams.get("maxPrice");
   const inStockOnly   = searchParams.get("inStockOnly") === "true";
-  const sortBy        = searchParams.get("sortBy") || "recommended";
+  const rawSortParam = searchParams.get("sortBy") || searchParams.get("sort") || searchParams.get("order") || "recommended";
+  let sortBy = rawSortParam.toLowerCase().trim();
+  if (sortBy === "new" || sortBy === "latest") sortBy = "newest";
+  if (sortBy === "price-asc" || sortBy === "low_to_high" || sortBy === "price_low") sortBy = "price_asc";
+  if (sortBy === "price-desc" || sortBy === "high_to_low" || sortBy === "price_high") sortBy = "price_desc";
+  if (sortBy === "discount" || sortBy === "discount_high") sortBy = "discount_desc";
+  if (sortBy === "popular" || sortBy === "featured" || sortBy === "bestselling") sortBy = "recommended";
 
   // Search tokens
   const rawQ          = searchParams.get("q");
@@ -267,32 +273,72 @@ export async function GET(req: NextRequest) {
     scored.forEach(({ product }) => filtered.push(product));
   } else if (sortBy === "price_asc") {
     filtered.sort((a, b) => {
-      // Prioritize items with positive prices, put quote-only (price <= 0) at the end
-      if (a.price <= 0 && b.price > 0) return 1;
-      if (b.price <= 0 && a.price > 0) return -1;
-      return a.price - b.price;
+      const priceA = typeof a.price === "number" ? a.price : parseFloat(String(a.price || 0));
+      const priceB = typeof b.price === "number" ? b.price : parseFloat(String(b.price || 0));
+      const validA = !a.isQuoteOnly && a.inStock && priceA > 0;
+      const validB = !b.isQuoteOnly && b.inStock && priceB > 0;
+
+      // In-stock, priced items strictly come before out-of-stock/quote-only
+      if (validA && !validB) return -1;
+      if (!validA && validB) return 1;
+
+      if (priceA <= 0 && priceB > 0) return 1;
+      if (priceB <= 0 && priceA > 0) return -1;
+      if (priceA !== priceB) return priceA - priceB;
+      return a.name.localeCompare(b.name);
     });
   } else if (sortBy === "price_desc") {
-    filtered.sort((a, b) => b.price - a.price);
+    filtered.sort((a, b) => {
+      const priceA = typeof a.price === "number" ? a.price : parseFloat(String(a.price || 0));
+      const priceB = typeof b.price === "number" ? b.price : parseFloat(String(b.price || 0));
+      const validA = !a.isQuoteOnly && a.inStock && priceA > 0;
+      const validB = !b.isQuoteOnly && b.inStock && priceB > 0;
+
+      // In-stock, priced items strictly come before out-of-stock/quote-only
+      if (validA && !validB) return -1;
+      if (!validA && validB) return 1;
+
+      if (priceA <= 0 && priceB > 0) return 1;
+      if (priceB <= 0 && priceA > 0) return -1;
+      if (priceB !== priceA) return priceB - priceA;
+      return a.name.localeCompare(b.name);
+    });
   } else if (sortBy === "newest") {
     filtered.sort((a, b) => {
       const idA = parseInt(a.id, 10);
       const idB = parseInt(b.id, 10);
-      if (!isNaN(idA) && !isNaN(idB)) return idB - idA;
+      const isNumA = !isNaN(idA);
+      const isNumB = !isNaN(idB);
+
+      // 3rd-party DB seller products are newest additions
+      if (!isNumA && isNumB) return -1;
+      if (isNumA && !isNumB) return 1;
+      if (isNumA && isNumB) return idB - idA;
       return b.id.localeCompare(a.id);
     });
   } else if (sortBy === "discount_desc") {
-    filtered.sort((a, b) => (b.maxDiscount || 0) - (a.maxDiscount || 0));
+    filtered.sort((a, b) => {
+      const discA = a.maxDiscount || 0;
+      const discB = b.maxDiscount || 0;
+      if (discB !== discA) return discB - discA;
+      if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
+      if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
+      return a.price - b.price;
+    });
   } else if (sortBy === "name_asc") {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
   } else if (sortBy === "name_desc") {
     filtered.sort((a, b) => b.name.localeCompare(a.name));
-  } else if (sortBy === "recommended") {
+  } else {
+    // Default / "recommended"
     filtered.sort((a, b) => {
       if (a.inStock && !b.inStock) return -1;
       if (!a.inStock && b.inStock) return 1;
       if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
       if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
+      const idA = parseInt(a.id, 10);
+      const idB = parseInt(b.id, 10);
+      if (!isNaN(idA) && !isNaN(idB)) return idA - idB;
       return 0;
     });
   }

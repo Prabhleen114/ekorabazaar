@@ -9,7 +9,7 @@ import ProductImageClient from "@/components/ProductImageClient";
 import ContactSupplierButton from "@/components/ContactSupplierButton";
 import Link from "next/link";
 import serialize from "serialize-javascript";
-import { ChevronRight, MessageCircle } from "lucide-react";
+import { ChevronRight, MessageCircle, Check, Truck, ShieldCheck, FlaskConical, FileText } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
@@ -250,9 +250,14 @@ export default async function ProductDetailsPage({ params }: Props) {
           </nav>
           
           <div className="mb-2">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
-              {displayProduct.category} &bull; Formulation Grade
-            </span>
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono">
+                {displayProduct.category} &bull; Formulation Grade
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10px] font-mono font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-sm">
+                ★ Verified Batch
+              </span>
+            </div>
             <h1 className="font-serif text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-2">
               {displayProduct.name}
             </h1>
@@ -272,12 +277,26 @@ export default async function ProductDetailsPage({ params }: Props) {
               </span>
             </div>
           ) : (
-            <div className="flex items-center gap-4 mb-4 text-[11px] font-mono text-stone-600">
-              <span className="flex items-center gap-1.5 text-stone-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#8C734B]"></span> In Stock at Atelier
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs font-mono text-stone-700">
+              <span className="inline-flex items-center gap-1.5 font-medium text-emerald-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                In Stock at Atelier
               </span>
-              <span>&bull;</span>
-              <span>Ships in 24 Hours</span>
+              <span className="text-stone-300">&bull;</span>
+              <span className="inline-flex items-center gap-1 text-stone-700">
+                <Truck className="w-3.5 h-3.5 text-stone-500" />
+                Ships in 24 Hours
+              </span>
+              <span className="text-stone-300">&bull;</span>
+              <span className="inline-flex items-center gap-1 text-stone-700">
+                <FlaskConical className="w-3.5 h-3.5 text-stone-500" />
+                Batch Tested
+              </span>
+              <span className="text-stone-300">&bull;</span>
+              <span className="inline-flex items-center gap-1 text-stone-700">
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                COA Verified
+              </span>
             </div>
           )}
 
@@ -295,19 +314,85 @@ export default async function ProductDetailsPage({ params }: Props) {
             inStock={displayProduct.inStock}
           />
 
-          {/* Trust factors — Quiet hairline divider matrix */}
-          <div className="mt-6 border border-stone-200 divide-x divide-stone-200 grid grid-cols-3 bg-white text-center py-3.5">
-            <div className="px-2">
-              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Lab Tested</h4>
-              <p className="text-[9px] text-stone-400 font-mono">COA &amp; MSDS</p>
+          {/* Technical Profile Card with Document Badges */}
+          <div className="mt-6 p-4 sm:p-5 bg-white border border-stone-200/90 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono font-bold">
+                Technical Profile
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-stone-400 font-mono">
+                Batch Analysis Verified
+              </span>
             </div>
-            <div className="px-2">
-              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Batch Matched</h4>
-              <p className="text-[9px] text-stone-400 font-mono">100% Consistent</p>
+            
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-mono">
+              <div>
+                <span className="text-stone-400 text-[10px] uppercase block">Grade &amp; Purity</span>
+                <span className="text-stone-800 font-medium">100% Pure Formulation</span>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] uppercase block">Compliance</span>
+                <span className="text-stone-800 font-medium">IFRA &amp; ISO Calibrated</span>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] uppercase block">Application</span>
+                <span className="text-stone-800 font-medium">Candle, Soap &amp; Studio Crafts</span>
+              </div>
+              <div>
+                <span className="text-stone-400 text-[10px] uppercase block">Traceability</span>
+                <span className="text-stone-800 font-medium">Lot Matched Certificate</span>
+              </div>
             </div>
-            <div className="px-2">
-              <h4 className="font-mono text-[10px] uppercase tracking-widest text-stone-900">Instant Docs</h4>
-              <p className="text-[9px] text-stone-400 font-mono">PDF Included</p>
+
+            <div className="pt-3 border-t border-stone-100 flex items-center justify-between flex-wrap gap-2">
+              <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono">
+                Technical Dossiers:
+              </span>
+              <div className="flex items-center gap-2">
+                <a 
+                  href="#technical-docs" 
+                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                >
+                  [ COA ]
+                </a>
+                <a 
+                  href="#technical-docs" 
+                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                >
+                  [ TDS ]
+                </a>
+                <a 
+                  href="#technical-docs" 
+                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                >
+                  [ MSDS ]
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Elevated Proof Cards (Upgraded from hairline metadata) */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
+              <div className="flex items-center gap-2 mb-1">
+                <FlaskConical className="w-4 h-4 text-[#8C734B]" />
+                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Lab Tested</h4>
+              </div>
+              <p className="text-[11px] text-stone-500 font-sans">COA &amp; MSDS batch certified</p>
+            </div>
+            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
+              <div className="flex items-center gap-2 mb-1">
+                <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Batch Matched</h4>
+              </div>
+              <p className="text-[11px] text-stone-500 font-sans">100% formulation consistency</p>
+            </div>
+            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
+              <div className="flex items-center gap-2 mb-1">
+                <FileText className="w-4 h-4 text-stone-700" />
+                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Instant Docs</h4>
+              </div>
+              <p className="text-[11px] text-stone-500 font-sans">PDF data sheets included</p>
             </div>
           </div>
 
@@ -422,7 +507,7 @@ export default async function ProductDetailsPage({ params }: Props) {
 
 
       {/* Lab-Tested & COA Certified Technical Documentation */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-10">
+      <div id="technical-docs" className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-10 scroll-mt-24">
         <TechnicalDocsSection
           productId={displayProduct.id}
           productName={displayProduct.name}
