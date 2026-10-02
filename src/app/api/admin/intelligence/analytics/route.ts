@@ -5,6 +5,7 @@ import { OrderStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
+// Eligible non-cancelled/non-failed orders
 const COMPLETED_STATUSES: OrderStatus[] = [
   "PAID",
   "PROCESSING",
@@ -12,6 +13,10 @@ const COMPLETED_STATUSES: OrderStatus[] = [
   "IN_TRANSIT",
   "DELIVERED"
 ];
+
+const HIGH_VALUE_THRESHOLD = 1000000; // ₹10,000 in paise
+const INACTIVITY_DAYS = 90;
+const AT_RISK_DAYS = 60;
 
 export async function GET(req: NextRequest) {
   try {
@@ -35,58 +40,92 @@ export async function GET(req: NextRequest) {
 
     const dateFilter = startDate ? { gte: startDate } : undefined;
 
-    // 1. Overall KPIs
-    const [totalRegistered, ordersAgg, newCustomersCount] = await Promise.all([
+    // 1. Overall KPIs - Registration vs Orders
+    const [newRegistrations, allRegistrations, periodOrdersAgg] = await Promise.all([
       prisma.user.count({ where: { role: "CUSTOMER", createdAt: dateFilter } }),
+      prisma.user.count({ where: { role: "CUSTOMER" } }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
         where: { status: { in: COMPLETED_STATUSES }, createdAt: dateFilter }
-      }),
-      // Customers whose FIRST completed order was in this period
-      // Since it's hard to do purely in Prisma natively without subqueries, we'll approximate new customers as users registered in this period who have orders.
-      prisma.user.count({ 
-        where: { 
-          role: "CUSTOMER", 
-          createdAt: dateFilter,
-          orders: { some: { status: { in: COMPLETED_STATUSES } } }
-        } 
       })
     ]);
 
-    // 2. Repeat customers & Segmentation base
-    const userOrderCounts = await prisma.order.groupBy({
+    // 2. Fetch all lifetime customer grouping to calculate precise segments
+    const allCustomerOrderStats = await prisma.order.groupBy({
       by: ["customerId"],
       _count: { id: true },
       _sum: { total: true },
       _max: { createdAt: true },
+      _min: { createdAt: true },
       where: { 
-        status: { in: COMPLETED_STATUSES },
-        createdAt: dateFilter
+        status: { in: COMPLETED_STATUSES }
       }
     });
 
-    const activeCustomers = userOrderCounts.length;
-    const repeatCustomers = userOrderCounts.filter(u => u._count.id > 1).length;
-    const highValueCustomers = userOrderCounts.filter(u => (u._sum.total || 0) > 1000000).length; // > 10,000 INR
+    const activeCustomersLifetime = allCustomerOrderStats.length;
+    const neverPurchased = allRegistrations - activeCustomersLifetime;
 
-    const totalRevenue = ordersAgg._sum.total || 0;
-    const totalOrders = ordersAgg._count.id;
+    let newCustomersCount = 0;
+    let repeatCustomersCount = 0;
+    let highValueCustomersCount = 0;
+    let inactiveCustomersCount = 0;
+    let atRiskCustomersCount = 0;
+    let activeCustomersInPeriod = 0;
+
+    const currentTime = new Date().getTime();
+
+    // Calculate segments exactly as defined
+    for (const stats of allCustomerOrderStats) {
+      const firstOrderTime = stats._min.createdAt ? stats._min.createdAt.getTime() : 0;
+      const lastOrderTime = stats._max.createdAt ? stats._max.createdAt.getTime() : 0;
+      const orderCount = stats._count.id;
+      const lifetimeSpend = stats._sum.total || 0;
+      
+      const recencyDays = Math.floor((currentTime - lastOrderTime) / (1000 * 3600 * 24));
+
+      // Is "New Customer" in selected period?
+      if (!startDate || firstOrderTime >= startDate.getTime()) {
+        newCustomersCount++;
+      }
+
+      // Did they purchase in this period?
+      if (!startDate || lastOrderTime >= startDate.getTime()) {
+        activeCustomersInPeriod++;
+      }
+
+      // Lifetime Segments
+      if (orderCount >= 2) {
+        repeatCustomersCount++;
+      }
+      
+      if (lifetimeSpend > HIGH_VALUE_THRESHOLD) {
+        highValueCustomersCount++;
+      }
+
+      if (recencyDays >= INACTIVITY_DAYS) {
+        inactiveCustomersCount++;
+      } else if (recencyDays >= AT_RISK_DAYS) {
+        atRiskCustomersCount++;
+      }
+    }
+
+    const totalRevenue = periodOrdersAgg._sum.total || 0;
+    const totalOrders = periodOrdersAgg._count.id;
     const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
-    const ordersPerCustomer = activeCustomers > 0 ? totalOrders / activeCustomers : 0;
-    const repeatPurchaseRate = activeCustomers > 0 ? (repeatCustomers / activeCustomers) * 100 : 0;
+    const ordersPerCustomer = activeCustomersInPeriod > 0 ? totalOrders / activeCustomersInPeriod : 0;
+    
+    // Repeat Purchase Rate: out of all lifetime customers who have purchased, how many bought 2+ times
+    const repeatPurchaseRate = activeCustomersLifetime > 0 ? (repeatCustomersCount / activeCustomersLifetime) * 100 : 0;
 
     // 3. Charts: Revenue & Orders over time
-    // We will group by day (if <= 90d) or month (if > 90d)
     const orders = await prisma.order.findMany({
       where: { status: { in: COMPLETED_STATUSES }, createdAt: dateFilter },
       select: { total: true, createdAt: true, customerId: true },
       orderBy: { createdAt: 'asc' }
     });
 
-    // Grouping logic in memory (safe for typical B2B volume, avoids complex raw SQL across DB providers)
     const chartDataMap = new Map<string, { date: string; revenue: number; orders: number; uniqueCustomers: Set<string> }>();
-    
     const isDaily = period === "7d" || period === "30d" || period === "90d";
     
     for (const o of orders) {
@@ -112,10 +151,12 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       kpis: {
-        totalRegistered,
-        activeCustomers,
+        newRegistrations,
+        allRegistrations,
+        activeCustomersInPeriod,
+        activeCustomersLifetime,
         newCustomersCount,
-        repeatCustomers,
+        repeatCustomersCount,
         totalRevenue,
         avgOrderValue,
         ordersPerCustomer,
@@ -123,9 +164,11 @@ export async function GET(req: NextRequest) {
       },
       segments: {
         new: newCustomersCount,
-        repeat: repeatCustomers,
-        highValue: highValueCustomers,
-        inactive: totalRegistered - activeCustomers // simplistic proxy
+        repeat: repeatCustomersCount,
+        highValue: highValueCustomersCount,
+        inactive: inactiveCustomersCount,
+        atRisk: atRiskCustomersCount,
+        neverPurchased: neverPurchased
       },
       chartData
     });

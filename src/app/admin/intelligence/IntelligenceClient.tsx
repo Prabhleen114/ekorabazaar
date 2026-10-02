@@ -94,14 +94,17 @@ function CustomerOverviewTab() {
           <option value="12m">Last 12 Months</option>
           <option value="all">All Time</option>
         </select>
+        <div className="ml-auto text-xs text-gray-400 max-w-[200px] text-right">
+          KPIs reflect eligible completed orders in selected period.
+        </div>
       </div>
 
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <KpiCard title="Active Customers" value={kpis.activeCustomers} icon={<Users className="w-4 h-4 text-blue-500" />} subtitle={`Out of ${kpis.totalRegistered} registered`} />
-        <KpiCard title="Total Revenue" value={`₹${(kpis.totalRevenue / 100).toLocaleString()}`} icon={<IndianRupee className="w-4 h-4 text-emerald-500" />} />
+        <KpiCard title="Active Customers" value={kpis.activeCustomersInPeriod} icon={<Users className="w-4 h-4 text-blue-500" />} subtitle={`${kpis.newRegistrations} new registrations`} />
+        <KpiCard title="Order Revenue" value={`₹${(kpis.totalRevenue / 100).toLocaleString()}`} icon={<IndianRupee className="w-4 h-4 text-emerald-500" />} subtitle="Eligible completed orders" />
         <KpiCard title="Average Order Value" value={`₹${(kpis.avgOrderValue / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}`} icon={<TrendingUp className="w-4 h-4 text-purple-500" />} />
-        <KpiCard title="Repeat Purchase Rate" value={`${kpis.repeatPurchaseRate.toFixed(1)}%`} icon={<RotateCw className="w-4 h-4 text-orange-500" />} subtitle={`${kpis.repeatCustomers} repeat customers`} />
+        <KpiCard title="Repeat Purchase Rate" value={`${kpis.repeatPurchaseRate.toFixed(1)}%`} icon={<RotateCw className="w-4 h-4 text-orange-500" />} subtitle={`${kpis.repeatCustomersCount} lifetime repeat buyers`} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -109,19 +112,21 @@ function CustomerOverviewTab() {
         {/* Segments */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between">
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Customer Segments</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">Customer Segments (Lifetime)</h3>
             <div className="space-y-4">
-              <SegmentRow label="New Customers" count={segments.new} color="bg-blue-500" />
-              <SegmentRow label="Repeat Customers" count={segments.repeat} color="bg-orange-500" />
+              <SegmentRow label="First-Time Buyers" count={segments.new} color="bg-blue-500" />
+              <SegmentRow label="Repeat Customers (2+)" count={segments.repeat} color="bg-orange-500" />
               <SegmentRow label="High Value (> ₹10k)" count={segments.highValue} color="bg-emerald-500" />
-              <SegmentRow label="Inactive" count={segments.inactive} color="bg-gray-400" />
+              <SegmentRow label="At Risk (> 60d)" count={segments.atRisk} color="bg-amber-500" />
+              <SegmentRow label="Inactive (> 90d)" count={segments.inactive} color="bg-gray-400" />
+              <SegmentRow label="Never Purchased" count={segments.neverPurchased} color="bg-red-200" />
             </div>
           </div>
         </div>
 
         {/* Chart */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm lg:col-span-2">
-          <h3 className="font-semibold text-gray-900 mb-4">Revenue & Orders</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">Order Revenue & Volume</h3>
           {chartData.length === 0 ? (
             <div className="h-64 flex items-center justify-center text-gray-400 text-sm">Insufficient data for this period</div>
           ) : (
@@ -234,9 +239,9 @@ function CustomerDirectoryTab() {
             className="text-sm bg-gray-50 border-none rounded-lg focus:ring-2 focus:ring-amber-500"
           >
             <option value="all">All Customers</option>
-            <option value="new">New (30d)</option>
+            <option value="highValue">High Value (> ₹10k)</option>
             <option value="repeat">Repeat Buyers</option>
-            <option value="inactive">Inactive</option>
+            <option value="never">Never Purchased</option>
           </select>
         </div>
       </div>
@@ -248,10 +253,10 @@ function CustomerDirectoryTab() {
             <tr>
               <th className="px-6 py-4">Customer</th>
               <th className="px-6 py-4">Segment</th>
-              <th className="px-6 py-4 text-right">Orders (F)</th>
-              <th className="px-6 py-4 text-right">Spent (M)</th>
+              <th className="px-6 py-4 text-right" title="Frequency">Orders (F)</th>
+              <th className="px-6 py-4 text-right" title="Monetary">Spent (M)</th>
               <th className="px-6 py-4 text-right">AOV</th>
-              <th className="px-6 py-4 text-right">Last Order (R)</th>
+              <th className="px-6 py-4 text-right" title="Recency">Last Order (R)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -260,7 +265,7 @@ function CustomerDirectoryTab() {
             ) : customers.length === 0 ? (
               <tr><td colSpan={6} className="px-6 py-12 text-center text-gray-500">No customers found matching criteria.</td></tr>
             ) : (
-              customers.map((c) => (
+              customers.map((c: any) => (
                 <tr key={c.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900">{c.name}</div>
@@ -271,8 +276,10 @@ function CustomerDirectoryTab() {
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                       c.segment === "High Value" ? "bg-emerald-50 text-emerald-700" :
                       c.segment === "Repeat" ? "bg-orange-50 text-orange-700" :
-                      c.segment === "New" ? "bg-blue-50 text-blue-700" :
-                      "bg-gray-100 text-gray-700"
+                      c.segment === "At Risk" ? "bg-amber-50 text-amber-700" :
+                      c.segment === "Inactive" ? "bg-gray-200 text-gray-700" :
+                      c.segment === "Never Purchased" ? "bg-red-50 text-red-700" :
+                      "bg-blue-50 text-blue-700"
                     }`}>
                       {c.segment}
                     </span>

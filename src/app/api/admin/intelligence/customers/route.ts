@@ -13,6 +13,10 @@ const COMPLETED_STATUSES: OrderStatus[] = [
   "DELIVERED"
 ];
 
+const HIGH_VALUE_THRESHOLD = 1000000; // ₹10,000 in paise
+const INACTIVITY_DAYS = 90;
+const AT_RISK_DAYS = 60;
+
 export async function GET(req: NextRequest) {
   try {
     await requireAdmin();
@@ -24,7 +28,6 @@ export async function GET(req: NextRequest) {
     const limit = 20;
     const skip = (page - 1) * limit;
 
-    // Build base user where
     const where: any = { role: Role.CUSTOMER };
     
     if (search) {
@@ -35,29 +38,29 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    // Advanced filtering based on segments requires examining orders.
-    // We will pull the users matching the base filter first (up to a reasonable limit for complex segments)
-    // Actually, for robust B2B it's better to fetch users and join their orders.
-    
     if (segment === "repeat") {
-      // Must have >= 2 completed orders
-      // In Prisma, we can't do direct HAVING count > 1. 
-      // We'll find customer IDs via groupBy first.
       const repeatIds = await prisma.order.groupBy({
         by: ['customerId'],
         _count: { id: true },
         where: { status: { in: COMPLETED_STATUSES } },
-        having: { id: { _count: { gt: 1 } } }
+        having: { id: { _count: { gte: 2 } } }
       });
       where.id = { in: repeatIds.map(r => r.customerId) };
-    } else if (segment === "new") {
-      // Registered in last 30 days
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      where.createdAt = { gte: thirtyDaysAgo };
-    } else if (segment === "inactive") {
-      // No completed orders
+    } else if (segment === "never") {
       where.orders = { none: { status: { in: COMPLETED_STATUSES } } };
+    }
+
+    // High Value, New, Inactive, At Risk require more complex aggregations,
+    // so we handle those filtering largely on the frontend or with targeted Prisma queries in a broader scale system.
+    // For now, if someone selects "highValue", we filter it mathematically via grouping:
+    if (segment === "highValue") {
+      const highValIds = await prisma.order.groupBy({
+        by: ['customerId'],
+        _sum: { total: true },
+        where: { status: { in: COMPLETED_STATUSES } },
+        having: { total: { _sum: { gt: HIGH_VALUE_THRESHOLD } } }
+      });
+      where.id = { in: highValIds.map(r => r.customerId) };
     }
 
     const [total, users] = await Promise.all([
@@ -78,25 +81,40 @@ export async function GET(req: NextRequest) {
       })
     ]);
 
-    // Calculate RFM & Segments for the returned users
+    const currentTime = new Date().getTime();
+
     const customers = users.map(user => {
       const orders = user.orders;
-      const totalSpent = orders.reduce((sum, o) => sum + o.total, 0);
-      const totalOrders = orders.length;
+      const mTotalSpent = orders.reduce((sum, o) => sum + o.total, 0); // Monetary (M)
+      const fTotalOrders = orders.length; // Frequency (F)
       const firstOrder = orders.length > 0 ? orders[orders.length - 1].createdAt : null;
       const lastOrder = orders.length > 0 ? orders[0].createdAt : null;
       
-      let recencyDays = -1;
+      let rRecencyDays = -1; // Recency (R)
       if (lastOrder) {
-        recencyDays = Math.floor((new Date().getTime() - new Date(lastOrder).getTime()) / (1000 * 3600 * 24));
+        rRecencyDays = Math.floor((currentTime - new Date(lastOrder).getTime()) / (1000 * 3600 * 24));
       }
 
-      // Determine segment
-      let calculatedSegment = "New";
-      if (totalOrders > 1) calculatedSegment = "Repeat";
-      if (totalSpent > 1000000) calculatedSegment = "High Value"; // > 10k INR overrides Repeat
-      if (totalOrders === 0) calculatedSegment = "Inactive";
-      if (totalOrders > 0 && recencyDays > 90) calculatedSegment = "At Risk";
+      // Determine precise segment based on rules
+      let calculatedSegment = "Never Purchased";
+      
+      if (fTotalOrders > 0) {
+        // Evaluate hierarchy
+        calculatedSegment = "Active";
+        
+        if (mTotalSpent > HIGH_VALUE_THRESHOLD) {
+          calculatedSegment = "High Value";
+        } else if (fTotalOrders >= 2) {
+          calculatedSegment = "Repeat";
+        }
+        
+        // Time-based overrides
+        if (rRecencyDays >= INACTIVITY_DAYS) {
+          calculatedSegment = "Inactive";
+        } else if (rRecencyDays >= AT_RISK_DAYS) {
+          calculatedSegment = "At Risk";
+        }
+      }
 
       return {
         id: user.id,
@@ -104,12 +122,12 @@ export async function GET(req: NextRequest) {
         email: user.email,
         phone: user.addresses[0]?.phone || null,
         joinedAt: user.createdAt,
-        totalOrders,
-        totalSpent,
-        aov: totalOrders > 0 ? totalSpent / totalOrders : 0,
+        totalOrders: fTotalOrders,
+        totalSpent: mTotalSpent,
+        aov: fTotalOrders > 0 ? mTotalSpent / fTotalOrders : 0,
         lastOrderDate: lastOrder,
         firstOrderDate: firstOrder,
-        recencyDays,
+        recencyDays: rRecencyDays,
         segment: calculatedSegment
       };
     });
