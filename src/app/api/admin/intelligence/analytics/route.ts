@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { OrderStatus } from "@prisma/client";
+import { getInternalCustomerIds } from "@/lib/intelligence";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,8 @@ const AT_RISK_DAYS = 60;
 export async function GET(req: NextRequest) {
   try {
     await requireAdmin();
+
+    const internalCustomerIds = await getInternalCustomerIds();
 
     const searchParams = req.nextUrl.searchParams;
     const period = searchParams.get("period") || "30d"; // 7d, 30d, 90d, 12m, all
@@ -42,12 +45,12 @@ export async function GET(req: NextRequest) {
 
     // 1. Overall KPIs - Registration vs Orders
     const [newRegistrations, allRegistrations, periodOrdersAgg] = await Promise.all([
-      prisma.user.count({ where: { role: "CUSTOMER", createdAt: dateFilter } }),
-      prisma.user.count({ where: { role: "CUSTOMER" } }),
+      prisma.user.count({ where: { role: "CUSTOMER", id: { notIn: internalCustomerIds }, createdAt: dateFilter } }),
+      prisma.user.count({ where: { role: "CUSTOMER", id: { notIn: internalCustomerIds } } }),
       prisma.order.aggregate({
         _sum: { total: true },
         _count: { id: true },
-        where: { status: { in: COMPLETED_STATUSES }, createdAt: dateFilter }
+        where: { status: { in: COMPLETED_STATUSES }, customerId: { notIn: internalCustomerIds }, createdAt: dateFilter }
       })
     ]);
 
@@ -59,7 +62,8 @@ export async function GET(req: NextRequest) {
       _max: { createdAt: true },
       _min: { createdAt: true },
       where: { 
-        status: { in: COMPLETED_STATUSES }
+        status: { in: COMPLETED_STATUSES },
+        customerId: { notIn: internalCustomerIds }
       }
     });
 
@@ -132,7 +136,11 @@ export async function GET(req: NextRequest) {
 
     // 3. Charts: Revenue & Orders over time
     const orders = await prisma.order.findMany({
-      where: { status: { in: COMPLETED_STATUSES }, createdAt: dateFilter },
+      where: { 
+        status: { in: COMPLETED_STATUSES },
+        customerId: { notIn: internalCustomerIds },
+        createdAt: dateFilter 
+      },
       select: { total: true, createdAt: true, customerId: true },
       orderBy: { createdAt: 'asc' }
     });

@@ -841,3 +841,18 @@ export async function getSessionDropoffAnalytics(): Promise<SessionDropoffAnalyt
   }
 }
 
+
+
+export const INTERNAL_CUSTOMER_EMAILS = ['prabhleen.kaur1306@gmail.com', 'aryann1217@gmail.com'];
+
+export async function getInternalCustomerIds(): Promise<string[]> {
+  const users = await prisma.user.findMany({
+    where: {
+      OR: INTERNAL_CUSTOMER_EMAILS.map(email => ({
+        email: { equals: email.trim(), mode: 'insensitive' }
+      }))
+    },
+    select: { id: true }
+  });
+  return users.map(u => u.id);
+}

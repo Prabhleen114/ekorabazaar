@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { OrderStatus, Role } from "@prisma/client";
+import { getInternalCustomerIds } from "@/lib/intelligence";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,8 @@ export async function GET(req: NextRequest) {
   try {
     await requireAdmin();
 
+    const internalCustomerIds = await getInternalCustomerIds();
+
     const searchParams = req.nextUrl.searchParams;
     const search = searchParams.get("q")?.toLowerCase() || "";
     const segment = searchParams.get("segment") || "all";
@@ -28,7 +31,7 @@ export async function GET(req: NextRequest) {
     const limit = 20;
     const skip = (page - 1) * limit;
 
-    const where: any = { role: Role.CUSTOMER };
+    const where: any = { role: Role.CUSTOMER, id: { notIn: internalCustomerIds } };
     
     if (search) {
       where.OR = [
@@ -42,7 +45,10 @@ export async function GET(req: NextRequest) {
       const repeatIds = await prisma.order.groupBy({
         by: ['customerId'],
         _count: { id: true },
-        where: { status: { in: COMPLETED_STATUSES } },
+        where: { 
+          status: { in: COMPLETED_STATUSES },
+          customerId: { notIn: internalCustomerIds }
+        },
         having: { id: { _count: { gte: 2 } } }
       });
       where.id = { in: repeatIds.map(r => r.customerId) };
@@ -57,7 +63,10 @@ export async function GET(req: NextRequest) {
       const highValIds = await prisma.order.groupBy({
         by: ['customerId'],
         _sum: { total: true },
-        where: { status: { in: COMPLETED_STATUSES } },
+        where: { 
+          status: { in: COMPLETED_STATUSES },
+          customerId: { notIn: internalCustomerIds }
+        },
         having: { total: { _sum: { gt: HIGH_VALUE_THRESHOLD } } }
       });
       where.id = { in: highValIds.map(r => r.customerId) };

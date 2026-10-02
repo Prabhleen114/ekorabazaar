@@ -33,3 +33,8 @@ The Customer Directory explicitly outputs deterministic RFM calculations (referr
 - The "Customer Intelligence" UI has been converted into a Tabbed Layout: "Customer Analytics", "Customer Directory", and "Behavioral Flags".
 - Lifetime metrics (High Value, Repeat Buyers, Inactive) are now clearly labeled as lifetime calculations, distinct from period-constrained KPIs (Order Revenue for the selected period).
 - Validated via `npx prisma validate`, `npx tsc`, and `npm run build` safely against real datasets without N+1 mapping.
+
+## 6. Internal / Test Data Exclusion
+Internal founder/test customers are strictly excluded from Customer Intelligence analytics but are not deleted from the system. This prevents test orders from skewing KPIs, charts, repeat rates, RFM segments, and the directory lists.
+- **Excluded Emails**: configured centrally in INTERNAL_CUSTOMER_EMAILS (e.g. prabhleen.kaur1306@gmail.com, aryann1217@gmail.com).
+- **Mechanism**: Ignored at the Prisma query level using customerId: { notIn: internalIds } which guarantees total exclusion across all Intelligence features without breaking normal checkout or normal order tracking.
