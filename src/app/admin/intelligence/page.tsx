@@ -18,14 +18,14 @@ export default async function AdminIntelligencePage() {
           <div className="flex items-center gap-2 mb-1">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
             <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-              Customer Intelligence Layer
+              Customer Intelligence Suite
             </span>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 font-serif">
-            B2B Buyer Behavioral Flags
+            Customer Intelligence & Analytics
           </h1>
           <p className="text-sm text-gray-600 mt-1">
-            Rule-based customer intent signals, friction detection, and proactive conversion actions.
+            Production-grade KPIs, behavioral insights, customer segmentation, and RFM tracking.
           </p>
         </div>
       </div>
