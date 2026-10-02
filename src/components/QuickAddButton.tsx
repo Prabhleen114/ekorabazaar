@@ -5,6 +5,7 @@ import { useState } from 'react'
 export default function QuickAddButton({ productId, productName, basePrice, category }: { productId: string, productName?: string, basePrice?: number, category?: string }) {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault()
@@ -12,6 +13,7 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
     if (loading || success) return
 
     setLoading(true)
+    setErrorMsg('')
     try {
       const res = await fetch('/api/cart', {
         method: 'POST',
@@ -34,7 +36,10 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
         return
       }
 
-      if (!res.ok) throw new Error('Failed to add to cart')
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Failed to add to cart')
+      }
 
       const { notifyCartUpdated } = await import('@/lib/guest-cart')
       notifyCartUpdated()
@@ -53,10 +58,10 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
       onClick={handleAddToCart}
       disabled={loading}
       className={`mt-2 w-full text-[10px] uppercase tracking-widest py-2.5 transition-all md:opacity-0 md:group-hover:opacity-100 ${
-        success ? 'bg-emerald-600 text-white' : 'bg-stone-900 text-white hover:bg-stone-800'
+        success ? 'bg-emerald-600 text-white' : errorMsg ? 'bg-red-600 text-white' : 'bg-stone-900 text-white hover:bg-stone-800'
       }`}
     >
-      {loading ? 'Adding...' : success ? 'Added ✓' : 'Add to Cart'}
+      {loading ? 'Adding...' : success ? 'Added ✓' : errorMsg ? errorMsg : 'Add to Cart'}
     </button>
   )
 }

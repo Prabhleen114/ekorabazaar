@@ -54,15 +54,37 @@ export default function CheckoutPage() {
 
   const fetchData = async () => {
     try {
-      const [cartRes, addrRes] = await Promise.all([
-        fetch('/api/cart'),
-        fetch('/api/addresses')
+      let [cartRes, addrRes] = await Promise.all([
+        fetch('/api/cart', { cache: 'no-store' }),
+        fetch('/api/addresses', { cache: 'no-store' })
       ])
 
       if (cartRes.status === 401 || cartRes.status === 403) {
         setNeedsAuth(true)
         setLoading(false)
         return
+      }
+
+      if (!cartRes.ok) {
+        throw new Error('Failed to fetch cart. Please try again later.')
+      }
+
+      // Check if there is an unsynced guest cart
+      const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
+      const guestItems = getGuestCart()
+      if (guestItems && guestItems.length > 0) {
+        const syncRes = await fetch('/api/cart/sync', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ items: guestItems })
+        })
+        if (syncRes.ok) {
+           clearGuestCart()
+           const finalRes = await fetch('/api/cart', { cache: 'no-store' })
+           if (finalRes.ok) {
+             cartRes = finalRes
+           }
+        }
       }
 
       const cartData = await cartRes.json()
@@ -96,6 +118,7 @@ export default function CheckoutPage() {
       }
     } catch (err) {
       console.error(err)
+      // DO NOT clear cart on error
     } finally {
       setLoading(false)
     }

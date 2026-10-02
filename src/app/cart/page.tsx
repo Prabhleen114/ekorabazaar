@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -35,7 +35,7 @@ export default function CartPage() {
 
   const fetchCart = async () => {
     try {
-      const res = await fetch('/api/cart', { cache: 'no-store' })
+      let res = await fetch('/api/cart', { cache: 'no-store' })
       if (res.status === 401 || res.status === 403) {
         setIsGuest(true)
         const { getGuestCart } = await import('@/lib/guest-cart')
@@ -65,6 +65,29 @@ export default function CartPage() {
         }
         return
       }
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch cart. Please try again later.')
+      }
+
+      // Check if there is an unsynced guest cart
+      const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
+      const guestItems = getGuestCart()
+      if (guestItems && guestItems.length > 0) {
+        const syncRes = await fetch('/api/cart/sync', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ items: guestItems })
+        })
+        if (syncRes.ok) {
+           clearGuestCart()
+           const finalRes = await fetch('/api/cart', { cache: 'no-store' })
+           if (finalRes.ok) {
+             res = finalRes
+           }
+        }
+      }
+
       const data = await res.json()
       setItems(data.items || [])
       const cTotal = data.totalAmount || 0
@@ -78,6 +101,7 @@ export default function CartPage() {
       }
     } catch (err) {
       console.error(err)
+      // DO NOT clear cart on error
     } finally {
       setLoading(false)
     }

@@ -82,12 +82,14 @@ function LoginForm() {
           const guestItems = getGuestCart()
           
           if (guestItems && guestItems.length > 0) {
-            await fetch('/api/cart/sync', {
+            const syncRes = await fetch('/api/cart/sync', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ items: guestItems })
             })
-            clearGuestCart()
+            if (syncRes.ok) {
+              clearGuestCart()
+            }
           }
         } catch (syncErr) {
           console.error('Non-critical guest cart sync error:', syncErr)
