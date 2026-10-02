@@ -95,24 +95,22 @@ export async function GET(req: NextRequest) {
         rRecencyDays = Math.floor((currentTime - new Date(lastOrder).getTime()) / (1000 * 3600 * 24));
       }
 
-      // Determine precise segment based on rules
+      // Determine precise MUTUALLY EXCLUSIVE segment based on rules
       let calculatedSegment = "Never Purchased";
       
       if (fTotalOrders > 0) {
-        // Evaluate hierarchy
-        calculatedSegment = "Active";
-        
-        if (mTotalSpent > HIGH_VALUE_THRESHOLD) {
-          calculatedSegment = "High Value";
-        } else if (fTotalOrders >= 2) {
-          calculatedSegment = "Repeat";
-        }
-        
-        // Time-based overrides
-        if (rRecencyDays >= INACTIVITY_DAYS) {
+        if (rRecencyDays > 90) {
           calculatedSegment = "Inactive";
-        } else if (rRecencyDays >= AT_RISK_DAYS) {
+        } else if (rRecencyDays > 60) {
           calculatedSegment = "At Risk";
+        } else {
+          // Recency <= 60
+          const daysSinceFirst = firstOrder ? Math.floor((currentTime - new Date(firstOrder).getTime()) / (1000 * 3600 * 24)) : 0;
+          if (daysSinceFirst <= 30) {
+            calculatedSegment = "New";
+          } else {
+            calculatedSegment = "Active/Repeat";
+          }
         }
       }
 

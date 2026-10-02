@@ -114,9 +114,8 @@ function CustomerOverviewTab() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Customer Segments (Lifetime)</h3>
             <div className="space-y-4">
-              <SegmentRow label="First-Time Buyers" count={segments.new} color="bg-blue-500" />
-              <SegmentRow label="Repeat Customers (2+)" count={segments.repeat} color="bg-orange-500" />
-              <SegmentRow label="High Value (> ₹10k)" count={segments.highValue} color="bg-emerald-500" />
+              <SegmentRow label="First-Time Buyers (≤ 30d)" count={segments.new} color="bg-blue-500" />
+              <SegmentRow label="Active / Repeat Buyers" count={segments.activeRepeat} color="bg-emerald-500" />
               <SegmentRow label="At Risk (> 60d)" count={segments.atRisk} color="bg-amber-500" />
               <SegmentRow label="Inactive (> 90d)" count={segments.inactive} color="bg-gray-400" />
               <SegmentRow label="Never Purchased" count={segments.neverPurchased} color="bg-red-200" />
@@ -239,7 +238,7 @@ function CustomerDirectoryTab() {
             className="text-sm bg-gray-50 border-none rounded-lg focus:ring-2 focus:ring-amber-500"
           >
             <option value="all">All Customers</option>
-            <option value="highValue">High Value (> ₹10k)</option>
+            <option value="highValue">High Value (&gt; ₹10k)</option>
             <option value="repeat">Repeat Buyers</option>
             <option value="never">Never Purchased</option>
           </select>
@@ -252,11 +251,11 @@ function CustomerDirectoryTab() {
           <thead className="bg-gray-50 text-gray-500 font-medium border-b border-gray-100">
             <tr>
               <th className="px-6 py-4">Customer</th>
-              <th className="px-6 py-4">Segment</th>
-              <th className="px-6 py-4 text-right" title="Frequency">Orders (F)</th>
-              <th className="px-6 py-4 text-right" title="Monetary">Spent (M)</th>
+              <th className="px-6 py-4">Primary Segment</th>
+              <th className="px-6 py-4 text-right" title="RFM Frequency">Orders (F)</th>
+              <th className="px-6 py-4 text-right" title="RFM Monetary">Spent (M)</th>
               <th className="px-6 py-4 text-right">AOV</th>
-              <th className="px-6 py-4 text-right" title="Recency">Last Order (R)</th>
+              <th className="px-6 py-4 text-right" title="RFM Recency">Last Order (R)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -274,8 +273,7 @@ function CustomerDirectoryTab() {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      c.segment === "High Value" ? "bg-emerald-50 text-emerald-700" :
-                      c.segment === "Repeat" ? "bg-orange-50 text-orange-700" :
+                      c.segment === "Active/Repeat" ? "bg-emerald-50 text-emerald-700" :
                       c.segment === "At Risk" ? "bg-amber-50 text-amber-700" :
                       c.segment === "Inactive" ? "bg-gray-200 text-gray-700" :
                       c.segment === "Never Purchased" ? "bg-red-50 text-red-700" :
@@ -283,6 +281,11 @@ function CustomerDirectoryTab() {
                     }`}>
                       {c.segment}
                     </span>
+                    {c.totalSpent > 1000000 && (
+                      <span className="ml-2 px-2 py-1 text-xs font-medium rounded-full bg-purple-50 text-purple-700" title="High Value">
+                        💎 High Value
+                      </span>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-right font-medium">{c.totalOrders}</td>
                   <td className="px-6 py-4 text-right font-medium text-emerald-600">

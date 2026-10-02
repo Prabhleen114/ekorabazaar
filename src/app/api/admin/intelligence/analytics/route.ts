@@ -66,12 +66,17 @@ export async function GET(req: NextRequest) {
     const activeCustomersLifetime = allCustomerOrderStats.length;
     const neverPurchased = allRegistrations - activeCustomersLifetime;
 
-    let newCustomersCount = 0;
-    let repeatCustomersCount = 0;
-    let highValueCustomersCount = 0;
-    let inactiveCustomersCount = 0;
-    let atRiskCustomersCount = 0;
+    let newCustomersCount = 0; // Just for period context (KPI)
+    
+    // Mutually Exclusive Segments
+    let countNewSegment = 0;
+    let countActiveRepeatSegment = 0;
+    let countAtRiskSegment = 0;
+    let countInactiveSegment = 0;
+    let countNeverPurchased = neverPurchased; // Derived directly above
+
     let activeCustomersInPeriod = 0;
+    let repeatCustomersCount = 0; // Total lifetime repeats (just for rate)
 
     const currentTime = new Date().getTime();
 
@@ -80,11 +85,11 @@ export async function GET(req: NextRequest) {
       const firstOrderTime = stats._min.createdAt ? stats._min.createdAt.getTime() : 0;
       const lastOrderTime = stats._max.createdAt ? stats._max.createdAt.getTime() : 0;
       const orderCount = stats._count.id;
-      const lifetimeSpend = stats._sum.total || 0;
       
       const recencyDays = Math.floor((currentTime - lastOrderTime) / (1000 * 3600 * 24));
+      const daysSinceFirst = Math.floor((currentTime - firstOrderTime) / (1000 * 3600 * 24));
 
-      // Is "New Customer" in selected period?
+      // Is "New Customer" in selected period? (Not the primary segment, just a KPI)
       if (!startDate || firstOrderTime >= startDate.getTime()) {
         newCustomersCount++;
       }
@@ -94,19 +99,26 @@ export async function GET(req: NextRequest) {
         activeCustomersInPeriod++;
       }
 
-      // Lifetime Segments
       if (orderCount >= 2) {
         repeatCustomersCount++;
       }
-      
-      if (lifetimeSpend > HIGH_VALUE_THRESHOLD) {
-        highValueCustomersCount++;
-      }
 
-      if (recencyDays >= INACTIVITY_DAYS) {
-        inactiveCustomersCount++;
-      } else if (recencyDays >= AT_RISK_DAYS) {
-        atRiskCustomersCount++;
+      // --------------------------------------------------
+      // MUTUALLY EXCLUSIVE LIFETIME SEGMENTS (For the UI)
+      // --------------------------------------------------
+      if (recencyDays > 90) {
+        countInactiveSegment++;
+      } else if (recencyDays > 60) {
+        countAtRiskSegment++;
+      } else {
+        // Recency <= 60
+        if (daysSinceFirst <= 30) {
+          countNewSegment++;
+        } else {
+          // If first order is older than 30 days, they are active. 
+          // If they have 2+ orders, they are repeat. We group these as "Active / Repeat".
+          countActiveRepeatSegment++;
+        }
       }
     }
 
@@ -163,12 +175,11 @@ export async function GET(req: NextRequest) {
         repeatPurchaseRate
       },
       segments: {
-        new: newCustomersCount,
-        repeat: repeatCustomersCount,
-        highValue: highValueCustomersCount,
-        inactive: inactiveCustomersCount,
-        atRisk: atRiskCustomersCount,
-        neverPurchased: neverPurchased
+        new: countNewSegment,
+        activeRepeat: countActiveRepeatSegment,
+        inactive: countInactiveSegment,
+        atRisk: countAtRiskSegment,
+        neverPurchased: countNeverPurchased
       },
       chartData
     });

@@ -11,22 +11,20 @@ The pre-existing feature located at `src/app/admin/intelligence` primarily acted
 ## 2. Fake/Simulated Data Found
 - The core flag/dropoff implementation was honest but narrow; no fake records (`Math.random()`, hardcoded constants) were generated or surfaced in the dashboard logic. It was purely tracking real Dropoffs using the `Event` schema.
 
-## 3. Corrected Data Definitions (Implemented)
-To expand this into a production-grade analytics suite, the following explicit definitions have been codified across the dashboard:
+## 3. Mutually Exclusive Customer Segments
+To prevent double counting and ensure `sum(segments) = total_customer_population`, customers are evaluated against a strict, mutually exclusive hierarchy. Each customer is assigned exactly ONE primary segment based on their eligible order history.
 
-- **Order Revenue**: Sum of all `Order.total` where `status` is `PAID`, `PROCESSING`, `SHIPPED`, `IN_TRANSIT`, or `DELIVERED`. (Excludes `PAYMENT_PENDING`, `CANCELLED`, `REFUNDED`, `REFUND_INITIATED`).
-- **Eligible Completed Order**: Any order with one of the aforementioned revenue statuses.
-- **New Registrations**: Users whose account `createdAt` falls inside the selected period.
-- **First-Time Buyers**: Customers whose *FIRST eligible completed order* occurred within the selected period.
-- **Never Purchased**: Registered customer with zero eligible completed orders.
-- **Active Customer**: Placed an eligible completed order within the selected date range.
-- **Repeat Customer**: A customer who has 2 or more eligible completed orders in their lifetime.
-- **High-Value Customer**: A customer whose total lifetime eligible spend > ₹10,000 (Calculated via `_sum: { total }`). This threshold is centrally defined.
-- **At Risk**: Customer has completed orders historically, but their last eligible order is > 60 days ago.
-- **Inactive**: Customer has completed orders historically, but their last eligible order is > 90 days ago.
+**Hierarchy (Evaluated top-to-bottom):**
+1. **Never Purchased**: 0 eligible orders.
+2. **Inactive**: >0 eligible orders, but `Recency > 90 days`.
+3. **At Risk**: >0 eligible orders, but `60 days < Recency <= 90 days`.
+4. **New**: `Recency <= 60 days` AND their *first* eligible order occurred `<= 30 days` ago.
+5. **Active / Repeat**: `Recency <= 60 days` AND their *first* eligible order was `> 30 days` ago (implicitly capturing recent active buyers and repeat customers).
 
-## 4. RFM Implementation
-The Customer Directory now explicitly outputs real RFM calculations based strictly on the eligible order definition:
+*Note on "High Value":* Because High Value is purely monetary, it is treated as an orthogonal modifier (a badge or filter dimension) rather than a primary mutually-exclusive segment, allowing us to see High Value customers who are also At Risk or Inactive without breaking the base count.
+
+## 4. RFM Metrics Implementation
+The Customer Directory explicitly outputs deterministic RFM calculations (referred to strictly as "RFM Metrics", avoiding the term "RFM Score" since no arbitrary 1-5 scoring is applied):
 - **R (Recency)**: Days elapsed since the customer's *last eligible order date*.
 - **F (Frequency)**: The total count of eligible completed orders.
 - **M (Monetary)**: The sum of `Order.total` for all eligible completed orders.
