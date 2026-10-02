@@ -9,6 +9,8 @@ import { validateBody, CreateOrderSchema } from '@/lib/validation'
 
 export async function POST(req: Request) {
   try {
+    const t0 = performance.now();
+    console.log("[SERVER] create-order start", t0);
     const session = await requireAuth()
 
     const rawBody = await req.json()
@@ -18,9 +20,17 @@ export async function POST(req: Request) {
     }
     const { items, addressId } = validation.data
 
-    let addressSnapshot = null
+
+    const [address, customer] = await Promise.all([
+      addressId ? prisma.address.findUnique({ where: { id: addressId } }) : Promise.resolve(null),
+      prisma.user.findUnique({
+        where: { id: session.userId! },
+        select: { name: true, email: true, phone: true }
+      })
+    ]);
+
+    let addressSnapshot = null;
     if (addressId) {
-      const address = await prisma.address.findUnique({ where: { id: addressId } })
       if (!address || address.userId !== session.userId) {
         return NextResponse.json({ error: "Invalid delivery address." }, { status: 400 })
       }
@@ -126,6 +136,8 @@ export async function POST(req: Request) {
     const subtotalPaise = Math.round(totalAmount)
     const finalAmountPaise = Math.round(totalAmount + shippingChargePaise)
 
+    console.log(`[SERVER] Pre-Razorpay API. Took: ${performance.now() - t0}ms`);
+
     // Razorpay key validated at import time via razorpay.ts
 
     // Create Razorpay Order
@@ -141,6 +153,7 @@ export async function POST(req: Request) {
     
     const rzpOrder = await razorpay.orders.create(options);
     const rzpOrderId = rzpOrder.id
+    console.log(`[SERVER] Post-Razorpay API. Took: ${performance.now() - t0}ms`);
 
     // Create Internal Order, OrderItems, and Payment record atomically
     const [createdOrder, createdPayment] = await prisma.$transaction(async (tx) => {
@@ -176,13 +189,10 @@ export async function POST(req: Request) {
       return [order, payment]
     })
 
-    const customer = await prisma.user.findUnique({
-      where: { id: session.userId! },
-      select: { name: true, email: true, phone: true }
-    })
-
+    console.log(`[SERVER] End create-order route. Took: ${performance.now() - t0}ms`);
     return NextResponse.json({ 
       success: true, 
+
       orderId: createdOrder.id,
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,

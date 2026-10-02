@@ -16,36 +16,58 @@ export interface CheckoutOptions {
   };
 }
 
+let scriptPromise: Promise<boolean> | null = null;
+
+const preloadRazorpayScript = (): Promise<boolean> => {
+  if (typeof window === "undefined") {
+    return Promise.resolve(false);
+  }
+  if ((window as any).Razorpay) {
+    return Promise.resolve(true);
+  }
+  if (scriptPromise) {
+    return scriptPromise;
+  }
+  scriptPromise = new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => {
+      scriptPromise = null;
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+  return scriptPromise;
+};
+
 export function useRazorpayCheckout() {
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const loadRazorpayScript = (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      if (typeof window === "undefined") {
-        return resolve(false);
-      }
-      if ((window as any).Razorpay) {
-        return resolve(true);
-      }
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
+  // Eagerly preload the script when the hook is used (e.g. on mount of the checkout/cart page)
+  if (typeof window !== "undefined") {
+    preloadRazorpayScript().catch(() => {});
+  }
+
+  const loadRazorpayScript = preloadRazorpayScript;
 
   const checkout = useCallback(async (options: CheckoutOptions) => {
     try {
+      console.log("[CHECKOUT] click", performance.now());
       setIsProcessing(true);
 
       // Load SDK
+      const scriptLoadStart = performance.now();
       const scriptLoaded = await loadRazorpayScript();
+      console.log(`[CHECKOUT] Razorpay SDK ready. Took: ${performance.now() - scriptLoadStart}ms`);
       if (!scriptLoaded) {
         throw new Error("Failed to load Razorpay SDK. Please check your connection.");
       }
 
       // Step 1: Create Order
+      const createStart = performance.now();
+      console.log("[CHECKOUT] create-order request start");
       const resCreate = await fetch(options.apiCreateRoute, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,8 +75,9 @@ export function useRazorpayCheckout() {
       });
       
       const createData = await resCreate.json();
+      console.log(`[CHECKOUT] create-order response. Took: ${performance.now() - createStart}ms`, createData);
 
-      // Guest user — redirect to /login and return to this product page after sign-in
+      // Guest user ?" redirect to /login and return to this product page after sign-in
       if (resCreate.status === 401) {
         setIsProcessing(false);
         const returnUrl = encodeURIComponent(window.location.pathname);
