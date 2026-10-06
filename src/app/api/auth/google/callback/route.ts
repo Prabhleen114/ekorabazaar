@@ -102,6 +102,11 @@ export async function GET(req: NextRequest) {
     })
 
     if (user) {
+      if (user.role !== 'CUSTOMER') {
+        console.warn(`Google OAuth attempted on non-customer account (role: ${user.role})`)
+        return NextResponse.redirect(new URL('/login?error=use_seller_login', origin))
+      }
+
       // If user exists without googleId or without name, update them
       if (!user.googleId || (!user.name && name)) {
         user = await prisma.user.update({
