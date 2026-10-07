@@ -266,8 +266,10 @@ export default async function ProductDetailsPage({ params }: Props) {
             </p>
           </div>
           
-          <div className="text-stone-600 font-light text-xs md:text-sm leading-relaxed mb-6 border-y border-stone-200/70 py-4">
-            <p>{displayProduct.description}</p>
+          <div className="text-stone-600 font-light text-xs md:text-sm leading-relaxed mb-6 border-y border-stone-200/70 py-4 space-y-3">
+            {displayProduct.description.split('\n').filter(Boolean).map((paragraph, idx) => (
+              <p key={idx}>{paragraph}</p>
+            ))}
           </div>
 
           {displayProduct.isQuoteOnly || !displayProduct.inStock ? (
