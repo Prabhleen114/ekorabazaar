@@ -9,33 +9,41 @@ import { validateBody, CreateOrderSchema } from '@/lib/validation'
 
 export async function POST(req: Request) {
   try {
-    const t0 = performance.now();
-    console.log("[SERVER] create-order start", t0);
-    const session = await requireAuth()
+    let userId: string | null = null
+    try {
+      const session = await requireAuth()
+      userId = session.userId
+    } catch (e) {
+      // Guest checkout flow
+    }
 
     const rawBody = await req.json()
     const validation = validateBody(CreateOrderSchema, rawBody)
     if (!validation.success) {
       return NextResponse.json({ error: validation.error }, { status: 400 })
     }
-    const { items, addressId } = validation.data
+    const { items, addressId, guestAddress } = validation.data
 
+    let addressSnapshot = null
+    let customerPhone = ''
+    let customerName = 'Guest Customer'
 
-    const [address, customer] = await Promise.all([
-      addressId ? prisma.address.findUnique({ where: { id: addressId } }) : Promise.resolve(null),
-      prisma.user.findUnique({
-        where: { id: session.userId! },
-        select: { name: true, email: true, phone: true }
-      })
-    ]);
-
-    let addressSnapshot = null;
-    if (addressId) {
-      if (!address || address.userId !== session.userId) {
+    if (addressId && userId) {
+      const address = await prisma.address.findUnique({ where: { id: addressId } })
+      if (!address || address.userId !== userId) {
         return NextResponse.json({ error: "Invalid delivery address." }, { status: 400 })
       }
       addressSnapshot = address // Capture immutable snapshot
+    } else if (guestAddress) {
+      addressSnapshot = { ...guestAddress, id: 'guest_' + Date.now() }
+      customerPhone = guestAddress.phone
+      customerName = guestAddress.fullName
+    } else {
+      return NextResponse.json({ error: "A delivery address is required." }, { status: 400 })
     }
+
+    // Generate a guest userId if they are not logged in
+    const finalUserId = userId || `guest_${Date.now()}`
 
     // Step 1: Validate inventory, product status, and seller status transactionally
     // We cannot trust frontend prices or seller IDs
@@ -136,8 +144,6 @@ export async function POST(req: Request) {
     const subtotalPaise = Math.round(totalAmount)
     const finalAmountPaise = Math.round(totalAmount + shippingChargePaise)
 
-    console.log(`[SERVER] Pre-Razorpay API. Took: ${performance.now() - t0}ms`);
-
     // Razorpay key validated at import time via razorpay.ts
 
     // Create Razorpay Order
@@ -148,24 +154,40 @@ export async function POST(req: Request) {
     const options = {
       amount: finalAmountPaise, // strictly in integer paise
       currency: "INR",
-      receipt: `order_${session.userId?.substring(0,8)}_${Date.now()}`
+      receipt: `order_${finalUserId.substring(0,8)}_${Date.now()}`
     };
     
     const rzpOrder = await razorpay.orders.create(options);
     const rzpOrderId = rzpOrder.id
-    console.log(`[SERVER] Post-Razorpay API. Took: ${performance.now() - t0}ms`);
 
     // Create Internal Order, OrderItems, and Payment record atomically
     const [createdOrder, createdPayment] = await prisma.$transaction(async (tx) => {
+      let actualUserId = finalUserId
+      
+      // If this is a guest, we need a user record for relations
+      if (!userId) {
+        const guestEmail = `guest_${Date.now()}@ekorabazaar.in`
+        const guestUser = await tx.user.create({
+          data: {
+            email: guestEmail,
+            name: customerName,
+            phone: customerPhone,
+            role: 'CUSTOMER',
+            id: finalUserId
+          }
+        })
+        actualUserId = guestUser.id
+      }
+
       const order = await tx.order.create({
         data: {
-          customerId: session.userId!,
+          customerId: actualUserId,
           total: finalAmountPaise,
           subtotal: subtotalPaise,
           shipping: shippingChargePaise,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
-          addressId: addressId || null,
+          addressId: addressId && userId ? addressId : null,
           addressSnapshot: addressSnapshot ? JSON.parse(JSON.stringify(addressSnapshot)) : null,
           items: {
             create: validOrderItems
@@ -175,7 +197,7 @@ export async function POST(req: Request) {
 
       const payment = await tx.payment.create({
         data: {
-          userId: session.userId!,
+          userId: actualUserId,
           orderId: order.id,
           amount: finalAmountPaise,
           currency: 'INR',
@@ -189,18 +211,21 @@ export async function POST(req: Request) {
       return [order, payment]
     })
 
-    console.log(`[SERVER] End create-order route. Took: ${performance.now() - t0}ms`);
+    const customer = userId ? await prisma.user.findUnique({
+      where: { id: userId },
+      select: { name: true, email: true, phone: true }
+    }) : null
+
     return NextResponse.json({ 
       success: true, 
-
       orderId: createdOrder.id,
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,
       amount: finalAmountPaise,
       customer: {
-        name: (addressSnapshot as any)?.name || customer?.name || '',
+        name: (addressSnapshot as any)?.name || customer?.name || customerName,
         email: customer?.email || '',
-        phone: (addressSnapshot as any)?.phone || customer?.phone || ''
+        phone: (addressSnapshot as any)?.phone || customer?.phone || customerPhone
       }
     })
   } catch (error: any) {

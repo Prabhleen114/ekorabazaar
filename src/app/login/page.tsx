@@ -141,9 +141,9 @@ function LoginForm() {
   return (
     <div className="flex h-screen max-h-screen w-full bg-white font-sans text-neutral-950 antialiased selection:bg-neutral-900 selection:text-white relative overflow-hidden">
       {/* Left Form Section */}
-      <div className="flex w-full flex-col justify-between lg:w-1/2 h-full p-6 sm:p-8 lg:p-10 relative overflow-y-auto lg:overflow-hidden">
+      <div className="flex w-full flex-col lg:w-1/2 h-full p-4 sm:p-6 lg:p-10 relative overflow-y-auto lg:overflow-hidden items-center justify-center">
         {/* Header Branding */}
-        <div className="w-full flex items-center justify-start shrink-0">
+        <div className="absolute top-6 left-6 sm:top-8 sm:left-8 lg:top-10 lg:left-10 z-10">
           <Link href="/" className="inline-block group">
             <span className="text-base sm:text-lg lg:text-xl font-bold tracking-tight text-neutral-900 hover:text-neutral-600 transition-colors">
               EKORA BAZAAR
@@ -152,12 +152,12 @@ function LoginForm() {
         </div>
 
         {/* Form Container */}
-        <div className="flex flex-1 items-center justify-center w-full my-auto py-2">
+        <div className="flex w-full justify-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full max-w-[380px] sm:max-w-[400px]"
+            className="w-full max-w-[380px] sm:max-w-[400px] mt-10 lg:mt-0"
           >
             {/* Titles */}
             <motion.div variants={itemVariants} className="mb-4 text-center">
@@ -283,9 +283,6 @@ function LoginForm() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Bottom spacer to mirror header on desktop */}
-        <div className="hidden lg:block shrink-0 h-4"></div>
       </div>
 
       {/* Right Image Section */}

@@ -10,6 +10,18 @@ export const UpdateCartItemSchema = z.object({
   quantity: z.number().int().min(1, 'Quantity must be at least 1').max(500, 'Maximum 500 units per item'),
 })
 
+// --- Address ---
+export const AddressSchema = z.object({
+  fullName: z.string().min(1, 'Full name is required').max(100),
+  phone: z.string().min(10, 'Phone must be at least 10 digits').max(15),
+  addressLine1: z.string().min(1, 'Address line 1 is required').max(200),
+  addressLine2: z.string().max(200).optional().nullable(),
+  city: z.string().min(1, 'City is required').max(100),
+  state: z.string().min(1, 'State is required').max(100),
+  pincode: z.string().regex(/^\d{6}$/, 'PIN code must be exactly 6 digits'),
+  isDefault: z.boolean().optional(),
+})
+
 // --- Checkout ---
 export const CreateOrderSchema = z.object({
   items: z.array(z.object({
@@ -17,6 +29,7 @@ export const CreateOrderSchema = z.object({
     quantity: z.number().int().min(1).max(500),
   })).min(1, 'At least one item required').max(50, 'Maximum 50 items per order'),
   addressId: z.string().optional().nullable(),
+  guestAddress: AddressSchema.optional().nullable(),
 })
 
 export const ConfirmPaymentSchema = z.object({
@@ -38,17 +51,6 @@ export const SignupSchema = z.object({
   phone: z.string().optional().nullable(),
 })
 
-// --- Address ---
-export const AddressSchema = z.object({
-  fullName: z.string().min(1, 'Full name is required').max(100),
-  phone: z.string().min(10, 'Phone must be at least 10 digits').max(15),
-  addressLine1: z.string().min(1, 'Address line 1 is required').max(200),
-  addressLine2: z.string().max(200).optional().nullable(),
-  city: z.string().min(1, 'City is required').max(100),
-  state: z.string().min(1, 'State is required').max(100),
-  pincode: z.string().regex(/^\d{6}$/, 'PIN code must be exactly 6 digits'),
-  isDefault: z.boolean().optional(),
-})
 
 // --- Seller Products ---
 export const SellerProductSchema = z.object({

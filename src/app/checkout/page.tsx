@@ -54,41 +54,34 @@ export default function CheckoutPage() {
 
   const fetchData = async () => {
     try {
-      let [cartRes, addrRes] = await Promise.all([
+      const [cartRes, addrRes] = await Promise.all([
         fetch('/api/cart', { cache: 'no-store' }),
-        fetch('/api/addresses', { cache: 'no-store' })
+        fetch('/api/addresses')
       ])
 
+      let cartData
+      let isGuestFlow = false
+
       if (cartRes.status === 401 || cartRes.status === 403) {
-        setNeedsAuth(true)
-        setLoading(false)
-        return
-      }
-
-      if (!cartRes.ok) {
-        throw new Error('Failed to fetch cart. Please try again later.')
-      }
-
-      // Check if there is an unsynced guest cart
-      const { getGuestCart, clearGuestCart } = await import('@/lib/guest-cart')
-      const guestItems = getGuestCart()
-      if (guestItems && guestItems.length > 0) {
-        const syncRes = await fetch('/api/cart/sync', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify({ items: guestItems })
-        })
-        if (syncRes.ok) {
-           clearGuestCart()
-           const finalRes = await fetch('/api/cart', { cache: 'no-store' })
-           if (finalRes.ok) {
-             cartRes = finalRes
-           }
+        // Fallback to guest checkout
+        const { getGuestCart } = await import('@/lib/guest-cart')
+        const guestItems = getGuestCart()
+        
+        if (guestItems.length === 0) {
+          router.push('/cart')
+          return
         }
-      }
 
-      const cartData = await cartRes.json()
-      const addrData = await addrRes.json()
+        const guestRes = await fetch('/api/cart/guest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: guestItems })
+        })
+        cartData = await guestRes.json()
+        isGuestFlow = true
+      } else {
+        cartData = await cartRes.json()
+      }
 
       const availableItems = (cartData.items || []).filter((i: any) => i.isAvailable)
       if (availableItems.length === 0) {
@@ -108,17 +101,22 @@ export default function CheckoutPage() {
         item_count: availableItems.length,
       })
       
-      const userAddrs = addrData.addresses || []
-      setAddresses(userAddrs)
-      if (userAddrs.length > 0) {
-        const def = userAddrs.find((a: any) => a.isDefault)
-        setSelectedAddressId(def ? def.id : userAddrs[0].id)
+      if (!isGuestFlow && addrRes.ok) {
+        const addrData = await addrRes.json()
+        const userAddrs = addrData.addresses || []
+        setAddresses(userAddrs)
+        if (userAddrs.length > 0) {
+          const def = userAddrs.find((a: any) => a.isDefault)
+          setSelectedAddressId(def ? def.id : userAddrs[0].id)
+        } else {
+          setShowNewAddressForm(true)
+        }
       } else {
+        setNeedsAuth(false)
         setShowNewAddressForm(true)
       }
     } catch (err) {
       console.error(err)
-      // DO NOT clear cart on error
     } finally {
       setLoading(false)
     }
@@ -128,6 +126,17 @@ export default function CheckoutPage() {
     e.preventDefault()
     setErrorMsg('')
     try {
+      // If we don't have a session, we just use the address directly for guest checkout
+      const sessionRes = await fetch('/api/auth/session')
+      if (!sessionRes.ok) {
+        const tempId = 'guest_addr_' + Date.now()
+        const guestAddr = { ...newAddress, id: tempId }
+        setAddresses([guestAddr])
+        setSelectedAddressId(tempId)
+        setShowNewAddressForm(false)
+        return
+      }
+
       const res = await fetch('/api/addresses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -171,7 +180,9 @@ export default function CheckoutPage() {
       apiVerifyRoute: '/api/checkout/confirm-payment',
       createPayload: { 
         items: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
-        addressId: selectedAddressId,
+        ...(selectedAddressId.startsWith('guest_')
+          ? { guestAddress: activeAddr }
+          : { addressId: selectedAddressId }),
         gstin: gstin.trim() || undefined,
         businessName: businessName.trim() || undefined,
       },
