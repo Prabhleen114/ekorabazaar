@@ -114,6 +114,7 @@ export const metadata: Metadata = {
 
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieConsent from "@/components/CookieConsent";
+import { HesitationTracker } from "@/components/HesitationTracker";
 
 export default function RootLayout({
   children,
@@ -187,6 +188,7 @@ export default function RootLayout({
         className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
       >
         {children}
+        <HesitationTracker />
         <WhatsAppButton />
         <CookieConsent />
         <Analytics />
