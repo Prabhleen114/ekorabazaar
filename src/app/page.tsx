@@ -11,14 +11,14 @@ import { generateOrganizationSchema } from "@/lib/seo";
 import serialize from "serialize-javascript";
 
 export const metadata: Metadata = {
-  title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Atelier",
+  title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Wholesale",
   description:
     "Direct manufacturer raw materials for modern makers. 100% soy wax, IFRA certified fragrance oils, cosmetic bases, and silicone moulds.",
 };
 
 const CORE_DISCIPLINES = [
   { name: "Candle Studio", href: "/shop?discipline=candle-studio" },
-  { name: "Soap Atelier", href: "/shop?discipline=soap-atelier" },
+  { name: "Soap Supplies", href: "/shop?discipline=soap-atelier" },
   { name: "Fragrance & Botanicals", href: "/shop?category=Fragrance%20Oils" },
   { name: "Moulds & Casting", href: "/shop?category=Eco-Resin%20%26%20Stone%20Moulds" },
   { name: "Vessels & Packaging", href: "/shop?department=Vessels%20%26%20Packaging%20Studio" },
@@ -40,7 +40,7 @@ export default function BuyerHomePage() {
 
       {/* 1. DISCIPLINE DIRECTORY BAR (Instant Taxonomy Access) */}
       <div className="w-full border-b border-stone-200/80 bg-white relative">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-3 flex items-center overflow-x-auto">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 py-3 flex items-center overflow-x-auto">
           <div className="flex items-center space-x-6 md:space-x-8 min-w-max pr-8 md:pr-0 md:mx-auto">
             {CORE_DISCIPLINES.map((item, idx) => (
               <Link
@@ -72,12 +72,12 @@ export default function BuyerHomePage() {
               className="object-contain max-h-[85%] max-w-[85%] drop-shadow-md"
             />
             <div className="absolute top-4 left-4 border border-stone-300 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/90 backdrop-blur-xs font-mono">
-              Studio Edition 2026
+              Verified B2B Supplies
             </div>
           </div>
 
           {/* Typography & Conversion Column (Right, 45% Width on Desktop) */}
-          <div className="w-full md:w-[45%] h-full flex flex-col justify-center px-6 md:px-12 lg:px-16 py-8">
+          <div className="w-full md:w-[45%] h-full flex flex-col justify-center px-4 md:px-6 md:px-12 lg:px-16 py-8">
             <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 mb-2 font-mono">
               DIRECT MANUFACTURER SOURCING
             </span>
@@ -119,7 +119,7 @@ export default function BuyerHomePage() {
               </Link>
               <Link
                 href="/classes"
-                className="w-full sm:w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors text-center"
+                className="w-full sm:w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-4 md:px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors text-center"
               >
                 <span>DISCOVERY KITS</span>
               </Link>
@@ -200,7 +200,7 @@ export default function BuyerHomePage() {
                     </span>
                   </div>
                   <div className="mt-auto pt-1">
-                    <QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} />
+                    <object><QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} /></object>
                   </div>
                 </div>
               </Link>
@@ -216,7 +216,7 @@ export default function BuyerHomePage() {
             Purity &bull; Traceability &bull; Testing
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-stone-900 font-normal tracking-tight">
-            The Atelier Standard
+            The Wholesale Standard
           </h2>
           <p className="text-xs md:text-sm text-stone-600 font-light max-w-md mx-auto">
             Every raw ingredient in our catalog undergoes rigorous batch verification before listing.

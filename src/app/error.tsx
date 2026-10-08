@@ -24,13 +24,13 @@ export default function ErrorPage({
       <div className="flex gap-4">
         <button
           onClick={() => reset()}
-          className="px-6 py-3 bg-brand-charcoal hover:bg-black text-white rounded-xl font-semibold transition-all shadow-md"
+          className="px-4 md:px-6 py-3 bg-brand-charcoal hover:bg-black text-white rounded-xl font-semibold transition-all shadow-md"
         >
           Try Again
         </button>
         <Link
           href="/"
-          className="px-6 py-3 bg-brand-orange hover:bg-brand-terracotta text-white rounded-xl font-semibold transition-all shadow-md"
+          className="px-4 md:px-6 py-3 bg-brand-orange hover:bg-brand-terracotta text-white rounded-xl font-semibold transition-all shadow-md"
         >
           Return Home
         </Link>

@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="pt-24 md:pt-28 pb-20 px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12 animate-pulse">
+    <div className="pt-24 md:pt-28 pb-20 px-4 md:px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-12 animate-pulse">
       {/* Image skeleton */}
       <div className="w-full md:w-1/2">
         <div className="aspect-square bg-brand-linen/60 rounded-3xl" />

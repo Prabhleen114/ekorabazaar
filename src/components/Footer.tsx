@@ -7,7 +7,7 @@ import { trackWhatsAppClick } from "@/lib/tracking";
 export default function Footer() {
   return (
     <footer className="bg-brand-bg border-t border-brand-linen py-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -58,6 +58,7 @@ export default function Footer() {
             <h4 className="text-brand-charcoal font-semibold mb-6 font-serif">Contact Us</h4>
             <div className="space-y-3 text-sm text-brand-charcoal/60 font-medium leading-relaxed">
               <p>
+                Ekora Bazaar<br />
                 Near Shyam Mandir Marg, Sutapatti,<br />
                 Muzaffarpur, Bihar - 842001
               </p>
@@ -65,7 +66,7 @@ export default function Footer() {
                 <a href="tel:+919041500605" className="hover:text-brand-charcoal transition-colors">+91 9041500605</a>
               </p>
               <p>
-                <a href="mailto:techekora@gmail.com" className="hover:text-brand-charcoal transition-colors">techekora@gmail.com</a>
+                <a href="mailto:ekorabazaar@gmail.com" className="hover:text-brand-charcoal transition-colors">ekorabazaar@gmail.com</a>
               </p>
               <div className="pt-2">
                 <a 
@@ -96,12 +97,19 @@ export default function Footer() {
               <li><Link href="/privacy" className="hover:text-brand-charcoal transition-colors">Privacy Policy</Link></li>
               <li><Link href="/refund-policy" className="hover:text-brand-charcoal transition-colors">Refund Policy</Link></li>
               <li><Link href="/creator-guidelines" className="hover:text-brand-charcoal transition-colors">Creator Guidelines</Link></li>
+              <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors text-brand-orange">Contact Us</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-brand-linen flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium text-brand-charcoal/40">
-          <p>© 2025 Ekora. All rights reserved.</p>
+        <div className="pt-8 border-t border-brand-linen flex flex-col md:flex-row items-start justify-between gap-4 text-sm font-medium text-brand-charcoal/40">
+          <div className="flex flex-col gap-2">
+            <p>© {new Date().getFullYear()} Ekora Bazaar. All rights reserved.</p>
+            <div className="text-xs text-brand-charcoal/40 mt-1">
+              <p>Ekora Bazaar Pvt Ltd | MSME Registered Enterprise</p>
+              <p className="font-semibold mt-1">GST invoice provided on every order.</p>
+            </div>
+          </div>
           <p>Made in India</p>
         </div>
       </div>

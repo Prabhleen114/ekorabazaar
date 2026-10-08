@@ -45,7 +45,7 @@ export default async function GuidePage({ params }: Props) {
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
       
-      <div className="pt-24 pb-12 px-6 max-w-4xl mx-auto w-full flex-1">
+      <div className="pt-24 pb-12 px-4 md:px-6 max-w-4xl mx-auto w-full flex-1">
         
         <article className="bg-white p-8 md:p-12 rounded-3xl border border-brand-linen shadow-sm prose prose-stone max-w-none">
           <h1 className="text-3xl md:text-5xl font-bold font-serif text-brand-charcoal mb-6">
@@ -76,10 +76,10 @@ export default async function GuidePage({ params }: Props) {
             <h3 className="text-xl font-bold text-brand-charcoal mb-4">Ready to start sourcing?</h3>
             <p className="text-brand-charcoal/70 mb-6">Explore our curated list of verified manufacturers and suppliers for {categoryObj.label}.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/wholesale/${slug}`} className="bg-brand-orange text-white px-6 py-3 rounded-xl font-semibold hover:bg-brand-terracotta transition-colors shadow-md inline-block">
+              <Link href={`/wholesale/${slug}`} className="bg-brand-orange text-white px-4 md:px-6 py-3 rounded-xl font-semibold hover:bg-brand-terracotta transition-colors shadow-md inline-block">
                 View Wholesale Suppliers
               </Link>
-              <Link href={`/shop?category=${encodeURIComponent(categoryObj.label)}`} className="bg-white text-brand-charcoal border border-brand-linen px-6 py-3 rounded-xl font-semibold hover:bg-stone-50 transition-colors inline-block">
+              <Link href={`/shop?category=${encodeURIComponent(categoryObj.label)}`} className="bg-white text-brand-charcoal border border-brand-linen px-4 md:px-6 py-3 rounded-xl font-semibold hover:bg-stone-50 transition-colors inline-block">
                 Browse Marketplace
               </Link>
             </div>

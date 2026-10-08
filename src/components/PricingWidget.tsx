@@ -122,7 +122,7 @@ export default function PricingWidget({
               category,
               extra: { basePrice, moq }
             })}
-            className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 px-6 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2.5 text-center"
+            className="w-full bg-brand-charcoal hover:bg-brand-charcoal/90 text-white py-3.5 px-4 md:px-6 rounded-xl font-semibold transition-all shadow-md flex items-center justify-center gap-2.5 text-center"
           >
             <MessageCircle className="w-5 h-5 text-emerald-400" />
             Request Wholesale Quote on WhatsApp

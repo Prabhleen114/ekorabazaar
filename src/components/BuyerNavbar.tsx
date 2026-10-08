@@ -110,7 +110,7 @@ export default function BuyerNavbar() {
             : "bg-white border-b border-stone-200/70"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between relative">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 h-14 md:h-20 flex items-center justify-between relative">
           {/* Left: Brand Logo */}
           <div className="flex-1 flex justify-start items-center">
             <Link
@@ -452,7 +452,7 @@ export default function BuyerNavbar() {
               onMouseLeave={handleMouseLeave}
               className="absolute top-full left-0 right-0 w-full bg-[#FAF8F5] border-b border-stone-200/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] z-50 overflow-hidden"
             >
-              <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-6">
+              <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 py-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-5">
                   {DISCIPLINE_HUBS.map((hub) => (
                     <Link
@@ -504,7 +504,7 @@ export default function BuyerNavbar() {
               onMouseLeave={handleMouseLeave}
               className="absolute top-full left-0 right-0 w-full bg-[#FAF8F5] border-b border-stone-200/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] z-50 overflow-hidden"
             >
-              <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-6">
+              <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 py-6">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-6 text-left items-start">
                   {DEPARTMENTS.map((dept) => (
                     <div key={dept.name} className="flex flex-col items-start">
@@ -581,7 +581,7 @@ export default function BuyerNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white pt-20 px-4 md:hidden flex flex-col overflow-y-auto"
           >
             <div className="flex flex-col gap-4 flex-1 pb-12">
               

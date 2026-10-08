@@ -153,7 +153,7 @@ export async function sendAdminOrderNotification(order: any, payment: any) {
 
   try {
     const data = await resend.emails.send({
-      from: 'Ekora Bazaar Orders <orders@ekorabazaar.com>', // User needs to verify this domain in Resend
+      from: 'Ekora Bazaar Orders <ekorabazaar@gmail.com>', // User needs to verify this domain in Resend
       to: [ADMIN_ORDER_EMAIL],
       subject: subject,
       html: htmlContent,

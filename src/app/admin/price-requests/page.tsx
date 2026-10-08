@@ -22,17 +22,17 @@ export default async function AdminPriceRequestsPage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pricing</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
-              <th className="relative px-6 py-3"><span className="sr-only">Actions</span></th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pricing</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
+              <th className="relative px-4 md:px-6 py-3"><span className="sr-only">Actions</span></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {requests.map((req) => (
               <tr key={req.id}>
-                <td className="px-6 py-4 flex items-center gap-3">
+                <td className="px-4 md:px-6 py-4 flex items-center gap-3">
                   <div className="w-10 h-10 bg-brand-bg rounded overflow-hidden relative">
                     <ProductImageClient 
                       src={req.product.imageUrl || '/og-image.jpg'} 
@@ -45,19 +45,19 @@ export default async function AdminPriceRequestsPage() {
                     <div className="text-xs text-gray-500 mt-0.5">{req.product.category}</div>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">{req.seller.brandName}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500 line-through">Old: ₹{(req.oldPrice / 100).toFixed(2)}</div>
                   <div className="text-sm font-bold text-gray-900 mt-1">
                     New: ₹{(req.requestedPrice / 100).toFixed(2)}
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                <td className="px-4 md:px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                   {req.reason || 'No reason provided'}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <AdminPriceRequestActions request={req} />
                 </td>
               </tr>
@@ -65,7 +65,7 @@ export default async function AdminPriceRequestsPage() {
 
             {requests.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-sm text-gray-500">
+                <td colSpan={5} className="px-4 md:px-6 py-12 text-center text-sm text-gray-500">
                   No pending price change requests.
                 </td>
               </tr>

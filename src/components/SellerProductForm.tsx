@@ -324,7 +324,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
 
       {/* Submit */}
       <div className="flex justify-end gap-4">
-        <button type="button" onClick={() => router.back()} className="px-6 py-3 bg-white border border-brand-linen text-brand-charcoal rounded-xl font-semibold hover:bg-stone-50 transition-colors">
+        <button type="button" onClick={() => router.back()} className="px-4 md:px-6 py-3 bg-white border border-brand-linen text-brand-charcoal rounded-xl font-semibold hover:bg-stone-50 transition-colors">
           Cancel
         </button>
         <button type="submit" disabled={loading} className="px-8 py-3 bg-brand-orange text-white rounded-xl font-semibold hover:bg-brand-terracotta transition-colors shadow-md disabled:opacity-50">

@@ -80,7 +80,7 @@ export default function Auth7() {
             <motion.div variants={itemVariants} className="mb-4">
               <button
                 type="button"
-                className="flex w-full items-center justify-center gap-3 rounded-full border border-neutral-200 bg-white px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 active:bg-neutral-100"
+                className="flex w-full items-center justify-center gap-3 rounded-full border border-neutral-200 bg-white px-4 md:px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 active:bg-neutral-100"
               >
                 <GoogleIcon className="text-lg" />
                 Login with Google
@@ -174,7 +174,7 @@ export default function Auth7() {
               <motion.div variants={itemVariants} className="mt-1">
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-linear-to-b from-[#3a3a3a] to-[#121212] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98]"
+                  className="w-full rounded-full bg-linear-to-b from-[#3a3a3a] to-[#121212] px-4 md:px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98]"
                 >
                   Sign Up
                 </button>

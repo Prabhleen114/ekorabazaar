@@ -68,7 +68,7 @@ export default async function ShopPage() {
 
       <BuyerNavbar />
       
-      <Suspense fallback={<div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full min-h-screen animate-pulse bg-brand-linen/10" />}>
+      <Suspense fallback={<div className="pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full min-h-screen animate-pulse bg-brand-linen/10" />}>
         <ShopClient />
       </Suspense>
 

@@ -42,7 +42,7 @@ export default function Navbar() {
           isScrolled || mobileMenuOpen ? "bg-brand-bg border-b border-brand-linen" : "bg-brand-bg/80 backdrop-blur-md"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 md:px-8 h-16 flex items-center justify-between">
           {/* Left: Brand */}
           <div className="flex-1 flex justify-start">
             <Link
@@ -109,7 +109,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-brand-bg pt-24 px-6 md:hidden flex flex-col"
+            className="fixed inset-0 z-40 bg-brand-bg pt-24 px-4 md:px-6 md:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 flex-1">
               {navLinks.map((link) => (
@@ -127,14 +127,14 @@ export default function Navbar() {
             <div className="pb-12 mt-auto flex flex-col gap-3">
               <Link
                 href="/login"
-                className="flex items-center justify-center bg-white text-brand-charcoal border border-brand-linen rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-linen/30 transition-all text-center"
+                className="flex items-center justify-center bg-white text-brand-charcoal border border-brand-linen rounded-xl px-4 md:px-6 py-4 text-lg font-semibold w-full hover:bg-brand-linen/30 transition-all text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Creator Login
               </Link>
               <Link
                 href="/sell/start-selling"
-                className="flex items-center justify-center bg-brand-orange text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-terracotta transition-all shadow-lg shadow-brand-orange/15 text-center"
+                className="flex items-center justify-center bg-brand-orange text-white rounded-xl px-4 md:px-6 py-4 text-lg font-semibold w-full hover:bg-brand-terracotta transition-all shadow-lg shadow-brand-orange/15 text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Start Selling Today

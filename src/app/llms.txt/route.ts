@@ -164,7 +164,7 @@ Website
 https://www.ekorabazaar.in
 
 Email
-techekora@gmail.com
+ekorabazaar@gmail.com
 
 WhatsApp
 +91 9041500605

@@ -38,6 +38,31 @@ export function getCategoryFaqs(productName: string, category: string): FaqItem[
     ];
   }
 
+  if (name.toLowerCase().includes("ethanol") || name.toLowerCase().includes("alcohol")) {
+    return [
+      {
+        question: `Is this alcohol safe for candle making?`,
+        answer: `No. Ethanol sold as perfumer’s alcohol is highly flammable and is NOT recommended for candle wicks or heated applications. Use only for cold fragrance blending, perfumery, or room sprays.`,
+        tag: "Safety"
+      },
+      {
+        question: `What is the purity level of this solvent?`,
+        answer: `This is 99% pure perfumer's grade alcohol, denatured specifically for cosmetic and fragrance blending. It ensures completely clear solutions with no cloudiness when mixing with aroma chemicals or essential oils.`,
+        tag: "Purity & Usage"
+      },
+      {
+        question: `Can I get an official Certificate of Analysis (COA) and MSDS sheet for this batch?`,
+        answer: `Yes. Full batch-specific Certificate of Analysis (COA) and Material Safety Data Sheet (MSDS) reports are available for instant public download directly on this product page.`,
+        tag: "Documentation"
+      },
+      {
+        question: `What wholesale volume packaging is available for small businesses?`,
+        answer: `We supply in 500ml, 1 Liter, 5 Liter, and bulk carboys sealed with tamper-evident caps. Tier discounts apply automatically when ordering higher volumes with a verified GST tax invoice.`,
+        tag: "Bulk Supply"
+      }
+    ];
+  }
+
   if (cat.includes("fragrance") || cat.includes("essential") || cat.includes("oil") || cat.includes("attar")) {
     return [
       {

@@ -25,7 +25,7 @@ export default function SocialProof() {
 
   return (
     <section className="bg-brand-bg border-t border-brand-linen py-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-brand-charcoal/40 mb-10">
           What founding creators say
         </p>

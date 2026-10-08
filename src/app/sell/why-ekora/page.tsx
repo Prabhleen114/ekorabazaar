@@ -48,7 +48,7 @@ export default function WhyEkoraPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-16 px-6 text-center max-w-3xl mx-auto">
+      <section className="pt-24 md:pt-28 pb-16 px-4 md:px-6 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-3 py-1 text-xs font-semibold text-brand-charcoal/70 mb-8 shadow-sm">
           <div className="w-2 h-2 rounded-full bg-brand-sage animate-pulse" />
           Early Access — First 100 Founding Creators
@@ -70,7 +70,7 @@ export default function WhyEkoraPage() {
 
       {/* Narrative Value Cards */}
       <section className="py-20 border-t border-brand-linen bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <span className="text-xs font-semibold tracking-widest uppercase text-brand-charcoal/50 mb-10 block text-center">
             The Blueprint
           </span>
@@ -124,7 +124,7 @@ export default function WhyEkoraPage() {
 
       {/* Founder Story Block */}
       <section className="py-20 border-t border-brand-linen bg-brand-bg/30">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <span className="text-xs font-semibold tracking-widest uppercase text-brand-charcoal/50 mb-6 block">
             Behind the Mission
           </span>
@@ -154,7 +154,7 @@ export default function WhyEkoraPage() {
 
       {/* Interactive Signup Form Section */}
       <section className="py-16 md:py-20 border-t border-brand-linen bg-white" id="join-cohort">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-left space-y-6">
             <div className="inline-flex items-center gap-2 bg-amber-50 border border-brand-orange/20 text-brand-orange rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" /> Pre-Launch Cohort Active

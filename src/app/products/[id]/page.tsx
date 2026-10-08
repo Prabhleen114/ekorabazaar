@@ -330,15 +330,21 @@ export default async function ProductDetailsPage({ params }: Props) {
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-mono">
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Grade &amp; Purity</span>
-                <span className="text-stone-800 font-medium">100% Pure Formulation</span>
+                <span className="text-stone-800 font-medium">
+                  {displayProduct.name.toLowerCase().includes('99%') ? '99% Pure' : '100% Pure Formulation'}
+                </span>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Compliance</span>
-                <span className="text-stone-800 font-medium">IFRA &amp; ISO Calibrated</span>
+                <span className="text-stone-800 font-medium">
+                  {(displayProduct.name.toLowerCase().includes('ethanol') || displayProduct.name.toLowerCase().includes('alcohol') || displayProduct.category.toLowerCase().includes('packaging')) ? 'ISO Calibrated' : 'IFRA & ISO Calibrated'}
+                </span>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Application</span>
-                <span className="text-stone-800 font-medium">Candle, Soap &amp; Studio Crafts</span>
+                <span className="text-stone-800 font-medium">
+                  {displayProduct.name.toLowerCase().includes('ethanol') ? 'Perfumery & Blending' : 'Candle, Soap & Studio Crafts'}
+                </span>
               </div>
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Traceability</span>

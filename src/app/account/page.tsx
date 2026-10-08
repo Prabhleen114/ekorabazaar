@@ -166,7 +166,7 @@ function AccountDashboard() {
     return (
       <div className="min-h-screen bg-brand-bg flex flex-col justify-between">
         <BuyerNavbar />
-        <div className="max-w-6xl mx-auto px-6 py-24 flex flex-col items-center justify-center flex-1">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-24 flex flex-col items-center justify-center flex-1">
           <Loader2 className="w-8 h-8 text-brand-orange animate-spin mb-4" />
           <p className="text-sm font-medium text-brand-charcoal/60">Loading account details...</p>
         </div>
@@ -179,7 +179,7 @@ function AccountDashboard() {
     <div className="min-h-screen bg-[#FAFAF8] flex flex-col justify-between">
       <BuyerNavbar />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex-1 w-full">
+      <main className="max-w-7xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8 py-8 md:py-12 flex-1 w-full">
         {/* Header Title */}
         <div className="mb-8 pb-4 border-b border-brand-linen flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
@@ -315,7 +315,7 @@ function AccountDashboard() {
                     </p>
                     <Link
                       href="/shop"
-                      className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-charcoal text-white text-sm font-semibold hover:bg-black transition-colors"
+                      className="inline-flex items-center justify-center px-4 md:px-6 py-3 rounded-xl bg-brand-charcoal text-white text-sm font-semibold hover:bg-black transition-colors"
                     >
                       Start Shopping
                     </Link>
@@ -328,7 +328,7 @@ function AccountDashboard() {
                         className="bg-white rounded-2xl border border-brand-linen shadow-sm overflow-hidden"
                       >
                         {/* Order Header */}
-                        <div className="bg-brand-bg/80 px-6 py-4 border-b border-brand-linen flex flex-wrap items-center justify-between gap-4">
+                        <div className="bg-brand-bg/80 px-4 md:px-6 py-4 border-b border-brand-linen flex flex-wrap items-center justify-between gap-4">
                           <div className="flex flex-wrap items-center gap-6">
                             <div>
                               <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 block">
@@ -407,7 +407,7 @@ function AccountDashboard() {
 
                         {/* Delivery Address Snapshot */}
                         {order.addressSnapshot && (
-                          <div className="px-6 py-3 bg-brand-bg/50 border-t border-brand-linen text-xs text-brand-charcoal/70 flex flex-wrap items-center justify-between gap-2">
+                          <div className="px-4 md:px-6 py-3 bg-brand-bg/50 border-t border-brand-linen text-xs text-brand-charcoal/70 flex flex-wrap items-center justify-between gap-2">
                             <div>
                               <span className="font-bold text-brand-charcoal">Delivered to: </span>
                               {order.addressSnapshot.name}, {order.addressSnapshot.city} ({order.addressSnapshot.pincode})
@@ -458,7 +458,7 @@ function AccountDashboard() {
                     </p>
                     <button
                       onClick={() => setShowAddressModal(true)}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-charcoal text-white text-sm font-semibold hover:bg-black transition-colors"
+                      className="inline-flex items-center gap-2 px-4 md:px-6 py-3 rounded-xl bg-brand-charcoal text-white text-sm font-semibold hover:bg-black transition-colors"
                     >
                       <Plus className="w-4 h-4 text-brand-orange" />
                       Add New Address
@@ -781,7 +781,7 @@ function AccountDashboard() {
                 <button
                   type="submit"
                   disabled={addressSubmitting}
-                  className="px-6 py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold hover:bg-black transition-colors disabled:opacity-50 flex items-center gap-2"
+                  className="px-4 md:px-6 py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold hover:bg-black transition-colors disabled:opacity-50 flex items-center gap-2"
                 >
                   {addressSubmitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   Save Address

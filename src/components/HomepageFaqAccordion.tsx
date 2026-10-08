@@ -59,7 +59,7 @@ export default function HomepageFaqAccordion() {
               <button
                 type="button"
                 onClick={() => toggleIndex(idx)}
-                className="w-full text-left py-4 px-5 sm:px-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-1 focus-visible:ring-stone-900"
+                className="w-full text-left py-4 px-5 sm:px-4 md:px-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-1 focus-visible:ring-stone-900"
                 aria-expanded={isOpen}
               >
                 <span className="font-serif text-sm sm:text-base text-stone-900 font-medium">
@@ -74,7 +74,7 @@ export default function HomepageFaqAccordion() {
                 </span>
               </button>
               {isOpen && (
-                <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-stone-600 font-sans leading-relaxed border-t border-stone-100 bg-[#FAF8F5]/40">
+                <div className="px-5 sm:px-4 md:px-6 pb-5 pt-1 text-xs sm:text-sm text-stone-600 font-sans leading-relaxed border-t border-stone-100 bg-[#FAF8F5]/40">
                   {faq.answer}
                 </div>
               )}

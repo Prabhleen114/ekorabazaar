@@ -216,7 +216,7 @@ export default function ClassesPage() {
             className="object-cover object-center opacity-30"
           />
         </div>
-        <div className="max-w-6xl mx-auto px-6 relative z-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-20">
           <div className="max-w-2xl animate-fade-in-up">
             <h4 className="text-brand-orange font-bold uppercase tracking-[0.2em] mb-4 text-sm flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> The Ekora Studio
@@ -240,7 +240,7 @@ export default function ClassesPage() {
 
       {/* ABOUT SECTION (Interest) */}
       <section className="py-16 md:py-20 bg-white border-y border-brand-linen">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <Image 
@@ -270,7 +270,7 @@ export default function ClassesPage() {
 
       {/* COURSES SECTION (Desire) */}
       <section id="courses" className="py-16 md:py-20 bg-brand-bg">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal mb-4">Masterclass Collection</h2>
             <p className="text-brand-charcoal/60 text-lg max-w-2xl mx-auto">
@@ -331,7 +331,7 @@ export default function ClassesPage() {
 
       {/* KITS SECTION (Desire/Action) */}
       <section className="py-16 md:py-20 bg-white border-t border-brand-linen">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal mb-4">Professional Supply Kits</h2>
             <p className="text-brand-charcoal/60 text-lg max-w-2xl mx-auto">
@@ -369,7 +369,7 @@ export default function ClassesPage() {
       </section>
 
       {/* CTA SECTION (Action) */}
-      <section className="py-16 md:py-20 bg-brand-charcoal text-white text-center px-6 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-brand-charcoal text-white text-center px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute -top-[50%] -left-[10%] w-[70%] h-[200%] bg-brand-orange rounded-full blur-[120px] mix-blend-screen" />
         </div>

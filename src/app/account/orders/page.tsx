@@ -88,7 +88,7 @@ export default function OrdersPage() {
           <Package className="w-12 h-12 text-brand-charcoal/20 mx-auto mb-4" />
           <h2 className="text-xl font-medium mb-2">No orders yet</h2>
           <p className="text-brand-charcoal/60 mb-6">When you place orders, they will appear here.</p>
-          <Link href="/shop" className="bg-brand-charcoal text-white px-6 py-3 rounded-xl">
+          <Link href="/shop" className="bg-brand-charcoal text-white px-4 md:px-6 py-3 rounded-xl">
             Start Shopping
           </Link>
         </div>
@@ -117,7 +117,7 @@ export default function OrdersPage() {
             return (
             <div key={order.id} className="bg-white rounded-2xl border border-brand-linen shadow-sm overflow-hidden transition-all">
               <div 
-                className="bg-brand-bg px-6 py-4 border-b border-brand-linen flex flex-wrap justify-between items-center gap-4 cursor-pointer hover:bg-gray-50"
+                className="bg-brand-bg px-4 md:px-6 py-4 border-b border-brand-linen flex flex-wrap justify-between items-center gap-4 cursor-pointer hover:bg-gray-50"
                 onClick={() => setExpandedOrderId(isExpanded ? null : order.id)}
               >
                 <div>

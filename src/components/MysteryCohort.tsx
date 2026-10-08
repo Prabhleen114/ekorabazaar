@@ -19,7 +19,7 @@ export default function MysteryCohort({ count = 84 }: { count?: number }) {
       {/* Editorial Grid Pattern Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#FAF8F5_1px,transparent_1px),linear-gradient(to_bottom,#FAF8F5_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-40 pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           
           {/* Left Column: Premium Editorial Copy */}

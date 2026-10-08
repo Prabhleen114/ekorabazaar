@@ -90,7 +90,7 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
           </div>
           <h3 className="text-lg font-bold text-brand-charcoal mb-2">No products yet</h3>
           <p className="text-brand-charcoal/60 mb-6 text-sm">Start listing your wholesale products today.</p>
-          <Link href="/seller/dashboard/products/create" className="px-6 py-3 bg-brand-orange text-white rounded-xl text-sm font-semibold hover:bg-brand-terracotta transition-colors shadow-sm inline-block">
+          <Link href="/seller/dashboard/products/create" className="px-4 md:px-6 py-3 bg-brand-orange text-white rounded-xl text-sm font-semibold hover:bg-brand-terracotta transition-colors shadow-sm inline-block">
             Create First Product
           </Link>
         </div>

@@ -178,7 +178,7 @@ export default function TechnicalDocsSection({ productId, productName, category 
       {previewDoc && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6">
           <div className="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] shadow-2xl flex flex-col overflow-hidden border border-brand-linen animate-in fade-in zoom-in duration-200">
-            <div className="p-4 px-6 border-b border-brand-linen flex items-center justify-between bg-stone-50">
+            <div className="p-4 px-4 md:px-6 border-b border-brand-linen flex items-center justify-between bg-stone-50">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-brand-orange" />
                 <h4 className="font-bold text-sm text-brand-charcoal">

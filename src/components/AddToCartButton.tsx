@@ -50,7 +50,7 @@ export default function AddToCartButton({ productId, inStock }: { productId: str
       <button
         onClick={handleAddToCart}
         disabled={loading || !inStock}
-        className="w-full bg-brand-charcoal text-white py-3 px-6 rounded-xl font-medium hover:bg-brand-charcoal/90 disabled:opacity-50 transition-colors"
+        className="w-full bg-brand-charcoal text-white py-3 px-4 md:px-6 rounded-xl font-medium hover:bg-brand-charcoal/90 disabled:opacity-50 transition-colors"
       >
         {loading ? 'Adding...' : inStock ? 'Add to Cart' : 'Out of Stock'}
       </button>

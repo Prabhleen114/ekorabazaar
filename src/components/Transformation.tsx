@@ -93,7 +93,7 @@ export default function Transformation() {
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#EADED2_1px,transparent_1px),linear-gradient(to_bottom,#EADED2_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
       
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-1.5 border border-brand-linen bg-white rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-charcoal/70 shadow-sm mb-6">
             The Transformation

@@ -1,7 +1,7 @@
 export default function FounderStory() {
   return (
     <section className="bg-white border-t border-zinc-200 py-16 md:py-24">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="text-center mb-16 md:mb-20">
           <span className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-2 block">
             Our Story

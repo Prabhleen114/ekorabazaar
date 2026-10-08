@@ -24,7 +24,7 @@ export default function ProgressIndicator() {
 
   return (
     <div className="w-full bg-white border-b border-brand-linen sticky top-0 z-40 shadow-sm">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-4 md:px-6 py-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-semibold text-brand-charcoal/60 uppercase tracking-wider">
             Step {currentStep} of {steps.length}

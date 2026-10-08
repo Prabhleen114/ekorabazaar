@@ -13,7 +13,7 @@ export default function CategoriesPreview() {
 
   return (
     <section className="bg-white border-t border-brand-linen py-16 md:py-20">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <span className="text-xs font-semibold tracking-widest uppercase text-zinc-500 mb-4 block">
             Explore
@@ -48,7 +48,7 @@ export default function CategoriesPreview() {
         <div className="text-center">
           <Link
             href="/sell/categories"
-            className="inline-flex items-center justify-center bg-brand-linen hover:bg-brand-charcoal/10 text-brand-charcoal px-6 py-3 rounded-xl font-semibold transition-colors"
+            className="inline-flex items-center justify-center bg-brand-linen hover:bg-brand-charcoal/10 text-brand-charcoal px-4 md:px-6 py-3 rounded-xl font-semibold transition-colors"
           >
             Explore All Categories →
           </Link>

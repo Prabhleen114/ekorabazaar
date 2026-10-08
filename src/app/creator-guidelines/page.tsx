@@ -73,7 +73,7 @@ export default function CreatorGuidelinesPage() {
         }}
       />
       <Navbar />
-      <div className="max-w-4xl mx-auto px-6 pt-24 md:pt-28 pb-16 md:pb-20">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 pt-24 md:pt-28 pb-16 md:pb-20">
         <h1 className="text-4xl font-bold font-serif mb-8 text-left">Creator Guidelines</h1>
         
         <div className="prose prose-zinc max-w-none text-left space-y-6 text-brand-charcoal/70">
@@ -101,7 +101,7 @@ export default function CreatorGuidelinesPage() {
 
           <h2 className="text-xl font-bold text-brand-charcoal font-serif pt-4">5. Contact</h2>
           <p>
-            To clarify specific listing questions, contact our onboarding support desk at <a href="mailto:techekora@gmail.com" className="underline text-brand-orange">techekora@gmail.com</a>.
+            To clarify specific listing questions, contact our onboarding support desk at <a href="mailto:ekorabazaar@gmail.com" className="underline text-brand-orange">ekorabazaar@gmail.com</a>.
           </p>
         </div>
       </div>

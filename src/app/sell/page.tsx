@@ -6,7 +6,6 @@ import Transformation from "@/components/Transformation";
 import PlatformPreview from "@/components/PlatformPreview";
 import CategoriesPreview from "@/components/CategoriesPreview";
 import WhyJoinEarly from "@/components/WhyJoinEarly";
-import FounderStory from "@/components/FounderStory";
 import MysteryCohort from "@/components/MysteryCohort";
 import EarlyAccess from "@/components/EarlyAccess";
 import Footer from "@/components/Footer";
@@ -95,8 +94,7 @@ export default function Home() {
       <PlatformPreview />
       <CategoriesPreview />
       <WhyJoinEarly />
-      <FounderStory />
-      <MysteryCohort count={creatorCount} />
+            <MysteryCohort count={creatorCount} />
       <EarlyAccess />
       <Footer />
     </main>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next";`r`nimport BuyerNavbar from "@/components/BuyerNavbar";`r`nimport BuyerFooter from "@/components/BuyerFooter";
 
 export const metadata: Metadata = {
   title: "Shipping Policy | Ekora Bazaar",
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function ShippingPolicyPage() {
   return (
-    <main className="min-h-screen bg-brand-bg text-brand-charcoal pt-32 pb-24">
+    <main className="min-h-screen bg-brand-bg text-brand-charcoal flex flex-col">`r`n      <BuyerNavbar />`r`n      <div className="flex-1 pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <h1 className="text-4xl md:text-5xl font-bold font-serif mb-8 text-brand-charcoal">Shipping Policy</h1>
         
@@ -41,7 +41,6 @@ export default function ShippingPolicyPage() {
             At this time, Ekora Bazaar solely serves the Indian domestic market. We do not offer international shipping for our wholesale raw materials or retail products.
           </p>
         </div>
-      </div>
-    </main>
+      </div>`r`n      </div>`r`n      <BuyerFooter />`r`n    </main>
   );
 }

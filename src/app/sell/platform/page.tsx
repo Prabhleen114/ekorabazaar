@@ -72,7 +72,7 @@ export default function PlatformsPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-16 px-6 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className="pt-24 md:pt-28 pb-16 px-4 md:px-6 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-6 text-left">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-charcoal/50">
             Platform Blueprint
@@ -106,7 +106,7 @@ export default function PlatformsPage() {
 
       {/* Buyer Paths (Personas) */}
       <section className="py-20 border-t border-brand-linen bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-brand-charcoal/50">Buyer Paths</span>
             <h2 className="text-3xl md:text-4xl font-bold font-serif mt-2">Let creators choose their entry point</h2>
@@ -141,7 +141,7 @@ export default function PlatformsPage() {
 
       {/* Feature Grid */}
       <section className="py-16 md:py-20 bg-white border-t border-brand-linen">
-        <div className="max-w-6xl mx-auto px-6 text-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-charcoal/50 mb-4 block">
             Designed for Trust
           </span>
@@ -169,7 +169,7 @@ export default function PlatformsPage() {
 
       {/* Urgency Form */}
       <section className="py-16 md:py-20 bg-brand-bg border-t border-brand-linen" id="early-access">
-        <div className="max-w-5xl mx-auto px-6 bg-brand-charcoal text-white rounded-3xl p-12 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 bg-brand-charcoal text-white rounded-3xl p-12 relative overflow-hidden">
           <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <div className="text-left space-y-6">
               <div className="inline-flex items-center gap-2 bg-brand-orange/10 border border-brand-orange/20 text-brand-orange rounded-full px-3 py-1 text-xs font-semibold">

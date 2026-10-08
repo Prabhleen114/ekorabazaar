@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Hero({ count = 84 }: { count?: number }) {
   return (
     <section className="bg-brand-bg pt-16 md:pt-20 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left Column: Copy & CTAs */}
         <div className="flex flex-col items-start text-left relative z-10">
           <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-3 py-1 text-xs font-semibold text-brand-charcoal/70 mb-4 shadow-sm">
@@ -73,7 +73,7 @@ export default function Hero({ count = 84 }: { count?: number }) {
             </div>
 
             {/* App UI Header */}
-            <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
+            <div className="px-4 md:px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
               <div className="font-semibold text-zinc-900">Ekora</div>
               <div className="flex items-center gap-4 text-xs font-medium text-zinc-500">
                 <span>Discover</span>

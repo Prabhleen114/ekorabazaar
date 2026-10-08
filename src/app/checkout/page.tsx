@@ -284,17 +284,17 @@ export default function CheckoutPage() {
             ) : (
               <form onSubmit={handleSaveAddress} className="space-y-4 max-w-lg">
                 <div><label className="text-sm font-medium mb-1 block">Full Name</label><input required value={newAddress.name} onChange={e=>setNewAddress({...newAddress, name: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
-                <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div><label className="text-sm font-medium mb-1 block">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div><label className="text-sm font-medium mb-1 block">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div className="grid grid-cols-2 gap-4">
                   <div><label className="text-sm font-medium mb-1 block">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                   <div><label className="text-sm font-medium mb-1 block">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 </div>
-                <div><label className="text-sm font-medium mb-1 block">Pincode</label><input required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Pincode</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
                 
                 <div className="pt-4 flex gap-4">
-                  <button type="submit" className="bg-brand-charcoal text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-charcoal/90 transition-colors">Save Address</button>
+                  <button type="submit" className="bg-brand-charcoal text-white px-4 md:px-6 py-3 rounded-xl font-medium hover:bg-brand-charcoal/90 transition-colors">Save Address</button>
                   {addresses.length > 0 && <button type="button" onClick={() => setShowNewAddressForm(false)} className="text-gray-500 hover:text-gray-800">Cancel</button>}
                 </div>
               </form>

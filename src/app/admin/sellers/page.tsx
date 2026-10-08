@@ -26,17 +26,17 @@ export default async function AdminSellersPage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller Details</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Info</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined / Stats</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statuses</th>
-              <th className="relative px-6 py-3"><span className="sr-only">Actions</span></th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller Details</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Info</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined / Stats</th>
+              <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statuses</th>
+              <th className="relative px-4 md:px-6 py-3"><span className="sr-only">Actions</span></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {sellers.map((seller) => (
               <tr key={seller.id}>
-                <td className="px-6 py-4">
+                <td className="px-4 md:px-6 py-4">
                   <div className="text-sm font-bold text-gray-900">{seller.brandName}</div>
                   <div className="text-xs text-gray-500 font-mono mt-1">ID: {seller.id}</div>
                   <div className="text-sm text-gray-500 mt-1">{seller.businessDetails?.legalName || 'No Legal Name'}</div>
@@ -48,14 +48,14 @@ export default async function AdminSellersPage() {
                     <div className="text-xs text-gray-400 mt-1">Location: {seller.businessDetails.city}, {seller.businessDetails.state}</div>
                   )}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 md:px-6 py-4">
                   <div className="text-sm text-gray-900">{seller.user?.email || 'N/A'}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                    <div className="text-sm text-gray-900">{new Date(seller.createdAt).toLocaleDateString()}</div>
                    <div className="text-sm text-gray-500 mt-1">{seller._count.products} Products Listed</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                    <div className="mb-2">
                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                       App: {seller.applicationStatus}
@@ -71,7 +71,7 @@ export default async function AdminSellersPage() {
                      </span>
                    </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-4 md:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <AdminSellerActions seller={seller} />
                 </td>
               </tr>

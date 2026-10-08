@@ -121,7 +121,7 @@ export default function FAQPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-16 md:pt-20 pb-2 px-6 text-center bg-brand-bg">
+      <section className="pt-16 md:pt-20 pb-2 px-4 md:px-6 text-center bg-brand-bg">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold font-serif tracking-tight text-brand-charcoal mb-6">
             Frequently Asked Questions
@@ -134,7 +134,7 @@ export default function FAQPage() {
 
       {/* FAQ Section */}
       <section className="pt-2 pb-16 bg-brand-bg">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <FAQAccordion />
         </div>
       </section>
@@ -142,7 +142,7 @@ export default function FAQPage() {
       {/* CTA */}
       <section className="py-16 md:py-20 bg-brand-bg border-t border-brand-linen text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-orange/5 blur-3xl pointer-events-none" />
-        <div className="max-w-2xl mx-auto px-6 relative z-10">
+        <div className="max-w-2xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold font-serif tracking-tight text-brand-charcoal mb-8">
             Still have questions?
           </h2>

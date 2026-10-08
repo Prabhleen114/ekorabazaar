@@ -175,7 +175,7 @@ export default function NavbarSearchBox() {
   const showDropdown = isOpen && (isFocused || query.trim().length > 0);
 
   return (
-    <div ref={containerRef} className="hidden sm:block relative">
+    <div ref={containerRef} className="relative w-full sm:w-auto">
       <form onSubmit={handleSubmit} className="flex items-center relative">
         <input
           ref={inputRef}
@@ -197,7 +197,7 @@ export default function NavbarSearchBox() {
         />
 
         {/* Clear input button */}
-        {query ? (
+        {query && (
           <button
             type="button"
             onClick={() => {
@@ -210,14 +210,6 @@ export default function NavbarSearchBox() {
           >
             <X className="w-3.5 h-3.5" />
           </button>
-        ) : (
-          /* Ctrl+K shortcut badge when idle */
-          !isFocused && (
-            <span className="hidden lg:inline-flex items-center gap-0.5 absolute right-8 text-[10px] text-stone-400 bg-white border border-stone-200 rounded px-1.5 py-0.5 pointer-events-none font-mono font-medium shadow-xs">
-              <span>Ctrl</span>
-              <span>K</span>
-            </span>
-          )
         )}
 
         <button

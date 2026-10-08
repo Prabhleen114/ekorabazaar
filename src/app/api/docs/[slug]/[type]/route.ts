@@ -159,7 +159,7 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
     <div class="footer">
       <div>
         <div><strong>Ekora Bazaar B2B Sourcing Network</strong></div>
-        <div>support@ekorabazaar.in | www.ekorabazaar.in</div>
+        <div>ekorabazaar@gmail.com | www.ekorabazaar.in</div>
         <div style="margin-top: 4px; color: #999;">Certified Batch Report &bull; Publicly Verified Document</div>
       </div>
       <div class="stamp">

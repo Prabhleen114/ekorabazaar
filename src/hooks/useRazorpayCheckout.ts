@@ -175,6 +175,24 @@ export function useRazorpayCheckout() {
           color: "#252525", // Ekora charcoal
           backdrop_color: "#F8F6F2", // warm off-white
         },
+        config: {
+          display: {
+            blocks: {
+              upi: {
+                name: "Pay via UPI",
+                instruments: [{ method: "upi" }],
+              },
+              other: {
+                name: "Other Payment Modes",
+                instruments: [{ method: "card" }, { method: "netbanking" }, { method: "wallet" }],
+              },
+            },
+            sequence: ["block.upi", "block.other"],
+            preferences: {
+              show_default_blocks: true,
+            },
+          },
+        },
       };
 
       const rzp = new (window as any).Razorpay(rzpOptions);

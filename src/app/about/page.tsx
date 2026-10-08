@@ -26,18 +26,7 @@ export default function AboutPage() {
       "@type": "Organization",
       "name": "Ekora Bazaar",
       "foundingDate": "2026",
-      "founders": [
-        {
-          "@type": "Person",
-          "name": "Kumar Aryan",
-          "jobTitle": "Co-Founder"
-        },
-        {
-          "@type": "Person",
-          "name": "Prabhleen Kaur",
-          "jobTitle": "Co-Founder"
-        }
-      ],
+      
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
@@ -49,7 +38,7 @@ export default function AboutPage() {
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+91 9041500605",
-        "email": "techekora@gmail.com",
+        "email": "ekorabazaar@gmail.com",
         "contactType": "customer support"
       }
     }
@@ -64,7 +53,7 @@ export default function AboutPage() {
       <BuyerNavbar />
 
       <div className="flex-1 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-charcoal mb-6">About Ekora Bazaar</h1>
             <p className="text-lg md:text-xl text-brand-charcoal/70 leading-relaxed max-w-2xl mx-auto">
@@ -122,23 +111,23 @@ export default function AboutPage() {
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-charcoal mb-6">Company Information</h2>
               <div className="grid sm:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Headquarters</h3>
-                  <p className="text-brand-charcoal/80">
-                    Ekora Bazaar<br />
+                  <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Legal Identity</h3>
+                  <p className="text-brand-charcoal/80 mb-4">
+                    <strong>Ekora Bazaar Pvt Ltd</strong><br />
                     Near Shyam Mandir Marg, Sutapatti<br />
                     Muzaffarpur, Bihar - 842001<br />
                     India
                   </p>
+                  <div className="text-sm text-brand-charcoal/70 p-3 bg-brand-bg rounded-lg border border-brand-linen/50">
+                    <p><strong>MSME Registered Enterprise</strong></p>
+                    <p className="mt-1 font-semibold text-brand-orange">B2B GST invoice provided on every order.</p>
+                  </div>
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Contact &amp; Support</h3>
-                  <p className="text-brand-charcoal/80 mb-1">Email: <a href="mailto:techekora@gmail.com" className="hover:text-brand-orange">techekora@gmail.com</a></p>
+                  <p className="text-brand-charcoal/80 mb-1">Email: <a href="mailto:ekorabazaar@gmail.com" className="hover:text-brand-orange">ekorabazaar@gmail.com</a></p>
                   <p className="text-brand-charcoal/80 mb-4">WhatsApp: <a href="https://wa.me/919041500605" className="hover:text-brand-orange">+91 9041500605</a></p>
-                  <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Founders</h3>
-                  <p className="text-brand-charcoal/80">
-                    Kumar Aryan (Co-Founder)<br />
-                    Prabhleen Kaur (Co-Founder)
-                  </p>
+                  
                 </div>
               </div>
             </section>

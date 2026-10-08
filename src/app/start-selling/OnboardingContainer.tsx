@@ -59,7 +59,7 @@ function OnboardingContent() {
     <div className="w-full relative">
       {currentStep < 10 && <ProgressIndicator />}
       
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-4 md:px-6 py-8 md:py-12">
         {currentStep === 1 && <StepPersonal />}
         {currentStep === 2 && <StepBusiness />}
         {currentStep === 3 && <StepAddress />}

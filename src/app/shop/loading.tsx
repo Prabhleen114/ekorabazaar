@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8 animate-pulse">
+    <div className="pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8 animate-pulse">
       {/* Sidebar skeleton */}
       <aside className="w-full md:w-64 shrink-0">
         <div className="bg-white rounded-2xl p-6 border border-brand-linen h-96" />

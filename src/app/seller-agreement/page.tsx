@@ -11,7 +11,7 @@ export default function SellerAgreementPage() {
   return (
     <main className="min-h-screen bg-brand-bg text-brand-charcoal">
       <Navbar />
-      <div className="max-w-4xl mx-auto px-6 py-24 md:py-32 min-h-[60vh]">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-24 md:py-32 min-h-[60vh]">
         <h1 className="text-4xl md:text-5xl font-bold font-serif mb-8 text-brand-charcoal">Seller Agreement</h1>
         
         <div className="bg-orange-50 border border-brand-orange/30 rounded-2xl p-8 flex items-start gap-4 shadow-sm">

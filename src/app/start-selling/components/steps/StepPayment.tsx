@@ -276,7 +276,7 @@ export default function StepPayment() {
         <button
           onClick={() => setCurrentStep(8)}
           disabled={isSubmitting}
-          className="flex items-center gap-2 px-6 py-4 text-brand-charcoal font-bold hover:bg-black/5 rounded-xl transition-all disabled:opacity-50"
+          className="flex items-center gap-2 px-4 md:px-6 py-4 text-brand-charcoal font-bold hover:bg-black/5 rounded-xl transition-all disabled:opacity-50"
         >
           <ArrowLeft className="w-5 h-5" /> Back to Review
         </button>

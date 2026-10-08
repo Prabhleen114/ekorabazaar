@@ -136,7 +136,7 @@ export default function HowItWorksPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-16 px-6 text-center bg-brand-bg border-b border-brand-linen">
+      <section className="pt-24 md:pt-28 pb-16 px-4 md:px-6 text-center bg-brand-bg border-b border-brand-linen">
         <div className="max-w-3xl mx-auto">
           <span className="text-xs font-semibold tracking-widest uppercase text-brand-charcoal/50 mb-4 block">
             Selling on Ekora
@@ -155,7 +155,7 @@ export default function HowItWorksPage() {
         {/* Grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#EADED2_1px,transparent_1px),linear-gradient(to_bottom,#EADED2_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-25" />
         
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
           <div className="relative">
             {/* Vertical Line */}
             <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-0.5 bg-brand-linen md:-translate-x-1/2" />
@@ -221,7 +221,7 @@ export default function HowItWorksPage() {
       {/* CTA */}
       <section className="py-16 md:py-20 bg-brand-bg border-t border-brand-linen text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-orange/5 blur-3xl pointer-events-none" />
-        <div className="max-w-2xl mx-auto px-6 relative z-10">
+        <div className="max-w-2xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-charcoal mb-8 font-serif">
             Ready to build your storefront?
           </h2>

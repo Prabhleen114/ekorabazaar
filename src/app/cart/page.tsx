@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Minus, Plus, Trash2, ShoppingBag, Truck } from 'lucide-react'
+import { Minus, Plus, Trash2, ShoppingBag, Truck , ShieldCheck, Truck} from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
@@ -171,7 +171,7 @@ export default function CartPage() {
           </div>
           <h2 className="text-xl font-medium mb-2">Your cart is empty</h2>
           <p className="text-brand-charcoal/60 mb-6">Looks like you haven't added anything yet.</p>
-          <Link href="/shop" className="bg-brand-charcoal text-white px-6 py-3 rounded-xl hover:bg-brand-charcoal/90 transition-colors">
+          <Link href="/shop" className="bg-brand-charcoal text-white px-4 md:px-6 py-3 rounded-xl hover:bg-brand-charcoal/90 transition-colors">
             Start Shopping
           </Link>
         </div>
@@ -246,6 +246,16 @@ export default function CartPage() {
             >
               Proceed to Checkout
             </Link>
+            <div className="mt-6 pt-4 border-t border-brand-linen flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                100% Secure Payments (Razorpay)
+              </div>
+              <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
+                <Truck className="w-4 h-4 text-brand-orange" />
+                Dispatch within 24 Hours
+              </div>
+            </div>
           </div>
         </div>
       )}

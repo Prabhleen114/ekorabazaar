@@ -250,28 +250,28 @@ function CustomerDirectoryTab() {
         <table className="w-full text-left text-sm">
           <thead className="bg-gray-50 text-gray-500 font-medium border-b border-gray-100">
             <tr>
-              <th className="px-6 py-4">Customer</th>
-              <th className="px-6 py-4">Primary Segment</th>
-              <th className="px-6 py-4 text-right" title="RFM Frequency">Orders (F)</th>
-              <th className="px-6 py-4 text-right" title="RFM Monetary">Spent (M)</th>
-              <th className="px-6 py-4 text-right">AOV</th>
-              <th className="px-6 py-4 text-right" title="RFM Recency">Last Order (R)</th>
+              <th className="px-4 md:px-6 py-4">Customer</th>
+              <th className="px-4 md:px-6 py-4">Primary Segment</th>
+              <th className="px-4 md:px-6 py-4 text-right" title="RFM Frequency">Orders (F)</th>
+              <th className="px-4 md:px-6 py-4 text-right" title="RFM Monetary">Spent (M)</th>
+              <th className="px-4 md:px-6 py-4 text-right">AOV</th>
+              <th className="px-4 md:px-6 py-4 text-right" title="RFM Recency">Last Order (R)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {loading && customers.length === 0 ? (
-              <tr><td colSpan={6} className="px-6 py-12 text-center text-gray-400 animate-pulse">Loading directory...</td></tr>
+              <tr><td colSpan={6} className="px-4 md:px-6 py-12 text-center text-gray-400 animate-pulse">Loading directory...</td></tr>
             ) : customers.length === 0 ? (
-              <tr><td colSpan={6} className="px-6 py-12 text-center text-gray-500">No customers found matching criteria.</td></tr>
+              <tr><td colSpan={6} className="px-4 md:px-6 py-12 text-center text-gray-500">No customers found matching criteria.</td></tr>
             ) : (
               customers.map((c: any) => (
                 <tr key={c.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-4 md:px-6 py-4">
                     <div className="font-medium text-gray-900">{c.name}</div>
                     <div className="text-xs text-gray-500">{c.email}</div>
                     {c.phone && <div className="text-xs text-gray-400">{c.phone}</div>}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-4 md:px-6 py-4">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                       c.segment === "Active/Repeat" ? "bg-emerald-50 text-emerald-700" :
                       c.segment === "At Risk" ? "bg-amber-50 text-amber-700" :
@@ -287,14 +287,14 @@ function CustomerDirectoryTab() {
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-right font-medium">{c.totalOrders}</td>
-                  <td className="px-6 py-4 text-right font-medium text-emerald-600">
+                  <td className="px-4 md:px-6 py-4 text-right font-medium">{c.totalOrders}</td>
+                  <td className="px-4 md:px-6 py-4 text-right font-medium text-emerald-600">
                     ₹{(c.totalSpent / 100).toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 text-right text-gray-600">
+                  <td className="px-4 md:px-6 py-4 text-right text-gray-600">
                     ₹{(c.aov / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-4 md:px-6 py-4 text-right">
                     {c.recencyDays >= 0 ? (
                       <div>
                         <span className="text-gray-900">{c.recencyDays} days ago</span>

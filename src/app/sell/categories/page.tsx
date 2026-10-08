@@ -208,7 +208,7 @@ export default function CategoriesPage() {
       <BuyerNavbar />
       
       {/* Hero Section */}
-      <section className="pt-20 md:pt-28 pb-12 px-6 text-center max-w-5xl mx-auto w-full">
+      <section className="pt-20 md:pt-28 pb-12 px-4 md:px-6 text-center max-w-5xl mx-auto w-full">
         <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-4 py-1 text-xs font-semibold text-brand-charcoal/70 mb-6 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
           1,988 Verified Wholesale Products
@@ -223,7 +223,7 @@ export default function CategoriesPage() {
 
       {/* Categories Grid */}
       <section className="py-12 bg-white border-y border-brand-linen">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {rawMaterialCategories.map((category) => {
               const Icon = category.icon;
@@ -262,7 +262,7 @@ export default function CategoriesPage() {
       </section>
 
       {/* Supplier & Sourcing CTA */}
-      <section className="py-16 bg-brand-bg border-b border-brand-linen text-center px-6">
+      <section className="py-16 bg-brand-bg border-b border-brand-linen text-center px-4 md:px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-charcoal mb-4">
             Do You Manufacture Craft Supplies?

@@ -109,7 +109,7 @@ export default function ProductFaqSection({ productName, category }: Props) {
         </div>
 
         <a
-          href={`https://wa.me/919999999999?text=${encodeURIComponent(
+          href={`https://wa.me/919041500605?text=${encodeURIComponent(
             `Hi Ekora Bazaar, I have a technical question regarding ${productName} (Category: ${category}). Could you assist me?`
           )}`}
           target="_blank"

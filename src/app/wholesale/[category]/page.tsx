@@ -128,7 +128,7 @@ export default async function WholesaleCategoryPage({ params }: Props) {
       
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize([structuredData, faqSchema], { isJSON: true }) }} />
 
-      <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto w-full flex-1">
+      <div className="pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1">
         
         {/* Header Section */}
         <div className="mb-12 bg-white p-8 md:p-12 rounded-3xl border border-brand-linen shadow-sm text-center md:text-left flex flex-col md:flex-row items-center gap-8">
@@ -142,7 +142,7 @@ export default async function WholesaleCategoryPage({ params }: Props) {
               100% secure B2B transactions on Ekora Bazaar.
             </p>
             <div className="mt-6 flex gap-4 justify-center md:justify-start">
-              <Link href="/shop" className="bg-brand-orange text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-brand-terracotta transition-colors">
+              <Link href="/shop" className="bg-brand-orange text-white px-4 md:px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-brand-terracotta transition-colors">
                 Browse All Categories
               </Link>
             </div>

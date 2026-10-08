@@ -58,7 +58,7 @@ export default function StartSellingPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 md:pt-28 pb-12 px-6 text-center border-b border-brand-linen bg-brand-bg">
+      <section className="pt-24 md:pt-28 pb-12 px-4 md:px-6 text-center border-b border-brand-linen bg-brand-bg">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold font-serif tracking-tight text-brand-charcoal mb-4">
             Creator Onboarding

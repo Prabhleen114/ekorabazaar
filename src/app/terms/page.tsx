@@ -10,7 +10,7 @@ export default function TermsPage() {
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
-      <div className="pt-32 pb-16 px-6 max-w-4xl mx-auto flex-1">
+      <div className="pt-32 pb-16 px-4 md:px-6 max-w-4xl mx-auto flex-1">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-brand-charcoal mb-8">Terms of Service</h1>
         <div className="prose prose-brand max-w-none text-brand-charcoal/80">
           <p className="mb-4">Last updated: August 2026</p>

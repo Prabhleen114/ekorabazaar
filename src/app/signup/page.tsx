@@ -282,7 +282,7 @@ function SignupForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-full bg-gradient-to-b from-[#3a3a3a] to-[#121212] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
+                  className="w-full rounded-full bg-gradient-to-b from-[#3a3a3a] to-[#121212] px-4 md:px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                 >
                   {loading ? 'Creating Account...' : 'Sign Up'}
                 </button>
