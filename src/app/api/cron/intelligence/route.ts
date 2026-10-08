@@ -1,1 +1,2 @@
-export { GET } from '@/customer-intelligence/api/cron/route';
+export { GET } from '@/customer-intelligence/api/cron/route';
+

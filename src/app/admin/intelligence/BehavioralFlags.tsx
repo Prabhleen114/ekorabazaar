@@ -33,7 +33,7 @@ import {
   Activity,
   ChevronRight,
 } from "lucide-react";
-import type { AnonymousSessionDropoff, SessionDropoffAnalyticsResult } from "@/lib/intelligence";
+import type { AnonymousSessionDropoff, SessionDropoffAnalyticsResult } from "@/customer-intelligence/lib/intelligence";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

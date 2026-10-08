@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { INTERNAL_CUSTOMER_EMAILS, getInternalCustomerIds } from '@/lib/intelligence';
+import { INTERNAL_CUSTOMER_EMAILS, getInternalCustomerIds } from '@/customer-intelligence/lib/intelligence';
 import prisma from '@/lib/db'; // Will be mocked
 
 vi.mock('@/lib/db', () => ({
