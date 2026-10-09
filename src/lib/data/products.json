@@ -410,27 +410,27 @@
     "name": "PLATINUM CURED LIQUID SILICONE RUBBER 15 SHORE A (1A:1B) FOR MOLD MAKING",
     "category": "General Silicone Moulds",
     "description": "Premium quality platinum cured liquid silicone rubber 15 shore a (1a:1b) for mold making | candle, resin, concrete & soap silicone rubber by sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 1871,
+    "price": 1100,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/07/liquid-silicon-11-ab-247x296.jpeg",
+    "image": "/images/platinum_silicone.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 1871,
+        "price": 1100,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 1777,
+        "price": 1045,
         "discountPct": 5
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 1684,
+        "price": 990,
         "discountPct": 10
       }
     ],
