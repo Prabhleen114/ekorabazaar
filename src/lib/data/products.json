@@ -2995,7 +2995,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "38",
@@ -6396,7 +6397,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "81",
@@ -8987,8 +8989,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "114",
@@ -15768,7 +15770,8 @@
       "culinary-chocolatier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "198",
@@ -16442,8 +16445,8 @@
     "disciplines": [
       "perfumery-attar"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "206",
@@ -16680,7 +16683,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "209",
@@ -17656,7 +17660,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "221",
@@ -19072,7 +19077,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "239",
@@ -27002,8 +27008,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "339",
@@ -28376,7 +28382,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "357",
@@ -30507,320 +30514,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "382",
-    "name": "NEEM HERBEL SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality neem herbel soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/12/WhatsApp-Image-2023-01-30-at-2.10.13-PM-1-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "neem",
-      "herbel",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "383",
-    "name": "ULTRA CLEAR BASIC SOAP BASE (SLS, PARABEN, PALM OIL AND ALCOHOL FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality ultra clear basic soap base (sls, paraben, palm oil and alcohol free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 305,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/12/31epjRr5IhL-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 305,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 289,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 274,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "ultra",
-      "clear",
-      "basic",
-      "soap",
-      "base",
-      "sls",
-      "paraben",
-      "palm",
-      "oil",
-      "and",
-      "alcohol",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "384",
-    "name": "FOAMING BATH BUTTER BASE (FREE FROM HARMFUL CHEMICAL) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality foaming bath butter base (free from harmful chemical) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 779,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/5278-foaming-bath-whip-copy-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 779,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 739,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 701,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "foaming",
-      "bath",
-      "butter",
-      "base",
-      "free",
-      "from",
-      "harmful",
-      "chemical",
-      "1kg",
-      "melt",
-      "and",
-      "pour",
-      "soap",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "385",
-    "name": "HERBAL MENTHOL SOAP BASE (SLS,SLES,PARABEN AND ALCOHOL FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality herbal menthol soap base (sls,sles,paraben and alcohol free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 373,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/12/herbal-menthol-soap-base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 373,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 354,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 336,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "herbal",
-      "menthol",
-      "soap",
-      "base",
-      "slsslesparaben",
-      "and",
-      "alcohol",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "386",
     "name": "SOAP AND COSMETIC LIQUID COLOUR",
     "category": "Micas & Pigments",
@@ -30895,931 +30588,6 @@
       "skincare-apothecary",
       "soap-atelier",
       "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "387",
-    "name": "OATMEAL SOAP BASE (SLS,SLES CHLORIDE, PARABEN AND ALCOHOL FREE) OAT MILK SOAP BASE 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality oatmeal soap base (sls,sles chloride, paraben and alcohol free) oat milk soap base 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "oatmeal",
-      "soap",
-      "base",
-      "slssles",
-      "chloride",
-      "paraben",
-      "and",
-      "alcohol",
-      "free",
-      "oat",
-      "milk",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "388",
-    "name": "DONKEY MILK SOAP BASE (SLS, SLES AND PARABEN FREE)",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality donkey milk soap base (sls, sles and paraben free) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 139,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 139,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 132,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 125,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "donkey",
-      "milk",
-      "soap",
-      "base",
-      "sls",
-      "sles",
-      "and",
-      "paraben",
-      "free",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "389",
-    "name": "WILD TURMERIC SOAP BASE (SLS AND PARABEN FREE)",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality wild turmeric soap base (sls and paraben free) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 139,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/06/turmaric-soap-base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 139,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 132,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 125,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "wild",
-      "turmeric",
-      "soap",
-      "base",
-      "sls",
-      "and",
-      "paraben",
-      "free",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "390",
-    "name": "SOAP BASE SAMPLE PACK (14 VARIETY)(100GM EACH)",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality soap base sample pack (14 variety)(100gm each) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 779,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/02/all-soap-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 779,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 739,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 701,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "soap",
-      "base",
-      "sample",
-      "pack",
-      "variety100gm",
-      "each",
-      "melt",
-      "and",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "391",
-    "name": "CAMEL MILK SOAP BASE (SLS,SLES AND PARABEN FREE)",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality camel milk soap base (sls,sles and paraben free) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 202,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 202,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 191,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 181,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "camel",
-      "milk",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "392",
-    "name": "COCONUT MILK SOAP BASE (SLS, SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality coconut milk soap base (sls, sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "coconut",
-      "milk",
-      "soap",
-      "base",
-      "sls",
-      "sles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "393",
-    "name": "HONEY SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality honey soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/honey-soap-base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "honey",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "394",
-    "name": "SHEA BUTTER SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality shea butter soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Shea-Butter-Soap-Base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "shea",
-      "butter",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "395",
-    "name": "PAPAYA & CUCUMBER SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality papaya & cucumber soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Cucumber.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "papaya",
-      "cucumber",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "396",
-    "name": "CHARCOAL SOAP BASE (SLS, SLES, ALCOHOL AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality charcoal soap base (sls, sles, alcohol and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/activated-charcoal-soap-base-1000x1000-1-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "charcoal",
-      "soap",
-      "base",
-      "sls",
-      "sles",
-      "alcohol",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "397",
-    "name": "PREMIUM WHITE SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality premium white soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 326,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Premium-White-Soap-Base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 326,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 310,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 294,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "premium",
-      "white",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "398",
-    "name": "RED WINE WITH POMEGRANATE SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality red wine with pomegranate soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 385,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Red Wine.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 385,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 366,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 347,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "red",
-      "wine",
-      "with",
-      "pomegranate",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
     ],
     "isQuoteOnly": false
   },
@@ -32016,314 +30784,6 @@
     ],
     "moq": 1,
     "inStock": true
-  },
-  {
-    "id": "400",
-    "name": "ULTRA CLEAR SOAP BASE (SLS,SLES AND PARABEN FREE)",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality ultra clear soap base (sls,sles and paraben free) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 46,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/vedini-extra-clear-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 46,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 43,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 41,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "ultra",
-      "clear",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "401",
-    "name": "GOAT MILK SOAP BASE (SLS,SLES,ALCOHOL AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality goat milk soap base (sls,sles,alcohol and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 46,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Milk Soap.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 46,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 43,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 41,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "goat",
-      "milk",
-      "soap",
-      "base",
-      "slsslesalcohol",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "402",
-    "name": "ALOE VERA SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality aloe vera soap base (sls,sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 358,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "/images/products/Aloe Vera.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 358,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 340,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 322,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "aloe",
-      "vera",
-      "soap",
-      "base",
-      "slssles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": true,
-    "inStock": false
-  },
-  {
-    "id": "403",
-    "name": "GLYCERIN SOAP BASE (SLS, SLES AND PARABEN FREE) 1KG",
-    "category": "Artisan Soap Bases",
-    "description": "Premium quality glycerin soap base (sls, sles and paraben free) 1kg sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 326,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Gylcering-Soap-Base-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 326,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 310,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 294,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "glycerin",
-      "soap",
-      "base",
-      "sls",
-      "sles",
-      "and",
-      "paraben",
-      "free",
-      "1kg",
-      "melt",
-      "pour",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Casting Mediums & Raw Bases",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
   },
   {
     "id": "404",
@@ -63789,27 +62249,27 @@
     "name": "Perfume Base Liquid (99% Ethanol Perfumer's Alcohol) - Professional Grade for Long Lasting EDP & EDT Making (1 Kg)",
     "category": "Attar & Perfume Bottles",
     "description": "Premium grade Perfumer's Alcohol (99% Pure Denatured Ethanol) specifically engineered for creating high-performance, long-lasting Eau de Parfum (EDP) and Eau de Toilette (EDT). Formulated to flawlessly dissolve fragrance oils, aroma compounds, and essential oils without cloudiness, delivering rapid and clean evaporation that allows top, heart, and base notes to bloom with maximum sillage. High purity, heavy metal tested, and batch-tested for professional perfumers and fragrance ateliers. Packaged per 1 Kg container.",
-    "price": 480,
+    "price": 400,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/perfume-base-liquid-formulation-edp-edt.webp",
+    "image": "/images/products/perfume-base-liquid.jpg",
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 11,
-        "price": 480,
+        "price": 400,
         "discountPct": 0
       },
       {
         "minQty": 12,
         "maxQty": 51,
-        "price": 432,
+        "price": 360,
         "discountPct": 10
       },
       {
         "minQty": 52,
         "maxQty": null,
-        "price": 408,
+        "price": 340,
         "discountPct": 15
       }
     ],
@@ -78574,7 +77034,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1004",
@@ -79435,8 +77896,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1018",
@@ -81974,7 +80435,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1060",
@@ -85213,7 +83675,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1108",
@@ -86335,7 +84798,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1124",
@@ -87693,7 +86157,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1143",
@@ -90326,7 +88791,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1182",
@@ -90737,7 +89203,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1188",
@@ -100312,7 +98779,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1341",
@@ -102093,7 +100561,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1367",
@@ -112853,7 +111322,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1532",
@@ -129714,7 +128184,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1775",
@@ -131689,7 +130160,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1803",
@@ -136614,7 +135086,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1874",
@@ -158354,8 +156827,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "artisan",
       "beeswax",
@@ -160374,5 +158847,761 @@
       "wholesale",
       "yellow"
     ]
+  },
+  {
+    "id": "2405",
+    "name": "TRANSPARENT SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality transparent soap base suitable for melt and pour soap crafting. (UID: MW-201)",
+    "price": 223,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 35,
+    "image": "/images/products/transparent-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 223,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 149,
+        "discountPct": 33
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 35
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "transparent soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2406",
+    "name": "GOAT MILK SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality goat milk soap base suitable for melt and pour soap crafting. (UID: MW-202)",
+    "price": 223,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 35,
+    "image": "/images/products/goat-milk-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 223,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 149,
+        "discountPct": 33
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 35
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "goat milk soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2407",
+    "name": "PAPAYA SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality papaya soap base suitable for melt and pour soap crafting. (UID: MW-203)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/papaya-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "papaya soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2408",
+    "name": "NEEM TULSI SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality neem tulsi soap base suitable for melt and pour soap crafting. (UID: MW-204)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/neem-tulsi-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "neem tulsi soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2409",
+    "name": "ALOEVERA SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality aloevera soap base suitable for melt and pour soap crafting. (UID: MW-205)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/aloevera-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "aloevera soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2410",
+    "name": "COFFEE SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality coffee soap base suitable for melt and pour soap crafting. (UID: MW-206)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/coffee-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "coffee soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2411",
+    "name": "UBTAN SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality ubtan soap base suitable for melt and pour soap crafting. (UID: MW-207)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/ubtan-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "ubtan soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2412",
+    "name": "REDWINE SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality redwine soap base suitable for melt and pour soap crafting. (UID: MW-208)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/redwine-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "redwine soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2413",
+    "name": "SHEA BUTTER SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality shea butter soap base suitable for melt and pour soap crafting. (UID: MW-209)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/shea-butter-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "shea butter soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2414",
+    "name": "ROSE SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality rose soap base suitable for melt and pour soap crafting. (UID: MW-210)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/rose-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "rose soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2415",
+    "name": "KESAR SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality kesar soap base suitable for melt and pour soap crafting. (UID: MW-211)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/kesar-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "kesar soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2416",
+    "name": "SANDAL SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality sandal soap base suitable for melt and pour soap crafting. (UID: MW-212)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/sandal-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "sandal soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2417",
+    "name": "MULTANI MITTI SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality multani mitti soap base suitable for melt and pour soap crafting. (UID: MW-213)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/multani-mitti-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "multani mitti soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2418",
+    "name": "LEMON SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality lemon soap base suitable for melt and pour soap crafting. (UID: MW-214)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/lemon-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "lemon soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2419",
+    "name": "LAVENDER SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality lavender soap base suitable for melt and pour soap crafting. (UID: MW-215)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/lavender-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "lavender soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2420",
+    "name": "ORANGE SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality orange soap base suitable for melt and pour soap crafting. (UID: MW-216)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/orange-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "orange soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2421",
+    "name": "CHARCOAL SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality charcoal soap base suitable for melt and pour soap crafting. (UID: MW-217)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/charcoal-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "charcoal soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
+  },
+  {
+    "id": "2422",
+    "name": "MINT MENTHOL SOAP BASE",
+    "category": "Artisan Soap Bases",
+    "description": "Premium quality mint menthol soap base suitable for melt and pour soap crafting. (UID: MW-218)",
+    "price": 238,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 39,
+    "image": "/images/products/mint-menthol-soap-base.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 24,
+        "price": 238,
+        "discountPct": 0
+      },
+      {
+        "minQty": 25,
+        "maxQty": 49,
+        "price": 156,
+        "discountPct": 34
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 146,
+        "discountPct": 39
+      }
+    ],
+    "tags": [
+      "soap base",
+      "1kg",
+      "bulk",
+      "wholesale",
+      "mint menthol soap base"
+    ],
+    "department": "Raw Materials",
+    "disciplines": [
+      "soap-making"
+    ],
+    "isQuoteOnly": false
   }
 ]

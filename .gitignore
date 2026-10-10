@@ -47,4 +47,5 @@ next-env.d.ts
 scratch/
 *before_remediation*
 stock-verification/
+image-prompts/
 
