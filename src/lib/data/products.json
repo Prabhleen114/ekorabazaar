@@ -4488,7 +4488,7 @@
     "price": 420,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/8-cavity-silicone-apple-mousse-mould.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -5526,7 +5526,7 @@
     "price": 389,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/15-cavity-apple-shape-silicone-mould.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -6328,7 +6328,7 @@
     "price": 560,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/15-cavity-strawberry-mousse-mould.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -10931,7 +10931,7 @@
     "price": 670,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Glyceryl-Monostearate-247x296.png",
+    "image": "/images/products/glyceryl-monostearate-gms-emulsifier-1-kg.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -17428,7 +17428,7 @@
     "price": 420,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/789178fe-df71-47c7-8477-4f8bc48e785a-247x296.png",
+    "image": "/images/products/pet-shampoo-base-for-dogs-cats.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -63738,7 +63738,7 @@
     "price": 71,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/03/DALL·E-2025-03-20-12.04.19-A-high-quality-product-image-of-a-cosmetic-grade-preservative-DMDM-Hydantoin-in-a-clear-plastic-bottle-with-a-white-cap.-The-label-features-the-prod-247x296.webp",
+    "image": "/images/products/dmdm-hydantoin-cosmetic-preservative.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -65936,7 +65936,7 @@
     "price": 455,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/rose-hibiscus-manjishta-gel-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -66074,7 +66074,7 @@
     "price": 353,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Cucumber.webp",
+    "image": "/images/products/cucumber-ashwagandha-witch-hazel-gel-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -66351,7 +66351,7 @@
     "price": 569,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "/images/products/Aloe Vera.webp",
+    "image": "/images/products/shea-aloe-vera-oats-lotion-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -72967,7 +72967,7 @@
     "price": 242,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/handwash-247x296.jpg",
+    "image": "/images/products/hand-wash-base-chloride-and-paraben-free.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -73586,7 +73586,7 @@
     "price": 436,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/handwash-247x296.png",
+    "image": "/images/products/sulfate-free-hand-wash-base-transparent.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -73634,7 +73634,7 @@
     "price": 623,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/facewash-base-1-copy-247x296.jpg",
+    "image": "/images/products/sulfate-free-face-wash-base-transparent.jpg",
     "tiers": [
       {
         "minQty": 1,
