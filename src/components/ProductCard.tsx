@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ALL_CATEGORIES } from "@/lib/categories";
 
 type Product = {
   id: string;
@@ -12,9 +13,11 @@ type Product = {
   wholesaleTiers?: any;
 };
 
-export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
+export default function ProductCard({ product, index = 0, priority = false }: { product: Product; index?: number; priority?: boolean }) {
   const isExternalImage = Boolean(product.imageUrl && product.imageUrl.startsWith("http"));
   const effectivePrice = product.price / 100;
+  
+  const categoryLabel = ALL_CATEGORIES.find(c => c.id === product.category || c.label === product.category)?.label || product.category || "Wholesale Craft Supplies";
   
   return (
     <Link
@@ -24,13 +27,14 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
       <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
         <Image
           src={product.imageUrl || "/og-image.jpg"}
-          alt={product.title}
+          alt={`${product.title} - ${categoryLabel}`}
           fill
           unoptimized={isExternalImage}
-          quality={95}
+          quality={75}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          priority={priority}
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          loading={index < 8 ? "eager" : "lazy"}
+          
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null;
@@ -42,7 +46,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
 
       <div className="flex flex-col flex-1">
         <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
-          {product.category || "Studio Raw Material"}
+          {categoryLabel}
         </span>
         <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
           {product.title}

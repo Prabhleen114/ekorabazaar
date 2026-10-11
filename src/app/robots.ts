@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://www.ekorabazaar.in/sitemap.xml',
+    sitemap: 'https://www.ekorabazaar.in/sitemap_index.xml',
   };
 }

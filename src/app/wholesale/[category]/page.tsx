@@ -1,36 +1,116 @@
-import { ALL_CATEGORIES, normalizeCategoryName } from "@/lib/categories";
-import prisma from "@/lib/db";
-import { ProductStatus } from "@prisma/client";
 import { notFound } from "next/navigation";
+import { ALL_CATEGORIES } from "@/lib/categories";
+import { ProductStatus } from "@prisma/client";
+import prisma from "@/lib/db";
 import serialize from "serialize-javascript";
 import { generateCategoryMetadata, generateFaqSchema } from "@/lib/seo";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ProductCard from "@/components/ProductCard";
+import CategoryIntro from "@/components/CategoryIntro";
+import NoResults from "@/components/NoResults";
 import catalogProducts from "@/lib/data/products.json";
 import Link from "next/link";
 import { Metadata } from "next";
 
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ category: string }>;
+  
 };
 
-// Convert slug back to Category Name for matching
+type ProductType = {
+  id: string;
+  title: string;
+  category: string | null;
+  price: number;
+  imageUrl?: string | null;
+  wholesaleTiers?: any;
+};
+
+function normalizeCategoryName(cat: string | null | undefined): string {
+  if (!cat) return "";
+  return cat.trim().toLowerCase();
+}
+
 function slugToCategoryLabel(slug: string) {
   const norm = slug.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   return ALL_CATEGORIES.find(c => c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm) || 
          ALL_CATEGORIES.find(c => c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm);
 }
 
+async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Promise<ProductType[]> {
+  const canonicalCategory = normalizeCategoryName(categoryObj.id);
+  
+  let products: any[] = [];
+  try {
+    products = await prisma.product.findMany({
+      where: {
+        category: canonicalCategory,
+        status: ProductStatus.PUBLISHED,
+        OR: [
+          { sellerId: null },
+          { seller: { accountStatus: 'ACTIVE' } }
+        ],
+        ...(searchParamsObj?.q ? { title: { contains: String(searchParamsObj.q), mode: 'insensitive' as any } } : {})
+      },
+      include: { seller: true },
+      take: 12,
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (err) {
+    console.warn(`Could not load products for wholesale category ${categoryObj.label} at build time:`, err);
+  }
+
+  // Fallback to static catalog if DB returned 0 products and there are no search queries applied
+  if (products.length === 0 && !searchParamsObj?.q) {
+    const matching = (catalogProducts as any[]).filter(p => {
+      const pCat = normalizeCategoryName(p.category);
+      return pCat === canonicalCategory || p.category === categoryObj.id || p.category === categoryObj.label;
+    }).slice(0, 12);
+
+    return matching.map(p => ({
+      id: String(p.id),
+      title: p.name || p.title,
+      category: p.category,
+      price: Math.round((typeof p.price === 'number' ? p.price : parseFloat(p.price || '0')) * 100),
+      imageUrl: p.image || p.imageUrl || '/og-image.jpg',
+      wholesaleTiers: p.tiers || []
+    }));
+  }
+
+  return products.map(p => ({
+    id: String(p.id),
+    title: p.title,
+    category: p.category,
+    price: p.price,
+    imageUrl: p.imageUrl,
+    wholesaleTiers: p.wholesaleTiers || []
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;
   const categoryObj = slugToCategoryLabel(slug);
   
-  if (!categoryObj) {
-    return { title: "Wholesale Category Not Found" };
+  if (!categoryObj) return { title: "Wholesale Category Not Found" };
+
+  const products = await getWholesaleProducts(categoryObj);
+
+  if (products.length === 0) {
+    return {
+      title: "No Results Found | Ekora Wholesale",
+      robots: { index: false, follow: true },
+      alternates: { canonical: `https://www.ekorabazaar.in/wholesale/${slug}` }
+    };
   }
 
-  return generateCategoryMetadata(categoryObj.label, slug);
+  const baseMeta = generateCategoryMetadata(categoryObj.label, slug);
+  return {
+    ...baseMeta,
+    alternates: { canonical: `https://www.ekorabazaar.in/wholesale/${slug}` }
+  };
 }
 
 export async function generateStaticParams() {
@@ -41,50 +121,14 @@ export async function generateStaticParams() {
 
 export default async function WholesaleCategoryPage({ params }: Props) {
   const { category: slug } = await params;
+  
   const categoryObj = slugToCategoryLabel(slug);
 
   if (!categoryObj) {
     notFound();
   }
 
-  const canonicalCategory = normalizeCategoryName(categoryObj.id);
-
-  // Fetch top products in this category
-  let products: any[] = [];
-  try {
-    products = await prisma.product.findMany({
-      where: {
-        category: canonicalCategory,
-        status: ProductStatus.PUBLISHED,
-        OR: [
-          { sellerId: null },
-          { seller: { accountStatus: 'ACTIVE' } }
-        ]
-      },
-      include: { seller: true },
-      take: 12,
-      orderBy: { createdAt: 'desc' }
-    });
-  } catch (err) {
-    console.warn(`Could not load products for wholesale category ${categoryObj.label} at build time:`, err);
-  }
-
-  // Fallback to static catalog if DB returned 0 products
-  if (products.length === 0) {
-    const matching = (catalogProducts as any[]).filter(p => {
-      const pCat = normalizeCategoryName(p.category);
-      return pCat === canonicalCategory || p.category === categoryObj.id || p.category === categoryObj.label;
-    }).slice(0, 12);
-
-    products = matching.map(p => ({
-      id: String(p.id),
-      title: p.name || p.title,
-      category: p.category,
-      price: Math.round((typeof p.price === 'number' ? p.price : parseFloat(p.price || '0')) * 100),
-      imageUrl: p.image || p.imageUrl || '/og-image.jpg',
-      wholesaleTiers: p.tiers || []
-    }));
-  }
+  const products = await getWholesaleProducts(categoryObj);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -159,16 +203,14 @@ export default async function WholesaleCategoryPage({ params }: Props) {
 
         {products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {products.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} priority={index < 4} />
+              ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-3xl border border-brand-linen">
-            <h3 className="text-xl font-semibold text-brand-charcoal/50 mb-2">No products found yet</h3>
-            <p className="text-brand-charcoal/40">We are currently onboarding suppliers for this category.</p>
-          </div>
+          <NoResults />
         )}
+        <CategoryIntro categoryLabel={categoryObj.label} />
 
         {/* SEO FAQ Section */}
         <div className="mt-16 bg-white p-8 rounded-3xl border border-brand-linen">

@@ -25,6 +25,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { DEPARTMENTS, DISCIPLINE_HUBS, DisciplineConfig, getDepartmentForCategory } from "@/lib/taxonomy";
 import QuickAddButton from "@/components/QuickAddButton";
+import { ALL_CATEGORIES } from "@/lib/categories";
 
 type Product = {
  id: string;
@@ -47,11 +48,11 @@ type Product = {
 
 type PriceOption = "all" | "under_500" | "500_1500" | "1500_3000" | "over_3000" | "custom";
 
-export default function ShopClient() {
+export default function ShopClient({ initialProducts = [] }: { initialProducts?: any[] }) {
  const router = useRouter();
  const searchParams = useSearchParams();
  
- const [products, setProducts] = useState<Product[]>([]);
+ const [products, setProducts] = useState<Product[]>(initialProducts);
  const [loading, setLoading] = useState(true);
  const [loadingMore, setLoadingMore] = useState(false);
  const [page, setPage] = useState(1);
@@ -679,7 +680,7 @@ export default function ShopClient() {
  ) : (
  <>
  <div className={getGridColsClass()}>
- {products.map((product) => (
+ {products.map((product, index) => (
  <Link 
  key={product.id} 
  href={`/products/${product.id}`} 
@@ -688,11 +689,12 @@ export default function ShopClient() {
  <div className="aspect-[4/5] w-full bg-white relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
  <Image 
  src={product.image || "/og-image.jpg"} 
- alt={product.name} 
- fill 
+ alt={`${product.name} - ${product.category || "Wholesale Craft Supplies"}`}
+   fill 
  unoptimized={Boolean(product.image && product.image.startsWith("http"))}
- quality={85}
+ quality={75}
  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          priority={index < 4}
  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
  onError={(e) => {
  const target = e.target as HTMLImageElement;
