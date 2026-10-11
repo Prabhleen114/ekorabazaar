@@ -9,6 +9,7 @@ export interface BlogFrontmatter {
   author: string;
   tags: string[]; // category labels from ALL_CATEGORIES used for RelatedProducts
   readingTimeMinutes: number;
+  draft?: boolean;
 }
 
 export interface BlogPost {
@@ -49,9 +50,7 @@ function parseFrontmatter(raw: string): { frontmatter: BlogFrontmatter; content:
         .split(",")
         .map((s: string) => s.trim().replace(/^["']|["']$/g, ""));
     } else if (val === "" || val === undefined) {
-      // Multi-line array — collect following lines starting with "  -"
-      const arrLines: string[] = [];
-      // We'll do single-line only; multi-line handled below
+      // Multi-line array handled below
     } else {
       val = val.replace(/^["']|["']$/g, "");
     }
@@ -83,12 +82,13 @@ function parseFrontmatter(raw: string): { frontmatter: BlogFrontmatter; content:
       author: fm.author || "Ekora Bazaar Editorial Team",
       tags: Array.isArray(fm.tags) ? fm.tags : (fm.tags ? [fm.tags] : []),
       readingTimeMinutes: parseInt(fm.readingTimeMinutes || fm.reading_time || "5", 10),
+      draft: fm.draft === "true" || fm.draft === true,
     },
     content,
   };
 }
 
-export function getAllPosts(): BlogPost[] {
+export function getAllPosts(includeDrafts = false): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
 
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
@@ -98,6 +98,9 @@ export function getAllPosts(): BlogPost[] {
       try {
         const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
         const { frontmatter, content } = parseFrontmatter(raw);
+        if (!includeDrafts && frontmatter.draft) {
+          return null;
+        }
         return { slug, frontmatter, content };
       } catch {
         console.warn(`Failed to parse blog post: ${file}`);

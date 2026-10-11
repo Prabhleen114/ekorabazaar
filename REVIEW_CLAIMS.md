@@ -29,8 +29,17 @@ the corresponding article or promoting the copy as a selling point.
 | resin-art-mould-selection.md | Eco-Resin & Stone Moulds | "deep-pour epoxy peak exotherm" | Verify manufacturer maximum single-pour depth guidelines for specific epoxy systems |
 | cosmetic-preservatives-guide.md | Cosmetic Preservatives | "USP 51 challenge test parameters" | Verify USP 51 / ISO 11930 antimicrobial efficacy protocol with accredited lab |
 | skincare-base-formulation.md | Skincare & Body Bases | "additive load thresholds" | Confirm maximum additive capacity (3-5%) with base manufacturer TDS |
+| epoxy-resin-ratio-guide.md | Eco-Resin & Stone Moulds | "Shore D hardness & exotherm temperatures" | Confirm Shore D hardness ratings (78–82D) and exotherm temperature curves with resin manufacturer TDS |
+| fixing-candle-frosting-wet-spots-sinkholes.md | Candle Waxes & Additives | "Polymorphic beta-prime crystallization" | Confirm cooling kinetics and pour temperature windows (50–55°C) with soy wax manufacturer TDS |
+| what-ifra-certified-means.md | Fragrance Oils | "IFRA 51st Amendment category limits" | Verify latest IFRA 51st Amendment Certificate and QRA2 concentration thresholds with fragrance houses |
+| pricing-handmade-candles-and-soaps.md | Platform Guides | "GST thresholds (₹40L/₹20L) & composition rates" | Verify latest CBIC notifications regarding state GST turnover thresholds and e-commerce mandatory GST registration rules |
+| starting-candle-business-in-india.md | Platform Guides | "BIS 4363 wax specifications & Fire NOC requirements" | Verify local municipality fire safety thresholds and current BIS standards for paraffin/soy candle formulations |
+| storing-wax-resin-and-oils.md | Fragrance Oils / Wax | "Flash point storage classifications" | Verify petroleum/solvent safety act flash point categories (<60°C vs >93°C) with local fire safety officer |
+| soap-colorants-natural-vs-synthetic.md | Micas & Pigments | "BIS IS 4707 cosmetic colorant CI compliance" | Verify colour index numbers match Schedule Q of Drugs and Cosmetics Rules for skin-contact rinse-off products |
+| making-perfume-at-home.md | Fragrance Oils | "State excise denatured ethanol licensing" | Verify state-specific excise department license requirements for procuring and compounding with 96% denatured ethanol |
 
 ## Process
 1. Assign the above items to a qualified person (formulator, regulatory consultant, or supplier contact).
 2. Once verified, remove the `[VERIFY]` comment from the code or replace with confirmed, sourced copy.
 3. Delete the row from this table once actioned.
+

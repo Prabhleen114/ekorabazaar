@@ -27,6 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? frontmatter.description.slice(0, 152) + "..."
     : frontmatter.description;
 
+  if (frontmatter.draft) {
+    return {
+      title,
+      description,
+      robots: { index: false, follow: false },
+    };
+  }
+
   return {
     title,
     description,

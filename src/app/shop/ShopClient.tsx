@@ -53,7 +53,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  const searchParams = useSearchParams();
  
  const [products, setProducts] = useState<Product[]>(initialProducts);
- const [loading, setLoading] = useState(true);
+ const [loading, setLoading] = useState(initialProducts.length === 0);
  const [loadingMore, setLoadingMore] = useState(false);
  const [page, setPage] = useState(1);
  const [hasMore, setHasMore] = useState(false);
@@ -680,7 +680,9 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  ) : (
  <>
  <div className={getGridColsClass()}>
- {products.map((product, index) => (
+ {products.map((product, index) => {
+ const categoryLabel = ALL_CATEGORIES.find(c => c.id === product.category || c.label === product.category)?.label || product.category || "Wholesale Craft Supplies";
+ return (
  <Link 
  key={product.id} 
  href={`/products/${product.id}`} 
@@ -689,7 +691,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  <div className="aspect-[4/5] w-full bg-white relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
  <Image 
  src={product.image || "/og-image.jpg"} 
- alt={`${product.name} - ${product.category || "Wholesale Craft Supplies"}`}
+ alt={`${product.name} - ${categoryLabel}`}
    fill 
  unoptimized={Boolean(product.image && product.image.startsWith("http"))}
  quality={75}
@@ -712,7 +714,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
 
  <div className="flex flex-col flex-1">
  <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
- {product.category}
+ {categoryLabel}
  </span>
  <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
  {product.name}
@@ -741,7 +743,8 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  )}
  </div>
  </Link>
- ))}
+ );
+ })}
  </div>
 
  {/* Infinite Scroll Sentinel */}

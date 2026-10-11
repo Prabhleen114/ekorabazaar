@@ -6,8 +6,8 @@ Last updated: 2026-10-12
 - Audit Baseline Score: 3.8 / 5
 - Target Score: 4.8 / 5
 - Phase 1 (Core Technical & On-Page SEO): **DONE & COMMITTED** (`8493432`)
-- Phase 2 / Part B (Maker Knowledge Base at `/blog`): **DONE & VERIFIED**
-- Phase 3 (Off-Page, Storefronts, Creator Badges): **NOT STARTED / NEXT PHASE**
+- Phase 2 / Part B (Maker Knowledge Base at `/blog`): **DONE & COMMITTED** (`8cba543`)
+- Phase 3 / Part C (Storefronts, Calculator, Outreach): **DONE & VERIFIED**
 
 ---
 
@@ -59,8 +59,11 @@ Last updated: 2026-10-12
 
 ---
 
-### PART C / Phase 3: Creator Storefront & Off-Page SEO — [NOT STARTED]
-- [ ] Task 6: Creator Storefront infrastructure & badges.
-- [ ] Vary anchor text on seller badges (primarily seller/brand business name).
-- [ ] Product seeding outreach guidelines with `rel="sponsored"`.
-- [ ] Full before/after audit checklist & Rich Results validation report.
+### PART C / Phase 3: Creator Storefront & Off-Page SEO — [DONE]
+- [x] Creator Storefront (`/store/[sellerId]`): Server-rendered page with seller bio, location, trust stats, and product grid.
+- [x] Indexing threshold: Only index storefronts with >= 3 published products; sellers with < 3 return `robots: { index: false, follow: true }`.
+- [x] Dedicated Stores Sitemap: Added `/sitemap/stores.xml` to `sitemap.ts` and `sitemap_index.xml` (only indexing sellers with >= 3 products).
+- [x] Seller Dashboard share snippets & badges: Varied anchor text (Business Name, Brand Store on Ekora Bazaar, Verified Maker Supplies Store) + embeddable HTML badge.
+- [x] Interactive Fragrance Load Calculator: Built at `/tools/fragrance-load-calculator` (client component, wax weight + percentage calculations, links to blog & wholesale wax category, added to sitemap).
+- [x] Product seeding outreach guidelines: Created `OUTREACH.md` with 3 compliant templates (creator seeding, educator kits, directory listing) enforcing ASCI disclosure and `rel="sponsored"`.
+

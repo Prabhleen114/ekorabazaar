@@ -18,6 +18,9 @@ export async function GET() {
   <sitemap>
     <loc>https://www.ekorabazaar.in/sitemap/blog.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://www.ekorabazaar.in/sitemap/stores.xml</loc>
+  </sitemap>
 </sitemapindex>`;
 
   return new NextResponse(xml, {

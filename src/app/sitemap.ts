@@ -14,7 +14,8 @@ export async function generateSitemaps() {
     { id: 'categories' },
     { id: 'products' },
     { id: 'guides' },
-    { id: 'blog' }
+    { id: 'blog' },
+    { id: 'stores' }
   ];
 }
 
@@ -67,6 +68,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
       { path: '/classes', priority: 0.8, changeFrequency: 'weekly' },
+      { path: '/tools/fragrance-load-calculator', priority: 0.8, changeFrequency: 'monthly' },
       { path: '/sell', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/sell/how-it-works', priority: 0.7, changeFrequency: 'weekly' },
       { path: '/sell/categories', priority: 0.7, changeFrequency: 'weekly' },
@@ -167,6 +169,32 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     }));
+  }
+
+  if (id === 'stores') {
+    try {
+      const activeSellers = await prisma.seller.findMany({
+        where: { accountStatus: 'ACTIVE' },
+        include: {
+          products: {
+            where: { status: ProductStatus.PUBLISHED },
+            select: { id: true }
+          }
+        }
+      });
+
+      // Sitemap only when indexable (at least 3 published products)
+      const indexable = activeSellers.filter(s => s.products.length >= 3);
+      return indexable.map(s => ({
+        url: `${BASE_URL}/store/${s.id}`,
+        lastModified: s.updatedAt,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }));
+    } catch (err) {
+      console.warn("Could not load stores for sitemap:", err);
+      return [];
+    }
   }
 
   return [];

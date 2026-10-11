@@ -7,9 +7,10 @@ import { ProductStatus } from "@prisma/client";
 import { Suspense, cache } from "react";
 import serialize from "serialize-javascript";
 import { generateItemListSchema, generateBreadcrumbSchema } from "@/lib/seo";
+import catalogProducts from "@/lib/data/products.json";
 
 const getProducts = cache(async (params: any) => {
-  return prisma.product.findMany({
+  const dbProducts = await prisma.product.findMany({
     where: {
       status: ProductStatus.PUBLISHED,
       OR: [
@@ -26,6 +27,30 @@ const getProducts = cache(async (params: any) => {
     take: 40,
     orderBy: { createdAt: 'desc' }
   });
+
+  if (dbProducts && dbProducts.length > 0) {
+    return dbProducts.map(p => ({
+      id: String(p.id),
+      name: p.title,
+      category: p.category,
+      price: Math.round(p.price / 100),
+      image: p.imageUrl || "/og-image.jpg",
+      bulkDiscountAvailable: Boolean(p.wholesaleTiers && Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 1),
+      maxDiscount: 0,
+      inStock: p.stock > 0
+    }));
+  }
+
+  return (catalogProducts as any[]).slice(0, 40).map(p => ({
+    id: String(p.id),
+    name: p.name || p.title,
+    category: p.category,
+    price: typeof p.price === 'number' ? p.price : parseFloat(p.price || '0'),
+    image: p.image || p.imageUrl || '/og-image.jpg',
+    bulkDiscountAvailable: Boolean(p.bulkDiscountAvailable),
+    maxDiscount: p.maxDiscount || 0,
+    inStock: p.inStock !== false
+  }));
 });
 
 const getProductCount = cache(async (params: any) => {

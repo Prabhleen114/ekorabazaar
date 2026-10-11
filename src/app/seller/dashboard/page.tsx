@@ -80,15 +80,58 @@ export default async function SellerOverviewPage() {
       )}
 
       {isActive && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Quick Actions</h2>
-          <div className="flex gap-4">
-             <Link href="/seller/dashboard/products" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">
-               Manage Products
-             </Link>
-             <Link href="/seller/dashboard/orders" className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md text-sm font-medium hover:bg-gray-50">
-               View Orders
-             </Link>
+        <div className="space-y-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="text-lg font-bold text-gray-800 mb-4">Quick Actions</h2>
+            <div className="flex gap-4 flex-wrap">
+              <Link href="/seller/dashboard/products" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">
+                Manage Products
+              </Link>
+              <Link href="/seller/dashboard/orders" className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md text-sm font-medium hover:bg-gray-50">
+                View Orders
+              </Link>
+              <Link href={`/store/${seller.id}`} target="_blank" className="px-4 py-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-md text-sm font-medium hover:bg-amber-100">
+                View Public Storefront →
+              </Link>
+            </div>
+          </div>
+
+          {/* Storefront Share & Backlink Badges */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h2 className="text-lg font-bold text-gray-800">Your Public Storefront &amp; Website Badges</h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  Share your verified wholesale storefront with buyers or embed official badges on your website.
+                </p>
+              </div>
+              <span className="text-xs font-mono bg-stone-100 text-stone-700 px-3 py-1 rounded-md">
+                https://www.ekorabazaar.in/store/{seller.id}
+              </span>
+            </div>
+
+            <div className="space-y-4 text-sm mt-6">
+              <div>
+                <h3 className="font-semibold text-gray-700 mb-1">Snippet 1: Brand Supplier Anchor</h3>
+                <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
+                  {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">${seller.brandName} Official Supplier Storefront</a>`}
+                </code>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-700 mb-1">Snippet 2: Wholesale Craft Supplies Anchor</h3>
+                <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
+                  {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">Buy wholesale craft materials from ${seller.brandName} on Ekora Bazaar</a>`}
+                </code>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-700 mb-1">Snippet 3: Visual Verified Badge (HTML Embed)</h3>
+                <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
+                  {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:8px 16px;background:#1c1917;color:#fff;border-radius:8px;font-family:sans-serif;font-size:13px;text-decoration:none;"><span style="color:#f59e0b;margin-right:8px;font-weight:bold;">Ekora Bazaar</span> Verified Supplier &bull; ${seller.brandName}</a>`}
+                </code>
+              </div>
+            </div>
           </div>
         </div>
       )}

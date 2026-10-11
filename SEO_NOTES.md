@@ -90,14 +90,40 @@
 
 ---
 
-## What Is Not Done (open items)
+## Phase 3 Decisions
 
-- SEO Phase 3 (Creator Storefront / seller badge anchor text variation) — not started.
-- FAQPage schema on individual blog articles — low priority, can add later.
-- /wholesale page hero copy still contains "100% secure B2B transactions" and "verified suppliers"
-  marketing language in the JSX. This was not changed in Phase 1 to avoid scope creep.
-  Recommend removing or toning down in a dedicated copy edit pass.
-- Packaging, Lids, Gift Bags, Stickers, Studio Equipment CategoryIntro entries are empty.
-  These categories have relatively fewer products; add copy in a follow-up pass.
-- The `import('./../../lib/blog')` dynamic import path in sitemap.ts uses a relative path.
-  If the file moves, update both the import and the generateSitemaps entry.
+### Creator Storefronts (`/store/[sellerId]`)
+- Server-rendered dynamic route utilizing Prisma to fetch seller profile and published products.
+- Thin-content guard: Storefronts with < 3 published products return `robots: { index: false, follow: true }`.
+- Storefronts with >= 3 published products are indexed and included in `/sitemap/stores.xml`.
+- Structured Data: `Store` schema with seller business name, description, address/city, and `BreadcrumbList`.
+
+### Seller Dashboard Share Snippets & Badges
+- Dashboard at `/seller/dashboard` includes direct storefront URL, copyable button, and 3 anchor text variations:
+  1. Primary: `{businessName}` (brand-focused)
+  2. Platform-branded: `{businessName} Store on Ekora Bazaar`
+  3. Contextual: `Verified Maker Supplies Store ({businessName})`
+- Embeddable HTML badge snippet provided for external blogs/websites.
+
+### Interactive Tools (`/tools/fragrance-load-calculator`)
+- Server metadata wrapper with `WebApplication` schema.
+- Client component calculates required fragrance oil in grams from wax weight and load percentage.
+- Features quick percentage buttons (6%, 8%, 10%, 12%), dual calculation modes (addition vs net total), and estimated jar count.
+- Internal links to `/blog/fragrance-oil-usage-rates`, `/wholesale/candle-waxes-additives`, and `/wholesale/fragrance-oils`.
+- Included in static routes in `sitemap.ts` and `sitemap_index.xml`.
+
+### Outreach Playbook (`OUTREACH.md`)
+- Strict compliance with Google link spam guidelines and ASCI influencer disclosure standards.
+- Prohibits link-for-product exchanges.
+- Mandates `rel="sponsored"` or `rel="nofollow"` for any gifted/seeded product reviews.
+- 3 distinct templates provided: Creator Seeding, Workshop Educator Kits, and Maker Directory Inclusion.
+
+---
+
+## What Is Not Done (open items for human review)
+
+- Verify claims in `REVIEW_CLAIMS.md` with suppliers and regulatory certificates.
+- Submit `/sitemap_index.xml` in Google Search Console.
+- Review draft blog posts (`cosmetic-preservatives-guide.md` and `skincare-base-formulation.md`) and toggle `draft: false` when approved.
+- /wholesale page hero copy still contains "100% secure B2B transactions" and "verified suppliers" marketing language in the JSX; recommend toning down in a future copy pass.
+- Packaging, Lids, Gift Bags, Stickers, Studio Equipment CategoryIntro entries currently render null.

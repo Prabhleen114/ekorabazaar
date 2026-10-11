@@ -6,6 +6,7 @@ author: Ekora Bazaar Editorial Team
 tags:
   - Skincare & Body Bases
 readingTimeMinutes: 8
+draft: true
 ---
 
 ## The Strategic Advantage of Pre-Made Formulation Bases
