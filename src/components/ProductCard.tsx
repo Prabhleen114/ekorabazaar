@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ALL_CATEGORIES } from "@/lib/categories";
 
-type Product = {
+export type ProductCardItem = {
   id: string;
   title: string;
   category: string | null;
@@ -13,7 +13,7 @@ type Product = {
   wholesaleTiers?: any;
 };
 
-export default function ProductCard({ product, index = 0, priority = false }: { product: Product; index?: number; priority?: boolean }) {
+export default function ProductCard({ product, index = 0, priority = false }: { product: ProductCardItem; index?: number; priority?: boolean }) {
   const isExternalImage = Boolean(product.imageUrl && product.imageUrl.startsWith("http"));
   const effectivePrice = product.price / 100;
   

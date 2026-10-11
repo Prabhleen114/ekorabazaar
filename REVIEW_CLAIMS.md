@@ -18,6 +18,17 @@ the corresponding article or promoting the copy as a selling point.
 | CategoryIntro.tsx | Food-Grade Flavor Oils | "usage rate ranges (0.5–2%)" | Widely documented in flavour industry; confirm with each supplier's TDS for specific SKUs |
 | CategoryIntro.tsx | Hydrosols & Floral Waters | "preservation requirements" | Well-established; confirm with a cosmetic formulator for any specific product claims |
 | CategoryIntro.tsx | Culinary & Fondant Moulds | "temperature tolerance of silicone" | Confirm with supplier spec sheet for each mould SKU; do not make blanket temperature claims |
+| mica-pigment-guide.md | Micas & Pigments | "ultramarine stability in high-pH soap" | Confirm supplier stability chart for specific violet and blue ultramarines before formulating cold process soap |
+| candle-jar-selection.md | Candle Jars & Containers | "ASTM F2179 thermal shock standards" | Verify specific ASTM F2179 thermal shock certification with container manufacturers |
+| silicone-mould-types.md | Candle & Pillar Moulds | "ASTM D412 tensile & tear benchmarks" | Verify tensile and tear resistance specifications with silicone elastomer technical datasheets |
+| soap-mould-guide.md | Soap & Bar Moulds | "loaf insulation thermal coefficients" | Verify thermal retention data between birch and pine loaf boxes |
+| essential-oils-in-candles.md | Essential Oils | "terpene retention times in soy wax" | Verify gas chromatography retention data for citrus monoterpenes in hydrogenated soy wax |
+| carrier-oils-for-skincare.md | Raw Butters & Carrier Oils | "rosehip fatty acid GC profile" | Check supplier lot COA for exact linoleic and linolenic acid ratios |
+| skin-safe-fragrances-soap.md | Skin Safe Fragrances | "IFRA 51st Amendment categories" | Verify latest IFRA 51st Amendment quantitative limits against specific fragrance oil certificates |
+| botanicals-in-soap.md | Dried Botanicals & Additives | "water activity thresholds" | Confirm microbial water activity threshold (Aw < 0.60) for dried surface botanicals |
+| resin-art-mould-selection.md | Eco-Resin & Stone Moulds | "deep-pour epoxy peak exotherm" | Verify manufacturer maximum single-pour depth guidelines for specific epoxy systems |
+| cosmetic-preservatives-guide.md | Cosmetic Preservatives | "USP 51 challenge test parameters" | Verify USP 51 / ISO 11930 antimicrobial efficacy protocol with accredited lab |
+| skincare-base-formulation.md | Skincare & Body Bases | "additive load thresholds" | Confirm maximum additive capacity (3-5%) with base manufacturer TDS |
 
 ## Process
 1. Assign the above items to a qualified person (formulator, regulatory consultant, or supplier contact).

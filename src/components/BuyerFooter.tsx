@@ -44,8 +44,9 @@ export default function BuyerFooter() {
 
           {/* Company */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Support</h4>
+            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Support &amp; Resources</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-brand-charcoal/65 font-medium">
+              <li><Link href="/blog" className="hover:text-brand-charcoal transition-colors text-brand-orange font-semibold">Maker Guides &amp; Blog</Link></li>
               <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors">Help Center</Link></li>
               <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors">Contact Us</Link></li>
             </ul>

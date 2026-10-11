@@ -18,6 +18,7 @@ import ProductFaqSection from "@/components/ProductFaqSection";
 import { getCategoryFaqs } from "@/lib/faqs";
 
 import catalogProducts from "@/lib/data/products.json";
+import { getPostsByCategory } from "@/lib/blog";
 
 export const revalidate = 3600;
 
@@ -193,6 +194,7 @@ export default async function ProductDetailsPage({ params }: Props) {
 
   const productFaqs = getCategoryFaqs(displayProduct.name, displayProduct.category);
   const faqSchema = generateFaqSchema(productFaqs);
+  const relatedGuides = getPostsByCategory(displayProduct.category).slice(0, 3);
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
@@ -532,6 +534,46 @@ export default async function ProductDetailsPage({ params }: Props) {
           price={displayProduct.price}
         />
       </div>
+
+      {/* Related Guides & Maker Tutorials */}
+      {relatedGuides.length > 0 && (
+        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-16">
+          <div className="bg-white p-8 md:p-10 rounded-3xl border border-stone-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-2xl font-bold font-serif text-brand-charcoal">
+                  Related Guides &amp; Maker Tutorials
+                </h2>
+                <p className="text-sm text-brand-charcoal/60 mt-1">
+                  Learn formulation guidelines, testing techniques, and usage tips for {displayProduct.category}.
+                </p>
+              </div>
+              <Link href="/blog" className="text-brand-orange text-sm font-semibold hover:underline">
+                View All Guides →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/blog/${guide.slug}`}
+                  className="group block p-5 rounded-2xl bg-stone-50 border border-stone-200 hover:border-brand-orange/40 hover:bg-white transition-all shadow-xs"
+                >
+                  <p className="text-xs font-mono text-brand-orange uppercase tracking-wider mb-2">
+                    {guide.frontmatter.tags[0] || displayProduct.category}
+                  </p>
+                  <h3 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange transition-colors line-clamp-2 mb-2">
+                    {guide.frontmatter.title}
+                  </h3>
+                  <p className="text-xs text-brand-charcoal/65 line-clamp-2 leading-relaxed">
+                    {guide.frontmatter.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <BuyerFooter />
     </main>

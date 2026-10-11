@@ -12,6 +12,7 @@ import NoResults from "@/components/NoResults";
 import catalogProducts from "@/lib/data/products.json";
 import Link from "next/link";
 import { Metadata } from "next";
+import { getPostsByCategory } from "@/lib/blog";
 
 export const revalidate = 3600;
 
@@ -129,6 +130,7 @@ export default async function WholesaleCategoryPage({ params }: Props) {
   }
 
   const products = await getWholesaleProducts(categoryObj);
+  const relatedArticles = getPostsByCategory(categoryObj.label).slice(0, 3);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -211,6 +213,53 @@ export default async function WholesaleCategoryPage({ params }: Props) {
           <NoResults />
         )}
         <CategoryIntro categoryLabel={categoryObj.label} />
+
+        {/* Related Guides & Articles Section */}
+        {relatedArticles.length > 0 && (
+          <div className="mt-16 bg-white p-8 md:p-10 rounded-3xl border border-brand-linen">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-2xl font-bold font-serif text-brand-charcoal">
+                  Related Guides &amp; Maker Resources
+                </h2>
+                <p className="text-sm text-brand-charcoal/60 mt-1">
+                  Tutorials, formulation tips, and sourcing advice for {categoryObj.label}.
+                </p>
+              </div>
+              <Link href="/blog" className="text-brand-orange text-sm font-semibold hover:underline">
+                View All Guides →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedArticles.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group block p-5 rounded-2xl bg-stone-50 border border-brand-linen hover:border-brand-orange/40 hover:bg-white transition-all shadow-xs"
+                >
+                  <p className="text-xs font-mono text-brand-orange uppercase tracking-wider mb-2">
+                    {post.frontmatter.tags[0] || categoryObj.label}
+                  </p>
+                  <h3 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange transition-colors line-clamp-2 mb-2">
+                    {post.frontmatter.title}
+                  </h3>
+                  <p className="text-xs text-brand-charcoal/65 line-clamp-2 leading-relaxed">
+                    {post.frontmatter.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-6 pt-6 border-t border-brand-linen flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+              <span className="text-brand-charcoal/70">Need detailed specification guidelines?</span>
+              <Link
+                href={`/guides/${slug}`}
+                className="text-brand-orange font-semibold hover:underline"
+              >
+                Read B2B Sourcing Guide for {categoryObj.label} →
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* SEO FAQ Section */}
         <div className="mt-16 bg-white p-8 rounded-3xl border border-brand-linen">

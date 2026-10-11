@@ -13,7 +13,8 @@ export async function generateSitemaps() {
     { id: 'static' },
     { id: 'categories' },
     { id: 'products' },
-    { id: 'guides' }
+    { id: 'guides' },
+    { id: 'blog' }
   ];
 }
 
@@ -63,6 +64,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     }[] = [
       { path: '', priority: 1.0, changeFrequency: 'daily' },
       { path: '/shop', priority: 0.9, changeFrequency: 'daily' },
+      { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
       { path: '/classes', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/sell', priority: 0.8, changeFrequency: 'weekly' },
@@ -154,6 +156,17 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     }
 
     return routes;
+  }
+
+  if (id === 'blog') {
+    const { getAllPosts } = await import('@/lib/blog');
+    const posts = getAllPosts();
+    return posts.map(post => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.frontmatter.updatedAt || post.frontmatter.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
   }
 
   return [];
