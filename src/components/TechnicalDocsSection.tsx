@@ -73,22 +73,21 @@ export default function TechnicalDocsSection({ productId, productName, category 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-brand-linen">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-              Lab-Tested &amp; Certified
+            <span className="text-[10px] font-bold uppercase tracking-wider text-stone-700 bg-stone-100 px-2 py-0.5 rounded border border-stone-200">
+              Quality &amp; Compliance
             </span>
           </div>
           <h3 className="font-serif font-bold text-lg text-brand-charcoal">
-            Certified Batch Reports &amp; Technical Documentation
+            Batch Specifications &amp; Compliance Documentation
           </h3>
           <p className="text-xs text-brand-charcoal/60 mt-0.5">
-            Publicly accessible quality compliance files. Zero login wall required.
+            Specifications and batch compliance standards for creators and commercial buyers.
           </p>
         </div>
 
         <div className="flex items-center gap-1.5 text-xs text-brand-charcoal/60 bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-linen shrink-0">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
-          <span className="font-medium">Batch Authenticated</span>
+          <ShieldCheck className="w-4 h-4 text-stone-600" />
+          <span className="font-medium">Verified on Order</span>
         </div>
       </div>
 
@@ -170,8 +169,8 @@ export default function TechnicalDocsSection({ productId, productName, category 
       </div>
 
       <div className="mt-4 flex items-center gap-2 text-[11px] text-brand-charcoal/50 bg-brand-bg px-3 py-2 rounded-xl">
-        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-        <span>All reports are verified against manufacturer lot numbers and conform to Indian &amp; international cosmetic standards.</span>
+        <CheckCircle2 className="w-3.5 h-3.5 text-stone-600 shrink-0" />
+        <span>Batch documentation (COA, TDS, MSDS) is verified against manufacturer lot numbers and provided for commercial orders.</span>
       </div>
 
       {/* Inline Preview Modal */}

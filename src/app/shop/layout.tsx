@@ -2,7 +2,7 @@ import serialize from "serialize-javascript";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Wholesale Craft Supplies & Raw Materials Shop | Ekora Bazaar",
+  title: "Wholesale Craft Supplies & Raw Materials Shop",
   description:
     "Shop premium batch-tested raw materials for candle making, resin art, perfumery, and soaps. Wholesale bulk discounts available for verified creators across India.",
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "https://www.ekorabazaar.in/shop",
   },
   openGraph: {
-    title: "Wholesale Craft Supplies & Raw Materials Shop | Ekora Bazaar",
+    title: "Wholesale Craft Supplies & Raw Materials Shop",
     description:
       "Shop premium batch-tested raw materials for candle making, resin art, perfumery, and soaps.",
     url: "https://www.ekorabazaar.in/shop",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale Craft Supplies & Raw Materials Shop | Ekora Bazaar",
+    title: "Wholesale Craft Supplies & Raw Materials Shop",
     description:
       "Shop premium batch-tested raw materials for candle making, resin art, perfumery, and soaps.",
       images: ["https://www.ekorabazaar.in/og-image.jpg"],

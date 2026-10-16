@@ -5,13 +5,13 @@ import Link from "next/link";
 import serialize from "serialize-javascript";
 
 export const metadata: Metadata = {
-  title: "About Us | Ekora Bazaar",
+  title: "About Us",
   description: "Learn about Ekora Bazaar, India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans.",
   alternates: {
     canonical: "https://www.ekorabazaar.in/about",
   },
   openGraph: {
-    title: "About Us | Ekora Bazaar",
+    title: "About Us",
     description: "Learn about Ekora Bazaar, India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans.",
     url: "https://www.ekorabazaar.in/about",
     type: "website",

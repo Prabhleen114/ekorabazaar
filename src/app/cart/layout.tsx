@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Your Cart | Ekora Bazaar',
+  title: 'Your Cart',
   robots: {
     index: false,
     follow: false,

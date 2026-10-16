@@ -20,7 +20,7 @@ import {
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Wholesale Material Categories | Ekora Bazaar",
+  title: "Wholesale Material Categories",
   description:
     "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     canonical: "https://www.ekorabazaar.in/sell/categories",
   },
   openGraph: {
-    title: "Wholesale Material Categories | Ekora Bazaar",
+    title: "Wholesale Material Categories",
     description:
       "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
     url: "https://www.ekorabazaar.in/sell/categories",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale Material Categories | Ekora Bazaar",
+    title: "Wholesale Material Categories",
     description:
       "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
     images: ["https://www.ekorabazaar.in/og-image.jpg"],

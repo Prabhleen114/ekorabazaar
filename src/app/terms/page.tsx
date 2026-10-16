@@ -3,7 +3,17 @@ import BuyerFooter from "@/components/BuyerFooter";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Ekora Bazaar",
+  title: "Terms of Service",
+  description: "Read the Ekora Bazaar Terms of Service outlining platform rules, transactions, and account responsibilities.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/terms",
+  },
+  openGraph: {
+    title: "Terms of Service",
+    description: "Read the Ekora Bazaar Terms of Service outlining platform rules, transactions, and account responsibilities.",
+    url: "https://www.ekorabazaar.in/terms",
+    type: "website",
+  },
 };
 
 export default function TermsPage() {

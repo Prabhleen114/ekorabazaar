@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Creator Guidelines & Selling Standards — Ekora",
+  title: "Creator Guidelines & Selling Standards",
   description:
     "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://www.ekorabazaar.in/creator-guidelines",
   },
   openGraph: {
-    title: "Creator Guidelines & Selling Standards — Ekora",
+    title: "Creator Guidelines & Selling Standards",
     description:
       "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
     url: "https://www.ekorabazaar.in/creator-guidelines",

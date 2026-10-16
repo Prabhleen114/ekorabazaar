@@ -99,7 +99,7 @@ export default async function GuidePage({ params }: Props) {
           <ol className="flex items-center gap-2">
             <li><Link href="/" className="hover:text-brand-orange transition-colors">Home</Link></li>
             <li aria-hidden="true">›</li>
-            <li><Link href="/shop" className="hover:text-brand-orange transition-colors">Categories</Link></li>
+            <li><Link href="/guides" className="hover:text-brand-orange transition-colors">Guides</Link></li>
             <li aria-hidden="true">›</li>
             <li className="text-brand-charcoal font-medium">{categoryObj.label} Guide</li>
           </ol>

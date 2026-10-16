@@ -548,7 +548,7 @@ export default function PricingWidget({
           <div className="mt-3 pt-3 border-t border-stone-200 flex items-center justify-between text-[11px] font-mono text-stone-600 flex-wrap gap-1">
             <span className="flex items-center gap-1.5">
               <Truck className="w-3.5 h-3.5 text-stone-500" />
-              Standard Flat Shipping: <strong className="text-stone-900">₹80</strong> across India
+              Standard Flat Shipping: <strong className="text-stone-900">₹90</strong> across India
             </span>
             <span className="text-emerald-700 font-medium">
               &bull; Dispatches in 24 Hours

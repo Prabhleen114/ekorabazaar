@@ -31,9 +31,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!formulation) return { title: "Not Found" };
   
+  const canonicalUrl = `https://www.ekorabazaar.in/formulations/${slug}`;
   return {
-    title: `${formulation.title} | Ekora Formulations`,
+    title: `${formulation.title} | Formulations`,
     description: formulation.excerpt,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${formulation.title} | Formulations`,
+      description: formulation.excerpt,
+      url: canonicalUrl,
+      type: "article",
+      images: formulation.imageUrl ? [{ url: formulation.imageUrl }] : undefined,
+    },
   };
 }
 

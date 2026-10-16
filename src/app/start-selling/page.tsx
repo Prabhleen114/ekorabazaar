@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import serialize from "serialize-javascript";
 
 export const metadata: Metadata = {
-  title: "Start Selling | Creator Onboarding Portal | Ekora Bazaar",
+  title: "Start Selling | Creator Onboarding Portal",
   description:
     "Apply to become a Founding Creator on Ekora Bazaar. Complete your onboarding in minutes — share your details, upload your catalogue, and start selling.",
   alternates: {

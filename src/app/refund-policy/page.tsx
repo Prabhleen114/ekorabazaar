@@ -3,7 +3,17 @@ import BuyerFooter from "@/components/BuyerFooter";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Ekora Bazaar",
+  title: "Refund Policy",
+  description: "Read the Ekora Bazaar Refund & Cancellation Policy for wholesale raw materials, craft supplies, and masterclasses.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/refund-policy",
+  },
+  openGraph: {
+    title: "Refund Policy",
+    description: "Read the Ekora Bazaar Refund & Cancellation Policy for wholesale raw materials, craft supplies, and masterclasses.",
+    url: "https://www.ekorabazaar.in/refund-policy",
+    type: "website",
+  },
 };
 
 export default function RefundPage() {

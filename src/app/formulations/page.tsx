@@ -13,8 +13,17 @@ type Formulation = {
 };
 
 export const metadata = {
-  title: "Free Formulations | Ekora Bazaar",
+  title: "Free Formulations",
   description: "Explore our collection of free cosmetic, skincare, and candle making formulations. High-quality recipes crafted by experts.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/formulations",
+  },
+  openGraph: {
+    title: "Free Formulations",
+    description: "Explore our collection of free cosmetic, skincare, and candle making formulations. High-quality recipes crafted by experts.",
+    url: "https://www.ekorabazaar.in/formulations",
+    type: "website",
+  },
 };
 
 import dataRaw from "@/lib/data/formulations.json";

@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const publishedCount = seller.products.length;
   const isIndexable = publishedCount >= 3;
 
-  const title = `${brandName} Wholesale Storefront | Ekora Bazaar`;
+  const title = `${brandName} Wholesale Storefront`;
   const description = `Shop verified wholesale craft raw materials directly from ${brandName} on Ekora Bazaar. Tiered B2B pricing, fast dispatch across India.`;
 
   return {

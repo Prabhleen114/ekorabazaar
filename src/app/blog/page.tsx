@@ -8,12 +8,12 @@ import serialize from "serialize-javascript";
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
 
 export const metadata: Metadata = {
-  title: "Craft Maker Knowledge Base | Ekora Bazaar Blog",
+  title: "Craft Maker Knowledge Base | Blog",
   description:
     "Practical guides on candle making, soap crafting, resin art, skincare formulation, and sourcing raw materials for small businesses in India.",
   alternates: { canonical: `${BASE_URL}/blog` },
   openGraph: {
-    title: "Craft Maker Knowledge Base | Ekora Bazaar Blog",
+    title: "Craft Maker Knowledge Base | Blog",
     description:
       "Practical guides for Indian craft makers: candle wax selection, soap bases, fragrance usage rates, and wholesale sourcing tips.",
     url: `${BASE_URL}/blog`,

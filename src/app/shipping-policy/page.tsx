@@ -3,8 +3,17 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 
 export const metadata: Metadata = {
-  title: "Shipping Policy | Ekora Bazaar",
+  title: "Shipping Policy",
   description: "Read the Ekora Bazaar shipping policy. We offer flat-rate shipping across India for wholesale raw materials and craft supplies.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/shipping-policy",
+  },
+  openGraph: {
+    title: "Shipping Policy",
+    description: "Read the Ekora Bazaar shipping policy. We offer flat-rate shipping across India for wholesale raw materials and craft supplies.",
+    url: "https://www.ekorabazaar.in/shipping-policy",
+    type: "website",
+  },
 };
 
 export default function ShippingPolicyPage() {

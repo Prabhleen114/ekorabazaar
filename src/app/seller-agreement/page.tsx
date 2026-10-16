@@ -3,8 +3,15 @@ import Footer from "@/components/Footer";
 import { AlertCircle } from "lucide-react";
 
 export const metadata = {
-  title: "Seller Agreement | Ekora Bazaar",
+  title: "Seller Agreement",
   description: "Read the Ekora Bazaar Seller Agreement.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/seller-agreement",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function SellerAgreementPage() {

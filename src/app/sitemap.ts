@@ -15,7 +15,8 @@ export async function generateSitemaps() {
     { id: 'products' },
     { id: 'guides' },
     { id: 'blog' },
-    { id: 'stores' }
+    { id: 'stores' },
+    { id: 'formulations' }
   ];
 }
 
@@ -65,8 +66,10 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     }[] = [
       { path: '', priority: 1.0, changeFrequency: 'daily' },
       { path: '/shop', priority: 0.9, changeFrequency: 'daily' },
+      { path: '/guides', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
+      { path: '/contact', priority: 0.7, changeFrequency: 'monthly' },
       { path: '/classes', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/tools/fragrance-load-calculator', priority: 0.8, changeFrequency: 'monthly' },
       { path: '/sell', priority: 0.8, changeFrequency: 'weekly' },
@@ -76,6 +79,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       { path: '/sell/platform', priority: 0.7, changeFrequency: 'weekly' },
       { path: '/sell/faq', priority: 0.6, changeFrequency: 'monthly' },
       { path: '/creator-guidelines', priority: 0.5, changeFrequency: 'monthly' },
+      { path: '/shipping-policy', priority: 0.5, changeFrequency: 'monthly' },
       { path: '/privacy', priority: 0.3, changeFrequency: 'monthly' },
       { path: '/terms', priority: 0.3, changeFrequency: 'monthly' },
       { path: '/refund-policy', priority: 0.3, changeFrequency: 'monthly' },
@@ -195,6 +199,30 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       console.warn("Could not load stores for sitemap:", err);
       return [];
     }
+  }
+
+  if (id === 'formulations') {
+    const rawFormulations = (await import('@/lib/data/formulations.json')).default;
+    const routes: MetadataRoute.Sitemap = [
+      {
+        url: `${BASE_URL}/formulations`,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      },
+    ];
+
+    for (const item of rawFormulations) {
+      const slug = item.url.split('/').pop() || '';
+      if (slug) {
+        routes.push({
+          url: `${BASE_URL}/formulations/${slug}`,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+        });
+      }
+    }
+
+    return routes;
   }
 
   return [];

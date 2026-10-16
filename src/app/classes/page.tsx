@@ -8,7 +8,7 @@ import { CheckCircle2, Package, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Luxury Candle-Making Classes | Ekora Bazaar",
+  title: "Luxury Candle-Making Classes",
   description:
     "Join Ekora's candle-making classes. Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes like Bakery and Indian Festivities.",
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: "https://www.ekorabazaar.in/classes",
   },
   openGraph: {
-    title: "Luxury Candle-Making Classes | Ekora Bazaar",
+    title: "Luxury Candle-Making Classes",
     description:
       "Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes.",
     url: "https://www.ekorabazaar.in/classes",

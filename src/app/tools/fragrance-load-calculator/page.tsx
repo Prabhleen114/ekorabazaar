@@ -7,14 +7,14 @@ import serialize from "serialize-javascript";
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
 
 export const metadata: Metadata = {
-  title: "Candle Fragrance Load Calculator | Ekora Bazaar",
+  title: "Candle Fragrance Load Calculator",
   description:
     "Free candle fragrance load calculator. Calculate exact grams of fragrance oil and wax for soy, paraffin, and coconut candles with batch cost in INR.",
   alternates: {
     canonical: `${BASE_URL}/tools/fragrance-load-calculator`,
   },
   openGraph: {
-    title: "Candle Fragrance Load Calculator | Ekora Bazaar",
+    title: "Candle Fragrance Load Calculator",
     description:
       "Calculate fragrance oil and wax weight in grams for candle making. Accurate batch formulas for Indian makers.",
     url: `${BASE_URL}/tools/fragrance-load-calculator`,

@@ -7,6 +7,15 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Ekora Bazaar for support, bulk queries, or feedback.",
+  alternates: {
+    canonical: "https://www.ekorabazaar.in/contact",
+  },
+  openGraph: {
+    title: "Contact Us",
+    description: "Get in touch with Ekora Bazaar for support, bulk queries, or feedback.",
+    url: "https://www.ekorabazaar.in/contact",
+    type: "website",
+  },
 };
 
 export default function ContactPage() {
