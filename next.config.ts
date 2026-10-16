@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "jindeal.com" },
@@ -55,6 +55,15 @@ const nextConfig: NextConfig = {
         destination: "/sitemap_index.xml",
         permanent: true,
       },
+      // Confirmed duplicate product redirects to canonical SKUs
+      { source: "/products/399", destination: "/products/375", permanent: true },
+      { source: "/products/2383", destination: "/products/854", permanent: true },
+      { source: "/products/2385", destination: "/products/857", permanent: true },
+      { source: "/products/2390", destination: "/products/862", permanent: true },
+      { source: "/products/2388", destination: "/products/932", permanent: true },
+      { source: "/products/2401", destination: "/products/1262", permanent: true },
+      { source: "/products/2399", destination: "/products/1283", permanent: true },
+      { source: "/products/2403", destination: "/products/1285", permanent: true },
     ];
   }
 };

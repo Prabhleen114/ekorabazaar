@@ -3,6 +3,7 @@ import prisma from '@/lib/db';
 import { ProductStatus } from '@prisma/client';
 import { ALL_CATEGORIES } from '@/lib/categories';
 import catalogProducts from '@/lib/data/products.json';
+import { isDeprecatedProductId } from '@/lib/product-redirects';
 
 const BASE_URL = 'https://www.ekorabazaar.in';
 
@@ -134,6 +135,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       });
 
       for (const product of dbProducts) {
+        if (isDeprecatedProductId(product.id)) continue;
         routes.push({
           url: `${BASE_URL}/products/${product.id}`,
           lastModified: product.updatedAt,
@@ -152,9 +154,10 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     }));
     
     for (const p of catalogProducts as any[]) {
-      if (!existingIds.has(String(p.id))) {
+      const pid = String(p.id);
+      if (!existingIds.has(pid) && !isDeprecatedProductId(pid)) {
         routes.push({
-          url: `${BASE_URL}/products/${p.id}`,
+          url: `${BASE_URL}/products/${pid}`,
           changeFrequency: 'weekly',
           priority: 0.8,
         });

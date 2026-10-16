@@ -23,10 +23,16 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "mainEntity": {
-      "@type": "Organization",
+      "@type": "LocalBusiness",
       "name": "Ekora Bazaar",
+      "legalName": "Ekora Bazaar Pvt Ltd",
+      "url": "https://www.ekorabazaar.in",
+      "logo": "https://www.ekorabazaar.in/apple-touch-icon.png",
+      "image": "https://www.ekorabazaar.in/og-image.jpg",
+      "telephone": "+91-9041500605",
+      "email": "ekorabazaar@gmail.com",
+      "priceRange": "₹₹",
       "foundingDate": "2026",
-      
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
@@ -37,7 +43,7 @@ export default function AboutPage() {
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91 9041500605",
+        "telephone": "+91-9041500605",
         "email": "ekorabazaar@gmail.com",
         "contactType": "customer support"
       }

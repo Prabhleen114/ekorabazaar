@@ -137,7 +137,7 @@ export function getCategoryFaqs(productName: string, category: string): FaqItem[
       },
       {
         question: `How are these fragile items packed to prevent courier breakage?`,
-        answer: `Every glass and aluminium container order is packed in custom 5-ply corrugated master cartons with cell partitions and protective bubble sleeves. Ekora Bazaar guarantees 100% free transit-damage replacement within 7 days.`,
+        answer: `Every glass and aluminium container order is packed in custom 5-ply corrugated master cartons with cell partitions and protective bubble sleeves. Ekora Bazaar provides free transit-damage replacement when reported within 48 hours of delivery with an unboxing video.`,
         tag: "Shipping Protection"
       },
       {

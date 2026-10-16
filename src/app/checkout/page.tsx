@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
 import { Check, Plus, Loader2, Building2, ShieldCheck } from 'lucide-react'
 import { TrackBeginCheckout } from "@/components/GA4Tracker"
+import { sendGAEvent } from '@next/third-parties/google'
 import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 
@@ -193,7 +194,7 @@ export default function CheckoutPage() {
         contact: activeAddr.phone,
       } : undefined,
       onSuccess: (data) => {
-        import('@next/third-parties/google').then(({ sendGAEvent }) => {
+        try {
           sendGAEvent('event', 'purchase', {
             transaction_id: data.orderId,
             value: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
@@ -205,15 +206,22 @@ export default function CheckoutPage() {
               quantity: item.quantity
             }))
           });
-        });
-        paymentCompletedRef.current = true
+        } catch (gaErr) {
+          console.warn('GA4 purchase event dispatch error:', gaErr);
+        }
+
+        paymentCompletedRef.current = true;
         trackEvent("purchase", {
           order_id: data.orderId,
           cart_total: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
           item_count: items.length,
           gst_provided: !!gstin.trim(),
-        })
-        router.push('/account/orders')
+        });
+
+        // 150ms buffer ensures the analytics beacon is fully transmitted before page unmounts
+        setTimeout(() => {
+          router.push('/account/orders');
+        }, 150);
       },
       onError: (err) => {
         setErrorMsg(err)

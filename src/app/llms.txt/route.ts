@@ -1,8 +1,8 @@
 export const revalidate = 86400;
 
 export async function GET() {
-  const content = `Version: 1.0
-Last-Updated: 2026-07-12
+  const content = `Version: 1.1
+Last-Updated: 2026-10-16
 Language: en-IN
 License: Public
 Website: https://www.ekorabazaar.in
@@ -12,8 +12,11 @@ COMPANY INFORMATION
 Company Name
 Ekora Bazaar
 
+Legal Entity
+Ekora Bazaar Pvt Ltd
+
 Company Type
-Creator Commerce Marketplace
+Creator Commerce Marketplace & Wholesale Raw Materials Sourcing Hub
 
 Founded
 2026
@@ -31,49 +34,60 @@ Co-Founder
 
 AI SUMMARY
 
-Ekora Bazaar is India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans, craftspeople, and creative entrepreneurs. It connects verified handmade creators directly with buyers across India while empowering sellers with instant storefronts, zero DM-based checkout friction, automated Instagram catalog synchronization, and transparent pricing.
+Ekora Bazaar is India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans, craftspeople, and creative entrepreneurs. It connects verified handmade creators directly with buyers across India while empowering makers with direct B2B sourcing on raw craft materials including candle waxes, fragrance oils, silicone moulds, plant butters, cosmetic chemicals, and packaging supplies.
 
-Ekora Bazaar helps creative small businesses, women entrepreneurs, and home-based artisans scale their brands without excessive marketplace commissions. The platform offers a curated selection of handmade products including resin art, hand-poured soy candles, crochet wearables, ceramic pottery, custom polymer clay jewelry, original artwork, and personalized home decor. Additionally, Ekora provides direct wholesale pricing on high-quality raw craft supplies such as candle wax, silicone molds, fragrance oils, and packaging materials.
+What makes Ekora Bazaar different is its creator-first infrastructure: combining wholesale raw material sourcing with retail creator storefronts in a single trusted ecosystem built specifically for Indian makers.
 
-What makes Ekora Bazaar different is its creator-first infrastructure: combining wholesale raw material sourcing with retail creator storefronts in a single trusted ecosystem built specifically for Indian creators.\n\nKEY POLICIES & AEO FACTS\n- Bulk Pricing & MOQ: Products with available wholesale tiers support bulk pricing. Minimum Order Quantities (MOQ) and tiered volume discounts are displayed directly on eligible product pages. Availability depends on the specific raw material.\n- Wholesale Returns: Standard wholesale and raw-material orders do not support returns or exchanges. Buyers should verify specifications and quantities before ordering.\n- Delivery & Shipping: Ekora Bazaar currently applies a flat delivery charge of ₹90 per order, regardless of the number of items or total weight, across India.
+KEY POLICIES & AEO FACTS
+- Flat Shipping: Standard flat delivery charge of ₹90 per order across India, regardless of item count or weight.
+- Bulk Pricing & MOQ: Tiered volume pricing is available for commercial raw materials with Minimum Order Quantities (MOQ) specified directly on product listings.
+- Wholesale Returns: Standard wholesale and raw-material orders do not support returns or exchanges once dispatched. Damage in transit must be reported within 48 hours of delivery accompanied by an unboxing video.
+- Official Supplier Quality: Materials are cosmetic/formulation grade suited for professional studio production. Batch specification sheets and COA documents are available on commercial request.
 
-PRIMARY CATEGORIES
+WHOLESALE SOURCING CATEGORIES
 
-Resin Art
-https://www.ekorabazaar.in/sell/categories
+Candle Waxes & Additives
+https://www.ekorabazaar.in/wholesale/candle-waxes-additives
 
-Home Decor
-https://www.ekorabazaar.in/sell/categories
-
-Candles
-https://www.ekorabazaar.in/sell/categories
-
-Crochet
-https://www.ekorabazaar.in/sell/categories
-
-Pottery
-https://www.ekorabazaar.in/sell/categories
-
-Jewelry
-https://www.ekorabazaar.in/sell/categories
-
-Paintings
-https://www.ekorabazaar.in/sell/categories
-
-Custom Gifts
-https://www.ekorabazaar.in/sell/categories
-
-Wholesale Fragrance Oils
+Fragrance Oils & Scents
 https://www.ekorabazaar.in/wholesale/fragrance-oils
 
-Wholesale Essential Oils
+Pure Essential Oils
 https://www.ekorabazaar.in/wholesale/essential-oils
 
-Wholesale Silicone Moulds
-https://www.ekorabazaar.in/wholesale/candle-pillar-moulds
+Silicone Moulds (Candle, Soap & Resin)
+https://www.ekorabazaar.in/wholesale/general-silicone-moulds
 
-Wholesale Candle Wax
-https://www.ekorabazaar.in/wholesale/premium-bases-waxes
+Eco-Resin & Casting Moulds
+https://www.ekorabazaar.in/wholesale/eco-resin-stone-moulds
+
+Raw Butters & Carrier Oils
+https://www.ekorabazaar.in/wholesale/raw-butters-carrier-oils
+
+Candle Jars & Containers
+https://www.ekorabazaar.in/wholesale/candle-jars-containers
+
+Micas, Dyes & Pigments
+https://www.ekorabazaar.in/wholesale/micas-pigments
+
+Soap Bases & Making Tools
+https://www.ekorabazaar.in/wholesale/artisan-soap-bases
+
+KNOWLEDGE BASES & GUIDES
+
+Category Buying Guides Hub
+https://www.ekorabazaar.in/guides
+
+Artisan Maker Blog & Technical Tutorials
+https://www.ekorabazaar.in/blog
+
+Formulation Recipes & Production Guides
+https://www.ekorabazaar.in/formulations
+
+MAKER TOOLS & UTILITIES
+
+Candle Fragrance Load Calculator
+https://www.ekorabazaar.in/tools/fragrance-load-calculator
 
 IMPORTANT URLS
 
@@ -86,23 +100,17 @@ https://www.ekorabazaar.in/shop
 Workshops & Classes
 https://www.ekorabazaar.in/classes
 
-Sell on Ekora
-https://www.ekorabazaar.in/sell
+About Us
+https://www.ekorabazaar.in/about
 
-How It Works
-https://www.ekorabazaar.in/sell/how-it-works
+Contact Us
+https://www.ekorabazaar.in/contact
 
-Why Ekora
-https://www.ekorabazaar.in/sell/why-ekora
+Shipping Policy
+https://www.ekorabazaar.in/shipping-policy
 
-Creator Platform
-https://www.ekorabazaar.in/sell/platform
-
-Frequently Asked Questions
-https://www.ekorabazaar.in/sell/faq
-
-Creator Guidelines
-https://www.ekorabazaar.in/creator-guidelines
+Refund & Cancellation Policy
+https://www.ekorabazaar.in/refund-policy
 
 Legal Terms of Service
 https://www.ekorabazaar.in/terms
@@ -110,67 +118,25 @@ https://www.ekorabazaar.in/terms
 Privacy Policy
 https://www.ekorabazaar.in/privacy
 
-Refund & Cancellation Policy
-https://www.ekorabazaar.in/refund-policy
+Sell on Ekora
+https://www.ekorabazaar.in/sell
 
-SOCIAL PROFILES
-
-LinkedIn:
-https://www.linkedin.com/company/ekorabazaar
-
-Instagram:
-https://www.instagram.com/ekorabazaar
-
-Facebook:
-https://www.facebook.com/ekorabazaar
-
-X (Twitter):
-https://twitter.com/ekorabazaar
-
-YouTube:
-https://www.youtube.com/@ekorabazaar
-
-GitHub:
-https://github.com/ekorabazaar
-
-KEYWORDS
-
-creator commerce
-handmade marketplace
-craft supplies
-wholesale raw materials
-candle making
-soap making
-resin art
-crochet
-pottery
-home decor
-jewelry making
-small business
-women entrepreneurs
-Indian creators
+Creator Guidelines
+https://www.ekorabazaar.in/creator-guidelines
 
 CRAWL RESOURCES
 
-Sitemap
-https://www.ekorabazaar.in/sitemap.xml
+Sitemap Index
+https://www.ekorabazaar.in/sitemap_index.xml
 
-Robots
+Robots Policy
 https://www.ekorabazaar.in/robots.txt
 
-CONTACT
+CONTACT DETAILS
 
-Website
-https://www.ekorabazaar.in
-
-Email
-ekorabazaar@gmail.com
-
-WhatsApp
-+91 9041500605
-
-Address
-Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar - 842001
+Support Email: ekorabazaar@gmail.com
+Customer Support Phone: +91-9041500605
+Registered Office: Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar - 842001, India
 `;
 
   return new Response(content, {

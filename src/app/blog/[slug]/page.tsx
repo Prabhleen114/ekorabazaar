@@ -20,12 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Article Not Found" };
 
   const { frontmatter } = post;
-  const title = frontmatter.title.length > 60
-    ? frontmatter.title.slice(0, 57) + "..."
-    : frontmatter.title;
-  const description = frontmatter.description.length > 155
-    ? frontmatter.description.slice(0, 152) + "..."
-    : frontmatter.description;
+  const title = frontmatter.title;
+  const description = frontmatter.description;
 
   if (frontmatter.draft) {
     return {
@@ -120,6 +116,7 @@ export default async function BlogArticlePage({ params }: Props) {
     "@type": "Article",
     headline: frontmatter.title,
     description: frontmatter.description,
+    image: [frontmatter.featuredImage || `${BASE_URL}/og-image.jpg`],
     url: `${BASE_URL}/blog/${slug}`,
     datePublished: frontmatter.publishedAt,
     dateModified: frontmatter.updatedAt || frontmatter.publishedAt,

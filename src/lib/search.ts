@@ -20,13 +20,27 @@ export const SYNONYM_GROUPS: string[][] = [
   ['aroma', 'aromatic', 'aromatherapy'],
 
   // Ingredient / Material synonyms
-  ['wax', 'paraffin', 'soy wax', 'beeswax', 'coconut wax'],
+  // Waxes - specific varieties kept distinct to prevent cross-material pollution
+  ['wax', 'candle wax'],
+  ['soy wax', 'soya wax', 'soy candle wax'],
+  ['beeswax', 'bees wax', 'cera alba'],
+  ['coconut wax', 'coco wax'],
+  ['paraffin', 'paraffin wax'],
+  ['palm wax', 'palm candle wax'],
+  ['gel wax', 'jelly wax'],
+
   ['mold', 'mould', 'silicone mould', 'silicone mold'],
   ['mica', 'pigment', 'color', 'colour', 'colorant'],
   ['lye', 'sodium hydroxide', 'naoh'],
   ['base', 'soap base', 'melt and pour', 'mp base'],
   ['resin', 'epoxy', 'epoxy resin'],
-  ['butter', 'shea butter', 'cocoa butter', 'mango butter'],
+
+  // Butters - distinct plant butters kept separate to prevent false recommendations
+  ['butter', 'raw butter', 'cosmetic butter', 'body butter base'],
+  ['shea butter', 'karite'],
+  ['mango butter', 'mango kernel butter'],
+  ['cocoa butter', 'cacao butter', 'theobroma oil'],
+  ['kokum butter', 'kokum'],
   ['carrier oil', 'carrier', 'base oil'],
   ['preservative', 'preservatives'],
   ['emulsifier', 'emulsifiers'],

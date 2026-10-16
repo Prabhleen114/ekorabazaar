@@ -39,8 +39,8 @@ export default function FragranceLoadCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "Maker Tools", item: `${BASE_URL}/tools/fragrance-load-calculator` },
-      { "@type": "ListItem", position: 3, name: "Fragrance Calculator", item: `${BASE_URL}/tools/fragrance-load-calculator` },
+      { "@type": "ListItem", position: 2, name: "Shop & Tools", item: `${BASE_URL}/shop` },
+      { "@type": "ListItem", position: 3, name: "Fragrance Load Calculator", item: `${BASE_URL}/tools/fragrance-load-calculator` },
     ],
   };
 

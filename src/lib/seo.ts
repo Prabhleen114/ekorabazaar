@@ -44,15 +44,18 @@ export function generateStandardMetadata(
   };
 }
 
+import { getCanonicalProductId } from '@/lib/product-redirects';
+
 /**
  * Generate dynamic Product Metadata targeting B2B & Wholesale commercial intent
  */
 export function generateProductMetadata(product: any): Metadata {
-  const title = product.title;
-  const description = `Source ${product.title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
+  const canonicalId = getCanonicalProductId(String(product.id));
+  const title = product.title || product.name;
+  const description = `Source ${title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
   
-  const imageUrl = product.imageUrl || DEFAULT_OG_IMAGE;
-  const path = `/products/${product.id}`;
+  const imageUrl = product.imageUrl || product.image || DEFAULT_OG_IMAGE;
+  const path = `/products/${canonicalId}`;
 
   return generateStandardMetadata(title, description, path, imageUrl);
 }
@@ -132,9 +135,10 @@ export function generateProductSchema(product: any, sellerName?: string) {
   // This is because Google Merchant Center and standard SERP snippets expect the primary offer to match the 1-unit baseline price.
   // While AggregateOffer supports lowPrice/highPrice, it is semantically intended for multiple distinct sellers offering the same product, rather than tiered volume pricing from a single seller.
   
+  const canonicalId = getCanonicalProductId(String(product.id));
   const offers = {
     "@type": "Offer",
-    "url": `${BASE_URL}/products/${product.id}`,
+    "url": `${BASE_URL}/products/${canonicalId}`,
     "priceCurrency": "INR",
     "price": basePrice,
     "itemCondition": "https://schema.org/NewCondition",
@@ -156,8 +160,8 @@ export function generateProductSchema(product: any, sellerName?: string) {
         ? (product.imageUrl || product.image) 
         : `${BASE_URL}${product.imageUrl || product.image || "/og-image.jpg"}`
     ],
-    "description": product.description || `Lab-tested ${product.title || product.name} available in bulk wholesale for small businesses in India.`,
-    "sku": String(product.id),
+    "description": product.description || `Source ${product.title || product.name} in bulk wholesale on Ekora Bazaar. Tiered pricing and reliable delivery across India.`,
+    "sku": canonicalId,
     "brand": {
         "@type": "Brand",
         "name": "Ekora Bazaar"

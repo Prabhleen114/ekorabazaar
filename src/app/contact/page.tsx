@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+import serialize from "serialize-javascript";
+
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Ekora Bazaar for support, bulk queries, or feedback.",
@@ -19,8 +21,33 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ekora Bazaar",
+    "legalName": "Ekora Bazaar Pvt Ltd",
+    "url": "https://www.ekorabazaar.in",
+    "logo": "https://www.ekorabazaar.in/apple-touch-icon.png",
+    "image": "https://www.ekorabazaar.in/og-image.jpg",
+    "telephone": "+91-9041500605",
+    "email": "ekorabazaar@gmail.com",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
+      "addressLocality": "Muzaffarpur",
+      "addressRegion": "Bihar",
+      "postalCode": "842001",
+      "addressCountry": "IN"
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serialize(localBusinessSchema, { isJSON: true }) }}
+      />
       <Navbar />
       <main className="min-h-screen bg-brand-bg pt-24 pb-16 px-4 md:px-6">
         <section className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-brand-linen p-8 md:p-12">

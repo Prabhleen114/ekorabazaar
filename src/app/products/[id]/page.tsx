@@ -19,6 +19,7 @@ import { getCategoryFaqs } from "@/lib/faqs";
 
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
+import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
 
 export const revalidate = 3600;
 
@@ -149,7 +150,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
 // Generate SEO Metadata dynamically
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const productData = await getProductData(id);
+  const canonicalId = getCanonicalProductId(id);
+  const productData = await getProductData(canonicalId);
 
   if (!productData) {
     return { title: "Product Not Found | Ekora Bazaar" };
@@ -160,6 +162,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductDetailsPage({ params }: Props) {
   const { id } = await params;
+  if (isDeprecatedProductId(id)) {
+    permanentRedirect(`/products/${getCanonicalProductId(id)}`);
+  }
   const productData = await getProductData(id);
 
   if (!productData) {
@@ -192,8 +197,6 @@ export default async function ProductDetailsPage({ params }: Props) {
     { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${productData.id}` }
   ]);
 
-  const productFaqs = getCategoryFaqs(displayProduct.name, displayProduct.category);
-  const faqSchema = generateFaqSchema(productFaqs);
   const relatedGuides = getPostsByCategory(displayProduct.category).slice(0, 3);
 
   return (
@@ -209,10 +212,6 @@ export default async function ProductDetailsPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize(faqSchema, { isJSON: true }) }}
       />
       {/* Visually hidden SEO tags */}
       {displayProduct.tags && displayProduct.tags.length > 0 && (
@@ -480,13 +479,41 @@ export default async function ProductDetailsPage({ params }: Props) {
 
             <details className="group py-4">
               <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
-                <span>+ Batch Compliance &amp; Technical Data Sheet (TDS)</span>
+                <span>+ Batch Compliance &amp; Technical Specifications</span>
                 <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
               </summary>
               <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2 font-mono">
-                <p>&bull; Gas Chromatography &bull; Mass Spectrometry (GC-MS) batch matched.</p>
-                <p>&bull; Phthalate-Free &bull; Cruelty-Free &bull; 100% Uncut Pure Formulation Grade.</p>
-                <p>&bull; Certificate of Analysis (COA) generated per production lot.</p>
+                {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
+                  <>
+                    <p>&bull; Gas Chromatography &bull; Mass Spectrometry (GC-MS) batch verification available.</p>
+                    <p>&bull; Phthalate-Free &bull; Cruelty-Free &bull; 100% Pure Formulation Grade.</p>
+                    <p>&bull; Certificate of Analysis (COA) / IFRA Certificate available per production lot.</p>
+                  </>
+                ) : displayProduct.category.toLowerCase().includes("butter") || displayProduct.category.toLowerCase().includes("carrier") ? (
+                  <>
+                    <p>&bull; Pure Cold-Pressed / Expeller Extracted Cosmetic Grade.</p>
+                    <p>&bull; Unrefined / Pure Formulation Grade &bull; Hexane-Free.</p>
+                    <p>&bull; Certificate of Analysis (COA) / Batch Specification available on request.</p>
+                  </>
+                ) : displayProduct.category.toLowerCase().includes("wax") ? (
+                  <>
+                    <p>&bull; High-Purity Candle Formulation Grade Wax.</p>
+                    <p>&bull; Consistent Melting Point &amp; Smooth Surface Crystallization.</p>
+                    <p>&bull; Technical Data Sheet (TDS) and batch lot information available on request.</p>
+                  </>
+                ) : displayProduct.category.toLowerCase().includes("mould") || displayProduct.category.toLowerCase().includes("mold") ? (
+                  <>
+                    <p>&bull; High-Tear Strength Food &amp; Craft Grade Silicone.</p>
+                    <p>&bull; Temperature Resistant (-40&deg;C to 230&deg;C) &bull; Reusable &amp; Non-Stick.</p>
+                    <p>&bull; Precision Mold Engineering for Artisans &amp; Studio Production.</p>
+                  </>
+                ) : (
+                  <>
+                    <p>&bull; Standard Commercial Wholesale Grade.</p>
+                    <p>&bull; Batch Specification &amp; Safe Handling Guidance available on request.</p>
+                    <p>&bull; Quality inspected for professional craft and formulation studios.</p>
+                  </>
+                )}
               </div>
             </details>
 
@@ -496,7 +523,17 @@ export default async function ProductDetailsPage({ params }: Props) {
                 <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
               </summary>
               <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-mono">
-                Store in original amber glass or food-grade HDPE container at 15&deg;C&ndash;25&deg;C away from direct UV exposure. Optimal shelf life is 24 months from batch distillation date.
+                {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
+                  "Store in original amber glass or food-grade HDPE container at 15°C–25°C away from direct UV exposure and heat. Optimal shelf life is 24 months from packaging date."
+                ) : displayProduct.category.toLowerCase().includes("butter") ? (
+                  "Store in a cool, dry place at 15°C–22°C away from direct sunlight and humidity. Optimal shelf life is 18–24 months from cold-press extraction date."
+                ) : displayProduct.category.toLowerCase().includes("wax") ? (
+                  "Store flakes/slabs in a cool, ventilated space below 25°C in sealed containers away from open flame and direct sunlight. Optimal shelf life is 24+ months."
+                ) : displayProduct.category.toLowerCase().includes("mould") || displayProduct.category.toLowerCase().includes("mold") ? (
+                  "Wash with mild warm soapy water after use. Store flat on a level surface away from sharp objects and direct UV exposure to prevent distortion."
+                ) : (
+                  "Store in original packaging in a cool, dry ambient warehouse environment away from moisture and direct sunlight."
+                )}
               </div>
             </details>
 

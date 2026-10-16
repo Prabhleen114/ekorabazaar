@@ -9,6 +9,7 @@ export interface BlogFrontmatter {
   author: string;
   tags: string[]; // category labels from ALL_CATEGORIES used for RelatedProducts
   readingTimeMinutes: number;
+  featuredImage?: string;
   draft?: boolean;
 }
 
