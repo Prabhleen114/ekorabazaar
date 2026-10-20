@@ -203,7 +203,7 @@ export default async function ProductDetailsPage({ params }: Props) {
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
       <TrackViewItem item={displayProduct} />
-      
+
       {/* Inject JSON-LD Schema for SEO Engine */}
       <script
         type="application/ld+json"
@@ -225,10 +225,12 @@ export default async function ProductDetailsPage({ params }: Props) {
         {/* Product Image Gallery (Architectural Framing) */}
         <div className="w-full md:w-1/2">
           <div className="aspect-square md:aspect-[4/5] w-full bg-stone-50/50 border border-stone-200/80 flex items-center justify-center p-4 md:p-8 md:sticky md:top-24 overflow-hidden relative">
-            <ProductImageClient 
-              src={displayProduct.image} 
-              alt={displayProduct.name} 
+            <ProductImageClient
+              src={displayProduct.image}
+              alt={displayProduct.name}
               priority={true}
+              quality={95}
+              fallbackSrc="/placeholder-product.svg"
             />
           </div>
         </div>
@@ -249,7 +251,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             <span>/</span>
             <span className="text-stone-700">{displayProduct.category}</span>
           </nav>
-          
+
           <div className="mb-2">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono">
@@ -266,7 +268,7 @@ export default async function ProductDetailsPage({ params }: Props) {
               Direct Manufacturer Batch Tested &bull; COA Verified
             </p>
           </div>
-          
+
           <div className="text-stone-600 font-light text-xs md:text-sm leading-relaxed mb-6 border-y border-stone-200/70 py-4 space-y-3">
             {displayProduct.description.split('\n').filter(Boolean).map((paragraph, idx) => (
               <p key={idx}>{paragraph}</p>
@@ -304,15 +306,15 @@ export default async function ProductDetailsPage({ params }: Props) {
           )}
 
           {/* Add to Cart / Quote Widget */}
-          <PricingWidget 
-            productId={displayProduct.id} 
+          <PricingWidget
+            productId={displayProduct.id}
             productName={displayProduct.name}
             sellerId={productData.sellerId}
             basePrice={displayProduct.price}
             tiers={displayProduct.tiers}
             variants={displayProduct.variants}
-            moq={productData.moq} 
-            category={displayProduct.category} 
+            moq={productData.moq}
+            category={displayProduct.category}
             isQuoteOnly={displayProduct.isQuoteOnly}
             inStock={displayProduct.inStock}
           />
@@ -327,7 +329,7 @@ export default async function ProductDetailsPage({ params }: Props) {
                 Batch Analysis Verified
               </span>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-mono">
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Grade &amp; Purity</span>
@@ -358,20 +360,20 @@ export default async function ProductDetailsPage({ params }: Props) {
                 Technical Dossiers:
               </span>
               <div className="flex items-center gap-2">
-                <a 
-                  href="#technical-docs" 
+                <a
+                  href="#technical-docs"
                   className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ COA ]
                 </a>
-                <a 
-                  href="#technical-docs" 
+                <a
+                  href="#technical-docs"
                   className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ TDS ]
                 </a>
-                <a 
-                  href="#technical-docs" 
+                <a
+                  href="#technical-docs"
                   className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ MSDS ]
@@ -410,13 +412,13 @@ export default async function ProductDetailsPage({ params }: Props) {
               <span className="text-[10px] uppercase tracking-widest text-stone-400 font-mono block">Supplier</span>
               <h4 className="font-serif text-sm text-stone-900">{productData.supplierName}</h4>
             </div>
-            <ContactSupplierButton 
-              productName={displayProduct.name} 
-              productId={productData.id} 
-              sellerId={productData.sellerId} 
+            <ContactSupplierButton
+              productName={displayProduct.name}
+              productId={productData.id}
+              sellerId={productData.sellerId}
             />
           </div>
-          
+
           {/* Olfactory Notes Pyramid (Diptyque 3-Part Minimalist Grid) */}
           {displayProduct.fragranceNotes && (
             <div className="mt-8">

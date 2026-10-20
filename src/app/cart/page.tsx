@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
+import ProductImageClient from "@/components/ProductImageClient"
 import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
@@ -40,7 +40,7 @@ export default function CartPage() {
         setIsGuest(true)
         const { getGuestCart } = await import('@/lib/guest-cart')
         const guestItems = getGuestCart()
-        
+
         if (guestItems.length === 0) {
           setItems([])
           setTotal(0)
@@ -182,18 +182,13 @@ export default function CartPage() {
               <div key={item.id} className="bg-white p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-4 items-center">
                 <div className="w-20 h-20 rounded-xl overflow-hidden bg-brand-bg relative flex-shrink-0">
                   {item.product.imageUrl ? (
-                    <Image 
-                      src={item.product.imageUrl} 
-                      alt={item.product.title} 
-                      fill 
-                      unoptimized={Boolean(item.product.imageUrl && item.product.imageUrl.startsWith("http"))}
-                      className="object-contain p-1" 
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.src = "/og-image.jpg";
-                        target.srcset = "";
-                      }}
+                    <ProductImageClient
+                      src={item.product.imageUrl}
+                      alt={item.product.title}
+                      sizes="80px"
+                      quality={80}
+                      className="object-contain p-1"
+                      fallbackSrc="/og-image.jpg"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200" />
@@ -240,7 +235,7 @@ export default function CartPage() {
             </div>
             {/* Free Shipping Progress Indicator disabled for flat shipping */}
 
-            <Link 
+            <Link
               href="/checkout"
               className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md mt-4"
             >

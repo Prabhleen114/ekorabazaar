@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import ProductImageClient from "@/components/ProductImageClient"
 
 export default function SellerProductManager({ initialProducts }: { initialProducts: any[] }) {
   const products = initialProducts;
@@ -19,24 +19,14 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-linen flex flex-col">
             <div className="aspect-[4/3] bg-brand-bg relative flex items-center justify-center border-b border-brand-linen overflow-hidden">
-              {product.imageUrl ? (
-                <Image 
-                  src={product.imageUrl} 
-                  alt={product.title} 
-                  fill
-                  className="object-cover"
-                  unoptimized={product.imageUrl.startsWith("http")}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = "/og-image.jpg";
-                    target.srcset = "";
-                  }}
-                />
-              ) : (
-                <Image src="/og-image.jpg" alt="No image" fill className="object-cover opacity-50" />
-              )}
-              
+              <ProductImageClient
+                src={product.imageUrl}
+                alt={product.title}
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                fallbackSrc="/og-image.jpg"
+              />
+
               <div className="absolute top-3 right-3 flex flex-col gap-2">
                 <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${
                   product.status === 'PUBLISHED' ? 'bg-emerald-100 text-emerald-800' :
@@ -48,29 +38,29 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
                 </span>
               </div>
             </div>
-            
+
             <div className="p-5 flex-1 flex flex-col">
               <span className="text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/40 mb-1">
                 {product.category || "General"}
               </span>
               <h3 className="font-semibold text-brand-charcoal mb-2 line-clamp-1">{product.title}</h3>
-              
+
               <div className="flex items-center justify-between mb-4 text-sm mt-auto pt-3">
                 <span className="font-bold text-lg text-brand-charcoal">₹{(product.price / 100).toFixed(2)}</span>
-                
+
                 <div className={`flex items-center gap-1.5 font-medium text-xs ${product.stock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${product.stock > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
                   {product.stock > 0 ? `${product.stock} In Stock` : 'Out of Stock'}
                 </div>
               </div>
-              
+
               {product.rejectionReason && product.status === 'REJECTED' && (
                 <div className="mb-4 bg-red-50 text-red-700 p-2.5 rounded-lg text-xs font-medium border border-red-100">
                   <span className="font-bold">Reason:</span> {product.rejectionReason}
                 </div>
               )}
-              
-              <Link 
+
+              <Link
                 href={`/seller/dashboard/products/${product.id}/edit`}
                 className="w-full py-2.5 px-4 bg-stone-100 hover:bg-stone-200 text-brand-charcoal text-sm font-semibold rounded-xl transition-colors text-center"
               >
@@ -80,7 +70,7 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
           </div>
         ))}
       </div>
-      
+
       {products.length === 0 && (
         <div className="text-center py-20 bg-white border border-brand-linen rounded-3xl mt-6">
           <div className="text-brand-charcoal/30 mb-4">

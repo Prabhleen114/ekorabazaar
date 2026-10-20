@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 
 export default function CategoriesPreview() {
   const categories = [
@@ -33,11 +33,12 @@ export default function CategoriesPreview() {
               className="group flex flex-col gap-4 cursor-default"
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200 shadow-sm">
-                <Image
+                <ProductImageClient
                   src={category.image}
                   alt={category.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  quality={85}
+                  className="object-cover group-hover:scale-105"
                 />
               </div>
               <h3 className="font-semibold text-zinc-900 text-lg text-center">{category.name}</h3>

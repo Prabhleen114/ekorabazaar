@@ -2,17 +2,17 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { 
- Filter, 
- ChevronDown, 
- Tag, 
- PackageSearch, 
- Search, 
- X, 
- SlidersHorizontal, 
- ArrowUpDown, 
- Check, 
+import ProductImageClient from "@/components/ProductImageClient";
+import {
+ Filter,
+ ChevronDown,
+ Tag,
+ PackageSearch,
+ Search,
+ X,
+ SlidersHorizontal,
+ ArrowUpDown,
+ Check,
  Sparkles,
  ChevronRight,
  FolderOpen,
@@ -51,7 +51,7 @@ type PriceOption = "all" | "under_500" | "500_1500" | "1500_3000" | "over_3000" 
 export default function ShopClient({ initialProducts = [] }: { initialProducts?: any[] }) {
  const router = useRouter();
  const searchParams = useSearchParams();
- 
+
  const [products, setProducts] = useState<Product[]>(initialProducts);
  const [loading, setLoading] = useState(initialProducts.length === 0);
  const [loadingMore, setLoadingMore] = useState(false);
@@ -70,7 +70,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  if (s === "new") return "newest";
  return s || "recommended";
  });
- 
+
  // Grid Density / Products per row (Default 4)
  const [gridCols, setGridCols] = useState<number>(4);
 
@@ -120,7 +120,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  setSearch(val.trim());
  }, 350);
  };
- 
+
  // Expanded department accordions in filter drawer
  const [expandedDepts, setExpandedDepts] = useState<Record<string, boolean>>(() => {
  const deptParam = searchParams.get("department");
@@ -371,11 +371,11 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  router.push("/shop", { scroll: false });
  };
 
- const activeFilterCount = 
+ const activeFilterCount =
  (selectedDiscipline ? 1 : 0) +
  (selectedDepartment ? 1 : 0) +
  (selectedCategory ? 1 : 0) +
- (priceOption !== "all" ? 1 : 0) + 
+ (priceOption !== "all" ? 1 : 0) +
  (inStockOnly ? 1 : 0) +
  (searchQuery ? 1 : 0);
 
@@ -401,13 +401,13 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
 
  return (
  <div className="pt-4 md:pt-6 pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full flex-1 flex flex-col gap-5">
- 
+
  {/* ========================================================================= */}
  {/* CONCISE TOP TOOLBAR: TITLE, FILTERS BUTTON, SEARCH, SORT & ROW SELECTOR */}
  {/* ========================================================================= */}
  <div className="flex flex-col gap-3">
  <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-stone-200/80">
- 
+
  {/* Left: Title & Product Count */}
  <div className="flex items-baseline gap-3">
  <h1 className="text-xl md:text-2xl font-bold font-serif text-stone-900 tracking-tight">
@@ -424,10 +424,10 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
 
  {/* Right Toolbar Controls */}
  <div className="flex items-center gap-2.5 sm:gap-3 ml-auto flex-wrap">
- 
+
  {/* In-Shop Search Input */}
  <div className="w-48 sm:w-60 md:w-68">
- <form 
+ <form
  onSubmit={(e) => {
  e.preventDefault();
  if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
@@ -603,7 +603,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  </button>
  </span>
  )}
- <button 
+ <button
  type="button"
  onClick={clearAllFilters}
  className="text-xs font-semibold text-amber-700 hover:text-amber-800 hover:underline ml-1"
@@ -614,7 +614,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  )}
  </div>
 
- 
+
         {/* Horizontal Quick Filters for Mobile (F-15) */}
         <div className="lg:hidden w-full overflow-x-auto snap-x scrollbar-hide py-3 mb-2 -mx-4 px-4 sm:-mx-6 sm:px-4 md:px-6">
           <div className="flex items-center gap-2 w-max">
@@ -683,28 +683,21 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  {products.map((product, index) => {
  const categoryLabel = ALL_CATEGORIES.find(c => c.id === product.category || c.label === product.category)?.label || product.category || "Wholesale Craft Supplies";
  return (
- <Link 
- key={product.id} 
- href={`/products/${product.id}`} 
+ <Link
+ key={product.id}
+ href={`/products/${product.id}`}
  className="group flex flex-col transition-all duration-300"
  >
- <div className="aspect-[4/5] w-full bg-white relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
- <Image 
- src={product.image || "/og-image.jpg"} 
- alt={`${product.name} - ${categoryLabel}`}
-   fill 
- unoptimized={Boolean(product.image && product.image.startsWith("http"))}
- quality={75}
- sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          priority={index < 4}
- className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" 
- onError={(e) => {
- const target = e.target as HTMLImageElement;
- target.onerror = null;
- target.src = "/og-image.jpg";
- target.srcset = "";
- }}
- />
+                  <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
+                    <ProductImageClient
+                      src={product.image}
+                      alt={`${product.name} - ${categoryLabel}`}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      priority={index < 4}
+                      quality={80}
+                      className="object-cover object-center group-hover:scale-105"
+                      fallbackSrc="/og-image.jpg"
+                    />
  {product.isQuoteOnly || product.price === 0 ? (
  <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
  Quote Only
@@ -799,7 +792,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  </div>
  <div className="flex items-center gap-3">
  {activeFilterCount > 0 && (
- <button 
+ <button
  type="button"
  onClick={clearAllFilters}
  className="text-xs font-semibold text-stone-500 hover:text-amber-700 transition-colors"
@@ -807,9 +800,9 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  Clear All
  </button>
  )}
- <button 
+ <button
  type="button"
- onClick={() => setIsFilterDrawerOpen(false)} 
+ onClick={() => setIsFilterDrawerOpen(false)}
  className="p-1.5 text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-100 transition-colors"
  aria-label="Close filter drawer"
  >
@@ -820,7 +813,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
 
  {/* Drawer Scrollable Filter Controls */}
  <div className="p-6 overflow-y-auto flex-1 space-y-6">
- 
+
  {/* 1. Craft Studios */}
  <div>
  <div className="flex items-center justify-between mb-3">
@@ -828,7 +821,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  Craft Studio
  </h4>
  {selectedDiscipline && (
- <button 
+ <button
  onClick={() => setDiscipline(null)}
  className="text-[11px] text-amber-700 hover:underline font-semibold"
  >
@@ -867,7 +860,7 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  Departments
  </h4>
  {selectedDepartment && (
- <button 
+ <button
  onClick={() => setDepartment(null)}
  className="text-[10px] text-amber-700 hover:underline font-semibold"
  >
@@ -968,8 +961,8 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  type="button"
  onClick={() => setPriceOption(opt.id as PriceOption)}
  className={`w-full text-left px-3.5 py-2.5 rounded-xl border text-xs font-medium flex items-center justify-between transition-colors ${
- priceOption === opt.id 
- ? "border-amber-600 bg-amber-50 text-amber-900 font-bold" 
+ priceOption === opt.id
+ ? "border-amber-600 bg-amber-50 text-amber-900 font-bold"
  : "border-stone-200 text-stone-700 hover:bg-stone-50"
  }`}
  >
@@ -983,23 +976,23 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  <div className="flex items-center gap-2 mt-3 pt-3 border-t border-stone-200/80">
  <div className="flex-1">
  <label className="text-[10px] font-bold uppercase text-stone-400 block mb-1">Min ₹</label>
- <input 
- type="number" 
- placeholder="0" 
- value={minPrice} 
- onChange={(e) => setMinPrice(e.target.value)} 
- className="w-full bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-stone-900 focus:outline-none focus:border-amber-600" 
+ <input
+ type="number"
+ placeholder="0"
+ value={minPrice}
+ onChange={(e) => setMinPrice(e.target.value)}
+ className="w-full bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-stone-900 focus:outline-none focus:border-amber-600"
  />
  </div>
  <span className="text-stone-400 text-xs mt-4">–</span>
  <div className="flex-1">
  <label className="text-[10px] font-bold uppercase text-stone-400 block mb-1">Max ₹</label>
- <input 
- type="number" 
- placeholder="5000" 
- value={maxPrice} 
- onChange={(e) => setMaxPrice(e.target.value)} 
- className="w-full bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-stone-900 focus:outline-none focus:border-amber-600" 
+ <input
+ type="number"
+ placeholder="5000"
+ value={maxPrice}
+ onChange={(e) => setMaxPrice(e.target.value)}
+ className="w-full bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-stone-900 focus:outline-none focus:border-amber-600"
  />
  </div>
  </div>
@@ -1012,12 +1005,12 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  Availability
  </h4>
  <label className="flex items-center gap-2.5 p-3 rounded-xl border border-stone-200 hover:bg-stone-50 cursor-pointer transition-colors">
- <input 
- type="checkbox" 
- checked={inStockOnly} 
- onChange={(e) => setInStockOnly(e.target.checked)} 
- className="rounded text-amber-600 accent-amber-600 w-4 h-4 shrink-0 cursor-pointer" 
- /> 
+ <input
+ type="checkbox"
+ checked={inStockOnly}
+ onChange={(e) => setInStockOnly(e.target.checked)}
+ className="rounded text-amber-600 accent-amber-600 w-4 h-4 shrink-0 cursor-pointer"
+ />
  <span className="text-xs font-semibold text-stone-800">
  In Stock Only
  </span>
@@ -1029,14 +1022,14 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  {/* Drawer Sticky Action Footer */}
  <div className="p-4 px-4 md:px-6 border-t border-stone-200 bg-stone-50 shrink-0">
  <div className="flex gap-3">
- <button 
+ <button
  type="button"
  onClick={clearAllFilters}
  className="flex-1 py-3 rounded-xl font-bold text-xs text-stone-700 bg-white border border-stone-200 hover:bg-stone-100 transition-colors shadow-2xs"
  >
  Reset All
  </button>
- <button 
+ <button
  type="button"
  onClick={() => setIsFilterDrawerOpen(false)}
  className="flex-[2] py-3 rounded-xl font-bold text-xs text-white bg-stone-900 hover:bg-black transition-colors shadow-sm"

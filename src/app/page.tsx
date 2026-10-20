@@ -1,7 +1,7 @@
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 import { ArrowRight, ShieldCheck, Truck, Building2 } from "lucide-react";
 import catalogProducts from "@/lib/data/products.json";
 import QuickAddButton from "@/components/QuickAddButton";
@@ -60,14 +60,13 @@ export default function BuyerHomePage() {
       {/* 2. HERO BANNER: VIEWPORT-CALIBRATED SPLIT (< 580px Height On Desktop) */}
       <div className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 mt-4">
         <div className="relative w-full h-[480px] md:h-[540px] lg:h-[580px] bg-[#FAF8F5] border border-stone-200/80 overflow-hidden flex flex-col md:flex-row items-center">
-          
+
           {/* Visual Column (Left, 55% Width on Desktop) */}
           <div className="w-full md:w-[55%] h-[260px] md:h-full relative flex items-center justify-center p-6 md:p-12">
-            <Image
+            <ProductImageClient
               src="/images/hero_studio_collection.webp"
               alt="Ekora Bazaar Artisanal Studio Collection on Limestone Riser"
-              fill
-              priority
+              priority={true}
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="object-contain max-h-[85%] max-w-[85%] drop-shadow-md"
             />
@@ -95,7 +94,7 @@ export default function BuyerHomePage() {
             <div className="flex items-center gap-3 mb-6">
               <div className="flex -space-x-2">
                 {["RM", "SK", "AS", "PK", "KA"].map((initials, i) => (
-                  <div 
+                  <div
                     key={i}
                     className="w-6 h-6 rounded-full border-2 border-white bg-stone-200 flex items-center justify-center text-[8px] font-bold text-stone-700 shadow-xs"
                     style={{ zIndex: 5 - i }}
@@ -169,15 +168,14 @@ export default function BuyerHomePage() {
                 href={`/products/${p.id}`}
                 className="group flex flex-col transition-all duration-300"
               >
-                <div className="aspect-[4/5] w-full bg-white relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
-                  <Image
-                    src={p.image || "/og-image.jpg"}
+                <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-2.5 sm:p-3 mb-3 border border-stone-200/60">
+                  <ProductImageClient
+                    src={p.image}
                     alt={p.name}
-                    fill
-                    unoptimized={Boolean(p.image && p.image.startsWith("http"))}
                     quality={85}
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover object-center group-hover:scale-105"
+                    fallbackSrc="/og-image.jpg"
                   />
                 </div>
 
@@ -269,7 +267,7 @@ export default function BuyerHomePage() {
                   {item.desc}
                 </p>
               </div>
-              <Link 
+              <Link
                 href={item.href}
                 className="text-[11px] font-mono uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1.5 pt-2 border-t border-stone-100"
               >

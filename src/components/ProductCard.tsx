@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 import { ALL_CATEGORIES } from "@/lib/categories";
 
 export type ProductCardItem = {
@@ -14,33 +14,24 @@ export type ProductCardItem = {
 };
 
 export default function ProductCard({ product, index = 0, priority = false }: { product: ProductCardItem; index?: number; priority?: boolean }) {
-  const isExternalImage = Boolean(product.imageUrl && product.imageUrl.startsWith("http"));
   const effectivePrice = product.price / 100;
-  
+
   const categoryLabel = ALL_CATEGORIES.find(c => c.id === product.category || c.label === product.category)?.label || product.category || "Wholesale Craft Supplies";
-  
+
   return (
     <Link
       href={`/products/${product.id}`}
       className="group flex flex-col transition-all duration-300"
     >
       <div className="aspect-[4/5] w-full bg-[#FAF8F5] relative overflow-hidden flex items-center justify-center p-4 sm:p-5 mb-3 border border-stone-200/60">
-        <Image
-          src={product.imageUrl || "/og-image.jpg"}
+        <ProductImageClient
+          src={product.imageUrl}
           alt={`${product.title} - ${categoryLabel}`}
-          fill
-          unoptimized={isExternalImage}
-          quality={75}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           priority={priority}
-          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.onerror = null;
-            target.src = "/og-image.jpg";
-            target.srcset = "";
-          }}
+          quality={80}
+          className="object-cover object-center group-hover:scale-105"
+          fallbackSrc="/og-image.jpg"
         />
       </div>
 
@@ -51,7 +42,7 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
         <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
           {product.title}
         </h3>
-        
+
         <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-mono">
           <div className="flex items-baseline gap-1.5 flex-wrap">
             <span className="font-bold text-sm text-stone-950">₹{effectivePrice}</span>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import ProductImageClient from '@/components/ProductImageClient'
 import { ALL_CATEGORIES } from '@/lib/categories'
 import { X, Upload, Plus, Trash2 } from 'lucide-react'
 
@@ -16,10 +16,10 @@ export default function SellerProductForm({ initialData = null }: { initialData?
   const [price, setPrice] = useState(initialData ? (initialData.price / 100).toString() : '')
   const [stock, setStock] = useState(initialData?.stock?.toString() || '0')
   const [moq, setMoq] = useState(initialData?.moq?.toString() || '1')
-  
+
   const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '')
   const [uploading, setUploading] = useState(false)
-  
+
   const [tiers, setTiers] = useState<any[]>(
     (initialData?.wholesaleTiers || []).map((t: any) => ({
       ...t,
@@ -52,17 +52,17 @@ export default function SellerProductForm({ initialData = null }: { initialData?
     try {
       const formData = new FormData()
       formData.append('file', file)
-      
+
       const res = await fetch('/api/seller/upload-image', {
         method: 'POST',
         body: formData
       })
-      
+
       const data = await res.json()
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Failed to upload image')
       }
-      
+
       setImageUrl(data.url)
     } catch (err: any) {
       setError(err.message)
@@ -91,10 +91,10 @@ export default function SellerProductForm({ initialData = null }: { initialData?
     setError('')
 
     try {
-      const url = isEditing 
+      const url = isEditing
         ? `/api/seller/products/${initialData.id}`
         : `/api/seller/products`
-        
+
       const method = isEditing ? 'PATCH' : 'POST'
 
       const processedTiers = tiers.map(t => ({
@@ -107,18 +107,18 @@ export default function SellerProductForm({ initialData = null }: { initialData?
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          title, 
+        body: JSON.stringify({
+          title,
           description,
           category,
-          price: Math.round(parseFloat(price) * 100), 
+          price: Math.round(parseFloat(price) * 100),
           stock: parseInt(stock, 10),
           moq: parseInt(moq, 10),
           imageUrl,
           wholesaleTiers: processedTiers
         })
       })
-      
+
       const data = await res.json()
       if (!data.success) {
         setError(data.error || 'Failed to save product')
@@ -148,21 +148,15 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           <div className="w-full sm:w-48 aspect-square rounded-2xl border-2 border-dashed border-brand-linen bg-stone-50 flex items-center justify-center relative overflow-hidden group">
             {imageUrl ? (
               <>
-                <Image 
-                  src={imageUrl} 
-                  alt="Preview" 
-                  fill 
-                  className="object-cover" 
-                  unoptimized={imageUrl.startsWith('http')} 
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = "/og-image.jpg";
-                    target.srcset = "";
-                  }}
+                <ProductImageClient
+                  src={imageUrl}
+                  alt="Preview"
+                  className="object-cover"
+                  sizes="192px"
+                  fallbackSrc="/og-image.jpg"
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={() => setImageUrl('')}
                   className="absolute top-2 right-2 bg-white/90 p-1.5 rounded-lg text-red-500 hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
                 >
@@ -175,14 +169,14 @@ export default function SellerProductForm({ initialData = null }: { initialData?
                 <span className="text-xs font-medium text-brand-charcoal/50">Upload Image</span>
               </div>
             )}
-            
+
             {uploading && (
               <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
                 <div className="w-6 h-6 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
               </div>
             )}
           </div>
-          
+
           <div className="flex-1">
             <p className="text-sm text-brand-charcoal/70 mb-4">
               Upload a clear, high-quality image of your product. Max size 5MB.
@@ -198,14 +192,14 @@ export default function SellerProductForm({ initialData = null }: { initialData?
       {/* Basic Info */}
       <div className="bg-white p-6 md:p-8 rounded-3xl border border-brand-linen shadow-sm space-y-6">
         <h2 className="text-lg font-bold font-serif text-brand-charcoal mb-2">Basic Information</h2>
-        
+
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Product Title *</label>
-          <input 
-            type="text" 
-            required 
-            value={title} 
-            onChange={e => setTitle(e.target.value)} 
+          <input
+            type="text"
+            required
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50 transition-shadow"
             placeholder="e.g., Premium 100ml Glass Jar"
           />
@@ -213,9 +207,9 @@ export default function SellerProductForm({ initialData = null }: { initialData?
 
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Category *</label>
-          <select 
-            required 
-            value={category} 
+          <select
+            required
+            value={category}
             onChange={e => setCategory(e.target.value)}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50 transition-shadow bg-white"
           >
@@ -227,9 +221,9 @@ export default function SellerProductForm({ initialData = null }: { initialData?
 
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Description</label>
-          <textarea 
-            value={description} 
-            onChange={e => setDescription(e.target.value)} 
+          <textarea
+            value={description}
+            onChange={e => setDescription(e.target.value)}
             rows={5}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50 transition-shadow resize-none"
             placeholder="Describe the product details, material, usage, etc."
@@ -242,16 +236,16 @@ export default function SellerProductForm({ initialData = null }: { initialData?
         <div className="md:col-span-2">
           <h2 className="text-lg font-bold font-serif text-brand-charcoal mb-2">Pricing & Inventory</h2>
         </div>
-        
+
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Base Price (₹) *</label>
-          <input 
-            type="number" 
-            step="0.01" 
-            min="0" 
-            required 
-            value={price} 
-            onChange={e => setPrice(e.target.value)} 
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            required
+            value={price}
+            onChange={e => setPrice(e.target.value)}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
             placeholder="e.g. 150"
           />
@@ -259,24 +253,24 @@ export default function SellerProductForm({ initialData = null }: { initialData?
 
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Stock Quantity *</label>
-          <input 
-            type="number" 
-            min="0" 
-            required 
-            value={stock} 
-            onChange={e => setStock(e.target.value)} 
+          <input
+            type="number"
+            min="0"
+            required
+            value={stock}
+            onChange={e => setStock(e.target.value)}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
           />
         </div>
 
         <div>
           <label className="block text-sm font-semibold text-brand-charcoal mb-2">Minimum Order Quantity (MOQ)</label>
-          <input 
-            type="number" 
-            min="1" 
-            required 
-            value={moq} 
-            onChange={e => setMoq(e.target.value)} 
+          <input
+            type="number"
+            min="1"
+            required
+            value={moq}
+            onChange={e => setMoq(e.target.value)}
             className="w-full border border-brand-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
           />
         </div>
@@ -290,7 +284,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
             <Plus className="w-4 h-4" /> Add Tier
           </button>
         </div>
-        
+
         {tiers.length === 0 ? (
           <p className="text-sm text-brand-charcoal/50 italic">No bulk pricing tiers added.</p>
         ) : (

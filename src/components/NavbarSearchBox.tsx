@@ -14,7 +14,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import ProductImageClient from "@/components/ProductImageClient";
 import { Search, X, ArrowRight, Package, FolderOpen, Sparkles, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
@@ -307,20 +307,14 @@ export default function NavbarSearchBox() {
                 >
                   {/* Thumbnail / Icon */}
                   {s.type === "product" && s.image ? (
-                    <div className="w-10 h-10 rounded-lg bg-white border border-brand-linen overflow-hidden shrink-0 relative flex items-center justify-center">
-                      <Image
+                    <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-brand-linen overflow-hidden shrink-0 relative flex items-center justify-center">
+                      <ProductImageClient
                         src={s.image}
                         alt={s.label}
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-contain p-0.5"
-                        unoptimized
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null;
-                          target.src = "/og-image.jpg";
-                          target.srcset = "";
-                        }}
+                        sizes="40px"
+                        quality={75}
+                        className="object-contain p-0.5"
+                        fallbackSrc="/og-image.jpg"
                       />
                     </div>
                   ) : (
@@ -388,4 +382,3 @@ export default function NavbarSearchBox() {
     </div>
   );
 }
-
