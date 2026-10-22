@@ -156,8 +156,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "3",
@@ -2456,7 +2456,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "31",
@@ -2690,7 +2691,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "34",
@@ -2915,7 +2917,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "37",
@@ -2995,8 +2998,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "38",
@@ -4013,7 +4016,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "51",
@@ -4880,7 +4884,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "62",
@@ -4955,7 +4960,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "63",
@@ -5038,7 +5044,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "64",
@@ -9391,7 +9398,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "119",
@@ -15770,8 +15778,8 @@
       "culinary-chocolatier",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "198",
@@ -19236,7 +19244,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "241",
@@ -20450,7 +20459,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "256",
@@ -20529,7 +20539,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "257",
@@ -24213,7 +24224,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "303",
@@ -25001,7 +25013,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "313",
@@ -29045,7 +29058,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "365",
@@ -29696,7 +29710,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "373",
@@ -29849,7 +29864,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "375",
@@ -30116,7 +30132,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "377",
@@ -30348,7 +30365,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "380",
@@ -40409,7 +40427,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/05/hazelnut-cappuccino-fragrance-oil-craftovator_a9ee4700-972c-42c9-8299-776e6576cc8d-247x296.webp",
+    "image": "/images/products/hazelnut-coffee-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -43769,7 +43787,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/pg-mogra-star-800x800-1-247x296.jpg",
+    "image": "/images/products/romantic-mogra-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -43872,7 +43890,8 @@
       "skincare-apothecary",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "538",
@@ -43995,7 +44014,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/Ginger-Limeade-0640-Copy-1-247x296.jpg",
+    "image": "/images/products/ginger-lime-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -45040,7 +45059,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/08/kiwi_fragrance-247x296.jpg",
+    "image": "/images/products/kiwi-fig-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -45163,7 +45182,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/02/images.jpg",
+    "image": "/images/products/sea-breeze-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -46207,7 +46226,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/White-Soap-Fragrance-Oil-247x296.jpg",
+    "image": "/images/products/white-soap-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -46792,7 +46811,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/493ss_thinkstock_rf_essential_oils-247x296.jpg",
+    "image": "/images/products/citrus-fruit-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -46905,7 +46924,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/fragrance-oil-500x500-1-1-247x296.webp",
+    "image": "/images/products/gentlemans-tonic-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -47256,7 +47275,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Papaya-SK-Fragrance-Oil-247x296.png",
+    "image": "/images/products/papaya-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -47833,7 +47852,7 @@
     "price": 131,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Jasmine-Flower-Fragrance-Oil-247x296.jpg",
+    "image": "/images/products/jasmine-flower-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -49039,7 +49058,7 @@
     "price": 233,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/02/DALL·E-2025-03-03-17.00.53-A-luxurious-fragrance-oil-bottle-labeled-Vedini-Orchid-Bouquet-Fragrance-Oil-placed-beside-a-bouquet-of-fresh-orchids.-The-background-has-a-soft-fl-247x296.webp",
+    "image": "/images/products/orchid-bouquet-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -50117,7 +50136,7 @@
     "price": 202,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/07/rose-floating-candle-500x500-1-247x296.jpg",
+    "image": "/images/products/rose-candle-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -72957,7 +72976,8 @@
       "skincare-apothecary",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "939",
@@ -73061,7 +73081,7 @@
     "price": 484,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/lotion-247x296.png",
+    "image": "/images/products/lotion-base-sulfate-paraben-free.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -77758,7 +77778,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1016",
@@ -81827,8 +81848,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1081",
@@ -84588,7 +84609,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1121",
@@ -84944,7 +84966,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1126",
@@ -93928,8 +93951,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1261",
@@ -96726,8 +96749,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "inStock": false,
-    "isQuoteOnly": true
+    "inStock": true,
+    "isQuoteOnly": false
   },
   {
     "id": "1306",
@@ -98434,7 +98457,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1336",
@@ -103475,7 +103499,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1411",
@@ -104089,8 +104114,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1420",
@@ -105080,7 +105105,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1435",
@@ -106966,7 +106992,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1463",
@@ -111322,8 +111349,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1532",
@@ -112915,7 +112942,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1557",
@@ -115518,7 +115546,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1596",
@@ -116459,7 +116488,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1610",
@@ -125366,7 +125396,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1735",
@@ -131044,7 +131075,8 @@
       "candle-studio",
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1816",
@@ -138163,7 +138195,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1919",
@@ -139944,7 +139977,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1945",
@@ -141329,7 +141363,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1965",
@@ -149424,7 +149459,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2020/08/51ONmumZjOL-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -149450,7 +149485,7 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2200",
@@ -156988,8 +157023,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "artisan",
       "beeswax",
