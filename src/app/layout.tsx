@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Lato, Playfair_Display_SC } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import serialize from "serialize-javascript";
 import "./globals.css";
 
-const inter = Inter({
+const lato = Lato({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["100", "300", "400", "700", "900"],
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfairDisplaySC = Playfair_Display_SC({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "700", "900"],
   display: "swap",
 });
 const BASE_URL = "https://www.ekorabazaar.in";
@@ -185,7 +186,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
+        className={`${lato.variable} ${playfairDisplaySC.variable} font-sans antialiased bg-brand-bg text-brand-charcoal overflow-x-hidden`}
       >
         {children}
         <HesitationTracker />

@@ -4,8 +4,8 @@
 @theme inline {
   --color-background: #FAF8F5;
   --color-foreground: #181715;
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans), "Lato", system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-serif), "Playfair Display SC", "Playfair Display", Georgia, serif;
   
   --color-brand-bg: #FAF8F5;
   --color-brand-linen: #E8E5DF;
@@ -35,7 +35,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), "Inter-Fallback", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), "Lato", system-ui, -apple-system, sans-serif;
 }
 
 html {
