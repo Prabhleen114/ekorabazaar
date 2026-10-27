@@ -77,7 +77,7 @@ export default function BuyerHomePage() {
 
           {/* Typography & Conversion Column (Right, 45% Width on Desktop) */}
           <div className="w-full md:w-[45%] h-full flex flex-col justify-center px-4 md:px-6 md:px-12 lg:px-16 py-8">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 mb-2 font-mono">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 mb-2 font-sans">
               DIRECT MANUFACTURER SOURCING
             </span>
             <span className="font-serif italic text-2xl md:text-3xl text-stone-600 -mb-1">
@@ -86,7 +86,7 @@ export default function BuyerHomePage() {
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] text-stone-900 leading-[1.1] tracking-tight mb-3 mt-2">
               The B2B Marketplace For Indian Craft Makers.
             </h1>
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-600 mb-4 font-medium font-mono">
+            <p className="text-xs uppercase tracking-[0.2em] text-stone-600 mb-4 font-medium font-sans">
               BATCH-TESTED FRAGRANCES, WAXES & MOULDS FROM ₹249.
             </p>
 
@@ -103,7 +103,7 @@ export default function BuyerHomePage() {
                   </div>
                 ))}
               </div>
-              <p className="text-[11px] font-medium text-stone-600 font-mono">
+              <p className="text-[11px] font-medium text-stone-600 font-sans">
                 <span className="text-brand-orange font-bold">1,200+ artisan makers</span> sourcing direct
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function BuyerHomePage() {
       <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-10 md:py-14">
         <div className="flex items-end justify-between mb-6 pb-3 border-b border-stone-200">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans block mb-1">
               Real-Time Demand
             </span>
             <h2 className="font-serif text-2xl md:text-3xl text-stone-900 font-normal tracking-tight">
@@ -150,7 +150,7 @@ export default function BuyerHomePage() {
           </div>
           <Link
             href="/shop"
-            className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors font-mono"
+            className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors font-sans"
           >
             View All 2,229 SKUs &rarr;
           </Link>
@@ -180,13 +180,13 @@ export default function BuyerHomePage() {
                 </div>
 
                 <div className="flex flex-col flex-1">
-                  <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
+                  <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans mb-1 line-clamp-1">
                     {p.category}
                   </span>
                   <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
                     {p.name}
                   </h3>
-                  <div className="text-xs font-mono text-stone-800 flex items-baseline justify-between mb-2">
+                  <div className="text-xs font-sans text-stone-800 flex items-baseline justify-between mb-2">
                     <div className="flex items-baseline gap-1.5 flex-wrap">
                       <span className="font-bold text-sm text-stone-950">₹{price}</span>
                       {bulkPrice && (
@@ -210,7 +210,7 @@ export default function BuyerHomePage() {
       {/* 4. BOTANICAL & MATERIAL PROVENANCE (Trust Architecture) */}
       <section className="max-w-[1400px] mx-auto w-full px-4 sm:px-8 lg:px-12 py-10 md:py-14 border-t border-stone-200/80">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <span className="text-[10px] uppercase tracking-[0.22em] text-[#8C734B] font-mono block">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-[#8C734B] font-sans block">
             Purity &bull; Traceability &bull; Testing
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-stone-900 font-normal tracking-tight">
@@ -257,7 +257,7 @@ export default function BuyerHomePage() {
               className="bg-white border border-stone-200/80 p-6 flex flex-col justify-between space-y-4 hover:border-stone-400 transition-colors"
             >
               <div>
-                <span className="text-[10px] font-mono tracking-[0.2em] text-[#8C734B] block mb-2">
+                <span className="text-[10px] font-sans tracking-[0.2em] text-[#8C734B] block mb-2">
                   {item.label}
                 </span>
                 <h3 className="font-serif text-base text-stone-900 font-normal mb-2">
@@ -269,7 +269,7 @@ export default function BuyerHomePage() {
               </div>
               <Link
                 href={item.href}
-                className="text-[11px] font-mono uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1.5 pt-2 border-t border-stone-100"
+                className="text-[11px] font-sans uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1.5 pt-2 border-t border-stone-100"
               >
                 <span>{item.linkText}</span>
                 <ArrowRight className="w-3 h-3 text-[#8C734B]" />

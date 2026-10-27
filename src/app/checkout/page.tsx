@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRazorpayCheckout } from '@/hooks/useRazorpayCheckout'
 import { Check, Plus, Loader2, Building2, ShieldCheck } from 'lucide-react'
 import { TrackBeginCheckout } from "@/components/GA4Tracker"
@@ -232,7 +233,34 @@ export default function CheckoutPage() {
   if (loading) return <div className="min-h-screen p-8 text-center">Loading checkout...</div>
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
+      {/* Brand Header with Home Link */}
+      <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
+        <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
+          <Image
+            src="/images/logo.jpg"
+            alt="Ekora Bazaar"
+            width={140}
+            height={38}
+            priority
+            className="object-contain mix-blend-multiply group-hover:opacity-85 transition-opacity"
+            style={{ height: "36px", width: "auto" }}
+          />
+        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/cart"
+            className="text-xs uppercase tracking-wider text-stone-600 hover:text-stone-900 transition-colors font-medium flex items-center gap-1.5"
+          >
+            <span>&larr;</span>
+            <span>Back to Cart</span>
+          </Link>
+          <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-800 font-medium bg-emerald-50 border border-emerald-200/80 px-2.5 py-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+            <span>256-Bit SSL Secured</span>
+          </div>
+        </div>
+      </div>
       <h1 className="text-3xl font-bold font-serif mb-8">Checkout</h1>
       <TrackBeginCheckout items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
 
@@ -291,15 +319,15 @@ export default function CheckoutPage() {
               </>
             ) : (
               <form onSubmit={handleSaveAddress} className="space-y-4 max-w-lg">
-                <div><label className="text-sm font-medium mb-1 block">Full Name</label><input required value={newAddress.name} onChange={e=>setNewAddress({...newAddress, name: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
-                <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
-                <div><label className="text-sm font-medium mb-1 block">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
-                <div><label className="text-sm font-medium mb-1 block">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Full Name</label><input required value={newAddress.name} onChange={e=>setNewAddress({...newAddress, name: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div><label className="text-sm font-medium mb-1 block">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
-                  <div><label className="text-sm font-medium mb-1 block">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                  <div><label className="text-sm font-medium mb-1 block">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
+                  <div><label className="text-sm font-medium mb-1 block">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 </div>
-                <div><label className="text-sm font-medium mb-1 block">Pincode</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none transition-all" /></div>
+                <div><label className="text-sm font-medium mb-1 block">Pincode</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.pincode} onChange={e=>setNewAddress({...newAddress, pincode: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 
                 <div className="pt-4 flex gap-4">
                   <button type="submit" className="bg-brand-charcoal text-white px-4 md:px-6 py-3 rounded-xl font-medium hover:bg-brand-charcoal/90 transition-colors">Save Address</button>
@@ -351,7 +379,7 @@ export default function CheckoutPage() {
                       }
                     }}
                     onChange={(e) => setGstin(e.target.value.toUpperCase())}
-                    className="w-full border border-brand-linen rounded-xl p-3 text-sm font-mono uppercase focus:border-brand-orange focus:outline-none"
+                    className="w-full border border-brand-linen rounded-xl p-3 text-base font-mono uppercase focus:border-brand-orange focus:outline-none"
                   />
                 </div>
                 <div>
@@ -363,7 +391,7 @@ export default function CheckoutPage() {
                     placeholder="e.g. Acme Craft Industries LLP"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    className="w-full border border-brand-linen rounded-xl p-3 text-sm focus:border-brand-orange focus:outline-none"
+                    className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none"
                   />
                 </div>
                 <div className="flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-200">

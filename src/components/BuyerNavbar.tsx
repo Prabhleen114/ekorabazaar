@@ -299,7 +299,7 @@ export default function BuyerNavbar() {
                 aria-label="User profile"
               >
                 <User className="w-4 h-4 text-stone-700 hover:text-stone-950" />
-                <span className="text-[9px] uppercase tracking-widest text-stone-500 mt-0.5 font-mono">Account</span>
+                <span className="text-[9px] uppercase tracking-widest text-stone-500 mt-0.5 font-sans">Account</span>
               </Link>
 
               <AnimatePresence>
@@ -319,7 +319,7 @@ export default function BuyerNavbar() {
                           <p className="font-serif font-bold text-base text-stone-900">
                             Hello, {currentUser.displayName || 'Creator'}
                           </p>
-                          <p className="text-xs text-stone-500 truncate mt-0.5 font-mono">
+                          <p className="text-xs text-stone-500 truncate mt-0.5 font-sans">
                             {currentUser.email}
                           </p>
                         </div>
@@ -475,13 +475,13 @@ export default function BuyerNavbar() {
                 </div>
 
                 <div className="border-t border-stone-200/70 pt-3.5 mt-5 flex items-center justify-between">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-sans">
                     8 Dedicated Craft Hubs &bull; Direct Factory Sourcing
                   </div>
                   <Link
                     href="/shop"
                     onClick={closeMenu}
-                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-mono flex items-center gap-1.5 transition-colors group"
+                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-sans flex items-center gap-1.5 transition-colors group"
                   >
                     <span>Browse Complete Catalog (2,229 SKUs)</span>
                     <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all" />
@@ -541,13 +541,13 @@ export default function BuyerNavbar() {
                 </div>
 
                 <div className="border-t border-stone-200/70 pt-3.5 mt-5 flex items-center justify-between">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-sans">
                     Raw Materials &bull; Botanical Extracts &bull; Precision Moulds
                   </div>
                   <Link
                     href="/shop"
                     onClick={closeMenu}
-                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-mono flex items-center gap-1.5 transition-colors group"
+                    className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-sans flex items-center gap-1.5 transition-colors group"
                   >
                     <span>View All Departments</span>
                     <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all" />
@@ -606,7 +606,7 @@ export default function BuyerNavbar() {
                         className="flex items-center gap-2.5 text-sm font-medium text-stone-700 hover:text-amber-700 py-1.5"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <span className="text-base">{hub.icon}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-600/80 shrink-0" />
                         <span>{hub.name}</span>
                       </Link>
                     ))}
@@ -693,7 +693,7 @@ export default function BuyerNavbar() {
               <div className="border-t border-stone-200 pt-4 mt-2 space-y-2">
                 {currentUser ? (
                   <>
-                    <div className="px-1 py-1 text-xs text-stone-500 font-mono">
+                    <div className="px-1 py-1 text-xs text-stone-500 font-sans">
                       Signed in as <strong className="text-stone-900 font-sans">{currentUser.email}</strong>
                     </div>
                     <Link

@@ -344,14 +344,14 @@ export default function PricingWidget({
         {/* 1. PRICE HIERARCHY HEADER */}
         <div className="pb-4 border-b border-stone-200 flex items-baseline justify-between flex-wrap gap-2">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans block mb-1">
               Unit Wholesale Price
             </span>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-mono font-bold text-stone-900">
+              <span className="text-3xl font-sans font-bold text-stone-900">
                 ₹{displayPrice}
               </span>
-              <span className="text-xs text-stone-500 font-mono">/ unit</span>
+              <span className="text-xs text-stone-500 font-sans">/ unit</span>
               {currentTier && currentTier.discountPct > 0 && (
                 <span className="ml-1 text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
                   Save {currentTier.discountPct}%
@@ -361,10 +361,10 @@ export default function PricingWidget({
           </div>
           {activeTiers.length > 1 && (
             <div className="text-right">
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono block">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-sans block">
                 Wholesale Tiers
               </span>
-              <span className="text-xs font-mono text-stone-600">
+              <span className="text-xs font-sans text-stone-600">
                 From ₹{activeTiers[activeTiers.length - 1].price} at {activeTiers[activeTiers.length - 1].minQty}+ units
               </span>
             </div>
@@ -374,10 +374,10 @@ export default function PricingWidget({
         {variants && variants.length > 0 && (
           <div className="pb-5 border-b border-stone-200">
             <div className="flex items-center justify-between mb-2.5">
-              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans">
                 Volume Variant
               </label>
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-sans">
                 {selectedVariant?.size}
               </span>
             </div>
@@ -415,10 +415,10 @@ export default function PricingWidget({
         {activeTiers && activeTiers.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans">
                 Wholesale Volume Slabs
               </span>
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-mono">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8C734B] font-sans">
                 Click slab to select
               </span>
             </div>
@@ -456,18 +456,18 @@ export default function PricingWidget({
                           {labelQty}
                         </span>
                         {isActive && (
-                          <span className="text-[9px] uppercase tracking-widest bg-stone-900 text-stone-50 px-1.5 py-0.2 font-mono">
+                          <span className="text-[9px] uppercase tracking-widest bg-stone-900 text-stone-50 px-1.5 py-0.2 font-sans">
                             Active Tier
                           </span>
                         )}
                       </div>
                       <div className="text-right">
                         {tier.discountPct > 0 ? (
-                          <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5">
+                          <span className="text-xs font-sans font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5">
                             SAVE {tier.discountPct}%
                           </span>
                         ) : (
-                          <span className="text-xs font-mono text-stone-500">
+                          <span className="text-xs font-sans text-stone-500">
                             Standard price
                           </span>
                         )}
@@ -503,7 +503,7 @@ export default function PricingWidget({
         <div className="p-4 bg-stone-50 border border-stone-200">
           <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
             <div>
-              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono block mb-1.5">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans block mb-1.5">
                 Batch Quantity
               </label>
               <div className="flex items-center border border-stone-300 h-11 w-36 bg-white">
@@ -532,13 +532,13 @@ export default function PricingWidget({
             </div>
 
             <div className="text-right">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-mono mb-0.5">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans mb-0.5">
                 Order Subtotal
               </div>
-              <div className="text-2xl sm:text-3xl font-mono font-bold text-stone-950">
+              <div className="text-2xl sm:text-3xl font-sans font-bold text-stone-950">
                 ₹{subtotal.toLocaleString()}
               </div>
-              <div className="text-[11px] font-mono text-stone-500 mt-0.5">
+              <div className="text-[11px] font-sans text-stone-500 mt-0.5">
                 ({quantity} &times; ₹{displayPrice}/unit)
               </div>
             </div>
@@ -603,21 +603,21 @@ export default function PricingWidget({
           <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
             <Truck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
             <div>
-              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">24H Dispatch</div>
+              <div className="text-xs font-sans font-bold text-stone-900 uppercase tracking-wider">24H Dispatch</div>
               <div className="text-[11px] text-stone-500 font-sans mt-0.5">Ships from Muzaffarpur</div>
             </div>
           </div>
           <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
             <div>
-              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">Certified Material</div>
+              <div className="text-xs font-sans font-bold text-stone-900 uppercase tracking-wider">Certified Material</div>
               <div className="text-[11px] text-stone-500 font-sans mt-0.5">COA + IFRA available</div>
             </div>
           </div>
           <div className="p-3 bg-stone-50/70 border border-stone-200/80 flex items-start gap-2.5">
             <Lock className="w-4 h-4 text-stone-700 shrink-0 mt-0.5" />
             <div>
-              <div className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">Secure Payment</div>
+              <div className="text-xs font-sans font-bold text-stone-900 uppercase tracking-wider">Secure Payment</div>
               <div className="text-[11px] text-stone-500 font-sans mt-0.5">Protected by Razorpay</div>
             </div>
           </div>
@@ -631,8 +631,8 @@ export default function PricingWidget({
           style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
         >
           <div className="flex flex-col">
-            <span className="text-[9px] uppercase tracking-widest text-stone-400 font-mono">Qty: {quantity} &bull; Total</span>
-            <span className="text-base font-mono font-medium text-stone-900">₹{subtotal.toLocaleString()}</span>
+            <span className="text-[9px] uppercase tracking-widest text-stone-400 font-sans">Qty: {quantity} &bull; Total</span>
+            <span className="text-base font-sans font-medium text-stone-900">₹{subtotal.toLocaleString()}</span>
           </div>
           <div className="flex gap-2 items-center">
             <button 

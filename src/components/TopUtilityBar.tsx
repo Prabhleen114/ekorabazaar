@@ -44,7 +44,7 @@ export default function TopUtilityBar() {
   const current = ANNOUNCEMENTS[currentIndex];
 
   return (
-    <div className="h-9 bg-[#181715] text-[#FAF8F5] flex items-center justify-center text-[11px] tracking-[0.2em] uppercase font-mono px-4 border-b border-stone-800 select-none">
+    <div className="h-9 bg-[#181715] text-[#FAF8F5] flex items-center justify-center text-[11px] tracking-[0.2em] uppercase font-sans px-4 border-b border-stone-800 select-none">
       <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between">
         <div className="hidden lg:block flex-1 text-left text-stone-400 text-[10px] tracking-[0.15em]">
           DIRECT B2B FACTORY SOURCING

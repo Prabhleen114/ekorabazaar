@@ -4,9 +4,12 @@
 @theme inline {
   --color-background: #FAF8F5;
   --color-foreground: #181715;
-  --font-sans: var(--font-sans), "Lato", system-ui, -apple-system, sans-serif;
+
+  /* ── Font families ───────────────────────────────────────── */
+  --font-sans: var(--font-sans), "Lato-Fallback", Lato, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-serif: var(--font-serif), "Playfair Display SC", "Playfair Display", Georgia, serif;
-  
+
+  /* ── Brand palette ───────────────────────────────────────── */
   --color-brand-bg: #FAF8F5;
   --color-brand-linen: #E8E5DF;
   --color-brand-charcoal: #181715;
@@ -21,42 +24,122 @@
 :root {
   --background: #FAF8F5;
   --foreground: #181715;
+
+  /* ── Complete type scale (mobile-first, fluid with clamp) ────
+     Rules:
+       font-serif  = Playfair Display SC — display only (short headings)
+       font-sans   = Lato — everything else (body, UI, buttons, prices)
+     Body minimum: 16px (prevents iOS auto-zoom on inputs)
+     Captions minimum: 12px
+  ──────────────────────────────────────────────────────────── */
+
+  /* Display — logo wordmark, hero super-heading */
+  --type-display-size:        clamp(2.25rem, 5vw + 1rem, 4rem);   /* 36px → 64px */
+  --type-display-lh:          1.05;
+  --type-display-ls:          0.04em;
+  --type-display-weight:      700;
+  --type-display-family:      var(--font-serif);
+
+  /* H1 — page hero titles, PDP product name */
+  --type-h1-size:             clamp(1.75rem, 4vw + 0.5rem, 2.75rem); /* 28px → 44px */
+  --type-h1-lh:               1.10;
+  --type-h1-ls:               0.02em;
+  --type-h1-weight:           700;
+  --type-h1-family:           var(--font-serif);
+
+  /* H2 — section headings */
+  --type-h2-size:             clamp(1.375rem, 2.5vw + 0.5rem, 2rem); /* 22px → 32px */
+  --type-h2-lh:               1.15;
+  --type-h2-ls:               0.025em;
+  --type-h2-weight:           700;
+  --type-h2-family:           var(--font-serif);
+
+  /* H3 — sub-section, card group labels */
+  --type-h3-size:             clamp(1.125rem, 1.5vw + 0.5rem, 1.375rem); /* 18px → 22px */
+  --type-h3-lh:               1.25;
+  --type-h3-ls:               0.01em;
+  --type-h3-weight:           700;
+  --type-h3-family:           var(--font-sans);
+
+  /* Body LG — lead paragraph, descriptions, product detail */
+  --type-body-lg-size:        clamp(1rem, 1vw + 0.75rem, 1.125rem); /* 16px → 18px */
+  --type-body-lg-lh:          1.65;
+  --type-body-lg-ls:          0em;
+  --type-body-lg-weight:      400;
+  --type-body-lg-family:      var(--font-sans);
+
+  /* Body — default body text */
+  --type-body-size:           1rem;    /* 16px — hard floor, never below */
+  --type-body-lh:             1.60;
+  --type-body-ls:             0em;
+  --type-body-weight:         400;
+  --type-body-family:         var(--font-sans);
+
+  /* Small — helper text, form hints */
+  --type-small-size:          0.875rem;   /* 14px */
+  --type-small-lh:            1.50;
+  --type-small-ls:            0em;
+  --type-small-weight:        400;
+  --type-small-family:        var(--font-sans);
+
+  /* Caption — metadata labels, category chips, timestamps */
+  --type-caption-size:        0.75rem;    /* 12px — hard floor */
+  --type-caption-lh:          1.40;
+  --type-caption-ls:          0.15em;
+  --type-caption-weight:      400;
+  --type-caption-family:      var(--font-sans);
+
+  /* Button — CTA text */
+  --type-button-size:         0.8125rem;  /* 13px */
+  --type-button-lh:           1;
+  --type-button-ls:           0.15em;
+  --type-button-weight:       700;
+  --type-button-family:       var(--font-sans);
+
+  /* Price — currency display */
+  --type-price-size:          clamp(1.25rem, 2vw + 0.5rem, 1.75rem); /* 20px → 28px */
+  --type-price-lh:            1.20;
+  --type-price-ls:            -0.01em;
+  --type-price-weight:        700;
+  --type-price-family:        var(--font-sans);
 }
 
+/* ── Metric-matched Lato fallback (prevents CLS on font swap) ── */
+/* Values derived from Lato 400 metrics vs Arial */
 @font-face {
-  font-family: "Inter-Fallback";
+  font-family: "Lato-Fallback";
   src: local("Arial");
-  ascent-override: 90%;
-  descent-override: 22.43%;
+  ascent-override: 100%;
+  descent-override: 21%;
   line-gap-override: 0%;
-  size-adjust: 107.64%;
+  size-adjust: 100.5%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), "Lato", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-lh);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Minimal scrollbar */
+/* ── Minimal scrollbar ──────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #d4d4d8;
   border-radius: 3px;
 }
 
-/* Horizontal scroll without visible scrollbar (category chips) */
+/* ── Horizontal scroll hide (category chips) ────────────────── */
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -65,7 +148,7 @@ html {
   display: none;
 }
 
-/* Safe-area bottom padding for iOS home bar */
+/* ── Safe-area padding (iOS home bar) ───────────────────────── */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom);
@@ -75,10 +158,83 @@ html {
   }
 }
 
-/* Prevent content from being hidden under sticky bottom bars on PDP mobile */
+/* ── PDP mobile scroll pad ──────────────────────────────────── */
 @media (max-width: 767px) {
   .pdp-mobile-scroll-pad {
     padding-bottom: 5rem;
   }
 }
 
+/* ── Type scale utility classes ─────────────────────────────── */
+.type-display {
+  font-family: var(--type-display-family);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-lh);
+  letter-spacing: var(--type-display-ls);
+  font-weight: var(--type-display-weight);
+}
+.type-h1 {
+  font-family: var(--type-h1-family);
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-lh);
+  letter-spacing: var(--type-h1-ls);
+  font-weight: var(--type-h1-weight);
+}
+.type-h2 {
+  font-family: var(--type-h2-family);
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-lh);
+  letter-spacing: var(--type-h2-ls);
+  font-weight: var(--type-h2-weight);
+}
+.type-h3 {
+  font-family: var(--type-h3-family);
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-lh);
+  letter-spacing: var(--type-h3-ls);
+  font-weight: var(--type-h3-weight);
+}
+.type-body-lg {
+  font-family: var(--type-body-lg-family);
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-lh);
+  letter-spacing: var(--type-body-lg-ls);
+  font-weight: var(--type-body-lg-weight);
+}
+.type-body {
+  font-family: var(--type-body-family);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+  font-weight: var(--type-body-weight);
+}
+.type-small {
+  font-family: var(--type-small-family);
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-lh);
+  letter-spacing: var(--type-small-ls);
+  font-weight: var(--type-small-weight);
+}
+.type-caption {
+  font-family: var(--type-caption-family);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-lh);
+  letter-spacing: var(--type-caption-ls);
+  font-weight: var(--type-caption-weight);
+  text-transform: uppercase;
+}
+.type-button {
+  font-family: var(--type-button-family);
+  font-size: var(--type-button-size);
+  line-height: var(--type-button-lh);
+  letter-spacing: var(--type-button-ls);
+  font-weight: var(--type-button-weight);
+  text-transform: uppercase;
+}
+.type-price {
+  font-family: var(--type-price-family);
+  font-size: var(--type-price-size);
+  line-height: var(--type-price-lh);
+  letter-spacing: var(--type-price-ls);
+  font-weight: var(--type-price-weight);
+}

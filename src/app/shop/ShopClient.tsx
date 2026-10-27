@@ -699,20 +699,20 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
                       fallbackSrc="/og-image.jpg"
                     />
  {product.isQuoteOnly || product.price === 0 ? (
- <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-mono">
+ <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-sans">
  Quote Only
  </div>
  ) : null}
  </div>
 
  <div className="flex flex-col flex-1">
- <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
+ <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans mb-1 line-clamp-1">
  {categoryLabel}
  </span>
  <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
  {product.name}
  </h2>
- <div className="text-xs font-mono text-stone-800 flex items-baseline justify-between mb-2">
+ <div className="text-xs font-sans text-stone-800 flex items-baseline justify-between mb-2">
  {product.isQuoteOnly || product.price === 0 ? (
  <span className="text-stone-500 italic">Quote on Request</span>
  ) : (
@@ -923,11 +923,11 @@ export default function ShopClient({ initialProducts = [] }: { initialProducts?:
  }`}
  >
  <span className="truncate flex items-center gap-1">
- {isSubOption && <span className="text-[10px] text-amber-700/80 font-mono">↳</span>}
+ {isSubOption && <span className="text-[10px] text-amber-700/80 font-sans">↳</span>}
  <span>{sub}</span>
  </span>
  {subCount > 0 && (
- <span className="text-[10px] text-stone-400 shrink-0 ml-1 font-mono">
+ <span className="text-[10px] text-stone-400 shrink-0 ml-1 font-sans">
  {subCount}
  </span>
  )}

@@ -9,14 +9,14 @@ import "./globals.css";
 const lato = Lato({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["100", "300", "400", "700", "900"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
 const playfairDisplaySC = Playfair_Display_SC({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["400", "700", "900"],
+  weight: ["400", "700"],
   display: "swap",
 });
 const BASE_URL = "https://www.ekorabazaar.in";

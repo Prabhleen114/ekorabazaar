@@ -39,11 +39,11 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
         <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono mb-1 line-clamp-1">
           {categoryLabel}
         </span>
-        <h3 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
+        <h3 className="font-sans text-sm md:text-base text-stone-900 font-semibold leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
           {product.title}
         </h3>
 
-        <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-mono">
+        <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-sans">
           <div className="flex items-baseline gap-1.5 flex-wrap">
             <span className="font-bold text-sm text-stone-950">₹{effectivePrice}</span>
             {product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1 && (

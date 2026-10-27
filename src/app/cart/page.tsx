@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import ProductImageClient from "@/components/ProductImageClient"
 import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
@@ -157,7 +158,28 @@ export default function CartPage() {
   if (loading) return <div className="min-h-screen p-8 text-center">Loading cart...</div>
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto px-4 py-6 md:py-10">
+      {/* Brand Header with Home Link */}
+      <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
+        <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
+          <Image
+            src="/images/logo.jpg"
+            alt="Ekora Bazaar"
+            width={140}
+            height={38}
+            priority
+            className="object-contain mix-blend-multiply group-hover:opacity-85 transition-opacity"
+            style={{ height: "36px", width: "auto" }}
+          />
+        </Link>
+        <Link
+          href="/shop"
+          className="text-xs uppercase tracking-wider text-stone-600 hover:text-stone-900 transition-colors font-medium flex items-center gap-1.5"
+        >
+          <span>&larr;</span>
+          <span>Continue Shopping</span>
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold font-serif mb-8 flex items-center gap-3">
         <ShoppingBag className="w-8 h-8 text-brand-orange" />
         Your Cart

@@ -238,7 +238,7 @@ export default async function ProductDetailsPage({ params }: Props) {
         {/* Product Info & Formulation Panel */}
         <div className="w-full md:w-1/2 px-1 md:px-0 pt-2 md:pt-0">
           {/* Visual Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-mono mb-4 flex-wrap gap-1.5">
+          <nav aria-label="Breadcrumb" className="flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-sans mb-4 flex-wrap gap-1.5">
             <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
             <span>/</span>
             <Link href="/shop" className="hover:text-stone-900 transition-colors">Shop</Link>
@@ -254,17 +254,17 @@ export default async function ProductDetailsPage({ params }: Props) {
 
           <div className="mb-2">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans">
                 {displayProduct.category} &bull; Formulation Grade
               </span>
-              <span className="inline-flex items-center gap-1 text-[10px] font-mono font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-sm">
+              <span className="inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-sm">
                 ★ Verified Batch
               </span>
             </div>
             <h1 className="font-serif text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-2">
               {displayProduct.name}
             </h1>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-mono mb-4">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-sans mb-4">
               Direct Manufacturer Batch Tested &bull; COA Verified
             </p>
           </div>
@@ -276,13 +276,13 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
 
           {displayProduct.isQuoteOnly || !displayProduct.inStock ? (
-            <div className="flex items-center gap-3 mb-4 text-xs font-mono">
+            <div className="flex items-center gap-3 mb-4 text-xs font-sans">
               <span className="border border-stone-300 px-2.5 py-1 text-stone-700 bg-stone-50">
                 Custom Wholesale Quote on Request
               </span>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs font-mono text-stone-700">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs font-sans text-stone-700">
               <span className="inline-flex items-center gap-1.5 font-medium text-emerald-800">
                 <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
                 In Stock at Atelier
@@ -322,15 +322,15 @@ export default async function ProductDetailsPage({ params }: Props) {
           {/* Technical Profile Card with Document Badges */}
           <div className="mt-6 p-4 sm:p-5 bg-white border border-stone-200/90 shadow-2xs space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono font-bold">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans font-bold">
                 Technical Profile
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-stone-400 font-mono">
+              <span className="text-[10px] uppercase tracking-wider text-stone-400 font-sans">
                 Batch Analysis Verified
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-mono">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-sans">
               <div>
                 <span className="text-stone-400 text-[10px] uppercase block">Grade &amp; Purity</span>
                 <span className="text-stone-800 font-medium">
@@ -356,25 +356,25 @@ export default async function ProductDetailsPage({ params }: Props) {
             </div>
 
             <div className="pt-3 border-t border-stone-100 flex items-center justify-between flex-wrap gap-2">
-              <span className="text-[10px] uppercase tracking-wider text-stone-500 font-mono">
+              <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans">
                 Technical Dossiers:
               </span>
               <div className="flex items-center gap-2">
                 <a
                   href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ COA ]
                 </a>
                 <a
                   href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ TDS ]
                 </a>
                 <a
                   href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
+                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
                 >
                   [ MSDS ]
                 </a>
@@ -387,21 +387,21 @@ export default async function ProductDetailsPage({ params }: Props) {
             <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
               <div className="flex items-center gap-2 mb-1">
                 <FlaskConical className="w-4 h-4 text-[#8C734B]" />
-                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Lab Tested</h4>
+                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Lab Tested</h4>
               </div>
               <p className="text-[11px] text-stone-500 font-sans">COA &amp; MSDS batch certified</p>
             </div>
             <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
               <div className="flex items-center gap-2 mb-1">
                 <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Batch Matched</h4>
+                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Batch Matched</h4>
               </div>
               <p className="text-[11px] text-stone-500 font-sans">100% formulation consistency</p>
             </div>
             <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
               <div className="flex items-center gap-2 mb-1">
                 <FileText className="w-4 h-4 text-stone-700" />
-                <h4 className="font-mono text-xs uppercase tracking-wider text-stone-900 font-bold">Instant Docs</h4>
+                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Instant Docs</h4>
               </div>
               <p className="text-[11px] text-stone-500 font-sans">PDF data sheets included</p>
             </div>
@@ -409,7 +409,7 @@ export default async function ProductDetailsPage({ params }: Props) {
 
           <div className="mt-4 border border-stone-200 p-4 bg-white flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-stone-400 font-mono block">Supplier</span>
+              <span className="text-[10px] uppercase tracking-widest text-stone-400 font-sans block">Supplier</span>
               <h4 className="font-serif text-sm text-stone-900">{productData.supplierName}</h4>
             </div>
             <ContactSupplierButton
@@ -422,24 +422,24 @@ export default async function ProductDetailsPage({ params }: Props) {
           {/* Olfactory Notes Pyramid (Diptyque 3-Part Minimalist Grid) */}
           {displayProduct.fragranceNotes && (
             <div className="mt-8">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-2">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans block mb-2">
                 Olfactory Composition
               </span>
               <div className="border border-stone-200 divide-x divide-stone-200 grid grid-cols-3 bg-white text-center py-4">
                 <div className="px-3">
-                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Top Notes</h4>
+                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Top Notes</h4>
                   <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
                     {Array.isArray(displayProduct.fragranceNotes.top) ? displayProduct.fragranceNotes.top.join(", ") : displayProduct.fragranceNotes.top}
                   </p>
                 </div>
                 <div className="px-3">
-                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Heart Notes</h4>
+                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Heart Notes</h4>
                   <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
                     {Array.isArray(displayProduct.fragranceNotes.heart) ? displayProduct.fragranceNotes.heart.join(", ") : displayProduct.fragranceNotes.heart}
                   </p>
                 </div>
                 <div className="px-3">
-                  <h4 className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 mb-1">Base Notes</h4>
+                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Base Notes</h4>
                   <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
                     {Array.isArray(displayProduct.fragranceNotes.base) ? displayProduct.fragranceNotes.base.join(", ") : displayProduct.fragranceNotes.base}
                   </p>
@@ -452,13 +452,13 @@ export default async function ProductDetailsPage({ params }: Props) {
           <div className="mt-8 border-t border-stone-200 divide-y divide-stone-200">
             {displayProduct.usageLevels && (
               <details className="group py-4">
-                <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+                <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
                   <span>+ Recommended Usage Limits (IFRA Standards)</span>
-                  <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+                  <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
                 </summary>
                 <div className="pt-4">
                   <div className="border border-stone-200 overflow-hidden">
-                    <table className="w-full text-xs text-left font-mono">
+                    <table className="w-full text-xs text-left font-sans">
                       <thead className="bg-stone-50 text-stone-500 uppercase text-[9px] tracking-wider border-b border-stone-200">
                         <tr>
                           <th className="px-4 py-2.5">Application</th>
@@ -480,11 +480,11 @@ export default async function ProductDetailsPage({ params }: Props) {
             )}
 
             <details className="group py-4">
-              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
                 <span>+ Batch Compliance &amp; Technical Specifications</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2 font-mono">
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2 font-sans">
                 {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
                   <>
                     <p>&bull; Gas Chromatography &bull; Mass Spectrometry (GC-MS) batch verification available.</p>
@@ -520,11 +520,11 @@ export default async function ProductDetailsPage({ params }: Props) {
             </details>
 
             <details className="group py-4">
-              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
                 <span>+ Studio Storage &amp; Shelf Life</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-mono">
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-sans">
                 {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
                   "Store in original amber glass or food-grade HDPE container at 15°C–25°C away from direct UV exposure and heat. Optimal shelf life is 24 months from packaging date."
                 ) : displayProduct.category.toLowerCase().includes("butter") ? (
@@ -540,12 +540,15 @@ export default async function ProductDetailsPage({ params }: Props) {
             </details>
 
             <details className="group py-4">
-              <summary className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
+              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
                 <span>+ Returns &amp; Exchanges (B2B Policy)</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-mono">+</span>
+                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-mono">
-                Returns/exchanges are not available for standard wholesale and raw-material orders. Please verify product specifications, quantity, and requirements before placing the order.
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-sans space-y-2">
+                <p>We do not accept standard returns or exchanges on wholesale raw materials and formulation supplies to maintain batch safety and purity.</p>
+                <p className="bg-stone-50 p-2.5 border border-stone-200 text-stone-700">
+                  <strong>Transit Damage or Defect Guarantee:</strong> If your package arrives damaged, leaking, or with defective items, we require a <strong>full, continuous unboxing video with no cuts</strong> showing the sealed parcel and shipping label. Report within 24 hours of delivery via WhatsApp (+91 9041500605) or email (ekorabazaar@gmail.com) for prompt resolution.
+                </p>
               </div>
             </details>
           </div>
@@ -598,7 +601,7 @@ export default async function ProductDetailsPage({ params }: Props) {
                   href={`/blog/${guide.slug}`}
                   className="group block p-5 rounded-2xl bg-stone-50 border border-stone-200 hover:border-brand-orange/40 hover:bg-white transition-all shadow-xs"
                 >
-                  <p className="text-xs font-mono text-brand-orange uppercase tracking-wider mb-2">
+                  <p className="text-xs font-sans text-brand-orange uppercase tracking-wider mb-2">
                     {guide.frontmatter.tags[0] || displayProduct.category}
                   </p>
                   <h3 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange transition-colors line-clamp-2 mb-2">
