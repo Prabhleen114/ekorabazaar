@@ -57,46 +57,52 @@ export default function BuyerHomePage() {
         <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent pointer-events-none md:hidden" />
       </div>
 
-      {/* 2. HERO BANNER: VIEWPORT-CALIBRATED SPLIT (< 580px Height On Desktop) */}
+      {/* 2. HERO BANNER: ARCHITECTURAL ATELIER SPLIT (FLUID HEIGHT, ZERO TEXT CLIPPING) */}
       <div className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 mt-4">
-        <div className="relative w-full h-[480px] md:h-[540px] lg:h-[580px] bg-[#FAF8F5] border border-stone-200/80 overflow-hidden flex flex-col md:flex-row items-center">
+        <div className="relative w-full min-h-[480px] md:min-h-[520px] lg:min-h-[560px] h-auto bg-[#FAF8F5] border border-stone-200/80 flex flex-col md:flex-row items-stretch">
 
-          {/* Visual Column (Left, 55% Width on Desktop) */}
-          <div className="w-full md:w-[55%] h-[260px] md:h-full relative flex items-center justify-center p-6 md:p-12">
+          {/* Visual Column (Left, 50% Width on Desktop) */}
+          <div className="w-full md:w-1/2 min-h-[260px] md:min-h-full relative flex items-center justify-center p-6 md:p-10 bg-white/40 border-b md:border-b-0 md:border-r border-stone-200/60">
             <ProductImageClient
               src="/images/hero_studio_collection.webp"
               alt="Ekora Bazaar Artisanal Studio Collection on Limestone Riser"
               priority={true}
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-contain max-h-[85%] max-w-[85%] drop-shadow-md"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-contain max-h-[88%] max-w-[88%] drop-shadow-md"
             />
-            <div className="absolute top-4 left-4 border border-stone-300 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/90 backdrop-blur-xs font-mono">
+            <div className="absolute top-4 left-4 border border-stone-300 text-[10px] uppercase tracking-[0.2em] px-3 py-1 text-stone-700 bg-white/95 backdrop-blur-xs font-sans font-medium">
               Verified B2B Supplies
             </div>
           </div>
 
-          {/* Typography & Conversion Column (Right, 45% Width on Desktop) */}
-          <div className="w-full md:w-[45%] h-full flex flex-col justify-center px-4 md:px-6 md:px-12 lg:px-16 py-8">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 mb-2 font-sans">
-              DIRECT MANUFACTURER SOURCING
-            </span>
-            <span className="font-serif italic text-2xl md:text-3xl text-stone-600 -mb-1">
-              Zero commissions. No markup.
-            </span>
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] text-stone-900 leading-[1.1] tracking-tight mb-3 mt-2">
+          {/* Typography & Conversion Column (Right, 50% Width on Desktop) */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center px-5 sm:px-8 md:px-10 lg:px-12 py-8 md:py-10">
+            {/* Eyebrow & Prominent Zero Commissions Pill */}
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8C734B] font-sans">
+                Direct Manufacturer Sourcing
+              </span>
+              <span className="text-stone-300 hidden sm:inline">&bull;</span>
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200/90 px-2.5 py-0.5">
+                Zero Commissions &bull; No Markup
+              </span>
+            </div>
+
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-3xl lg:text-[2.5rem] text-stone-900 leading-[1.14] tracking-tight mb-2.5">
               The B2B Marketplace For Indian Craft Makers.
             </h1>
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-600 mb-4 font-medium font-sans">
-              BATCH-TESTED FRAGRANCES, WAXES & MOULDS FROM ₹249.
+
+            <p className="text-xs sm:text-sm text-stone-600 font-sans leading-relaxed mb-4">
+              Direct factory procurement for wholesale candle waxes, IFRA certified fragrance oils, and precision silicone moulds from ₹249.
             </p>
 
-            {/* Micro social proof stack (H-5) */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex -space-x-2">
+            {/* Micro social proof stack */}
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="flex -space-x-1.5">
                 {["RM", "SK", "AS", "PK", "KA"].map((initials, i) => (
                   <div
                     key={i}
-                    className="w-6 h-6 rounded-full border-2 border-white bg-stone-200 flex items-center justify-center text-[8px] font-bold text-stone-700 shadow-xs"
+                    className="w-5 h-5 rounded-full border border-white bg-stone-200 flex items-center justify-center text-[7px] font-bold text-stone-700 shadow-2xs"
                     style={{ zIndex: 5 - i }}
                   >
                     {initials}
@@ -111,21 +117,21 @@ export default function BuyerHomePage() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/shop"
-                className="w-full sm:w-fit bg-brand-orange text-white px-7 py-3.5 text-[11px] uppercase tracking-[0.2em] hover:bg-brand-terracotta transition-colors inline-flex items-center justify-center gap-2 text-center"
+                className="w-full sm:w-fit bg-brand-orange text-white px-6 py-3 text-[11px] font-bold uppercase tracking-[0.18em] hover:bg-brand-terracotta transition-colors inline-flex items-center justify-center gap-2 text-center"
               >
                 <span>SHOP WHOLESALE CATALOG</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/classes"
-                className="w-full sm:w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-4 md:px-6 py-3.5 text-[11px] uppercase tracking-[0.18em] transition-colors text-center"
+                className="w-full sm:w-fit border border-stone-300 text-stone-800 hover:border-stone-900 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors text-center"
               >
                 <span>DISCOVERY KITS</span>
               </Link>
             </div>
 
-            {/* Subtle verification footer with contextual icons */}
-            <div className="mt-8 pt-4 border-t border-stone-200/70 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.15em] text-stone-600 font-mono">
+            {/* Verification badges */}
+            <div className="mt-6 pt-3.5 border-t border-stone-200/70 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[10px] uppercase tracking-[0.15em] text-stone-600 font-sans">
               <span className="inline-flex items-center gap-1.5 font-medium"><ShieldCheck className="w-3.5 h-3.5 text-emerald-700" /> IFRA Certified</span>
               <span className="text-stone-300">&bull;</span>
               <span className="inline-flex items-center gap-1.5 font-medium"><Truck className="w-3.5 h-3.5 text-amber-700" /> 24H Dispatch</span>

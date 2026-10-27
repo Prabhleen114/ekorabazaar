@@ -112,7 +112,7 @@ export default function BuyerNavbar() {
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 h-14 md:h-20 flex items-center justify-between relative">
           {/* Left: Brand Logo */}
-          <div className="flex-1 flex justify-start items-center">
+          <div className="shrink-0 flex justify-start items-center min-w-[140px] md:min-w-[170px]">
             <Link
               href="/"
               className="flex items-center group py-2"
