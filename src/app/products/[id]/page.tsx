@@ -5,18 +5,15 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import PricingWidget from "@/components/PricingWidget";
 import { Metadata } from "next";
-import ProductImageClient from "@/components/ProductImageClient";
-import ContactSupplierButton from "@/components/ContactSupplierButton";
+import ProductGallery from "@/components/ProductGallery";
 import Link from "next/link";
 import serialize from "serialize-javascript";
-import { ChevronRight, MessageCircle, Check, Truck, ShieldCheck, FlaskConical, FileText } from "lucide-react";
+import { MessageCircle, FileText, ChevronDown } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
-import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
+import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
-import TechnicalDocsSection from "@/components/TechnicalDocsSection";
+import ProductKeySpecs from "@/components/ProductKeySpecs";
 import ProductFaqSection from "@/components/ProductFaqSection";
-import { getCategoryFaqs } from "@/lib/faqs";
-
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
@@ -94,7 +91,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
     // Database query fallback
   }
 
-  // 2. Fallback to active catalog (2,374 SKUs in products.json)
+  // 2. Fallback to active catalog
   const item = (catalogProducts as any[]).find(p => String(p.id) === String(id));
   if (item) {
     const priceVal = typeof item.price === "number" ? item.price : parseFloat(item.price || "0");
@@ -199,12 +196,21 @@ export default async function ProductDetailsPage({ params }: Props) {
 
   const relatedGuides = getPostsByCategory(displayProduct.category).slice(0, 3);
 
+  const bulkWhatsappUrl = `https://wa.me/919041500605?text=${encodeURIComponent(
+    `Hi Ekora! I need 100+ units of ${displayProduct.name} (ID: ${displayProduct.id}) for studio production. Please share volume tier quote and dispatch lead time.`
+  )}`;
+
+  const isFragranceOrOil =
+    displayProduct.category.toLowerCase().includes("fragrance") ||
+    displayProduct.category.toLowerCase().includes("essential") ||
+    displayProduct.category.toLowerCase().includes("oil");
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
       <TrackViewItem item={displayProduct} />
 
-      {/* Inject JSON-LD Schema for SEO Engine */}
+      {/* Inject JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serialize(jsonLd, { isJSON: true }) }}
@@ -213,6 +219,7 @@ export default async function ProductDetailsPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
       />
+
       {/* Visually hidden SEO tags */}
       {displayProduct.tags && displayProduct.tags.length > 0 && (
         <div className="sr-only" aria-hidden="true">
@@ -220,25 +227,26 @@ export default async function ProductDetailsPage({ params }: Props) {
         </div>
       )}
 
-      {/* Optimized PDP Layout: Reduced top padding and streamlined editorial atelier layout */}
-      <div className="pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8 lg:gap-14">
-        {/* Product Image Gallery (Architectural Framing) */}
+      {/* Main PDP Layout:
+          Mobile: Single-column conversion flow where the entire buy box sits directly beneath the gallery & title.
+          Laptop (md:): Two-column atelier layout preserved with sticky gallery on left and formulation details on right.
+      */}
+      <div className="pt-3 sm:pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-14">
+        
+        {/* LEFT COLUMN: Product Image Gallery (Swipeable 4:5 on mobile, Sticky architectural framing on laptop) */}
         <div className="w-full md:w-1/2">
-          <div className="aspect-square md:aspect-[4/5] w-full bg-stone-50/50 border border-stone-200/80 flex items-center justify-center p-4 md:p-8 md:sticky md:top-24 overflow-hidden relative">
-            <ProductImageClient
-              src={displayProduct.image}
-              alt={displayProduct.name}
-              priority={true}
-              quality={95}
-              fallbackSrc="/placeholder-product.svg"
-            />
-          </div>
+          <ProductGallery
+            mainImage={displayProduct.image}
+            productName={displayProduct.name}
+            category={displayProduct.category}
+          />
         </div>
 
-        {/* Product Info & Formulation Panel */}
-        <div className="w-full md:w-1/2 px-1 md:px-0 pt-2 md:pt-0">
-          {/* Visual Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-sans mb-4 flex-wrap gap-1.5">
+        {/* RIGHT COLUMN: Conversion Buy Flow, Key Specs & Technical Accordions */}
+        <div className="w-full md:w-1/2 px-0 md:px-0 flex flex-col">
+          
+          {/* Breadcrumbs (Subtle on desktop, minimal on mobile) */}
+          <nav aria-label="Breadcrumb" className="hidden sm:flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-sans mb-3 flex-wrap gap-1.5">
             <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
             <span>/</span>
             <Link href="/shop" className="hover:text-stone-900 transition-colors">Shop</Link>
@@ -252,60 +260,25 @@ export default async function ProductDetailsPage({ params }: Props) {
             <span className="text-stone-700">{displayProduct.category}</span>
           </nav>
 
+          {/* 3. Title Block: Name & One-line craft application subtext */}
           <div className="mb-2">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans">
-                {displayProduct.category} &bull; Formulation Grade
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans font-semibold">
+                {displayProduct.category}
               </span>
-              <span className="inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-sm">
-                ★ Verified Batch
+              <span className="inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-xs">
+                ★ Formulation Tested
               </span>
             </div>
-            <h1 className="font-serif text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-2">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-1.5">
               {displayProduct.name}
             </h1>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-sans mb-4">
-              Direct Manufacturer Batch Tested &bull; COA Verified
+            <p className="text-xs text-stone-600 font-sans leading-relaxed">
+              For candles, artisan soaps, reed diffusers &amp; studio craft formulations
             </p>
           </div>
 
-          <div className="text-stone-600 font-light text-xs md:text-sm leading-relaxed mb-6 border-y border-stone-200/70 py-4 space-y-3">
-            {displayProduct.description.split('\n').filter(Boolean).map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
-            ))}
-          </div>
-
-          {displayProduct.isQuoteOnly || !displayProduct.inStock ? (
-            <div className="flex items-center gap-3 mb-4 text-xs font-sans">
-              <span className="border border-stone-300 px-2.5 py-1 text-stone-700 bg-stone-50">
-                Custom Wholesale Quote on Request
-              </span>
-            </div>
-          ) : (
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs font-sans text-stone-700">
-              <span className="inline-flex items-center gap-1.5 font-medium text-emerald-800">
-                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-                In Stock at Atelier
-              </span>
-              <span className="text-stone-300">&bull;</span>
-              <span className="inline-flex items-center gap-1 text-stone-700">
-                <Truck className="w-3.5 h-3.5 text-stone-500" />
-                Ships in 24 Hours
-              </span>
-              <span className="text-stone-300">&bull;</span>
-              <span className="inline-flex items-center gap-1 text-stone-700">
-                <FlaskConical className="w-3.5 h-3.5 text-stone-500" />
-                Batch Tested
-              </span>
-              <span className="text-stone-300">&bull;</span>
-              <span className="inline-flex items-center gap-1 text-stone-700">
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                COA Verified
-              </span>
-            </div>
-          )}
-
-          {/* Add to Cart / Quote Widget */}
+          {/* 4, 5, 6, 7 & 8: THE BUY BOX (Size chips with price, stepper, live discount, pincode check & CTAs) */}
           <PricingWidget
             productId={displayProduct.id}
             productName={displayProduct.name}
@@ -319,256 +292,149 @@ export default async function ProductDetailsPage({ params }: Props) {
             inStock={displayProduct.inStock}
           />
 
-          {/* Technical Profile Card with Document Badges */}
-          <div className="mt-6 p-4 sm:p-5 bg-white border border-stone-200/90 shadow-2xs space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-100">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans font-bold">
-                Technical Profile
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-stone-400 font-sans">
-                Batch Analysis Verified
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-sans">
-              <div>
-                <span className="text-stone-400 text-[10px] uppercase block">Grade &amp; Purity</span>
-                <span className="text-stone-800 font-medium">
-                  {displayProduct.name.toLowerCase().includes('99%') ? '99% Pure' : '100% Pure Formulation'}
-                </span>
-              </div>
-              <div>
-                <span className="text-stone-400 text-[10px] uppercase block">Compliance</span>
-                <span className="text-stone-800 font-medium">
-                  {(displayProduct.name.toLowerCase().includes('ethanol') || displayProduct.name.toLowerCase().includes('alcohol') || displayProduct.category.toLowerCase().includes('packaging')) ? 'ISO Calibrated' : 'IFRA & ISO Calibrated'}
-                </span>
-              </div>
-              <div>
-                <span className="text-stone-400 text-[10px] uppercase block">Application</span>
-                <span className="text-stone-800 font-medium">
-                  {displayProduct.name.toLowerCase().includes('ethanol') ? 'Perfumery & Blending' : 'Candle, Soap & Studio Crafts'}
-                </span>
-              </div>
-              <div>
-                <span className="text-stone-400 text-[10px] uppercase block">Traceability</span>
-                <span className="text-stone-800 font-medium">Lot Matched Certificate</span>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-stone-100 flex items-center justify-between flex-wrap gap-2">
-              <span className="text-[10px] uppercase tracking-wider text-stone-500 font-sans">
-                Technical Dossiers:
-              </span>
-              <div className="flex items-center gap-2">
-                <a
-                  href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
-                >
-                  [ COA ]
-                </a>
-                <a
-                  href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
-                >
-                  [ TDS ]
-                </a>
-                <a
-                  href="#technical-docs"
-                  className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-wider font-semibold border border-stone-300 bg-stone-50 hover:bg-stone-900 hover:text-white transition-colors"
-                >
-                  [ MSDS ]
-                </a>
-              </div>
-            </div>
+          {/* 9. Key Specs Table (Replaces long poetic description; 5 structured rows) */}
+          <div className="mt-6">
+            <ProductKeySpecs product={displayProduct} />
           </div>
 
-          {/* Elevated Proof Cards (Upgraded from hairline metadata) */}
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1">
-                <FlaskConical className="w-4 h-4 text-[#8C734B]" />
-                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Lab Tested</h4>
-              </div>
-              <p className="text-[11px] text-stone-500 font-sans">COA &amp; MSDS batch certified</p>
-            </div>
-            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Batch Matched</h4>
-              </div>
-              <p className="text-[11px] text-stone-500 font-sans">100% formulation consistency</p>
-            </div>
-            <div className="p-3.5 bg-white border border-stone-200/90 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1">
-                <FileText className="w-4 h-4 text-stone-700" />
-                <h4 className="font-sans text-xs uppercase tracking-wider text-stone-900 font-bold">Instant Docs</h4>
-              </div>
-              <p className="text-[11px] text-stone-500 font-sans">PDF data sheets included</p>
-            </div>
-          </div>
-
-          <div className="mt-4 border border-stone-200 p-4 bg-white flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div>
-              <span className="text-[10px] uppercase tracking-widest text-stone-400 font-sans block">Supplier</span>
-              <h4 className="font-serif text-sm text-stone-900">{productData.supplierName}</h4>
-            </div>
-            <ContactSupplierButton
-              productName={displayProduct.name}
-              productId={productData.id}
-              sellerId={productData.sellerId}
-            />
-          </div>
-
-          {/* Olfactory Notes Pyramid (Diptyque 3-Part Minimalist Grid) */}
-          {displayProduct.fragranceNotes && (
-            <div className="mt-8">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans block mb-2">
-                Olfactory Composition
-              </span>
-              <div className="border border-stone-200 divide-x divide-stone-200 grid grid-cols-3 bg-white text-center py-4">
-                <div className="px-3">
-                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Top Notes</h4>
-                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
-                    {Array.isArray(displayProduct.fragranceNotes.top) ? displayProduct.fragranceNotes.top.join(", ") : displayProduct.fragranceNotes.top}
-                  </p>
-                </div>
-                <div className="px-3">
-                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Heart Notes</h4>
-                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
-                    {Array.isArray(displayProduct.fragranceNotes.heart) ? displayProduct.fragranceNotes.heart.join(", ") : displayProduct.fragranceNotes.heart}
-                  </p>
-                </div>
-                <div className="px-3">
-                  <h4 className="text-[9px] font-sans uppercase tracking-[0.2em] text-stone-400 mb-1">Base Notes</h4>
-                  <p className="font-serif text-xs md:text-sm text-stone-900 font-normal">
-                    {Array.isArray(displayProduct.fragranceNotes.base) ? displayProduct.fragranceNotes.base.join(", ") : displayProduct.fragranceNotes.base}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Technical Dossier Collapsible Drawers */}
-          <div className="mt-8 border-t border-stone-200 divide-y divide-stone-200">
-            {displayProduct.usageLevels && (
-              <details className="group py-4">
-                <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
-                  <span>+ Recommended Usage Limits (IFRA Standards)</span>
-                  <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
-                </summary>
-                <div className="pt-4">
-                  <div className="border border-stone-200 overflow-hidden">
-                    <table className="w-full text-xs text-left font-sans">
-                      <thead className="bg-stone-50 text-stone-500 uppercase text-[9px] tracking-wider border-b border-stone-200">
-                        <tr>
-                          <th className="px-4 py-2.5">Application</th>
-                          <th className="px-4 py-2.5 text-right">Max Safe Usage</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-stone-200 bg-white">
-                        {Object.entries(displayProduct.usageLevels).map(([app, usage]) => (
-                          <tr key={app} className="hover:bg-stone-50/50">
-                            <td className="px-4 py-2.5 text-stone-800">{app}</td>
-                            <td className="px-4 py-2.5 text-right font-medium text-[#8C734B]">{usage as string}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </details>
-            )}
-
+          {/* 10. Technical Accordions (Description, Documents, FAQs, and Returns) */}
+          <div className="mt-6 border-t border-stone-200 divide-y divide-stone-200">
+            {/* Description Accordion */}
             <details className="group py-4">
-              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
-                <span>+ Batch Compliance &amp; Technical Specifications</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
+              <summary className="font-sans text-xs uppercase tracking-[0.18em] text-stone-900 font-semibold cursor-pointer flex justify-between items-center select-none">
+                <span>Product Description &amp; Formulation Overview</span>
+                <ChevronDown className="w-4 h-4 text-stone-500 group-open:rotate-180 transition-transform duration-200" />
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2 font-sans">
-                {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
-                  <>
-                    <p>&bull; Gas Chromatography &bull; Mass Spectrometry (GC-MS) batch verification available.</p>
-                    <p>&bull; Phthalate-Free &bull; Cruelty-Free &bull; 100% Pure Formulation Grade.</p>
-                    <p>&bull; Certificate of Analysis (COA) / IFRA Certificate available per production lot.</p>
-                  </>
-                ) : displayProduct.category.toLowerCase().includes("butter") || displayProduct.category.toLowerCase().includes("carrier") ? (
-                  <>
-                    <p>&bull; Pure Cold-Pressed / Expeller Extracted Cosmetic Grade.</p>
-                    <p>&bull; Unrefined / Pure Formulation Grade &bull; Hexane-Free.</p>
-                    <p>&bull; Certificate of Analysis (COA) / Batch Specification available on request.</p>
-                  </>
-                ) : displayProduct.category.toLowerCase().includes("wax") ? (
-                  <>
-                    <p>&bull; High-Purity Candle Formulation Grade Wax.</p>
-                    <p>&bull; Consistent Melting Point &amp; Smooth Surface Crystallization.</p>
-                    <p>&bull; Technical Data Sheet (TDS) and batch lot information available on request.</p>
-                  </>
-                ) : displayProduct.category.toLowerCase().includes("mould") || displayProduct.category.toLowerCase().includes("mold") ? (
-                  <>
-                    <p>&bull; High-Tear Strength Food &amp; Craft Grade Silicone.</p>
-                    <p>&bull; Temperature Resistant (-40&deg;C to 230&deg;C) &bull; Reusable &amp; Non-Stick.</p>
-                    <p>&bull; Precision Mold Engineering for Artisans &amp; Studio Production.</p>
-                  </>
-                ) : (
-                  <>
-                    <p>&bull; Standard Commercial Wholesale Grade.</p>
-                    <p>&bull; Batch Specification &amp; Safe Handling Guidance available on request.</p>
-                    <p>&bull; Quality inspected for professional craft and formulation studios.</p>
-                  </>
-                )}
+              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed space-y-2.5 font-sans">
+                {displayProduct.description.split('\n').filter(Boolean).map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
             </details>
 
+            {/* Technical Documents Accordion (Labeled 'View COA (PDF)' rather than raw filenames) */}
             <details className="group py-4">
-              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
-                <span>+ Studio Storage &amp; Shelf Life</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
+              <summary className="font-sans text-xs uppercase tracking-[0.18em] text-stone-900 font-semibold cursor-pointer flex justify-between items-center select-none">
+                <span>Batch Documents (COA, TDS, MSDS, IFRA)</span>
+                <ChevronDown className="w-4 h-4 text-stone-500 group-open:rotate-180 transition-transform duration-200" />
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-sans">
-                {displayProduct.category.toLowerCase().includes("essential") || displayProduct.category.toLowerCase().includes("fragrance") ? (
-                  "Store in original amber glass or food-grade HDPE container at 15°C–25°C away from direct UV exposure and heat. Optimal shelf life is 24 months from packaging date."
-                ) : displayProduct.category.toLowerCase().includes("butter") ? (
-                  "Store in a cool, dry place at 15°C–22°C away from direct sunlight and humidity. Optimal shelf life is 18–24 months from cold-press extraction date."
-                ) : displayProduct.category.toLowerCase().includes("wax") ? (
-                  "Store flakes/slabs in a cool, ventilated space below 25°C in sealed containers away from open flame and direct sunlight. Optimal shelf life is 24+ months."
-                ) : displayProduct.category.toLowerCase().includes("mould") || displayProduct.category.toLowerCase().includes("mold") ? (
-                  "Wash with mild warm soapy water after use. Store flat on a level surface away from sharp objects and direct UV exposure to prevent distortion."
-                ) : (
-                  "Store in original packaging in a cool, dry ambient warehouse environment away from moisture and direct sunlight."
-                )}
+              <div className="pt-3 space-y-2">
+                <p className="text-xs text-stone-500 font-sans mb-3">
+                  Download certified manufacturer lab dossiers for batch verification and compliance:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
+                  <a
+                    href={`/api/docs/${displayProduct.id}/coa`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 border border-stone-200 bg-stone-50/70 hover:bg-stone-100 flex items-center justify-between text-stone-800 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-amber-700" />
+                      <strong>View COA (PDF)</strong>
+                    </span>
+                    <span className="text-[10px] text-stone-400 font-medium">Batch Assay &rarr;</span>
+                  </a>
+
+                  <a
+                    href={`/api/docs/${displayProduct.id}/tds`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 border border-stone-200 bg-stone-50/70 hover:bg-stone-100 flex items-center justify-between text-stone-800 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-blue-700" />
+                      <strong>View TDS (PDF)</strong>
+                    </span>
+                    <span className="text-[10px] text-stone-400 font-medium">Technical Data &rarr;</span>
+                  </a>
+
+                  <a
+                    href={`/api/docs/${displayProduct.id}/msds`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 border border-stone-200 bg-stone-50/70 hover:bg-stone-100 flex items-center justify-between text-stone-800 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-stone-700" />
+                      <strong>View MSDS (PDF)</strong>
+                    </span>
+                    <span className="text-[10px] text-stone-400 font-medium">Safety Sheet &rarr;</span>
+                  </a>
+
+                  {isFragranceOrOil && (
+                    <a
+                      href={`/api/docs/${displayProduct.id}/ifra`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 border border-stone-200 bg-stone-50/70 hover:bg-stone-100 flex items-center justify-between text-stone-800 transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-emerald-700" />
+                        <strong>View IFRA Certificate (PDF)</strong>
+                      </span>
+                      <span className="text-[10px] text-stone-400 font-medium">Compliance &rarr;</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </details>
 
-            <details className="group py-4">
-              <summary className="font-sans text-[11px] uppercase tracking-[0.18em] text-stone-900 cursor-pointer flex justify-between items-center select-none">
-                <span>+ Returns &amp; Exchanges (B2B Policy)</span>
-                <span className="text-stone-400 group-open:rotate-45 transition-transform text-sm font-sans">+</span>
+            {/* Returns & Replacement Policy Accordion (Explicit: Damage replacement only with uncut video) */}
+            <details id="returns-policy" className="group py-4">
+              <summary className="font-sans text-xs uppercase tracking-[0.18em] text-stone-900 font-semibold cursor-pointer flex justify-between items-center select-none">
+                <span>Returns, Cancellations &amp; Damage Guarantee</span>
+                <ChevronDown className="w-4 h-4 text-stone-500 group-open:rotate-180 transition-transform duration-200" />
               </summary>
-              <div className="pt-3 text-xs text-stone-600 font-light leading-relaxed font-sans space-y-2">
-                <p>We do not accept standard returns or exchanges on wholesale raw materials and formulation supplies to maintain batch safety and purity.</p>
-                <p className="bg-stone-50 p-2.5 border border-stone-200 text-stone-700">
-                  <strong>Transit Damage or Defect Guarantee:</strong> If your package arrives damaged, leaking, or with defective items, we require a <strong>full, continuous unboxing video with no cuts</strong> showing the sealed parcel and shipping label. Report within 24 hours of delivery via WhatsApp (+91 9041500605) or email (ekorabazaar@gmail.com) for prompt resolution.
+              <div className="pt-3 text-xs text-stone-700 font-sans leading-relaxed space-y-2.5">
+                <p>
+                  To maintain strict chemical purity, lot integrity, and safety standards, <strong>we do not accept standard returns, exchanges, or order cancellations</strong> on wholesale raw materials, cosmetic bases, or formulation supplies.
+                </p>
+                <div className="bg-amber-50/80 border border-amber-200/90 p-3 text-amber-950 space-y-1">
+                  <strong className="block text-amber-900">Transit Damage &amp; Leakage Claims:</strong>
+                  <p className="text-[11px] leading-relaxed">
+                    If your shipment arrives damaged, broken, or leaking, a <strong>full continuous unboxing video with no cuts</strong> is strictly mandatory. The video must clearly show the unopened courier box, shipping label, and the condition of the inner seal upon opening.
+                  </p>
+                  <p className="text-[11px] text-amber-800 pt-0.5">
+                    Report damage within 24 hours of delivery via WhatsApp (+91 9041500605) or email (ekorabazaar@gmail.com) for prompt replacement dispatch.
+                  </p>
+                </div>
+                <p className="text-[11px] text-stone-500">
+                  Payment: 100% Pre-paid wholesale dispatch via Razorpay (UPI, NetBanking, Debit/Credit Cards). Cash on Delivery (COD) is not offered.
                 </p>
               </div>
             </details>
           </div>
+
+          {/* 11. ONE SINGLE BULK CARD (Replaces duplicate quote buttons and supplier banner) */}
+          <div className="mt-8 p-5 bg-[#FAF8F5] border border-stone-300 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans font-bold block mb-1">
+                Volume Manufacturing
+              </span>
+              <h3 className="font-serif text-lg font-bold text-stone-900">
+                Need 100+ units? Get a quote on WhatsApp
+              </h3>
+              <p className="text-xs text-stone-600 font-sans mt-0.5">
+                Direct factory sourcing, custom batch fills, and commercial tier pricing.
+              </p>
+            </div>
+            <a
+              href={bulkWhatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto shrink-0 bg-stone-900 hover:bg-black text-white px-5 py-3 text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-colors min-h-[44px]"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Get WhatsApp Quote</span>
+            </a>
+          </div>
+
         </div>
       </div>
 
-
-
-
-      {/* Lab-Tested & COA Certified Technical Documentation */}
-      <div id="technical-docs" className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-10 scroll-mt-24">
-        <TechnicalDocsSection
-          productId={displayProduct.id}
-          productName={displayProduct.name}
-          category={displayProduct.category}
-        />
-      </div>
-
-      {/* Pre-Purchase Technical Q&As (Contextual Long-Tail Creator Questions) */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-16">
+      {/* Pre-Purchase Technical Q&As */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-14">
         <ProductFaqSection
           productName={displayProduct.name}
           category={displayProduct.category}
@@ -577,34 +443,34 @@ export default async function ProductDetailsPage({ params }: Props) {
         />
       </div>
 
-      {/* Related Guides & Maker Tutorials */}
+      {/* 12. Related Guides & Maker Tutorials */}
       {relatedGuides.length > 0 && (
         <div className="max-w-6xl mx-auto px-4 md:px-6 w-full pb-16">
-          <div className="bg-white p-8 md:p-10 rounded-3xl border border-stone-200">
+          <div className="bg-white p-6 md:p-10 rounded-2xl border border-stone-200">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
                 <h2 className="text-2xl font-bold font-serif text-brand-charcoal">
                   Related Guides &amp; Maker Tutorials
                 </h2>
-                <p className="text-sm text-brand-charcoal/60 mt-1">
+                <p className="text-xs md:text-sm text-brand-charcoal/60 mt-1">
                   Learn formulation guidelines, testing techniques, and usage tips for {displayProduct.category}.
                 </p>
               </div>
-              <Link href="/blog" className="text-brand-orange text-sm font-semibold hover:underline">
-                View All Guides →
+              <Link href="/blog" className="text-brand-orange text-xs md:text-sm font-semibold hover:underline">
+                View All Guides &rarr;
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {relatedGuides.map((guide) => (
                 <Link
                   key={guide.slug}
                   href={`/blog/${guide.slug}`}
-                  className="group block p-5 rounded-2xl bg-stone-50 border border-stone-200 hover:border-brand-orange/40 hover:bg-white transition-all shadow-xs"
+                  className="group block p-4 md:p-5 rounded-xl bg-stone-50 border border-stone-200 hover:border-brand-orange/40 hover:bg-white transition-all shadow-2xs"
                 >
-                  <p className="text-xs font-sans text-brand-orange uppercase tracking-wider mb-2">
+                  <p className="text-[10px] font-sans text-brand-orange uppercase tracking-wider mb-1.5">
                     {guide.frontmatter.tags[0] || displayProduct.category}
                   </p>
-                  <h3 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange transition-colors line-clamp-2 mb-2">
+                  <h3 className="font-bold text-sm md:text-base text-brand-charcoal group-hover:text-brand-orange transition-colors line-clamp-2 mb-1.5">
                     {guide.frontmatter.title}
                   </h3>
                   <p className="text-xs text-brand-charcoal/65 line-clamp-2 leading-relaxed">

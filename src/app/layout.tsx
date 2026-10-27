@@ -114,6 +114,7 @@ export const metadata: Metadata = {
 
 
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MiniCartDrawer from "@/components/MiniCartDrawer";
 import CookieConsent from "@/components/CookieConsent";
 import { HesitationTracker } from "@/components/HesitationTracker";
 
@@ -190,6 +191,7 @@ export default function RootLayout({
       >
         {children}
         <HesitationTracker />
+        <MiniCartDrawer />
         <WhatsAppButton />
         <CookieConsent />
         <Analytics />

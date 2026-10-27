@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const ANNOUNCEMENTS = [
   {
@@ -23,10 +24,15 @@ const ANNOUNCEMENTS = [
 ];
 
 export default function TopUtilityBar() {
+  const pathname = usePathname();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
+  // Suppress rotating supplier promo banner on product detail pages for a slim, clean header
+  const isProductPage = pathname?.startsWith("/products/");
+
   useEffect(() => {
+    if (isProductPage) return;
     const timer = setInterval(() => {
       // 1. Smoothly fade out current text
       setIsVisible(false);
@@ -39,7 +45,11 @@ export default function TopUtilityBar() {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isProductPage]);
+
+  if (isProductPage) {
+    return null;
+  }
 
   const current = ANNOUNCEMENTS[currentIndex];
 
