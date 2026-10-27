@@ -353,7 +353,7 @@ export default function PricingWidget({
               </span>
               <span className="text-xs text-stone-500 font-sans">/ unit</span>
               {currentTier && currentTier.discountPct > 0 && (
-                <span className="ml-1 text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
+                <span className="ml-1 text-xs font-sans font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
                   Save {currentTier.discountPct}%
                 </span>
               )}
@@ -397,7 +397,7 @@ export default function PricingWidget({
                         price: v.price
                       });
                     }}
-                    className={`px-3 py-2 text-xs font-mono transition-all border ${
+                    className={`px-3 py-2 text-xs font-sans font-medium transition-all border ${
                       isSelected
                         ? "bg-stone-900 text-stone-50 border-stone-900"
                         : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"
@@ -452,7 +452,7 @@ export default function PricingWidget({
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2">
-                        <span className={`text-xs font-mono font-bold ${isActive ? "text-stone-900" : "text-stone-700"}`}>
+                        <span className={`text-xs font-sans font-bold ${isActive ? "text-stone-900" : "text-stone-700"}`}>
                           {labelQty}
                         </span>
                         {isActive && (
@@ -474,7 +474,7 @@ export default function PricingWidget({
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-1 border-t border-stone-100 gap-1 text-xs font-mono">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-1 border-t border-stone-100 gap-1 text-xs font-sans">
                       {perUnitSavings > 0 ? (
                         <div className="text-stone-600 space-y-0.5 text-[11px]">
                           <div>You save <span className="font-semibold text-emerald-700">₹{perUnitSavings}</span> per unit</div>
@@ -487,7 +487,7 @@ export default function PricingWidget({
                       )}
                       
                       <div className="text-right self-end sm:self-center mt-1 sm:mt-0">
-                        <span className={`text-xs sm:text-sm font-semibold font-mono ${isActive ? "text-stone-900" : "text-stone-700"}`}>
+                        <span className={`text-xs sm:text-sm font-semibold font-sans ${isActive ? "text-stone-900" : "text-stone-700"}`}>
                           You pay only <span className="text-base font-bold text-stone-950">₹{tier.price}</span> / unit
                         </span>
                       </div>
@@ -519,7 +519,7 @@ export default function PricingWidget({
                   value={quantity}
                   min={moq}
                   onChange={(e) => handleQuantityChange(parseInt(e.target.value) || moq)}
-                  className="flex-1 w-full text-center text-sm font-mono font-bold text-stone-900 focus:outline-none"
+                  className="flex-1 w-full text-center text-sm font-sans font-bold text-stone-900 focus:outline-none"
                 />
                 <button 
                   onClick={() => handleQuantityChange(quantity + 1)}
@@ -545,7 +545,7 @@ export default function PricingWidget({
           </div>
 
           {/* Shipping Info embedded directly in calculation */}
-          <div className="mt-3 pt-3 border-t border-stone-200 flex items-center justify-between text-[11px] font-mono text-stone-600 flex-wrap gap-1">
+          <div className="mt-3 pt-3 border-t border-stone-200 flex items-center justify-between text-[11px] font-sans text-stone-600 flex-wrap gap-1">
             <span className="flex items-center gap-1.5">
               <Truck className="w-3.5 h-3.5 text-stone-500" />
               Standard Flat Shipping: <strong className="text-stone-900">₹90</strong> across India
@@ -556,7 +556,7 @@ export default function PricingWidget({
           </div>
         </div>
 
-        {errorMsg && <div className="text-stone-800 text-xs font-mono bg-stone-100 p-2 border border-stone-300">{errorMsg}</div>}
+        {errorMsg && <div className="text-stone-800 text-xs font-sans bg-stone-100 p-2 border border-stone-300">{errorMsg}</div>}
 
         {/* 4. PRIMARY ACTIONS: ADD TO CART, BUY NOW, SEND BULK ENQUIRY */}
         <div className="space-y-2.5 pt-1" ref={ctaRef}>
@@ -638,14 +638,14 @@ export default function PricingWidget({
             <button 
               onClick={() => handleAction('cart')}
               disabled={isProcessing}
-              className="bg-stone-900 text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
+              className="bg-stone-900 text-stone-50 px-5 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
             >
               {isAddedSuccess ? "Added ✓" : "Add to Cart"}
             </button>
             <button 
               onClick={() => handleAction('buy_now')}
               disabled={isProcessing}
-              className="bg-brand-orange text-stone-50 px-5 py-3 text-xs uppercase tracking-widest font-mono flex items-center justify-center min-h-[44px]"
+              className="bg-brand-orange text-stone-50 px-5 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
             >
               {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
             </button>

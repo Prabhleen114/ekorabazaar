@@ -43,7 +43,7 @@ export default function HomepageFaqAccordion() {
   return (
     <div className="border-t border-stone-200 pt-10 max-w-4xl mx-auto w-full">
       <div className="text-center mb-8">
-        <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-mono block mb-1">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans block mb-1">
           Frequently Asked Questions
         </span>
         <h2 className="font-serif text-2xl md:text-3xl text-stone-900 font-normal">
@@ -62,7 +62,7 @@ export default function HomepageFaqAccordion() {
                 className="w-full text-left py-4 px-5 sm:px-4 md:px-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-1 focus-visible:ring-stone-900"
                 aria-expanded={isOpen}
               >
-                <span className="font-serif text-sm sm:text-base text-stone-900 font-medium">
+                <span className="font-sans text-sm sm:text-base text-stone-900 font-medium">
                   {faq.question}
                 </span>
                 <span
