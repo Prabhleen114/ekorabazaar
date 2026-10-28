@@ -187,7 +187,7 @@ export function getCategoryFaqs(productName: string, category: string): FaqItem[
     },
     {
       question: `What is the delivery turnaround timeline across India?`,
-      answer: `We dispatch within 24 to 48 hours via premium express couriers (Bluedart, Delhivery, DTDC). Expected delivery is 2–4 days for metros and 4–6 days for regional destinations.`,
+      answer: `We dispatch within 24 to 48 hours via premium express couriers (Bluedart, Delhivery, DTDC). Expected delivery is 4–6 days for metros and 6–8 days for regional destinations.`,
       tag: "Shipping"
     }
   ];

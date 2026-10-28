@@ -9,6 +9,8 @@ import { TrackBeginCheckout } from "@/components/GA4Tracker"
 import { sendGAEvent } from '@next/third-parties/google'
 import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
+import StockReservationTimer from "@/components/StockReservationTimer"
+import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
 
 export default function CheckoutPage() {
   const [items, setItems] = useState<any[]>([])
@@ -281,7 +283,9 @@ export default function CheckoutPage() {
           </p>
         </div>
       ) : (
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="space-y-6">
+        <StockReservationTimer variant="banner" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           
           {/* ADDRESS SECTION */}
@@ -446,8 +450,18 @@ export default function CheckoutPage() {
               {isProcessing ? 'Processing Payment...' : 'Pay with Razorpay'}
             </button>
             <p className="text-center text-xs text-gray-500 mt-4">Secure payment powered by Razorpay</p>
+
+            <div className="mt-4">
+              <WhatsAppCheckoutAssistant
+                itemCount={items.length}
+                totalAmount={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE}
+                location="checkout_page"
+                variant="card"
+              />
+            </div>
           </div>
         </div>
+      </div>
       </div>
       )}
     </div>

@@ -9,6 +9,8 @@ import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck } from "lucide-rea
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
+import StockReservationTimer from "@/components/StockReservationTimer"
+import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
 
 export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
@@ -198,7 +200,10 @@ export default function CartPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="space-y-6">
+          <StockReservationTimer variant="banner" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {items.map(item => (
               <div key={item.id} className="bg-white p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-4 items-center">
@@ -270,12 +275,22 @@ export default function CartPage() {
               </div>
               <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
                 <Truck className="w-4 h-4 text-brand-orange" />
-                Dispatch within 24 Hours
+                Dispatch within 24 Hours (Muzaffarpur Godown)
               </div>
+            </div>
+
+            <div className="mt-4">
+              <WhatsAppCheckoutAssistant
+                itemCount={items.reduce((s, i) => s + (i.quantity || 1), 0)}
+                totalAmount={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE}
+                location="cart_page"
+                variant="card"
+              />
             </div>
           </div>
         </div>
+      </div>
       )}
     </div>
-  )
+  );
 }

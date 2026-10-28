@@ -69,10 +69,10 @@ export default function PricingWidget({
     }
   }, []);
 
-  // Calculate estimated delivery date: 4 calendar days from now
+  // Calculate estimated delivery date: 6 calendar days from now (added 2 days per dispatch schedule)
   const estimatedDeliveryDate = useMemo(() => {
     const d = new Date();
-    d.setDate(d.getDate() + 4);
+    d.setDate(d.getDate() + 6);
     return d.toLocaleDateString("en-IN", {
       weekday: "short",
       day: "numeric",

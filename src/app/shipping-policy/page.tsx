@@ -41,7 +41,7 @@ export default function ShippingPolicyPage() {
 
           <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">3. Delivery Timelines</h2>
           <p>
-            Once dispatched, standard delivery within India generally takes <strong>2 to 5 business days</strong>, depending on your region and accessibility. You will receive tracking information via email or SMS as soon as your order leaves our facility.
+            Once dispatched, standard delivery within India generally takes <strong>4 to 7 business days</strong>, depending on your region and accessibility. You will receive tracking information via email or SMS as soon as your order leaves our facility.
           </p>
 
           <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-4">4. Shipping Partners</h2>

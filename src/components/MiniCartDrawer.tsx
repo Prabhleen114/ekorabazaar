@@ -6,6 +6,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingBag, Plus, Minus, ArrowRight, ShieldCheck, Truck } from "lucide-react";
 import { getGuestCart, saveGuestCart, updateGuestCartItemQty, removeGuestCartItem, notifyCartUpdated } from "@/lib/guest-cart";
+import StockReservationTimer from "@/components/StockReservationTimer";
+import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant";
 
 interface CartDrawerItem {
   id: string;
@@ -155,6 +157,13 @@ export default function MiniCartDrawer() {
                 </button>
               </div>
 
+              {/* Stock Reservation Timer */}
+              {items.length > 0 && (
+                <div className="px-4 pt-3 pb-1 shrink-0 bg-white">
+                  <StockReservationTimer variant="compact" />
+                </div>
+              )}
+
               {/* Cart Items List */}
               <div className="flex-1 overflow-y-auto p-4 divide-y divide-stone-100">
                 {loading && items.length === 0 ? (
@@ -245,6 +254,14 @@ export default function MiniCartDrawer() {
                       <span>₹{(subtotal + shippingCharge).toLocaleString()}</span>
                     </div>
                   </div>
+
+                  {/* 1-Tap WhatsApp Checkout Assistant */}
+                  <WhatsAppCheckoutAssistant
+                    itemCount={totalCount}
+                    totalAmount={subtotal + shippingCharge}
+                    location="mini_cart"
+                    variant="compact"
+                  />
 
                   {/* Trust indicator */}
                   <div className="text-[10px] text-stone-500 font-sans flex items-center justify-center gap-1.5 pt-0.5">
