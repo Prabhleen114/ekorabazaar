@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 // --- Cart ---
 export const AddToCartSchema = z.object({
-  productId: z.string().min(1, 'Product ID is required'),
+  productId: z.union([z.string(), z.number()]).transform(val => String(val)),
   quantity: z.number().int().min(1, 'Quantity must be at least 1').max(500, 'Maximum 500 units per item'),
 })
 
@@ -12,24 +12,38 @@ export const UpdateCartItemSchema = z.object({
 
 // --- Address ---
 export const AddressSchema = z.object({
-  fullName: z.string().min(1, 'Full name is required').max(100),
+  name: z.string().optional(),
+  fullName: z.string().optional(),
   phone: z.string().min(10, 'Phone must be at least 10 digits').max(15),
-  addressLine1: z.string().min(1, 'Address line 1 is required').max(200),
-  addressLine2: z.string().max(200).optional().nullable(),
+  line1: z.string().optional(),
+  addressLine1: z.string().optional(),
+  line2: z.string().optional().nullable(),
+  addressLine2: z.string().optional().nullable(),
   city: z.string().min(1, 'City is required').max(100),
   state: z.string().min(1, 'State is required').max(100),
   pincode: z.string().regex(/^\d{6}$/, 'PIN code must be exactly 6 digits'),
   isDefault: z.boolean().optional(),
-})
+  id: z.string().optional(),
+}).transform(val => ({
+  ...val,
+  name: val.name || val.fullName || 'Customer',
+  fullName: val.fullName || val.name || 'Customer',
+  line1: val.line1 || val.addressLine1 || '',
+  addressLine1: val.addressLine1 || val.line1 || '',
+  line2: val.line2 || val.addressLine2 || '',
+  addressLine2: val.addressLine2 || val.line2 || ''
+}))
 
 // --- Checkout ---
 export const CreateOrderSchema = z.object({
   items: z.array(z.object({
-    productId: z.string().min(1, 'Product ID is required'),
+    productId: z.union([z.string(), z.number()]).transform(val => String(val)),
     quantity: z.number().int().min(1).max(500),
   })).min(1, 'At least one item required').max(50, 'Maximum 50 items per order'),
   addressId: z.string().optional().nullable(),
   guestAddress: AddressSchema.optional().nullable(),
+  gstin: z.string().optional().nullable(),
+  businessName: z.string().optional().nullable(),
 })
 
 export const ConfirmPaymentSchema = z.object({

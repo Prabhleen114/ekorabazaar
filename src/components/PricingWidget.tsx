@@ -148,7 +148,7 @@ export default function PricingWidget({
         const res = await fetch('/api/cart', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ productId, quantity })
+          body: JSON.stringify({ productId: String(productId), quantity })
         });
         if (res.status === 401 || res.status === 403) {
           const { addGuestCartItem } = await import('@/lib/guest-cart');
@@ -222,34 +222,35 @@ export default function PricingWidget({
       setIsBuyingNow(true);
       setErrorMsg("");
       try {
-        const res = await fetch('/api/cart', {
+        const { addGuestCartItem } = await import('@/lib/guest-cart');
+        addGuestCartItem({
+          productId: String(productId || "unknown"),
+          quantity,
+          title: productName ? (selectedVariant ? `${productName} (${selectedVariant.size})` : productName) : "Wholesale Item",
+          basePrice: displayPrice
+        });
+
+        // Fire server cart sync in background if user is authenticated
+        fetch('/api/cart', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ productId, quantity })
+          body: JSON.stringify({ productId: String(productId), quantity })
+        }).catch(() => {});
+
+        sendGAEvent('event', 'add_to_cart', {
+          currency: 'INR',
+          value: displayPrice * quantity,
+          items: [
+            { item_id: String(productId), item_name: productName, item_category: category, price: displayPrice, quantity }
+          ]
         });
-        if (res.status === 401 || res.status === 403) {
-          const { addGuestCartItem } = await import('@/lib/guest-cart');
-          addGuestCartItem({
-            productId: productId || "unknown",
-            quantity,
-            title: productName ? (selectedVariant ? `${productName} (${selectedVariant.size})` : productName) : "Wholesale Item",
-            basePrice: displayPrice
-          });
-          
-          sendGAEvent('event', 'add_to_cart', {
-            currency: 'INR',
-            value: displayPrice * quantity,
-            items: [
-              { item_id: productId, item_name: productName, item_category: category, price: displayPrice, quantity }
-            ]
-          });
-        }
 
         // Store pincode in localStorage if entered
         if (pincode && pincode.length === 6) {
           localStorage.setItem('ekora_delivery_pincode', pincode);
         }
 
+        // Direct instant navigation straight to checkout
         router.push('/checkout');
       } catch (err: any) {
         setErrorMsg(err.message);

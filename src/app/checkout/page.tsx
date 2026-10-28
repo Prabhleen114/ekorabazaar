@@ -37,6 +37,12 @@ export default function CheckoutPage() {
   const { checkout, isProcessing } = useRazorpayCheckout()
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedPin = localStorage.getItem("ekora_delivery_pincode");
+      if (savedPin && savedPin.length === 6) {
+        setNewAddress(prev => ({ ...prev, pincode: savedPin }));
+      }
+    }
     fetchData()
 
     return () => {
@@ -179,13 +185,26 @@ export default function CheckoutPage() {
 
     const activeAddr = addresses.find((a: any) => a.id === selectedAddressId)
 
+    const formattedGuestAddress = activeAddr ? {
+      name: activeAddr.name || activeAddr.fullName || 'Customer',
+      fullName: activeAddr.fullName || activeAddr.name || 'Customer',
+      phone: activeAddr.phone,
+      line1: activeAddr.line1 || activeAddr.addressLine1 || '',
+      addressLine1: activeAddr.addressLine1 || activeAddr.line1 || '',
+      line2: activeAddr.line2 || activeAddr.addressLine2 || '',
+      addressLine2: activeAddr.addressLine2 || activeAddr.line2 || '',
+      city: activeAddr.city,
+      state: activeAddr.state,
+      pincode: activeAddr.pincode,
+    } : null
+
     checkout({
       apiCreateRoute: '/api/checkout/create-order',
       apiVerifyRoute: '/api/checkout/confirm-payment',
       createPayload: { 
-        items: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
+        items: items.map(i => ({ productId: String(i.productId), quantity: i.quantity })),
         ...(selectedAddressId.startsWith('guest_')
-          ? { guestAddress: activeAddr }
+          ? { guestAddress: formattedGuestAddress }
           : { addressId: selectedAddressId }),
         gstin: gstin.trim() || undefined,
         businessName: businessName.trim() || undefined,

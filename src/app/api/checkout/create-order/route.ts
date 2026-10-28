@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     } else if (guestAddress) {
       addressSnapshot = { ...guestAddress, id: 'guest_' + Date.now() }
       customerPhone = guestAddress.phone
-      customerName = guestAddress.fullName
+      customerName = guestAddress.name || guestAddress.fullName || 'Guest Customer'
     } else {
       return NextResponse.json({ error: "A delivery address is required." }, { status: 400 })
     }
