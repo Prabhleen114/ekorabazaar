@@ -19,6 +19,59 @@ export type ProductVariant = {
   tiers?: Tier[];
 };
 
+export type ProductColor = string | { name: string; hex?: string };
+
+function getColorHex(colorName: string): string {
+  const map: Record<string, string> = {
+    "black": "#1a1a1a",
+    "brown": "#5d4037",
+    "green": "#2e7d32",
+    "orange": "#f57c00",
+    "red": "#d32f2f",
+    "blue": "#1976d2",
+    "yellow": "#fbc02d",
+    "pink": "#e91e63",
+    "bright orange": "#ff9800",
+    "scarlet": "#c62828",
+    "purple": "#7b1fa2",
+    "sapphire blue": "#0d47a1",
+    "sky blue": "#00bcd4",
+    "sunny yellow": "#ffeb3b",
+    "brown black": "#263238",
+    "chocolate brown": "#4e342e",
+    "ruby red": "#b71c1c",
+    "lovely pink": "#f06292",
+    "pumpkin orange": "#ff7043",
+    "wonderful violet": "#512da8",
+    "royal violet": "#6d28d9",
+    "dreamy yellow": "#fff176",
+    "sunshine yellow": "#fff176",
+    "admiral blue": "#1a237e",
+    "vibrant green": "#00bfa5",
+    "forest green": "#1b5e20",
+    "baby pink": "#f8bbd0",
+    "biscoff": "#a16207",
+    "cadmium yellow": "#ffd54f",
+    "cherry red": "#b71c1c",
+    "halloween": "#f97316",
+    "java plum": "#4a148c",
+    "ocean blue": "#0284c7",
+    "cobalt blue": "#0284c7",
+    "coral orange": "#f57c00",
+    "royal purple": "#7b1fa2",
+    "fresh green": "#2e7d32",
+    "blossom pink": "#e91e63",
+    "warm brown": "#5d4037",
+    "deep charcoal": "#111827",
+    "jet black": "#111827",
+    "emerald": "#059669",
+    "emerald green": "#059669",
+    "sunset coral": "#fb7185",
+  };
+  const key = colorName.toLowerCase().trim();
+  return map[key] || "#888888";
+}
+
 export default function PricingWidget({ 
   productId, 
   productName,
@@ -26,6 +79,7 @@ export default function PricingWidget({
   basePrice,
   tiers = [], 
   variants = [],
+  colors = [],
   moq = 1, 
   category,
   isQuoteOnly = false,
@@ -37,6 +91,7 @@ export default function PricingWidget({
   basePrice?: number; 
   tiers: Tier[]; 
   variants?: ProductVariant[];
+  colors?: ProductColor[];
   moq?: number; 
   category?: string;
   isQuoteOnly?: boolean;
@@ -44,6 +99,11 @@ export default function PricingWidget({
 }) {
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
     variants && variants.length > 0 ? variants[0] : null
+  );
+  const [selectedColor, setSelectedColor] = useState<string | null>(
+    colors && colors.length > 0
+      ? (typeof colors[0] === 'string' ? colors[0] : colors[0].name)
+      : null
   );
   const [quantity, setQuantity] = useState(moq);
   const [errorMsg, setErrorMsg] = useState("");
@@ -152,10 +212,13 @@ export default function PricingWidget({
         });
         if (res.status === 401 || res.status === 403) {
           const { addGuestCartItem } = await import('@/lib/guest-cart');
+          const colorText = selectedColor ? ` - ${selectedColor}` : "";
+          const sizeText = selectedVariant ? ` (${selectedVariant.size})` : "";
+          const itemTitle = productName ? `${productName}${colorText}${sizeText}` : "Wholesale Item";
           addGuestCartItem({
             productId: productId || "unknown",
             quantity,
-            title: productName ? (selectedVariant ? `${productName} (${selectedVariant.size})` : productName) : "Wholesale Item",
+            title: itemTitle,
             basePrice: displayPrice
           });
           setIsAddedSuccess(true);
@@ -223,10 +286,13 @@ export default function PricingWidget({
       setErrorMsg("");
       try {
         const { addGuestCartItem } = await import('@/lib/guest-cart');
+        const colorText = selectedColor ? ` - ${selectedColor}` : "";
+        const sizeText = selectedVariant ? ` (${selectedVariant.size})` : "";
+        const itemTitle = productName ? `${productName}${colorText}${sizeText}` : "Wholesale Item";
         addGuestCartItem({
           productId: String(productId || "unknown"),
           quantity,
-          title: productName ? (selectedVariant ? `${productName} (${selectedVariant.size})` : productName) : "Wholesale Item",
+          title: itemTitle,
           basePrice: displayPrice
         });
 
@@ -264,6 +330,54 @@ export default function PricingWidget({
   return (
     <>
       <div className="bg-white p-4 sm:p-6 border border-stone-200 mt-4 sm:mt-6 space-y-5 shadow-xs">
+        {/* COLOR / SHADE OPTIONS (ABOVE PRICE) */}
+        {colors && colors.length > 0 && (
+          <div className="pb-4 border-b border-stone-200 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
+                Select Shade / Color
+              </label>
+              {selectedColor && (
+                <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                  {selectedColor}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2 pt-0.5">
+              {colors.map((c, idx) => {
+                const colorName = typeof c === "string" ? c : c.name;
+                const colorHex = typeof c === "string" ? getColorHex(c) : (c.hex || getColorHex(c.name));
+                const isSelected = selectedColor === colorName;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setSelectedColor(colorName);
+                      trackEvent("color_select", {
+                        productId,
+                        productName,
+                        color: colorName
+                      });
+                    }}
+                    className={`min-h-[38px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                      isSelected
+                        ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
+                        : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
+                    }`}
+                  >
+                    <span
+                      className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
+                      style={{ backgroundColor: colorHex }}
+                    />
+                    <span>{colorName}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* 1. PRICE HIERARCHY HEADER */}
         <div className="pb-3 border-b border-stone-200 flex items-baseline justify-between flex-wrap gap-2">
           <div>
@@ -532,7 +646,7 @@ export default function PricingWidget({
         >
           <div className="flex flex-col pr-2">
             <span className="text-[9px] uppercase tracking-wider text-stone-500 font-sans truncate max-w-[140px]">
-              {selectedVariant ? `${selectedVariant.size} • ` : ""}Qty: {quantity}
+              {selectedColor ? `${selectedColor} • ` : ""}{selectedVariant ? `${selectedVariant.size} • ` : ""}Qty: {quantity}
             </span>
             <span className="text-base font-sans font-bold text-stone-900">
               ₹{subtotal.toLocaleString()}

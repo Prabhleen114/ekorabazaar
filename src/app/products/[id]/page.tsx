@@ -32,6 +32,7 @@ export interface ProductDetailView {
   moq: number;
   tiers: any[];
   variants?: any[];
+  colors?: any[];
   description: string;
   supplierName: string;
   sellerId: string | null;
@@ -131,6 +132,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       moq: item.moq || 1,
       tiers,
       variants: Array.isArray((item as any).variants) ? (item as any).variants : [],
+      colors: Array.isArray((item as any).colors) ? (item as any).colors : [],
       description: item.description || "",
       supplierName: "Ekora Official Supplier",
       sellerId: "EKO-OFFICIAL-01",
@@ -178,6 +180,7 @@ export default async function ProductDetailsPage({ params }: Props) {
     price: productData.price,
     tiers: productData.tiers,
     variants: productData.variants,
+    colors: productData.colors,
     description: productData.description,
     fragranceNotes: productData.fragranceNotes,
     usageLevels: productData.usageLevels,
@@ -286,6 +289,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             basePrice={displayProduct.price}
             tiers={displayProduct.tiers}
             variants={displayProduct.variants}
+            colors={displayProduct.colors}
             moq={productData.moq}
             category={displayProduct.category}
             isQuoteOnly={displayProduct.isQuoteOnly}

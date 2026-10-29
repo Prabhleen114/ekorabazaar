@@ -330,7 +330,7 @@
     "price": 108,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/07/Concrede-liquid-colour-247x296.jpeg",
+    "image": "/images/products/liquid-color-pigments-concrete-jesmonite-30ml.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -403,7 +403,49 @@
       "stone-studio",
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Brown",
+        "hex": "#5d4037"
+      },
+      {
+        "name": "Green",
+        "hex": "#2e7d32"
+      },
+      {
+        "name": "Orange",
+        "hex": "#f57c00"
+      },
+      {
+        "name": "Red",
+        "hex": "#d32f2f"
+      },
+      {
+        "name": "Blue",
+        "hex": "#1976d2"
+      },
+      {
+        "name": "Yellow",
+        "hex": "#fbc02d"
+      },
+      {
+        "name": "Pink",
+        "hex": "#e91e63"
+      },
+      {
+        "name": "Bright Orange",
+        "hex": "#ff9800"
+      },
+      {
+        "name": "Scarlet",
+        "hex": "#c62828"
+      }
+    ]
   },
   {
     "id": "6",
@@ -6802,7 +6844,7 @@
     "price": 108,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/06/candle-colour-247x296.png",
+    "image": "/images/products/candle-pigment-color-dye-block-10g.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -6874,7 +6916,49 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#fbc02d"
+      },
+      {
+        "name": "Orange",
+        "hex": "#f57c00"
+      },
+      {
+        "name": "Green",
+        "hex": "#2e7d32"
+      },
+      {
+        "name": "Purple",
+        "hex": "#7b1fa2"
+      },
+      {
+        "name": "Sapphire Blue",
+        "hex": "#0d47a1"
+      },
+      {
+        "name": "Pink",
+        "hex": "#e91e63"
+      },
+      {
+        "name": "Sky Blue",
+        "hex": "#00bcd4"
+      },
+      {
+        "name": "Red",
+        "hex": "#d32f2f"
+      },
+      {
+        "name": "Sunny Yellow",
+        "hex": "#ffeb3b"
+      },
+      {
+        "name": "Brown Black",
+        "hex": "#263238"
+      }
+    ]
   },
   {
     "id": "87",
@@ -30631,7 +30715,7 @@
     "price": 139,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/07/718pPQesEcL._SL1440_-247x296.jpg",
+    "image": "/images/products/liquid-soap-cosmetic-colorant-skin-safe.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -30696,7 +30780,41 @@
       "soap-atelier",
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Deep Crimson Red",
+        "hex": "#b71c1c"
+      },
+      {
+        "name": "Intense Royal Blue",
+        "hex": "#1565c0"
+      },
+      {
+        "name": "Vivid Tangelo Orange",
+        "hex": "#e65100"
+      },
+      {
+        "name": "Rich Regal Purple",
+        "hex": "#6a1b9a"
+      },
+      {
+        "name": "Deep Lush Green",
+        "hex": "#1b5e20"
+      },
+      {
+        "name": "Radiant Golden Yellow",
+        "hex": "#fbc02d"
+      },
+      {
+        "name": "Intense Fuchsia Pink",
+        "hex": "#c2185b"
+      },
+      {
+        "name": "Rich Cocoa Brown",
+        "hex": "#4e342e"
+      }
+    ]
   },
   {
     "id": "399",
@@ -122260,7 +122378,7 @@
     "price": 647,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/Untitled-2-247x296.jpg",
+    "image": "/images/products/candle-powder-color-pigments-concentrated.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -122313,7 +122431,41 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Chocolate Brown",
+        "hex": "#4e342e"
+      },
+      {
+        "name": "Ruby Red",
+        "hex": "#b71c1c"
+      },
+      {
+        "name": "Lovely Pink",
+        "hex": "#f06292"
+      },
+      {
+        "name": "Pumpkin Orange",
+        "hex": "#ff7043"
+      },
+      {
+        "name": "Royal Violet",
+        "hex": "#512da8"
+      },
+      {
+        "name": "Sunshine Yellow",
+        "hex": "#fff176"
+      },
+      {
+        "name": "Admiral Blue",
+        "hex": "#1a237e"
+      },
+      {
+        "name": "Forest Green",
+        "hex": "#00bfa5"
+      }
+    ]
   },
   {
     "id": "1216",
@@ -124348,7 +124500,7 @@
     "price": 143,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2024/03/Untitled-2-247x296.jpg",
+    "image": "/images/products/candle-powder-color-pigments-concentrated.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -124401,7 +124553,41 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Chocolate Brown",
+        "hex": "#4e342e"
+      },
+      {
+        "name": "Ruby Red",
+        "hex": "#b71c1c"
+      },
+      {
+        "name": "Lovely Pink",
+        "hex": "#f06292"
+      },
+      {
+        "name": "Pumpkin Orange",
+        "hex": "#ff7043"
+      },
+      {
+        "name": "Royal Violet",
+        "hex": "#512da8"
+      },
+      {
+        "name": "Sunshine Yellow",
+        "hex": "#fff176"
+      },
+      {
+        "name": "Admiral Blue",
+        "hex": "#1a237e"
+      },
+      {
+        "name": "Forest Green",
+        "hex": "#00bfa5"
+      }
+    ]
   },
   {
     "id": "1250",
@@ -124870,7 +125056,7 @@
     "price": 143,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/06/Copilot_20250626_173106-247x296.png",
+    "image": "/images/products/premium-liquid-candle-color-dye-13-shades.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -124930,7 +125116,61 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "colors": [
+      {
+        "name": "Baby Pink",
+        "hex": "#f8bbd0"
+      },
+      {
+        "name": "Biscoff",
+        "hex": "#a16207"
+      },
+      {
+        "name": "Cadmium Yellow",
+        "hex": "#ffd54f"
+      },
+      {
+        "name": "Cherry Red",
+        "hex": "#b71c1c"
+      },
+      {
+        "name": "Chocolate Brown",
+        "hex": "#4e342e"
+      },
+      {
+        "name": "Forest Green",
+        "hex": "#1b5e20"
+      },
+      {
+        "name": "Pumpkin Orange",
+        "hex": "#f97316"
+      },
+      {
+        "name": "Java Plum",
+        "hex": "#4a148c"
+      },
+      {
+        "name": "Cobalt Blue",
+        "hex": "#0284c7"
+      },
+      {
+        "name": "Royal Violet",
+        "hex": "#6d28d9"
+      },
+      {
+        "name": "Deep Charcoal",
+        "hex": "#111827"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#059669"
+      },
+      {
+        "name": "Sunset Coral",
+        "hex": "#fb7185"
+      }
+    ]
   },
   {
     "id": "1258",
@@ -137427,7 +137667,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1452",
