@@ -56,9 +56,12 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
 
     if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
       const effectivePrice = (product.customerPrice ?? product.price) / 100;
-      const imageUrl = product.imageUrl || "/og-image.jpg";
-      const category = product.category || "General Silicone Moulds";
-      const department = getDepartmentForCategory(category) || "Precision Studio Moulds";
+      const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(id));
+      const imageUrl = (catalogItem?.image && catalogItem.image.startsWith('/images/products/'))
+        ? catalogItem.image
+        : (product.imageUrl || "/og-image.jpg");
+      const category = product.category || catalogItem?.category || "General Silicone Moulds";
+      const department = getDepartmentForCategory(category) || catalogItem?.department || "Precision Studio Moulds";
 
       const tiers = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
         ? (product.wholesaleTiers as any[]).map(t => ({
@@ -66,7 +69,17 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
             price: t.price ? Math.round(t.price / 100) : effectivePrice,
             minQty: t.minQty || product.moq
           }))
-        : [{ price: effectivePrice, minQty: product.moq, maxQty: null, discountPct: 0 }];
+        : (Array.isArray(catalogItem?.tiers) && catalogItem.tiers.length > 0
+            ? catalogItem.tiers
+            : [{ price: effectivePrice, minQty: product.moq || 1, maxQty: null, discountPct: 0 }]);
+
+      const variants = Array.isArray(catalogItem?.variants) && catalogItem.variants.length > 0
+        ? catalogItem.variants
+        : (Array.isArray((product.wholesaleTiers as any)?.variants) ? (product.wholesaleTiers as any).variants : []);
+
+      const colors = Array.isArray(catalogItem?.colors) && catalogItem.colors.length > 0
+        ? catalogItem.colors
+        : [];
 
       return {
         rawProduct: product,
@@ -79,7 +92,9 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         price: effectivePrice,
         moq: product.moq || 1,
         tiers,
-        description: product.description || "",
+        variants,
+        colors,
+        description: product.description || catalogItem?.description || "",
         supplierName: product.seller?.brandName || "Verified Ekora Supplier",
         sellerId: product.sellerId,
         inStock: product.stock > 0,

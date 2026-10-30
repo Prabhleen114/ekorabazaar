@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Minus, Plus, ShoppingCart, Loader2, Check, Truck, ShieldCheck, Lock, CreditCard } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Loader2, Check, Truck, ShieldCheck, Lock, CreditCard, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
 import { trackWhatsAppClick, trackEvent } from "@/lib/tracking";
@@ -17,6 +17,8 @@ export type ProductVariant = {
   size: string;
   price: number;
   tiers?: Tier[];
+  color?: string;
+  hex?: string;
 };
 
 export type ProductColor = string | { name: string; hex?: string };
@@ -118,6 +120,13 @@ export default function PricingWidget({
 
   const router = useRouter();
 
+  const isColorVariant = useMemo(() => {
+    return (
+      (colors && colors.length > 0) ||
+      variants.some(v => v.color || (v as any).hex || (category && category.toLowerCase().includes("pigment")))
+    );
+  }, [colors, variants, category]);
+
   // Load saved pincode from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -212,9 +221,8 @@ export default function PricingWidget({
         });
         if (res.status === 401 || res.status === 403) {
           const { addGuestCartItem } = await import('@/lib/guest-cart');
-          const colorText = selectedColor ? ` - ${selectedColor}` : "";
-          const sizeText = selectedVariant ? ` (${selectedVariant.size})` : "";
-          const itemTitle = productName ? `${productName}${colorText}${sizeText}` : "Wholesale Item";
+          const variantLabel = selectedVariant ? selectedVariant.size : (selectedColor || "");
+          const itemTitle = productName ? (variantLabel ? `${productName} — ${variantLabel}` : productName) : "Wholesale Item";
           addGuestCartItem({
             productId: productId || "unknown",
             quantity,
@@ -286,9 +294,8 @@ export default function PricingWidget({
       setErrorMsg("");
       try {
         const { addGuestCartItem } = await import('@/lib/guest-cart');
-        const colorText = selectedColor ? ` - ${selectedColor}` : "";
-        const sizeText = selectedVariant ? ` (${selectedVariant.size})` : "";
-        const itemTitle = productName ? `${productName}${colorText}${sizeText}` : "Wholesale Item";
+        const variantLabel = selectedVariant ? selectedVariant.size : (selectedColor || "");
+        const itemTitle = productName ? (variantLabel ? `${productName} — ${variantLabel}` : productName) : "Wholesale Item";
         addGuestCartItem({
           productId: String(productId || "unknown"),
           quantity,
@@ -330,52 +337,133 @@ export default function PricingWidget({
   return (
     <>
       <div className="bg-white p-4 sm:p-6 border border-stone-200 mt-4 sm:mt-6 space-y-5 shadow-xs">
-        {/* COLOR / SHADE OPTIONS (ABOVE PRICE) */}
-        {colors && colors.length > 0 && (
-          <div className="pb-4 border-b border-stone-200 space-y-2.5">
+        {/* VARIANT / OPTION SELECTOR (ABOVE PRICE) */}
+        {variants && variants.length > 0 ? (
+          <div className="pb-4 border-b border-stone-200 space-y-3">
             <div className="flex items-center justify-between">
               <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
-                Select Shade / Color
+                {isColorVariant ? "Choose Variant / Color" : "Select Variant / Size"}
               </label>
-              {selectedColor && (
-                <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
-                  {selectedColor}
-                </span>
-              )}
+              <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                {selectedVariant?.size} &bull; ₹{displayPrice}
+              </span>
             </div>
+
+            {/* Quick Option Dropdown specifying each variant/color available */}
+            <div className="relative">
+              <select
+                value={selectedVariant?.size || ""}
+                onChange={(e) => {
+                  const found = variants.find(v => v.size === e.target.value);
+                  if (found) {
+                    setSelectedVariant(found);
+                    if (found.color) setSelectedColor(found.color);
+                    trackEvent("variant_select", {
+                      productId,
+                      productName,
+                      size: found.size,
+                      price: found.price
+                    });
+                  }
+                }}
+                className="w-full h-11 px-3 py-2 text-xs sm:text-sm font-sans font-medium bg-stone-50 border border-stone-300 rounded text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900 appearance-none pr-8 cursor-pointer"
+              >
+                {variants.map((v, idx) => (
+                  <option key={idx} value={v.size}>
+                    {v.size} — ₹{v.price} {v.tiers && v.tiers.length > 1 ? `(Tiers from ₹${v.tiers[v.tiers.length - 1].price})` : ''}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-3.5 pointer-events-none" />
+            </div>
+
+            {/* Visual Swatch / Option Chips */}
             <div className="flex flex-wrap gap-2 pt-0.5">
-              {colors.map((c, idx) => {
-                const colorName = typeof c === "string" ? c : c.name;
-                const colorHex = typeof c === "string" ? getColorHex(c) : (c.hex || getColorHex(c.name));
-                const isSelected = selectedColor === colorName;
+              {variants.map((v, idx) => {
+                const isSelected = selectedVariant?.size === v.size;
+                const colorHex = v.hex || (v.color ? getColorHex(v.color) : getColorHex(v.size));
                 return (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => {
-                      setSelectedColor(colorName);
-                      trackEvent("color_select", {
+                      setSelectedVariant(v);
+                      if (v.color) setSelectedColor(v.color);
+                      trackEvent("variant_select", {
                         productId,
                         productName,
-                        color: colorName
+                        size: v.size,
+                        price: v.price
                       });
                     }}
-                    className={`min-h-[38px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                    className={`min-h-[40px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
                       isSelected
                         ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
                         : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
                     }`}
                   >
-                    <span
-                      className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
-                      style={{ backgroundColor: colorHex }}
-                    />
-                    <span>{colorName}</span>
+                    {isColorVariant && (
+                      <span
+                        className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
+                        style={{ backgroundColor: colorHex }}
+                      />
+                    )}
+                    <span>{v.color || v.size}</span>
+                    <span className={isSelected ? "text-amber-200 font-bold ml-0.5" : "text-stone-500 font-medium ml-0.5"}>
+                      ₹{v.price}
+                    </span>
                   </button>
                 );
               })}
             </div>
           </div>
+        ) : (
+          colors && colors.length > 0 && (
+            <div className="pb-4 border-b border-stone-200 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
+                  Select Shade / Color
+                </label>
+                {selectedColor && (
+                  <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                    {selectedColor}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2 pt-0.5">
+                {colors.map((c, idx) => {
+                  const colorName = typeof c === "string" ? c : c.name;
+                  const colorHex = typeof c === "string" ? getColorHex(c) : (c.hex || getColorHex(c.name));
+                  const isSelected = selectedColor === colorName;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        setSelectedColor(colorName);
+                        trackEvent("color_select", {
+                          productId,
+                          productName,
+                          color: colorName
+                        });
+                      }}
+                      className={`min-h-[38px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                        isSelected
+                          ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
+                          : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
+                      }`}
+                    >
+                      <span
+                        className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
+                        style={{ backgroundColor: colorHex }}
+                      />
+                      <span>{colorName}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )
         )}
 
         {/* 1. PRICE HIERARCHY HEADER */}
@@ -405,50 +493,6 @@ export default function PricingWidget({
             </span>
           </div>
         </div>
-
-        {/* 2. SIZE CHIPS (44px tall, horizontally scrollable row, price printed on each chip) */}
-        {variants && variants.length > 0 && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans">
-                Select Size / Volume
-              </label>
-              <span className="text-[11px] font-sans font-semibold text-stone-900">
-                {selectedVariant?.size} &bull; ₹{selectedVariant?.price}
-              </span>
-            </div>
-            <div className="flex overflow-x-auto no-scrollbar gap-2 py-1 -mx-1 px-1">
-              {variants.map((v, idx) => {
-                const isSelected = selectedVariant?.size === v.size;
-                return (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => {
-                      setSelectedVariant(v);
-                      trackEvent("variant_select", {
-                        productId,
-                        productName,
-                        size: v.size,
-                        price: v.price
-                      });
-                    }}
-                    className={`min-h-[44px] h-11 px-4 py-2 text-xs sm:text-sm font-sans font-medium transition-all border whitespace-nowrap shrink-0 flex items-center gap-1.5 ${
-                      isSelected
-                        ? "bg-stone-900 text-stone-50 border-stone-900 font-semibold shadow-xs"
-                        : "bg-white text-stone-800 border-stone-300 hover:border-stone-500"
-                    }`}
-                  >
-                    <span>{v.size}</span>
-                    <span className={isSelected ? "text-amber-200 font-bold" : "text-stone-500 font-medium"}>
-                      ₹{v.price}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
 
         {/* 3. QUANTITY: 44PX STEPPER, QUICK-PICK BUTTONS & LIVE TIER LINE */}
         <div className="space-y-2.5">
@@ -646,7 +690,7 @@ export default function PricingWidget({
         >
           <div className="flex flex-col pr-2">
             <span className="text-[9px] uppercase tracking-wider text-stone-500 font-sans truncate max-w-[140px]">
-              {selectedColor ? `${selectedColor} • ` : ""}{selectedVariant ? `${selectedVariant.size} • ` : ""}Qty: {quantity}
+              {selectedVariant ? `${selectedVariant.size} • ` : (selectedColor ? `${selectedColor} • ` : "")}Qty: {quantity}
             </span>
             <span className="text-base font-sans font-bold text-stone-900">
               ₹{subtotal.toLocaleString()}

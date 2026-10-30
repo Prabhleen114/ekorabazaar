@@ -445,6 +445,268 @@
         "name": "Scarlet",
         "hex": "#c62828"
       }
+    ],
+    "variants": [
+      {
+        "size": "Black (30ml)",
+        "color": "Black",
+        "hex": "#1a1a1a",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Brown (30ml)",
+        "color": "Brown",
+        "hex": "#5d4037",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Green (30ml)",
+        "color": "Green",
+        "hex": "#2e7d32",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Orange (30ml)",
+        "color": "Orange",
+        "hex": "#f57c00",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Red (30ml)",
+        "color": "Red",
+        "hex": "#d32f2f",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Blue (30ml)",
+        "color": "Blue",
+        "hex": "#1976d2",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Yellow (30ml)",
+        "color": "Yellow",
+        "hex": "#fbc02d",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Pink (30ml)",
+        "color": "Pink",
+        "hex": "#e91e63",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Bright Orange (30ml)",
+        "color": "Bright Orange",
+        "hex": "#ff9800",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Scarlet (30ml)",
+        "color": "Scarlet",
+        "hex": "#c62828",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      }
     ]
   },
   {
@@ -6957,6 +7219,268 @@
       {
         "name": "Brown Black",
         "hex": "#263238"
+      }
+    ],
+    "variants": [
+      {
+        "size": "Yellow (10g)",
+        "color": "Yellow",
+        "hex": "#fbc02d",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Orange (10g)",
+        "color": "Orange",
+        "hex": "#f57c00",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Green (10g)",
+        "color": "Green",
+        "hex": "#2e7d32",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Purple (10g)",
+        "color": "Purple",
+        "hex": "#7b1fa2",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sapphire Blue (10g)",
+        "color": "Sapphire Blue",
+        "hex": "#0d47a1",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Pink (10g)",
+        "color": "Pink",
+        "hex": "#e91e63",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sky Blue (10g)",
+        "color": "Sky Blue",
+        "hex": "#00bcd4",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Red (10g)",
+        "color": "Red",
+        "hex": "#d32f2f",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sunny Yellow (10g)",
+        "color": "Sunny Yellow",
+        "hex": "#ffeb3b",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Brown Black (10g)",
+        "color": "Brown Black",
+        "hex": "#263238",
+        "price": 108,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 108,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 103,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 10
+          }
+        ]
       }
     ]
   },
@@ -30813,6 +31337,216 @@
       {
         "name": "Rich Cocoa Brown",
         "hex": "#4e342e"
+      }
+    ],
+    "variants": [
+      {
+        "size": "Deep Crimson Red (25ml)",
+        "color": "Deep Crimson Red",
+        "hex": "#b71c1c",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Intense Royal Blue (25ml)",
+        "color": "Intense Royal Blue",
+        "hex": "#1565c0",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Vivid Tangelo Orange (25ml)",
+        "color": "Vivid Tangelo Orange",
+        "hex": "#e65100",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Rich Regal Purple (25ml)",
+        "color": "Rich Regal Purple",
+        "hex": "#6a1b9a",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Deep Lush Green (25ml)",
+        "color": "Deep Lush Green",
+        "hex": "#1b5e20",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Radiant Golden Yellow (25ml)",
+        "color": "Radiant Golden Yellow",
+        "hex": "#fbc02d",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Intense Fuchsia Pink (25ml)",
+        "color": "Intense Fuchsia Pink",
+        "hex": "#c2185b",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Rich Cocoa Brown (25ml)",
+        "color": "Rich Cocoa Brown",
+        "hex": "#4e342e",
+        "price": 139,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 139,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 132,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 125,
+            "discountPct": 10
+          }
+        ]
       }
     ]
   },
@@ -122465,6 +123199,216 @@
         "name": "Forest Green",
         "hex": "#00bfa5"
       }
+    ],
+    "variants": [
+      {
+        "size": "Chocolate Brown (500g)",
+        "color": "Chocolate Brown",
+        "hex": "#4e342e",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Ruby Red (500g)",
+        "color": "Ruby Red",
+        "hex": "#b71c1c",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Lovely Pink (500g)",
+        "color": "Lovely Pink",
+        "hex": "#f06292",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Pumpkin Orange (500g)",
+        "color": "Pumpkin Orange",
+        "hex": "#ff7043",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Royal Violet (500g)",
+        "color": "Royal Violet",
+        "hex": "#512da8",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sunshine Yellow (500g)",
+        "color": "Sunshine Yellow",
+        "hex": "#fff176",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Admiral Blue (500g)",
+        "color": "Admiral Blue",
+        "hex": "#1a237e",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Forest Green (500g)",
+        "color": "Forest Green",
+        "hex": "#00bfa5",
+        "price": 647,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 647,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 615,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 582,
+            "discountPct": 10
+          }
+        ]
+      }
     ]
   },
   {
@@ -124587,6 +125531,216 @@
         "name": "Forest Green",
         "hex": "#00bfa5"
       }
+    ],
+    "variants": [
+      {
+        "size": "Chocolate Brown (20g)",
+        "color": "Chocolate Brown",
+        "hex": "#4e342e",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Ruby Red (20g)",
+        "color": "Ruby Red",
+        "hex": "#b71c1c",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Lovely Pink (20g)",
+        "color": "Lovely Pink",
+        "hex": "#f06292",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Pumpkin Orange (20g)",
+        "color": "Pumpkin Orange",
+        "hex": "#ff7043",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Royal Violet (20g)",
+        "color": "Royal Violet",
+        "hex": "#512da8",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sunshine Yellow (20g)",
+        "color": "Sunshine Yellow",
+        "hex": "#fff176",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Admiral Blue (20g)",
+        "color": "Admiral Blue",
+        "hex": "#1a237e",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Forest Green (20g)",
+        "color": "Forest Green",
+        "hex": "#00bfa5",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      }
     ]
   },
   {
@@ -125169,6 +126323,346 @@
       {
         "name": "Sunset Coral",
         "hex": "#fb7185"
+      }
+    ],
+    "variants": [
+      {
+        "size": "Baby Pink (10ml)",
+        "color": "Baby Pink",
+        "hex": "#f8bbd0",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Biscoff (10ml)",
+        "color": "Biscoff",
+        "hex": "#a16207",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Cadmium Yellow (10ml)",
+        "color": "Cadmium Yellow",
+        "hex": "#ffd54f",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Cherry Red (10ml)",
+        "color": "Cherry Red",
+        "hex": "#b71c1c",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Chocolate Brown (10ml)",
+        "color": "Chocolate Brown",
+        "hex": "#4e342e",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Forest Green (10ml)",
+        "color": "Forest Green",
+        "hex": "#1b5e20",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Pumpkin Orange (10ml)",
+        "color": "Pumpkin Orange",
+        "hex": "#f97316",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Java Plum (10ml)",
+        "color": "Java Plum",
+        "hex": "#4a148c",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Cobalt Blue (10ml)",
+        "color": "Cobalt Blue",
+        "hex": "#0284c7",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Royal Violet (10ml)",
+        "color": "Royal Violet",
+        "hex": "#6d28d9",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Deep Charcoal (10ml)",
+        "color": "Deep Charcoal",
+        "hex": "#111827",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Emerald Green (10ml)",
+        "color": "Emerald Green",
+        "hex": "#059669",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Sunset Coral (10ml)",
+        "color": "Sunset Coral",
+        "hex": "#fb7185",
+        "price": 143,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 11,
+            "price": 143,
+            "discountPct": 0
+          },
+          {
+            "minQty": 12,
+            "maxQty": 51,
+            "price": 136,
+            "discountPct": 5
+          },
+          {
+            "minQty": 52,
+            "maxQty": null,
+            "price": 128,
+            "discountPct": 10
+          }
+        ]
       }
     ]
   },
