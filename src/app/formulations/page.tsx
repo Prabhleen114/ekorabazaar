@@ -1,5 +1,6 @@
 import BuyerNavbar from "@/components/BuyerNavbar";
-import Footer from "@/components/Footer";
+import BuyerFooter from "@/components/BuyerFooter";
+import serialize from "serialize-javascript";
 import Link from "next/link";
 import ProductImageClient from "@/components/ProductImageClient";
 
@@ -30,16 +31,48 @@ import dataRaw from "@/lib/data/formulations.json";
 
 export default function FormulationsPage() {
   const data: Formulation[] = dataRaw as Formulation[];
-  
+
   // Create slugs for internal routing
   const formulations = data.map((item) => {
     const slug = item.url.split("/").pop() || "";
     return { ...item, slug };
   });
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ekorabazaar.in" },
+      { "@type": "ListItem", "position": 2, "name": "Formulations", "item": "https://www.ekorabazaar.in/formulations" }
+    ]
+  };
+
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Ekora Maker Formulations Library",
+    "description": "Lab-tested cosmetic, skincare, and candle formulation recipes for Indian makers and studios.",
+    "url": "https://www.ekorabazaar.in/formulations",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": formulations.map((f, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "name": f.title,
+        "url": `https://www.ekorabazaar.in/formulations/${f.slug}`
+      }))
+    }
+  };
+
   return (
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20">
       <BuyerNavbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serialize([breadcrumbSchema, collectionSchema], { isJSON: true }),
+        }}
+      />
 
       <section className="pt-16 md:pt-20 pb-12 px-4 md:px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -56,16 +89,16 @@ export default function FormulationsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {formulations.map((formulation, idx) => (
-            <Link 
-              key={idx} 
+            <Link
+              key={idx}
               href={`/formulations/${formulation.slug}`}
               className="group bg-white rounded-2xl overflow-hidden border border-brand-linen hover:border-brand-orange/50 hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               <div className="aspect-[4/3] bg-brand-charcoal/5 relative overflow-hidden">
                 {formulation.imageUrl ? (
-                  <ProductImageClient 
-                    src={formulation.imageUrl} 
-                    alt={formulation.title} 
+                  <ProductImageClient
+                    src={formulation.imageUrl}
+                    alt={formulation.title}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -91,7 +124,7 @@ export default function FormulationsPage() {
         </div>
       </section>
 
-      <Footer />
+      <BuyerFooter />
     </div>
   );
 }

@@ -2,19 +2,21 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
-  GraduationCap, 
-  Sparkles, 
+import {
+  Menu,
+  X,
+  ChevronDown,
+  GraduationCap,
+  Sparkles,
   ArrowRight,
   User,
   ShoppingBag,
   Package,
   MapPin,
   LogOut,
-  Phone
+  Phone,
+  BookOpen,
+  Calculator
 } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -105,8 +107,8 @@ export default function BuyerNavbar() {
       <TopUtilityBar />
       <header
         className={`sticky top-0 inset-x-0 z-50 transition-all duration-200 ${
-          isScrolled || mobileMenuOpen 
-            ? "bg-white border-b border-stone-200/90 shadow-sm" 
+          isScrolled || mobileMenuOpen
+            ? "bg-white border-b border-stone-200/90 shadow-sm"
             : "bg-white border-b border-stone-200/70"
         }`}
       >
@@ -121,9 +123,9 @@ export default function BuyerNavbar() {
                 closeMenu();
               }}
             >
-              <Image 
-                src="/images/logo.jpg" 
-                alt="Ekora Bazaar" 
+              <Image
+                src="/images/logo.jpg"
+                alt="Ekora Bazaar"
                 width={140}
                 height={38}
                 priority
@@ -135,9 +137,9 @@ export default function BuyerNavbar() {
 
           {/* Center: Desktop Navigation Bar */}
           <nav className="hidden md:flex justify-center items-center space-x-8 h-full">
-            
+
             {/* 1. Craft Studios Mega Menu Trigger */}
-            <div 
+            <div
               className="relative h-full flex items-center"
               onMouseEnter={() => handleMouseEnter("craft")}
               onMouseLeave={handleMouseLeave}
@@ -163,7 +165,7 @@ export default function BuyerNavbar() {
             </div>
 
             {/* 2. Departments Mega Menu Trigger */}
-            <div 
+            <div
               className="relative h-full flex items-center"
               onMouseEnter={() => handleMouseEnter("departments")}
               onMouseLeave={handleMouseLeave}
@@ -198,7 +200,7 @@ export default function BuyerNavbar() {
             </Link>
 
             {/* 4. The Academy Dropdown */}
-            <div 
+            <div
               className="relative h-full flex items-center"
               onMouseEnter={() => handleMouseEnter("academy")}
               onMouseLeave={handleMouseLeave}
@@ -251,6 +253,40 @@ export default function BuyerNavbar() {
                       </div>
                     </Link>
                     <Link
+                      href="/guides"
+                      onClick={closeMenu}
+                      className="flex items-start gap-3 p-3 hover:bg-stone-50 transition-colors group"
+                    >
+                      <div className="w-8 h-8 bg-stone-100 flex items-center justify-center text-stone-800 shrink-0 mt-0.5">
+                        <BookOpen className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-stone-900 group-hover:text-stone-950 transition-colors">
+                          Buying &amp; Sourcing Guides
+                        </div>
+                        <div className="text-[11px] text-stone-500 font-normal leading-snug mt-0.5">
+                          Quality standards &amp; batch selection
+                        </div>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/tools/fragrance-load-calculator"
+                      onClick={closeMenu}
+                      className="flex items-start gap-3 p-3 hover:bg-stone-50 transition-colors group"
+                    >
+                      <div className="w-8 h-8 bg-stone-100 flex items-center justify-center text-stone-800 shrink-0 mt-0.5">
+                        <Calculator className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-stone-900 group-hover:text-stone-950 transition-colors">
+                          Fragrance Load Calculator
+                        </div>
+                        <div className="text-[11px] text-stone-500 font-normal leading-snug mt-0.5">
+                          Precise oil &amp; wax gram weights
+                        </div>
+                      </div>
+                    </Link>
+                    <Link
                       href="/classes"
                       onClick={closeMenu}
                       className="flex items-start gap-3 p-3 hover:bg-stone-50 transition-colors group"
@@ -287,7 +323,7 @@ export default function BuyerNavbar() {
             <NavbarSearchBox />
 
             {/* Profile Dropdown */}
-            <div 
+            <div
               className="relative flex items-center"
               onMouseEnter={() => handleMouseEnter("profile")}
               onMouseLeave={handleMouseLeave}
@@ -524,8 +560,8 @@ export default function BuyerNavbar() {
                                 href={`/shop?category=${encodeURIComponent(sub)}`}
                                 onClick={closeMenu}
                                 className={`text-[12px] ${
-                                  isSubOption 
-                                    ? "text-stone-500 hover:text-stone-950 font-medium flex items-center gap-1.5" 
+                                  isSubOption
+                                    ? "text-stone-500 hover:text-stone-950 font-medium flex items-center gap-1.5"
                                     : "text-stone-600 hover:text-stone-950"
                                 } block py-0.5 leading-snug transition-colors`}
                               >
@@ -584,7 +620,7 @@ export default function BuyerNavbar() {
             className="fixed inset-0 z-40 bg-white pt-20 px-4 md:hidden flex flex-col overflow-y-auto"
           >
             <div className="flex flex-col gap-4 flex-1 pb-12">
-              
+
               {/* Mobile Craft Studios */}
               <div className="border-b border-stone-200 pb-4">
                 <button
@@ -642,8 +678,8 @@ export default function BuyerNavbar() {
                                 key={sub}
                                 href={`/shop?category=${encodeURIComponent(sub)}`}
                                 className={`text-[11px] ${
-                                  isSubOption 
-                                    ? "bg-amber-50 text-amber-900 border border-amber-200/80 font-medium" 
+                                  isSubOption
+                                    ? "bg-amber-50 text-amber-900 border border-amber-200/80 font-medium"
                                     : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                                 } px-2 py-0.5 rounded-md transition-colors inline-flex items-center gap-1`}
                                 onClick={() => setMobileMenuOpen(false)}
@@ -679,7 +715,21 @@ export default function BuyerNavbar() {
                 className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                The Academy
+                The Academy &bull; Formulations
+              </Link>
+              <Link
+                href="/guides"
+                className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sourcing &amp; Buying Guides
+              </Link>
+              <Link
+                href="/tools/fragrance-load-calculator"
+                className="text-lg font-bold font-serif text-stone-900 hover:text-amber-700 transition-colors py-2 flex items-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Fragrance Load Calculator
               </Link>
               <Link
                 href="/sell/platform"

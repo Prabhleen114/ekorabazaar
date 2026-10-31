@@ -118,18 +118,23 @@ export default async function BlogArticlePage({ params }: Props) {
     description: frontmatter.description,
     image: [frontmatter.featuredImage || `${BASE_URL}/og-image.jpg`],
     url: `${BASE_URL}/blog/${slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/blog/${slug}`,
+    },
     datePublished: frontmatter.publishedAt,
     dateModified: frontmatter.updatedAt || frontmatter.publishedAt,
     author: {
-      "@type": "Organization",
-      name: frontmatter.author,
+      "@type": frontmatter.author && !frontmatter.author.includes("Team") && !frontmatter.author.includes("Lab") ? "Person" : "Organization",
+      name: frontmatter.author || "Ekora Bazaar Editorial Team",
       url: BASE_URL,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
       name: "Ekora Bazaar",
       url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/apple-touch-icon.png` },
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/images/logo.jpg` },
     },
   };
 

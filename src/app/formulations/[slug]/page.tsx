@@ -1,5 +1,5 @@
 import BuyerNavbar from "@/components/BuyerNavbar";
-import Footer from "@/components/Footer";
+import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -81,12 +81,22 @@ export default async function FormulationSinglePage({ params }: { params: Promis
     headline: formulation.title,
     description: formulation.excerpt,
     url: canonicalUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
     image: [formulation.imageUrl || "https://www.ekorabazaar.in/og-image.jpg"],
+    author: {
+      "@type": "Organization",
+      name: "Ekora Formulation Lab",
+      url: "https://www.ekorabazaar.in/formulations",
+    },
     publisher: {
       "@type": "Organization",
+      "@id": "https://www.ekorabazaar.in/#organization",
       name: "Ekora Bazaar",
       url: "https://www.ekorabazaar.in",
-      logo: { "@type": "ImageObject", url: "https://www.ekorabazaar.in/apple-touch-icon.png" },
+      logo: { "@type": "ImageObject", url: "https://www.ekorabazaar.in/images/logo.jpg" },
     },
   };
 
@@ -179,7 +189,7 @@ export default async function FormulationSinglePage({ params }: { params: Promis
         </article>
       </main>
 
-      <Footer />
+      <BuyerFooter />
     </div>
   );
 }

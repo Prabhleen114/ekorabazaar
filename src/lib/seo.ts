@@ -53,7 +53,7 @@ export function generateProductMetadata(product: any): Metadata {
   const canonicalId = getCanonicalProductId(String(product.id));
   const title = product.title || product.name;
   const description = `Source ${title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
-  
+
   const imageUrl = product.imageUrl || product.image || DEFAULT_OG_IMAGE;
   const path = `/products/${canonicalId}`;
 
@@ -66,7 +66,7 @@ export function generateProductMetadata(product: any): Metadata {
 export function generateCategoryMetadata(categoryName: string, categorySlug: string): Metadata {
   const title = `${categoryName} Wholesale | Bulk Supplier India`;
   const description = `Source wholesale ${categoryName} for small businesses and creators. Reliable supply, volume tier pricing, and fast delivery on ${SITE_NAME}.`;
-  
+
   const path = `/wholesale/${categorySlug}`;
   return generateStandardMetadata(title, description, path);
 }
@@ -77,7 +77,7 @@ export function generateCategoryMetadata(categoryName: string, categorySlug: str
 export function generateGuideMetadata(guideTitle: string, guideSlug: string): Metadata {
   const title = `${guideTitle} Buying Guide`;
   const description = `Read our comprehensive buying guide on ${guideTitle}. Learn how to source the best materials for your business on ${SITE_NAME}.`;
-  
+
   const path = `/guides/${guideSlug}`;
   return generateStandardMetadata(title, description, path, DEFAULT_OG_IMAGE, 'article');
 }
@@ -95,7 +95,7 @@ export function generateProductSchema(product: any, sellerName?: string) {
     const finalSeller = computedSeller;
   const basePrice = (product.customerPrice ?? product.price) / 100;
   const isAvailable = product.stock > 0 || product.inStock !== false;
-  
+
   const returnPolicy = {
     "@type": "MerchantReturnPolicy",
     "applicableCountry": "IN",
@@ -134,13 +134,15 @@ export function generateProductSchema(product: any, sellerName?: string) {
   // We output ONE single offer at the 1-unit price.
   // This is because Google Merchant Center and standard SERP snippets expect the primary offer to match the 1-unit baseline price.
   // While AggregateOffer supports lowPrice/highPrice, it is semantically intended for multiple distinct sellers offering the same product, rather than tiered volume pricing from a single seller.
-  
+
   const canonicalId = getCanonicalProductId(String(product.id));
   const offers = {
     "@type": "Offer",
+    "@id": `${BASE_URL}/products/${canonicalId}#offer`,
     "url": `${BASE_URL}/products/${canonicalId}`,
     "priceCurrency": "INR",
     "price": basePrice,
+    "priceValidUntil": "2027-12-31",
     "itemCondition": "https://schema.org/NewCondition",
     "availability": isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
     "hasMerchantReturnPolicy": returnPolicy,
@@ -154,17 +156,20 @@ export function generateProductSchema(product: any, sellerName?: string) {
   const schema: any = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${BASE_URL}/products/${canonicalId}#product`,
     "name": product.title || product.name,
     "image": [
-      (product.imageUrl || product.image || "").startsWith("http") 
-        ? (product.imageUrl || product.image) 
+      (product.imageUrl || product.image || "").startsWith("http")
+        ? (product.imageUrl || product.image)
         : `${BASE_URL}${product.imageUrl || product.image || "/og-image.jpg"}`
     ],
     "description": product.description || `Source ${product.title || product.name} in bulk wholesale on Ekora Bazaar. Tiered pricing and reliable delivery across India.`,
     "sku": canonicalId,
+    ...(product.category ? { "category": product.category } : {}),
     "brand": {
         "@type": "Brand",
-        "name": "Ekora Bazaar"
+        "name": "Ekora Bazaar",
+        "url": BASE_URL
       },
     "offers": offers
   };
@@ -228,16 +233,65 @@ export function generateOrganizationSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
       "name": SITE_NAME,
+      "legalName": "Ekora Bazaar Pvt Ltd",
       "url": BASE_URL,
-      "logo": `${BASE_URL}/logo.png`,
-      "description": "Ekora Bazaar is a B2B marketplace for wholesale products and raw materials. Connect with verified suppliers for bulk buying."
+      "logo": {
+        "@type": "ImageObject",
+        "@id": `${BASE_URL}/#logo`,
+        "url": `${BASE_URL}/images/logo.jpg`,
+        "caption": SITE_NAME,
+      },
+      "image": `${BASE_URL}/og-image.jpg`,
+      "description": "India's premier creator commerce platform and wholesale raw materials sourcing hub for independent artisans and makers.",
+      "foundingDate": "2026",
+      "founders": [
+        { "@type": "Person", "name": "Kumar Aryan" },
+        { "@type": "Person", "name": "Prabhleen Kaur" },
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
+        "addressLocality": "Muzaffarpur",
+        "addressRegion": "Bihar",
+        "postalCode": "842001",
+        "addressCountry": "IN",
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-9041500605",
+          "contactType": "customer service",
+          "email": "ekorabazaar@gmail.com",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"],
+        },
+      ],
+      "sameAs": [
+        "https://www.instagram.com/ekorabazaar",
+        "https://www.facebook.com/ekorabazaar",
+        "https://www.linkedin.com/company/ekorabazaar",
+      ],
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
       "name": SITE_NAME,
-      "url": BASE_URL
-    }
+      "url": BASE_URL,
+      "description": "B2B raw materials, creator storefronts, and craft supplies wholesale marketplace in India.",
+      "publisher": {
+        "@id": `${BASE_URL}/#organization`,
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${BASE_URL}/shop?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
   ];
 }

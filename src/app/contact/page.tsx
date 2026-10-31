@@ -21,24 +21,30 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const localBusinessSchema = {
+  const contactSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Ekora Bazaar",
-    "legalName": "Ekora Bazaar Pvt Ltd",
-    "url": "https://www.ekorabazaar.in",
-    "logo": "https://www.ekorabazaar.in/apple-touch-icon.png",
-    "image": "https://www.ekorabazaar.in/og-image.jpg",
-    "telephone": "+91-9041500605",
-    "email": "ekorabazaar@gmail.com",
-    "priceRange": "₹₹",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
-      "addressLocality": "Muzaffarpur",
-      "addressRegion": "Bihar",
-      "postalCode": "842001",
-      "addressCountry": "IN"
+    "@type": "ContactPage",
+    "name": "Contact Ekora Bazaar",
+    "url": "https://www.ekorabazaar.in/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.ekorabazaar.in/#organization",
+      "name": "Ekora Bazaar",
+      "legalName": "Ekora Bazaar Pvt Ltd",
+      "url": "https://www.ekorabazaar.in",
+      "logo": "https://www.ekorabazaar.in/images/logo.jpg",
+      "image": "https://www.ekorabazaar.in/og-image.jpg",
+      "telephone": "+91-9041500605",
+      "email": "ekorabazaar@gmail.com",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
+        "addressLocality": "Muzaffarpur",
+        "addressRegion": "Bihar",
+        "postalCode": "842001",
+        "addressCountry": "IN"
+      }
     }
   };
 
@@ -46,7 +52,7 @@ export default function ContactPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize(localBusinessSchema, { isJSON: true }) }}
+        dangerouslySetInnerHTML={{ __html: serialize(contactSchema, { isJSON: true }) }}
       />
       <Navbar />
       <main className="min-h-screen bg-brand-bg pt-24 pb-16 px-4 md:px-6">

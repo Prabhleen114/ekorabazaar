@@ -24,15 +24,20 @@ export default function AboutPage() {
     "@type": "AboutPage",
     "mainEntity": {
       "@type": "LocalBusiness",
+      "@id": "https://www.ekorabazaar.in/#organization",
       "name": "Ekora Bazaar",
       "legalName": "Ekora Bazaar Pvt Ltd",
       "url": "https://www.ekorabazaar.in",
-      "logo": "https://www.ekorabazaar.in/apple-touch-icon.png",
+      "logo": "https://www.ekorabazaar.in/images/logo.jpg",
       "image": "https://www.ekorabazaar.in/og-image.jpg",
       "telephone": "+91-9041500605",
       "email": "ekorabazaar@gmail.com",
       "priceRange": "₹₹",
       "foundingDate": "2026",
+      "founders": [
+        { "@type": "Person", "name": "Kumar Aryan" },
+        { "@type": "Person", "name": "Prabhleen Kaur" }
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Near Shyam Mandir Marg, Sutapatti",
@@ -71,7 +76,7 @@ export default function AboutPage() {
             <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-brand-linen">
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-charcoal mb-4">Our Mission</h2>
               <p className="text-brand-charcoal/80 leading-relaxed mb-6">
-                Ekora Bazaar connects verified handmade creators directly with buyers across India while empowering sellers with instant storefronts, zero DM-based checkout friction, automated Instagram catalog synchronization, and transparent pricing. 
+                Ekora Bazaar connects verified handmade creators directly with buyers across India while empowering sellers with instant storefronts, zero DM-based checkout friction, automated Instagram catalog synchronization, and transparent pricing.
               </p>
               <p className="text-brand-charcoal/80 leading-relaxed">
                 We help creative small businesses, women entrepreneurs, and home-based artisans scale their brands without excessive marketplace commissions.
@@ -92,7 +97,7 @@ export default function AboutPage() {
                   <li>• Custom Home Decor</li>
                 </ul>
               </div>
-              
+
               <div className="bg-brand-orange/5 rounded-3xl p-8 md:p-10 border border-brand-orange/10">
                 <h3 className="text-xl font-bold text-brand-charcoal mb-4">Wholesale Raw Materials</h3>
                 <p className="text-brand-charcoal/70 leading-relaxed mb-6">
@@ -129,11 +134,19 @@ export default function AboutPage() {
                     <p className="mt-1 font-semibold text-brand-orange">B2B GST invoice provided on every order.</p>
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Contact &amp; Support</h3>
-                  <p className="text-brand-charcoal/80 mb-1">Email: <a href="mailto:ekorabazaar@gmail.com" className="hover:text-brand-orange">ekorabazaar@gmail.com</a></p>
-                  <p className="text-brand-charcoal/80 mb-4">WhatsApp: <a href="https://wa.me/919041500605" className="hover:text-brand-orange">+91 9041500605</a></p>
-                  
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Leadership &amp; Co-Founders</h3>
+                    <p className="text-brand-charcoal/80">
+                      <strong>Kumar Aryan</strong> &bull; Co-Founder<br />
+                      <strong>Prabhleen Kaur</strong> &bull; Co-Founder
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-1">Contact &amp; Support</h3>
+                    <p className="text-brand-charcoal/80 text-sm mb-1">Email: <a href="mailto:ekorabazaar@gmail.com" className="hover:text-brand-orange">ekorabazaar@gmail.com</a></p>
+                    <p className="text-brand-charcoal/80 text-sm">WhatsApp: <a href="https://wa.me/919041500605" className="hover:text-brand-orange">+91 9041500605</a></p>
+                  </div>
                 </div>
               </div>
             </section>

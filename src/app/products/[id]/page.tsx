@@ -10,7 +10,8 @@ import Link from "next/link";
 import serialize from "serialize-javascript";
 import { MessageCircle, FileText, ChevronDown } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
-import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema } from "@/lib/seo";
+import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
+import { getCategoryFaqs } from "@/lib/faqs";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
 import ProductKeySpecs from "@/components/ProductKeySpecs";
 import ProductFaqSection from "@/components/ProductFaqSection";
@@ -206,11 +207,25 @@ export default async function ProductDetailsPage({ params }: Props) {
   // Pre-populated JSON-LD Schema
   const jsonLd = generateProductSchema(productData.rawProduct, productData.supplierName);
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
+  const categorySlug = displayProduct.category ? displayProduct.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') : null;
+  const breadcrumbItems = [
     { name: "Home", url: "https://www.ekorabazaar.in" },
     { name: "Shop", url: "https://www.ekorabazaar.in/shop" },
-    { name: displayProduct.name, url: `https://www.ekorabazaar.in/products/${productData.id}` }
-  ]);
+  ];
+  if (displayProduct.category && categorySlug) {
+    breadcrumbItems.push({
+      name: displayProduct.category,
+      url: `https://www.ekorabazaar.in/wholesale/${categorySlug}`
+    });
+  }
+  breadcrumbItems.push({
+    name: displayProduct.name,
+    url: `https://www.ekorabazaar.in/products/${productData.id}`
+  });
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+
+  const productFaqs = getCategoryFaqs(displayProduct.name, displayProduct.category);
+  const faqSchema = generateFaqSchema(productFaqs);
 
   const relatedGuides = getPostsByCategory(displayProduct.category).slice(0, 3);
 
@@ -228,14 +243,10 @@ export default async function ProductDetailsPage({ params }: Props) {
       <BuyerNavbar />
       <TrackViewItem item={displayProduct} />
 
-      {/* Inject JSON-LD Schema */}
+      {/* Inject JSON-LD Schemas */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize(jsonLd, { isJSON: true }) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize(breadcrumbSchema, { isJSON: true }) }}
+        dangerouslySetInnerHTML={{ __html: serialize([jsonLd, breadcrumbSchema, faqSchema], { isJSON: true }) }}
       />
 
       {/* Visually hidden SEO tags */}
@@ -250,7 +261,7 @@ export default async function ProductDetailsPage({ params }: Props) {
           Laptop (md:): Two-column atelier layout preserved with sticky gallery on left and formulation details on right.
       */}
       <div className="pt-3 sm:pt-4 md:pt-6 pb-20 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-14">
-        
+
         {/* LEFT COLUMN: Product Image Gallery (Swipeable 4:5 on mobile, Sticky architectural framing on laptop) */}
         <div className="w-full md:w-1/2">
           <ProductGallery
@@ -262,7 +273,7 @@ export default async function ProductDetailsPage({ params }: Props) {
 
         {/* RIGHT COLUMN: Conversion Buy Flow, Key Specs & Technical Accordions */}
         <div className="w-full md:w-1/2 px-0 md:px-0 flex flex-col">
-          
+
           {/* Breadcrumbs (Subtle on desktop, minimal on mobile) */}
           <nav aria-label="Breadcrumb" className="hidden sm:flex items-center text-[10px] uppercase tracking-[0.18em] text-stone-400 font-sans mb-3 flex-wrap gap-1.5">
             <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
@@ -275,7 +286,13 @@ export default async function ProductDetailsPage({ params }: Props) {
               </>
             )}
             <span>/</span>
-            <span className="text-stone-700">{displayProduct.category}</span>
+            {categorySlug ? (
+              <Link href={`/wholesale/${categorySlug}`} className="text-stone-700 hover:text-stone-900 transition-colors">
+                {displayProduct.category}
+              </Link>
+            ) : (
+              <span className="text-stone-700">{displayProduct.category}</span>
+            )}
           </nav>
 
           {/* 3. Title Block: Name & One-line craft application subtext */}

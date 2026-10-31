@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Page Not Found — 404 | Ekora Bazaar',
+  title: 'Page Not Found — 404',
   description: 'The page you are looking for does not exist on Ekora Bazaar.',
   robots: {
     index: false,

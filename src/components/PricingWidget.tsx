@@ -74,27 +74,27 @@ function getColorHex(colorName: string): string {
   return map[key] || "#888888";
 }
 
-export default function PricingWidget({ 
-  productId, 
+export default function PricingWidget({
+  productId,
   productName,
   sellerId,
   basePrice,
-  tiers = [], 
+  tiers = [],
   variants = [],
   colors = [],
-  moq = 1, 
+  moq = 1,
   category,
   isQuoteOnly = false,
   inStock = true
-}: { 
-  productId?: string; 
+}: {
+  productId?: string;
   productName?: string;
   sellerId?: string | null;
-  basePrice?: number; 
-  tiers: Tier[]; 
+  basePrice?: number;
+  tiers: Tier[];
   variants?: ProductVariant[];
   colors?: ProductColor[];
-  moq?: number; 
+  moq?: number;
   category?: string;
   isQuoteOnly?: boolean;
   inStock?: boolean;
@@ -230,7 +230,7 @@ export default function PricingWidget({
             basePrice: displayPrice
           });
           setIsAddedSuccess(true);
-          
+
           sendGAEvent('event', 'add_to_cart', {
             currency: 'INR',
             value: displayPrice * quantity,
@@ -255,11 +255,11 @@ export default function PricingWidget({
           return;
         }
         if (!res.ok) throw new Error('Failed to add to cart');
-        
+
         setIsAddedSuccess(true);
         const { notifyCartUpdated } = await import('@/lib/guest-cart');
         notifyCartUpdated();
-        
+
         sendGAEvent('event', 'add_to_cart', {
           currency: 'INR',
           value: displayPrice * quantity,
@@ -621,7 +621,7 @@ export default function PricingWidget({
                 <span>Estimated Delivery: {estimatedDeliveryDate}</span>
               </p>
               <p className="text-[11px] text-stone-600">
-                Standard Flat Shipping: <strong>₹90</strong> &bull; Dispatches in 24 Hours from Muzaffarpur, Bihar
+                Standard Flat Shipping: <strong className="text-stone-900">₹90</strong> across India &bull; Dispatches in 24 Hours from Muzaffarpur, Bihar
               </p>
             </div>
           ) : (
@@ -639,17 +639,17 @@ export default function PricingWidget({
 
         {/* 5. PRIMARY ACTION BUTTONS: ADD TO CART & BUY NOW */}
         <div className="space-y-2.5 pt-1" ref={ctaRef}>
-          <button 
+          <button
             type="button"
             onClick={() => handleAction('cart')}
             disabled={isProcessing}
             className="w-full bg-stone-900 hover:bg-black text-white text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-75 shadow-xs min-h-[48px]"
           >
-            {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4 text-emerald-400" /> : <ShoppingCart className="w-4 h-4" />)} 
+            {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4 text-emerald-400" /> : <ShoppingCart className="w-4 h-4" />)}
             <span>{isAddingToCart ? "Adding to Cart..." : (isAddedSuccess ? "Added ✓" : "Add to Cart")}</span>
           </button>
-          
-          <button 
+
+          <button
             type="button"
             onClick={() => handleAction('buy_now')}
             disabled={isProcessing}
@@ -684,8 +684,8 @@ export default function PricingWidget({
 
       {/* 7. STICKY BOTTOM ACTION BAR (Appears only when main buttons scroll out of view) */}
       {showStickyBar && (
-        <div 
-          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 z-40 flex items-center justify-between shadow-[0_-4px_10px_-2px_rgba(0,0,0,0.08)]" 
+        <div
+          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 z-40 flex items-center justify-between shadow-[0_-4px_10px_-2px_rgba(0,0,0,0.08)]"
           style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
         >
           <div className="flex flex-col pr-2">
@@ -697,7 +697,7 @@ export default function PricingWidget({
             </span>
           </div>
           <div className="flex gap-2 items-center">
-            <button 
+            <button
               type="button"
               onClick={() => handleAction('cart')}
               disabled={isProcessing}
@@ -705,7 +705,7 @@ export default function PricingWidget({
             >
               {isAddedSuccess ? "Added ✓" : "Add to Cart"}
             </button>
-            <button 
+            <button
               type="button"
               onClick={() => handleAction('buy_now')}
               disabled={isProcessing}

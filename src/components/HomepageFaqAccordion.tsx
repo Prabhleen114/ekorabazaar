@@ -2,34 +2,9 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { HOMEPAGE_FAQS, FaqItem } from "@/lib/faqs";
 
-interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    question: "What is Ekora Bazaar?",
-    answer:
-      "Ekora Bazaar is a B2B marketplace for wholesale craft supplies and raw materials. We connect businesses, studio creators, and bulk buyers directly with verified Indian manufacturers and distilleries, specializing in candle-making waxes, soap bases, IFRA fragrance oils, and precision silicone moulds."
-  },
-  {
-    question: "Does Ekora Bazaar support bulk buying?",
-    answer:
-      "Yes. Products with available wholesale tiers feature transparent volume discounts directly on the product page (e.g. 12+ and 52+ units). Minimum Order Quantities (MOQ) and tiered savings are calculated automatically with no gatekept quotes needed."
-  },
-  {
-    question: "Does Ekora Bazaar offer returns on wholesale/raw-material orders?",
-    answer:
-      "To preserve batch purity and prevent contamination, standard wholesale and chemical/raw-material orders do not support returns or exchanges. Buyers can review technical data sheets (TDS), certificates of analysis (COA), and sample sizes before ordering volume slabs."
-  },
-  {
-    question: "How is delivery charged for bulk orders?",
-    answer:
-      "Ekora Bazaar applies a standard flat delivery charge of ₹80 per order across India, regardless of the number of items or total weight, dispatched within 24 hours directly from our verified regional hubs."
-  }
-];
+export { HOMEPAGE_FAQS, type FaqItem };
 
 export default function HomepageFaqAccordion() {
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
@@ -52,7 +27,7 @@ export default function HomepageFaqAccordion() {
       </div>
 
       <div className="divide-y divide-stone-200 border-y border-stone-200 bg-white shadow-2xs">
-        {FAQ_ITEMS.map((faq, idx) => {
+        {HOMEPAGE_FAQS.map((faq, idx) => {
           const isOpen = openIndices.includes(idx);
           return (
             <div key={idx} className="transition-colors hover:bg-stone-50/50">

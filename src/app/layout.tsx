@@ -121,47 +121,74 @@ import { HesitationTracker } from "@/components/HesitationTracker";
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const organizationSchema = {
+  const siteGraphSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Ekora Bazaar",
-    url: "https://www.ekorabazaar.in",
-    logo: "https://www.ekorabazaar.in/apple-touch-icon.png",
-    description:
-      "India's premier creator commerce platform and wholesale raw materials marketplace.",
-    sameAs: [
-      "https://www.instagram.com/ekorabazaar",
-      "https://www.facebook.com/ekorabazaar",
-      "https://www.linkedin.com/company/ekorabazaar",
-    ],
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Ekora Bazaar",
-    url: "https://www.ekorabazaar.in",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://www.ekorabazaar.in/shop?q={search_term_string}",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.ekorabazaar.in/#organization",
+        name: "Ekora Bazaar",
+        legalName: "Ekora Bazaar Pvt Ltd",
+        url: "https://www.ekorabazaar.in",
+        logo: {
+          "@type": "ImageObject",
+          "@id": "https://www.ekorabazaar.in/#logo",
+          url: "https://www.ekorabazaar.in/images/logo.jpg",
+          caption: "Ekora Bazaar",
+        },
+        image: "https://www.ekorabazaar.in/og-image.jpg",
+        description:
+          "India's premier creator commerce platform and wholesale raw materials sourcing hub for independent artisans and makers.",
+        foundingDate: "2026",
+        founders: [
+          { "@type": "Person", name: "Kumar Aryan" },
+          { "@type": "Person", name: "Prabhleen Kaur" },
+        ],
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Near Shyam Mandir Marg, Sutapatti",
+          addressLocality: "Muzaffarpur",
+          addressRegion: "Bihar",
+          postalCode: "842001",
+          addressCountry: "IN",
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+91-9041500605",
+            contactType: "customer service",
+            email: "ekorabazaar@gmail.com",
+            areaServed: "IN",
+            availableLanguage: ["en", "hi"],
+          },
+        ],
+        sameAs: [
+          "https://www.instagram.com/ekorabazaar",
+          "https://www.facebook.com/ekorabazaar",
+          "https://www.linkedin.com/company/ekorabazaar",
+        ],
       },
-      "query-input": "required name=search_term_string",
-    },
-  };
-
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Ekora Bazaar",
-    image: "https://www.ekorabazaar.in/og-image.jpg",
-    url: "https://www.ekorabazaar.in",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "IN",
-    },
-    priceRange: "₹₹",
+      {
+        "@type": "WebSite",
+        "@id": "https://www.ekorabazaar.in/#website",
+        name: "Ekora Bazaar",
+        url: "https://www.ekorabazaar.in",
+        description:
+          "B2B raw materials, creator storefronts, and craft supplies wholesale marketplace in India.",
+        publisher: {
+          "@id": "https://www.ekorabazaar.in/#organization",
+        },
+        inLanguage: "en-IN",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://www.ekorabazaar.in/shop?q={search_term_string}",
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
   };
 
   return (
@@ -170,19 +197,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: serialize(organizationSchema, { isJSON: true }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: serialize(websiteSchema, { isJSON: true }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: serialize(localBusinessSchema, { isJSON: true }),
+            __html: serialize(siteGraphSchema, { isJSON: true }),
           }}
         />
       </head>

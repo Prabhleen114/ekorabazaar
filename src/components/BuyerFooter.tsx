@@ -12,9 +12,9 @@ export default function BuyerFooter() {
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="inline-block mb-3">
-              <Image 
-                src="/images/logo.jpg" 
-                alt="Ekora Bazaar" 
+              <Image
+                src="/images/logo.jpg"
+                alt="Ekora Bazaar"
                 width={144}
                 height={48}
                 className="object-contain mix-blend-multiply"
@@ -39,16 +39,20 @@ export default function BuyerFooter() {
               <li><Link href="/shop?discipline=candle-studio" className="hover:text-brand-charcoal transition-colors">The Candle Studio</Link></li>
               <li><Link href="/shop?discipline=soap-atelier" className="hover:text-brand-charcoal transition-colors">The Soap Atelier</Link></li>
               <li><Link href="/shop?department=Precision%20Studio%20Moulds" className="hover:text-brand-charcoal transition-colors">Precision Moulds</Link></li>
+              <li><Link href="/wholesale/candle-waxes-additives" className="hover:text-brand-charcoal transition-colors">Wholesale Raw Materials</Link></li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Support & Resources */}
           <div>
-            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Support &amp; Resources</h4>
+            <h4 className="text-brand-charcoal font-semibold mb-3 font-serif text-sm">Maker Resources</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-brand-charcoal/65 font-medium">
-              <li><Link href="/blog" className="hover:text-brand-charcoal transition-colors text-brand-orange font-semibold">Maker Guides &amp; Blog</Link></li>
-              <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors">Help Center</Link></li>
-              <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors">Contact Us</Link></li>
+              <li><Link href="/guides" className="hover:text-brand-charcoal transition-colors">Sourcing Guides Hub</Link></li>
+              <li><Link href="/formulations" className="hover:text-brand-charcoal transition-colors">Formulation Recipes</Link></li>
+              <li><Link href="/tools/fragrance-load-calculator" className="hover:text-brand-charcoal transition-colors">Fragrance Calculator</Link></li>
+              <li><Link href="/blog" className="hover:text-brand-charcoal transition-colors text-brand-orange font-semibold">Maker Tutorial Blog</Link></li>
+              <li><Link href="/about" className="hover:text-brand-charcoal transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors">Contact Support</Link></li>
             </ul>
           </div>
 
@@ -79,7 +83,7 @@ export default function BuyerFooter() {
               <a href="mailto:ekorabazaar@gmail.com" className="hover:text-brand-charcoal transition-colors">ekorabazaar@gmail.com</a>
             </p>
             <div className="pt-2">
-              <a 
+              <a
                 href="https://wa.me/919041500605?text=Hi%20Ekora!%20I%20need%20help%20with%20my%20supplies%20order."
                 target="_blank"
                 rel="noopener noreferrer"
