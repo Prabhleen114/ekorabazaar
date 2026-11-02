@@ -3860,11 +3860,11 @@
     "id": "45",
     "name": "3D FLOWER SILICONE MOLD FOR SOAP, CANDLE, RESIN, CHOCOLATE & FONDANT – PEONY, CHAMOMILE & CAMELLIA DESIGNS",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality 3d flower silicone mold for soap, candle, resin, chocolate & fondant – peony, chamomile & camellia designs sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Premium 3D botanical flower silicone mould collection available in 3 distinct designs: Peony (Model 3380A — 6.7×6.5cm bloom, 7.5×7.5×3.5cm mould), Chamomile Daisy (Model J-5598 — 6.5×6.3cm bloom, 7.5×7.3×3.5cm mould), and Camellia (Model J-5599 — 6.5×6.3cm bloom, 7.5×7.5×3.5cm mould), plus a complete 3-flower set option. Molded from flexible, high-tear-strength translucent food-grade silicone suitable for soy wax candles, artisan soap making, Jesmonite, concrete, epoxy resin, chocolate, and cake fondant.",
     "price": 373,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
     "tiers": [
       {
         "minQty": 1,
@@ -3934,7 +3934,116 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "images": [
+      "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
+      "/images/products/3d-flower-candle-soap-silicone-mould-bouquet.png",
+      "/images/products/peony-flower-silicone-mould-3380a.png",
+      "/images/products/chamomile-flower-silicone-mould-j5598.png",
+      "/images/products/camellia-flower-silicone-mould-j5599.png"
+    ],
+    "variants": [
+      {
+        "size": "Peony (3380A)",
+        "price": 373,
+        "image": "/images/products/peony-flower-silicone-mould-3380a.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Chamomile (J-5598)",
+        "price": 373,
+        "image": "/images/products/chamomile-flower-silicone-mould-j5598.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Camellia (J-5599)",
+        "price": 373,
+        "image": "/images/products/camellia-flower-silicone-mould-j5599.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Complete Set (All 3 Flowers)",
+        "price": 999,
+        "image": "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 999,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 949,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 899,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "46",

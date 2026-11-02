@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ProductImageClient from "@/components/ProductImageClient";
 
 interface Props {
@@ -22,14 +22,54 @@ export default function ProductGallery({ mainImage, images: propImages, productN
                        category.toLowerCase().includes("hydrosol");
 
   const slideImages: { src: string; label: string }[] = (propImages && propImages.length > 0)
-    ? propImages.map((src, idx) => ({
-        src,
-        label: idx === 0 ? "Main View" : `View ${idx + 1}`
-      }))
+    ? propImages.map((src, idx) => {
+        let label = idx === 0 ? "Main View" : `View ${idx + 1}`;
+        const lower = src.toLowerCase();
+        if (lower.includes("peony")) label = "Peony Mould (3380A)";
+        else if (lower.includes("chamomile")) label = "Chamomile Mould (J-5598)";
+        else if (lower.includes("camellia")) label = "Camellia Mould (J-5599)";
+        else if (lower.includes("bouquet")) label = "Finished Candles Bouquet";
+        else if (lower.includes("set")) label = "3-Flower Set Overview";
+        else if (lower.includes("dimensions")) label = "Mould Dimensions";
+        return { src, label };
+      })
     : [
         { src: mainImage, label: "Studio Product" },
         ...(isBottleItem ? [{ src: "/images/base-bottle.webp", label: "Real Bottle & Label" }] : [])
       ];
+
+  // Listen to variant selection changes from PricingWidget to automatically focus corresponding slide
+  useEffect(() => {
+    const handleVariantChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ variant?: { image?: string; size?: string } }>;
+      const v = customEvent.detail?.variant;
+      if (!v) return;
+
+      let targetIdx = -1;
+      if (v.image) {
+        targetIdx = slideImages.findIndex(img => img.src === v.image);
+      }
+      if (targetIdx === -1 && v.size) {
+        const query = v.size.toLowerCase();
+        targetIdx = slideImages.findIndex(img => 
+          img.label.toLowerCase().includes(query) || 
+          img.src.toLowerCase().includes(query.split(" ")[0].toLowerCase())
+        );
+      }
+
+      if (targetIdx >= 0) {
+        setSelectedDesktopIndex(targetIdx);
+        setActiveIndex(targetIdx);
+        if (scrollRef.current) {
+          const width = scrollRef.current.offsetWidth;
+          scrollRef.current.scrollTo({ left: targetIdx * width, behavior: "smooth" });
+        }
+      }
+    };
+
+    window.addEventListener("product:variant-change", handleVariantChange);
+    return () => window.removeEventListener("product:variant-change", handleVariantChange);
+  }, [slideImages]);
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -108,6 +148,7 @@ export default function ProductGallery({ mainImage, images: propImages, productN
                     ? "border-stone-900 ring-1 ring-stone-900 shadow-xs"
                     : "border-stone-200 hover:border-stone-400 opacity-70 hover:opacity-100"
                 }`}
+                title={img.label}
               >
                 <ProductImageClient
                   src={img.src}
