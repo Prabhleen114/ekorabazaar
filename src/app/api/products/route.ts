@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/db";
 import { ProductStatus } from "@prisma/client";
-import { getDepartmentForCategory, DEPARTMENTS } from "@/lib/taxonomy";
+import { getDepartmentForCategory } from "@/lib/taxonomy";
 import { normalizeCategoryName } from "@/lib/categories";
 import catalogProducts from "@/lib/data/products.json";
 import {
+  filterAndSortCatalogProducts,
+  normalizeSortKey,
+  ProductFilterParams
+} from "@/lib/product-filters";
+import {
   sanitizeSearchQuery,
-  expandQueryTokens,
-  expandQueryTokenGroups,
-  scoreProduct,
+  expandQueryTokens
 } from "@/lib/search";
 
 export const dynamic = 'force-dynamic';
@@ -114,51 +117,26 @@ function getSingletonCatalog(): { catalog: CatalogProduct[]; facets: NonNullable
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  
-  // Pagination
-  const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
-  const rawLimit = searchParams.get("limit");
-  let limit = 48;
-  if (rawLimit === "all") {
-    limit = 5000;
-  } else if (rawLimit) {
-    const parsed = parseInt(rawLimit, 10);
-    if (!isNaN(parsed) && parsed > 0) {
-      limit = Math.min(parsed, 5000);
-    }
-  }
-  const skip = (page - 1) * limit;
 
-  // Filter params
-  const rawCategory   = searchParams.get("category");
-  const normalizedCategory = rawCategory ? normalizeCategoryName(rawCategory) : null;
-  const department    = searchParams.get("department");
-  const discipline    = searchParams.get("discipline");
-  const priceOption   = searchParams.get("priceOption");
-  const minPrice      = searchParams.get("minPrice");
-  const maxPrice      = searchParams.get("maxPrice");
-  const inStockOnly   = searchParams.get("inStockOnly") === "true";
-  const rawSortParam = searchParams.get("sortBy") || searchParams.get("sort") || searchParams.get("order") || "recommended";
-  let sortBy = rawSortParam.toLowerCase().trim();
-  if (sortBy === "new" || sortBy === "latest") sortBy = "newest";
-  if (sortBy === "price-asc" || sortBy === "low_to_high" || sortBy === "price_low") sortBy = "price_asc";
-  if (sortBy === "price-desc" || sortBy === "high_to_low" || sortBy === "price_high") sortBy = "price_desc";
-  if (sortBy === "discount" || sortBy === "discount_high") sortBy = "discount_desc";
-  if (sortBy === "popular" || sortBy === "featured" || sortBy === "bestselling") sortBy = "recommended";
+  const filterParams: ProductFilterParams = {
+    q: searchParams.get("q"),
+    category: searchParams.get("category"),
+    department: searchParams.get("department"),
+    discipline: searchParams.get("discipline"),
+    priceOption: searchParams.get("priceOption"),
+    minPrice: searchParams.get("minPrice"),
+    maxPrice: searchParams.get("maxPrice"),
+    inStockOnly: searchParams.get("inStockOnly"),
+    sort: searchParams.get("sort") || searchParams.get("sortBy") || searchParams.get("order"),
+    page: searchParams.get("page") || "1",
+    limit: searchParams.get("limit") || "48",
+  };
 
-  // Search tokens
-  const rawQ          = searchParams.get("q");
-  const normalizedQ   = sanitizeSearchQuery(rawQ);
-  const searchTokens  = normalizedQ ? expandQueryTokens(normalizedQ) : [];
-  const hasSearch     = normalizedQ !== null && normalizedQ.length > 0;
-
-  // Get authoritative curated catalog
+  // Authoritative curated catalog
   const { catalog: baseCatalog, facets: baseFacets } = getSingletonCatalog();
   let allProducts: CatalogProduct[] = [...baseCatalog];
 
-  // Merge any active 3rd-party marketplace seller products if available.
-  // We cache this per warm serverless instance with a 60-second TTL to avoid
-  // a live Supabase round-trip on every single page load.
+  // Merge any active 3rd-party marketplace seller products if available
   let sellerProductsFromDB: CatalogProduct[] = [];
   const now = Date.now();
   if (!cachedSellerProducts || (now - cachedSellerProductsAt) > 60_000) {
@@ -205,9 +183,8 @@ export async function GET(req: NextRequest) {
       cachedSellerProducts = sellerProductsFromDB;
       cachedSellerProductsAt = now;
     } catch (_err) {
-      // DB offline, slow, or timed out — serve from JSON catalog only
       if (cachedSellerProducts) {
-        sellerProductsFromDB = cachedSellerProducts; // use stale if available
+        sellerProductsFromDB = cachedSellerProducts;
       }
     }
   } else {
@@ -218,145 +195,22 @@ export async function GET(req: NextRequest) {
     allProducts = [...sellerProductsFromDB, ...baseCatalog];
   }
 
-  // Filter catalog
-  const filtered = allProducts.filter(p => {
-    if (normalizedCategory) {
-      const pCat = (p.category || "").toLowerCase();
-      const targetCat = normalizedCategory.toLowerCase();
-      if (targetCat === "fragrance oils") {
-        if (pCat !== "fragrance oils" && pCat !== "skin safe fragrances") {
-          return false;
-        }
-      } else if (pCat !== targetCat) {
-        return false;
-      }
-    }
-    if (department && p.department.toLowerCase() !== department.toLowerCase()) {
-      return false;
-    }
-    if (discipline && (!p.disciplines || !p.disciplines.includes(discipline))) {
-      return false;
-    }
-    if (hasSearch && normalizedQ) {
-      const name   = p.name.toLowerCase();
-      const cat    = (p.category || '').toLowerCase();
-      const desc   = (p.description || '').toLowerCase();
-      const tagStr = (p.tags || []).map((t: string) => t.toLowerCase()).join(' ');
-      const matches = searchTokens.some(token =>
-        name.includes(token) || cat.includes(token) || tagStr.includes(token) || desc.includes(token)
-      );
-      if (!matches) return false;
-    }
-    if (inStockOnly && !p.inStock) return false;
-    if (priceOption === "under_500"  && p.price >= 500) return false;
-    if (priceOption === "500_1500"   && (p.price < 500  || p.price > 1500)) return false;
-    if (priceOption === "1500_3000"  && (p.price < 1500 || p.price > 3000)) return false;
-    if (priceOption === "over_3000"  && p.price <= 3000) return false;
-    if (priceOption === "custom") {
-      const minVal = parseFloat(minPrice || "");
-      const maxVal = parseFloat(maxPrice || "");
-      if (!isNaN(minVal) && minVal > 0 && p.price < minVal) return false;
-      if (!isNaN(maxVal) && maxVal > 0 && p.price > maxVal) return false;
-    }
-    return true;
-  });
-
-  // Sorting
-  if (hasSearch && normalizedQ && sortBy === "recommended") {
-    const tokenGroups = expandQueryTokenGroups(normalizedQ);
-    const scored = filtered.map(p => ({
-      product: p,
-      score: scoreProduct(p, normalizedQ, tokenGroups)
-    }));
-    scored.sort((a, b) => b.score - a.score);
-    filtered.length = 0;
-    scored.forEach(({ product }) => filtered.push(product));
-  } else if (sortBy === "price_asc") {
-    filtered.sort((a, b) => {
-      const priceA = typeof a.price === "number" ? a.price : parseFloat(String(a.price || 0));
-      const priceB = typeof b.price === "number" ? b.price : parseFloat(String(b.price || 0));
-      const validA = !a.isQuoteOnly && a.inStock && priceA > 0;
-      const validB = !b.isQuoteOnly && b.inStock && priceB > 0;
-
-      // In-stock, priced items strictly come before out-of-stock/quote-only
-      if (validA && !validB) return -1;
-      if (!validA && validB) return 1;
-
-      if (priceA <= 0 && priceB > 0) return 1;
-      if (priceB <= 0 && priceA > 0) return -1;
-      if (priceA !== priceB) return priceA - priceB;
-      return a.name.localeCompare(b.name);
-    });
-  } else if (sortBy === "price_desc") {
-    filtered.sort((a, b) => {
-      const priceA = typeof a.price === "number" ? a.price : parseFloat(String(a.price || 0));
-      const priceB = typeof b.price === "number" ? b.price : parseFloat(String(b.price || 0));
-      const validA = !a.isQuoteOnly && a.inStock && priceA > 0;
-      const validB = !b.isQuoteOnly && b.inStock && priceB > 0;
-
-      // In-stock, priced items strictly come before out-of-stock/quote-only
-      if (validA && !validB) return -1;
-      if (!validA && validB) return 1;
-
-      if (priceA <= 0 && priceB > 0) return 1;
-      if (priceB <= 0 && priceA > 0) return -1;
-      if (priceB !== priceA) return priceB - priceA;
-      return a.name.localeCompare(b.name);
-    });
-  } else if (sortBy === "newest") {
-    filtered.sort((a, b) => {
-      const idA = parseInt(a.id, 10);
-      const idB = parseInt(b.id, 10);
-      const isNumA = !isNaN(idA);
-      const isNumB = !isNaN(idB);
-
-      // 3rd-party DB seller products are newest additions
-      if (!isNumA && isNumB) return -1;
-      if (isNumA && !isNumB) return 1;
-      if (isNumA && isNumB) return idB - idA;
-      return b.id.localeCompare(a.id);
-    });
-  } else if (sortBy === "discount_desc") {
-    filtered.sort((a, b) => {
-      const discA = a.maxDiscount || 0;
-      const discB = b.maxDiscount || 0;
-      if (discB !== discA) return discB - discA;
-      if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
-      if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
-      return a.price - b.price;
-    });
-  } else if (sortBy === "name_asc") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortBy === "name_desc") {
-    filtered.sort((a, b) => b.name.localeCompare(a.name));
-  } else {
-    // Default / "recommended"
-    filtered.sort((a, b) => {
-      if (a.inStock && !b.inStock) return -1;
-      if (!a.inStock && b.inStock) return 1;
-      if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
-      if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
-      const idA = parseInt(a.id, 10);
-      const idB = parseInt(b.id, 10);
-      if (!isNaN(idA) && !isNaN(idB)) return idA - idB;
-      return 0;
-    });
-  }
-
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / limit);
-  const paginated = filtered.slice(skip, skip + limit);
-  const hasMore = skip + limit < total;
+  // Filter & sort using unified pure engine
+  const result = filterAndSortCatalogProducts(allProducts, filterParams);
+  const normalizedQ = sanitizeSearchQuery(filterParams.q);
+  const searchTokens = normalizedQ ? expandQueryTokens(normalizedQ) : [];
+  const hasSearch = Boolean(normalizedQ);
+  const hasMore = result.page * result.limit < result.total;
 
   return NextResponse.json({
-    items: paginated,
-    products: paginated,
-    total,
+    items: result.items,
+    products: result.items,
+    total: result.total,
     pagination: {
-      page,
-      limit,
-      total,
-      totalPages,
+      page: result.page,
+      limit: result.limit,
+      total: result.total,
+      totalPages: result.totalPages,
       hasMore,
       hasNextPage: hasMore
     },
@@ -374,4 +228,3 @@ export async function GET(req: NextRequest) {
     }
   });
 }
-

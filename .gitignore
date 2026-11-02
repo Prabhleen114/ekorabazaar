@@ -49,3 +49,13 @@ scratch/
 stock-verification/
 image-prompts/
 
+*_backup*
+*products_backup*
+*.bak
+*.tmp
+
+# python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.log

@@ -26,6 +26,7 @@ export interface ProductDetailView {
   id: string;
   name: string;
   image: string;
+  images?: string[];
   category: string;
   department: string;
   tags: string[];
@@ -82,11 +83,16 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         ? catalogItem.colors
         : [];
 
+      const galleryImages: string[] = Array.isArray(catalogItem?.images) && catalogItem.images.length > 0
+        ? catalogItem.images
+        : [imageUrl];
+
       return {
         rawProduct: product,
         id: product.id,
         name: product.title,
         image: imageUrl,
+        images: galleryImages,
         category,
         department,
         tags: [] as string[],
@@ -136,11 +142,16 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       seller: { brandName: "Ekora Official Supplier", accountStatus: "ACTIVE" }
     };
 
+    const galleryImages: string[] = Array.isArray((item as any).images) && (item as any).images.length > 0
+      ? (item as any).images
+      : [item.image || "/og-image.jpg"];
+
     return {
       rawProduct: fakePrismaProduct,
       id: String(item.id),
       name: item.name || "Untitled Product",
       image: item.image || "/og-image.jpg",
+      images: galleryImages,
       category,
       department,
       tags: Array.isArray(item.tags) ? item.tags : [],
@@ -190,6 +201,7 @@ export default async function ProductDetailsPage({ params }: Props) {
     id: productData.id,
     name: productData.name,
     image: productData.image,
+    images: productData.images,
     category: productData.category,
     department: productData.department,
     tags: productData.tags,
@@ -266,6 +278,7 @@ export default async function ProductDetailsPage({ params }: Props) {
         <div className="w-full md:w-1/2">
           <ProductGallery
             mainImage={displayProduct.image}
+            images={displayProduct.images}
             productName={displayProduct.name}
             category={displayProduct.category}
           />
