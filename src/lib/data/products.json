@@ -5145,11 +5145,11 @@
     "id": "60",
     "name": "CONCRETE FRUIT-SHAPED APPLE TRAY SILICONE MOLD GYPSUM ORNAMENT MOLD",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality concrete fruit-shaped apple tray silicone mold aromatherapy gypsum ornament mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Premium fruit-shaped apple trinket dish silicone mould (Model 5800) engineered for casting decorative concrete catchall trays, jesmonite coaster dishes, gypsum plaster organizers, and candle coaster trays. Finished cast dish measures 11.9cm × 11.8cm × 2.2cm with an ergonomic apple stem handle. Heavy-duty translucent silicone mould (13.6cm × 13.5cm × 2.3cm) with reinforced bottom cross-ribs to maintain shape and prevent bowing during resin and cement pouring.",
     "price": 358,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/concrete-apple-trinket-tray-silicone-mould.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -5218,7 +5218,11 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "images": [
+      "/images/products/concrete-apple-trinket-tray-silicone-mould.jpg",
+      "/images/products/concrete-apple-trinket-tray-silicone-mould-dimensions.png"
+    ]
   },
   {
     "id": "61",
