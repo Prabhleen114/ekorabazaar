@@ -127,6 +127,23 @@ export default function PricingWidget({
     );
   }, [colors, variants, category]);
 
+  const isFlowerVariant = useMemo(() => {
+    const text = ((productName || "") + " " + (category || "")).toLowerCase();
+    return (
+      text.includes("flower") ||
+      variants.some(v => {
+        const s = v.size.toLowerCase();
+        return (
+          s.includes("peony") ||
+          s.includes("chamomile") ||
+          s.includes("camellia") ||
+          s.includes("flower") ||
+          s.includes("rose")
+        );
+      })
+    );
+  }, [productName, category, variants]);
+
   // Load saved pincode from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -342,7 +359,7 @@ export default function PricingWidget({
           <div className="pb-4 border-b border-stone-200 space-y-3">
             <div className="flex items-center justify-between">
               <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
-                {isColorVariant ? "Choose Variant / Color" : "Select Variant / Size"}
+                {isFlowerVariant ? "Choose Flower Design" : (isColorVariant ? "Choose Variant / Color" : "Select Variant / Size")}
               </label>
               <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
                 {selectedVariant?.size} &bull; ₹{displayPrice}
@@ -364,6 +381,9 @@ export default function PricingWidget({
                       size: found.size,
                       price: found.price
                     });
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: found } }));
+                    }
                   }
                 }}
                 className="w-full h-11 px-3 py-2 text-xs sm:text-sm font-sans font-medium bg-stone-50 border border-stone-300 rounded text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900 appearance-none pr-8 cursor-pointer"
@@ -395,6 +415,9 @@ export default function PricingWidget({
                         size: v.size,
                         price: v.price
                       });
+                      if (typeof window !== "undefined") {
+                        window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: v } }));
+                      }
                     }}
                     className={`min-h-[40px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
                       isSelected

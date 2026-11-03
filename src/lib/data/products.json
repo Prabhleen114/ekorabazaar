@@ -1443,11 +1443,11 @@
     "id": "15",
     "name": "CONCRETE FRUIT STRAWBERRY JAR STORAGE BOX SILICON MOULD",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality concrete fruit strawberry jar storage box silicon mould sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Two-piece precision silicone mould set featuring a 3D textured strawberry jar container (86mm × 73mm) and matching leafy topper lid with stem handle (86mm × 27mm). Engineered from high-tear-strength flexible translucent silicone for effortless demolding and repeated cast cycles. Perfect for casting artisan jesmonite trinket vessels, concrete candle containers, gypsum storage boxes, and epoxy resin containers.",
     "price": 467,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/concrete-fruit-strawberry-jar-silicone-mould.png",
     "tiers": [
       {
         "minQty": 1,
@@ -1515,7 +1515,12 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "images": [
+      "/images/products/concrete-fruit-strawberry-jar-silicone-mould.png",
+      "/images/products/concrete-fruit-strawberry-jar-silicone-mould-dimensions.png",
+      "/images/products/concrete-fruit-strawberry-jar-silicone-mould-set.png"
+    ]
   },
   {
     "id": "16",
@@ -3855,11 +3860,11 @@
     "id": "45",
     "name": "3D FLOWER SILICONE MOLD FOR SOAP, CANDLE, RESIN, CHOCOLATE & FONDANT – PEONY, CHAMOMILE & CAMELLIA DESIGNS",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality 3d flower silicone mold for soap, candle, resin, chocolate & fondant – peony, chamomile & camellia designs sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Premium 3D botanical flower silicone mould collection available in 3 distinct designs: Peony (Model 3380A — 6.7×6.5cm bloom, 7.5×7.5×3.5cm mould), Chamomile Daisy (Model J-5598 — 6.5×6.3cm bloom, 7.5×7.3×3.5cm mould), and Camellia (Model J-5599 — 6.5×6.3cm bloom, 7.5×7.5×3.5cm mould), plus a complete 3-flower set option. Molded from flexible, high-tear-strength translucent food-grade silicone suitable for soy wax candles, artisan soap making, Jesmonite, concrete, epoxy resin, chocolate, and cake fondant.",
     "price": 373,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
     "tiers": [
       {
         "minQty": 1,
@@ -3929,7 +3934,116 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "images": [
+      "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
+      "/images/products/3d-flower-candle-soap-silicone-mould-bouquet.png",
+      "/images/products/peony-flower-silicone-mould-3380a.png",
+      "/images/products/chamomile-flower-silicone-mould-j5598.png",
+      "/images/products/camellia-flower-silicone-mould-j5599.png"
+    ],
+    "variants": [
+      {
+        "size": "Peony (3380A)",
+        "price": 373,
+        "image": "/images/products/peony-flower-silicone-mould-3380a.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Chamomile (J-5598)",
+        "price": 373,
+        "image": "/images/products/chamomile-flower-silicone-mould-j5598.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Camellia (J-5599)",
+        "price": 373,
+        "image": "/images/products/camellia-flower-silicone-mould-j5599.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 373,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 354,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "size": "Complete Set (All 3 Flowers)",
+        "price": 999,
+        "image": "/images/products/3d-flower-silicone-mould-peony-chamomile-camellia-set.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 999,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 949,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 899,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "46",
@@ -5031,11 +5145,11 @@
     "id": "60",
     "name": "CONCRETE FRUIT-SHAPED APPLE TRAY SILICONE MOLD GYPSUM ORNAMENT MOLD",
     "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality concrete fruit-shaped apple tray silicone mold aromatherapy gypsum ornament mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Premium fruit-shaped apple trinket dish silicone mould (Model 5800) engineered for casting decorative concrete catchall trays, jesmonite coaster dishes, gypsum plaster organizers, and candle coaster trays. Finished cast dish measures 11.9cm × 11.8cm × 2.2cm with an ergonomic apple stem handle. Heavy-duty translucent silicone mould (13.6cm × 13.5cm × 2.3cm) with reinforced bottom cross-ribs to maintain shape and prevent bowing during resin and cement pouring.",
     "price": 358,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/concrete-apple-trinket-tray-silicone-mould.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -5104,7 +5218,11 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "images": [
+      "/images/products/concrete-apple-trinket-tray-silicone-mould.jpg",
+      "/images/products/concrete-apple-trinket-tray-silicone-mould-dimensions.png"
+    ]
   },
   {
     "id": "61",
@@ -6237,7 +6355,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "75",
@@ -9375,7 +9494,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "111",
@@ -17211,90 +17331,6 @@
       "candle-studio"
     ],
     "isQuoteOnly": false
-  },
-  {
-    "id": "208",
-    "name": "NATURAL VELLI VELICHENNA PURE COCONUT OIL 1L FOR FOOD PREPARATION, SKIN, HAIR, COLD PROCESS SOAP AND OTHER COSMETIC",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality natural velli velichenna pure coconut oil 1l for food preparation, skin, hair, cold process soap and other cosmetic sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 545,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/04/WhatsApp-Image-2023-03-28-at-5.40.14-PM-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 545,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 517,
-        "discountPct": 5
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 490,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "natural",
-      "velli",
-      "velichenna",
-      "pure",
-      "coconut",
-      "oil",
-      "for",
-      "food",
-      "preparation",
-      "skin",
-      "hair",
-      "cold",
-      "process",
-      "soap",
-      "and",
-      "other",
-      "cosmetic",
-      "carrier",
-      "oils",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "diy",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "organic",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false,
-    "inStock": true
   },
   {
     "id": "209",
@@ -28711,7 +28747,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "352",
@@ -96846,7 +96883,8 @@
       "candle-studio",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "848",
@@ -114227,8 +114265,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1084",
@@ -119488,7 +119526,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1160",
@@ -120506,76 +120545,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1175",
-    "name": "3D CONCRETE VASE, EPOXY RESIN CANDLE HOLDER MOLDS, DIY CANDLE MAKING MOLDS, DIY HANDMADE PERFECT GIFTS",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality 3d concrete vase, epoxy resin candle holder molds, diy candle making molds, diy handmade perfect gifts 5053 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 316,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/07/614sXWdDuaL._AC_SL1500_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 316,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 300,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 284,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "concrete",
-      "vase",
-      "epoxy",
-      "resin",
-      "candle",
-      "holder",
-      "molds",
-      "making",
-      "handmade",
-      "perfect",
-      "gifts",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "stone-studio"
     ],
     "isQuoteOnly": false
   },
@@ -121609,74 +121578,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1191",
-    "name": "DIAMOND-SHAPED ROUND DIAMOND STACKING STORAGE BOX SILICONE MO",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality diamond-shaped round diamond stacking storage box silicone mo sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 460,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/06/O1CN01cy4GWO1P7hLdezlZN_2968401794-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 460,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 437,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 414,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "diamond",
-      "shaped",
-      "round",
-      "stacking",
-      "storage",
-      "box",
-      "silicone",
-      "multi",
-      "purpose",
-      "craft",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1192",
     "name": "BUTTERFLY CANDLE ROSE BUTTERFLY CHOCOLATE FLIP SUGAR CAKE DECORATION SILICONE MOLDS",
     "category": "Culinary & Fondant Moulds",
@@ -122261,71 +122162,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1201",
-    "name": "CHOCOLATE BAR MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality chocolate bar making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 85,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/bar-scaled-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 85,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 80,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 77,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "chocolate",
-      "bar",
-      "making",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1202",
     "name": "WAX METLER FOR CANDLE AND SOAP MAKING WITH TAP – 5L",
     "category": "General Silicone Moulds",
@@ -122524,71 +122360,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1205",
-    "name": "DAHLIA FLOWER CANDLE (SCM 216)",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality dahlia flower candle (scm 216) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 330,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/08/Capture-3-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 330,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 313,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 298,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "dahlia",
-      "flower",
-      "candle",
-      "scm",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1206",
     "name": "SILICONE KITKAT SHAPE CHOCOLATE MOULD",
     "category": "Culinary & Fondant Moulds",
@@ -122712,138 +122483,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1208",
-    "name": "ANIMAL SHAPE CHOCOLATE MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality animal shape chocolate making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 100,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/animal-scaled-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 100,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 95,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 90,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "animal",
-      "shape",
-      "chocolate",
-      "making",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1209",
-    "name": "CONCRETE OVAL BOAT FLOWER POT",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality concrete oval boat flower pot sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 287,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/01/O1CN01QftIkP1P7hUxuAfA3_2968401794-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 287,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 272,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 258,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "concrete",
-      "oval",
-      "boat",
-      "flower",
-      "pot",
-      "eco",
-      "resin",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
     ],
     "isQuoteOnly": false
   },
@@ -123035,72 +122674,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1213",
-    "name": "8 CAVITY SNOWFLAKE & GINGERBREAD",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 8 cavity snowflake & gingerbread sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 108,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/05/O1CN01JCYFlX27QKS9AJzGA_956437791-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 108,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 103,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 97,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "snowflake",
-      "gingerbread",
-      "multi",
-      "purpose",
-      "craft",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
     ],
     "isQuoteOnly": false
   },
@@ -123476,69 +123049,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1217",
-    "name": "6 CAVITIES OVAL SHAPE SOAP MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavities oval shape soap making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 287,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/71v6g8ZXvL._SL1500_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 287,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 272,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 258,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavities",
-      "oval",
-      "shape",
-      "soap",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1218",
     "name": "MOTICHOOR LADOO CANDLE MOULD SWEETS (22 TO 24GM",
     "category": "Candle & Pillar Moulds",
@@ -123574,70 +123084,6 @@
       "mould",
       "sweets",
       "jkb",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1219",
-    "name": "3D ROPE KNOT TWISTED PILLAR CANDLE",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 3d rope knot twisted pillar candle code 107 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 648,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/05/71QGY1cwo0L._SL1500_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 648,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 616,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 583,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "rope",
-      "knot",
-      "twisted",
-      "pillar",
-      "candle",
-      "code",
-      "mould",
       "wholesale",
       "b2b",
       "bulk",
@@ -123726,396 +123172,6 @@
     "disciplines": [
       "candle-studio",
       "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1221",
-    "name": "3D TWISTED THICK ROPE PILLAR CANDLE",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 3d twisted thick rope pillar candle code 106 sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 504,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/05/6105PNZjOL._SL1500_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 504,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 479,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 454,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "twisted",
-      "thick",
-      "rope",
-      "pillar",
-      "candle",
-      "code",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1222",
-    "name": "6 CAVITY SUPERMAN SYMBOL SOAP MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavity superman symbol soap making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 431,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-6-Cavity-Superman-Symbol-Shape-Soap-Making-Silicone-Mould-1-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 431,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 409,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 388,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "superman",
-      "symbol",
-      "soap",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1224",
-    "name": "6 CAVITY EASTER EGGS",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavity easter eggs dented no return sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-27-at-11.10.10-AM-1-247x296.jpeg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 215,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 204,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 193,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "easter",
-      "eggs",
-      "jkb",
-      "dented",
-      "return",
-      "multi",
-      "purpose",
-      "craft",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1225",
-    "name": "PEN MAKING RESIN BALLPOINT PEN 3PC SET",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality pen making resin ballpoint pen 3pc set sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/uv-resin-ballpoint-pen-silicone-mold1-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 215,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 204,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 193,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "pen",
-      "making",
-      "resin",
-      "ballpoint",
-      "eco",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1226",
-    "name": "VALENTINE’S FLORAL HEART BLAST SILICONE CANDLE MOULD (SCM 232)",
-    "category": "Candle & Pillar Moulds",
-    "description": "Premium quality valentine’s floral heart blast silicone candle mould (scm 232) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 503,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/03/WhatsAppImage2024-12-12at15.25.09-247x296.webp",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 503,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 478,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 452,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "valentine",
-      "floral",
-      "heart",
-      "blast",
-      "silicone",
-      "candle",
-      "mould",
-      "scm",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1227",
-    "name": "WAX MELTER 10 LTR CAPACITY ( CANDLE MAKING )",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality wax melter 10 ltr capacity ( candle making ) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 11519,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/04/h7951938689984e3db5f5dcebe47d9b714-500x500-1-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 11519,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 10943,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 10367,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "wax",
-      "melter",
-      "ltr",
-      "capacity",
-      "candle",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
     ],
     "isQuoteOnly": false
   },
@@ -124245,137 +123301,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1230",
-    "name": "32 CAV MINI PEPPA PIG SILICONE JELLY CHOCOLATE CAKE MOULD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Premium quality 32 cav mini peppa pig silicone jelly chocolate cake mould sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 186,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/O1CN01TYrH5d27QKQLPDM4Y_956437791-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 186,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 176,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 168,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cav",
-      "mini",
-      "peppa",
-      "pig",
-      "silicone",
-      "jelly",
-      "chocolate",
-      "cake",
-      "mould",
-      "fondant",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "culinary-chocolatier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1231",
-    "name": "30 CAVITY RANDOM SILICONE CHOCOLATE MOULD, (3-6 GM APPOX)",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Premium quality 30 cavity random silicone chocolate mould, (3-6 gm appox) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 200,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2021/08/61GuMczFydL._SL1500_-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 200,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 191,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 180,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "random",
-      "silicone",
-      "chocolate",
-      "mould",
-      "appox",
-      "fondant",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "culinary-chocolatier"
     ],
     "isQuoteOnly": false
   },
@@ -124641,336 +123566,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1236",
-    "name": "15 CAVITY DOUBLE HEART SHAPE CHOCOLATE MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 15 cavity double heart shape chocolate making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 108,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/heart2-scaled-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 108,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 103,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 97,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "double",
-      "heart",
-      "shape",
-      "chocolate",
-      "making",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1237",
-    "name": "6-CAVITY PEACH FRUIT CANDLE WAX CAKE CHOCOLATE",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6-cavity peach fruit candle wax cake chocolate sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 287,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/05/13205620100_1394587503-1-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 287,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 272,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 258,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "peach",
-      "fruit",
-      "candle",
-      "wax",
-      "cake",
-      "chocolate",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1238",
-    "name": "GIFT BOX SHAPE CHOCOLATE MAKING (12 GM APPROX)",
-    "category": "Packaging Boxes & Mailers",
-    "description": "Premium quality gift box shape chocolate making (12 gm approx) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 85,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/10/giftbox-scaled-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 85,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 80,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 77,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "gift",
-      "box",
-      "shape",
-      "chocolate",
-      "making",
-      "approx",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1239",
-    "name": "CHRISTMAS TREE LEAF FOR CANDLES, SOAP & RESIN (SCM 261)",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality christmas tree leaf for candles, soap & resin (scm 261) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 560,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2025/10/O1CN01hfMSzF1bqpyp9Tq9N_2212035233517-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 560,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 533,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 504,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "christmas",
-      "tree",
-      "leaf",
-      "candles",
-      "soap",
-      "resin",
-      "scm",
-      "candle",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1240",
-    "name": "WAX POURING FUNNEL JUG CAPACITY",
-    "category": "Candle Jars & Containers",
-    "description": "Premium quality wax pouring funnel jug capacity sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 1439,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2023/06/31VUFDZ8cEL-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 1439,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 1367,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 1295,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "wax",
-      "pouring",
-      "funnel",
-      "jug",
-      "capacity",
-      "candle",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1242",
     "name": "CHRISTMAS SNOWMAN WAVING FOR CANDLES, SOAP & RESIN (SCM 270)",
     "category": "General Silicone Moulds",
@@ -125037,204 +123632,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1243",
-    "name": "6 CAVITIES SQUARE SHAPE SOAP MAKING CAPACITY (80-90GM APPOX)",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavities square shape soap making capacity (80-90gm appox) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 575,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-6-Cavities-Square-Shape-Soap-Making-Silicone-Mould-3-247x212.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 575,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 546,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 517,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavities",
-      "square",
-      "shape",
-      "soap",
-      "making",
-      "capacity",
-      "appox",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1244",
-    "name": "6 CAVITY CAR JEEP BUS THOMOS TRAIN SHAPES SOAP MAKING",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavity car jeep bus thomos train shapes soap making sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/51ONmumZjOL-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 215,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 204,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 193,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "car",
-      "jeep",
-      "bus",
-      "thomos",
-      "train",
-      "shapes",
-      "soap",
-      "making",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1245",
-    "name": "OVAL DESIGNER 6 CAVITY SOAP MAKING HEAVY WT APX 100GMS",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality oval designer 6 cavity soap making heavy wt apx 100gms sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 316,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/Hd2b20ec812984c1e9a3c20acc212fe49V-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 316,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 300,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 284,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "oval",
-      "designer",
-      "cavity",
-      "soap",
-      "making",
-      "heavy",
-      "apx",
-      "gms",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1246",
     "name": "BOUQUET WITH HEART WCM426",
     "category": "General Silicone Moulds",
@@ -125297,142 +123694,6 @@
       "culinary-chocolatier",
       "resin-lab",
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1247",
-    "name": "RECTANGLE DESIGNER 6 CAVITY SOAP MAKING HEAVY WT APPOX 110GMS",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality rectangle designer 6 cavity soap making heavy wt appox 110gms sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 316,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/08/20220516_152733_470x-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 316,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 300,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 284,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "rectangle",
-      "designer",
-      "cavity",
-      "soap",
-      "making",
-      "heavy",
-      "appox",
-      "gms",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1248",
-    "name": "CONCRETE WAVY LINE IRREGULAR TRAY DISH WASH TABLE MOULD STORAGE",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Premium quality concrete wavy line irregular tray dish wash table mould storage sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 647,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/01/O1CN01qgY7c11EQW5L8oNsi_2215542500346-0-cib-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 647,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 614,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 582,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "concrete",
-      "wavy",
-      "line",
-      "irregular",
-      "tray",
-      "dish",
-      "wash",
-      "table",
-      "mould",
-      "storage",
-      "eco",
-      "resin",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
     ],
     "isQuoteOnly": false
   },
@@ -125811,72 +124072,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "1251",
-    "name": "ROUND FLOWER DESIGNED 4 CAVITY SOAP MAKING HEAVY WT (80 GM APPROX)",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality round flower designed 4 cavity soap making heavy wt (80 gm approx) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 359,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2020/02/Screenshot_2-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 359,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 341,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 323,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "round",
-      "flower",
-      "designed",
-      "cavity",
-      "soap",
-      "making",
-      "heavy",
-      "approx",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "1252",
     "name": "SILICONE 6 CAVITY RECTANGLE HONEYBEE HONEYCOMB SHAPE SOAP MOULD (100 TO 110GM APPROX)",
     "category": "Soap & Bar Moulds",
@@ -126068,76 +124263,6 @@
     "disciplines": [
       "candle-studio",
       "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1255",
-    "name": "6 CAVITY PETAL FLOWER SHAPE CUTE SOAP MAKING AND CAKE BAKING (APPROX 60GMS)",
-    "category": "General Silicone Moulds",
-    "description": "Premium quality 6 cavity petal flower shape cute soap making and cake baking (approx 60gms) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 244,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/Vedini-6-even-gardenia-frangipani-silicone-cake-mold-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 244,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 232,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 220,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "petal",
-      "flower",
-      "shape",
-      "cute",
-      "soap",
-      "making",
-      "cake",
-      "baking",
-      "approx",
-      "gms",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
       "soap-atelier"
     ],
     "isQuoteOnly": false
@@ -129028,8 +127153,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "inStock": true,
-    "isQuoteOnly": false
+    "inStock": false,
+    "isQuoteOnly": true
   },
   {
     "id": "1293",
@@ -129127,8 +127252,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "inStock": true,
-    "isQuoteOnly": false
+    "inStock": false,
+    "isQuoteOnly": true
   },
   {
     "id": "1295",
@@ -129519,8 +127644,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "inStock": true,
-    "isQuoteOnly": false
+    "inStock": false,
+    "isQuoteOnly": true
   },
   {
     "id": "1303",
@@ -129664,8 +127789,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "inStock": true,
-    "isQuoteOnly": false
+    "inStock": false,
+    "isQuoteOnly": true
   },
   {
     "id": "1306",
@@ -130262,55 +128387,6 @@
     "disciplines": [
       "resin-lab",
       "stone-studio"
-    ],
-    "inStock": false,
-    "isQuoteOnly": true
-  },
-  {
-    "id": "1318",
-    "name": "8 CAVITY OCEAN SEA WORLD BIOLOGICAL SILICONE CHOCOLATE MOLD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Premium quality 8 cavity ocean sea world biological silicone chocolate mold sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 0,
-    "bulkDiscountAvailable": false,
-    "maxDiscount": 0,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/O1CN01ChkQHd27QKREGxVSn_956437791-0-cib-247x296.jpg",
-    "tiers": [],
-    "tags": [
-      "cavity",
-      "ocean",
-      "sea",
-      "world",
-      "biological",
-      "silicone",
-      "chocolate",
-      "mold",
-      "fondant",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "culinary-chocolatier"
     ],
     "inStock": false,
     "isQuoteOnly": true
@@ -135808,7 +133884,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1402",
@@ -136689,7 +134766,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1415",
@@ -137680,72 +135758,6 @@
     "department": "Precision Studio Moulds",
     "disciplines": [
       "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "1430",
-    "name": "6 CAVITY SMALL OVAL DIY HANDMADE ESSENTIAL OIL SOAP MOLD(APPOX 60-70GM PER CAVITY)",
-    "category": "Soap & Bar Moulds",
-    "description": "Premium quality 6 cavity small oval diy handmade essential oil soap mold(appox 60-70gm per cavity) sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2022/05/Vedini-6-small-oval-DIY-handmade-essential-oil-soap-mold3-247x296.jpg",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 11,
-        "price": 215,
-        "discountPct": 0
-      },
-      {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 204,
-        "discountPct": 5
-      },
-      {
-        "minQty": 52,
-        "maxQty": null,
-        "price": 193,
-        "discountPct": 10
-      }
-    ],
-    "tags": [
-      "cavity",
-      "small",
-      "oval",
-      "handmade",
-      "essential",
-      "oil",
-      "soap",
-      "mold",
-      "appox",
-      "mould",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "quality",
-      "ekora",
-      "eco-friendly"
-    ],
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "soap-atelier"
     ],
     "isQuoteOnly": false
   },
@@ -145388,7 +143400,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1550",
@@ -145933,7 +143946,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1558",
@@ -146399,7 +144413,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1565",
@@ -148463,8 +146478,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1596",
@@ -155429,7 +153444,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1694",
@@ -165378,7 +163394,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1836",
@@ -170560,7 +168577,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1911",
@@ -171456,8 +169474,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1924",
@@ -181318,157 +179336,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2167",
-    "name": "CHRISTMAS CANDLE MOLDS SANTA CLAUS CANDLE MOLDS WITH BACKPACK XMAS CANDLE MAKING MOULDS SILICONE 3D DIY RESIN CASTING MOULDS SILICONE MOULDS FOR CANDLE MAKING (STANDING SANTA CLAUS)",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale christmas candle molds santa claus candle molds with backpack xmas candle making moulds silicone 3d diy resin casting moulds silicone moulds for candle making (standing santa claus) for serious craft creators and manufacturers.",
-    "price": 287,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2172",
-    "name": "LOVE HEART RESIN JAR SILICONE MOLDS CUP MOLDS FOR EPOXY RESIN CUP VALENTINE PENCIL CUP STORAGE JAR HOME DECORATION AI-011",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale love heart resin jar silicone molds cup molds for epoxy resin cup valentine pencil cup storage jar home decoration ai-011 for serious craft creators and manufacturers.",
-    "price": 460,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://jindeal.com/wp-content/uploads/2025/09/616R2DnKhuL._AC_SL1500_-247x296.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2173",
-    "name": "NEW CHRISTMAS TREE SILICONE MOLDS, DIY FOR CANDLES, RESIN, PLASTER, CEMENT SCM-215",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale new christmas tree silicone molds, diy for candles, resin, plaster, cement scm-215 for serious craft creators and manufacturers.",
-    "price": 504,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://jindeal.com/wp-content/uploads/2024/11/tree-247x296.png",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2174",
-    "name": "SLEEPING BABY WITH BEAR SHAPE SOAPS MOLDS I 3D FONDANT CUTE BABY WRAPPED IN LEAVES SILICONE MOULD",
-    "category": "Culinary & Fondant Moulds",
-    "description": "Verified wholesale sleeping baby with bear shape soaps molds i 3d fondant cute baby wrapped in leaves silicone mould for serious craft creators and manufacturers.",
-    "price": 359,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://jindeal.com/wp-content/uploads/2023/06/61C0jo08c8L._SL1000_-1-247x296.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "culinary-chocolatier",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2175",
     "name": "3D CONCRETE SILICONE MOULD VASE, EPOXY RESIN CANDLE HOLDER MOLDS, DIY CANDLE MAKING MOLDS, DIY HANDMADE PERFECT GIFTS",
     "category": "Eco-Resin & Stone Moulds",
@@ -181476,7 +179343,7 @@
     "price": 316,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2025/07/614sXWdDuaL._AC_SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181515,7 +179382,7 @@
     "price": 85,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/10/bar-scaled-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181552,7 +179419,7 @@
     "price": 330,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2025/08/Capture-3-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181591,7 +179458,7 @@
     "price": 100,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/10/animal-scaled-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181628,7 +179495,7 @@
     "price": 287,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2026/01/O1CN01QftIkP1P7hUxuAfA3_2968401794-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181704,7 +179571,7 @@
     "price": 108,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/05/O1CN01JCYFlX27QKS9AJzGA_956437791-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181778,7 +179645,7 @@
     "price": 287,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/08/71v6g8ZXvL._SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181815,7 +179682,7 @@
     "price": 648,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/05/71QGY1cwo0L._SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -181926,7 +179793,7 @@
     "price": 215,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-27-at-11.10.10-AM-1-247x296.jpeg",
     "inStock": true,
     "tiers": [
       {
@@ -181966,7 +179833,7 @@
     "price": 215,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/05/uv-resin-ballpoint-pen-silicone-mold1-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182003,7 +179870,7 @@
     "price": 359,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2025/03/WhatsAppImage2024-12-12at15.25.09-247x296.webp",
     "inStock": true,
     "tiers": [
       {
@@ -182040,7 +179907,7 @@
     "price": 460,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/04/h7951938689984e3db5f5dcebe47d9b714-500x500-1-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182077,7 +179944,7 @@
     "price": 360,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2022/05/O1CN01TYrH5d27QKQLPDM4Y_956437791-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182117,7 +179984,7 @@
     "price": 460,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2021/08/61GuMczFydL._SL1500_-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182192,7 +180059,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2023/05/13205620100_1394587503-1-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -182219,7 +180086,7 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2195",
@@ -182229,7 +180096,7 @@
     "price": 85,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2020/10/giftbox-scaled-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182266,7 +180133,7 @@
     "price": 560,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2025/10/O1CN01hfMSzF1bqpyp9Tq9N_2212035233517-0-cib-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182303,7 +180170,7 @@
     "price": 488,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "/placeholder-product.svg",
+    "image": "https://jindeal.com/wp-content/uploads/2023/06/31VUFDZ8cEL-247x296.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -182590,43 +180457,6 @@
     "disciplines": [
       "culinary-chocolatier",
       "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2207",
-    "name": "MOULDS WEDDING BRIDAL SERIES CHAMPAGNE BOTTLE GOBLET MOULD AROMATHERAPY CANDLE SILICONE MOULD",
-    "category": "Candle & Pillar Moulds",
-    "description": "Verified wholesale moulds wedding bridal series champagne bottle goblet mould aromatherapy candle silicone mould for serious craft creators and manufacturers.",
-    "price": 330,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://jindeal.com/wp-content/uploads/2026/03/O1CN01vMUUXY2KpbiLuVpY6_2219396619606-0-cib-247x296.jpg",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio"
     ],
     "isQuoteOnly": false
   },
@@ -185449,163 +183279,6 @@
     "isQuoteOnly": false
   },
   {
-    "id": "2304",
-    "name": "Coastal Crest Shell Mold ARM411 for resin and candle making",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale coastal crest shell mold arm411 for resin and candle making for serious craft creators and manufacturers.",
-    "price": 287,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/coastal-crest-shell-mold-arm411.webp?v=1772771666&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2305",
-    "name": "Scallop Bloom Bowl Mold l ARM508",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale scallop bloom bowl mold l arm508 for serious craft creators and manufacturers.",
-    "price": 704,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/Screenshot2026-02-12183600.png?v=1776071439&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2306",
-    "name": "Petal Wave Dish Mold l ARM503",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale petal wave dish mold l arm503 for serious craft creators and manufacturers.",
-    "price": 511,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_1588xN.7331465386_87fc.jpg?v=1770891262&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2328",
-    "name": "Goddess Lakshmi Wall Hanging Silicone Mold ARM594",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale goddess lakshmi wall hanging silicone mold arm594 for serious craft creators and manufacturers.",
-    "price": 359,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/ARM594-1.png?v=1786970148",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
     "id": "2329",
     "name": "ARM592 Lion Sculpture Resin Mold",
     "category": "Eco-Resin & Stone Moulds",
@@ -185727,1337 +183400,6 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://matinimpex.com/cdn/shop/files/375078af5c024693aad62dc5fea026ef-goods.avif?v=1784487319&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2339",
-    "name": "Large Bowl ARM364",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale large bowl arm364 for serious craft creators and manufacturers.",
-    "price": 852,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61Ae-lu5EsL._SL1500.jpg?v=1735402525&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2340",
-    "name": "Car Flower Planter Mold ARM363",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale car flower planter mold arm363 for serious craft creators and manufacturers.",
-    "price": 634,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71XozJ5V8QL._AC_SL1500.jpg?v=1735402483&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2341",
-    "name": "Textured shape Mold ARM362",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale textured shape mold arm362 for serious craft creators and manufacturers.",
-    "price": 461,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61ZxlYyuPnL._AC_SL1024.jpg?v=1744282751&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2342",
-    "name": "Weaving Rope Mold ARM361",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale weaving rope mold arm361 for serious craft creators and manufacturers.",
-    "price": 215,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/1-35.jpg?v=1735402326&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2343",
-    "name": "Conch Trinket Dish ARM360",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale conch trinket dish arm360 for serious craft creators and manufacturers.",
-    "price": 546,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/467312100_2079300732485966_8841980089994192229_n.jpg?v=1735402271&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2344",
-    "name": "Double-Layer Round ARM359",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale double-layer round arm359 for serious craft creators and manufacturers.",
-    "price": 389,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_1140xN.6007608942_mcdw.webp?v=1735402240&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2345",
-    "name": "Coaster Mold Round ARM358",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale coaster mold round arm358 for serious craft creators and manufacturers.",
-    "price": 520,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_794xN.3464969694_ezzh_de91d071-95ae-46bb-902c-13f14021c097.webp?v=1739180331&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2346",
-    "name": "Coaster Mold Oval ARM357",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale coaster mold oval arm357 for serious craft creators and manufacturers.",
-    "price": 520,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/Picture3_cfa50913-9ef3-4767-b419-c2c44e01a317.png?v=1739180346&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2347",
-    "name": "Snowflakes Keychain ARM128",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale snowflakes keychain arm128 for serious craft creators and manufacturers.",
-    "price": 149,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/51-4DssGmL._AC_SL1500.jpg?v=1735402104&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2348",
-    "name": "Christmas Hanging Star ARM247",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale christmas hanging star arm247 for serious craft creators and manufacturers.",
-    "price": 475,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71XJu9ND3jL._AC.jpg?v=1736335718&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2349",
-    "name": "Christmas Hanging Heart ARM246",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale christmas hanging heart arm246 for serious craft creators and manufacturers.",
-    "price": 445,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61Ntz7ucFUL._SL1050.jpg?v=1735401971&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2350",
-    "name": "Christmas Decoration Mold ARM356",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale christmas decoration mold arm356 for serious craft creators and manufacturers.",
-    "price": 179,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/21-BsifmRwL.jpg?v=1735401928&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2351",
-    "name": "Blossom Jar mold ARM355",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale blossom jar mold arm355 for serious craft creators and manufacturers.",
-    "price": 863,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/1c725f98-b991-4891-8aec-4b9e0b3573be.webp?v=1735401876&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2352",
-    "name": "Asymmetric Dish ARM354",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale asymmetric dish arm354 for serious craft creators and manufacturers.",
-    "price": 770,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71AX6l8G8EL._SL1500.jpg?v=1735401787&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2353",
-    "name": "Daisy Jar ARM353 - ARM401",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale daisy jar arm353 - arm401 for serious craft creators and manufacturers.",
-    "price": 209,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/ccaa6b7c838d7f1914dab381eb6be4e5.webp?v=1742967781&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2354",
-    "name": "Oval Shallow Tray ARM352",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale oval shallow tray arm352 for serious craft creators and manufacturers.",
-    "price": 431,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/WhatsAppImage2025-03-21at17.53.48_cefb415d.jpg?v=1742560112&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2355",
-    "name": "Rhomboid Vertical ARM350",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale rhomboid vertical arm350 for serious craft creators and manufacturers.",
-    "price": 638,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71R53tmRAbL._AC_SL1500.jpg?v=1735401594&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2356",
-    "name": "Sakura Flower Holder ARM348",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale sakura flower holder arm348 for serious craft creators and manufacturers.",
-    "price": 913,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61uhFs9tDFL._SL1200.jpg?v=1735401561&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2357",
-    "name": "Lotus Flower Holder ARM347",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale lotus flower holder arm347 for serious craft creators and manufacturers.",
-    "price": 275,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71Zv9QN0I9L._AC_SL1500.jpg?v=1735401503&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2358",
-    "name": "Starry Sky Embossed Jar ARM346",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale starry sky embossed jar arm346 for serious craft creators and manufacturers.",
-    "price": 550,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/510b3UHSbCL._AC_SL1020.jpg?v=1735401469&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2359",
-    "name": "Embossed Ruffled Jar ARM345",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale embossed ruffled jar arm345 for serious craft creators and manufacturers.",
-    "price": 590,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/71R0LitESdL._AC_SL1500.jpg?v=1735401411&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2360",
-    "name": "Bubble Oval Tray mold ARM344",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale bubble oval tray mold arm344 for serious craft creators and manufacturers.",
-    "price": 326,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/IMG-2188.webp?v=1777804031&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2361",
-    "name": "Bubble Rectangle Tray ARM342",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale bubble rectangle tray arm342 for serious craft creators and manufacturers.",
-    "price": 275,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_1140xN.5613447427_dsxz.webp?v=1735401258&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2362",
-    "name": "Irregular Splicing Jar ARM341",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale irregular splicing jar arm341 for serious craft creators and manufacturers.",
-    "price": 550,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/717pnQXE7CL._AC_SL1500.jpg?v=1744279460&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2363",
-    "name": "Vessels Pot Molds ARM340",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale vessels pot molds arm340 for serious craft creators and manufacturers.",
-    "price": 527,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_1140xN.6156599344_j2jc.jpg?v=1735401064&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2364",
-    "name": "Geometric Trapezoid Jar ARM337",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale geometric trapezoid jar arm337 for serious craft creators and manufacturers.",
-    "price": 647,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/521cc515ba2f5f05582c183117cbfbee.webp?v=1735400966&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2365",
-    "name": "3D Horn Shell ARM335",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale 3d horn shell arm335 for serious craft creators and manufacturers.",
-    "price": 534,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/51kQWOZ987L.jpg?v=1735400870&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2366",
-    "name": "3D Designer Conch ARM333",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale 3d designer conch arm333 for serious craft creators and manufacturers.",
-    "price": 575,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61uGy3e7MdL._SL1500.jpg?v=1735400832&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2367",
-    "name": "Textured Jar Medium ARM331",
-    "category": "Candle Jars & Containers",
-    "description": "Verified wholesale textured jar medium arm331 for serious craft creators and manufacturers.",
-    "price": 655,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/whatsapp-image-2024-06-26-at-6-28-23-pm-1000x1000.webp?v=1735400741&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Vessels & Packaging Studio",
-    "disciplines": [
-      "candle-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2368",
-    "name": "Starfish Silicone Mold ARM327",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale starfish silicone mold arm327 for serious craft creators and manufacturers.",
-    "price": 258,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61uSZ7PIHSL._SL1500.jpg?v=1750749468&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "candle-studio",
-      "culinary-chocolatier",
-      "resin-lab",
-      "soap-atelier"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2369",
-    "name": "Tall Flower Pot ARM324",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale tall flower pot arm324 for serious craft creators and manufacturers.",
-    "price": 386,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/41mNDul5oCL._SL1500.jpg?v=1735400593&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2370",
-    "name": "Tall Sculpted Flower Pot ARM323",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale tall sculpted flower pot arm323 for serious craft creators and manufacturers.",
-    "price": 386,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/41Mh5V3XpAL._SL1500.jpg?v=1735400526&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2371",
-    "name": "Heart Soap Dish ARM320",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale heart soap dish arm320 for serious craft creators and manufacturers.",
-    "price": 202,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_1140xN.4912701778_ew03.webp?v=1735400482&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2372",
-    "name": "Horse Carousel Trinket mold ARM319",
-    "category": "General Silicone Moulds",
-    "description": "Verified wholesale horse carousel trinket mold arm319 for serious craft creators and manufacturers.",
-    "price": 575,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/il_794xN.5885078796_l1va.webp?v=1735400444&width=533",
-    "inStock": true,
-    "tiers": [
-      {
-        "minQuantity": 1,
-        "discount": 0
-      },
-      {
-        "minQuantity": 12,
-        "discount": 10
-      },
-      {
-        "minQuantity": 52,
-        "discount": 20
-      }
-    ],
-    "tags": [
-      "craft supplies",
-      "wholesale raw materials",
-      "silicone mold",
-      "maker supplies"
-    ],
-    "isBlend": false,
-    "department": "Precision Studio Moulds",
-    "disciplines": [
-      "resin-lab",
-      "stone-studio"
-    ],
-    "isQuoteOnly": false
-  },
-  {
-    "id": "2373",
-    "name": "Turtle Planter Mold ARM318",
-    "category": "Eco-Resin & Stone Moulds",
-    "description": "Verified wholesale turtle planter mold arm318 for serious craft creators and manufacturers.",
-    "price": 1295,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/61-zzKPngZL._SL1500.jpg?v=1735400381&width=533",
     "inStock": true,
     "tiers": [
       {
@@ -188886,8 +185228,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "artisan",
       "avacado",
