@@ -201,6 +201,17 @@ export default async function BlogArticlePage({ params }: Props) {
               </div>
             </div>
 
+
+            {/* Direct Answer / Key Takeaway Summary Box */}
+            <div className="mb-8 p-5 sm:p-6 bg-stone-50 rounded-2xl border border-brand-linen/80">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-brand-orange font-bold block mb-1">
+                Direct Answer &bull; Key Takeaway
+              </span>
+              <p className="text-sm md:text-base text-brand-charcoal/85 leading-relaxed font-medium">
+                {frontmatter.description}
+              </p>
+            </div>
+
             {/* Article body */}
             <article
               className="prose prose-stone max-w-none prose-headings:font-serif prose-headings:text-brand-charcoal prose-a:text-brand-orange prose-a:no-underline hover:prose-a:underline"

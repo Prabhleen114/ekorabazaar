@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { ALL_CATEGORIES } from "@/lib/categories";
 import serialize from "serialize-javascript";
 import { BookOpen, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { generateFaqSchema } from "@/lib/seo";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
 
@@ -24,6 +25,29 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
 };
+
+const GUIDES_HUB_FAQS = [
+  {
+    question: "What is the difference between buying craft supplies wholesale vs retail in India?",
+    answer:
+      "Wholesale sourcing gives makers direct access to manufacturer batches with transparent volume tiers (e.g., 12+ and 52+ units), batch Certificates of Analysis (COA), safety data sheets (MSDS), and GST tax invoices with Input Tax Credit (ITC), eliminating middleman markups."
+  },
+  {
+    question: "What documentation should I verify before purchasing bulk candle waxes or cosmetic bases?",
+    answer:
+      "Always request and inspect three primary documents: 1) Certificate of Analysis (COA) confirming chemical purity and melt point, 2) Technical Data Sheet (TDS) detailing safe pouring and processing guidelines, and 3) IFRA certificates for fragrances confirming safe percentage limits for your specific application."
+  },
+  {
+    question: "Does Ekora Bazaar deliver heavy bulk cartons across India?",
+    answer:
+      "Yes. Ekora Bazaar applies a standard flat delivery charge of ₹90 per order across India, regardless of total weight or number of cartons, dispatched within 24 to 48 hours from our fulfillment hub in Muzaffarpur, Bihar."
+  },
+  {
+    question: "Can emerging brands and home studios get GST invoices for Input Tax Credit (ITC)?",
+    answer:
+      "Yes. Every purchase on Ekora Bazaar generates a formal B2B GST tax invoice containing your company name, GSTIN, and itemized HSN/SAC codes for 100% ITC claims. Simply enter your GST number during checkout."
+  }
+];
 
 export default function GuidesIndexPage() {
   const guides = ALL_CATEGORIES.map((cat) => ({
@@ -59,6 +83,8 @@ export default function GuidesIndexPage() {
     },
   };
 
+  const faqSchema = generateFaqSchema(GUIDES_HUB_FAQS);
+
   return (
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20 flex flex-col">
       <BuyerNavbar />
@@ -66,7 +92,7 @@ export default function GuidesIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serialize([breadcrumbSchema, collectionSchema], { isJSON: true }),
+          __html: serialize([breadcrumbSchema, collectionSchema, faqSchema], { isJSON: true }),
         }}
       />
 
@@ -129,8 +155,32 @@ export default function GuidesIndexPage() {
           ))}
         </div>
 
+        {/* Sourcing Hub FAQ Section */}
+        <div className="mt-16 bg-white rounded-2xl border border-brand-linen p-8 md:p-10">
+          <div className="mb-6">
+            <span className="text-xs font-mono uppercase tracking-wider text-brand-orange block mb-1">
+              Direct Answer &bull; Sourcing FAQs
+            </span>
+            <h2 className="text-2xl font-bold font-serif text-brand-charcoal">
+              Frequently Asked Questions About Raw Material Sourcing
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {GUIDES_HUB_FAQS.map((faq, idx) => (
+              <div key={idx} className="p-5 bg-stone-50/70 rounded-xl border border-brand-linen/80 space-y-2">
+                <h3 className="font-bold text-brand-charcoal text-base">
+                  {faq.question}
+                </h3>
+                <p className="text-xs sm:text-sm text-brand-charcoal/75 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Value Prop Banner */}
-        <div className="mt-16 bg-white rounded-2xl border border-brand-linen p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-10 bg-white rounded-2xl border border-brand-linen p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-brand-orange/10 rounded-xl text-brand-orange shrink-0">
               <ShieldCheck className="w-6 h-6" />

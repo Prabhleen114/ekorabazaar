@@ -2,10 +2,13 @@ import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import dataRaw from "@/lib/data/formulations.json";
 import ProductImageClient from "@/components/ProductImageClient";
 import DOMPurify from "isomorphic-dompurify";
+import serialize from "serialize-javascript";
+import { getFormulationFaqs } from "@/lib/faqs";
+import { generateFaqSchema } from "@/lib/seo";
 
 type Formulation = {
   title: string;
@@ -61,8 +64,6 @@ function sanitizeHtml(html: string): string {
   });
 }
 
-import serialize from "serialize-javascript";
-
 export default async function FormulationSinglePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data: Formulation[] = dataRaw as Formulation[];
@@ -110,13 +111,16 @@ export default async function FormulationSinglePage({ params }: { params: Promis
     ],
   };
 
+  const formulationFaqs = getFormulationFaqs(formulation.title, formulation.excerpt);
+  const faqSchema = generateFaqSchema(formulationFaqs);
+
   return (
     <div className="min-h-screen bg-brand-bg text-brand-charcoal selection:bg-brand-orange/20">
       <BuyerNavbar />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize([articleSchema, breadcrumbSchema], { isJSON: true }) }}
+        dangerouslySetInnerHTML={{ __html: serialize([articleSchema, breadcrumbSchema, faqSchema], { isJSON: true }) }}
       />
 
       <main className="pt-24 md:pt-28 pb-16 md:pb-20 px-4 md:px-6 max-w-3xl mx-auto">
@@ -128,12 +132,35 @@ export default async function FormulationSinglePage({ params }: { params: Promis
         </Link>
 
         <article className="w-full">
-          <header className="mb-10 text-center">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-6 leading-snug">
+          <header className="mb-8 text-center">
+            <h1 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-4 leading-snug">
               {formulation.title}
             </h1>
-            <div className="w-16 h-1 bg-brand-orange mx-auto rounded-full mb-8"></div>
+            <div className="w-16 h-1 bg-brand-orange mx-auto rounded-full mb-6"></div>
+            <p className="text-sm md:text-base text-brand-charcoal/75 max-w-2xl mx-auto leading-relaxed">
+              {formulation.excerpt}
+            </p>
           </header>
+
+          {/* Direct Answer Formulation Summary Card */}
+          <div className="mb-10 p-5 bg-white rounded-2xl border border-brand-linen shadow-xs grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="p-3 bg-stone-50 rounded-xl">
+              <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block">Target pH</span>
+              <strong className="text-xs sm:text-sm text-brand-charcoal">5.0 – 5.5 (Skin Safe)</strong>
+            </div>
+            <div className="p-3 bg-stone-50 rounded-xl">
+              <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block">Preservation</span>
+              <strong className="text-xs sm:text-sm text-brand-charcoal">Broad-Spectrum 1%</strong>
+            </div>
+            <div className="p-3 bg-stone-50 rounded-xl">
+              <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block">Shelf Life</span>
+              <strong className="text-xs sm:text-sm text-brand-charcoal">12 – 18 Months</strong>
+            </div>
+            <div className="p-3 bg-stone-50 rounded-xl">
+              <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block">Batch Scale</span>
+              <strong className="text-xs sm:text-sm text-brand-charcoal">100g to 50kg Proportional</strong>
+            </div>
+          </div>
 
           {formulation.imageUrl && (
             <div className="w-full mb-12 aspect-[16/9] relative rounded-2xl overflow-hidden shadow-md max-h-[500px]">
@@ -151,8 +178,28 @@ export default async function FormulationSinglePage({ params }: { params: Promis
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(formulation.content) }}
           />
 
+          {/* Formulator Q&A & Troubleshooting Section */}
+          <div className="mt-14 pt-8 border-t border-brand-linen">
+            <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-6">
+              Formulation Technical Q&amp;As &amp; Scale-Up Guide
+            </h2>
+            <div className="space-y-4">
+              {formulationFaqs.map((faq, idx) => (
+                <div key={idx} className="p-5 bg-stone-50/80 rounded-2xl border border-brand-linen">
+                  <h3 className="font-bold text-sm sm:text-base text-brand-charcoal mb-2 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{faq.question}</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-brand-charcoal/75 leading-relaxed pl-6">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Source Wholesale Ingredients Callout */}
-          <div className="mt-14 p-6 sm:p-8 bg-stone-50 border border-stone-200 rounded-2xl">
+          <div className="mt-12 p-6 sm:p-8 bg-stone-50 border border-stone-200 rounded-2xl">
             <h3 className="text-xl font-serif font-bold text-brand-charcoal mb-2">
               Source Professional Ingredients for This Formulation
             </h3>
