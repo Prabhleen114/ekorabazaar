@@ -240,7 +240,7 @@ export function generateOrganizationSchema() {
       "logo": {
         "@type": "ImageObject",
         "@id": `${BASE_URL}/#logo`,
-        "url": `${BASE_URL}/images/logo.jpg`,
+        "url": `${BASE_URL}/images/rectangle%20logo%20ekora%20bazaar.jpeg`,
         "caption": SITE_NAME,
       },
       "image": `${BASE_URL}/og-image.jpg`,

@@ -124,9 +124,9 @@ export default function BuyerNavbar() {
               }}
             >
               <Image
-                src="/images/logo.jpg"
+                src="/images/rectangle logo ekora bazaar.jpeg"
                 alt="Ekora Bazaar"
-                width={140}
+                width={184}
                 height={38}
                 priority
                 className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity"

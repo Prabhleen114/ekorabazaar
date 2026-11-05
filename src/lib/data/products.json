@@ -5859,7 +5859,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "69",
@@ -5945,7 +5946,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "70",
@@ -6508,7 +6510,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "77",
@@ -6987,7 +6990,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "83",
@@ -7063,7 +7067,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "84",
@@ -7139,7 +7144,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "85",
@@ -7846,7 +7852,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "90",
@@ -8936,7 +8943,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "104",
@@ -9334,7 +9342,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "109",
@@ -9649,7 +9658,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "113",
@@ -11821,7 +11831,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "140",
@@ -13792,7 +13803,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "164",
@@ -15048,7 +15060,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "180",
@@ -16827,7 +16840,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "202",
@@ -17490,7 +17504,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "211",
@@ -19170,7 +19185,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "232",
@@ -21516,7 +21532,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "260",
@@ -24187,7 +24204,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "293",
@@ -25112,8 +25130,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "305",
@@ -26295,7 +26313,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "320",
@@ -26840,7 +26859,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "327",
@@ -26917,7 +26937,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "328",
@@ -27220,7 +27241,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "332",
@@ -27606,7 +27628,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "337",
@@ -27681,8 +27704,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "338",
@@ -28515,7 +28538,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "349",
@@ -46966,7 +46990,7 @@
       "skincare-apothecary",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
+    "isQuoteOnly": true,
     "variants": [
       {
         "size": "15 ml",
@@ -47088,7 +47112,8 @@
           }
         ]
       }
-    ]
+    ],
+    "inStock": false
   },
   {
     "id": "478",
@@ -96056,7 +96081,8 @@
     "disciplines": [
       "skincare-apothecary"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1214",
@@ -105684,7 +105710,7 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "isQuoteOnly": false,
+    "isQuoteOnly": true,
     "variants": [
       {
         "size": "450 G",
@@ -105813,7 +105839,7 @@
       }
     ],
     "moq": 1,
-    "inStock": true
+    "inStock": false
   },
   {
     "id": "946",
@@ -106260,7 +106286,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "956",
@@ -107313,7 +107340,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "972",
@@ -107378,7 +107406,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "973",
@@ -107443,7 +107472,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "974",
@@ -107966,7 +107996,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "983",
@@ -108157,7 +108188,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "986",
@@ -108685,7 +108717,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "995",
@@ -108745,7 +108778,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "996",
@@ -108803,7 +108837,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "997",
@@ -108864,7 +108899,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "998",
@@ -108930,7 +108966,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "999",
@@ -108995,7 +109032,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1000",
@@ -109060,7 +109098,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1001",
@@ -109125,7 +109164,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1002",
@@ -109622,7 +109662,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1010",
@@ -109682,7 +109723,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1011",
@@ -109800,7 +109842,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1013",
@@ -111272,7 +111315,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1037",
@@ -111400,7 +111444,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1039",
@@ -111844,7 +111889,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1046",
@@ -111974,7 +112020,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1048",
@@ -112034,7 +112081,8 @@
     ],
     "department": "Vessels & Packaging Studio",
     "disciplines": [],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1049",
@@ -116959,7 +117007,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1123",
@@ -118887,7 +118936,8 @@
       "candle-studio",
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1150",
@@ -119731,7 +119781,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1163",
@@ -120206,7 +120257,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1170",
@@ -120681,7 +120733,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1178",
@@ -121163,7 +121216,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1185",
@@ -121235,7 +121289,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1186",
@@ -122025,7 +122080,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1199",
@@ -122091,7 +122147,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1200",
@@ -122290,7 +122347,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1204",
@@ -122675,7 +122733,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1215",
@@ -123563,7 +123622,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1242",
@@ -125063,7 +125123,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1262",
@@ -126016,7 +126077,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1276",
@@ -126288,7 +126350,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1280",
@@ -126351,7 +126414,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1282",
@@ -129593,7 +129657,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1338",
@@ -129664,7 +129729,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1339",
@@ -130772,7 +130838,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1355",
@@ -132250,7 +132317,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1378",
@@ -132734,7 +132802,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1385",
@@ -132799,7 +132868,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1386",
@@ -132867,7 +132937,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1387",
@@ -133273,7 +133344,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1393",
@@ -133619,7 +133691,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1398",
@@ -134837,7 +134910,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1416",
@@ -135238,7 +135312,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1422",
@@ -135376,7 +135451,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1424",
@@ -137650,7 +137726,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "1459",
@@ -139324,7 +139401,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1484",
@@ -140115,7 +140193,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1498",
@@ -140179,7 +140258,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1499",
@@ -140376,7 +140456,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1502",
@@ -140884,7 +140965,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1510",
@@ -141226,7 +141308,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1515",
@@ -143201,7 +143284,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1547",
@@ -143805,7 +143889,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1556",
@@ -144679,7 +144764,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1569",
@@ -145551,7 +145637,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1582",
@@ -145883,7 +145970,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1587",
@@ -146014,7 +146102,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1589",
@@ -147555,7 +147644,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1612",
@@ -147904,7 +147994,8 @@
       "candle-studio",
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1617",
@@ -149302,7 +149393,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1636",
@@ -151893,7 +151985,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1672",
@@ -153028,7 +153121,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1688",
@@ -153166,7 +153260,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1690",
@@ -155138,7 +155233,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1718",
@@ -155490,7 +155586,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1723",
@@ -159929,7 +160026,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1786",
@@ -162286,7 +162384,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1820",
@@ -162498,7 +162597,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1823",
@@ -165412,7 +165512,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1865",
@@ -165840,7 +165941,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1871",
@@ -166888,7 +166990,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1886",
@@ -167033,7 +167136,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1888",
@@ -168155,7 +168259,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1905",
@@ -168505,7 +168610,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1910",
@@ -169680,7 +169786,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1927",
@@ -170094,7 +170201,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1933",
@@ -171053,7 +171161,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1947",
@@ -171759,7 +171868,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1957",
@@ -172517,7 +172627,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1968",
@@ -173557,7 +173668,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1983",
@@ -173760,7 +173872,8 @@
       "candle-studio",
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "1986",
@@ -179908,7 +180021,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2023/04/h7951938689984e3db5f5dcebe47d9b714-500x500-1-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -179934,7 +180047,7 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2191",
@@ -180022,7 +180135,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2020/10/heart2-scaled-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -180048,7 +180161,7 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2194",
@@ -180319,7 +180432,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2020/08/20220516_152733_470x-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -180345,7 +180458,7 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2203",
@@ -180507,7 +180620,7 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
     "image": "https://jindeal.com/wp-content/uploads/2024/07/51uJXhZOejL._AC_SL1500_-247x296.jpg",
-    "inStock": true,
+    "inStock": false,
     "tiers": [
       {
         "minQuantity": 1,
@@ -180533,7 +180646,7 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true
   },
   {
     "id": "2219",
@@ -184262,8 +184375,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "artisan",
       "body butter",
@@ -187512,8 +187625,8 @@
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "moq": 1,
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "tags": [
       "artisan",
       "bees",

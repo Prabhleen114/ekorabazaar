@@ -51,9 +51,9 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <Image 
-                src="/images/logo.jpg" 
+                src="/images/rectangle logo ekora bazaar.jpeg"
                 alt="Ekora Bazaar" 
-                width={140}
+                width={194}
                 height={40}
                 priority
                 className="object-contain mix-blend-multiply"

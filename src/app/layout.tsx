@@ -133,7 +133,7 @@ export default function RootLayout({
         logo: {
           "@type": "ImageObject",
           "@id": "https://www.ekorabazaar.in/#logo",
-          url: "https://www.ekorabazaar.in/images/logo.jpg",
+          url: "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
           caption: "Ekora Bazaar",
         },
         image: "https://www.ekorabazaar.in/og-image.jpg",

@@ -15,7 +15,7 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     expect(org.name).toBe('Ekora Bazaar');
     expect(org.legalName).toBe('Ekora Bazaar Pvt Ltd');
     expect(org.url).toBe('https://www.ekorabazaar.in');
-    expect(org.logo.url).toBe('https://www.ekorabazaar.in/images/logo.jpg');
+    expect(org.logo.url).toBe('https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg');
     expect(org.foundingDate).toBe('2026');
     expect(org.founders).toEqual([
       { '@type': 'Person', name: 'Kumar Aryan' },

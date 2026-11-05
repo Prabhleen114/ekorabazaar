@@ -134,7 +134,7 @@ export default async function BlogArticlePage({ params }: Props) {
       "@id": `${BASE_URL}/#organization`,
       name: "Ekora Bazaar",
       url: BASE_URL,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/images/logo.jpg` },
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/images/rectangle%20logo%20ekora%20bazaar.jpeg` },
     },
   };
 

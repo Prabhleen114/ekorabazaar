@@ -165,9 +165,9 @@ export default function CartPage() {
       <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
         <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
           <Image
-            src="/images/logo.jpg"
+            src="/images/rectangle logo ekora bazaar.jpeg"
             alt="Ekora Bazaar"
-            width={140}
+            width={174}
             height={38}
             priority
             className="object-contain mix-blend-multiply group-hover:opacity-85 transition-opacity"

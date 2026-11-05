@@ -8,12 +8,11 @@ import serialize from "serialize-javascript";
 import { generateBreadcrumbSchema } from "@/lib/seo";
 import catalogProducts from "@/lib/data/products.json";
 import {
-  buildPrismaProductQuery,
   filterAndSortCatalogProducts,
-  normalizeProduct,
   NormalizedProduct,
   ProductFilterParams
 } from "@/lib/product-filters";
+import { getUnifiedCatalog } from "@/lib/catalog";
 
 interface ResolvedShopData {
   products: NormalizedProduct[];
@@ -40,56 +39,11 @@ const getProductsData = cache(async (params: any): Promise<ResolvedShopData> => 
     limit: params.limit ? String(params.limit) : "48",
   };
 
-  // Attempt Prisma path first (with strict timeout to handle remote/local DB lag)
-  try {
-    const { where, orderBy, take, skip, page } = buildPrismaProductQuery(filterParams);
-    const queryPromise = Promise.all([
-      prisma.product.findMany({
-        where,
-        orderBy,
-        take,
-        skip,
-        include: { seller: true }
-      }),
-      prisma.product.count({ where })
-    ]);
+  // Unified Catalog Engine: Searches the complete authoritative catalog (2,072 products)
+  // merged with active 3rd-party marketplace seller products
+  const { catalog: allProducts } = await getUnifiedCatalog();
+  const result = filterAndSortCatalogProducts(allProducts, filterParams);
 
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error("DB timeout")), 2000)
-    );
-
-    const [dbProducts, total] = await Promise.race([queryPromise, timeoutPromise]);
-
-    if (Array.isArray(dbProducts) && dbProducts.length > 0) {
-      const items = dbProducts.map(p => {
-        const effectiveRupees = (p.customerPrice ?? p.price) / 100;
-        return normalizeProduct({
-          id: p.id,
-          name: p.title,
-          category: p.category,
-          price: effectiveRupees,
-          image: p.imageUrl || "/og-image.jpg",
-          stock: p.stock,
-          wholesaleTiers: p.wholesaleTiers,
-          description: p.description,
-          inStock: p.stock > 0
-        });
-      });
-
-      return {
-        products: items,
-        total,
-        totalPages: Math.ceil(total / take) || 1,
-        page,
-        source: "db"
-      };
-    }
-  } catch (_err) {
-    // Database offline, connection refused, or timed out — fallback to catalogProducts
-  }
-
-  // Fallback path: In-memory pure filter and sort engine over authoritative products.json
-  const result = filterAndSortCatalogProducts(catalogProducts as any[], filterParams);
   return {
     products: result.items,
     total: result.total,

@@ -610,7 +610,11 @@ export default function ShopClient({
                         className="object-cover object-center group-hover:scale-105"
                         fallbackSrc="/og-image.jpg"
                       />
-                      {product.isQuoteOnly || product.price === 0 ? (
+                      {!product.inStock || product.isQuoteOnly ? (
+                        <div className="absolute top-2.5 left-2.5 border border-red-700 text-[9px] uppercase tracking-widest px-2 py-0.5 text-white bg-red-600 font-sans font-bold shadow-xs">
+                          Out of Stock
+                        </div>
+                      ) : product.price === 0 ? (
                         <div className="absolute top-2.5 left-2.5 border border-stone-300 text-[9px] uppercase tracking-widest px-2 py-0.5 text-stone-600 bg-white/90 backdrop-blur-xs font-sans">
                           Quote Only
                         </div>
@@ -651,6 +655,7 @@ export default function ShopClient({
                               productName={product.name}
                               basePrice={product.price}
                               category={product.category}
+                              inStock={product.inStock}
                             />
                           </object>
                         </div>

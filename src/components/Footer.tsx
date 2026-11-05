@@ -13,9 +13,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/sell" className="inline-block mb-4">
               <Image
-                src="/images/logo.jpg"
+                src="/images/rectangle logo ekora bazaar.jpeg"
                 alt="Ekora Bazaar"
-                width={144}
+                width={232}
                 height={48}
                 className="object-contain mix-blend-multiply"
                 style={{ height: "48px", width: "auto" }}

@@ -151,7 +151,15 @@ export const SORT_COMPARATORS: Record<SortKey, (a: NormalizedProduct, b: Normali
 /**
  * Normalizes a raw product from JSON or Prisma into a standard NormalizedProduct.
  */
+function getSearchableText(p: any): string {
+  if (p._searchText) return p._searchText;
+  const tagsStr = Array.isArray(p.tags) ? p.tags.join(' ') : '';
+  p._searchText = `${p.name || ''} ${p.category || ''} ${p.department || ''} ${p.description || ''} ${tagsStr} ${p.id || ''}`.toLowerCase();
+  return p._searchText;
+}
+
 export function normalizeProduct(p: any): NormalizedProduct {
+  if (p && (p as any)._isNormalized) return p;
   const rawName = p.name || p.title || "Untitled Product";
   const rawPrice = p.customerPrice !== undefined && p.customerPrice !== null
     ? p.customerPrice / 100
@@ -182,8 +190,9 @@ export function normalizeProduct(p: any): NormalizedProduct {
     tags: Array.isArray(p.tags) ? p.tags : [],
     variants: Array.isArray(p.variants) ? p.variants : [],
     tiers: Array.isArray(p.tiers) ? p.tiers : (Array.isArray(p.wholesaleTiers) ? p.wholesaleTiers : []),
-    isQuoteOnly
-  };
+    isQuoteOnly,
+    _isNormalized: true
+  } as any;
 }
 
 /**
@@ -209,8 +218,7 @@ export function filterAndSortCatalogProducts(
   // 1. Normalize all products
   const normalized = rawProducts.map(normalizeProduct);
 
-  // 2. Filter (pure predicate)
-  const filtered = normalized.filter((p) => {
+  const passesFacetFilters = (p: NormalizedProduct) => {
     if (normalizedCategory) {
       const pCat = (p.category || "").toLowerCase();
       const targetCat = normalizedCategory.toLowerCase();
@@ -231,17 +239,6 @@ export function filterAndSortCatalogProducts(
       return false;
     }
 
-    if (hasSearch && normalizedQ) {
-      const name = p.name.toLowerCase();
-      const cat = (p.category || "").toLowerCase();
-      const desc = (p.description || "").toLowerCase();
-      const tagStr = (p.tags || []).map((t: string) => t.toLowerCase()).join(" ");
-      const matches = searchTokens.some((token) =>
-        name.includes(token) || cat.includes(token) || tagStr.includes(token) || desc.includes(token)
-      );
-      if (!matches) return false;
-    }
-
     if (inStockOnly && !p.inStock) {
       return false;
     }
@@ -254,12 +251,38 @@ export function filterAndSortCatalogProducts(
     }
 
     return true;
+  };
+
+  const tokenGroups = normalizedQ ? expandQueryTokenGroups(normalizedQ) : [];
+
+  // 2. Filter (pure predicate) with concept group matching
+  let filtered = normalized.filter((p) => {
+    if (!passesFacetFilters(p)) return false;
+
+    if (hasSearch && tokenGroups.length > 0) {
+      const searchable = getSearchableText(p);
+      // Must match at least one token from EVERY query concept group
+      const matchesAll = tokenGroups.every((group) =>
+        group.some((token) => searchable.includes(token))
+      );
+      if (!matchesAll) return false;
+    }
+
+    return true;
   });
+
+  // Fallback to partial group matching if strict AND yields 0 on a multi-concept query
+  if (hasSearch && filtered.length === 0 && tokenGroups.length > 1) {
+    filtered = normalized.filter((p) => {
+      if (!passesFacetFilters(p)) return false;
+      const searchable = getSearchableText(p);
+      return tokenGroups.some((group) => group.some((token) => searchable.includes(token)));
+    });
+  }
 
   // 3. Sort (pure copy)
   let sorted = [...filtered];
   if (hasSearch && normalizedQ && sortKey === "recommended") {
-    const tokenGroups = expandQueryTokenGroups(normalizedQ);
     const scored = sorted.map((product) => ({
       product,
       score: scoreProduct(product as any, normalizedQ, tokenGroups),

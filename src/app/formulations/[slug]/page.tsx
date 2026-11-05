@@ -97,7 +97,7 @@ export default async function FormulationSinglePage({ params }: { params: Promis
       "@id": "https://www.ekorabazaar.in/#organization",
       name: "Ekora Bazaar",
       url: "https://www.ekorabazaar.in",
-      logo: { "@type": "ImageObject", url: "https://www.ekorabazaar.in/images/logo.jpg" },
+      logo: { "@type": "ImageObject", url: "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg" },
     },
   };
 

@@ -19,7 +19,7 @@ import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export interface ProductDetailView {
   rawProduct: any;
@@ -104,8 +104,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         description: product.description || catalogItem?.description || "",
         supplierName: product.seller?.brandName || "Verified Ekora Supplier",
         sellerId: product.sellerId,
-        inStock: product.stock > 0,
-        isQuoteOnly: false,
+        inStock: product.stock > 0 && catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly,
+        isQuoteOnly: catalogItem?.isQuoteOnly === true || catalogItem?.inStock === false || product.price <= 0 || product.stock <= 0,
         fragranceNotes: null as any,
         usageLevels: null as any
       };
@@ -314,6 +314,11 @@ export default async function ProductDetailsPage({ params }: Props) {
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#8C734B] font-sans font-semibold">
                 {displayProduct.category}
               </span>
+              {(!displayProduct.inStock || displayProduct.isQuoteOnly) && (
+                <span className="inline-flex items-center gap-1 text-[10px] font-sans font-bold bg-red-600 text-white px-2.5 py-0.5 uppercase tracking-wider shadow-xs">
+                  Out of Stock
+                </span>
+              )}
               <span className="inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-xs">
                 ★ Formulation Tested
               </span>

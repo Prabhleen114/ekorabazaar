@@ -11,6 +11,8 @@
  * - Never add unrelated terms — specificity over recall.
  */
 
+import catalogProducts from "@/lib/data/products.json";
+
 export const SYNONYM_GROUPS: string[][] = [
   // Fragrance / Scent
   ['perfume', 'fragrance', 'scent', 'parfum', 'fragnance', 'fragranze', 'fragerance'],
@@ -21,7 +23,7 @@ export const SYNONYM_GROUPS: string[][] = [
 
   // Ingredient / Material synonyms
   // Waxes - specific varieties kept distinct to prevent cross-material pollution
-  ['wax', 'candle wax'],
+  ['wax', 'paraffin', 'cera'],
   ['soy wax', 'soya wax', 'soy candle wax'],
   ['beeswax', 'bees wax', 'cera alba'],
   ['coconut wax', 'coco wax'],
@@ -108,11 +110,136 @@ for (const group of SYNONYM_GROUPS) {
 }
 
 /**
+ * Pre-computed catalog vocabulary for fast fuzzy matching and spell correction.
+ */
+export const CATALOG_VOCABULARY = new Set<string>();
+for (const p of (catalogProducts as any[])) {
+  const text = `${p.name || ''} ${p.category || ''} ${p.department || ''} ${Array.isArray(p.tags) ? p.tags.join(' ') : ''}`.toLowerCase();
+  for (const w of text.split(/[^a-z0-9]+/)) {
+    if (w.length >= 2) CATALOG_VOCABULARY.add(w);
+  }
+}
+
+/**
+ * Compute trigrams of a string with whitespace boundary padding.
+ */
+export function getTrigrams(str: string): Set<string> {
+  const s = '  ' + str.toLowerCase() + ' ';
+  const res = new Set<string>();
+  for (let i = 0; i < s.length - 2; i++) res.add(s.slice(i, i + 3));
+  return res;
+}
+
+/**
+ * Calculate trigram Jaccard similarity between two strings.
+ */
+export function trigramSimilarity(s1: string, s2: string): number {
+  if (!s1 || !s2) return 0;
+  const t1 = getTrigrams(s1);
+  const t2 = getTrigrams(s2);
+  let inter = 0;
+  for (const t of t1) if (t2.has(t)) inter++;
+  return inter / (t1.size + t2.size - inter);
+}
+
+/**
+ * Strip common English plural and inflectional suffixes based on catalog vocabulary.
+ */
+export function stemWord(word: string): string {
+  if (word.length <= 3) return word;
+  if (word.endsWith('ies') && word.length > 4) {
+    const candidate = word.slice(0, -3) + 'y';
+    if (CATALOG_VOCABULARY.has(candidate)) return candidate;
+  }
+  if (word.endsWith('es') && word.length > 4) {
+    const base = word.slice(0, -2);
+    if (CATALOG_VOCABULARY.has(base)) return base;
+    const baseE = word.slice(0, -1);
+    if (CATALOG_VOCABULARY.has(baseE)) return baseE;
+  }
+  if (word.endsWith('s') && !word.endsWith('ss') && word.length > 3) {
+    const base = word.slice(0, -1);
+    if (CATALOG_VOCABULARY.has(base)) return base;
+  }
+  return word;
+}
+
+/**
+ * Attempt to split compound words into known catalog vocabulary tokens (e.g., "soywax" -> ["soy", "wax"]).
+ */
+export function splitCompound(word: string): string[] | null {
+  if (word.length < 6) return null;
+  for (let i = 3; i <= word.length - 3; i++) {
+    const left = word.slice(0, i);
+    const right = word.slice(i);
+    if (CATALOG_VOCABULARY.has(left) && CATALOG_VOCABULARY.has(right)) {
+      return [left, right];
+    }
+  }
+  return null;
+}
+
+/**
+ * Find fuzzy candidate words from the catalog vocabulary using trigram similarity.
+ */
+/**
+ * Pre-computed trigram index mapping each trigram to vocabulary words for O(1) fuzzy candidate lookup.
+ */
+const VOCAB_TRIGRAMS = new Map<string, Set<string>>();
+const INVERTED_TRIGRAM_INDEX = new Map<string, Set<string>>();
+
+for (const word of CATALOG_VOCABULARY) {
+  const trigrams = getTrigrams(word);
+  VOCAB_TRIGRAMS.set(word, trigrams);
+  for (const tri of trigrams) {
+    let s = INVERTED_TRIGRAM_INDEX.get(tri);
+    if (!s) {
+      s = new Set<string>();
+      INVERTED_TRIGRAM_INDEX.set(tri, s);
+    }
+    s.add(word);
+  }
+}
+
+/**
+ * Find fuzzy candidate words from the catalog vocabulary using inverted trigram index.
+ */
+export function findFuzzyCandidates(token: string, threshold = 0.32): string[] {
+  if (token.length < 3) return [];
+  const tokenTrigrams = getTrigrams(token);
+  const t1Size = tokenTrigrams.size;
+  const candidateCounts = new Map<string, number>();
+
+  for (const tri of tokenTrigrams) {
+    const words = INVERTED_TRIGRAM_INDEX.get(tri);
+    if (words) {
+      for (const w of words) {
+        if (Math.abs(w.length - token.length) <= 3) {
+          candidateCounts.set(w, (candidateCounts.get(w) || 0) + 1);
+        }
+      }
+    }
+  }
+
+  const matches: Array<{ word: string; sim: number }> = [];
+  for (const [w, inter] of candidateCounts) {
+    const t2Size = VOCAB_TRIGRAMS.get(w)?.size ?? 0;
+    const sim = inter / (t1Size + t2Size - inter);
+    if (sim >= threshold) {
+      matches.push({ word: w, sim });
+    }
+  }
+
+  matches.sort((a, b) => b.sim - a.sim);
+  return matches.slice(0, 3).map(m => m.word);
+}
+
+/**
  * Normalize a raw query string:
  * - Trim whitespace
  * - Collapse multiple spaces
  * - Lowercase
- * - Remove purely punctuation-only tokens
+ * - Remove punctuation (keep hyphens)
  */
 export function normalizeQuery(raw: string): string {
   return raw
@@ -124,36 +251,60 @@ export function normalizeQuery(raw: string): string {
 }
 
 /**
- * Expand a normalized query into groups of synonyms.
+ * Expand a normalized query into groups of synonyms and fuzzy corrections.
  * Each group represents one original concept (e.g. ['fragrance', 'scent', 'perfume']).
- * For DB queries, we can require all groups to match (AND between groups, OR within groups).
+ * For high precision & high recall, products match if all distinct groups are satisfied.
  */
 export function expandQueryTokenGroups(normalized: string): string[][] {
   const originalTokens = normalized.split(' ').filter(t => t.length > 0);
   const groups: string[][] = [];
-
   const used = new Set<number>();
-  
-  // Try bigrams first
+
+  // 1. Try bigram synonyms first (e.g. "soy wax", "essential oil")
   for (let i = 0; i < originalTokens.length - 1; i++) {
     const bigram = originalTokens[i] + ' ' + originalTokens[i + 1];
     const syns = SYNONYM_MAP.get(bigram);
     if (syns) {
-      groups.push([bigram, ...Array.from(syns)]);
+      const g = new Set<string>([bigram, ...Array.from(syns)]);
+      for (const s of Array.from(g)) {
+        for (const part of s.split(' ')) g.add(part);
+      }
+      groups.push(Array.from(g));
       used.add(i);
       used.add(i + 1);
     }
   }
 
-  // Then single tokens
+  // 2. Process remaining single tokens
   for (let i = 0; i < originalTokens.length; i++) {
     if (used.has(i)) continue;
     const token = originalTokens[i];
-    const syns = SYNONYM_MAP.get(token);
-    if (syns) {
-      groups.push([token, ...Array.from(syns)]);
-    } else {
-      groups.push([token]);
+
+    // Compound word handling (e.g. "soywax" -> ["soy", "wax"])
+    const compound = splitCompound(token);
+    const subTokens = compound ? compound : [token];
+
+    for (const st of subTokens) {
+      const stemmed = stemWord(st);
+      const groupTokens = new Set<string>([st, stemmed]);
+
+      // If token and stem are unknown in catalog vocabulary and synonym map, perform fuzzy typo autocorrection
+      if (!CATALOG_VOCABULARY.has(st) && !CATALOG_VOCABULARY.has(stemmed) && !SYNONYM_MAP.has(st) && !SYNONYM_MAP.has(stemmed)) {
+        const fuzzy = findFuzzyCandidates(st, 0.32);
+        for (const f of fuzzy) groupTokens.add(f);
+      }
+
+      // Expand synonyms for all tokens currently in this concept group
+      for (const term of Array.from(groupTokens)) {
+        const syns = SYNONYM_MAP.get(term);
+        if (syns) {
+          for (const s of syns) {
+            for (const part of s.split(' ')) groupTokens.add(part);
+          }
+        }
+      }
+
+      groups.push(Array.from(groupTokens));
     }
   }
 
@@ -161,20 +312,17 @@ export function expandQueryTokenGroups(normalized: string): string[][] {
 }
 
 /**
- * Expand a normalized query with synonyms.
- * Returns a deduplicated array of all search tokens (original + synonyms).
+ * Expand a normalized query with synonyms and fuzzy corrections.
+ * Returns a deduplicated array of all search tokens.
  */
 export function expandQueryTokens(normalized: string): string[] {
   const groups = expandQueryTokenGroups(normalized);
   const allTokens = new Set<string>();
-  
   for (const group of groups) {
     for (const term of group) {
-      // Split multi-word synonyms into single tokens for the JS scorer
       for (const st of term.split(' ')) allTokens.add(st);
     }
   }
-  
   return Array.from(allTokens);
 }
 
@@ -191,17 +339,68 @@ export function sanitizeSearchQuery(raw: string | null | undefined): string | nu
 }
 
 /**
- * Score a single CatalogProduct against a search query for client-side relevance ranking.
+ * Autocorrect token groups based on provided candidate titles (backward compatibility).
+ */
+export function autocorrectTokenGroups(tokenGroups: string[][], catalogTitles: string[]): string[][] {
+  return tokenGroups.map(group => {
+    const newGroup = [...group];
+    for (const token of group) {
+      if (token.length < 3) continue;
+      
+      let bestWord = token;
+      let bestSim = 0;
+      
+      for (const title of catalogTitles) {
+        const words = title.toLowerCase().split(/[^a-z0-9]+/);
+        for (const w of words) {
+          if (w.length < 3) continue;
+          if (w === token) {
+            bestSim = 1;
+            bestWord = w;
+            break;
+          }
+          const sim = trigramSimilarity(token, w);
+          if (sim > bestSim) {
+            bestSim = sim;
+            bestWord = w;
+          }
+        }
+        if (bestSim === 1) break;
+      }
+      
+      if (bestSim >= 0.32 && bestWord !== token) {
+        newGroup.push(bestWord);
+        const syns = expandQueryTokens(bestWord);
+        newGroup.push(...syns);
+      }
+    }
+    return Array.from(new Set(newGroup));
+  });
+}
+
+function hasWordBoundary(str: string, token: string): boolean {
+  const idx = str.indexOf(token);
+  if (idx === -1) return false;
+  const before = idx === 0 || !/[a-z0-9]/.test(str[idx - 1]);
+  const after = idx + token.length >= str.length || !/[a-z0-9]/.test(str[idx + token.length]);
+  return before && after;
+}
+
+/**
+ * Score a single product against a search query for relevance ranking.
  *
  * Scoring weights:
- *  100 pts  - Exact product name match
- *   50 pts  - Exact category match
- *   40 pts  - All query tokens found in product name
- *   10 pts  - Per query token found in name
- *    6 pts  - Per query token found in category/department
- *    4 pts  - Per query token found in tags
- *    2 pts  - Per query token found in description (max 8)
- *    0 pts  - In-stock bonus / fallback
+ *  500 pts  - Exact title match
+ *  250 pts  - Title starts with query
+ *  200 pts  - Full query contained in title
+ *  150 pts  - All query concept groups matched in title
+ *  100 pts  - Category match
+ *   50 pts  - Exact word boundary token match in title (non-generic)
+ *   30 pts  - Substring token match in title
+ *   25 pts  - Token matched in category
+ *   15 pts  - Token matched in department/tags
+ *    5 pts  - Token matched in description
+ *    5 pts  - In-stock availability bonus
  */
 export function scoreProduct(
   product: { name: string; category: string; department?: string; tags?: string[]; description?: string; inStock?: boolean },
@@ -219,18 +418,17 @@ export function scoreProduct(
   let score = 0;
 
   // 1. EXACT INTENT MATCHES (Highest Priority)
-  // Reconstruct the conceptually corrected query (first token of each group represents the primary intent)
   const correctedQuery = tokenGroups.map(g => g[0]).join(' ');
 
-  if (name === normalizedQuery || name === correctedQuery) score += 500;
-  else if (name.includes(normalizedQuery) || name.includes(correctedQuery)) {
-    // If the full phrase is in the title, it's an extremely strong match
+  if (name === normalizedQuery || name === correctedQuery) {
+    score += 500;
+  } else if (name.startsWith(normalizedQuery) || name.startsWith(correctedQuery)) {
+    score += 250;
+  } else if (name.includes(normalizedQuery) || name.includes(correctedQuery)) {
     score += 200;
-    // Bonus if it starts with the query (e.g. "Rose Fragrance Oil - 100ml")
-    if (name.startsWith(normalizedQuery) || name.startsWith(correctedQuery)) score += 50;
   }
 
-  // Very strong bonus if the corrected intent matches the product's actual category
+  // Very strong bonus if the intent matches the product's actual category
   if (
     category.includes(normalizedQuery) || 
     category.includes(correctedQuery) || 
@@ -247,12 +445,7 @@ export function scoreProduct(
   
   for (const group of tokenGroups) {
     let groupMatchedInTitle = false;
-    let groupMatchedInDesc = false;
     let groupScore = 0;
-    
-    // Check if the group as a whole represents a generic concept
-    // E.g., if group is ['fragrance', 'scent', 'perfume'], it's a generic concept if it's a single word group.
-    const isGenericGroup = group.some(t => GENERIC_TERMS.has(t));
 
     for (const token of group) {
       if (token.length < 2) continue;
@@ -263,28 +456,20 @@ export function scoreProduct(
       // Title matches are king
       if (name.includes(token)) {
         groupMatchedInTitle = true;
-        // Exact token boundary match is better than substring (e.g. 'oil' vs 'soil')
-        const isWordBoundary = new RegExp(`\\b${token}\\b`, 'i').test(name);
-        
-        if (isGeneric) {
-          tokenScore = isWordBoundary ? 15 : 10;
-        } else {
-          tokenScore = isWordBoundary ? 50 : 30; 
-        }
+        const isWordBoundary = hasWordBoundary(name, token);
+        tokenScore = isWordBoundary ? (isGeneric ? 20 : 50) : (isGeneric ? 10 : 30);
       }
       
-      // Category matches
+      // Category & department matches
       if (category.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 10 : 25);
       if (department.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 5 : 15);
       if (tags.includes(token)) tokenScore = Math.max(tokenScore, isGeneric ? 5 : 15);
       
-      // Description matches (very weak)
+      // Description matches
       if (description.includes(token)) {
-        groupMatchedInDesc = true;
-        if (tokenScore === 0) tokenScore = isGeneric ? 2 : 5;
+        tokenScore = Math.max(tokenScore, isGeneric ? 2 : 5);
       }
       
-      // Take the highest score within the synonym group (don't stack synonyms)
       if (tokenScore > groupScore) groupScore = tokenScore;
     }
     
@@ -293,12 +478,9 @@ export function scoreProduct(
   }
 
   // 4. MULTI-WORD CONTEXT MULTIPLIERS
-  // If the query has multiple distinct concepts (groups) and they ALL match the title, 
-  // this is a massive signal that the product is exactly what they want.
   if (tokenGroups.length > 1 && titleGroupsMatched === tokenGroups.length) {
     score += 150; 
   } else if (tokenGroups.length > 2 && titleGroupsMatched >= 2) {
-    // Partial but strong multi-word match
     score += 50;
   }
 
@@ -314,9 +496,9 @@ export function scoreProduct(
     );
 
     if (hasAccessoryInName) {
-      score -= 100; // Large penalty if accessory term is in the actual title
+      score -= 100;
     } else if (hasAccessoryInCategory) {
-      score -= 30; // Small penalty if it just happens to live in an accessory category
+      score -= 30;
     }
   }
 
@@ -324,59 +506,4 @@ export function scoreProduct(
   if (product.inStock) score += 5;
 
   return score;
-}
-
-export function getTrigrams(str: string): Set<string> {
-  const s = '  ' + str.toLowerCase() + ' ';
-  const res = new Set<string>();
-  for (let i = 0; i < s.length - 2; i++) res.add(s.slice(i, i + 3));
-  return res;
-}
-
-export function trigramSimilarity(s1: string, s2: string): number {
-  if (!s1 || !s2) return 0;
-  const t1 = getTrigrams(s1);
-  const t2 = getTrigrams(s2);
-  let inter = 0;
-  for (const t of t1) if (t2.has(t)) inter++;
-  return inter / (t1.size + t2.size - inter);
-}
-
-export function autocorrectTokenGroups(tokenGroups: string[][], catalogTitles: string[]): string[][] {
-  return tokenGroups.map(group => {
-    const newGroup = [...group];
-    for (const token of group) {
-      if (token.length < 4) continue;
-      
-      let bestWord = token;
-      let bestSim = 0;
-      
-      for (const title of catalogTitles) {
-        const words = title.toLowerCase().split(/[^a-z0-9]+/);
-        for (const w of words) {
-          if (w.length < 4) continue;
-          // Exact match means no need to correct this token
-          if (w === token) {
-            bestSim = 1;
-            bestWord = w;
-            break;
-          }
-          const sim = trigramSimilarity(token, w);
-          if (sim > bestSim) {
-            bestSim = sim;
-            bestWord = w;
-          }
-        }
-        if (bestSim === 1) break;
-      }
-      
-      if (bestSim > 0.49 && bestWord !== token) {
-        newGroup.push(bestWord);
-        // Inject synonyms of the corrected word
-        const syns = expandQueryTokens(bestWord);
-        newGroup.push(...syns);
-      }
-    }
-    return Array.from(new Set(newGroup));
-  });
 }

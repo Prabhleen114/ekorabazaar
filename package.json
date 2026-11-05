@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check-catalog": "tsx scripts/check-catalog-counts.ts"
   },
   "dependencies": {
     "@google-analytics/data": "^7.1.0",

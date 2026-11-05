@@ -28,7 +28,7 @@ export default function AboutPage() {
       "name": "Ekora Bazaar",
       "legalName": "Ekora Bazaar Pvt Ltd",
       "url": "https://www.ekorabazaar.in",
-      "logo": "https://www.ekorabazaar.in/images/logo.jpg",
+      "logo": "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
       "image": "https://www.ekorabazaar.in/og-image.jpg",
       "telephone": "+91-9041500605",
       "email": "ekorabazaar@gmail.com",

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Minus, Plus, ShoppingCart, Loader2, Check, Truck, ShieldCheck, Lock, CreditCard, ChevronDown } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Loader2, Check, Truck, ShieldCheck, Lock, CreditCard, ChevronDown, MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
 import { trackWhatsAppClick, trackEvent } from "@/lib/tracking";
@@ -115,6 +115,11 @@ export default function PricingWidget({
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [pincode, setPincode] = useState("");
   const [pincodeChecked, setPincodeChecked] = useState(false);
+  const [available, setAvailable] = useState<boolean>(Boolean(inStock && !isQuoteOnly));
+
+  useEffect(() => {
+    setAvailable(Boolean(inStock && !isQuoteOnly));
+  }, [inStock, isQuoteOnly]);
   const hasTrackedTierView = useRef(false);
   const ctaRef = useRef<HTMLDivElement>(null);
 
@@ -219,6 +224,11 @@ export default function PricingWidget({
   };
 
   const handleAction = async (actionType: 'cart' | 'buy_now') => {
+    if (!available) {
+      setErrorMsg("This product is currently out of stock.");
+      return;
+    }
+
     if (quantity < moq) {
       setErrorMsg(`Minimum order quantity is ${moq}`);
       return;
@@ -271,7 +281,14 @@ export default function PricingWidget({
           }, 2500);
           return;
         }
-        if (!res.ok) throw new Error('Failed to add to cart');
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          const errMsg = errData.error || 'Failed to add to cart';
+          if (errMsg.includes('0 units') || errMsg.toLowerCase().includes('out of stock') || errMsg.toLowerCase().includes('quotation only')) {
+            setAvailable(false);
+          }
+          throw new Error(errMsg);
+        }
 
         setIsAddedSuccess(true);
         const { notifyCartUpdated } = await import('@/lib/guest-cart');
@@ -500,7 +517,11 @@ export default function PricingWidget({
                 ₹{displayPrice.toLocaleString()}
               </span>
               <span className="text-xs text-stone-500 font-sans">/ unit</span>
-              {currentTier && currentTier.discountPct > 0 && (
+              {!available ? (
+                <span className="ml-2 text-[11px] font-sans font-bold text-white bg-red-600 border border-red-700 px-2.5 py-0.5 uppercase tracking-wider shadow-xs">
+                  Out of Stock
+                </span>
+              ) : currentTier && currentTier.discountPct > 0 && (
                 <span className="ml-1 text-xs font-sans font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
                   Save {currentTier.discountPct}%
                 </span>
@@ -547,11 +568,12 @@ export default function PricingWidget({
 
           <div className="flex flex-wrap items-center gap-3">
             {/* 44px Stepper */}
-            <div className="flex items-center border border-stone-300 h-11 bg-white shrink-0">
+            <div className={`flex items-center border border-stone-300 h-11 shrink-0 ${!available ? 'bg-stone-100 opacity-60' : 'bg-white'}`}>
               <button
                 type="button"
                 onClick={() => handleQuantityChange(quantity - 1)}
-                className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors"
+                disabled={!available}
+                className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors disabled:cursor-not-allowed"
                 aria-label="Decrease quantity"
               >
                 <Minus className="w-4 h-4" />
@@ -561,16 +583,18 @@ export default function PricingWidget({
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={quantity}
+                disabled={!available}
                 onChange={(e) => {
                   const val = parseInt(e.target.value.replace(/[^0-9]/g, '')) || moq;
                   handleQuantityChange(val);
                 }}
-                className="w-14 text-center text-base font-sans font-bold text-stone-900 focus:outline-none"
+                className="w-14 text-center text-base font-sans font-bold text-stone-900 focus:outline-none disabled:cursor-not-allowed bg-transparent"
               />
               <button
                 type="button"
                 onClick={() => handleQuantityChange(quantity + 1)}
-                className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors"
+                disabled={!available}
+                className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors disabled:cursor-not-allowed"
                 aria-label="Increase quantity"
               >
                 <Plus className="w-4 h-4" />
@@ -583,11 +607,14 @@ export default function PricingWidget({
                 <button
                   key={quickQty}
                   type="button"
+                  disabled={!available}
                   onClick={() => handleQuantityChange(quickQty)}
                   className={`min-h-[44px] min-w-[44px] px-3.5 h-11 text-xs font-sans font-semibold border transition-all ${
-                    quantity === quickQty
-                      ? "bg-stone-900 text-white border-stone-900 shadow-xs"
-                      : "bg-white text-stone-700 border-stone-200 hover:border-stone-400 hover:bg-stone-50"
+                    !available
+                      ? "bg-stone-100 text-stone-400 border-stone-200 cursor-not-allowed opacity-60"
+                      : quantity === quickQty
+                        ? "bg-stone-900 text-white border-stone-900 shadow-xs"
+                        : "bg-white text-stone-700 border-stone-200 hover:border-stone-400 hover:bg-stone-50"
                   }`}
                 >
                   {quickQty}
@@ -660,26 +687,102 @@ export default function PricingWidget({
           </div>
         )}
 
-        {/* 5. PRIMARY ACTION BUTTONS: ADD TO CART & BUY NOW */}
+        {/* 5. PRIMARY ACTION BUTTONS: ADD TO CART & BUY NOW / OUT OF STOCK */}
         <div className="space-y-2.5 pt-1" ref={ctaRef}>
-          <button
-            type="button"
-            onClick={() => handleAction('cart')}
-            disabled={isProcessing}
-            className="w-full bg-stone-900 hover:bg-black text-white text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-75 shadow-xs min-h-[48px]"
-          >
-            {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4 text-emerald-400" /> : <ShoppingCart className="w-4 h-4" />)}
-            <span>{isAddingToCart ? "Adding to Cart..." : (isAddedSuccess ? "Added ✓" : "Add to Cart")}</span>
-          </button>
+          {!available && (
+            <div className="mb-2 p-3.5 bg-red-600 border border-red-700 text-white rounded-none flex items-center justify-between shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                </span>
+                <span className="font-sans font-bold text-xs uppercase tracking-wider">
+                  Currently Out of Stock
+                </span>
+              </div>
+              <span className="text-[10px] font-sans uppercase tracking-widest text-white font-semibold bg-red-800/80 px-2 py-0.5 border border-red-400/40">
+                Unavailable
+              </span>
+            </div>
+          )}
 
-          <button
-            type="button"
-            onClick={() => handleAction('buy_now')}
-            disabled={isProcessing}
-            className="w-full border border-stone-900 bg-brand-orange text-stone-50 hover:bg-brand-terracotta text-xs uppercase tracking-[0.18em] font-semibold py-3.5 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-75 min-h-[48px]"
-          >
-            {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
-          </button>
+          {!available ? (
+            <>
+              <button
+                type="button"
+                disabled={true}
+                className="w-full bg-stone-200 border border-stone-300 text-stone-400 text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] select-none"
+                aria-disabled="true"
+              >
+                <ShoppingCart className="w-4 h-4 text-stone-400" />
+                <span>Add to Cart (Out of Stock)</span>
+              </button>
+
+              <button
+                type="button"
+                disabled={true}
+                className="w-full border border-stone-300 bg-stone-100 text-stone-400 text-xs uppercase tracking-[0.18em] font-semibold py-3.5 rounded-none cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] select-none"
+                aria-disabled="true"
+              >
+                <span>Buy Now (Unavailable)</span>
+              </button>
+
+              <a
+                href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to inquire about restock timeline for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick({
+                  location: 'pdp_quote',
+                  productId: productId || '',
+                  productName: productName || '',
+                  category: category || '',
+                  customIntent: 'out_of_stock_inquiry'
+                })}
+                className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-[0.18em] font-semibold py-3.5 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 min-h-[48px] shadow-sm font-sans"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Inquire Restock via WhatsApp</span>
+              </a>
+            </>
+          ) : isQuoteOnly ? (
+            <a
+              href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to request a wholesale quotation for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick({
+                location: 'pdp_quote',
+                productId: productId || '',
+                productName: productName || '',
+                category: category || '',
+                customIntent: 'wholesale_quote'
+              })}
+              className="w-full bg-stone-900 hover:bg-black text-white text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 min-h-[48px]"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Request Wholesale Quotation</span>
+            </a>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => handleAction('cart')}
+                disabled={isProcessing}
+                className="w-full bg-stone-900 hover:bg-black text-white text-xs uppercase tracking-[0.2em] font-semibold py-4 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-75 shadow-xs min-h-[48px]"
+              >
+                {isAddingToCart ? <Loader2 className="w-4 h-4 animate-spin" /> : (isAddedSuccess ? <Check className="w-4 h-4 text-emerald-400" /> : <ShoppingCart className="w-4 h-4" />)}
+                <span>{isAddingToCart ? "Adding to Cart..." : (isAddedSuccess ? "Added ✓" : "Add to Cart")}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleAction('buy_now')}
+                disabled={isProcessing}
+                className="w-full border border-stone-900 bg-brand-orange text-stone-50 hover:bg-brand-terracotta text-xs uppercase tracking-[0.18em] font-semibold py-3.5 rounded-none transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-75 min-h-[48px]"
+              >
+                {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
+              </button>
+            </>
+          )}
         </div>
 
         {/* 6. TRUST & POLICY LINES DIRECTLY BENEATH CTAS */}
@@ -719,24 +822,73 @@ export default function PricingWidget({
               ₹{subtotal.toLocaleString()}
             </span>
           </div>
-          <div className="flex gap-2 items-center">
-            <button
-              type="button"
-              onClick={() => handleAction('cart')}
-              disabled={isProcessing}
+          {!available ? (
+            <div className="flex gap-2 items-center">
+              <span className="bg-red-600 text-white px-2.5 py-2 text-[10px] font-sans font-bold uppercase tracking-wider border border-red-700 flex items-center gap-1.5 shrink-0 shadow-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>
+                Out of Stock
+              </span>
+              <button
+                type="button"
+                disabled={true}
+                className="bg-stone-200 text-stone-400 px-3 py-2 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px] cursor-not-allowed border border-stone-300 select-none"
+                aria-disabled="true"
+              >
+                Add to Cart
+              </button>
+              <a
+                href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to inquire about restock timeline for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick({
+                  location: 'pdp_quote_sticky',
+                  productId: productId || '',
+                  productName: productName || '',
+                  category: category || '',
+                  customIntent: 'out_of_stock_inquiry'
+                })}
+                className="bg-[#25D366] hover:bg-[#20ba59] text-white px-3 py-2 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px] gap-1.5 shadow-xs"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>Inquire</span>
+              </a>
+            </div>
+          ) : isQuoteOnly ? (
+            <a
+              href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to request a wholesale quotation for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick({
+                location: 'pdp_quote_sticky',
+                productId: productId || '',
+                productName: productName || '',
+                category: category || '',
+                customIntent: 'wholesale_quote'
+              })}
               className="bg-stone-900 text-stone-50 px-4 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
             >
-              {isAddedSuccess ? "Added ✓" : "Add to Cart"}
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAction('buy_now')}
-              disabled={isProcessing}
-              className="bg-brand-orange text-stone-50 px-4 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
-            >
-              {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
-            </button>
-          </div>
+              Request Quote
+            </a>
+          ) : (
+            <div className="flex gap-2 items-center">
+              <button
+                type="button"
+                onClick={() => handleAction('cart')}
+                disabled={isProcessing}
+                className="bg-stone-900 text-stone-50 px-4 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
+              >
+                {isAddedSuccess ? "Added ✓" : "Add to Cart"}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleAction('buy_now')}
+                disabled={isProcessing}
+                className="bg-brand-orange text-stone-50 px-4 py-3 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-center min-h-[44px]"
+              >
+                {isBuyingNow ? <Loader2 className="w-4 h-4 animate-spin" /> : "Buy Now"}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </>

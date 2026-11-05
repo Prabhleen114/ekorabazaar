@@ -2,7 +2,18 @@
 
 import { useState } from 'react'
 
-export default function QuickAddButton({ productId, productName, basePrice, category }: { productId: string, productName?: string, basePrice?: number, category?: string }) {
+export default function QuickAddButton({ productId, productName, basePrice, category, inStock = true }: { productId: string, productName?: string, basePrice?: number, category?: string, inStock?: boolean }) {
+  if (!inStock) {
+    return (
+      <button
+        disabled={true}
+        type="button"
+        className="mt-2 w-full text-[10px] uppercase tracking-widest py-2.5 bg-stone-200 border border-stone-300 text-stone-400 cursor-not-allowed font-semibold md:opacity-0 md:group-hover:opacity-100 transition-all select-none"
+      >
+        Out of Stock
+      </button>
+    );
+  }
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')

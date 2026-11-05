@@ -13,9 +13,9 @@ export default function BuyerFooter() {
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="inline-block mb-3">
               <Image
-                src="/images/logo.jpg"
+                src="/images/rectangle logo ekora bazaar.jpeg"
                 alt="Ekora Bazaar"
-                width={144}
+                width={203}
                 height={48}
                 className="object-contain mix-blend-multiply"
                 style={{ height: "42px", width: "auto" }}

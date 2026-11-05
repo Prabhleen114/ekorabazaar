@@ -146,7 +146,7 @@ export async function GET(req: NextRequest) {
           const likePattern = `%${token}%`;
           groupConds.push(Prisma.sql`p.title ILIKE ${likePattern}`);
           if (token.length >= 4) {
-            groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.title) > 0.49`);
+            groupConds.push(Prisma.sql`strict_word_similarity(${token}, p.title) > 0.32`);
           }
         }
         if (groupConds.length > 0) {
