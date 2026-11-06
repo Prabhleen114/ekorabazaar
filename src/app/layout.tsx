@@ -117,6 +117,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import CookieConsent from "@/components/CookieConsent";
 import { HesitationTracker } from "@/components/HesitationTracker";
+import CITracker from "@/components/CITracker";
 
 export default function RootLayout({
   children,
@@ -206,6 +207,7 @@ export default function RootLayout({
       >
         {children}
         <HesitationTracker />
+        <CITracker />
         <MiniCartDrawer />
         <WhatsAppButton />
         <CookieConsent />
