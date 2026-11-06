@@ -2,13 +2,31 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Sparkles, ArrowRight, BookOpen, AlertCircle, RefreshCw } from "lucide-react";
+import { Sparkles, ArrowRight, BookOpen, AlertCircle, RefreshCw, Printer, Code, Check } from "lucide-react";
 
 export default function FragranceCalculatorClient() {
   const [waxWeight, setWaxWeight] = useState<number>(500);
   const [percentage, setPercentage] = useState<number>(8);
   const [calculationMode, setCalculationMode] = useState<"addition" | "total">("addition");
   const [vesselSize, setVesselSize] = useState<number>(200);
+  const [showEmbed, setShowEmbed] = useState<boolean>(false);
+  const [copiedEmbed, setCopiedEmbed] = useState<boolean>(false);
+
+  const handlePrint = () => {
+    if (typeof window !== "undefined") {
+      window.print();
+    }
+  };
+
+  const handleCopyEmbed = () => {
+    const embedCode = `<iframe src="https://www.ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`;
+    if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(embedCode).then(() => {
+        setCopiedEmbed(true);
+        setTimeout(() => setCopiedEmbed(false), 2500);
+      });
+    }
+  };
 
   // Calculations
   let calculatedWax = waxWeight;
@@ -193,6 +211,51 @@ export default function FragranceCalculatorClient() {
                 <p className="text-xl font-bold font-mono text-white">~{estimatedJars} candles</p>
               </div>
             </div>
+
+            {/* Action Bar for Educators & Makers: Print & Embed */}
+            <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-mono font-medium text-white transition-colors cursor-pointer"
+                title="Print batch recipe sheet for workshop or studio"
+              >
+                <Printer className="w-3.5 h-3.5 text-brand-orange" />
+                Print Batch Sheet
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowEmbed(!showEmbed)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-orange/20 hover:bg-brand-orange/30 text-xs font-mono font-medium text-brand-orange transition-colors cursor-pointer"
+                title="Share or embed this calculator on your blog or workshop website"
+              >
+                <Code className="w-3.5 h-3.5" />
+                {showEmbed ? "Hide Embed Code" : "Embed / Share Tool"}
+              </button>
+            </div>
+
+            {/* Embed Code Dropdown */}
+            {showEmbed && (
+              <div className="p-3.5 rounded-2xl bg-black/40 border border-white/15 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-white/70">
+                    Embed on your craft blog or workshop page:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmbed}
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold px-2 py-1 rounded bg-brand-orange text-white hover:bg-brand-orange/90 transition-colors cursor-pointer"
+                  >
+                    {copiedEmbed ? <Check className="w-3 h-3" /> : null}
+                    {copiedEmbed ? "Copied!" : "Copy Embed Code"}
+                  </button>
+                </div>
+                <code className="block p-2 bg-black/50 rounded-lg text-[10px] font-mono text-white/80 overflow-x-auto whitespace-pre">
+                  {`<iframe src="https://www.ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`}
+                </code>
+              </div>
+            )}
           </div>
 
           {/* Quick Guidance Box */}
