@@ -131831,25 +131831,25 @@
       },
       {
         "size": "1 Litre (1 Kg)",
-        "price": 450,
+        "price": 350,
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 450,
+            "price": 350,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 420,
-            "discountPct": 6.7
+            "price": 325,
+            "discountPct": 7.1
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 405,
-            "discountPct": 10
+            "price": 310,
+            "discountPct": 11.4
           }
         ]
       }

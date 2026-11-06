@@ -159,7 +159,9 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
   }
 
   if (sellerProductsFromDB.length > 0) {
-    allProducts = [...sellerProductsFromDB, ...baseCatalog];
+    const baseIds = new Set(baseCatalog.map(p => String(p.id)));
+    const uniqueSellerProducts = sellerProductsFromDB.filter(p => !baseIds.has(String(p.id)));
+    allProducts = [...uniqueSellerProducts, ...baseCatalog];
   }
 
   return { catalog: allProducts, facets: baseFacets };
