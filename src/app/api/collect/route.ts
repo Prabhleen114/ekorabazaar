@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import prisma from "@/lib/db";
 import { ciStore } from "@/lib/e2e-store";
 
+export const dynamic = "force-dynamic";
+
 const EventPayloadSchema = z.object({
-  event_id: z.string().uuid().or(z.string().min(5)),
+  event_id: z.string().min(5),
   anonymous_id: z.string().min(3),
   session_id: z.string().min(3),
   customer_id: z.string().nullable().optional(),
@@ -16,10 +19,13 @@ const EventPayloadSchema = z.object({
       source: z.string().optional(),
       medium: z.string().optional(),
       campaign: z.string().optional(),
+      term: z.string().optional(),
+      content: z.string().optional(),
     })
     .optional(),
   props: z.record(z.string(), z.any()).optional(),
   ts: z.string().optional(),
+  consent: z.boolean().optional().default(true),
 });
 
 const BatchSchema = z.union([
@@ -28,20 +34,59 @@ const BatchSchema = z.union([
   z.object({ events: z.array(EventPayloadSchema) }),
 ]);
 
-// Set of processed event IDs for de-duplication
+// In-memory set of processed event IDs for instantaneous de-duplication
 const seenEventIds = new Set<string>();
+
+// Rate-limiting map: tracks event counts in rolling 1-minute window per IP / identifier
+const rateLimits = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX_PER_MINUTE = 120;
+
+// Strictly necessary server-side events allowed even without consent
+const STRICTLY_NECESSARY_EVENTS = new Set([
+  "payment_attempt",
+  "payment_fail",
+  "purchase",
+  "api_error",
+  "client_error",
+]);
+
+export function isBotUserAgent(userAgent: string): boolean {
+  if (!userAgent) return false;
+  return /bot|crawler|spider|headless|crawl|slurp|facebookexternalhit|whatsapp|preview|bytespider/i.test(
+    userAgent
+  );
+}
+
+export function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const entry = rateLimits.get(key);
+  if (!entry || now > entry.resetAt) {
+    rateLimits.set(key, { count: 1, resetAt: now + 60000 });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX_PER_MINUTE;
+}
 
 export async function POST(req: NextRequest) {
   try {
     const userAgent = req.headers.get("user-agent") || "";
-    // Bot filtering
-    const isBot =
-      /bot|crawler|spider|headless|crawl|slurp|facebookexternalhit|whatsapp/i.test(
-        userAgent
-      );
+    const clientIp =
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown-ip";
 
-    if (isBot) {
+    // 1. Bot filtering
+    if (isBotUserAgent(userAgent)) {
       return NextResponse.json({ success: true, dropped: "bot" });
+    }
+
+    // 2. Rate limiting check
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        { status: 429 }
+      );
     }
 
     const raw = await req.json();
@@ -63,26 +108,38 @@ export async function POST(req: NextRequest) {
       eventsList = [parseResult.data as z.infer<typeof EventPayloadSchema>];
     }
 
-    const acceptedCount: number[] = [];
+    const acceptedEvents: any[] = [];
+    const dbEventsToInsert: any[] = [];
+    const identityLinksToUpsert: { anonymousId: string; customerId: string }[] = [];
 
     for (const evt of eventsList) {
-      // De-duplicate on event_id
+      // 3. De-duplicate on event_id
       if (seenEventIds.has(evt.event_id)) {
         continue;
       }
       seenEventIds.add(evt.event_id);
-      if (seenEventIds.size > 20000) {
+      if (seenEventIds.size > 50000) {
         seenEventIds.clear();
       }
 
-      // Check internal staff flag
+      // 4. Consent check: if consent is false, reject non-essential behavioural events
+      const hasConsent = evt.consent !== false;
+      if (!hasConsent && !STRICTLY_NECESSARY_EVENTS.has(evt.event_name)) {
+        continue;
+      }
+
+      // 5. Staff / Internal tagging
       const isInternal =
         evt.customer_id === "prabhleen.kaur1306@gmail.com" ||
-        evt.customer_id === "aryann1217@gmail.com";
+        evt.customer_id === "aryann1217@gmail.com" ||
+        evt.props?.is_internal === true;
+
+      const isSynthetic = evt.props?.is_synthetic === true;
+      const eventTimestamp = evt.ts ? new Date(evt.ts) : new Date();
 
       const record = {
         event_id: evt.event_id,
-        ts: evt.ts || new Date().toISOString(),
+        ts: eventTimestamp.toISOString(),
         anonymous_id: evt.anonymous_id,
         session_id: evt.session_id,
         customer_id: evt.customer_id || null,
@@ -90,13 +147,33 @@ export async function POST(req: NextRequest) {
         product_id: evt.product_id || null,
         page_path: evt.page_path || "/",
         device: evt.device || "desktop",
-        utm: evt.utm,
-        props: evt.props,
+        utm: evt.utm || undefined,
+        props: evt.props || undefined,
         is_bot: false,
         is_internal: isInternal,
+        is_synthetic: isSynthetic,
       };
 
+      // Add to fast in-memory store for instantaneous portal UI feedback
       ciStore.rawEvents.push(record);
+
+      // Prepare database record for Postgres
+      dbEventsToInsert.push({
+        eventId: evt.event_id,
+        ts: eventTimestamp,
+        anonymousId: evt.anonymous_id,
+        sessionId: evt.session_id,
+        customerId: evt.customer_id || null,
+        eventName: evt.event_name,
+        productId: evt.product_id || null,
+        pagePath: evt.page_path || "/",
+        device: evt.device || "desktop",
+        utm: evt.utm || undefined,
+        props: evt.props || undefined,
+        isBot: false,
+        isInternal,
+        isSynthetic,
+      });
 
       // Identity stitching
       if (evt.customer_id && evt.anonymous_id) {
@@ -111,15 +188,54 @@ export async function POST(req: NextRequest) {
             linked_at: new Date().toISOString(),
           });
         }
+        identityLinksToUpsert.push({
+          anonymousId: evt.anonymous_id,
+          customerId: evt.customer_id,
+        });
       }
 
-      acceptedCount.push(1);
+      acceptedEvents.push(record);
+    }
+
+    // 6. Asynchronous persistence to PostgreSQL
+    if (dbEventsToInsert.length > 0) {
+      prisma.cIEvent
+        .createMany({
+          data: dbEventsToInsert,
+          skipDuplicates: true,
+        })
+        .catch((err) => {
+          console.error("[CI Collector DB write error]:", err);
+        });
+    }
+
+    if (identityLinksToUpsert.length > 0) {
+      Promise.all(
+        identityLinksToUpsert.map((link) =>
+          prisma.cIIdentityLink
+            .upsert({
+              where: {
+                anonymousId_customerId: {
+                  anonymousId: link.anonymousId,
+                  customerId: link.customerId,
+                },
+              },
+              create: {
+                anonymousId: link.anonymousId,
+                customerId: link.customerId,
+                linkedAt: new Date(),
+              },
+              update: {},
+            })
+            .catch(() => {})
+        )
+      ).catch(() => {});
     }
 
     return NextResponse.json({
       success: true,
       processed: eventsList.length,
-      accepted: acceptedCount.length,
+      accepted: acceptedEvents.length,
     });
   } catch (error: any) {
     console.error("[Collector API Error]:", error);

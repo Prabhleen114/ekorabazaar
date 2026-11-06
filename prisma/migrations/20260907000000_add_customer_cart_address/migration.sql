@@ -1,4 +1,4 @@
-﻿-- Migration: 20260907000000_add_customer_cart_address
+-- Migration: 20260907000000_add_customer_cart_address
 -- Add Address, Cart, CartItem tables; add addressId + addressSnapshot to Order
 
 CREATE TABLE "Address" (

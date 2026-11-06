@@ -141,6 +141,9 @@ model Order {
   shiprocketOrderId String?
   trackingUrl       String?
   dispatchedAt      DateTime?
+  cancellationReason String?
+  source            String?              @default("website")
+  isSynthetic       Boolean              @default(false)
   address           Address?             @relation(fields: [addressId], references: [id])
   customer          User                 @relation(fields: [customerId], references: [id])
   items             OrderItem[]
@@ -360,4 +363,168 @@ enum ShippingStatus {
   DELIVERED
   CANCELLED
   EXCEPTION
+}
+
+// ─── Customer Intelligence Tables ─────────────────────────────────────────────
+
+/// Raw first-party events (all 20 event types from the CI plan).
+/// NOTE: Postgres table partitioning is managed via raw SQL migration; Prisma
+/// models the logical table without partition syntax.
+model CIEvent {
+  eventId     String   @id @map("event_id")
+  ts          DateTime
+  anonymousId String   @map("anonymous_id")
+  sessionId   String   @map("session_id")
+  customerId  String?  @map("customer_id")
+  eventName   String   @map("event_name")
+  productId   String?  @map("product_id")
+  pagePath    String?  @map("page_path")
+  device      String?
+  utm         Json?
+  props       Json?
+  isBot       Boolean  @default(false) @map("is_bot")
+  isInternal  Boolean  @default(false) @map("is_internal")
+  isSynthetic Boolean  @default(false) @map("is_synthetic")
+
+  @@index([sessionId, ts])
+  @@index([eventName, ts])
+  @@index([anonymousId, ts])
+  @@map("ci_events")
+}
+
+/// Anonymous-to-customer identity stitching.
+model CIIdentityLink {
+  anonymousId String   @map("anonymous_id")
+  customerId  String   @map("customer_id")
+  linkedAt    DateTime @default(now()) @map("linked_at")
+
+  @@id([anonymousId, customerId])
+  @@index([customerId])
+  @@map("ci_identity_links")
+}
+
+/// One row per visitor session (built by the 15-min sessionizer cron).
+model CISession {
+  sessionId   String   @id @map("session_id")
+  visitorKey  String   @map("visitor_key")
+  startedAt   DateTime @map("started_at")
+  endedAt     DateTime @map("ended_at")
+  source      String?
+  device      String?
+  pages       Int      @default(0)
+  maxStage    String?  @map("max_stage")
+  cartValue   Decimal? @map("cart_value") @db.Decimal(12, 2)
+  hadError    Boolean  @default(false) @map("had_error")
+  isLost      Boolean  @default(false) @map("is_lost")
+  isRecovered Boolean? @map("is_recovered")
+
+  diagnosis CISessionDiagnosis?
+
+  @@index([visitorKey, startedAt])
+  @@index([isLost, startedAt])
+  @@map("ci_sessions")
+}
+
+/// Per-visitor rolling 30-day features (rebuilt hourly).
+model CICustomerFeature {
+  visitorKey        String    @id @map("visitor_key")
+  sessions30d       Int       @default(0) @map("sessions_30d")
+  productViews30d   Int       @default(0) @map("product_views_30d")
+  carts30d          Int       @default(0) @map("carts_30d")
+  checkouts30d      Int       @default(0) @map("checkouts_30d")
+  ordersTotal       Int       @default(0) @map("orders_total")
+  lastOrderAt       DateTime? @map("last_order_at")
+  avgOrderValue     Decimal?  @map("avg_order_value") @db.Decimal(12, 2)
+  coaClicks30d      Int       @default(0) @map("coa_clicks_30d")
+  whatsappClicks30d Int       @default(0) @map("whatsapp_clicks_30d")
+  updatedAt         DateTime  @default(now()) @map("updated_at")
+
+  @@map("ci_customer_features")
+}
+
+/// Per-product daily demand (rebuilt hourly from events + orders).
+model CIProductDaily {
+  day              DateTime @db.Date
+  productId        String   @map("product_id")
+  views            Int      @default(0)
+  carts            Int      @default(0)
+  purchases        Int      @default(0)
+  unitsSold        Int      @default(0) @map("units_sold")
+  searches         Int      @default(0)
+  noResultSearches Int      @default(0) @map("no_result_searches")
+  oosViews         Int      @default(0) @map("oos_views")
+  requests         Int      @default(0)
+  whatsappClicks   Int      @default(0) @map("whatsapp_clicks")
+
+  @@id([day, productId])
+  @@index([productId, day])
+  @@map("ci_product_daily")
+}
+
+/// One cause per lost session with evidence (hourly diagnosis cron).
+model CISessionDiagnosis {
+  sessionId   String    @id @map("session_id")
+  cause       String
+  confidence  String
+  evidence    Json
+  ruleVersion String    @map("rule_version")
+  diagnosedAt DateTime  @default(now()) @map("diagnosed_at")
+  handled     Boolean   @default(false)
+  handledAt   DateTime? @map("handled_at")
+  handledBy   String?   @map("handled_by")
+
+  session CISession @relation(fields: [sessionId], references: [sessionId])
+
+  @@index([cause, diagnosedAt])
+  @@index([handled, diagnosedAt])
+  @@map("ci_session_diagnosis")
+}
+
+/// Recommended actions per visitor, with holdout group.
+model CIAction {
+  actionId   BigInt    @id @default(autoincrement()) @map("action_id")
+  visitorKey String    @map("visitor_key")
+  cause      String
+  actionType String    @map("action_type")
+  inHoldout  Boolean   @default(false) @map("in_holdout")
+  status     String    @default("suggested")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  handledBy  String?   @map("handled_by")
+  handledAt  DateTime? @map("handled_at")
+
+  outcome CIOutcome?
+
+  @@index([visitorKey, createdAt])
+  @@index([status, createdAt])
+  @@map("ci_actions")
+}
+
+/// What happened after each action (7-day attribution window).
+model CIOutcome {
+  actionId    BigInt    @id @map("action_id")
+  purchased   Boolean   @default(false)
+  orderValue  Decimal?  @map("order_value") @db.Decimal(12, 2)
+  grossMargin Decimal?  @map("gross_margin") @db.Decimal(12, 2)
+  windowEnd   DateTime? @map("window_end")
+
+  action CIAction @relation(fields: [actionId], references: [actionId])
+
+  @@map("ci_outcomes")
+}
+
+/// Supplier reliability per product (refreshed daily).
+model CISupplierHealth {
+  sellerId        String   @map("seller_id")
+  productId       String   @map("product_id")
+  avgDispatchDays Decimal  @map("avg_dispatch_days") @db.Decimal(6, 2)
+  cancelRate      Decimal  @map("cancel_rate") @db.Decimal(6, 4)
+  stockoutDays30d Int      @map("stockout_days_30d")
+  isFlagged       Boolean  @default(false) @map("is_flagged")
+  hasCoaDoc       Boolean  @default(false) @map("has_coa_doc")
+  listingScore    Int      @default(0) @map("listing_score")
+  updatedAt       DateTime @default(now()) @map("updated_at")
+
+  @@id([sellerId, productId])
+  @@index([isFlagged])
+  @@map("ci_supplier_health")
 }
