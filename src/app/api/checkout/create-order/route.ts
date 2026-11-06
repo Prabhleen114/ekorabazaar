@@ -1,3 +1,4 @@
+import { logPaymentAttempt, logApiError } from "@/lib/server-ci";
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
@@ -8,8 +9,9 @@ import catalogProducts from '@/lib/data/products.json'
 import { validateBody, CreateOrderSchema } from '@/lib/validation'
 
 export async function POST(req: Request) {
+  const startTime = Date.now();
+  let userId: string | null = null;
   try {
-    let userId: string | null = null
     try {
       const session = await requireAuth()
       userId = session.userId
@@ -182,7 +184,7 @@ export async function POST(req: Request) {
       const taxPaise = Math.round(subtotalPaise - (subtotalPaise / 1.18));
       const order = await tx.order.create({
         data: {
-          customerId: actualUserId,
+          customerId: finalUserId,
           total: finalAmountPaise,
           subtotal: subtotalPaise,
           shipping: shippingChargePaise,
@@ -218,6 +220,13 @@ export async function POST(req: Request) {
       select: { name: true, email: true, phone: true }
     }) : null
 
+    // Customer Intelligence: log payment attempt
+    logPaymentAttempt({
+      orderId: createdOrder.id,
+      amount: finalAmountPaise,
+      customerId: finalUserId,
+    }).catch(() => {});
+
     return NextResponse.json({ 
       success: true, 
       orderId: createdOrder.id,
@@ -238,6 +247,13 @@ export async function POST(req: Request) {
     
     // Extract actual error from Razorpay SDK if available
     const errorMsg = error.error?.description || error.message || "Internal Server Error";
+    logApiError({
+      route: "/api/checkout/create-order",
+      status: 500,
+      latencyMs: Date.now() - startTime,
+      errorMessage: errorMsg,
+      customerId: userId,
+    }).catch(() => {});
     
     // Return standard error to client
     return NextResponse.json({ error: errorMsg }, { status: 500 })

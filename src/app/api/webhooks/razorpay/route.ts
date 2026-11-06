@@ -1,3 +1,4 @@
+import { logPurchase, logPaymentFail } from "@/lib/server-ci";
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { verifyWebhookSignature } from '@/lib/razorpay'
@@ -83,6 +84,13 @@ export async function POST(req: Request) {
 
         // --- Process SELLER ONBOARDING PAYMENT ---
         if (payment.type === 'SELLER_ONBOARDING' && payment.sellerId) {
+          logPaymentFail({
+            orderId: payment.orderId || undefined,
+            errorCode: payload.error_code || "PAYMENT_FAILED",
+            errorDescription: payload.error_description || undefined,
+            amount: payload.amount,
+            customerId: payment.userId,
+          }).catch(() => {});
           await tx.payment.update({
             where: { id: payment.id },
             data: { status: PaymentStatus.CAPTURED, razorpayPaymentId }
@@ -114,6 +122,13 @@ export async function POST(req: Request) {
             where: { id: payment.orderId },
             data: { status: OrderStatus.PAID, paymentStatus: PaymentStatus.CAPTURED }
           })
+          logPurchase({
+            orderId: payment.orderId,
+            amount: payment.amount,
+            itemCount: payment.order?.items?.length || 1,
+            customerId: payment.userId,
+            source: "razorpay_webhook",
+          }).catch(() => {});
 
           return { justCapturedOrderId: payment.orderId }
         }

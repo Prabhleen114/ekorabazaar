@@ -1,3 +1,4 @@
+import { logPurchase, logPaymentFail } from "@/lib/server-ci";
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
@@ -99,6 +100,13 @@ export async function POST(req: Request) {
 
       // 4. Log purchase event into Customer Intelligence Layer
       try {
+        logPurchase({
+          orderId: result.orderId,
+          amount: 0,
+          itemCount: 1,
+          customerId: session.userId,
+          source: "website",
+        }).catch(() => {});
         await prisma.event.create({
           data: {
             userId: session.userId,
@@ -122,6 +130,10 @@ export async function POST(req: Request) {
     if (error.message === "UNAUTHORIZED" || error.message === "Unauthorized payment manipulation.") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+    logPaymentFail({
+      errorCode: error.message || "INTERNAL_ERROR",
+      customerId: null,
+    }).catch(() => {});
     return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 })
   }
 }
