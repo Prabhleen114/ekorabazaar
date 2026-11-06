@@ -179,12 +179,14 @@ export async function POST(req: Request) {
         actualUserId = guestUser.id
       }
 
+      const taxPaise = Math.round(subtotalPaise - (subtotalPaise / 1.18));
       const order = await tx.order.create({
         data: {
           customerId: actualUserId,
           total: finalAmountPaise,
           subtotal: subtotalPaise,
           shipping: shippingChargePaise,
+          tax: taxPaise,
           status: OrderStatus.PAYMENT_PENDING,
           razorpayOrderId: rzpOrderId,
           addressId: addressId && userId ? addressId : null,

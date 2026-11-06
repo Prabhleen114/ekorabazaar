@@ -13,6 +13,7 @@ import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getCategoryFaqs } from "@/lib/faqs";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
+import { getProductApplicationSubtext } from "@/lib/catalog-subtext";
 import ProductKeySpecs from "@/components/ProductKeySpecs";
 import ProductFaqSection from "@/components/ProductFaqSection";
 import catalogProducts from "@/lib/data/products.json";
@@ -327,7 +328,7 @@ export default async function ProductDetailsPage({ params }: Props) {
               {displayProduct.name}
             </h1>
             <p className="text-xs text-stone-600 font-sans leading-relaxed">
-              For candles, artisan soaps, reed diffusers &amp; studio craft formulations
+              {getProductApplicationSubtext(displayProduct.category, displayProduct.department)}
             </p>
           </div>
 

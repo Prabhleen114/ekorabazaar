@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireSeller } from '@/lib/auth'
 import { ProductStatus } from '@prisma/client'
+import { roundPrice, roundTiersWithDiscountPriority } from '@/lib/pricing-rounding'
 
 export async function POST(req: Request) {
   try {
@@ -23,16 +24,34 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Your account must be active to create products." }, { status: 403 })
     }
 
+    const rawPricePaise = parseInt(price, 10);
+    const priceRupees = rawPricePaise / 100;
+    const roundedPriceRupees = roundPrice(priceRupees);
+    const finalPricePaise = Math.round(roundedPriceRupees * 100);
+
+    let finalTiers = wholesaleTiers || null;
+    if (Array.isArray(wholesaleTiers) && wholesaleTiers.length > 0) {
+      const tiersInRupees = wholesaleTiers.map((t: any) => ({
+        ...t,
+        price: typeof t.price === 'number' ? t.price / 100 : t.price,
+      }));
+      const roundedTiersResult = roundTiersWithDiscountPriority(roundedPriceRupees, priceRupees, tiersInRupees);
+      finalTiers = roundedTiersResult.tiers.map((t: any) => ({
+        ...t,
+        price: typeof t.price === 'number' ? Math.round(t.price * 100) : t.price,
+      }));
+    }
+
     const product = await prisma.product.create({
       data: {
         title: title.trim(),
         description: description?.trim() || null,
         category: category?.trim() || null,
-        price: parseInt(price, 10),
+        price: finalPricePaise,
         stock: stock !== undefined ? parseInt(stock, 10) : 0,
         moq: moq !== undefined ? parseInt(moq, 10) : 1,
         imageUrl: imageUrl || null,
-        wholesaleTiers: wholesaleTiers || null,
+        wholesaleTiers: finalTiers,
         sellerId: session.sellerId!,
         source: 'SELLER',
         status: ProductStatus.DRAFT

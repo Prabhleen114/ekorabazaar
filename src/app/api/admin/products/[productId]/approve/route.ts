@@ -3,6 +3,7 @@ import prisma from '@/lib/db'
 import { requireAdmin } from '@/lib/auth'
 import { logAudit } from '@/lib/audit'
 import { ProductStatus } from '@prisma/client'
+import { roundPrice } from '@/lib/pricing-rounding'
 
 export async function POST(req: Request, { params }: { params: Promise<{ productId: string }> }) {
   try {
@@ -31,7 +32,8 @@ export async function POST(req: Request, { params }: { params: Promise<{ product
        if (isNaN(customerPrice) || customerPrice <= 0) {
          return NextResponse.json({ error: "Invalid customerPrice provided" }, { status: 400 })
        }
-       finalCustomerPrice = customerPrice
+       const custRupees = customerPrice / 100;
+       finalCustomerPrice = Math.round(roundPrice(custRupees) * 100);
     }
 
     const updatedProduct = await prisma.product.update({

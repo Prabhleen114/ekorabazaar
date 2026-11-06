@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireSellerOwnership } from '@/lib/auth'
 import { ProductStatus } from '@prisma/client'
+import { roundPrice, roundTiersWithDiscountPriority } from '@/lib/pricing-rounding'
 
 export async function PATCH(req: Request, { params }: { params: Promise<{ productId: string }> }) {
   try {
@@ -66,9 +67,30 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ produc
       updateData.rejectionReason = null;
     }
 
-    // Handle Price Changes
-    if (price !== undefined && parseInt(price, 10) !== product.price) {
-      const newPrice = parseInt(price, 10);
+    // Handle Price Changes with Rounding
+    let roundedNewPrice = undefined;
+    if (price !== undefined) {
+      const rawPricePaise = parseInt(price, 10);
+      const priceRupees = rawPricePaise / 100;
+      const roundedPriceRupees = roundPrice(priceRupees);
+      roundedNewPrice = Math.round(roundedPriceRupees * 100);
+    }
+
+    if (wholesaleTiers !== undefined && Array.isArray(wholesaleTiers)) {
+      const currentPriceRupees = (roundedNewPrice ?? product.price) / 100;
+      const tiersInRupees = wholesaleTiers.map((t: any) => ({
+        ...t,
+        price: typeof t.price === 'number' ? t.price / 100 : t.price,
+      }));
+      const roundedTiersResult = roundTiersWithDiscountPriority(currentPriceRupees, currentPriceRupees, tiersInRupees);
+      updateData.wholesaleTiers = roundedTiersResult.tiers.map((t: any) => ({
+        ...t,
+        price: typeof t.price === 'number' ? Math.round(t.price * 100) : t.price,
+      }));
+    }
+
+    if (roundedNewPrice !== undefined && roundedNewPrice !== product.price) {
+      const newPrice = roundedNewPrice;
       
       // If product is not yet approved/published, just update the price directly
       if (product.status === ProductStatus.DRAFT || product.status === ProductStatus.REJECTED) {
