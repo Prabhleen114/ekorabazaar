@@ -233,6 +233,9 @@ export function roundTiersWithDiscountPriority(
   };
 }
 
+/** Alias for backward compatibility */
+export const roundAndValidateTiers = roundTiersWithDiscountPriority;
+
 /**
  * Standard Centralized Currency Formatter for Indian Rupee (INR)
  * Formats both Rupees and Paise uniformly.

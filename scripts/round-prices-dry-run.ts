@@ -107,13 +107,13 @@ async function runDryRun() {
 
       // 2. Product Bulk Tiers
       if (Array.isArray(p.tiers) && p.tiers.length > 0) {
-        const tierEval = roundAndValidateTiers(roundedPrice, p.tiers, DEFAULT_ROUNDING_CONFIG, false);
+        const tierEval = roundAndValidateTiers(roundedPrice, rawPrice, p.tiers, DEFAULT_ROUNDING_CONFIG);
         if (tierEval.hasBreaks) {
           totalTierBreaks++;
           anomalies.push({
             id: p.id,
             name: p.name || p.title,
-            issue: `Bulk tiers collapsed: ${tierEval.breaks.map(b => b.reason).join('; ')}`
+            issue: `Bulk tiers collapsed: ${tierEval.breaks.map((b: any) => b.reason).join('; ')}`
           });
         }
 
@@ -123,7 +123,7 @@ async function runDryRun() {
           const newTierPrice = t.price;
           const tierDiff = newTierPrice - oldTierPrice;
           const tierPct = oldTierPrice > 0 ? (tierDiff / oldTierPrice) * 100 : 0;
-          const isBreak = tierEval.breaks.some(b => b.tierIndex === idx);
+          const isBreak = tierEval.breaks.some((b: any) => b.tierIndex === idx);
 
           rows.push({
             productId: String(p.id),
@@ -172,13 +172,13 @@ async function runDryRun() {
 
           // Variant Tiers
           if (Array.isArray(variant.tiers) && variant.tiers.length > 0) {
-            const vTierEval = roundAndValidateTiers(vRounded, variant.tiers, DEFAULT_ROUNDING_CONFIG, false);
+            const vTierEval = roundAndValidateTiers(vRounded, vPrice, variant.tiers, DEFAULT_ROUNDING_CONFIG);
             vTierEval.tiers.forEach((vt: any, vtIdx: number) => {
               const oldVtPrice = typeof vt.price === 'number' ? vt.price : vPrice * (1 - (vt.discount || vt.discountPct || 0) / 100);
               const newVtPrice = vt.price;
               const vtDiff = newVtPrice - oldVtPrice;
               const vtPct = oldVtPrice > 0 ? (vtDiff / oldVtPrice) * 100 : 0;
-              const isBreak = vTierEval.breaks.some(b => b.tierIndex === vtIdx);
+              const isBreak = vTierEval.breaks.some((b: any) => b.tierIndex === vtIdx);
 
               rows.push({
                 productId: String(p.id),
