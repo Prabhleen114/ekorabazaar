@@ -38208,7 +38208,7 @@
     "name": "Paraffin Wax Slab White Block for Candle Making, DIY Crafts, Wax Melts & Industrial Use (1 Kg)",
     "category": "Candle Waxes & Additives",
     "description": "Paraffin Wax Slab White Block is a clean, white, easy-to-melt wax suitable for candle making, wax melts, tealights, DIY crafts, coating, polishing and general industrial use. It offers smooth melting, good mold release and excellent compatibility with fragrance oils and candle colors.",
-    "price": 260,
+    "price": 200,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
     "image": "/images/products/waxes/paraffin-wax-pellets-white-granule-chunksmix-of-bo.webp",
@@ -38216,19 +38216,19 @@
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 260,
+        "price": 200,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 247,
+        "price": 190,
         "discountPct": 5
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 234,
+        "price": 180,
         "discountPct": 10
       }
     ],
@@ -38292,24 +38292,24 @@
     "variants": [
       {
         "size": "1 Kg",
-        "price": 260,
+        "price": 200,
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 260,
+            "price": 200,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 247,
+            "price": 190,
             "discountPct": 5
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 234,
+            "price": 180,
             "discountPct": 10
           }
         ]
