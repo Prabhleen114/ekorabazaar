@@ -152,7 +152,7 @@ export function diagnoseSession(
     }
     for (const sup of flaggedSuppliers) {
       evidenceMap.supply_problem.push(
-        `Supplier ${sup.seller_name} flagged: ${sup.flag_reasons.join(", ")}`
+        `Supplier ${sup.seller_name || sup.seller_id} flagged: ${(sup.flag_reasons || ["dispatch or cancellation issue"]).join(", ")}`
       );
     }
   }
@@ -184,16 +184,14 @@ export function diagnoseSession(
   // 5. Shipping shock check
   const shippingEvt = sessionEvents.find((e) => e.event_name === "shipping_threshold_view");
   const freeThreshold = 2000;
-  if (shippingEvt || (session.cart_value > 0 && session.cart_value < freeThreshold && session.max_stage === "cart")) {
-    const diff = freeThreshold - session.cart_value;
-    if (diff > 0 && diff <= 450) {
-      matchedCauses.push("shipping_shock");
-      evidenceMap.shipping_shock = [
-        `Cart value of ₹${session.cart_value.toLocaleString("en-IN")} is ₹${diff.toLocaleString("en-IN")} below ₹${freeThreshold.toLocaleString("en-IN")} free shipping cutoff`,
-        "Session exited at or immediately following shipping fee reveal",
-        "High probability of recovery with a low-cost wick or fragrance oil add-on",
-      ];
-    }
+  const diff = freeThreshold - session.cart_value;
+  if (shippingEvt || (session.cart_value > 0 && session.max_stage === "cart" && diff > 0 && diff <= 450)) {
+    matchedCauses.push("shipping_shock");
+    evidenceMap.shipping_shock = [
+      `Cart value of ₹${session.cart_value.toLocaleString("en-IN")} is ₹${diff.toLocaleString("en-IN")} below ₹${freeThreshold.toLocaleString("en-IN")} free shipping cutoff`,
+      "Session exited at or immediately following shipping fee reveal",
+      "High probability of recovery with a low-cost wick or fragrance oil add-on",
+    ];
   }
 
   // 6. Tier confusion check

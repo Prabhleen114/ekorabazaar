@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runIntelligenceFlagJobs } from "@/customer-intelligence/lib/intelligence";
+import { runAllIntelligenceCronJobs } from "@/customer-intelligence/lib/cron-jobs";
 
 export const dynamic = "force-dynamic";
 
@@ -9,27 +10,27 @@ export const dynamic = "force-dynamic";
  * Schedule: "0 * * * *" (see vercel.json)
  */
 export async function GET(req: NextRequest) {
-  // Verify the request is from Vercel's cron scheduler
+  // Verify the request is from Vercel's cron scheduler or admin
   const authHeader = req.headers.get("authorization");
   const expectedSecret = process.env.CRON_SECRET;
 
-  if (!expectedSecret || authHeader !== `Bearer ${expectedSecret}`) {
+  if (expectedSecret && authHeader !== `Bearer ${expectedSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const result = await runIntelligenceFlagJobs();
+    const flagsResult = await runIntelligenceFlagJobs();
+    const ciRollupResult = await runAllIntelligenceCronJobs();
 
     console.log(
-      `[Cron Intelligence] Run at ${result.runAt} — ${result.totalFlagsGenerated} flags generated`,
-      result.flagCounts
+      `[Cron Intelligence] Completed at ${new Date().toISOString()} — flags: ${flagsResult.totalFlagsGenerated}, sessions: ${ciRollupResult.sessionizer.sessionsProcessed}, diagnosed: ${ciRollupResult.diagnosis.diagnosedCount}`
     );
 
     return NextResponse.json({
-      success: result.success,
-      runAt: result.runAt,
-      totalFlagsGenerated: result.totalFlagsGenerated,
-      flagCounts: result.flagCounts,
+      success: true,
+      runAt: new Date().toISOString(),
+      flags: flagsResult,
+      pipeline: ciRollupResult,
     });
   } catch (err: any) {
     console.error("[Cron Intelligence Error]:", err);

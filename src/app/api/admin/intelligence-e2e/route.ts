@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
-import { ciStore } from "@/lib/e2e-store";
+import { ciStore } from "@/customer-intelligence/lib/e2e-store";
+import { fetchGA4Analytics } from "@/customer-intelligence/lib/ga4-service";
+import { getLiveSessionInspection } from "@/customer-intelligence/lib/db-intelligence";
 
 export const dynamic = "force-dynamic";
 
@@ -12,9 +14,16 @@ export async function GET(req: NextRequest) {
     const filterCause = searchParams.get("cause") || "all";
     const search = searchParams.get("q") || "";
 
+    // 1. Fetch live Google Analytics 4 data (if API credentials configured)
+    const ga4Result = await fetchGA4Analytics();
+
+    // 2. Hydrate store with real live records from PostgreSQL
+    await ciStore.loadFromDatabase();
+
+    // 3. Assemble true, unpolluted data
     const today = ciStore.getTodayDashboard();
     const lostSessions = ciStore.getLostSessions(filterCause, search);
-    const funnel = ciStore.getFunnelData();
+    const funnel = ciStore.getFunnelData(ga4Result.funnel);
     const demand = ciStore.getDemandReports();
     const customers = ciStore.getCustomersProfiles();
     const suppliers = ciStore.getSupplierData();
@@ -23,6 +32,13 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      ga4: {
+        isConfigured: ga4Result.isConfigured,
+        measurementId: ga4Result.measurementId,
+        message: ga4Result.message,
+        traffic: ga4Result.traffic || null,
+        topProducts: ga4Result.topProducts || [],
+      },
       today,
       lostSessions,
       funnel,
@@ -43,6 +59,26 @@ export async function POST(req: NextRequest) {
     await requireAdmin();
     const body = await req.json();
     const action = body.action;
+
+    // Inspect Session: Full Cart & Visit Journey Breakdown
+    if (action === "inspect_session") {
+      const { session_id } = body;
+      if (!session_id) {
+        return NextResponse.json({ error: "session_id is required" }, { status: 400 });
+      }
+
+      const inspection = await getLiveSessionInspection(
+        session_id,
+        ciStore.rawEvents,
+        ciStore.sessions
+      );
+
+      if (!inspection) {
+        return NextResponse.json({ error: "Session not found" }, { status: 404 });
+      }
+
+      return NextResponse.json({ success: true, ...inspection });
+    }
 
     if (action === "handle_session") {
       const { session_id, handled_by } = body;

@@ -31,6 +31,7 @@ import {
   Search,
   Send,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   TrendingDown,
   TrendingUp,
@@ -75,6 +76,36 @@ export default function CustomerIntelligencePortal() {
 
   // Action status message
   const [actionNotice, setActionNotice] = useState<string | null>(null);
+
+  // Session Inspection State (Cart + Visit Journey)
+  const [inspectingSessionId, setInspectingSessionId] = useState<string | null>(null);
+  const [inspectData, setInspectData] = useState<any | null>(null);
+  const [inspectLoading, setInspectLoading] = useState(false);
+  const [inspectError, setInspectError] = useState<string | null>(null);
+
+  const handleInspectSession = async (sessionId: string) => {
+    try {
+      setInspectingSessionId(sessionId);
+      setInspectLoading(true);
+      setInspectData(null);
+      setInspectError(null);
+      const res = await fetch("/api/admin/intelligence-e2e", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "inspect_session", session_id: sessionId }),
+      });
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        throw new Error(errJson.error || "Failed to inspect session");
+      }
+      const json = await res.json();
+      setInspectData(json);
+    } catch (err: any) {
+      setInspectError(err.message || "Failed to load session inspection");
+    } finally {
+      setInspectLoading(false);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -220,6 +251,12 @@ export default function CustomerIntelligencePortal() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs md:flex">
+              <span className={`h-2 w-2 rounded-full ${data?.ga4?.isConfigured ? "bg-emerald-500 animate-pulse" : "bg-blue-500"}`} />
+              <span className="font-semibold text-slate-700">GA4:</span>
+              <span className="font-mono text-slate-500">{data?.ga4?.measurementId || "G-YTRDDR6JBB"}</span>
+              {data?.ga4?.isConfigured && <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-bold text-emerald-800">LIVE API</span>}
+            </div>
             <button
               onClick={() => setMaskContactDetails(!maskContactDetails)}
               className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
@@ -416,7 +453,18 @@ export default function CustomerIntelligencePortal() {
               </div>
 
               <div className="mt-4 divide-y divide-slate-100">
-                {today.rankedCauses.map((item: any, idx: number) => {
+                {today.rankedCauses.length === 0 ? (
+                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50/50 p-8 text-center">
+                    <CheckCircle className="mx-auto h-8 w-8 text-emerald-500" />
+                    <h4 className="mt-2 text-sm font-bold text-slate-900">
+                      No Cart Drop-offs or Technical Errors Detected
+                    </h4>
+                    <p className="mx-auto mt-1 max-w-md text-xs text-slate-500">
+                      Storefront tracking is active via Google Analytics 4 ({data?.ga4?.measurementId || "G-YTRDDR6JBB"}) and /api/collect. When drop-offs occur, causes ranked by rupees lost will appear here.
+                    </p>
+                  </div>
+                ) : (
+                  today.rankedCauses.map((item: any, idx: number) => {
                   const pct =
                     today.cartValueLost24h > 0
                       ? Math.min(100, Math.round((item.lostRupees / today.cartValueLost24h) * 100))
@@ -460,12 +508,18 @@ export default function CustomerIntelligencePortal() {
                           </div>
                           <button
                             onClick={() => {
-                              setLostSessionFilter(item.cause);
-                              setActiveTab("lost_sessions");
+                              const match = (lostSessions || []).find((s: any) => s.cause === item.cause);
+                              if (match) {
+                                handleInspectSession(match.session_id);
+                              } else {
+                                setLostSessionFilter(item.cause);
+                                setActiveTab("lost_sessions");
+                              }
                             }}
-                            className="rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                            className="flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 hover:border-emerald-300 hover:bg-emerald-50/50 shadow-sm"
                           >
-                            Inspect
+                            <Eye className="h-3 w-3 text-slate-500" />
+                            <span>Inspect</span>
                           </button>
                         </div>
                       </div>
@@ -476,7 +530,7 @@ export default function CustomerIntelligencePortal() {
                       </div>
                     </div>
                   );
-                })}
+                }))}
               </div>
             </div>
 
@@ -670,6 +724,15 @@ export default function CustomerIntelligencePortal() {
 
                           <td className="px-4 py-3.5 align-top text-right">
                             <div className="flex flex-col items-end gap-1.5">
+                              <button
+                                onClick={() => handleInspectSession(s.session_id)}
+                                className="flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm hover:border-emerald-400 hover:bg-emerald-50"
+                                title="Inspect visitor's cart items and step-by-step website journey"
+                              >
+                                <Eye className="h-3 w-3 text-slate-500" />
+                                <span>Inspect Cart & Journey</span>
+                              </button>
+
                               <button
                                 onClick={() => handleExplain(s.session_id)}
                                 className="flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
@@ -1483,6 +1546,307 @@ export default function CustomerIntelligencePortal() {
           </div>
         )}
       </main>
+
+      
+      {/* =================================================================== */}
+      {/* MODAL: SESSION INSPECTOR — CART & VISIT JOURNEY TIMELINE             */}
+      {/* =================================================================== */}
+      {inspectingSessionId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-3 sm:p-6 backdrop-blur-sm overflow-y-auto">
+          <div className="relative my-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xl max-h-[92vh] flex flex-col">
+            
+            {/* Header */}
+            <div className="flex items-start justify-between border-b border-slate-100 pb-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700 ring-1 ring-emerald-600/20">
+                    Visitor Session Inspection
+                  </span>
+                  {inspectData?.diagnosis?.causeLabel && (
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                      {inspectData.diagnosis.causeLabel}
+                    </span>
+                  )}
+                </div>
+                <h3 className="mt-1.5 text-base font-bold text-slate-900 flex items-center gap-2">
+                  <span>{inspectData?.session?.customerName || "Guest Visitor"}</span>
+                  {inspectData?.session?.customerPhone && (
+                    <span className="text-xs font-normal text-slate-500">
+                      ({maskPhone(inspectData.session.customerPhone)})
+                    </span>
+                  )}
+                </h3>
+                <div className="mt-0.5 font-mono text-[10px] text-slate-400">
+                  Session ID: {inspectingSessionId}
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setInspectingSessionId(null);
+                  setInspectData(null);
+                  setInspectError(null);
+                }}
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex-1 overflow-y-auto py-4 space-y-5 pr-1">
+              {inspectLoading && (
+                <div className="flex flex-col items-center justify-center py-12 gap-3">
+                  <RefreshCw className="h-7 w-7 animate-spin text-emerald-600" />
+                  <p className="text-xs font-medium text-slate-500">
+                    Reconstructing visitor cart and chronological journey...
+                  </p>
+                </div>
+              )}
+
+              {inspectError && (
+                <div className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-800">
+                  <p className="font-semibold">Unable to load session:</p>
+                  <p className="mt-0.5">{inspectError}</p>
+                </div>
+              )}
+
+              {inspectData && (
+                <>
+                  {/* Quick Meta Cards */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    <div className="rounded-lg bg-slate-50 p-2.5 border border-slate-100">
+                      <span className="text-[10px] font-semibold uppercase text-slate-400">Cart Value</span>
+                      <div className="text-sm font-extrabold text-slate-900">
+                        {inspectData.session.cartValue > 0
+                          ? `₹${inspectData.session.cartValue.toLocaleString("en-IN")}`
+                          : "₹0 (Browse)"}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-slate-50 p-2.5 border border-slate-100">
+                      <span className="text-[10px] font-semibold uppercase text-slate-400">Dwell Time</span>
+                      <div className="text-sm font-bold text-slate-800">
+                        {inspectData.session.durationMinutes} min
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-slate-50 p-2.5 border border-slate-100">
+                      <span className="text-[10px] font-semibold uppercase text-slate-400">Device</span>
+                      <div className="text-sm font-bold capitalize text-slate-800">
+                        {inspectData.session.device}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-slate-50 p-2.5 border border-slate-100">
+                      <span className="text-[10px] font-semibold uppercase text-slate-400">Source</span>
+                      <div className="text-sm font-bold capitalize text-slate-800 truncate">
+                        {inspectData.session.source}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section A: Customer's Cart */}
+                  <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                      <div className="flex items-center gap-2">
+                        <ShoppingCart className="h-4 w-4 text-emerald-600" />
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                          Customer's Cart at Exit
+                        </h4>
+                      </div>
+                      <span className="text-xs font-bold text-slate-900">
+                        Total: ₹{inspectData.cart.cartTotal.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+
+                    {inspectData.cart.isEmpty ? (
+                      <div className="py-6 text-center text-xs text-slate-500">
+                        Cart was empty at session exit. Visitor dropped off during product exploration.
+                      </div>
+                    ) : (
+                      <div className="mt-3 divide-y divide-slate-100 overflow-x-auto">
+                        <table className="w-full text-left text-xs">
+                          <thead>
+                            <tr className="text-[10px] font-semibold uppercase text-slate-400">
+                              <th className="pb-2">Product Name</th>
+                              <th className="pb-2 text-center">Qty</th>
+                              <th className="pb-2 text-right">Unit Price</th>
+                              <th className="pb-2 text-right">Line Total</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-50 font-medium">
+                            {inspectData.cart.items.map((item: any, i: number) => (
+                              <tr key={i} className="text-slate-800">
+                                <td className="py-2 pr-2">
+                                  <div className="font-semibold text-slate-900">{item.name}</div>
+                                  {item.slab && (
+                                    <span className="text-[10px] text-emerald-600">{item.slab}</span>
+                                  )}
+                                </td>
+                                <td className="py-2 text-center">{item.quantity}</td>
+                                <td className="py-2 text-right">
+                                  {item.unitPrice > 0 ? `₹${item.unitPrice.toLocaleString("en-IN")}` : "—"}
+                                </td>
+                                <td className="py-2 text-right font-bold text-slate-900">
+                                  {item.total > 0 ? `₹${item.total.toLocaleString("en-IN")}` : "—"}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Section B: Visit Journey Timeline */}
+                  <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5">
+                      <Clock className="h-4 w-4 text-emerald-600" />
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                        Visit Journey on Website ({inspectData.journey.length} Steps)
+                      </h4>
+                    </div>
+
+                    {inspectData.journey.length === 0 ? (
+                      <div className="py-6 text-center text-xs text-slate-500">
+                        No events logged for this session yet.
+                      </div>
+                    ) : (
+                      <div className="mt-3 relative pl-4 border-l-2 border-slate-200 space-y-4">
+                        {inspectData.journey.map((step: any, i: number) => {
+                          const isError = step.iconType === "error";
+                          const isCart = step.iconType === "cart";
+                          const isCheckout = step.iconType === "checkout" || step.iconType === "payment";
+                          const isWa = step.iconType === "whatsapp";
+
+                          return (
+                            <div key={i} className="relative group">
+                              {/* Dot */}
+                              <div
+                                className={`absolute -left-[21px] top-1 h-3 w-3 rounded-full border-2 border-white ${
+                                  isError
+                                    ? "bg-rose-500"
+                                    : isCart
+                                    ? "bg-blue-500"
+                                    : isCheckout
+                                    ? "bg-amber-500"
+                                    : isWa
+                                    ? "bg-emerald-500"
+                                    : "bg-slate-400"
+                                }`}
+                              />
+                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                                <div className="text-xs font-semibold text-slate-900">
+                                  {step.label}
+                                </div>
+                                <span className="font-mono text-[10px] text-slate-400">
+                                  {step.relativeTime}
+                                </span>
+                              </div>
+                              <div className="mt-0.5 font-mono text-[10px] text-slate-500">
+                                {step.pagePath}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Section C: Diagnosis & WhatsApp Outreach */}
+                  <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-4 w-4 text-emerald-600" />
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-900">
+                          Diagnosed Root Cause: {inspectData.diagnosis.causeLabel}
+                        </h4>
+                      </div>
+                      <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold uppercase text-emerald-800">
+                        {inspectData.diagnosis.confidence} Confidence
+                      </span>
+                    </div>
+
+                    <ul className="text-xs text-slate-700 space-y-1 pl-4 list-disc">
+                      {inspectData.diagnosis.evidence.map((ev: string, i: number) => (
+                        <li key={i}>{ev}</li>
+                      ))}
+                    </ul>
+
+                    {/* Pre-filled WhatsApp draft */}
+                    <div className="mt-2 pt-2 border-t border-emerald-200/60">
+                      <div className="flex items-center justify-between text-xs mb-1">
+                        <span className="font-semibold text-slate-700">Pre-filled WhatsApp Follow-up:</span>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(inspectData.whatsappDraft);
+                            setCopiedText(true);
+                            setTimeout(() => setCopiedText(false), 2000);
+                          }}
+                          className="flex items-center gap-1 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800"
+                        >
+                          <Copy className="h-3 w-3" />
+                          <span>{copiedText ? "Copied!" : "Copy"}</span>
+                        </button>
+                      </div>
+                      <p className="whitespace-pre-wrap rounded-lg bg-white p-3 text-xs text-slate-800 border border-emerald-200/80 leading-relaxed">
+                        {inspectData.whatsappDraft}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+              <button
+                onClick={() => {
+                  setInspectingSessionId(null);
+                  setInspectData(null);
+                  setInspectError(null);
+                }}
+                className="rounded-lg border border-slate-200 px-3.5 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+              >
+                Close
+              </button>
+
+              <div className="flex items-center gap-2">
+                {inspectData?.session?.sessionId && (
+                  <button
+                    onClick={() => {
+                      handleMarkHandled(inspectData.session.sessionId);
+                      setInspectingSessionId(null);
+                    }}
+                    className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-sm"
+                  >
+                    Mark Handled
+                  </button>
+                )}
+
+                {inspectData?.waLink ? (
+                  <a
+                    href={inspectData.waLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow hover:bg-emerald-700"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    <span>Open in WhatsApp</span>
+                  </a>
+                ) : (
+                  <button
+                    disabled
+                    className="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-400"
+                    title="No phone number identified for this guest visitor"
+                  >
+                    WhatsApp Unavailable (No Phone)
+                  </button>
+                )}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* =================================================================== */}
       {/* MODAL: EXPLAIN & DRAFT WHATSAPP MESSAGE (Page 5 & 18 of plan)       */}
