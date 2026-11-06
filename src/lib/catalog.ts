@@ -83,6 +83,7 @@ export function getSingletonCatalog(): { catalog: NormalizedProduct[]; facets: C
       description: desc,
       tags: tagsArr,
       tiers: isQuoteOnly ? [] : (Array.isArray(p.tiers) ? p.tiers : []),
+      variants: Array.isArray(p.variants) ? p.variants : [],
       isQuoteOnly,
       _isNormalized: true,
       _searchText: searchText

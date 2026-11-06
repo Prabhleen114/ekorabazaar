@@ -190438,7 +190438,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/images/products/lemon-soap-base.jpg",
+    "image": "/placeholder-product.svg",
     "tiers": [
       {
         "minQty": 1,
@@ -190480,7 +190480,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/images/products/lavender-soap-base.jpg",
+    "image": "/placeholder-product.svg",
     "tiers": [
       {
         "minQty": 1,
@@ -190522,7 +190522,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/images/products/orange-soap-base.jpg",
+    "image": "/placeholder-product.svg",
     "tiers": [
       {
         "minQty": 1,
@@ -190564,7 +190564,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/images/products/charcoal-soap-base.jpg",
+    "image": "/placeholder-product.svg",
     "tiers": [
       {
         "minQty": 1,
@@ -190606,7 +190606,7 @@
     "price": 238,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/images/products/mint-menthol-soap-base.jpg",
+    "image": "/placeholder-product.svg",
     "tiers": [
       {
         "minQty": 1,
