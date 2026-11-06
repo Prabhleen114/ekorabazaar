@@ -1191,7 +1191,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "12",
@@ -3388,7 +3389,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "39",
@@ -6830,8 +6832,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "81",
@@ -12062,7 +12064,8 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "143",
@@ -13889,7 +13892,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "165",
@@ -15956,7 +15960,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "191",
@@ -16756,7 +16761,8 @@
       "culinary-chocolatier",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "201",
@@ -22333,7 +22339,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "270",
@@ -28994,7 +29001,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "355",
@@ -29986,7 +29994,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "367",
@@ -30068,7 +30077,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": true,
+    "inStock": false
   },
   {
     "id": "368",
@@ -30154,7 +30164,8 @@
       "soap-atelier",
       "stone-studio"
     ],
-    "isQuoteOnly": false
+    "isQuoteOnly": false,
+    "inStock": true
   },
   {
     "id": "369",
