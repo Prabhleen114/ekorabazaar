@@ -130902,11 +130902,11 @@
     "id": "768",
     "name": "Citrus Fruit Fm Fragrance Oil (Candle & Wax Melt Grade)",
     "category": "Fragrance Oils",
-    "description": "Premium quality citrus fruit fm f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Premium concentrated citrus fruit fragrance oil crafted with vibrant zesty accords of sweet orange, lemon, lime, and ruby grapefruit. Skin-safe, cosmetic & candle grade formulation engineered for cold process soaps, soy candles, wax melts, and home diffusers with exceptional hot and cold throw.",
     "price": 110,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/493ss_thinkstock_rf_essential_oils-247x296.jpg",
+    "image": "/images/products/citrus-fruit-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -131054,17 +131054,20 @@
         ]
       }
     ],
-    "title": "Citrus Fruit Fm Fragrance Oil (Candle & Wax Melt Grade)"
+    "title": "Citrus Fruit Fm Fragrance Oil (Candle & Wax Melt Grade)",
+    "images": [
+      "/images/products/citrus-fruit-fragrance-oil.jpg"
+    ]
   },
   {
     "id": "769",
     "name": "Gentlemens Tonic Fragrance Oil (Candle & Wax Melt Grade)",
     "category": "Fragrance Oils",
-    "description": "Premium quality gentlemens tonic f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Sophisticated masculine fougère fragrance oil featuring invigorating tonic accords of Italian bergamot, juniper berries, fresh herbs, and warm cedarwood. Cosmetic & candle grade concentrated formulation ideal for artisan soaps, candles, wax melts, and grooming products.",
     "price": 110,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2024/12/fragrance-oil-500x500-1-1-247x296.webp",
+    "image": "/images/products/gentlemans-tonic-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -131235,17 +131238,20 @@
         ]
       }
     ],
-    "title": "Gentlemens Tonic Fragrance Oil (Candle & Wax Melt Grade)"
+    "title": "Gentlemens Tonic Fragrance Oil (Candle & Wax Melt Grade)",
+    "images": [
+      "/images/products/gentlemans-tonic-fragrance-oil.jpg"
+    ]
   },
   {
     "id": "772",
     "name": "Papaya Sk Fragrance Oil (Candle & Wax Melt Grade)",
     "category": "Fragrance Oils",
-    "description": "Premium quality papaya sk f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
+    "description": "Exotic sweet papaya fragrance oil radiating ripe tropical notes of sun-drenched golden papaya, mango nectar, and lush fruit undertones. Skin-safe, cosmetic & candle grade concentrated formulation for soaps, candles, lotions, and home diffusers.",
     "price": 110,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
-    "image": "https://jindeal.com/wp-content/uploads/2020/01/Vedini-Papaya-SK-Fragrance-Oil-247x296.png",
+    "image": "/images/products/papaya-fragrance-oil.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -131392,7 +131398,10 @@
         ]
       }
     ],
-    "title": "Papaya Sk Fragrance Oil (Candle & Wax Melt Grade)"
+    "title": "Papaya Sk Fragrance Oil (Candle & Wax Melt Grade)",
+    "images": [
+      "/images/products/papaya-fragrance-oil.jpg"
+    ]
   },
   {
     "id": "779",
