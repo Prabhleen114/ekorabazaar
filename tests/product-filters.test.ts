@@ -114,6 +114,7 @@ describe("Product Filters & Sorter - In-Memory Engine", () => {
       expect(normalizeSortKey("")).toBe("recommended");
       expect(normalizeSortKey(null)).toBe("recommended");
       expect(normalizeSortKey("unknown")).toBe("recommended");
+      expect(normalizeSortKey("featured")).toBe("recommended");
     });
   });
 
@@ -245,6 +246,23 @@ describe("Product Filters & Sorter - In-Memory Engine", () => {
       for (let i = 0; i < ids.length - 1; i++) {
         expect(ids[i]).toBeGreaterThanOrEqual(ids[i + 1]);
       }
+    });
+
+    it("sorts by recommended (featured) by highest discount by default", () => {
+      const res = filterAndSortCatalogProducts(SAMPLE_PRODUCTS, {});
+      // Highest discounts in stock: #5: 25%, #3: 20%, #1: 15%, #7: 10%, #2: 0, #6: 0, #4: out of stock
+      expect(res.items[0].id).toBe("5");
+      expect(res.items[1].id).toBe("3");
+      expect(res.items[2].id).toBe("1");
+      expect(res.items[3].id).toBe("7");
+    });
+
+    it("sorts by explicit sort: 'featured' by highest discount", () => {
+      const res = filterAndSortCatalogProducts(SAMPLE_PRODUCTS, { sort: "featured" });
+      expect(res.items[0].id).toBe("5");
+      expect(res.items[1].id).toBe("3");
+      expect(res.items[2].id).toBe("1");
+      expect(res.items[3].id).toBe("7");
     });
 
     it("sorts by discount_desc", () => {

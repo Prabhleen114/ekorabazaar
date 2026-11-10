@@ -229157,11 +229157,11 @@
     "id": "2282",
     "name": "Textured Jar Medium",
     "category": "Candle Jars & Containers",
-    "description": "Verified wholesale textured jar medium for serious craft creators and manufacturers.",
+    "description": "Premium flexible silicone mould set for crafting textured cylindrical candle jars and storage vessels with matching lid. Designed for gypsum, concrete, cement, jesmonite, and epoxy resin casting. Set includes jar mould (10.1cm dia x 7.2cm height, 135g) and textured lid mould (9.2cm dia).",
     "price": 650,
     "bulkDiscountAvailable": true,
     "maxDiscount": 20,
-    "image": "https://matinimpex.com/cdn/shop/files/whatsapp-image-2024-06-26-at-6-28-23-pm-1000x1000.webp?v=1735400741&width=533",
+    "image": "/images/products/textured-jar-medium-silicone-mould.jpg",
     "inStock": true,
     "tiers": [
       {
@@ -229195,7 +229195,10 @@
       "candle-studio"
     ],
     "isQuoteOnly": false,
-    "title": "Textured Jar Medium"
+    "title": "Textured Jar Medium",
+    "images": [
+      "/images/products/textured-jar-medium-silicone-mould.jpg"
+    ]
   },
   {
     "id": "2283",

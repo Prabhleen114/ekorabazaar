@@ -361,7 +361,7 @@ export default function ShopClient({
                 {searchQuery ? (
                   <option value="recommended">Relevance</option>
                 ) : (
-                  <option value="recommended">Featured / Bestselling</option>
+                  <option value="recommended">Featured</option>
                 )}
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>

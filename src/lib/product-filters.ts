@@ -49,6 +49,7 @@ export function normalizeSortKey(rawSort?: string | null): SortKey {
   if (s === "price-asc" || s === "low_to_high" || s === "price_low" || s === "price_asc") return "price_asc";
   if (s === "price-desc" || s === "high_to_low" || s === "price_high" || s === "price_desc") return "price_desc";
   if (s === "discount" || s === "discount_high" || s === "discount_desc") return "discount_desc";
+  if (s === "featured" || s === "recommended" || s === "relevance" || s === "default") return "recommended";
   return "recommended";
 }
 
@@ -99,6 +100,25 @@ export function normalizePriceRupees(rawPrice: any): number {
 }
 
 /**
+ * Sort comparator that prioritizes in-stock items, highest discount %,
+ * bulk discount availability, and then lower price.
+ */
+const sortByHighestDiscount = (a: NormalizedProduct, b: NormalizedProduct): number => {
+  if (a.inStock && !b.inStock) return -1;
+  if (!a.inStock && b.inStock) return 1;
+  const discA = a.maxDiscount || 0;
+  const discB = b.maxDiscount || 0;
+  if (discB !== discA) return discB - discA;
+  if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
+  if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
+  if (a.price !== b.price) return a.price - b.price;
+  const idA = parseInt(a.id, 10);
+  const idB = parseInt(b.id, 10);
+  if (!isNaN(idA) && !isNaN(idB)) return idA - idB;
+  return a.id.localeCompare(b.id);
+};
+
+/**
  * Typed Map of SortKey to pure comparator function.
  */
 export const SORT_COMPARATORS: Record<SortKey, (a: NormalizedProduct, b: NormalizedProduct) => number> = {
@@ -128,24 +148,8 @@ export const SORT_COMPARATORS: Record<SortKey, (a: NormalizedProduct, b: Normali
     if (isNumA && isNumB) return idB - idA;
     return b.id.localeCompare(a.id);
   },
-  discount_desc: (a, b) => {
-    const discA = a.maxDiscount || 0;
-    const discB = b.maxDiscount || 0;
-    if (discB !== discA) return discB - discA;
-    if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
-    if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
-    return a.price - b.price;
-  },
-  recommended: (a, b) => {
-    if (a.inStock && !b.inStock) return -1;
-    if (!a.inStock && b.inStock) return 1;
-    if (a.bulkDiscountAvailable && !b.bulkDiscountAvailable) return -1;
-    if (!a.bulkDiscountAvailable && b.bulkDiscountAvailable) return 1;
-    const idA = parseInt(a.id, 10);
-    const idB = parseInt(b.id, 10);
-    if (!isNaN(idA) && !isNaN(idB)) return idA - idB;
-    return 0;
-  },
+  discount_desc: sortByHighestDiscount,
+  recommended: sortByHighestDiscount,
 };
 
 /**
