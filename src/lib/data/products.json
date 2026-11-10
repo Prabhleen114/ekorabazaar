@@ -1,5 +1,217 @@
 [
   {
+    "id": "3091",
+    "name": "STRAWBERRY FLAVOR FOR LIP BALM AND COSMETIC",
+    "category": "Silicone & Baking Molds",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 195,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2022/06/plant_fragaria_x_ananassa___mae___1_53-247x296.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 195,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 185,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 176,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
+    "id": "3090",
+    "name": "CHOCOLATE FLAVOR OIL FOR LIP BALM, CANDY, BAKERY & DIY COSMETICS – RICH COCOA AROMA",
+    "category": "Candle & Soap Making",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 139,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2022/06/Chocolate-247x296.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 139,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 132,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 125,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
+    "id": "3089",
+    "name": "BUBBLE GUM FLAVOUR OIL FOR CANDY, LIP BALM, BAKERY & DIY COSMETICS – CLASSIC SWEET BUBBLEGUM AROMA",
+    "category": "Candle & Soap Making",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 209,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/05/Vedini-Bubble-Gum-Flavour-Bottle-247x296.png",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 209,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 199,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 188,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
+    "id": "3088",
+    "name": "30ML DOUBLE LAYER FROSTED CREAM JAR – PINK & BLUE | PP COSMETIC CONTAINER",
+    "category": "Silicone & Baking Molds",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 22,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/11/30ml-Cream-Jar-Double-Layer-Jar-Cosmetic-Packaging-Frosted-Cream-Jar-Pink-Cream-Jar-Blue-Cream-Jar-PP--247x296.png",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 22,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 21,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 20,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
     "id": "3085",
     "name": "DEAD SEA MUD CLAY POWDER FOR FACE PACK, BODY & HAIR NATURAL DEAD SEA MUD MASK FOR FACE, CLAY FACE MASK",
     "category": "Silicone & Baking Molds",
@@ -6539,8 +6751,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "WHITE MICA POWDER ( SILVER )"
   },
   {
@@ -10146,8 +10358,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "NEEM HERBEL SOAP BASE (SLS,SLES AND PARABEN FREE) 1KG"
   },
   {
@@ -18361,8 +18573,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "200ML COFFEE GLASS CANDLE JAR – PREMIUM FROSTED GLASS JAR FOR CANDLE MAKING, GIFTING & HOME DECOR"
   },
   {
@@ -19873,8 +20085,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "DECYL GLUCOSIDE"
   },
   {
@@ -21877,8 +22089,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "JKB PHARMACY HAIR CONDITIONER MASK BASE. 95% PLANT DERIVED INGREDIENTS (1LTR.)"
   },
   {
@@ -25631,8 +25843,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "ROUND URLI BOWL – 4 INCH & 5 INCH WHITE DECORATIVE BOWL"
   },
   {
@@ -28857,8 +29069,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "CHRISTMAS TREE WITH CHERRY"
   },
   {
@@ -29404,8 +29616,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "BRASS POLISHED IRON DECORATIVE BOWL 3 INCH – ROUND METAL BOWL FOR CANDLE MAKING, HOME DÉCOR & GIFTING"
   },
   {
@@ -33454,8 +33666,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "ELEPHANT DIYA CANDLE HOLDER | DECORATIVE BRASS POLISH ELEPHANT DIYA FOR DIWALI POOJA & HOME DECOR (PACK OF 1 )"
   },
   {
@@ -34277,8 +34489,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "EMBOSSED PATTERN CHRISTMAS TREE-SHAPED TRAY SILICONE MOLD"
   },
   {
@@ -34332,8 +34544,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "EMBOSSED PATTERN CHRISTMAS SNOWFLAKE TRAY SILICONE MOLD"
   },
   {
@@ -35046,8 +35258,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "ANGLE HOLDING HEART SILICON MOLD"
   },
   {
@@ -37299,8 +37511,9 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "SEMI-ROUND TAPER POLYCARBONATE CANDLE MOLD"
+    "isQuoteOnly": true,
+    "title": "SEMI-ROUND TAPER POLYCARBONATE CANDLE MOLD",
+    "inStock": false
   },
   {
     "id": "10",
@@ -37375,8 +37588,9 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "PREMIUM RIBBED POLYCARBONATE CANDLE MOLD – TALL DECORATIVE PILLAR CANDLE MOLD (27×7×4.8 CM)"
+    "isQuoteOnly": true,
+    "title": "PREMIUM RIBBED POLYCARBONATE CANDLE MOLD – TALL DECORATIVE PILLAR CANDLE MOLD (27×7×4.8 CM)",
+    "inStock": false
   },
   {
     "id": "11",
@@ -38211,7 +38425,7 @@
     "price": 200,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/paraffin-wax-pellets-white-granule-chunksmix-of-bo.webp",
+    "image": "/images/products/waxes/paraffin-wax-slab-white-block.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -39126,7 +39340,8 @@
       "soap-atelier"
     ],
     "isQuoteOnly": false,
-    "title": "CAMELLIA FLOWER SILICONE MOLD"
+    "title": "CAMELLIA FLOWER SILICONE MOLD",
+    "inStock": true
   },
   {
     "id": "32",
@@ -58234,8 +58449,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "RIBBED VASE SILICONE MOLD FOR CONCRETE, RESIN & PLASTER FLOWER VASE DIY ("
   },
   {
@@ -68039,8 +68254,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "ROYAL ALEOVERA SOAP 100GM READY TO USE OR SELL SOAP PACK OF 6 (100G)"
   },
   {
@@ -136441,7 +136656,7 @@
     "price": 320,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/464-soy-wax-natural-soy-wax-granule-for-candle-mak.webp",
+    "image": "/images/products/waxes/464-soy-wax-natural-soy-wax-granule.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -136775,7 +136990,7 @@
     "price": 210,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/soy-butter-wax.webp",
+    "image": "/images/products/waxes/soy-butter-wax.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -137226,7 +137441,7 @@
     "price": 180,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/soy-wax-white-chunk-aa.webp",
+    "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -146981,7 +147196,7 @@
     "price": 420,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/natural-coconut-wax.webp",
+    "image": "/images/products/waxes/natural-coconut-wax.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -147889,7 +148104,7 @@
     "price": 310,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-slab-yellow-ip-gr.webp",
+    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-slab-yellow-ip-gr.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -148063,7 +148278,7 @@
     "price": 160,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/soy-wax-white-chunk-aa.webp",
+    "image": "/images/products/waxes/soy-wax-white-flakes-not-for-new-candle-maker.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -148249,7 +148464,7 @@
     "price": 140,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/paraffin-wax-pellets-white-granule-chunksmix-of-bo.webp",
+    "image": "/images/products/waxes/paraffin-wax-pellets-white-granule-chunks.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -148300,7 +148515,7 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "isQuoteOnly": true,
+    "isQuoteOnly": false,
     "variants": [
       {
         "size": "450 G",
@@ -168384,7 +168599,7 @@
     "price": 440,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/bees-wax-natural-yellow.webp",
+    "image": "/images/products/waxes/bees-wax-natural-yellow.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -171710,8 +171925,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "inStock": true,
-    "isQuoteOnly": false,
+    "inStock": false,
+    "isQuoteOnly": true,
     "title": "8 CAVITY CHRISTMAS ORNAMENTS SILICONE MOLD"
   },
   {
@@ -184791,8 +185006,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "TEDDY SMALL CANDLE SILICONE MOLD"
   },
   {
@@ -187827,8 +188042,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "CONCRETE BELL CUP CANDLE CUP SILICON MOLD"
+    "isQuoteOnly": true,
+    "title": "CONCRETE BELL CUP CANDLE CUP SILICON MOLD",
+    "inStock": false
   },
   {
     "id": "1560",
@@ -201430,7 +201646,8 @@
       "soap-atelier"
     ],
     "isQuoteOnly": false,
-    "title": "3D LOTUS FLOWER SILICONE MOLD"
+    "title": "3D LOTUS FLOWER SILICONE MOLD",
+    "inStock": true
   },
   {
     "id": "1751",
@@ -214901,8 +215118,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "HANWEN’S NEW THREE-DIMENSIONAL HOUSE FAMILY SILICONE MOLD CANDLE CHRISTMAS MOLD PLASTER DIFFUSER STONE GLUE MOLD"
+    "isQuoteOnly": true,
+    "title": "HANWEN’S NEW THREE-DIMENSIONAL HOUSE FAMILY SILICONE MOLD CANDLE CHRISTMAS MOLD PLASTER DIFFUSER STONE GLUE MOLD",
+    "inStock": false
   },
   {
     "id": "1942",
@@ -229455,7 +229673,7 @@
       "candle-foundry"
     ],
     "description": "Paraffin Wax Slab White Block is a clean, white, easy-to-melt wax suitable for candle making, wax melts, tealights, DIY crafts, coating, polishing and general industrial use. It offers smooth melting, good mold release and excellent compatibility with fragrance oils and candle colors.",
-    "image": "/images/products/waxes/paraffin-wax-slab-white-block-for-candle-making-di.webp",
+    "image": "/images/products/waxes/paraffin-wax-slab-white-block.jpg",
     "price": 260,
     "tiers": [
       {
@@ -230468,7 +230686,7 @@
       "candle-foundry"
     ],
     "description": "Soy Wax Pearl is a natural eco-friendly candle wax with excellent fragrance throw, smooth melting, and clean burning performance for DIY candle making.",
-    "image": "/images/products/waxes/soy-wax-pearl.webp",
+    "image": "/images/products/waxes/soy-wax-pearl.jpg",
     "price": 170,
     "tiers": [
       {
@@ -230671,7 +230889,7 @@
       "candle-foundry"
     ],
     "description": "464 Soy Wax is a natural soy wax flakes with excellent fragrance throw, smooth finish, and clean burning performance for container candles and DIY candle making.",
-    "image": "/images/products/waxes/464-soy-wax-natural-soy-wax-granule-for-candle-mak.webp",
+    "image": "/images/products/waxes/464-soy-wax-natural-soy-wax-granule.jpg",
     "price": 320,
     "tiers": [
       {
@@ -230922,7 +231140,7 @@
       "candle-foundry"
     ],
     "description": "Premium Soy Butter Wax for skincare, soap making, body butters, lotions, creams, lip balms, hair care products, and cosmetic formulations. Plant-based, moisturizing, and easy to formulate with.",
-    "image": "/images/products/waxes/soy-butter-wax.webp",
+    "image": "/images/products/waxes/soy-butter-wax.jpg",
     "price": 210,
     "tiers": [
       {
@@ -231365,7 +231583,7 @@
       "candle-foundry"
     ],
     "description": "Premium natural Coconut Wax for luxury candle making, scented candles, wax melts, and home fragrance products. Excellent fragrance throw, smooth finish, and clean-burning performance.",
-    "image": "/images/products/waxes/natural-coconut-wax.webp",
+    "image": "/images/products/waxes/natural-coconut-wax.jpg",
     "price": 420,
     "tiers": [
       {
@@ -231749,7 +231967,7 @@
       "candle-foundry"
     ],
     "description": "Soy Wax Pellets White Chunk AA is a natural candle making wax with clean burning performance, smooth melting, and excellent fragrance throw for handmade candles and wax melts.",
-    "image": "/images/products/waxes/soy-wax-white-chunk-aa.webp",
+    "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
     "price": 180,
     "tiers": [
       {
@@ -232350,7 +232568,7 @@
       "candle-foundry"
     ],
     "description": "Premium 100% Organic Natural Pure Yellow Beeswax Slab IP Grade for candle making, lip balms, lotions, creams, soaps, cosmetics, pharmaceutical applications, and DIY formulations.",
-    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-slab-yellow-ip-gr.webp",
+    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-slab-yellow-ip-gr.jpg",
     "price": 280,
     "tiers": [
       {
@@ -232535,7 +232753,7 @@
       "candle-foundry"
     ],
     "description": "Soy Wax Pellets White Granule is a natural eco-friendly candle wax with smooth melting, clean burning, and excellent fragrance retention for DIY candle making.",
-    "image": "/images/products/waxes/soy-wax-white-flakes-not-for-new-candle-maker.webp",
+    "image": "/images/products/waxes/soy-wax-white-flakes-not-for-new-candle-maker.jpg",
     "price": 160,
     "tiers": [
       {
@@ -233339,7 +233557,7 @@
       "candle-foundry"
     ],
     "description": "Bees Wax Natural Organics Beeswax: Keep your lips moisturized with this natural protestant. Lock in your skin’s natural moisture with beeswax. Beeswax helps with molding and locking in flavors. It is added to candies, such as Jelly Belly jelly beans and Harbor’s gummy bears. Want to make your party invitations stand out? Create a seal with beeswax and use the right stamp to leave your impression. Coat things like hand tools, cast iron pieces and shovels to prevent them from rusting out. If you produce your own cheese, beeswax is the best natural cover for cheeses. Beeswax is also a fantastic lubricant for oiling very old furniture joints. Beeswax is often added to soap recipes to make the finished soap harder and last longer. A simple salve of beeswax, coconut oil and magnesium makes a great for cracked heels. BENEFITS OF BEES WAX Natural This product does not contain any chemicals Use in candles, lip balm, lotions, soaps and external application body care products Filtered, highest quality beeswax available Beeswax is also a fantastic lubricant for oiling very old furniture joints. Beeswax is often added to soap recipes to make the finished soap harder and last longer. 100% Natural and Organics Bees Wax Unfiltered Uses Unfiltered beeswax is a natural and versatile substance that can be used in a variety of applications. Here are some of the most common uses of unfiltered beeswax: Candle-making: Beeswax is a popular ingredient in candle-making due to its natural and eco-friendly properties. Unfiltered beeswax can be used to create candles that have a natural, honey-like scent and a beautiful golden color. Skincare: Unfiltered beeswax is often used as a natural ingredient in skincare products such as balms, salves, and ointments. Its natural properties can help to moisturize and protect the skin, making it a popular choice for those with sensitive or dry skin. Furniture polish: Beeswax can be used as a natural ingredient in furniture polish. Its natural properties can help to protect and nourish wood furniture, leaving it looking shiny and new. Leather conditioner: Unfiltered beeswax can be used as a natural leather conditioner. It can help to moisturize and protect leather items such as shoes, bags, and furniture. Art and crafts: Unfiltered beeswax can be used as a natural ingredient in art and crafts projects. It can be melted down and used as a sealant or adhesive for paper, fabric, or other materials. Overall, unfiltered beeswax is a natural and versatile substance that can be used in a variety of applications. Its natural properties make it a popular choice for those looking for eco-friendly and natural alternatives to synthetic ingredients.",
-    "image": "/images/products/waxes/bees-wax-natural-yellow.webp",
+    "image": "/images/products/waxes/bees-wax-natural-yellow.jpg",
     "price": 440,
     "tiers": [
       {
