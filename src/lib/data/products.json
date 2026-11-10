@@ -116623,28 +116623,34 @@
     "name": "Dipropylene Glycol High Purity Solvent For Fragrance Oil (Candle & Wax Melt Grade)",
     "category": "Fragrance Oils",
     "description": "Premium quality dipropylene glycol high purity solvent for f o sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 165,
+    "price": 300,
     "bulkDiscountAvailable": true,
     "maxDiscount": 15,
     "image": "/images/products/dipropylene-glycol-dpg-high-purity-solvent.jpg",
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 11,
-        "price": 165,
+        "maxQty": 4,
+        "price": 552,
         "discountPct": 0
       },
       {
-        "minQty": 12,
-        "maxQty": 51,
-        "price": 145,
-        "discountPct": 12.1
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 528,
+        "discountPct": 4.3
       },
       {
-        "minQty": 52,
+        "minQty": 20,
+        "maxQty": 214,
+        "price": 504,
+        "discountPct": 8.7
+      },
+      {
+        "minQty": 215,
         "maxQty": null,
-        "price": 135,
-        "discountPct": 18.2
+        "price": 486,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -116680,7 +116686,117 @@
       "soap-atelier"
     ],
     "isQuoteOnly": false,
-    "title": "Dipropylene Glycol High Purity Solvent For Fragrance Oil (Candle & Wax Melt Grade)"
+    "title": "Dipropylene Glycol High Purity Solvent For Fragrance Oil (Candle & Wax Melt Grade)",
+    "variants": [
+      {
+        "size": "500 GM",
+        "price": 300,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 300,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 275,
+            "discountPct": 8.3
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 260,
+            "discountPct": 13.3
+          }
+        ]
+      },
+      {
+        "size": "1 Kg",
+        "price": 552,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 552,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 528,
+            "discountPct": 4.3
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 504,
+            "discountPct": 8.7
+          }
+        ]
+      },
+      {
+        "size": "5 Kg",
+        "price": 2640,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 3,
+            "price": 2640,
+            "discountPct": 0
+          },
+          {
+            "minQty": 4,
+            "maxQty": 9,
+            "price": 2520,
+            "discountPct": 4.5
+          },
+          {
+            "minQty": 10,
+            "maxQty": null,
+            "price": 2400,
+            "discountPct": 9.1
+          }
+        ]
+      },
+      {
+        "size": "20 Kg",
+        "price": 10080,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 2,
+            "price": 10080,
+            "discountPct": 0
+          },
+          {
+            "minQty": 3,
+            "maxQty": 9,
+            "price": 9600,
+            "discountPct": 4.8
+          },
+          {
+            "minQty": 10,
+            "maxQty": null,
+            "price": 9000,
+            "discountPct": 10.7
+          }
+        ]
+      },
+      {
+        "size": "215 Kg (Commercial Drum)",
+        "price": 104490,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": null,
+            "price": 104490,
+            "discountPct": 0
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "618",
