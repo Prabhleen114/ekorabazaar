@@ -2,6 +2,8 @@ import { ReactNode } from 'react'
 import { requireAdmin } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Receipt, ExternalLink } from 'lucide-react'
+import { BILLING_APP_URL } from '@/config/billing'
 
 export default async function AdminDashboardLayout({ children }: { children: ReactNode }) {
   const session = await requireAdmin().catch(() => null)
@@ -25,6 +27,18 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           <Link href="/admin/orders" className="block px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white">
             Orders
           </Link>
+          <a
+            href={BILLING_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors group"
+          >
+            <span className="flex items-center gap-2">
+              <Receipt className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+              <span>Billing</span>
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-colors" />
+          </a>
           <Link href="/admin/leads" className="block px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white">
             Leads
           </Link>
