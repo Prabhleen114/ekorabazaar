@@ -59,7 +59,9 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
     });
 
     if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
-      const basePricePaise = product.customerPrice ?? product.price;
+      const basePricePaise = (product.customerPrice !== null && product.customerPrice !== undefined && Number(product.customerPrice) > 0)
+        ? Number(product.customerPrice)
+        : Number(product.price);
       const effectivePrice = basePricePaise / 100;
       const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(id));
       const imageUrl = (catalogItem?.image && catalogItem.image.startsWith('/images/products/'))
@@ -68,7 +70,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       const category = product.category || catalogItem?.category || "General Silicone Moulds";
       const department = getDepartmentForCategory(category) || catalogItem?.department || "Precision Studio Moulds";
 
-      const tiers = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
+      const dbValidTiers = Array.isArray(product.wholesaleTiers)
         ? (product.wholesaleTiers as any[])
             .filter((t: any) => t && Number(t.price) > 0)
             .map(t => ({
@@ -76,14 +78,22 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
               price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
               minQty: Number(t.minQty) || product.moq || 1
             }))
-        : (Array.isArray(catalogItem?.tiers) && catalogItem.tiers.length > 0
-            ? catalogItem.tiers
-                .filter((t: any) => t && Number(t.price) > 0)
-                .map((t: any) => ({
-                  ...t,
-                  price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
-                  minQty: Number(t.minQty) || product.moq || 1
-                }))
+        : [];
+
+      const catalogValidTiers = Array.isArray(catalogItem?.tiers)
+        ? (catalogItem.tiers as any[])
+            .filter((t: any) => t && Number(t.price) > 0)
+            .map((t: any) => ({
+              ...t,
+              price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
+              minQty: Number(t.minQty) || product.moq || 1
+            }))
+        : [];
+
+      const tiers = dbValidTiers.length > 0
+        ? dbValidTiers
+        : (catalogValidTiers.length > 0
+            ? catalogValidTiers
             : (effectivePrice > 0 ? [{ price: effectivePrice, minQty: product.moq || 1, maxQty: null, discountPct: 0 }] : []));
 
       const variants = Array.isArray(catalogItem?.variants) && catalogItem.variants.length > 0

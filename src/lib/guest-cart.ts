@@ -13,7 +13,9 @@ export function getGuestCart(): GuestCartItem[] {
   if (typeof window === 'undefined') return [];
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    const parsed = data ? JSON.parse(data) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(i => i && i.productId && (i.basePrice === undefined || i.basePrice > 0));
   } catch (e) {
     console.error('Failed to parse guest cart', e);
     return [];
@@ -33,6 +35,8 @@ export function saveGuestCart(items: GuestCartItem[]) {
 }
 
 export function addGuestCartItem(item: GuestCartItem) {
+  if (!item || !item.productId) return;
+  if (typeof item.basePrice === 'number' && item.basePrice <= 0) return;
   const cart = getGuestCart();
   const existingIndex = cart.findIndex(i => i.productId === item.productId);
   if (existingIndex >= 0) {

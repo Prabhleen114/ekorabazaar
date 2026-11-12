@@ -116,6 +116,10 @@ export async function POST(req: Request) {
           throw new Error(`The seller for ${product.title} is currently inactive.`)
         }
 
+        if (!product.price || product.price <= 0) {
+          throw new Error(`Product "${product.title}" has an invalid price and cannot be ordered online. Please contact support.`)
+        }
+
         if (product.stock < item.quantity) {
           throw new Error(`Insufficient stock for ${product.title}.`)
         }
@@ -130,6 +134,9 @@ export async function POST(req: Request) {
         }
 
         const effectivePrice = calculateItemPrice(product, item.quantity)
+        if (!effectivePrice || effectivePrice <= 0) {
+          throw new Error(`Product "${product.title}" has an invalid payable price and cannot be ordered online. Please contact support.`)
+        }
         const subtotal = effectivePrice * item.quantity
         totalAmount += subtotal
 

@@ -103,10 +103,12 @@ export async function POST(req: Request) {
             source: 'EKORA_OFFICIAL',
             category: catalogItem.category || 'General Silicone Moulds',
             imageUrl: catalogItem.image || '/og-image.jpg',
-            wholesaleTiers: (catalogItem.tiers || []).map((t: any) => ({
-              ...t,
-              price: Math.round((Number(t.price) || 0) * 100)
-            }))
+            wholesaleTiers: (catalogItem.tiers || [])
+              .filter((t: any) => t && Number(t.price) > 0)
+              .map((t: any) => ({
+                ...t,
+                price: Math.round((Number(t.price) || 0) * 100)
+              }))
           }
         });
       }

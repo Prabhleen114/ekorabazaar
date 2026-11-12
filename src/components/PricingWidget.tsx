@@ -172,12 +172,19 @@ export default function PricingWidget({
   }, []);
 
   // Active tiers and price derived from selectedVariant if present
-  const activeTiers = (selectedVariant && selectedVariant.tiers && selectedVariant.tiers.length > 0)
+  const rawActiveTiers = (selectedVariant && selectedVariant.tiers && selectedVariant.tiers.length > 0)
     ? selectedVariant.tiers
     : tiers;
+
+  // Safeguard: Filter out any invalid / zero-price tiers so UI components and discount lines never encounter ₹0
+  const activeTiers = useMemo(() => {
+    if (!rawActiveTiers || !Array.isArray(rawActiveTiers)) return [];
+    return rawActiveTiers.filter(t => t && Number(t.price) > 0);
+  }, [rawActiveTiers]);
+
   const activeBasePrice = selectedVariant
     ? selectedVariant.price
-    : (basePrice ?? (tiers.length > 0 ? tiers[0].price : 0));
+    : (basePrice ?? (activeTiers.length > 0 ? activeTiers[0].price : 0));
 
   // Determine current active tier based on quantity
   const currentTier = useMemo(() => {
@@ -577,7 +584,7 @@ export default function PricingWidget({
                 </span>
               ) : (
                 (() => {
-                  const nextDiscountTier = activeTiers?.find(t => t.discountPct > 0);
+                  const nextDiscountTier = activeTiers?.find(t => t && t.discountPct > 0 && Number(t.price) > 0);
                   if (nextDiscountTier) {
                     return (
                       <span className="text-stone-600">

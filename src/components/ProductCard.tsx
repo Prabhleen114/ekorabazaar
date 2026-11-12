@@ -27,7 +27,8 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
     product.price == null ||
     isNaN(product.price) ||
     product.price <= 0 ||
-    product.isQuoteOnly === true;
+    product.isQuoteOnly === true ||
+    (product.customerPrice !== undefined && product.customerPrice !== null && product.customerPrice <= 0);
 
   const unitPricePaise = !isZeroOrMissing
     ? calculateItemPrice(
@@ -39,6 +40,8 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
         1
       )
     : 0;
+
+  const isEffectivelyZero = isZeroOrMissing || unitPricePaise <= 0;
   const rawEffective = unitPricePaise / 100;
   const effectivePriceFormatted = rawEffective >= 1
     ? (rawEffective % 1 === 0 ? rawEffective.toLocaleString('en-IN') : rawEffective.toFixed(2))
@@ -46,7 +49,7 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
 
   // Derive bulk tier price safely:
   let bulkTierPriceFormatted: string | null = null;
-  if (!isZeroOrMissing && !hasVariants && product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1) {
+  if (!isEffectivelyZero && !hasVariants && product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1) {
     const validTiers = product.wholesaleTiers.filter((t: any) => t && Number(t.price) > 0);
     if (validTiers.length > 1) {
       const lastTier = validTiers[validTiers.length - 1];
@@ -90,7 +93,7 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
 
         <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-sans">
           <div className="flex items-baseline gap-1.5 flex-wrap">
-            {isZeroOrMissing ? (
+            {isEffectivelyZero ? (
               <span className="font-semibold text-xs text-stone-600 italic">Price on Request</span>
             ) : (
               <>

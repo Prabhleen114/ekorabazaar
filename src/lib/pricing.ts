@@ -42,7 +42,19 @@ export function calculateItemPrice(
   product: { price: number; customerPrice: number | null; wholesaleTiers: any },
   quantity: number = 1
 ): number {
-  const basePrice = product.customerPrice ?? product.price;
+  let basePrice = Number(product.price) || 0;
+  if (product.customerPrice !== null && product.customerPrice !== undefined) {
+    const cp = Number(product.customerPrice);
+    if (!isNaN(cp) && cp > 0) {
+      basePrice = cp;
+    }
+  }
+
+  // If base price is invalid or <= 0, return 0 (quote-only or unpriced)
+  if (basePrice <= 0 || isNaN(basePrice)) {
+    return 0;
+  }
+
   let effectivePrice = basePrice;
 
   if (product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0) {
@@ -58,16 +70,27 @@ export function calculateItemPrice(
       .filter((t: any) => t.pricePaise > 0)
       .sort((a: any, b: any) => a.minQty - b.minQty);
 
-    // 2. Find matching tier for the requested quantity
-    const matchingTier = validTiers.find((t: any) => {
-      return quantity >= t.minQty && quantity <= t.maxQty;
-    });
+    if (validTiers.length > 0) {
+      // 2. Find matching tier for the requested quantity
+      const directTier = validTiers.find((t: any) => {
+        return quantity >= t.minQty && quantity <= t.maxQty;
+      });
 
-    if (matchingTier && matchingTier.pricePaise > 0) {
-      effectivePrice = matchingTier.pricePaise;
+      if (directTier && directTier.pricePaise > 0) {
+        effectivePrice = directTier.pricePaise;
+      } else {
+        // If quantity exceeds a capped tier because a higher zero tier was filtered out,
+        // apply the highest valid volume tier that the quantity qualifies for.
+        const qualifyingTiers = validTiers.filter((t: any) => quantity >= t.minQty);
+        if (qualifyingTiers.length > 0) {
+          const highestQualifyingTier = qualifyingTiers[qualifyingTiers.length - 1];
+          if (highestQualifyingTier && highestQualifyingTier.pricePaise > 0) {
+            effectivePrice = highestQualifyingTier.pricePaise;
+          }
+        }
+      }
     }
-    // Note: If quantity does not meet any tier's minQty, effectivePrice strictly remains basePrice.
   }
 
-  return Math.round(effectivePrice);
+  return Math.max(0, Math.round(effectivePrice));
 }
