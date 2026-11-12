@@ -44,6 +44,42 @@ export const CreateOrderSchema = z.object({
   guestAddress: AddressSchema.optional().nullable(),
   gstin: z.string().optional().nullable(),
   businessName: z.string().optional().nullable(),
+  couponCode: z.string().trim().max(50).optional().nullable(),
+})
+
+// --- Coupons ---
+export const ValidateCouponSchema = z.object({
+  code: z.string().min(1, 'Coupon code is required').max(50),
+  subtotal: z.number().min(0, 'Subtotal must be positive').optional(),
+  subtotalPaise: z.number().int().min(0).optional(),
+})
+
+export const CreateCouponSchema = z.object({
+  code: z.string().min(2, 'Code must be at least 2 characters').max(30, 'Code max 30 characters')
+    .regex(/^[A-Za-z0-9_-]+$/, 'Code can only contain letters, numbers, hyphens, and underscores'),
+  description: z.string().max(255).optional().nullable(),
+  discountType: z.enum(['PERCENTAGE', 'FIXED_AMOUNT']),
+  discountValue: z.number().positive('Discount value must be greater than 0'),
+  minOrderAmount: z.number().min(0).default(0), // In Rupees
+  maxDiscountAmount: z.number().min(0).optional().nullable(), // In Rupees (for percentage)
+  startDate: z.string().optional().nullable(),
+  expiryDate: z.string().optional().nullable(),
+  maxUsageLimit: z.number().int().min(1).optional().nullable(),
+  perCustomerLimit: z.number().int().min(1).default(1),
+  status: z.enum(['ACTIVE', 'PAUSED']).default('ACTIVE'),
+})
+
+export const UpdateCouponSchema = z.object({
+  description: z.string().max(255).optional().nullable(),
+  discountType: z.enum(['PERCENTAGE', 'FIXED_AMOUNT']).optional(),
+  discountValue: z.number().positive().optional(),
+  minOrderAmount: z.number().min(0).optional(),
+  maxDiscountAmount: z.number().min(0).optional().nullable(),
+  startDate: z.string().optional().nullable(),
+  expiryDate: z.string().optional().nullable(),
+  maxUsageLimit: z.number().int().min(1).optional().nullable(),
+  perCustomerLimit: z.number().int().min(1).optional(),
+  status: z.enum(['ACTIVE', 'PAUSED', 'ARCHIVED']).optional(),
 })
 
 export const ConfirmPaymentSchema = z.object({

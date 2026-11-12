@@ -11,13 +11,70 @@ import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 import StockReservationTimer from "@/components/StockReservationTimer"
 import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
+import CouponSection, { AppliedCoupon } from "@/components/CouponSection"
 
 export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
   const [total, setTotal] = useState(0)
+  const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null)
   const [loading, setLoading] = useState(true)
   const [isGuest, setIsGuest] = useState(false)
   const router = useRouter()
+
+  // Load saved coupon on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = sessionStorage.getItem('ekora_applied_coupon')
+        if (saved) {
+          setAppliedCoupon(JSON.parse(saved))
+        }
+      } catch (e) {}
+    }
+  }, [])
+
+  // Re-validate coupon when total changes
+  useEffect(() => {
+    if (appliedCoupon && total > 0) {
+      fetch('/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: total })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.valid && data.coupon) {
+            const updated: AppliedCoupon = {
+              code: data.coupon.code,
+              discountAmountPaise: data.coupon.discountAmountPaise,
+              discountAmountRupees: data.coupon.discountAmountRupees,
+              description: data.coupon.description
+            }
+            setAppliedCoupon(updated)
+            sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(updated))
+          } else {
+            // Cart total no longer qualifies for this coupon
+            setAppliedCoupon(null)
+            sessionStorage.removeItem('ekora_applied_coupon')
+          }
+        })
+        .catch(() => {})
+    }
+  }, [total])
+
+  const handleApplyCoupon = (coupon: AppliedCoupon) => {
+    setAppliedCoupon(coupon)
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(coupon))
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null)
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('ekora_applied_coupon')
+    }
+  }
 
   useEffect(() => {
     fetchCart()
@@ -248,17 +305,38 @@ export default function CartPage() {
 
           <div className="bg-white p-6 rounded-2xl border border-brand-linen shadow-sm h-fit sticky top-24">
             <h2 className="text-lg font-bold mb-4">Order Summary</h2>
+
+            {/* Coupon Section */}
+            <div className="mb-5 pb-5 border-b border-brand-linen">
+              <CouponSection
+                subtotalPaise={total}
+                appliedCoupon={appliedCoupon}
+                onApply={handleApplyCoupon}
+                onRemove={handleRemoveCoupon}
+              />
+            </div>
+
             <div className="flex justify-between mb-2 text-sm">
               <span className="text-brand-charcoal/70">Subtotal</span>
-              <span className="font-semibold">₹{(total / 100).toLocaleString()}</span>
+              <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
             </div>
+
+            {appliedCoupon && (
+              <div className="flex justify-between mb-2 text-sm text-emerald-700 font-semibold">
+                <span>Coupon Discount ({appliedCoupon.code})</span>
+                <span>-₹{appliedCoupon.discountAmountRupees.toLocaleString('en-IN')}</span>
+              </div>
+            )}
+
             <div className="flex justify-between mb-4 text-sm">
               <span className="text-brand-charcoal/70">Delivery</span>
-              <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString()}</span>
+              <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString('en-IN')}</span>
             </div>
             <div className="border-t border-brand-linen pt-4 flex justify-between mb-4 text-lg">
               <span className="font-bold text-brand-charcoal">Total</span>
-              <span className="font-bold">₹{((total / 100) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString()}</span>
+              <span className="font-bold">
+                ₹{Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+              </span>
             </div>
             {/* Free Shipping Progress Indicator disabled for flat shipping */}
 
@@ -282,7 +360,7 @@ export default function CartPage() {
             <div className="mt-4">
               <WhatsAppCheckoutAssistant
                 itemCount={items.reduce((s, i) => s + (i.quantity || 1), 0)}
-                totalAmount={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE}
+                totalAmount={Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE)}
                 location="cart_page"
                 variant="card"
               />

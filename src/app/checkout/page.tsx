@@ -11,10 +11,12 @@ import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 import StockReservationTimer from "@/components/StockReservationTimer"
 import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
+import CouponSection, { AppliedCoupon } from "@/components/CouponSection"
 
 export default function CheckoutPage() {
   const [items, setItems] = useState<any[]>([])
   const [total, setTotal] = useState(0)
+  const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null)
   const [addresses, setAddresses] = useState<any[]>([])
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null)
   const [needsAuth, setNeedsAuth] = useState(false)
@@ -42,6 +44,12 @@ export default function CheckoutPage() {
       if (savedPin && savedPin.length === 6) {
         setNewAddress(prev => ({ ...prev, pincode: savedPin }));
       }
+      try {
+        const savedCoupon = sessionStorage.getItem('ekora_applied_coupon');
+        if (savedCoupon) {
+          setAppliedCoupon(JSON.parse(savedCoupon));
+        }
+      } catch (e) {}
     }
     fetchData()
 
@@ -61,6 +69,48 @@ export default function CheckoutPage() {
       }
     }
   }, [])
+
+  // Re-validate applied coupon whenever total changes
+  useEffect(() => {
+    if (appliedCoupon && total > 0) {
+      fetch('/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: total })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.valid && data.coupon) {
+            const updated: AppliedCoupon = {
+              code: data.coupon.code,
+              discountAmountPaise: data.coupon.discountAmountPaise,
+              discountAmountRupees: data.coupon.discountAmountRupees,
+              description: data.coupon.description
+            }
+            setAppliedCoupon(updated)
+            sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(updated))
+          } else {
+            setAppliedCoupon(null)
+            sessionStorage.removeItem('ekora_applied_coupon')
+          }
+        })
+        .catch(() => {})
+    }
+  }, [total])
+
+  const handleApplyCoupon = (coupon: AppliedCoupon) => {
+    setAppliedCoupon(coupon)
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(coupon))
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null)
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('ekora_applied_coupon')
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -208,6 +258,7 @@ export default function CheckoutPage() {
           : { addressId: selectedAddressId }),
         gstin: gstin.trim() || undefined,
         businessName: businessName.trim() || undefined,
+        couponCode: appliedCoupon ? appliedCoupon.code : undefined,
       },
       name: 'Ekora Bazaar Checkout',
       description: `Payment for ${items.length} items`,
@@ -216,10 +267,13 @@ export default function CheckoutPage() {
         contact: activeAddr.phone,
       } : undefined,
       onSuccess: (data) => {
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('ekora_applied_coupon');
+        }
         try {
           sendGAEvent('event', 'purchase', {
             transaction_id: data.orderId,
-            value: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+            value: Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
             currency: 'INR',
             items: items.map(item => ({
               item_id: item.productId || item.id,
@@ -235,7 +289,7 @@ export default function CheckoutPage() {
         paymentCompletedRef.current = true;
         trackEvent("purchase", {
           order_id: data.orderId,
-          cart_total: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+          cart_total: Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
           item_count: items.length,
           gst_provided: !!gstin.trim(),
         });
@@ -443,18 +497,36 @@ export default function CheckoutPage() {
               ))}
             </div>
 
+            {/* Coupon Section */}
+            <div className="mb-4 pb-4 border-b border-brand-linen">
+              <CouponSection
+                subtotalPaise={total}
+                appliedCoupon={appliedCoupon}
+                onApply={handleApplyCoupon}
+                onRemove={handleRemoveCoupon}
+              />
+            </div>
+
             <div className="border-t border-brand-linen pt-4 mb-6 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-brand-charcoal/70">Subtotal</span>
-                  <span className="font-semibold">₹{(total / 100).toLocaleString()}</span>
+                  <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
                 </div>
+                {appliedCoupon && (
+                  <div className="flex justify-between text-sm text-emerald-700 font-semibold">
+                    <span>Coupon Discount ({appliedCoupon.code})</span>
+                    <span>-₹{appliedCoupon.discountAmountRupees.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm">
                   <span className="text-brand-charcoal/70">Delivery</span>
-                  <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString()}</span>
+                  <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-lg font-bold pt-2 border-t border-brand-linen">
                   <span>Total</span>
-                  <span>₹{((total / 100) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString()}</span>
+                  <span>
+                    ₹{Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+                  </span>
                 </div>
               </div>
 
@@ -473,7 +545,7 @@ export default function CheckoutPage() {
             <div className="mt-4">
               <WhatsAppCheckoutAssistant
                 itemCount={items.length}
-                totalAmount={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE}
+                totalAmount={Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE)}
                 location="checkout_page"
                 variant="card"
               />

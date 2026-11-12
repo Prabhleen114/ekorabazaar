@@ -208,6 +208,14 @@ export default function OrdersPage() {
                     ))}
                   </div>
 
+                  {/* Coupon Discount if applied */}
+                  {order.discount > 0 && (
+                    <div className="flex justify-between items-center text-sm text-emerald-700 bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200 mt-4">
+                      <span className="font-medium">Coupon Discount {order.couponCode ? `(${order.couponCode})` : ''}</span>
+                      <span className="font-bold">-₹{(order.discount / 100).toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+
                   {/* Address */}
                   {order.addressSnapshot && (
                     <div className="mt-6 pt-6 border-t border-brand-linen">

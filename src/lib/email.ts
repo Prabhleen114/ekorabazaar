@@ -130,6 +130,12 @@ export async function sendAdminOrderNotification(order: any, payment: any) {
           ${itemsHtml}
         </tbody>
         <tfoot>
+          ${order.discount > 0 ? `
+          <tr>
+            <td colspan="3" style="text-align: right; padding: 8px; color: green; font-weight: bold;">Coupon Discount ${order.couponCode ? `(${order.couponCode})` : ''}:</td>
+            <td style="padding: 8px; color: green; font-weight: bold;">-₹${(order.discount / 100).toFixed(2)}</td>
+          </tr>
+          ` : ''}
           <tr>
             <td colspan="3" style="text-align: right; padding: 8px; font-weight: bold;">Total Amount:</td>
             <td style="padding: 8px; font-weight: bold;">₹${(order.total / 100).toFixed(2)}</td>

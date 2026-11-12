@@ -7,6 +7,7 @@ import { razorpay } from '@/lib/razorpay'
 import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountStatus } from '@prisma/client'
 import catalogProducts from '@/lib/data/products.json'
 import { validateBody, CreateOrderSchema } from '@/lib/validation'
+import { normalizeCouponCode, validateCouponEligibility } from '@/lib/coupons'
 
 export async function POST(req: Request) {
   const startTime = Date.now();
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
     if (!validation.success) {
       return NextResponse.json({ error: validation.error }, { status: 400 })
     }
-    const { items, addressId, guestAddress } = validation.data
+    const { items, addressId, guestAddress, couponCode } = validation.data
 
     let addressSnapshot = null
     let customerPhone = ''
@@ -144,7 +145,46 @@ export async function POST(req: Request) {
 
     const shippingChargePaise = TEMP_FLAT_SHIPPING_CHARGE * 100
     const subtotalPaise = Math.round(totalAmount)
-    const finalAmountPaise = Math.round(totalAmount + shippingChargePaise)
+
+    // Validate and apply coupon if provided
+    let appliedCoupon: any = null
+    let discountPaise = 0
+
+    if (couponCode && typeof couponCode === 'string' && couponCode.trim()) {
+      const normalizedCode = normalizeCouponCode(couponCode)
+      const coupon = await prisma.coupon.findUnique({
+        where: { code: normalizedCode }
+      })
+
+      if (!coupon) {
+        return NextResponse.json({ error: `Coupon code "${normalizedCode}" is invalid.` }, { status: 400 })
+      }
+
+      let customerUsageCount = 0
+      if (userId) {
+        customerUsageCount = await prisma.couponUsage.count({
+          where: { couponId: coupon.id, userId }
+        })
+      } else if (customerPhone) {
+        customerUsageCount = await prisma.couponUsage.count({
+          where: { couponId: coupon.id, customerPhone }
+        })
+      }
+
+      const eligibility = validateCouponEligibility(coupon, {
+        subtotalPaise,
+        usageCountForCustomer: customerUsageCount
+      })
+
+      if (!eligibility.valid) {
+        return NextResponse.json({ error: eligibility.error }, { status: 400 })
+      }
+
+      appliedCoupon = coupon
+      discountPaise = eligibility.discountPaise
+    }
+
+    const finalAmountPaise = Math.max(0, Math.round(subtotalPaise - discountPaise + shippingChargePaise))
 
     // Razorpay key validated at import time via razorpay.ts
 
@@ -181,12 +221,16 @@ export async function POST(req: Request) {
         actualUserId = guestUser.id
       }
 
-      const taxPaise = Math.round(subtotalPaise - (subtotalPaise / 1.18));
+      const discountedSubtotalPaise = Math.max(0, subtotalPaise - discountPaise)
+      const taxPaise = Math.round(discountedSubtotalPaise - (discountedSubtotalPaise / 1.18));
       const order = await tx.order.create({
         data: {
           customerId: finalUserId,
           total: finalAmountPaise,
           subtotal: subtotalPaise,
+          discount: discountPaise,
+          couponCode: appliedCoupon?.code || null,
+          couponId: appliedCoupon?.id || null,
           shipping: shippingChargePaise,
           tax: taxPaise,
           status: OrderStatus.PAYMENT_PENDING,
@@ -233,6 +277,8 @@ export async function POST(req: Request) {
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,
       amount: finalAmountPaise,
+      discount: discountPaise,
+      couponCode: appliedCoupon?.code || null,
       customer: {
         name: (addressSnapshot as any)?.name || customer?.name || customerName,
         email: customer?.email || '',

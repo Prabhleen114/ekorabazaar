@@ -69,6 +69,38 @@ export async function POST(req: Request) {
         }
       })
 
+      // Record coupon usage and increment usage count atomically upon verified payment
+      if (payment.order.couponId) {
+        try {
+          const existingUsage = await tx.couponUsage.findUnique({
+            where: { orderId: payment.orderId! }
+          })
+          if (!existingUsage) {
+            const customer = await tx.user.findUnique({
+              where: { id: payment.userId },
+              select: { email: true, phone: true }
+            })
+            const addressSnapshot = payment.order.addressSnapshot as any
+            await tx.couponUsage.create({
+              data: {
+                couponId: payment.order.couponId,
+                orderId: payment.orderId!,
+                userId: payment.userId,
+                customerEmail: customer?.email || addressSnapshot?.email || null,
+                customerPhone: customer?.phone || addressSnapshot?.phone || null,
+                discountApplied: payment.order.discount || 0
+              }
+            })
+            await tx.coupon.update({
+              where: { id: payment.order.couponId },
+              data: { usageCount: { increment: 1 } }
+            })
+          }
+        } catch (couponErr) {
+          console.error("Failed to record coupon usage in confirm-payment:", couponErr)
+        }
+      }
+
       // Clear the purchased items from the customer's cart now that payment is verified
       try {
         const cart = await tx.cart.findUnique({ where: { userId: session.userId } })

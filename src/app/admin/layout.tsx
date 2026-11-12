@@ -27,6 +27,9 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           <Link href="/admin/orders" className="block px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white">
             Orders
           </Link>
+          <Link href="/admin/coupons" className="block px-4 py-2 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white">
+            Coupons
+          </Link>
           <a
             href={BILLING_APP_URL}
             target="_blank"

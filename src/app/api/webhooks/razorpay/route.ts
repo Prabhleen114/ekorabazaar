@@ -122,6 +122,38 @@ export async function POST(req: Request) {
             where: { id: payment.orderId },
             data: { status: OrderStatus.PAID, paymentStatus: PaymentStatus.CAPTURED }
           })
+
+          // Record coupon usage and increment usage count atomically upon verified webhook payment
+          if (payment.order.couponId) {
+            try {
+              const existingUsage = await tx.couponUsage.findUnique({
+                where: { orderId: payment.orderId }
+              })
+              if (!existingUsage) {
+                const customer = await tx.user.findUnique({
+                  where: { id: payment.userId },
+                  select: { email: true, phone: true }
+                })
+                const addressSnapshot = payment.order.addressSnapshot as any
+                await tx.couponUsage.create({
+                  data: {
+                    couponId: payment.order.couponId,
+                    orderId: payment.orderId,
+                    userId: payment.userId,
+                    customerEmail: customer?.email || addressSnapshot?.email || null,
+                    customerPhone: customer?.phone || addressSnapshot?.phone || null,
+                    discountApplied: payment.order.discount || 0
+                  }
+                })
+                await tx.coupon.update({
+                  where: { id: payment.order.couponId },
+                  data: { usageCount: { increment: 1 } }
+                })
+              }
+            } catch (couponErr) {
+              console.error("Failed to record coupon usage in razorpay webhook:", couponErr)
+            }
+          }
           logPurchase({
             orderId: payment.orderId,
             amount: payment.amount,

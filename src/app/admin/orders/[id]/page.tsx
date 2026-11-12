@@ -165,6 +165,12 @@ export default function AdminOrderDetailPage() {
                 <span className="text-gray-500">Subtotal</span>
                 <span className="font-medium">{formatPaise(order.subtotal)}</span>
               </div>
+              {order.discount > 0 && (
+                <div className="flex justify-between text-sm text-emerald-700 font-semibold">
+                  <span>Coupon Discount {order.couponCode ? `(${order.couponCode})` : ''}</span>
+                  <span>-{formatPaise(order.discount)}</span>
+                </div>
+              )}
               <div className="flex justify-between text-sm">
                 <span className="text-gray-500">Shipping</span>
                 <span className="font-medium">{formatPaise(order.shipping)}</span>
