@@ -275,7 +275,7 @@ export default function CartPage() {
               </div>
               <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
                 <Truck className="w-4 h-4 text-brand-orange" />
-                Dispatch within 24 Hours (Muzaffarpur Godown)
+                Dispatch within 24 Hours
               </div>
             </div>
 

@@ -96,7 +96,7 @@ export default function StockReservationTimer({
         <p className="text-[11px] text-stone-600 leading-snug mt-1">
           {isExpired
             ? "Hold time finish ho gaya hai — abhi order confirm karein taaki stock cancel na ho."
-            : "Aapka stock hold par hai. Order karein taaki aaj hi Muzaffarpur factory se direct dispatch ho sake."}
+            : "Aapka stock hold par hai. Order karein taaki aaj hi factory se direct dispatch ho sake."}
         </p>
       </div>
     );
