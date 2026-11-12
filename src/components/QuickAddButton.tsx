@@ -3,14 +3,15 @@
 import { useState } from 'react'
 
 export default function QuickAddButton({ productId, productName, basePrice, category, inStock = true }: { productId: string, productName?: string, basePrice?: number, category?: string, inStock?: boolean }) {
-  if (!inStock) {
+  const isZeroPrice = basePrice !== undefined && (isNaN(basePrice) || basePrice <= 0);
+  if (!inStock || isZeroPrice) {
     return (
       <button
         disabled={true}
         type="button"
-        className="mt-2 w-full text-[10px] uppercase tracking-widest py-2.5 bg-stone-200 border border-stone-300 text-stone-400 cursor-not-allowed font-semibold md:opacity-0 md:group-hover:opacity-100 transition-all select-none"
+        className="mt-2 w-full text-[10px] uppercase tracking-widest py-2.5 bg-stone-100 border border-stone-200 text-stone-500 cursor-not-allowed font-semibold md:opacity-0 md:group-hover:opacity-100 transition-all select-none"
       >
-        Out of Stock
+        {isZeroPrice ? "Quote on Request" : "Out of Stock"}
       </button>
     );
   }
@@ -21,7 +22,7 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    if (loading || success) return
+    if (loading || success || isZeroPrice) return
 
     setLoading(true)
     setErrorMsg('')

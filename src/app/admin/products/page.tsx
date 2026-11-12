@@ -46,9 +46,11 @@ export default async function AdminProductsPage({
                   <div className="text-xs text-gray-500 font-mono mt-1">{product.sellerId || 'N/A'}</div>
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-500">Seller Price: ₹{(product.price / 100).toFixed(2)}</div>
+                  <div className="text-sm text-gray-500">
+                    Seller Price: {product.price > 0 ? `₹${(product.price / 100).toFixed(2)}` : "None / Zero"}
+                  </div>
                   <div className="text-sm font-bold text-gray-900 mt-1">
-                    Cust Price: {product.customerPrice ? `₹${(product.customerPrice / 100).toFixed(2)}` : 'N/A'}
+                    Cust Price: {product.customerPrice && product.customerPrice > 0 ? `₹${(product.customerPrice / 100).toFixed(2)}` : 'N/A'}
                   </div>
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">

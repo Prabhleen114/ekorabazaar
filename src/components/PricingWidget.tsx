@@ -183,10 +183,13 @@ export default function PricingWidget({
   const currentTier = useMemo(() => {
     if (!activeTiers || activeTiers.length === 0) return null;
     const sorted = [...activeTiers].sort((a, b) => b.minQty - a.minQty);
-    return sorted.find(t => quantity >= t.minQty) || activeTiers[0];
+    return sorted.find(t => quantity >= t.minQty) || null;
   }, [activeTiers, quantity]);
 
-  const displayPrice = currentTier ? currentTier.price : activeBasePrice;
+  // Safeguard: Ensure tier price is positive; never let an invalid 0-rupee tier collapse displayPrice
+  const validTierPrice = currentTier && typeof currentTier.price === 'number' && currentTier.price > 0 ? currentTier.price : null;
+  const displayPrice = validTierPrice ?? (activeBasePrice > 0 ? activeBasePrice : 0);
+  const isQuoteOnlyEffective = isQuoteOnly || !displayPrice || displayPrice <= 0 || !activeBasePrice || activeBasePrice <= 0;
   const subtotal = displayPrice * quantity;
 
   // Track sticky bar visibility when main CTAs leave viewport
@@ -226,6 +229,11 @@ export default function PricingWidget({
   const handleAction = async (actionType: 'cart' | 'buy_now') => {
     if (!available) {
       setErrorMsg("This product is currently out of stock.");
+      return;
+    }
+
+    if (isQuoteOnlyEffective || displayPrice <= 0) {
+      setErrorMsg("This product is available on quotation only. Please click Request Wholesale Quotation below.");
       return;
     }
 
@@ -379,7 +387,7 @@ export default function PricingWidget({
                 {isFlowerVariant ? "Choose Flower Design" : (isColorVariant ? "Choose Variant / Color" : "Select Variant / Size")}
               </label>
               <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
-                {selectedVariant?.size} &bull; ₹{displayPrice}
+                {selectedVariant?.size} &bull; {displayPrice > 0 ? `₹${displayPrice.toLocaleString()}` : "Price on Request"}
               </span>
             </div>
 
@@ -405,11 +413,16 @@ export default function PricingWidget({
                 }}
                 className="w-full h-11 px-3 py-2 text-xs sm:text-sm font-sans font-medium bg-stone-50 border border-stone-300 rounded text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900 appearance-none pr-8 cursor-pointer"
               >
-                {variants.map((v, idx) => (
-                  <option key={idx} value={v.size}>
-                    {v.size} — ₹{v.price} {v.tiers && v.tiers.length > 1 ? `(Tiers from ₹${v.tiers[v.tiers.length - 1].price})` : ''}
-                  </option>
-                ))}
+                {variants.map((v, idx) => {
+                  const vPriceText = v.price > 0 ? `₹${v.price}` : "Quote on Request";
+                  const validTiers = v.tiers ? v.tiers.filter((t: any) => t && t.price > 0) : [];
+                  const tierText = validTiers.length > 1 ? `(Tiers from ₹${validTiers[validTiers.length - 1].price})` : "";
+                  return (
+                    <option key={idx} value={v.size}>
+                      {v.size} — {vPriceText} {tierText}
+                    </option>
+                  );
+                })}
               </select>
               <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-3.5 pointer-events-none" />
             </div>
@@ -450,7 +463,7 @@ export default function PricingWidget({
                     )}
                     <span>{v.color || v.size}</span>
                     <span className={isSelected ? "text-amber-200 font-bold ml-0.5" : "text-stone-500 font-medium ml-0.5"}>
-                      ₹{v.price}
+                      {v.price > 0 ? `₹${v.price}` : "Quote"}
                     </span>
                   </button>
                 );
@@ -513,19 +526,31 @@ export default function PricingWidget({
               Wholesale Price
             </span>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-sans font-bold text-stone-900">
-                ₹{displayPrice.toLocaleString()}
-              </span>
-              <span className="text-xs text-stone-500 font-sans">/ unit</span>
+              {isQuoteOnlyEffective ? (
+                <span className="text-2xl sm:text-3xl font-sans font-bold text-stone-800">
+                  Price on Request
+                </span>
+              ) : (
+                <>
+                  <span className="text-3xl font-sans font-bold text-stone-900">
+                    ₹{displayPrice.toLocaleString()}
+                  </span>
+                  <span className="text-xs text-stone-500 font-sans">/ unit</span>
+                </>
+              )}
               {!available ? (
                 <span className="ml-2 text-[11px] font-sans font-bold text-white bg-red-600 border border-red-700 px-2.5 py-0.5 uppercase tracking-wider shadow-xs">
                   Out of Stock
                 </span>
-              ) : currentTier && currentTier.discountPct > 0 && (
+              ) : isQuoteOnlyEffective ? (
+                <span className="ml-1 text-xs font-sans font-semibold text-stone-600 bg-stone-100 border border-stone-200 px-2 py-0.5">
+                  Bulk Inquiry Only
+                </span>
+              ) : currentTier && currentTier.discountPct > 0 ? (
                 <span className="ml-1 text-xs font-sans font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5">
                   Save {currentTier.discountPct}%
                 </span>
-              )}
+              ) : null}
             </div>
           </div>
           <div className="text-right">
@@ -533,7 +558,7 @@ export default function PricingWidget({
               Subtotal
             </span>
             <span className="text-lg font-sans font-bold text-stone-950">
-              ₹{subtotal.toLocaleString()}
+              {isQuoteOnlyEffective ? "Custom Quote" : `₹${subtotal.toLocaleString()}`}
             </span>
           </div>
         </div>
@@ -744,7 +769,7 @@ export default function PricingWidget({
                 <span>Inquire Restock via WhatsApp</span>
               </a>
             </>
-          ) : isQuoteOnly ? (
+          ) : isQuoteOnlyEffective ? (
             <a
               href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to request a wholesale quotation for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
               target="_blank"
@@ -819,7 +844,7 @@ export default function PricingWidget({
               {selectedVariant ? `${selectedVariant.size} • ` : (selectedColor ? `${selectedColor} • ` : "")}Qty: {quantity}
             </span>
             <span className="text-base font-sans font-bold text-stone-900">
-              ₹{subtotal.toLocaleString()}
+              {isQuoteOnlyEffective ? "Price on Request" : `₹${subtotal.toLocaleString()}`}
             </span>
           </div>
           {!available ? (
@@ -853,7 +878,7 @@ export default function PricingWidget({
                 <span>Inquire</span>
               </a>
             </div>
-          ) : isQuoteOnly ? (
+          ) : isQuoteOnlyEffective ? (
             <a
               href={`https://wa.me/919041500605?text=${encodeURIComponent(`Hi Ekora Team, I would like to request a wholesale quotation for: ${productName || 'Wholesale Product'} (ID: ${productId || ''})`)}`}
               target="_blank"

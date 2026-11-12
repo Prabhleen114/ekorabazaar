@@ -628,38 +628,49 @@ export default function ShopClient({
                       <h2 className="font-serif text-sm md:text-base text-stone-900 font-normal leading-snug line-clamp-2 min-h-[2.5rem] md:min-h-[2.75rem] mb-2 group-hover:text-[#8C734B] transition-colors">
                         {product.name}
                       </h2>
-                      <div className="text-xs font-sans text-stone-800 flex items-baseline justify-between mb-2">
-                        {product.isQuoteOnly || product.price === 0 ? (
-                          <span className="text-stone-500 italic">Quote on Request</span>
-                        ) : (
-                          <div className="flex items-baseline gap-1.5 flex-wrap">
-                            <span className="font-bold text-sm text-stone-950">
-                              {product.variants && product.variants.length > 0
-                                ? `From ₹${product.price}`
-                                : `₹${product.price}`}
-                            </span>
-                            {product.bulkDiscountAvailable && (!product.variants || product.variants.length === 0) && (
-                              <span className="text-[10px] text-stone-500">(10+ Bulk Tier)</span>
+                      {(() => {
+                        const isZeroOrMissing = product.isQuoteOnly || product.price == null || isNaN(product.price) || product.price <= 0;
+                        const displayPriceText = !isZeroOrMissing
+                          ? (product.price >= 1 ? (Number.isInteger(product.price) ? product.price.toLocaleString('en-IN') : product.price.toFixed(2)) : product.price.toFixed(2))
+                          : "";
+
+                        return (
+                          <>
+                            <div className="text-xs font-sans text-stone-800 flex items-baseline justify-between mb-2">
+                              {isZeroOrMissing ? (
+                                <span className="text-stone-500 italic">Quote on Request</span>
+                              ) : (
+                                <div className="flex items-baseline gap-1.5 flex-wrap">
+                                  <span className="font-bold text-sm text-stone-950">
+                                    {product.variants && product.variants.length > 0
+                                      ? `From ₹${displayPriceText}`
+                                      : `₹${displayPriceText}`}
+                                  </span>
+                                  {product.bulkDiscountAvailable && (!product.variants || product.variants.length === 0) && (
+                                    <span className="text-[10px] text-stone-500">(10+ Bulk Tier)</span>
+                                  )}
+                                </div>
+                              )}
+                              <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
+                                View &rarr;
+                              </span>
+                            </div>
+                            {!isZeroOrMissing && (
+                              <div className="mt-auto pt-1">
+                                <object>
+                                  <QuickAddButton
+                                    productId={String(product.id)}
+                                    productName={product.name}
+                                    basePrice={product.price}
+                                    category={product.category}
+                                    inStock={product.inStock}
+                                  />
+                                </object>
+                              </div>
                             )}
-                          </div>
-                        )}
-                        <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
-                          View &rarr;
-                        </span>
-                      </div>
-                      {!(product.isQuoteOnly || product.price === 0) && (
-                        <div className="mt-auto pt-1">
-                          <object>
-                            <QuickAddButton
-                              productId={String(product.id)}
-                              productName={product.name}
-                              basePrice={product.price}
-                              category={product.category}
-                              inStock={product.inStock}
-                            />
-                          </object>
-                        </div>
-                      )}
+                          </>
+                        );
+                      })()}
                     </div>
                   </Link>
                 );

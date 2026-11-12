@@ -93,8 +93,9 @@ export function generateProductSchema(product: any, sellerName?: string) {
       computedSeller = "Ekora Bazaar";
     }
     const finalSeller = computedSeller;
-  const basePrice = (product.customerPrice ?? product.price) / 100;
-  const isAvailable = product.stock > 0 || product.inStock !== false;
+  const rawPrice = (product.customerPrice ?? product.price) / 100;
+  const basePrice = !isNaN(rawPrice) && rawPrice > 0 ? rawPrice : 0;
+  const isAvailable = (product.stock > 0 || product.inStock !== false) && basePrice > 0;
 
   const returnPolicy = {
     "@type": "MerchantReturnPolicy",
@@ -136,12 +137,11 @@ export function generateProductSchema(product: any, sellerName?: string) {
   // While AggregateOffer supports lowPrice/highPrice, it is semantically intended for multiple distinct sellers offering the same product, rather than tiered volume pricing from a single seller.
 
   const canonicalId = getCanonicalProductId(String(product.id));
-  const offers = {
+  const offers: any = {
     "@type": "Offer",
     "@id": `${BASE_URL}/products/${canonicalId}#offer`,
     "url": `${BASE_URL}/products/${canonicalId}`,
     "priceCurrency": "INR",
-    "price": basePrice,
     "priceValidUntil": "2027-12-31",
     "itemCondition": "https://schema.org/NewCondition",
     "availability": isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -152,6 +152,10 @@ export function generateProductSchema(product: any, sellerName?: string) {
         "name": finalSeller
     }
   };
+
+  if (basePrice > 0) {
+    offers.price = basePrice;
+  }
 
   const schema: any = {
     "@context": "https://schema.org",

@@ -194,6 +194,7 @@ export default async function SellerStorePage({ params }: Props) {
                   price: product.customerPrice ?? product.price,
                   imageUrl: product.imageUrl,
                   wholesaleTiers: product.wholesaleTiers,
+                  isQuoteOnly: product.stock <= 0 || (product.customerPrice ?? product.price) <= 0
                 }}
                 index={index}
                 priority={index < 4}

@@ -33,6 +33,7 @@ export async function GET() {
       const effectivePrice = calculateItemPrice(item.product, item.quantity)
       const isAvailable = item.product.status === ProductStatus.PUBLISHED &&
         item.product.stock >= item.quantity &&
+        effectivePrice > 0 &&
         (!item.product.seller || item.product.seller.accountStatus === SellerAccountStatus.ACTIVE)
       if (isAvailable) totalAmount += effectivePrice * item.quantity
       return { ...item, effectivePrice, isAvailable }
@@ -57,6 +58,10 @@ export async function POST(req: Request) {
     }
 
     let product = await prisma.product.findUnique({ where: { id: productId } })
+
+    if (product && (product.price <= 0 || (product.customerPrice !== null && product.customerPrice <= 0))) {
+      return NextResponse.json({ error: 'This product is available on quotation only. Please request a quote.' }, { status: 400 });
+    }
 
     // Fallback: If not yet synced in DB, check catalogProducts (2,374 SKUs)
     if (!product) {

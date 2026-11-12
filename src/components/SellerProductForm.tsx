@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import ProductImageClient from '@/components/ProductImageClient'
 import { ALL_CATEGORIES } from '@/lib/categories'
 import { X, Upload, Plus, Trash2 } from 'lucide-react'
+import { normalizeTierPriceToRupees } from '@/lib/pricing'
 
 export default function SellerProductForm({ initialData = null }: { initialData?: any }) {
   const router = useRouter()
@@ -23,7 +24,9 @@ export default function SellerProductForm({ initialData = null }: { initialData?
   const [tiers, setTiers] = useState<any[]>(
     (initialData?.wholesaleTiers || []).map((t: any) => ({
       ...t,
-      price: t.price != null ? (t.price >= 100 && (initialData?.price || 0) >= 100 ? (t.price / 100).toString() : t.price.toString()) : ''
+      price: t.price != null && Number(t.price) > 0
+        ? normalizeTierPriceToRupees(Number(t.price), initialData?.price || 0).toString()
+        : ''
     }))
   )
 
@@ -97,12 +100,21 @@ export default function SellerProductForm({ initialData = null }: { initialData?
 
       const method = isEditing ? 'PATCH' : 'POST'
 
-      const processedTiers = tiers.map(t => ({
-        minQty: parseInt(t.minQty, 10) || 1,
-        maxQty: t.maxQty ? parseInt(t.maxQty, 10) : null,
-        price: Math.round((parseFloat(t.price) || 0) * 100),
-        discountPct: parseFloat(t.discountPct) || 0
-      }))
+      const parsedPrice = parseFloat(price);
+      if (isNaN(parsedPrice) || parsedPrice <= 0) {
+        setError('Base price must be greater than ₹0');
+        setLoading(false);
+        return;
+      }
+
+      const processedTiers = tiers
+        .filter(t => (parseFloat(t.price) || 0) > 0)
+        .map(t => ({
+          minQty: parseInt(t.minQty, 10) || 1,
+          maxQty: t.maxQty ? parseInt(t.maxQty, 10) : null,
+          price: Math.round((parseFloat(t.price) || 0) * 100),
+          discountPct: parseFloat(t.discountPct) || 0
+        }))
 
       const res = await fetch(url, {
         method,
@@ -111,7 +123,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           title,
           description,
           category,
-          price: Math.round(parseFloat(price) * 100),
+          price: Math.round(parsedPrice * 100),
           stock: parseInt(stock, 10),
           moq: parseInt(moq, 10),
           imageUrl,
@@ -242,7 +254,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           <input
             type="number"
             step="0.01"
-            min="0"
+            min="0.01"
             required
             value={price}
             onChange={e => setPrice(e.target.value)}
@@ -301,7 +313,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
                 </div>
                 <div className="flex-1 w-full">
                   <label className="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 mb-1">Price/Unit (₹)</label>
-                  <input type="number" step="0.01" required min={0} value={tier.price} onChange={e => updateTier(idx, 'price', e.target.value)} className="w-full border border-brand-linen rounded-lg px-3 py-2 text-sm" />
+                  <input type="number" step="0.01" required min={0.01} value={tier.price} onChange={e => updateTier(idx, 'price', e.target.value)} className="w-full border border-brand-linen rounded-lg px-3 py-2 text-sm" />
                 </div>
                 <div className="flex-1 w-full">
                   <label className="block text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50 mb-1">% Off</label>

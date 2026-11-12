@@ -4,6 +4,7 @@ import { getDepartmentForCategory } from "@/lib/taxonomy";
 import { normalizeCategoryName } from "@/lib/categories";
 import catalogProducts from "@/lib/data/products.json";
 import { NormalizedProduct } from "@/lib/product-filters";
+import { normalizeTierPriceToRupees } from "@/lib/pricing";
 
 export interface CatalogFacets {
   departments: Record<string, number>;
@@ -140,7 +141,13 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
             maxDiscount: 0,
             description: desc,
             tags: [],
-            tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || []),
+            tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || [])
+              .filter((t: any) => t && Number(t.price) > 0)
+              .map((t: any) => ({
+                ...t,
+                price: normalizeTierPriceToRupees(Number(t.price), p.customerPrice ?? p.price),
+                minQty: Number(t.minQty) || 1
+              })),
             isQuoteOnly,
             _isNormalized: true,
             _searchText: searchText

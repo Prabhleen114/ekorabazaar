@@ -46,7 +46,9 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
               <h3 className="font-semibold text-brand-charcoal mb-2 line-clamp-1">{product.title}</h3>
 
               <div className="flex items-center justify-between mb-4 text-sm mt-auto pt-3">
-                <span className="font-bold text-lg text-brand-charcoal">₹{(product.price / 100).toFixed(2)}</span>
+                <span className="font-bold text-lg text-brand-charcoal">
+                  {product.price > 0 ? `₹${(product.price / 100).toFixed(2)}` : "Price on Request"}
+                </span>
 
                 <div className={`flex items-center gap-1.5 font-medium text-xs ${product.stock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${product.stock > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}></span>

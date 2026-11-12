@@ -71,25 +71,45 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
       return pCat === canonicalCategory || p.category === categoryObj.id || p.category === categoryObj.label;
     }).slice(0, 12);
 
-    return matching.map(p => ({
-      id: String(p.id),
-      title: p.name || p.title,
-      category: p.category,
-      price: Math.round((typeof p.price === 'number' ? p.price : parseFloat(p.price || '0')) * 100),
-      imageUrl: p.image || p.imageUrl || '/og-image.jpg',
-      wholesaleTiers: p.tiers || [],
-      variants: p.variants || []
-    }));
+    return matching.map(p => {
+      const rawPrice = typeof p.price === 'number' ? p.price : parseFloat(p.price || '0');
+      const isQuoteOnly = p.isQuoteOnly === true || isNaN(rawPrice) || rawPrice <= 0 || p.inStock === false;
+      const validTiers = (Array.isArray(p.tiers) ? p.tiers : [])
+        .filter((t: any) => t && Number(t.price) > 0)
+        .map((t: any) => ({
+          ...t,
+          price: Math.round(Number(t.price) * 100) // normalize to paise to match ProductCard expectations
+        }));
+
+      return {
+        id: String(p.id),
+        title: p.name || p.title,
+        category: p.category,
+        price: isQuoteOnly ? 0 : Math.round(rawPrice * 100),
+        imageUrl: p.image || p.imageUrl || '/og-image.jpg',
+        wholesaleTiers: validTiers,
+        variants: p.variants || [],
+        isQuoteOnly
+      };
+    });
   }
 
-  return products.map(p => ({
-    id: String(p.id),
-    title: p.title,
-    category: p.category,
-    price: p.price,
-    imageUrl: p.imageUrl,
-    wholesaleTiers: p.wholesaleTiers || []
-  }));
+  return products.map(p => {
+    const effectivePricePaise = p.customerPrice ?? p.price;
+    const isQuoteOnly = p.stock <= 0 || effectivePricePaise <= 0;
+    const rawTiers = Array.isArray(p.wholesaleTiers) ? (p.wholesaleTiers as any[]) : [];
+    const validTiers = rawTiers.filter(t => t && Number(t.price) > 0);
+
+    return {
+      id: String(p.id),
+      title: p.title,
+      category: p.category,
+      price: effectivePricePaise,
+      imageUrl: p.imageUrl,
+      wholesaleTiers: validTiers,
+      isQuoteOnly
+    };
+  });
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

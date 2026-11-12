@@ -10,6 +10,7 @@ import { HOMEPAGE_FAQS } from "@/lib/faqs";
 import type { Metadata } from "next";
 import { generateFaqSchema } from "@/lib/seo";
 import serialize from "serialize-javascript";
+import { normalizeTierPriceToRupees } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Wholesale",
@@ -166,9 +167,12 @@ export default function BuyerHomePage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10">
           {trendingProducts.map((p: any) => {
             const hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
-            const price = hasVariants ? p.variants[0].price : (typeof p.price === "number" ? p.price : parseFloat(p.price || "0"));
+            const rawPrice = hasVariants ? p.variants[0].price : (typeof p.price === "number" ? p.price : parseFloat(p.price || "0"));
+            const isZeroOrMissing = p.isQuoteOnly === true || isNaN(rawPrice) || rawPrice <= 0 || p.inStock === false;
+            const price = !isZeroOrMissing ? rawPrice : 0;
             const hasTiers = Array.isArray(p.tiers) && p.tiers.length > 1;
-            const bulkPrice = hasTiers ? p.tiers[1]?.price : null;
+            const validBulkTier = hasTiers ? p.tiers.find((t: any, idx: number) => idx > 0 && t && Number(t.price) > 0) : null;
+            const bulkPrice = validBulkTier ? normalizeTierPriceToRupees(Number(validBulkTier.price), Math.round(price * 100)) : null;
 
             return (
               <Link
@@ -196,18 +200,28 @@ export default function BuyerHomePage() {
                   </h3>
                   <div className="text-xs font-sans text-stone-800 flex items-baseline justify-between mb-2">
                     <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <span className="font-bold text-sm text-stone-950">{hasVariants ? `From ₹${price}` : `₹${price}`}</span>
-                      {!hasVariants && bulkPrice && (
-                        <span className="text-[10px] text-stone-500">(10+ Bulk: ₹{bulkPrice})</span>
+                      {isZeroOrMissing ? (
+                        <span className="font-semibold text-xs text-stone-600 italic">Quote on Request</span>
+                      ) : (
+                        <>
+                          <span className="font-bold text-sm text-stone-950">
+                            {hasVariants ? `From ₹${price.toLocaleString()}` : `₹${price.toLocaleString()}`}
+                          </span>
+                          {!hasVariants && bulkPrice && (
+                            <span className="text-[10px] text-stone-500">(10+ Bulk: ₹{bulkPrice.toLocaleString()})</span>
+                          )}
+                        </>
                       )}
                     </div>
                     <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">
                       View &rarr;
                     </span>
                   </div>
-                  <div className="mt-auto pt-1">
-                    <object><QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} /></object>
-                  </div>
+                  {!isZeroOrMissing && (
+                    <div className="mt-auto pt-1">
+                      <object><QuickAddButton productId={String(p.id)} productName={p.name} basePrice={price} category={p.category} inStock={!isZeroOrMissing} /></object>
+                    </div>
+                  )}
                 </div>
               </Link>
             );

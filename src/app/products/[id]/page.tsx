@@ -19,6 +19,7 @@ import ProductFaqSection from "@/components/ProductFaqSection";
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
+import { normalizeTierPriceToRupees } from "@/lib/pricing";
 
 export const revalidate = 0;
 
@@ -58,7 +59,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
     });
 
     if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
-      const effectivePrice = (product.customerPrice ?? product.price) / 100;
+      const basePricePaise = product.customerPrice ?? product.price;
+      const effectivePrice = basePricePaise / 100;
       const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(id));
       const imageUrl = (catalogItem?.image && catalogItem.image.startsWith('/images/products/'))
         ? catalogItem.image
@@ -67,14 +69,22 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       const department = getDepartmentForCategory(category) || catalogItem?.department || "Precision Studio Moulds";
 
       const tiers = Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0
-        ? (product.wholesaleTiers as any[]).map(t => ({
-            ...t,
-            price: t.price ? Math.round(t.price / 100) : effectivePrice,
-            minQty: t.minQty || product.moq
-          }))
+        ? (product.wholesaleTiers as any[])
+            .filter((t: any) => t && Number(t.price) > 0)
+            .map(t => ({
+              ...t,
+              price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
+              minQty: Number(t.minQty) || product.moq || 1
+            }))
         : (Array.isArray(catalogItem?.tiers) && catalogItem.tiers.length > 0
             ? catalogItem.tiers
-            : [{ price: effectivePrice, minQty: product.moq || 1, maxQty: null, discountPct: 0 }]);
+                .filter((t: any) => t && Number(t.price) > 0)
+                .map((t: any) => ({
+                  ...t,
+                  price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
+                  minQty: Number(t.minQty) || product.moq || 1
+                }))
+            : (effectivePrice > 0 ? [{ price: effectivePrice, minQty: product.moq || 1, maxQty: null, discountPct: 0 }] : []));
 
       const variants = Array.isArray(catalogItem?.variants) && catalogItem.variants.length > 0
         ? catalogItem.variants
@@ -88,6 +98,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         ? catalogItem.images
         : [imageUrl];
 
+      const isQuoteOnly = catalogItem?.isQuoteOnly === true || catalogItem?.inStock === false || product.price <= 0 || product.stock <= 0 || effectivePrice <= 0;
+
       return {
         rawProduct: product,
         id: product.id,
@@ -99,14 +111,14 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         tags: [] as string[],
         price: effectivePrice,
         moq: product.moq || 1,
-        tiers,
+        tiers: isQuoteOnly ? [] : tiers,
         variants,
         colors,
         description: product.description || catalogItem?.description || "",
         supplierName: product.seller?.brandName || "Verified Ekora Supplier",
         sellerId: product.sellerId,
-        inStock: product.stock > 0 && catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly,
-        isQuoteOnly: catalogItem?.isQuoteOnly === true || catalogItem?.inStock === false || product.price <= 0 || product.stock <= 0,
+        inStock: product.stock > 0 && catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly && effectivePrice > 0,
+        isQuoteOnly,
         fragranceNotes: null as any,
         usageLevels: null as any
       };
@@ -119,14 +131,20 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
   const item = (catalogProducts as any[]).find(p => String(p.id) === String(id));
   if (item) {
     const priceVal = typeof item.price === "number" ? item.price : parseFloat(item.price || "0");
-    const isQuoteOnly = item.isQuoteOnly === true || priceVal === 0 || item.inStock === false;
+    const isQuoteOnly = item.isQuoteOnly === true || isNaN(priceVal) || priceVal <= 0 || item.inStock === false;
     const category = item.category || "General Silicone Moulds";
     const department = item.department || getDepartmentForCategory(category) || "Precision Studio Moulds";
+    const rawCatalogTiers = Array.isArray(item.tiers) ? item.tiers : [];
+    const validCatalogTiers = rawCatalogTiers.filter((t: any) => t && Number(t.price) > 0);
     const tiers = isQuoteOnly
       ? []
-      : (Array.isArray(item.tiers) && item.tiers.length > 0
-          ? item.tiers
-          : [{ price: priceVal, minQty: 1, maxQty: null, discountPct: 0 }]);
+      : (validCatalogTiers.length > 0
+          ? validCatalogTiers.map((t: any) => ({
+              ...t,
+              price: normalizeTierPriceToRupees(Number(t.price), Math.round(priceVal * 100)),
+              minQty: Number(t.minQty) || item.moq || 1
+            }))
+          : (priceVal > 0 ? [{ price: priceVal, minQty: item.moq || 1, maxQty: null, discountPct: 0 }] : []));
 
     const fakePrismaProduct: any = {
       id: String(item.id),

@@ -3,22 +3,63 @@ import React from "react";
 import Link from "next/link";
 import ProductImageClient from "@/components/ProductImageClient";
 import { ALL_CATEGORIES } from "@/lib/categories";
+import { calculateItemPrice, normalizeTierPriceToRupees } from "@/lib/pricing";
 
 export type ProductCardItem = {
   id: string;
   title: string;
   category: string | null;
   price: number;
+  customerPrice?: number | null;
   imageUrl?: string | null;
   wholesaleTiers?: any;
   variants?: any[];
   inStock?: boolean;
   stock?: number;
+  isQuoteOnly?: boolean;
 };
 
 export default function ProductCard({ product, index = 0, priority = false }: { product: ProductCardItem; index?: number; priority?: boolean }) {
   const hasVariants = Array.isArray(product.variants) && product.variants.length > 0;
-  const effectivePrice = product.price / 100;
+
+  // Guard against missing, zero or invalid prices:
+  const isZeroOrMissing =
+    product.price == null ||
+    isNaN(product.price) ||
+    product.price <= 0 ||
+    product.isQuoteOnly === true;
+
+  const unitPricePaise = !isZeroOrMissing
+    ? calculateItemPrice(
+        {
+          price: product.price,
+          customerPrice: product.customerPrice ?? null,
+          wholesaleTiers: product.wholesaleTiers
+        },
+        1
+      )
+    : 0;
+  const rawEffective = unitPricePaise / 100;
+  const effectivePriceFormatted = rawEffective >= 1
+    ? (rawEffective % 1 === 0 ? rawEffective.toLocaleString('en-IN') : rawEffective.toFixed(2))
+    : rawEffective.toFixed(2);
+
+  // Derive bulk tier price safely:
+  let bulkTierPriceFormatted: string | null = null;
+  if (!isZeroOrMissing && !hasVariants && product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1) {
+    const validTiers = product.wholesaleTiers.filter((t: any) => t && Number(t.price) > 0);
+    if (validTiers.length > 1) {
+      const lastTier = validTiers[validTiers.length - 1];
+      const rawTierPrice = Number(lastTier.price);
+      // Unit normalization: safely convert raw tier price to Rupees regardless of whether stored in paise or rupees
+      const tierInRupees = normalizeTierPriceToRupees(rawTierPrice, product.price);
+      if (tierInRupees > 0 && tierInRupees < rawEffective) {
+        bulkTierPriceFormatted = tierInRupees >= 1
+          ? (tierInRupees % 1 === 0 ? tierInRupees.toLocaleString('en-IN') : tierInRupees.toFixed(2))
+          : tierInRupees.toFixed(2);
+      }
+    }
+  }
 
   const categoryLabel = ALL_CATEGORIES.find(c => c.id === product.category || c.label === product.category)?.label || product.category || "Wholesale Craft Supplies";
 
@@ -49,11 +90,19 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
 
         <div className="mt-auto pt-1 flex items-baseline justify-between text-xs font-sans">
           <div className="flex items-baseline gap-1.5 flex-wrap">
-            <span className="font-bold text-sm text-stone-950">{hasVariants ? `From ₹${effectivePrice}` : `₹${effectivePrice}`}</span>
-            {!hasVariants && product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1 && (
-              <span className="text-[10px] text-stone-500">
-                (10+ Bulk: ₹{Math.round((product.wholesaleTiers[product.wholesaleTiers.length - 1].price || 0) / 100)})
-              </span>
+            {isZeroOrMissing ? (
+              <span className="font-semibold text-xs text-stone-600 italic">Price on Request</span>
+            ) : (
+              <>
+                <span className="font-bold text-sm text-stone-950">
+                  {hasVariants ? `From ₹${effectivePriceFormatted}` : `₹${effectivePriceFormatted}`}
+                </span>
+                {bulkTierPriceFormatted && (
+                  <span className="text-[10px] text-stone-500">
+                    (10+ Bulk: ₹{bulkTierPriceFormatted})
+                  </span>
+                )}
+              </>
             )}
           </div>
           <span className="text-[10px] uppercase tracking-widest text-stone-400 group-hover:text-stone-900 transition-colors">

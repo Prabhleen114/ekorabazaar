@@ -50,10 +50,12 @@ export async function POST(req: Request) {
             stock: 500,
             status: ProductStatus.PUBLISHED,
             imageUrl: catalogItem.image || '/placeholder-product.svg',
-            wholesaleTiers: (catalogItem.tiers || []).map((t: any) => ({
-              ...t,
-              price: Math.round((Number(t.price) || 0) * 100)
-            })),
+            wholesaleTiers: (catalogItem.tiers || [])
+              .filter((t: any) => t && Number(t.price) > 0)
+              .map((t: any) => ({
+                ...t,
+                price: Math.round(Number(t.price) * 100)
+              })),
             seller: { accountStatus: SellerAccountStatus.ACTIVE }
           }
         }
@@ -63,11 +65,12 @@ export async function POST(req: Request) {
 
       const quantity = Math.max(1, parseInt(reqItem.quantity) || 1)
       const effectivePrice = calculateItemPrice(product, quantity)
-      const isQuoteOnly = product.price <= 0 || (product.customerPrice !== null && product.customerPrice <= 0)
+      const isQuoteOnly = product.price <= 0 || (product.customerPrice !== null && product.customerPrice <= 0) || effectivePrice <= 0
 
       const isAvailable = product.status === ProductStatus.PUBLISHED &&
         product.stock >= quantity &&
         !isQuoteOnly &&
+        effectivePrice > 0 &&
         (!product.seller || product.seller.accountStatus === SellerAccountStatus.ACTIVE)
       
       if (isAvailable) totalAmount += effectivePrice * quantity
