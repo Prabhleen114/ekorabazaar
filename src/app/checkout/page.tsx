@@ -308,7 +308,7 @@ export default function CheckoutPage() {
   if (loading) return <div className="min-h-screen p-8 text-center">Loading checkout...</div>
 
   return (
-        <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       {/* Brand Header with Home Link */}
       <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
         <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
@@ -379,10 +379,10 @@ export default function CheckoutPage() {
                       {selectedAddressId === addr.id && (
                         <div className="absolute top-4 right-4 text-brand-orange"><Check className="w-5 h-5" /></div>
                       )}
-                      <p className="font-bold">{addr.name}</p>
-                      <p className="text-sm mt-1">{addr.line1}</p>
-                      {addr.line2 && <p className="text-sm">{addr.line2}</p>}
-                      <p className="text-sm">{addr.city}, {addr.state} {addr.pincode}</p>
+                      <p className="font-bold pr-6 break-words">{addr.name}</p>
+                      <p className="text-sm mt-1 break-words">{addr.line1}</p>
+                      {addr.line2 && <p className="text-sm break-words">{addr.line2}</p>}
+                      <p className="text-sm break-words">{addr.city}, {addr.state} {addr.pincode}</p>
                       <p className="text-sm mt-2 font-medium">Phone: {addr.phone}</p>
                     </div>
                   ))}
@@ -400,7 +400,7 @@ export default function CheckoutPage() {
                 <div><label className="text-sm font-medium mb-1 block">Phone Number</label><input type="tel" inputMode="numeric" pattern="[0-9]*" required value={newAddress.phone} onChange={e=>setNewAddress({...newAddress, phone: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div><label className="text-sm font-medium mb-1 block">Flat, House no., Building</label><input required value={newAddress.line1} onChange={e=>setNewAddress({...newAddress, line1: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 <div><label className="text-sm font-medium mb-1 block">Area, Street, Sector, Village</label><input value={newAddress.line2} onChange={e=>setNewAddress({...newAddress, line2: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div><label className="text-sm font-medium mb-1 block">City</label><input required value={newAddress.city} onChange={e=>setNewAddress({...newAddress, city: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                   <div><label className="text-sm font-medium mb-1 block">State</label><input required value={newAddress.state} onChange={e=>setNewAddress({...newAddress, state: e.target.value})} className="w-full border border-brand-linen rounded-xl p-3 text-base focus:border-brand-orange focus:outline-none transition-all" /></div>
                 </div>
@@ -482,17 +482,17 @@ export default function CheckoutPage() {
 
         {/* SUMMARY SECTION */}
         <div>
-          <div className="bg-white p-6 rounded-2xl border border-brand-linen shadow-sm sticky top-24">
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-brand-linen shadow-sm h-fit lg:sticky lg:top-24 w-full overflow-hidden">
             <h2 className="text-xl font-bold mb-6">Order Summary</h2>
             
             <div className="space-y-4 mb-6">
               {items.map(item => (
-                <div key={item.id} className="flex justify-between text-sm">
-                  <div className="flex-1 pr-4">
-                    <p className="font-medium line-clamp-2">{item.product.title}</p>
-                    <p className="text-gray-500 mt-1">Qty: {item.quantity}</p>
+                <div key={item.id} className="flex justify-between text-sm gap-2">
+                  <div className="flex-1 pr-2 min-w-0">
+                    <p className="font-medium line-clamp-2 break-words">{item.product.title}</p>
+                    <p className="text-gray-500 text-xs mt-0.5">Qty: {item.quantity}</p>
                   </div>
-                  <div className="font-semibold">₹{((item.effectivePrice * item.quantity) / 100).toLocaleString()}</div>
+                  <div className="font-semibold shrink-0">₹{((item.effectivePrice * item.quantity) / 100).toLocaleString('en-IN')}</div>
                 </div>
               ))}
             </div>
@@ -530,12 +530,12 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-            {errorMsg && <div className="text-red-500 text-sm font-semibold mb-4 bg-red-50 p-3 rounded">{errorMsg}</div>}
+            {errorMsg && <div className="text-red-500 text-sm font-semibold mb-4 bg-red-50 p-3 rounded break-words">{errorMsg}</div>}
 
             <button 
               onClick={handlePay}
               disabled={isProcessing || !selectedAddressId}
-              className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-brand-orange/20 flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-brand-orange/20 flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {isProcessing && <Loader2 className="w-5 h-5 animate-spin" />}
               {isProcessing ? 'Processing Payment...' : 'Pay with Razorpay'}

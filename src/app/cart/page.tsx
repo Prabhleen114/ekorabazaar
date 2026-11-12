@@ -217,7 +217,7 @@ export default function CartPage() {
   if (loading) return <div className="min-h-screen p-8 text-center">Loading cart...</div>
 
   return (
-        <div className="max-w-4xl mx-auto px-4 py-6 md:py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       {/* Brand Header with Home Link */}
       <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
         <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
@@ -263,8 +263,8 @@ export default function CartPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {items.map(item => (
-              <div key={item.id} className="bg-white p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-4 items-center">
-                <div className="w-20 h-20 rounded-xl overflow-hidden bg-brand-bg relative flex-shrink-0">
+              <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-3 sm:gap-4 items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-brand-bg relative shrink-0">
                   {item.product.imageUrl ? (
                     <ProductImageClient
                       src={item.product.imageUrl}
@@ -278,24 +278,26 @@ export default function CartPage() {
                     <div className="w-full h-full bg-gray-200" />
                   )}
                 </div>
-                <div className="flex-1">
-                  <Link href={`/products/${item.productId}`} className="font-semibold hover:text-brand-orange transition-colors">
+                <div className="flex-1 min-w-0">
+                  <Link href={`/products/${item.productId}`} className="font-semibold hover:text-brand-orange transition-colors text-sm sm:text-base line-clamp-2 break-words">
                     {item.product.title}
                   </Link>
-                  <div className="text-brand-orange font-bold mt-1">₹{(item.effectivePrice / 100).toLocaleString()}</div>
+                  <div className="text-brand-orange font-bold mt-1 text-sm sm:text-base">
+                    ₹{(item.effectivePrice / 100).toLocaleString('en-IN')}
+                  </div>
                   {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
                 </div>
-                <div className="flex flex-col items-end gap-2">
+                <div className="flex flex-col items-end gap-2 shrink-0">
                   <div className="flex items-center bg-brand-bg rounded-lg border border-brand-linen">
-                    <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable}>
                       <Minus className="w-3 h-3" />
                     </button>
-                    <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable}>
+                    <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-medium">{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable}>
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1">
+                  <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -303,11 +305,11 @@ export default function CartPage() {
             ))}
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-brand-linen shadow-sm h-fit sticky top-24">
-            <h2 className="text-lg font-bold mb-4">Order Summary</h2>
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-brand-linen shadow-sm h-fit lg:sticky lg:top-24 w-full overflow-hidden">
+            <h2 className="text-lg font-bold mb-4 text-brand-charcoal">Order Summary</h2>
 
             {/* Coupon Section */}
-            <div className="mb-5 pb-5 border-b border-brand-linen">
+            <div className="mb-4 pb-4 border-b border-brand-linen">
               <CouponSection
                 subtotalPaise={total}
                 appliedCoupon={appliedCoupon}
@@ -316,44 +318,47 @@ export default function CartPage() {
               />
             </div>
 
-            <div className="flex justify-between mb-2 text-sm">
-              <span className="text-brand-charcoal/70">Subtotal</span>
-              <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
-            </div>
-
-            {appliedCoupon && (
-              <div className="flex justify-between mb-2 text-sm text-emerald-700 font-semibold">
-                <span>Coupon Discount ({appliedCoupon.code})</span>
-                <span>-₹{appliedCoupon.discountAmountRupees.toLocaleString('en-IN')}</span>
+            <div className="space-y-2 mb-4">
+              <div className="flex justify-between text-sm">
+                <span className="text-brand-charcoal/70">Subtotal</span>
+                <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
               </div>
-            )}
 
-            <div className="flex justify-between mb-4 text-sm">
-              <span className="text-brand-charcoal/70">Delivery</span>
-              <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString('en-IN')}</span>
+              {appliedCoupon && (
+                <div className="flex justify-between text-sm text-emerald-700 font-semibold">
+                  <span>Coupon Discount ({appliedCoupon.code})</span>
+                  <span>-₹{appliedCoupon.discountAmountRupees.toLocaleString('en-IN')}</span>
+                </div>
+              )}
+
+              <div className="flex justify-between text-sm">
+                <span className="text-brand-charcoal/70">Delivery</span>
+                <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString('en-IN')}</span>
+              </div>
             </div>
-            <div className="border-t border-brand-linen pt-4 flex justify-between mb-4 text-lg">
+
+            <div className="border-t border-brand-linen pt-3.5 flex justify-between mb-4 text-lg">
               <span className="font-bold text-brand-charcoal">Total</span>
-              <span className="font-bold">
+              <span className="font-bold text-brand-charcoal">
                 ₹{Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
               </span>
             </div>
-            {/* Free Shipping Progress Indicator disabled for flat shipping */}
 
             <Link
               href="/checkout"
-              className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md mt-4"
+              className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md"
             >
               Proceed to Checkout
             </Link>
-            <div className="mt-6 pt-4 border-t border-brand-linen flex flex-col gap-3">
+
+            <div className="mt-5 pt-4 border-t border-brand-linen flex flex-col gap-2.5">
               <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                100% Secure Payments (Razorpay)
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>100% Secure Payments (Razorpay)</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
-                <Truck className="w-4 h-4 text-brand-orange" />
-                Dispatch within 24 Hours
+                <Truck className="w-4 h-4 text-brand-orange shrink-0" />
+                <span>Dispatch within 24 Hours</span>
               </div>
             </div>
 

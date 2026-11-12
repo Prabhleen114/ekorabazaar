@@ -61,7 +61,7 @@ export default function StockReservationTimer({
   if (variant === "compact") {
     return (
       <div
-        className={`bg-amber-50/90 border border-amber-200/90 rounded-xl px-3 py-2 text-stone-800 ${className}`}
+        className={`bg-amber-50/90 border border-amber-200/90 rounded-xl px-3 py-2 text-stone-800 overflow-hidden w-full max-w-full ${className}`}
       >
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0">
@@ -104,10 +104,10 @@ export default function StockReservationTimer({
 
   return (
     <div
-      className={`bg-linear-to-r from-amber-50 via-orange-50/40 to-amber-50/60 border border-amber-200/90 rounded-2xl p-4 text-stone-900 shadow-xs ${className}`}
+      className={`bg-linear-to-r from-amber-50 via-orange-50/40 to-amber-50/60 border border-amber-200/90 rounded-2xl p-3.5 sm:p-4 text-stone-900 shadow-xs overflow-hidden w-full max-w-full ${className}`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-start justify-between gap-2.5 sm:gap-3">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           <div
             className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
               isExpired
@@ -117,12 +117,12 @@ export default function StockReservationTimer({
           >
             <Clock className="w-4 h-4" />
           </div>
-          <div>
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <h4 className="font-sans font-bold text-sm text-stone-900">
+              <h4 className="font-sans font-bold text-xs sm:text-sm text-stone-900 truncate">
                 {isExpired ? "Factory Stock Hold Expired" : "Factory Stock Reserved"}
               </h4>
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span
                   className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
                     isExpired ? "bg-red-400" : "bg-amber-400"
@@ -135,14 +135,14 @@ export default function StockReservationTimer({
                 />
               </span>
             </div>
-            <p className="text-xs text-stone-500 font-sans mt-0.5">
+            <p className="text-[11px] sm:text-xs text-stone-500 font-sans mt-0.5 truncate">
               Direct Wholesale Godown &bull; 24-Hour Dispatch
             </p>
           </div>
         </div>
 
         <div
-          className={`font-mono text-sm md:text-base font-bold px-3 py-1 rounded-lg shrink-0 border ${
+          className={`font-mono text-xs sm:text-sm md:text-base font-bold px-2.5 sm:px-3 py-1 rounded-lg shrink-0 border ${
             isExpired
               ? "bg-red-100 text-red-800 border-red-200"
               : isExpiringSoon

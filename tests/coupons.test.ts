@@ -263,4 +263,24 @@ describe('Coupon System — Integration Files Inspection', () => {
     expect(checkoutSource).toContain('appliedCoupon');
     expect(checkoutSource).toContain('couponCode: appliedCoupon');
   });
+
+  it('CouponSection and WhatsAppCheckoutAssistant enforce responsive layout and overflow prevention', () => {
+    const couponSectionPath = path.resolve(process.cwd(), 'src/components/CouponSection.tsx');
+    const couponSectionSource = fs.readFileSync(couponSectionPath, 'utf8');
+
+    // Input and button align in row on desktop and stack on small screens
+    expect(couponSectionSource).toContain('flex-col sm:flex-row');
+    expect(couponSectionSource).toContain('min-w-0');
+    expect(couponSectionSource).toContain('h-10');
+    expect(couponSectionSource).toContain('overflow-hidden');
+
+    const waPath = path.resolve(process.cwd(), 'src/components/WhatsAppCheckoutAssistant.tsx');
+    const waSource = fs.readFileSync(waPath, 'utf8');
+
+    // WhatsApp card avoids overflowing CTA button and reply text
+    expect(waSource).toContain('w-full');
+    expect(waSource).toContain('break-words');
+    expect(waSource).toContain('overflow-hidden');
+    expect(waSource).toContain('Average reply: 5 mins');
+  });
 });
