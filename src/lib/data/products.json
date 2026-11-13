@@ -24042,133 +24042,6 @@
     "title": "SOAP CRINKLE CUTTER KNIFE | ZIG ZAG SOAP CUTTING TOOL | HANDMADE SOAP DESIGN CUTTER STAINLESS STEEL 1PC"
   },
   {
-    "id": "2648",
-    "name": "Bubble Gum Flavour Oil (Food Grade — Lip Balm, Candy & Culinary Safe)",
-    "category": "Food-Grade Flavor Oils",
-    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
-    "price": 190,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Vedini-Bubble-Gum-Flavour-Bottle-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 190,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 175,
-        "discountPct": 7.9
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 170,
-        "discountPct": 10.5
-      }
-    ],
-    "tags": [
-      "silicone mold",
-      "diy craft",
-      "baking tool",
-      "reusable",
-      "food grade",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "india",
-      "craft",
-      "quality",
-      "ekora"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "culinary-chocolatier",
-      "skincare-apothecary"
-    ],
-    "isQuoteOnly": false,
-    "inStock": true,
-    "title": "Bubble Gum Flavour Oil (Food Grade — Lip Balm, Candy & Culinary Safe)",
-    "variants": [
-      {
-        "size": "100 ml",
-        "price": 190,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 190,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 175,
-            "discountPct": 7.9
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 170,
-            "discountPct": 10.5
-          }
-        ]
-      },
-      {
-        "size": "500 ml",
-        "price": 850,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 850,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 750,
-            "discountPct": 11.8
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 700,
-            "discountPct": 17.6
-          }
-        ]
-      },
-      {
-        "size": "1 Litre",
-        "price": 1600,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 1600,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 1450,
-            "discountPct": 9.4
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 1400,
-            "discountPct": 12.5
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "2647",
     "name": "DOMS/ FLAIR TEMPRA 12 COLOUR SET WITH BRUSH | TEMPERA WATER BASE POSTER COLOURS FOR KIDS, SCHOOL & ART PROJECTS",
     "category": "Silicone & Baking Molds",
@@ -47132,7 +47005,7 @@
     "price": 85,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Diffuser-stick-white-black-brown-247x296.png",
+    "image": "/images/products/reed-diffuser-sticks-pack-of-10.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -47214,7 +47087,90 @@
       "home-fragrance"
     ],
     "isQuoteOnly": false,
-    "title": "PREMIUM REED DIFFUSER STICKS – HIGH ABSORBENCY FIBRE REEDS FOR AROMA DIFFUSERS & HOME FRAGRANCE(PACK OF 10)"
+    "title": "PREMIUM REED DIFFUSER STICKS – HIGH ABSORBENCY FIBRE REEDS FOR AROMA DIFFUSERS & HOME FRAGRANCE(PACK OF 10)",
+    "images": [
+      "/images/products/reed-diffuser-sticks-pack-of-10.jpg"
+    ],
+    "variants": [
+      {
+        "size": "White",
+        "color": "White",
+        "hex": "#ffffff",
+        "price": 85,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 85,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 75,
+            "discountPct": 11.8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 70,
+            "discountPct": 17.6
+          }
+        ]
+      },
+      {
+        "size": "Black",
+        "color": "Black",
+        "hex": "#111827",
+        "price": 85,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 85,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 75,
+            "discountPct": 11.8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 70,
+            "discountPct": 17.6
+          }
+        ]
+      },
+      {
+        "size": "Brown",
+        "color": "Brown",
+        "hex": "#4e342e",
+        "price": 85,
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 85,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 75,
+            "discountPct": 11.8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 70,
+            "discountPct": 17.6
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "125",
@@ -48928,7 +48884,7 @@
     "price": 190,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Vedini-Bubble-Gum-Flavour-Bottle-247x296.png",
+    "image": "/images/products/Bubble Gum.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49076,6 +49032,9 @@
           }
         ]
       }
+    ],
+    "images": [
+      "/images/products/Bubble Gum.webp"
     ]
   },
   {
@@ -49086,7 +49045,7 @@
     "price": 260,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Vedini-Tangy-Berry-Blast-Flavour-Bottle-247x296.png",
+    "image": "/images/products/Strawberry.webp",
     "tiers": [
       {
         "minQty": 1,
@@ -49234,7 +49193,10 @@
         ]
       }
     ],
-    "inStock": true
+    "inStock": true,
+    "images": [
+      "/images/products/Strawberry.webp"
+    ]
   },
   {
     "id": "148",
@@ -49387,164 +49349,6 @@
             "maxQty": null,
             "price": 900,
             "discountPct": 18.2
-          }
-        ]
-      }
-    ],
-    "inStock": true
-  },
-  {
-    "id": "149",
-    "name": "Tangy Berry Fizz Flavor Oil (Food Grade — Lip Balm, Candy & Culinary Safe)",
-    "category": "Food-Grade Flavor Oils",
-    "description": "Premium quality tangy berry fizz flavour oil for candy, lip balm, bakery & diy cosmetics – sweet fizzy berry aroma sourced directly for creators. Perfect for your next creative project with batch-tested reliability.",
-    "price": 260,
-    "bulkDiscountAvailable": true,
-    "maxDiscount": 10,
-    "image": "https://jindeal.com/wp-content/uploads/2026/05/Vedini-Tangy-Berry-Fizz-Flavour-Bottle-247x296.png",
-    "tiers": [
-      {
-        "minQty": 1,
-        "maxQty": 9,
-        "price": 260,
-        "discountPct": 0
-      },
-      {
-        "minQty": 10,
-        "maxQty": 49,
-        "price": 240,
-        "discountPct": 7.7
-      },
-      {
-        "minQty": 50,
-        "maxQty": null,
-        "price": 230,
-        "discountPct": 11.5
-      }
-    ],
-    "tags": [
-      "tangy",
-      "berry",
-      "fizz",
-      "flavour",
-      "oil",
-      "for",
-      "candy",
-      "lip",
-      "balm",
-      "bakery",
-      "diy",
-      "cosmetics",
-      "sweet",
-      "fizzy",
-      "aroma",
-      "fruit",
-      "wholesale",
-      "b2b",
-      "bulk",
-      "supplies",
-      "raw materials",
-      "india",
-      "premium",
-      "craft",
-      "handmade",
-      "artisan",
-      "manufacturing",
-      "manufacturer",
-      "distributor",
-      "vendor",
-      "sourcing",
-      "factory price",
-      "discount",
-      "cheap",
-      "quality",
-      "ekora",
-      "eco-friendly",
-      "natural",
-      "organic",
-      "pure",
-      "essential",
-      "maker",
-      "creator",
-      "small business"
-    ],
-    "department": "Scent & Flavor Lab",
-    "disciplines": [
-      "culinary-chocolatier",
-      "skincare-apothecary"
-    ],
-    "isQuoteOnly": false,
-    "title": "Tangy Berry Fizz Flavor Oil (Food Grade — Lip Balm, Candy & Culinary Safe)",
-    "variants": [
-      {
-        "size": "100 ml",
-        "price": 260,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 260,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 240,
-            "discountPct": 7.7
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 230,
-            "discountPct": 11.5
-          }
-        ]
-      },
-      {
-        "size": "500 ml",
-        "price": 1150,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 1150,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 1000,
-            "discountPct": 13
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 950,
-            "discountPct": 17.4
-          }
-        ]
-      },
-      {
-        "size": "1 Litre",
-        "price": 2350,
-        "tiers": [
-          {
-            "minQty": 1,
-            "maxQty": 9,
-            "price": 2350,
-            "discountPct": 0
-          },
-          {
-            "minQty": 10,
-            "maxQty": 49,
-            "price": 2150,
-            "discountPct": 8.5
-          },
-          {
-            "minQty": 50,
-            "maxQty": null,
-            "price": 2100,
-            "discountPct": 10.6
           }
         ]
       }
@@ -234938,7 +234742,7 @@
     "price": 240,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/lemon-soap-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -234971,7 +234775,10 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "LEMON SOAP BASE"
+    "title": "LEMON SOAP BASE",
+    "images": [
+      "/images/products/lemon-soap-base.jpg"
+    ]
   },
   {
     "id": "2419",
@@ -234981,7 +234788,7 @@
     "price": 240,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/lavender-soap-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -235014,7 +234821,10 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "LAVENDER SOAP BASE"
+    "title": "LAVENDER SOAP BASE",
+    "images": [
+      "/images/products/lavender-soap-base.jpg"
+    ]
   },
   {
     "id": "2420",
@@ -235024,7 +234834,7 @@
     "price": 240,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/orange-soap-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -235057,7 +234867,10 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "ORANGE SOAP BASE"
+    "title": "ORANGE SOAP BASE",
+    "images": [
+      "/images/products/orange-soap-base.jpg"
+    ]
   },
   {
     "id": "2421",
@@ -235067,7 +234880,7 @@
     "price": 240,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/charcoal-soap-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -235100,7 +234913,10 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "CHARCOAL SOAP BASE"
+    "title": "CHARCOAL SOAP BASE",
+    "images": [
+      "/images/products/charcoal-soap-base.jpg"
+    ]
   },
   {
     "id": "2422",
@@ -235110,7 +234926,7 @@
     "price": 240,
     "bulkDiscountAvailable": true,
     "maxDiscount": 39,
-    "image": "/placeholder-product.svg",
+    "image": "/images/products/mint-menthol-soap-base.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -235143,7 +234959,10 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "MINT MENTHOL SOAP BASE"
+    "title": "MINT MENTHOL SOAP BASE",
+    "images": [
+      "/images/products/mint-menthol-soap-base.jpg"
+    ]
   },
   {
     "id": "3086",
