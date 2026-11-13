@@ -7,7 +7,7 @@ import Image from 'next/image'
 import ProductImageClient from "@/components/ProductImageClient"
 import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
-import { TEMP_FLAT_SHIPPING_CHARGE } from "@/lib/pricing"
+import { TEMP_FLAT_SHIPPING_CHARGE, calculateItemPrice } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 import StockReservationTimer from "@/components/StockReservationTimer"
 import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
@@ -170,6 +170,8 @@ export default function CartPage() {
   const updateQuantity = async (itemId: string, newQty: number, productId: string) => {
     if (newQty < 1) return
     const currentItem = items.find(i => i.id === itemId || i.productId === productId)
+    if (currentItem?.product?.stock && newQty > currentItem.product.stock) return
+
     trackEvent("quantity_change", {
       productId,
       product_id: productId,
@@ -177,6 +179,30 @@ export default function CartPage() {
       new_qty: newQty,
       source: "cart",
     })
+
+    // Instant optimistic UI update
+    setItems(prevItems => {
+      const updated = prevItems.map(item => {
+        if (item.id === itemId || item.productId === productId) {
+          const newEffective = item.product ? calculateItemPrice(item.product, newQty) : item.effectivePrice
+          return {
+            ...item,
+            quantity: newQty,
+            effectivePrice: newEffective
+          }
+        }
+        return item
+      })
+      const newTotal = updated.reduce((sum, item) => {
+        if (item.isAvailable !== false) {
+          return sum + (item.effectivePrice * item.quantity)
+        }
+        return sum
+      }, 0)
+      setTotal(newTotal)
+      return updated
+    })
+
     try {
       if (isGuest) {
         const { updateGuestCartItemQty } = await import('@/lib/guest-cart')
@@ -194,10 +220,24 @@ export default function CartPage() {
       }
     } catch (err) {
       console.error(err)
+      fetchCart()
     }
   }
 
   const removeItem = async (itemId: string, productId: string) => {
+    // Instant optimistic UI update
+    setItems(prevItems => {
+      const updated = prevItems.filter(i => i.id !== itemId && i.productId !== productId)
+      const newTotal = updated.reduce((sum, item) => {
+        if (item.isAvailable !== false) {
+          return sum + (item.effectivePrice * item.quantity)
+        }
+        return sum
+      }, 0)
+      setTotal(newTotal)
+      return updated
+    })
+
     try {
       if (isGuest) {
         const { removeGuestCartItem } = await import('@/lib/guest-cart')
@@ -211,6 +251,7 @@ export default function CartPage() {
       }
     } catch (err) {
       console.error(err)
+      fetchCart()
     }
   }
 
@@ -262,47 +303,68 @@ export default function CartPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
-            {items.map(item => (
-              <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-3 sm:gap-4 items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-brand-bg relative shrink-0">
-                  {item.product.imageUrl ? (
-                    <ProductImageClient
-                      src={item.product.imageUrl}
-                      alt={item.product.title}
-                      sizes="80px"
-                      quality={80}
-                      className="object-contain p-1"
-                      fallbackSrc="/og-image.jpg"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <Link href={`/products/${item.productId}`} className="font-semibold hover:text-brand-orange transition-colors text-sm sm:text-base line-clamp-2 break-words">
-                    {item.product.title}
-                  </Link>
-                  <div className="text-brand-orange font-bold mt-1 text-sm sm:text-base">
-                    ₹{(item.effectivePrice / 100).toLocaleString('en-IN')}
+            {items.map(item => {
+              const effectivePaise = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
+                ? item.effectivePrice
+                : (item.product?.price || 0);
+              const qty = Math.max(1, item.quantity || 1);
+              const lineTotalPaise = effectivePaise * qty;
+              const unitPriceRupees = effectivePaise / 100;
+              const lineTotalRupees = lineTotalPaise / 100;
+
+              const formatRupees = (amt: number) => {
+                return amt % 1 === 0
+                  ? amt.toLocaleString('en-IN')
+                  : amt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              };
+
+              return (
+                <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-3 sm:gap-4 items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-brand-bg relative shrink-0">
+                    {item.product.imageUrl ? (
+                      <ProductImageClient
+                        src={item.product.imageUrl}
+                        alt={item.product.title}
+                        sizes="80px"
+                        quality={80}
+                        className="object-contain p-1"
+                        fallbackSrc="/og-image.jpg"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200" />
+                    )}
                   </div>
-                  {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
-                </div>
-                <div className="flex flex-col items-end gap-2 shrink-0">
-                  <div className="flex items-center bg-brand-bg rounded-lg border border-brand-linen">
-                    <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable}>
-                      <Minus className="w-3 h-3" />
-                    </button>
-                    <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-medium">{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable}>
-                      <Plus className="w-3 h-3" />
+                  <div className="flex-1 min-w-0">
+                    <Link href={`/products/${item.productId}`} className="font-semibold hover:text-brand-orange transition-colors text-sm sm:text-base line-clamp-2 break-words">
+                      {item.product.title}
+                    </Link>
+                    <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                      <span className="text-brand-orange font-bold text-base sm:text-lg">
+                        ₹{formatRupees(lineTotalRupees)}
+                      </span>
+                      <span className="text-stone-500 text-xs font-normal">
+                        ₹{formatRupees(unitPriceRupees)} per unit
+                      </span>
+                    </div>
+                    {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
+                  </div>
+                  <div className="flex flex-col items-end gap-2 shrink-0">
+                    <div className="flex items-center bg-brand-bg rounded-lg border border-brand-linen">
+                      <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable} aria-label="Decrease quantity">
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-medium">{item.quantity}</span>
+                      <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable} aria-label="Increase quantity">
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
+                    <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item" aria-label="Remove item">
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
-                  <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="bg-white p-5 sm:p-6 rounded-2xl border border-brand-linen shadow-sm h-fit lg:sticky lg:top-24 w-full overflow-hidden">

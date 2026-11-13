@@ -490,7 +490,9 @@ export default function CheckoutPage() {
                 <div key={item.id} className="flex justify-between text-sm gap-2">
                   <div className="flex-1 pr-2 min-w-0">
                     <p className="font-medium line-clamp-2 break-words">{item.product.title}</p>
-                    <p className="text-gray-500 text-xs mt-0.5">Qty: {item.quantity}</p>
+                    <p className="text-gray-500 text-xs mt-0.5">
+                      Qty: {item.quantity} &bull; ₹{(item.effectivePrice / 100).toLocaleString('en-IN')} per unit
+                    </p>
                   </div>
                   <div className="font-semibold shrink-0">₹{((item.effectivePrice * item.quantity) / 100).toLocaleString('en-IN')}</div>
                 </div>
