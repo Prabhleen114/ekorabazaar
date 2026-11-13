@@ -11762,8 +11762,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "WAX MELTER 10 LTR CAPACITY ( CANDLE MAKING )"
   },
   {
@@ -19869,8 +19869,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "DOUBLE HEART BOWL SILICONE MOLD | DIY EPOXY RESIN, CEMENT, JESMONITE, PLASTER VALENTINE MOLD FOR CANDLE HOLDER, JEWELRY DISH, TRINKET TRAY, GIFT MAKING 5118"
   },
   {
@@ -22577,8 +22577,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "TWINE ROPE SHAPE CANDLE HOLDER RESIN MOLD | SILICONE DEEP CASTING JAR MOLD FOR EPOXY RESIN, CONCRETE, PLASTER | DIY TRINKET CONTAINER, CANDLE VESSEL, HOME DÉCOR MOLD"
   },
   {
@@ -23659,8 +23659,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "10ML ROLL-ON GLASS PERFUME BOTTLE (SQUARE & ROUND DESIGN) | GOLDEN ATTAR BOTTLE WITH ROLLER BALL | REFILLABLE ESSENTIAL OIL CONTAINER"
   },
   {
@@ -27051,8 +27051,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "ARABIAN NIGHTS ISLAMIC PALACE SILICONE MOULD | 3D MOSQUE, MOON, LANTERN & DECORATIVE SHAPES FOR CHOCOLATE, SOAP, CANDLE & RESIN"
   },
   {
@@ -33233,8 +33233,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "WHITE RECTANGULAR DISPLAY WINDOW BOX 2 LADOO BOX(3.5 X 2 X 1.5 INCH)(PACK OF 10)"
   },
   {
@@ -33994,8 +33994,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "EUROPEAN-STYLE VINTAGE LACE SMALL TRAY MOLD SILICONE MOLD"
   },
   {
@@ -38095,8 +38095,9 @@
     "disciplines": [
       "perfumery-attar"
     ],
-    "isQuoteOnly": false,
-    "title": "8ML LUXURY ELECTROPLATED GLASS ROLL ON PERFUME BOTTLE WITH GOLDEN CROWN CAP"
+    "isQuoteOnly": true,
+    "title": "8ML LUXURY ELECTROPLATED GLASS ROLL ON PERFUME BOTTLE WITH GOLDEN CROWN CAP",
+    "inStock": false
   },
   {
     "id": "17",
@@ -42317,8 +42318,9 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false,
-    "title": "15 CAVITY FRENCH DESSERT MOUSSE CAKE FOOD-GRADE SILICON MOLD"
+    "isQuoteOnly": true,
+    "title": "15 CAVITY FRENCH DESSERT MOUSSE CAKE FOOD-GRADE SILICON MOLD",
+    "inStock": false
   },
   {
     "id": "68",
@@ -48087,8 +48089,9 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "PREMIUM 52MM*52MM SQUARE GLASS CANDLE JAR IMPORTED THICK GLASS CONTAINER FOR CANDLE MAKING"
+    "isQuoteOnly": true,
+    "title": "PREMIUM 52MM*52MM SQUARE GLASS CANDLE JAR IMPORTED THICK GLASS CONTAINER FOR CANDLE MAKING",
+    "inStock": false
   },
   {
     "id": "136",
@@ -67257,8 +67260,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "BUBBLE CLOUD PETALS FLOWER CANDLE CANDLE HOLDER SILICONE MOLD DIY PLASTER MOLD"
   },
   {
@@ -136158,11 +136161,11 @@
     "id": "845",
     "name": "R o s e W a x",
     "category": "Candle Waxes & Additives",
-    "description": "Premium Rose Wax with natural floral aroma for skincare, lip balms, perfumes, lotions, creams, soaps, body butters, and cosmetic formulations. A luxurious botanical wax for premium beauty products.",
+    "description": "Natural botanical rose floral wax extracted from fresh rose petals. Imparts a delicate natural floral scent, conditioning body, and rich texture to artisanal candles, solid perfumes, and cosmetics.",
     "price": 750,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/rose-wax.webp",
+    "image": "/images/products/waxes/rose-wax.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -136307,7 +136310,10 @@
     ],
     "moq": 1,
     "inStock": true,
-    "title": "R o s e W a x"
+    "title": "R o s e W a x",
+    "images": [
+      "/images/products/waxes/rose-wax.jpg"
+    ]
   },
   {
     "id": "846",
@@ -167610,8 +167616,9 @@
     "disciplines": [
       "culinary-chocolatier"
     ],
-    "isQuoteOnly": false,
-    "title": "8 CAVITY LOVE HEART SHAPE SILICONE MOUSSE CAKE MOULD FOR BAKING"
+    "isQuoteOnly": true,
+    "title": "8 CAVITY LOVE HEART SHAPE SILICONE MOUSSE CAKE MOULD FOR BAKING",
+    "inStock": false
   },
   {
     "id": "1252",
@@ -168915,11 +168922,11 @@
     "id": "1264",
     "name": "Transparent Gel Wax for Candle Making",
     "category": "Candle Waxes & Additives",
-    "description": "Premium Transparent Gel Wax for decorative candle making, container candles, embedded candles, and DIY candle projects. Crystal-clear appearance with excellent fragrance retention and long burn performance.",
+    "description": "High-clarity transparent gel candle wax featuring exceptional optical purity, high density, and extended slow burn time. Engineered for decorative embedded candles, clear glassware, and oceanic gel candle designs.",
     "price": 460,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.webp",
+    "image": "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -169012,7 +169019,10 @@
     ],
     "moq": 1,
     "inStock": true,
-    "title": "Transparent Gel Wax for Candle Making"
+    "title": "Transparent Gel Wax for Candle Making",
+    "images": [
+      "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.jpg"
+    ]
   },
   {
     "id": "1265",
@@ -170087,11 +170097,11 @@
     "id": "1283",
     "name": "100% Natural Pure Beeswax Pellets White",
     "category": "Candle Waxes & Additives",
-    "description": "Premium 100% Natural Pure White Beeswax Pellets for candle making, lip balms, lotions, creams, soaps, cosmetics, and DIY beauty formulations. Easy-to-melt refined beeswax in convenient pellet form.",
+    "description": "100% natural pure refined white beeswax pellets in uniform pastilles. Easy-melt formulation designed for artisan candle making, cosmetics, lip balms, and handcrafted soaps with zero soot and smokeless burn.",
     "price": 70,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
-    "image": "/images/products/waxes/100-natural-pure-beeswax-pellets-white.webp",
+    "image": "/images/products/waxes/100-natural-pure-beeswax-pellets-white.jpg",
     "tiers": [
       {
         "minQty": 1,
@@ -170324,7 +170334,10 @@
     ],
     "moq": 1,
     "inStock": true,
-    "title": "100% Natural Pure Beeswax Pellets White"
+    "title": "100% Natural Pure Beeswax Pellets White",
+    "images": [
+      "/images/products/waxes/100-natural-pure-beeswax-pellets-white.jpg"
+    ]
   },
   {
     "id": "1285",
@@ -188167,9 +188180,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
+    "isQuoteOnly": false,
     "title": "CONCRETE BELL CUP CANDLE CUP SILICON MOLD",
-    "inStock": false
+    "inStock": true
   },
   {
     "id": "1560",
@@ -229894,8 +229907,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium High Density Crystal Gel Wax for transparent decorative candle making. Crystal clear appearance, excellent fragrance retention, superior embed support, and long-burning performance.",
-    "image": "/images/products/waxes/super-high-density-crystal-gel-wax-1kg-premium-cle.webp",
+    "description": "Super high-density optical crystal gel wax with bubble-free transparency and maximum fragrance oil holding capacity. Professional grade for premium clear candle making.",
+    "image": "/images/products/waxes/super-high-density-crystal-gel-wax-1kg-premium-cle.jpg",
     "price": 600,
     "tiers": [
       {
@@ -229973,7 +229986,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Super High Density Crystal Gel Wax 1kg – Premium Clear Candle Gel Wax"
+    "title": "Super High Density Crystal Gel Wax 1kg – Premium Clear Candle Gel Wax",
+    "images": [
+      "/images/products/waxes/super-high-density-crystal-gel-wax-1kg-premium-cle.jpg"
+    ]
   },
   {
     "id": "2377",
@@ -230188,8 +230204,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium Rose Wax with natural floral aroma for skincare, lip balms, perfumes, lotions, creams, soaps, body butters, and cosmetic formulations. A luxurious botanical wax for premium beauty products.",
-    "image": "/images/products/waxes/rose-wax.webp",
+    "description": "Natural botanical rose floral wax extracted from fresh rose petals. Imparts a delicate natural floral scent, conditioning body, and rich texture to artisanal candles, solid perfumes, and cosmetics.",
+    "image": "/images/products/waxes/rose-wax.jpg",
     "price": 750,
     "tiers": [
       {
@@ -230332,7 +230348,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Rose Wax"
+    "title": "Rose Wax",
+    "images": [
+      "/images/products/waxes/rose-wax.jpg"
+    ]
   },
   {
     "id": "2379",
@@ -231176,8 +231195,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium Transparent Gel Wax for decorative candle making, container candles, embedded candles, and DIY candle projects. Crystal-clear appearance with excellent fragrance retention and long burn performance.",
-    "image": "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.webp",
+    "description": "High-clarity transparent gel candle wax featuring exceptional optical purity, high density, and extended slow burn time. Engineered for decorative embedded candles, clear glassware, and oceanic gel candle designs.",
+    "image": "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.jpg",
     "price": 460,
     "tiers": [
       {
@@ -231257,7 +231276,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Transparent Gel Wax, Gel Wax for Candle Making Used as a Container Wax DIY Candle Making Gel Wax"
+    "title": "Transparent Gel Wax, Gel Wax for Candle Making Used as a Container Wax DIY Candle Making Gel Wax",
+    "images": [
+      "/images/products/waxes/transparent-gel-wax-gel-wax-for-candle-making-used.jpg"
+    ]
   },
   {
     "id": "2385",
@@ -231913,8 +231935,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium Refined White Beeswax Slab IP Grade for candle making, lip balms, lotions, creams, soaps, cosmetics, pharmaceutical products, and DIY formulations.",
-    "image": "/images/products/waxes/beeswax-white-slab-ip-grade.webp",
+    "description": "Pharmaceutical & cosmetic grade pure white beeswax slab with clean beveled block finish. Unbleached, purified, and filtered for clean-burning container candles, pillar candles, cosmetics, and organic balms.",
+    "image": "/images/products/waxes/beeswax-white-slab-ip-grade.jpg",
     "price": 300,
     "tiers": [
       {
@@ -232084,7 +232106,10 @@
       "white",
       "wholesale"
     ],
-    "title": "Beeswax White Slab IP Grade"
+    "title": "Beeswax White Slab IP Grade",
+    "images": [
+      "/images/products/waxes/beeswax-white-slab-ip-grade.jpg"
+    ]
   },
   {
     "id": "2390",
@@ -232203,8 +232228,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium cosmetic-grade Emulsifying Wax Pellets for lotions, creams, moisturizers, body butters, conditioners, skincare products, and cosmetic formulations. Helps blend oil and water into stable emulsions.",
-    "image": "/images/products/waxes/emulsifying-wax-nf-e-wax-ewax-pallets.webp",
+    "description": "Cosmetic grade Emulsifying Wax NF (E-Wax) pastilles. Non-ionic self-emulsifying wax for stable oil-in-water emulsions, massage candles, lotion bars, and luxury creams.",
+    "image": "/images/products/waxes/emulsifying-wax-nf-e-wax-ewax-pallets.jpg",
     "price": 80,
     "tiers": [
       {
@@ -232375,7 +232400,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Emulsifying Wax NF/ E-Wax / EWAX – Pallets"
+    "title": "Emulsifying Wax NF/ E-Wax / EWAX – Pallets",
+    "images": [
+      "/images/products/waxes/emulsifying-wax-nf-e-wax-ewax-pallets.jpg"
+    ]
   },
   {
     "id": "2392",
@@ -232385,8 +232413,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium natural Carnauba Wax Pellets / Block derived from Brazilian palm leaves. Ideal for vegan cosmetics, lip balms, lipsticks, lotions, creams, candle making, polishes, and personal care formulations.",
-    "image": "/images/products/waxes/carnauba-wax-block.webp",
+    "description": "Pure T1 grade Brazilian carnauba palm wax block. Extremely hard natural botanical wax with a high melting point (82-86°C), perfect for increasing candle hardness, pillar demolding, and high-gloss polish formulations.",
+    "image": "/images/products/waxes/carnauba-wax-block.jpg",
     "price": 240,
     "tiers": [
       {
@@ -232530,7 +232558,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Carnauba Wax (Block)"
+    "title": "Carnauba Wax (Block)",
+    "images": [
+      "/images/products/waxes/carnauba-wax-block.jpg"
+    ]
   },
   {
     "id": "2393",
@@ -232540,8 +232571,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium plant-based Candelilla Wax Pellets for vegan cosmetics, lip balms, lotions, creams, body butters, candle making, and skincare formulations. Easy-to-use pellet form with excellent thickening and gloss-enhancing properties.",
-    "image": "/images/products/waxes/candelilla-wax-pellets.webp",
+    "description": "Pure natural candelilla wax pellets. Premium plant-based vegan wax hardener with excellent gloss and structural strength for candles, lipsticks, and vegan cosmetics.",
+    "image": "/images/products/waxes/candelilla-wax-pellets.jpg",
     "price": 280,
     "tiers": [
       {
@@ -232685,7 +232716,10 @@
       "wax",
       "wholesale"
     ],
-    "title": "Candelilla Wax Pellets"
+    "title": "Candelilla Wax Pellets",
+    "images": [
+      "/images/products/waxes/candelilla-wax-pellets.jpg"
+    ]
   },
   {
     "id": "2394",
@@ -233454,8 +233488,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium 100% Natural Pure White Beeswax Pellets for candle making, lip balms, lotions, creams, soaps, cosmetics, and DIY beauty formulations. Easy-to-melt refined beeswax in convenient pellet form.",
-    "image": "/images/products/waxes/100-natural-pure-beeswax-pellets-white.webp",
+    "description": "100% natural pure refined white beeswax pellets in uniform pastilles. Easy-melt formulation designed for artisan candle making, cosmetics, lip balms, and handcrafted soaps with zero soot and smokeless burn.",
+    "image": "/images/products/waxes/100-natural-pure-beeswax-pellets-white.jpg",
     "price": 70,
     "tiers": [
       {
@@ -233674,7 +233708,10 @@
       "white",
       "wholesale"
     ],
-    "title": "100% Natural Pure Beeswax Pellets White"
+    "title": "100% Natural Pure Beeswax Pellets White",
+    "images": [
+      "/images/products/waxes/100-natural-pure-beeswax-pellets-white.jpg"
+    ]
   },
   {
     "id": "2401",
@@ -234108,8 +234145,8 @@
     "disciplines": [
       "candle-foundry"
     ],
-    "description": "Premium Organic Natural Yellow Beeswax Pellets for candle making, lip balms, lotions, creams, soaps, cosmetics, wood polish, and DIY craft projects. Easy-to-melt pellet form with natural honey aroma.",
-    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-pellets-yellow.webp",
+    "description": "Certified organic natural pure yellow beeswax pellets with rich honey-golden aroma. Pure filtered cosmetic & candle grade pastilles ideal for beeswax candles, salves, and natural waterproofing.",
+    "image": "/images/products/waxes/100-organic-natural-pure-beeswax-pellets-yellow.jpg",
     "price": 70,
     "tiers": [
       {
@@ -234329,7 +234366,10 @@
       "wholesale",
       "yellow"
     ],
-    "title": "100% Organic Natural Pure Beeswax Pellets Yellow"
+    "title": "100% Organic Natural Pure Beeswax Pellets Yellow",
+    "images": [
+      "/images/products/waxes/100-organic-natural-pure-beeswax-pellets-yellow.jpg"
+    ]
   },
   {
     "id": "2405",
