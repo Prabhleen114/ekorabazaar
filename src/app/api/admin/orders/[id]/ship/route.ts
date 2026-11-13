@@ -66,13 +66,16 @@ export async function POST(
 
       for (const item of order.items) {
         const prod = productMap.get(item.productId);
-        if (!prod || prod.weightKg == null || prod.lengthCm == null || prod.breadthCm == null || prod.heightCm == null) {
-          return NextResponse.json({ error: `Product ${item.productId} is missing physical weight/dimensions in the catalog. Cannot ship.` }, { status: 400 });
-        }
-        totalWeightKg += (prod.weightKg * item.quantity);
-        maxLength = Math.max(maxLength, prod.lengthCm);
-        maxBreadth = Math.max(maxBreadth, prod.breadthCm);
-        totalHeight += (prod.heightCm * item.quantity);
+        // Safe fallbacks for catalog supplies without pre-measured physical dimensions (default: 250g, 15x10x5 cm)
+        const itemWeightKg = prod?.weightKg != null && prod.weightKg > 0 ? prod.weightKg : 0.25;
+        const itemLengthCm = prod?.lengthCm != null && prod.lengthCm > 0 ? prod.lengthCm : 15;
+        const itemBreadthCm = prod?.breadthCm != null && prod.breadthCm > 0 ? prod.breadthCm : 10;
+        const itemHeightCm = prod?.heightCm != null && prod.heightCm > 0 ? prod.heightCm : 5;
+
+        totalWeightKg += (itemWeightKg * item.quantity);
+        maxLength = Math.max(maxLength, itemLengthCm);
+        maxBreadth = Math.max(maxBreadth, itemBreadthCm);
+        totalHeight += (itemHeightCm * item.quantity);
       }
       
       // Shiprocket requires min 0.05kg and at least 0.5 cm

@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/intelligence",
       "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/restore-expired",
+      "schedule": "*/15 * * * *"
     }
   ]
 }

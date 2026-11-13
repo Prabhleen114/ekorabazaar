@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   try {
     const session = await requireCustomer()
     const body = await req.json()
-    const { productId, quantity = 1 } = body
+    const { productId, quantity = 1, update = false } = body
 
     if (!productId || typeof quantity !== 'number' || quantity <= 0 || !Number.isInteger(quantity)) {
       return NextResponse.json({ error: 'Invalid product or quantity' }, { status: 400 })
@@ -132,7 +132,7 @@ export async function POST(req: Request) {
 
     await prisma.cartItem.upsert({
       where: { cartId_productId: { cartId: cart.id, productId } },
-      update: { quantity: { increment: quantity } },
+      update: update ? { quantity } : { quantity: { increment: quantity } },
       create: { cartId: cart.id, productId, quantity }
     })
 
@@ -148,16 +148,27 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   try {
     const session = await requireCustomer()
+    const url = new URL(req.url)
+    const queryProductId = url.searchParams.get('productId')
+    const queryItemId = url.searchParams.get('itemId')
+    const queryClearAll = url.searchParams.get('clearAll') === 'true'
+
     const body = await req.json().catch(() => ({}))
-    const { itemId } = body
+    const itemId = body.itemId || queryItemId
+    const productId = body.productId || queryProductId
+    const clearAll = body.clearAll === true || queryClearAll
 
     const cart = await prisma.cart.findUnique({ where: { userId: session.userId } })
     if (!cart) return NextResponse.json({ success: true })
 
     if (itemId) {
       await prisma.cartItem.deleteMany({ where: { id: itemId, cartId: cart.id } })
-    } else {
+    } else if (productId) {
+      await prisma.cartItem.deleteMany({ where: { productId, cartId: cart.id } })
+    } else if (clearAll) {
       await prisma.cartItem.deleteMany({ where: { cartId: cart.id } })
+    } else {
+      return NextResponse.json({ error: 'Missing itemId or productId to delete' }, { status: 400 })
     }
     return NextResponse.json({ success: true })
   } catch (error: any) {

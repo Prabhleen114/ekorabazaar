@@ -7,7 +7,13 @@ import { PaymentStatus, OrderStatus } from '@prisma/client'
 
 export async function POST(req: Request) {
   try {
-    const session = await requireAuth()
+    let userId: string | null = null
+    try {
+      const session = await requireAuth()
+      userId = session.userId
+    } catch {
+      // Guest payment confirmation
+    }
 
     const body = await req.json()
     const { razorpayOrderId, razorpayPaymentId, razorpaySignature } = body
@@ -35,7 +41,7 @@ export async function POST(req: Request) {
         throw new Error("Payment or Order record not found.")
       }
 
-      if (payment.userId !== session.userId) {
+      if (userId && payment.userId !== userId && !payment.userId.startsWith('guest_')) {
         throw new Error("Unauthorized payment manipulation.")
       }
 
@@ -102,21 +108,23 @@ export async function POST(req: Request) {
       }
 
       // Clear the purchased items from the customer's cart now that payment is verified
-      try {
-        const cart = await tx.cart.findUnique({ where: { userId: session.userId } })
-        if (cart) {
-          await tx.cartItem.deleteMany({
-            where: {
-              cartId: cart.id,
-              productId: { in: payment.order.items.map(i => i.productId) }
-            }
-          })
+      if (userId) {
+        try {
+          const cart = await tx.cart.findUnique({ where: { userId } })
+          if (cart) {
+            await tx.cartItem.deleteMany({
+              where: {
+                cartId: cart.id,
+                productId: { in: payment.order.items.map(i => i.productId) }
+              }
+            })
+          }
+        } catch (err) {
+          console.error("Failed to clear cart items after payment verification", err)
         }
-      } catch (err) {
-        console.error("Failed to clear cart items after payment verification", err)
       }
 
-      return { alreadyVerified: false, orderId: payment.orderId }
+      return { alreadyVerified: false, orderId: payment.orderId, userId: payment.userId }
     })
 
     // 3. Ensure Admin Notification Email is sent
@@ -136,12 +144,12 @@ export async function POST(req: Request) {
           orderId: result.orderId,
           amount: 0,
           itemCount: 1,
-          customerId: session.userId,
+          customerId: userId || result.userId,
           source: "website",
         }).catch(() => {});
         await prisma.event.create({
           data: {
-            userId: session.userId,
+            userId: userId || result.userId,
             sessionId: "checkout_" + result.orderId,
             eventName: "purchase",
             metadata: {

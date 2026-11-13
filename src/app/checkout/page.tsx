@@ -296,7 +296,7 @@ export default function CheckoutPage() {
 
         // 150ms buffer ensures the analytics beacon is fully transmitted before page unmounts
         setTimeout(() => {
-          router.push('/account/orders');
+          router.push(`/checkout/success?orderId=${data.orderId}`);
         }, 150);
       },
       onError: (err) => {

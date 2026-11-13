@@ -101,8 +101,8 @@ export async function POST(req: Request) {
       }
     }
 
-    // Success! Redirect to orders page
-    return NextResponse.redirect(new URL('/account/orders', req.url), 303)
+    // Success! Redirect to dedicated order confirmation page
+    return NextResponse.redirect(new URL(`/checkout/success?orderId=${result.orderId}`, req.url), 303)
   } catch (error: any) {
     console.error("Razorpay Callback Error:", error)
     return NextResponse.redirect(new URL('/checkout?error=Payment+verification+failed', req.url), 303)
