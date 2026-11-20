@@ -69,10 +69,11 @@ export function HesitationTracker() {
 
   const trackHesitationEvent = async (type: string, data: any) => {
     try {
+      const currentUrl = typeof window !== "undefined" ? (window.location.href || window.location.pathname) : "";
       await fetch("/api/intelligence/track-hesitation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, data, url: window.location.pathname }),
+        body: JSON.stringify({ type, data, url: currentUrl }),
       });
     } catch (e) {
       console.error("Failed to track hesitation", e);
