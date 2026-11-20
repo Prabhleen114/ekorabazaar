@@ -3,71 +3,117 @@
 export const TEMP_FLAT_SHIPPING_CHARGE = 90;
 
 /**
- * Normalizes a raw wholesale tier price to integer paise.
- * In the database and catalog, wholesale tiers may be authored/stored either in
- * Rupees (e.g. 240, 155, 140) or in Paise (e.g. 24000, 15500, 14000).
+ * Normalizes any product representation (DB, catalog JSON, seller product)
+ * into a single canonical base price in Indian Rupees (INR).
  *
- * A wholesale discount tier is always within reasonable proximity to the base unit price.
- * - If stored in paise, rawTierPrice is on the order of basePricePaise (ratio ~ 0.2 to 1.5).
- * - If stored in rupees, rawTierPrice is on the order of basePriceRupees (ratio ~ 0.2 to 1.5).
- * A 100x separation exists between rupee scale and paise scale.
+ * Enforces the system-wide INR pricing convention:
+ * - Scraper/Admin DB products (stored in Rupees, e.g. 49, 91, 20, 240) -> returns 49, 91, 20, 240
+ * - Catalog/Official/Seller DB products (stored in Paise, e.g. 24000, 6000, 5520) -> returns 240, 60, 55.2
+ * - Static JSON catalog products (stored in Rupees, e.g. 45, 195, 20) -> returns 45, 195, 20
  */
-export function normalizeTierPriceToPaise(rawTierPrice: number, basePricePaise: number): number {
-  if (!rawTierPrice || isNaN(rawTierPrice) || rawTierPrice <= 0) return 0;
-  if (!basePricePaise || isNaN(basePricePaise) || basePricePaise <= 0) {
-    return rawTierPrice >= 1000 ? Math.round(rawTierPrice) : Math.round(rawTierPrice * 100);
+export function normalizeProductBasePriceToINR(product: any): number {
+  if (!product) return 0;
+
+  let raw = 0;
+  if (product.customerPrice !== null && product.customerPrice !== undefined && Number(product.customerPrice) > 0) {
+    raw = Number(product.customerPrice);
+  } else if (product.price !== null && product.price !== undefined && Number(product.price) > 0) {
+    raw = Number(product.price);
   }
 
-  const basePriceRupees = basePricePaise / 100;
-  // If rawTierPrice exceeds 2.5x basePriceRupees, it is unambiguously stored in paise scale.
-  // Otherwise, it is in rupee scale and must be multiplied by 100 to yield paise.
-  if (rawTierPrice > basePriceRupees * 2.5) {
-    return Math.round(rawTierPrice);
-  } else {
-    return Math.round(rawTierPrice * 100);
+  if (isNaN(raw) || raw <= 0) return 0;
+
+  // 1. Explicit database source check
+  if (product.source === "SCRAPER" || product.source === "ADMIN") {
+    return raw;
   }
+  if (product.source === "CATALOG" || product.source === "EKORA_OFFICIAL" || product.source === "SELLER") {
+    return raw / 100;
+  }
+  if (product.isPaise || product.unit === "paise") {
+    return raw / 100;
+  }
+
+  // 2. Canonical INR pricing convention: default to Rupees (never divide an already-rupee amount by 100)
+  return raw;
 }
 
 /**
- * Normalizes a raw wholesale tier price to rupees (INR).
+ * Normalizes a raw wholesale tier price to Indian Rupees (INR).
  * Suitable for UI components, catalog display, and pricing tables.
- * Preserves exact decimals if fractional paise exist (e.g. 31080 paise -> 310.8 rupees).
+ *
+ * @param rawTierPrice The tier price authored (may be in rupees e.g. 140 or paise e.g. 14000)
+ * @param basePriceINR The product base price in canonical INR (Rupees)
  */
-export function normalizeTierPriceToRupees(rawTierPrice: number, basePricePaise: number): number {
-  const paise = normalizeTierPriceToPaise(rawTierPrice, basePricePaise);
-  return paise % 100 === 0 ? paise / 100 : Number((paise / 100).toFixed(2));
-}
-
-export function calculateItemPrice(
-  product: { price: number; customerPrice: number | null; wholesaleTiers: any },
-  quantity: number = 1
-): number {
-  let basePrice = Number(product.price) || 0;
-  if (product.customerPrice !== null && product.customerPrice !== undefined) {
-    const cp = Number(product.customerPrice);
-    if (!isNaN(cp) && cp > 0) {
-      basePrice = cp;
-    }
+export function normalizeTierPriceToINR(rawTierPrice: number, basePriceINR: number): number {
+  if (!rawTierPrice || isNaN(rawTierPrice) || rawTierPrice <= 0) return 0;
+  if (!basePriceINR || isNaN(basePriceINR) || basePriceINR <= 0) {
+    return rawTierPrice >= 1000 ? rawTierPrice / 100 : rawTierPrice;
   }
 
-  // If base price is invalid or <= 0, return 0 (quote-only or unpriced)
-  if (basePrice <= 0 || isNaN(basePrice)) {
+  // If rawTierPrice > basePriceINR * 2.5, it was authored in paise scale (e.g. 14000 paise vs ₹240 base)
+  if (rawTierPrice > basePriceINR * 2.5) {
+    return rawTierPrice / 100;
+  }
+  // Otherwise, it was authored in rupee scale (e.g. 140 rupees vs ₹240 base)
+  return rawTierPrice;
+}
+
+/**
+ * Normalizes a raw wholesale tier price to integer paise.
+ * Handles backward compatibility where base price may be passed in paise.
+ */
+export function normalizeTierPriceToPaise(rawTierPrice: number, basePricePaiseOrINR: number): number {
+  if (!rawTierPrice || isNaN(rawTierPrice) || rawTierPrice <= 0) return 0;
+  const basePriceINR = basePricePaiseOrINR >= 100 ? basePricePaiseOrINR / 100 : basePricePaiseOrINR;
+  const inr = normalizeTierPriceToINR(rawTierPrice, basePriceINR);
+  return Math.round(inr * 100);
+}
+
+/**
+ * Normalizes a raw wholesale tier price to Indian Rupees (INR).
+ * Backward compatibility alias for normalizeTierPriceToINR.
+ */
+export function normalizeTierPriceToRupees(rawTierPrice: number, basePricePaiseOrINR: number): number {
+  const basePriceINR = basePricePaiseOrINR >= 100 ? basePricePaiseOrINR / 100 : basePricePaiseOrINR;
+  const inr = normalizeTierPriceToINR(rawTierPrice, basePriceINR);
+  return inr % 1 === 0 ? inr : Number(inr.toFixed(2));
+}
+
+/**
+ * Central Price Calculator:
+ * Returns the effective unit price in Indian Rupees (INR) for the given quantity.
+ *
+ * Adheres strictly to the P0 Architectural Directive:
+ * - One consistent INR pricing convention across the platform
+ * - Never divides an already-rupee amount by 100
+ * - Handles bulk wholesale volume tier qualification
+ */
+export function calculateItemPrice(
+  product: any,
+  quantity: number = 1
+): number {
+  if (!product) return 0;
+
+  const basePriceINR = normalizeProductBasePriceToINR(product);
+  if (basePriceINR <= 0 || isNaN(basePriceINR)) {
     return 0;
   }
 
-  let effectivePrice = basePrice;
+  let effectivePriceINR = basePriceINR;
 
-  if (product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 0) {
-    // 1. Filter out invalid/zero tiers and normalize all tier prices to paise
-    const validTiers = product.wholesaleTiers
+  const rawTiers = product.wholesaleTiers || product.tiers;
+  if (Array.isArray(rawTiers) && rawTiers.length > 0) {
+    // 1. Filter out invalid/zero tiers and normalize all tier prices to INR (Rupees)
+    const validTiers = rawTiers
       .filter((t: any) => t && Number(t.price) > 0)
       .map((t: any) => ({
         ...t,
         minQty: Number(t.minQty) || 1,
         maxQty: t.maxQty !== null && t.maxQty !== undefined ? Number(t.maxQty) : Infinity,
-        pricePaise: normalizeTierPriceToPaise(Number(t.price), basePrice)
+        priceINR: normalizeTierPriceToINR(Number(t.price), basePriceINR)
       }))
-      .filter((t: any) => t.pricePaise > 0)
+      .filter((t: any) => t.priceINR > 0)
       .sort((a: any, b: any) => a.minQty - b.minQty);
 
     if (validTiers.length > 0) {
@@ -76,21 +122,45 @@ export function calculateItemPrice(
         return quantity >= t.minQty && quantity <= t.maxQty;
       });
 
-      if (directTier && directTier.pricePaise > 0) {
-        effectivePrice = directTier.pricePaise;
+      if (directTier && directTier.priceINR > 0) {
+        effectivePriceINR = directTier.priceINR;
       } else {
-        // If quantity exceeds a capped tier because a higher zero tier was filtered out,
-        // apply the highest valid volume tier that the quantity qualifies for.
+        // If quantity exceeds a capped tier, apply the highest valid volume tier
         const qualifyingTiers = validTiers.filter((t: any) => quantity >= t.minQty);
         if (qualifyingTiers.length > 0) {
           const highestQualifyingTier = qualifyingTiers[qualifyingTiers.length - 1];
-          if (highestQualifyingTier && highestQualifyingTier.pricePaise > 0) {
-            effectivePrice = highestQualifyingTier.pricePaise;
+          if (highestQualifyingTier && highestQualifyingTier.priceINR > 0) {
+            effectivePriceINR = highestQualifyingTier.priceINR;
           }
         }
       }
     }
   }
 
-  return Math.max(0, Math.round(effectivePrice));
+  // Preserve decimals if present (e.g. 55.20), but keep clean integer where applicable
+  return Math.max(0, effectivePriceINR % 1 === 0 ? effectivePriceINR : Number(effectivePriceINR.toFixed(2)));
+}
+
+/**
+ * Calculates item price in integer paise (strictly for Razorpay boundary and order snapshots).
+ */
+export function calculateItemPricePaise(product: any, quantity: number = 1): number {
+  return Math.round(calculateItemPrice(product, quantity) * 100);
+}
+
+/**
+ * Converts Indian Rupees (INR) to Integer Paise.
+ * Used strictly at the Razorpay payment gateway boundary.
+ */
+export function inrToPaise(rupees: number): number {
+  if (isNaN(rupees) || rupees <= 0) return 0;
+  return Math.round(rupees * 100);
+}
+
+/**
+ * Converts Integer Paise to Indian Rupees (INR).
+ */
+export function paiseToINR(paise: number): number {
+  if (isNaN(paise) || paise <= 0) return 0;
+  return paise / 100;
 }

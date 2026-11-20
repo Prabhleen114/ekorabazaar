@@ -4,7 +4,7 @@ import { getDepartmentForCategory } from "@/lib/taxonomy";
 import { normalizeCategoryName } from "@/lib/categories";
 import catalogProducts from "@/lib/data/products.json";
 import { NormalizedProduct } from "@/lib/product-filters";
-import { normalizeTierPriceToRupees } from "@/lib/pricing";
+import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR } from "@/lib/pricing";
 
 export interface CatalogFacets {
   departments: Record<string, number>;
@@ -122,7 +122,7 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
 
       if (Array.isArray(dbSellerProducts) && dbSellerProducts.length > 0) {
         sellerProductsFromDB = dbSellerProducts.map(p => {
-          const effectivePriceINR = (p.customerPrice ?? p.price) / 100;
+          const effectivePriceINR = normalizeProductBasePriceToINR(p);
           const cat = normalizeCategoryName(p.category) || "General Silicone Moulds";
           const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
           const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
@@ -145,7 +145,7 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
               .filter((t: any) => t && Number(t.price) > 0)
               .map((t: any) => ({
                 ...t,
-                price: normalizeTierPriceToRupees(Number(t.price), p.customerPrice ?? p.price),
+                price: normalizeTierPriceToINR(Number(t.price), effectivePriceINR),
                 minQty: Number(t.minQty) || 1
               })),
             isQuoteOnly,

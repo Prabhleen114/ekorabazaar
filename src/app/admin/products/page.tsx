@@ -2,6 +2,7 @@ import { requireAdmin } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { redirect } from 'next/navigation'
 import AdminProductActions from './AdminProductActions'
+import { normalizeProductBasePriceToINR } from '@/lib/pricing'
 
 export default async function AdminProductsPage({
   searchParams
@@ -47,10 +48,10 @@ export default async function AdminProductsPage({
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500">
-                    Seller Price: {product.price > 0 ? `₹${(product.price / 100).toFixed(2)}` : "None / Zero"}
+                    Seller Price: {product.price > 0 ? `₹${normalizeProductBasePriceToINR({ ...product, customerPrice: null }).toFixed(2)}` : "None / Zero"}
                   </div>
                   <div className="text-sm font-bold text-gray-900 mt-1">
-                    Cust Price: {product.customerPrice && product.customerPrice > 0 ? `₹${(product.customerPrice / 100).toFixed(2)}` : 'N/A'}
+                    Cust Price: {product.customerPrice && product.customerPrice > 0 ? `₹${normalizeProductBasePriceToINR(product).toFixed(2)}` : 'N/A'}
                   </div>
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { normalizeProductBasePriceToINR } from '@/lib/pricing';
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.ekorabazaar.in';
 const SITE_NAME = 'Ekora Bazaar';
@@ -93,8 +94,7 @@ export function generateProductSchema(product: any, sellerName?: string) {
       computedSeller = "Ekora Bazaar";
     }
     const finalSeller = computedSeller;
-  const rawPrice = (product.customerPrice ?? product.price) / 100;
-  const basePrice = !isNaN(rawPrice) && rawPrice > 0 ? rawPrice : 0;
+  const basePrice = normalizeProductBasePriceToINR(product);
   const isAvailable = (product.stock > 0 || product.inStock !== false) && basePrice > 0;
 
   const returnPolicy = {

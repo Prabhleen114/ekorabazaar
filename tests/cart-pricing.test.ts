@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateItemPrice, TEMP_FLAT_SHIPPING_CHARGE } from '@/lib/pricing';
+import { calculateItemPrice, inrToPaise, paiseToINR, TEMP_FLAT_SHIPPING_CHARGE } from '@/lib/pricing';
 import { calculateCouponDiscount, validateCouponEligibility } from '@/lib/coupons';
 import { CouponStatus, DiscountType } from '@prisma/client';
 
@@ -12,79 +12,74 @@ describe('Cart Pricing & Line Total Verification Suite', () => {
 
   describe('Product Card Line Total & Unit Price Formatting', () => {
     const singleProduct = {
-      price: 11000, // ₹110 in paise
+      id: '574',
+      source: 'CATALOG',
+      price: 11000, // ₹110 in DB paise
       customerPrice: null,
       wholesaleTiers: []
     };
 
     it('Quantity 1: renders Line Total ₹110 and Unit Price ₹110 per unit', () => {
       const quantity = 1;
-      const unitPricePaise = calculateItemPrice(singleProduct, quantity);
-      const lineTotalPaise = unitPricePaise * quantity;
-      
-      const unitPriceRupees = unitPricePaise / 100;
-      const lineTotalRupees = lineTotalPaise / 100;
+      const unitPriceINR = calculateItemPrice(singleProduct, quantity);
+      const lineTotalINR = unitPriceINR * quantity;
 
-      expect(unitPriceRupees).toBe(110);
-      expect(lineTotalRupees).toBe(110);
-      expect(formatRupees(lineTotalRupees)).toBe('110');
-      expect(formatRupees(unitPriceRupees)).toBe('110');
+      expect(unitPriceINR).toBe(110);
+      expect(lineTotalINR).toBe(110);
+      expect(formatRupees(lineTotalINR)).toBe('110');
+      expect(formatRupees(unitPriceINR)).toBe('110');
     });
 
     it('Quantity 2: renders Line Total ₹220 and Unit Price ₹110 per unit', () => {
       const quantity = 2;
-      const unitPricePaise = calculateItemPrice(singleProduct, quantity);
-      const lineTotalPaise = unitPricePaise * quantity;
+      const unitPriceINR = calculateItemPrice(singleProduct, quantity);
+      const lineTotalINR = unitPriceINR * quantity;
 
-      const unitPriceRupees = unitPricePaise / 100;
-      const lineTotalRupees = lineTotalPaise / 100;
-
-      expect(unitPriceRupees).toBe(110);
-      expect(lineTotalRupees).toBe(220);
-      expect(formatRupees(lineTotalRupees)).toBe('220');
-      expect(formatRupees(unitPriceRupees)).toBe('110');
+      expect(unitPriceINR).toBe(110);
+      expect(lineTotalINR).toBe(220);
+      expect(formatRupees(lineTotalINR)).toBe('220');
+      expect(formatRupees(unitPriceINR)).toBe('110');
     });
 
     it('Quantity 3: renders Line Total ₹330 and Unit Price ₹110 per unit', () => {
       const quantity = 3;
-      const unitPricePaise = calculateItemPrice(singleProduct, quantity);
-      const lineTotalPaise = unitPricePaise * quantity;
+      const unitPriceINR = calculateItemPrice(singleProduct, quantity);
+      const lineTotalINR = unitPriceINR * quantity;
 
-      const unitPriceRupees = unitPricePaise / 100;
-      const lineTotalRupees = lineTotalPaise / 100;
-
-      expect(unitPriceRupees).toBe(110);
-      expect(lineTotalRupees).toBe(330);
-      expect(formatRupees(lineTotalRupees)).toBe('330');
-      expect(formatRupees(unitPriceRupees)).toBe('110');
+      expect(unitPriceINR).toBe(110);
+      expect(lineTotalINR).toBe(330);
+      expect(formatRupees(lineTotalINR)).toBe('330');
+      expect(formatRupees(unitPriceINR)).toBe('110');
     });
 
     it('Decreasing quantity from 3 to 2: updates Line Total to ₹220 and retains Unit Price ₹110', () => {
       let quantity = 3;
-      expect((calculateItemPrice(singleProduct, quantity) * quantity) / 100).toBe(330);
+      expect(calculateItemPrice(singleProduct, quantity) * quantity).toBe(330);
 
       quantity = 2;
-      const unitPricePaise = calculateItemPrice(singleProduct, quantity);
-      const lineTotalPaise = unitPricePaise * quantity;
-      expect(lineTotalPaise / 100).toBe(220);
-      expect(unitPricePaise / 100).toBe(110);
+      const unitPriceINR = calculateItemPrice(singleProduct, quantity);
+      const lineTotalINR = unitPriceINR * quantity;
+      expect(lineTotalINR).toBe(220);
+      expect(unitPriceINR).toBe(110);
     });
 
     it('Decreasing quantity from 2 to 1: updates Line Total to ₹110 and retains Unit Price ₹110', () => {
       let quantity = 2;
-      expect((calculateItemPrice(singleProduct, quantity) * quantity) / 100).toBe(220);
+      expect(calculateItemPrice(singleProduct, quantity) * quantity).toBe(220);
 
       quantity = 1;
-      const unitPricePaise = calculateItemPrice(singleProduct, quantity);
-      const lineTotalPaise = unitPricePaise * quantity;
-      expect(lineTotalPaise / 100).toBe(110);
-      expect(unitPricePaise / 100).toBe(110);
+      const unitPriceINR = calculateItemPrice(singleProduct, quantity);
+      const lineTotalINR = unitPriceINR * quantity;
+      expect(lineTotalINR).toBe(110);
+      expect(unitPriceINR).toBe(110);
     });
   });
 
   describe('Wholesale Tier Dynamic Line Totals', () => {
     // Product 2408 (NEEM TULSI SOAP BASE): Base ₹240, 12+ ₹155, 52+ ₹140
     const tieredProduct = {
+      id: '2408',
+      source: 'CATALOG',
       price: 24000,
       customerPrice: null,
       wholesaleTiers: [
@@ -97,33 +92,33 @@ describe('Cart Pricing & Line Total Verification Suite', () => {
     it('Quantity 1: evaluates to base rate ₹240, Line Total ₹240', () => {
       const qty = 1;
       const unit = calculateItemPrice(tieredProduct, qty);
-      expect(unit / 100).toBe(240);
-      expect((unit * qty) / 100).toBe(240);
+      expect(unit).toBe(240);
+      expect(unit * qty).toBe(240);
     });
 
     it('Quantity 12: dynamically shifts to tier rate ₹155, Line Total ₹1,860', () => {
       const qty = 12;
       const unit = calculateItemPrice(tieredProduct, qty);
-      expect(unit / 100).toBe(155);
-      expect((unit * qty) / 100).toBe(1860);
-      expect(formatRupees((unit * qty) / 100)).toBe('1,860');
+      expect(unit).toBe(155);
+      expect(unit * qty).toBe(1860);
+      expect(formatRupees(unit * qty)).toBe('1,860');
     });
 
     it('Quantity 52: dynamically shifts to tier rate ₹140, Line Total ₹7,280', () => {
       const qty = 52;
       const unit = calculateItemPrice(tieredProduct, qty);
-      expect(unit / 100).toBe(140);
-      expect((unit * qty) / 100).toBe(7280);
-      expect(formatRupees((unit * qty) / 100)).toBe('7,280');
+      expect(unit).toBe(140);
+      expect(unit * qty).toBe(7280);
+      expect(formatRupees(unit * qty)).toBe('7,280');
     });
   });
 
   describe('Multi-Product Subtotal & Order Summary Formulas', () => {
-    it('accurately calculates Subtotal = Sum of all product line totals', () => {
+    it('accurately calculates Subtotal = Sum of all product line totals in INR', () => {
       const cartItems = [
-        { id: 'item-1', product: { price: 11000, customerPrice: null, wholesaleTiers: [] }, quantity: 3 }, // 110 * 3 = 330
-        { id: 'item-2', product: { price: 24000, customerPrice: null, wholesaleTiers: [] }, quantity: 2 }, // 240 * 2 = 480
-        { id: 'item-3', product: { price: 9000, customerPrice: null, wholesaleTiers: [] }, quantity: 1 }   // 90 * 1 = 90
+        { id: 'item-1', product: { source: 'CATALOG', price: 11000, customerPrice: null, wholesaleTiers: [] }, quantity: 3 }, // 110 * 3 = 330
+        { id: 'item-2', product: { source: 'CATALOG', price: 24000, customerPrice: null, wholesaleTiers: [] }, quantity: 2 }, // 240 * 2 = 480
+        { id: 'item-3', product: { source: 'CATALOG', price: 9000, customerPrice: null, wholesaleTiers: [] }, quantity: 1 }   // 90 * 1 = 90
       ];
 
       const lineTotals = cartItems.map(item => {
@@ -131,37 +126,38 @@ describe('Cart Pricing & Line Total Verification Suite', () => {
         return unit * item.quantity;
       });
 
-      expect(lineTotals).toEqual([33000, 48000, 9000]); // in paise
+      expect(lineTotals).toEqual([330, 480, 90]); // in INR
 
-      const subtotalPaise = lineTotals.reduce((a, b) => a + b, 0);
-      expect(subtotalPaise).toBe(90000); // ₹900
-      expect(subtotalPaise / 100).toBe(900);
+      const subtotalINR = lineTotals.reduce((a, b) => a + b, 0);
+      expect(subtotalINR).toBe(900); // ₹900
 
-      const deliveryPaise = TEMP_FLAT_SHIPPING_CHARGE * 100;
-      expect(deliveryPaise / 100).toBe(90);
+      const deliveryINR = TEMP_FLAT_SHIPPING_CHARGE;
+      expect(deliveryINR).toBe(90);
 
-      const totalPaise = subtotalPaise + deliveryPaise;
-      expect(totalPaise / 100).toBe(990); // ₹990
+      const totalINR = subtotalINR + deliveryINR;
+      expect(totalINR).toBe(990); // ₹990
+
+      // Razorpay boundary check
+      expect(inrToPaise(totalINR)).toBe(99000);
     });
 
     it('accurately updates subtotal when an item is removed', () => {
       let cartItems = [
-        { id: 'item-1', product: { price: 11000, customerPrice: null, wholesaleTiers: [] }, quantity: 3 },
-        { id: 'item-2', product: { price: 24000, customerPrice: null, wholesaleTiers: [] }, quantity: 2 },
-        { id: 'item-3', product: { price: 9000, customerPrice: null, wholesaleTiers: [] }, quantity: 1 }
+        { id: 'item-1', product: { source: 'CATALOG', price: 11000, customerPrice: null, wholesaleTiers: [] }, quantity: 3 },
+        { id: 'item-2', product: { source: 'CATALOG', price: 24000, customerPrice: null, wholesaleTiers: [] }, quantity: 2 },
+        { id: 'item-3', product: { source: 'CATALOG', price: 9000, customerPrice: null, wholesaleTiers: [] }, quantity: 1 }
       ];
 
       // Remove item-2
       cartItems = cartItems.filter(i => i.id !== 'item-2');
       expect(cartItems.length).toBe(2);
 
-      const subtotalPaise = cartItems.reduce((sum, item) => {
+      const subtotalINR = cartItems.reduce((sum, item) => {
         const unit = calculateItemPrice(item.product, item.quantity);
         return sum + (unit * item.quantity);
       }, 0);
 
-      expect(subtotalPaise).toBe(42000); // 330 + 90 = 420
-      expect(subtotalPaise / 100).toBe(420);
+      expect(subtotalINR).toBe(420); // 330 + 90 = 420
     });
   });
 
@@ -202,11 +198,12 @@ describe('Cart Pricing & Line Total Verification Suite', () => {
     });
 
     it('guarantees Razorpay receives the exact integer paise amount', () => {
-      const subtotalPaise = 33000; // ₹330 (3 items @ ₹110)
-      const shippingPaise = 9000;  // ₹90
-      const discountPaise = 0;
+      const subtotalINR = 330; // ₹330 (3 items @ ₹110)
+      const shippingINR = 90;  // ₹90
+      const discountINR = 0;
 
-      const finalAmountPaise = Math.max(0, Math.round(subtotalPaise - discountPaise + shippingPaise));
+      const finalAmountINR = Math.max(0, subtotalINR - discountINR + shippingINR);
+      const finalAmountPaise = inrToPaise(finalAmountINR);
       expect(finalAmountPaise).toBe(42000); // ₹420 = 42000 paise
       expect(Number.isInteger(finalAmountPaise)).toBe(true);
       expect(finalAmountPaise).toBeGreaterThan(0);

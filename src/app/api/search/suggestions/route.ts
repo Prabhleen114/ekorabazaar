@@ -4,6 +4,7 @@ import { DEPARTMENTS } from "@/lib/taxonomy";
 import { sanitizeSearchQuery, expandQueryTokens, expandQueryTokenGroups, scoreProduct, autocorrectTokenGroups } from "@/lib/search";
 import prisma from "@/lib/db";
 import { ProductStatus, Prisma } from "@prisma/client";
+import { normalizeProductBasePriceToINR } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
@@ -189,7 +190,7 @@ export async function GET(req: NextRequest) {
             label: row.title,
             href: productHref,
             category: row.category || undefined,
-            price: Math.round((row.customerPrice ?? row.price) / 100),
+            price: Math.round(normalizeProductBasePriceToINR(row)),
             image: row.imageUrl || undefined,
             score: 0
           });

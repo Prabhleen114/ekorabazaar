@@ -30,32 +30,27 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
     product.isQuoteOnly === true ||
     (product.customerPrice !== undefined && product.customerPrice !== null && product.customerPrice <= 0);
 
-  const unitPricePaise = !isZeroOrMissing
-    ? calculateItemPrice(
-        {
-          price: product.price,
-          customerPrice: product.customerPrice ?? null,
-          wholesaleTiers: product.wholesaleTiers
-        },
-        1
-      )
+  const unitPriceINR = !isZeroOrMissing
+    ? calculateItemPrice(product, 1)
     : 0;
 
-  const isEffectivelyZero = isZeroOrMissing || unitPricePaise <= 0;
-  const rawEffective = unitPricePaise / 100;
+  const isEffectivelyZero = isZeroOrMissing || unitPriceINR <= 0;
+  // Central INR convention: unitPriceINR is strictly in Rupees. Never divide an already-rupee amount by 100.
+  const rawEffective = unitPriceINR;
   const effectivePriceFormatted = rawEffective >= 1
     ? (rawEffective % 1 === 0 ? rawEffective.toLocaleString('en-IN') : rawEffective.toFixed(2))
     : rawEffective.toFixed(2);
 
   // Derive bulk tier price safely:
   let bulkTierPriceFormatted: string | null = null;
+  const productTiers = product.wholesaleTiers || product.variants;
   if (!isEffectivelyZero && !hasVariants && product.wholesaleTiers && Array.isArray(product.wholesaleTiers) && product.wholesaleTiers.length > 1) {
     const validTiers = product.wholesaleTiers.filter((t: any) => t && Number(t.price) > 0);
     if (validTiers.length > 1) {
       const lastTier = validTiers[validTiers.length - 1];
       const rawTierPrice = Number(lastTier.price);
-      // Unit normalization: safely convert raw tier price to Rupees regardless of whether stored in paise or rupees
-      const tierInRupees = normalizeTierPriceToRupees(rawTierPrice, product.price);
+      // Unit normalization: safely convert raw tier price to Rupees
+      const tierInRupees = normalizeTierPriceToRupees(rawTierPrice, rawEffective);
       if (tierInRupees > 0 && tierInRupees < rawEffective) {
         bulkTierPriceFormatted = tierInRupees >= 1
           ? (tierInRupees % 1 === 0 ? tierInRupees.toLocaleString('en-IN') : tierInRupees.toFixed(2))

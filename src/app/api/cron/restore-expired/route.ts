@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { restoreExpiredOrders } from '@/lib/orders'
+import { restoreExpiredOrders } from '@/lib/orders-server'
 
 export const dynamic = 'force-dynamic'
 

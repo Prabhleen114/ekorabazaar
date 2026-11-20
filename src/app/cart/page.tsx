@@ -39,7 +39,7 @@ export default function CartPage() {
       fetch('/api/coupons/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: total })
+        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: Math.round(total * 100) })
       })
         .then(res => res.json())
         .then(data => {
@@ -116,10 +116,10 @@ export default function CartPage() {
         setItems(guestData.items || [])
         const gTotal = guestData.totalAmount || 0
         setTotal(gTotal)
-        if (gTotal > 0 && gTotal < 200000) {
+        if (gTotal > 0 && gTotal < 2000) {
           trackEvent("shipping_threshold_view", {
-            cart_value: gTotal / 100,
-            amount_to_free_shipping: (200000 - gTotal) / 100,
+            cart_value: gTotal,
+            amount_to_free_shipping: Math.max(0, 2000 - gTotal),
             threshold: 2000,
           })
         }
@@ -152,10 +152,10 @@ export default function CartPage() {
       setItems(data.items || [])
       const cTotal = data.totalAmount || 0
       setTotal(cTotal)
-      if (cTotal > 0 && cTotal < 200000) {
+      if (cTotal > 0 && cTotal < 2000) {
         trackEvent("shipping_threshold_view", {
-          cart_value: cTotal / 100,
-          amount_to_free_shipping: (200000 - cTotal) / 100,
+          cart_value: cTotal,
+          amount_to_free_shipping: Math.max(0, 2000 - cTotal),
           threshold: 2000,
         })
       }
@@ -304,13 +304,11 @@ export default function CartPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {items.map(item => {
-              const effectivePaise = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
+              const unitPriceRupees = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
                 ? item.effectivePrice
-                : (item.product?.price || 0);
+                : calculateItemPrice(item.product, item.quantity || 1);
               const qty = Math.max(1, item.quantity || 1);
-              const lineTotalPaise = effectivePaise * qty;
-              const unitPriceRupees = effectivePaise / 100;
-              const lineTotalRupees = lineTotalPaise / 100;
+              const lineTotalRupees = unitPriceRupees * qty;
 
               const formatRupees = (amt: number) => {
                 return amt % 1 === 0
@@ -373,7 +371,7 @@ export default function CartPage() {
             {/* Coupon Section */}
             <div className="mb-4 pb-4 border-b border-brand-linen">
               <CouponSection
-                subtotalPaise={total}
+                subtotalPaise={Math.round(total * 100)}
                 appliedCoupon={appliedCoupon}
                 onApply={handleApplyCoupon}
                 onRemove={handleRemoveCoupon}
@@ -383,7 +381,7 @@ export default function CartPage() {
             <div className="space-y-2 mb-4">
               <div className="flex justify-between text-sm">
                 <span className="text-brand-charcoal/70">Subtotal</span>
-                <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
+                <span className="font-semibold">₹{total.toLocaleString('en-IN')}</span>
               </div>
 
               {appliedCoupon && (
@@ -402,7 +400,7 @@ export default function CartPage() {
             <div className="border-t border-brand-linen pt-3.5 flex justify-between mb-4 text-lg">
               <span className="font-bold text-brand-charcoal">Total</span>
               <span className="font-bold text-brand-charcoal">
-                ₹{Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+                ₹{Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
               </span>
             </div>
 

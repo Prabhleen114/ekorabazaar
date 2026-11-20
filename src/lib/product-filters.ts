@@ -1,6 +1,7 @@
 import { normalizeCategoryName } from "./categories";
 import { DEPARTMENTS, getDepartmentForCategory } from "./taxonomy";
 import { sanitizeSearchQuery, expandQueryTokens, expandQueryTokenGroups, scoreProduct } from "./search";
+import { normalizeProductBasePriceToINR } from "./pricing";
 import type { Prisma } from "@prisma/client";
 
 export type SortKey = "recommended" | "price_asc" | "price_desc" | "newest" | "discount_desc";
@@ -165,11 +166,7 @@ function getSearchableText(p: any): string {
 export function normalizeProduct(p: any): NormalizedProduct {
   if (p && (p as any)._isNormalized) return p;
   const rawName = p.name || p.title || "Untitled Product";
-  const rawPrice = p.customerPrice !== undefined && p.customerPrice !== null
-    ? p.customerPrice / 100
-    : (p.price !== undefined && p.price !== null
-      ? (typeof p.price === "number" && p.price > 100000 ? p.price / 100 : normalizePriceRupees(p.price))
-      : 0);
+  const rawPrice = normalizeProductBasePriceToINR(p);
 
   const category = normalizeCategoryName(p.category) || p.category || "General Silicone Moulds";
   const department = p.department || getDepartmentForCategory(category) || "Precision Studio Moulds";

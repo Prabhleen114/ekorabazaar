@@ -19,7 +19,7 @@ import ProductFaqSection from "@/components/ProductFaqSection";
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
-import { normalizeTierPriceToRupees } from "@/lib/pricing";
+import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR } from "@/lib/pricing";
 
 export const revalidate = 0;
 
@@ -59,10 +59,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
     });
 
     if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
-      const basePricePaise = (product.customerPrice !== null && product.customerPrice !== undefined && Number(product.customerPrice) > 0)
-        ? Number(product.customerPrice)
-        : Number(product.price);
-      const effectivePrice = basePricePaise / 100;
+      const effectivePrice = normalizeProductBasePriceToINR(product);
       const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(id));
       const imageUrl = (catalogItem?.image && catalogItem.image.startsWith('/images/products/'))
         ? catalogItem.image
@@ -75,7 +72,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
             .filter((t: any) => t && Number(t.price) > 0)
             .map(t => ({
               ...t,
-              price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
+              price: normalizeTierPriceToINR(Number(t.price), effectivePrice),
               minQty: Number(t.minQty) || product.moq || 1
             }))
         : [];
@@ -85,7 +82,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
             .filter((t: any) => t && Number(t.price) > 0)
             .map((t: any) => ({
               ...t,
-              price: normalizeTierPriceToRupees(Number(t.price), basePricePaise),
+              price: normalizeTierPriceToINR(Number(t.price), effectivePrice),
               minQty: Number(t.minQty) || product.moq || 1
             }))
         : [];

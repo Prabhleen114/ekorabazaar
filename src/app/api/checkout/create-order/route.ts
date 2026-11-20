@@ -8,8 +8,14 @@ import { PaymentType, PaymentStatus, OrderStatus, ProductStatus, SellerAccountSt
 import catalogProducts from '@/lib/data/products.json'
 import { validateBody, CreateOrderSchema } from '@/lib/validation'
 import { normalizeCouponCode, validateCouponEligibility } from '@/lib/coupons'
+import { IS_CHECKOUT_PAUSED, CHECKOUT_PAUSED_MESSAGE } from '@/config/checkout-protection'
 
 export async function POST(req: Request) {
+  // EMERGENCY CIRCUIT BREAKER: Block checkout while pricing pipeline is undergoing verification
+  if (IS_CHECKOUT_PAUSED) {
+    return NextResponse.json({ error: CHECKOUT_PAUSED_MESSAGE }, { status: 503 })
+  }
+
   const startTime = Date.now();
   let userId: string | null = null;
   try {
@@ -133,25 +139,30 @@ export async function POST(req: Request) {
           throw new Error(`Insufficient stock for ${product.title} (concurrent reservation).`)
         }
 
-        const effectivePrice = calculateItemPrice(product, item.quantity)
-        if (!effectivePrice || effectivePrice <= 0) {
+        const effectivePriceINR = calculateItemPrice(product, item.quantity)
+        if (!effectivePriceINR || effectivePriceINR <= 0) {
           throw new Error(`Product "${product.title}" has an invalid payable price and cannot be ordered online. Please contact support.`)
         }
-        const subtotal = effectivePrice * item.quantity
-        totalAmount += subtotal
+        const subtotalINR = effectivePriceINR * item.quantity
+        totalAmount += subtotalINR
+
+        // Order snapshots strictly recorded in integer paise for accounting precision
+        const priceSnapshotPaise = Math.round(effectivePriceINR * 100)
+        const subtotalPaiseItem = Math.round(subtotalINR * 100)
 
         validOrderItems.push({
           productId: product.id,
           productNameSnapshot: product.title,
-          priceSnapshot: effectivePrice,
+          priceSnapshot: priceSnapshotPaise,
           quantity: item.quantity,
-          subtotal: subtotal
+          subtotal: subtotalPaiseItem
         })
       }
     })
 
-    const shippingChargePaise = TEMP_FLAT_SHIPPING_CHARGE * 100
-    const subtotalPaise = Math.round(totalAmount)
+    const shippingChargePaise = Math.round(TEMP_FLAT_SHIPPING_CHARGE * 100)
+    // Convert INR subtotal to integer paise
+    const subtotalPaise = Math.round(totalAmount * 100)
 
     // Validate and apply coupon if provided
     let appliedCoupon: any = null

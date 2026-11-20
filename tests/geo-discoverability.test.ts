@@ -37,6 +37,7 @@ describe('GEO Discoverability & Structured Data Verification', () => {
   it('generates enhanced Product schema with canonical @id, category, and valid offer', () => {
     const product = {
       id: '790',
+      source: 'CATALOG',
       title: 'Soy Wax Flakes 100% Pure',
       category: 'Candle Waxes & Additives',
       price: 24500,

@@ -12,6 +12,7 @@ import { trackEvent } from '@/lib/tracking'
 import StockReservationTimer from "@/components/StockReservationTimer"
 import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
 import CouponSection, { AppliedCoupon } from "@/components/CouponSection"
+import { IS_CHECKOUT_PAUSED, CHECKOUT_PAUSED_MESSAGE } from "@/config/checkout-protection"
 
 export default function CheckoutPage() {
   const [items, setItems] = useState<any[]>([])
@@ -57,13 +58,13 @@ export default function CheckoutPage() {
       if (!paymentCompletedRef.current && cartTotalRef.current > 0) {
         if (gstFocusedRef.current) {
           trackEvent("gst_field_abandon", {
-            cart_total: (cartTotalRef.current / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+            cart_total: cartTotalRef.current + TEMP_FLAT_SHIPPING_CHARGE,
             item_count: itemCountRef.current,
           })
         }
         trackEvent("checkout_step_abandon", {
           step: "payment",
-          cart_total: (cartTotalRef.current / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+          cart_total: cartTotalRef.current + TEMP_FLAT_SHIPPING_CHARGE,
           item_count: itemCountRef.current,
         })
       }
@@ -76,7 +77,7 @@ export default function CheckoutPage() {
       fetch('/api/coupons/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: total })
+        body: JSON.stringify({ code: appliedCoupon.code, subtotalPaise: Math.round(total * 100) })
       })
         .then(res => res.json())
         .then(data => {
@@ -157,7 +158,7 @@ export default function CheckoutPage() {
 
       // Telemetry: begin_checkout event
       trackEvent("begin_checkout", {
-        cart_total: (cartTotal / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+        cart_total: cartTotal + TEMP_FLAT_SHIPPING_CHARGE,
         item_count: availableItems.length,
       })
       
@@ -222,12 +223,12 @@ export default function CheckoutPage() {
     import('@next/third-parties/google').then(({ sendGAEvent }) => {
       sendGAEvent('event', 'add_payment_info', {
         currency: 'INR',
-        value: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+        value: total + TEMP_FLAT_SHIPPING_CHARGE,
         payment_type: 'Razorpay',
         items: items.map(item => ({
           item_id: item.productId || item.id,
           item_name: item.product?.title || item.title,
-          price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+          price: item.effectivePrice,
           quantity: item.quantity
         }))
       });
@@ -266,6 +267,7 @@ export default function CheckoutPage() {
         name: activeAddr.name,
         contact: activeAddr.phone,
       } : undefined,
+      onError: (err: string) => setErrorMsg(err),
       onSuccess: (data) => {
         if (typeof window !== 'undefined') {
           sessionStorage.removeItem('ekora_applied_coupon');
@@ -273,12 +275,12 @@ export default function CheckoutPage() {
         try {
           sendGAEvent('event', 'purchase', {
             transaction_id: data.orderId,
-            value: Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
+            value: Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
             currency: 'INR',
             items: items.map(item => ({
               item_id: item.productId || item.id,
               item_name: item.product?.title || item.title,
-              price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+              price: item.effectivePrice,
               quantity: item.quantity
             }))
           });
@@ -289,7 +291,7 @@ export default function CheckoutPage() {
         paymentCompletedRef.current = true;
         trackEvent("purchase", {
           order_id: data.orderId,
-          cart_total: Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
+          cart_total: Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE),
           item_count: items.length,
           gst_provided: !!gstin.trim(),
         });
@@ -298,9 +300,6 @@ export default function CheckoutPage() {
         setTimeout(() => {
           router.push(`/checkout/success?orderId=${data.orderId}`);
         }, 150);
-      },
-      onError: (err) => {
-        setErrorMsg(err)
       }
     })
   }
@@ -357,6 +356,12 @@ export default function CheckoutPage() {
         </div>
       ) : (
       <div className="space-y-6">
+        {IS_CHECKOUT_PAUSED && (
+          <div className="bg-amber-50 border border-amber-300 text-amber-900 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3">
+            <span className="font-bold text-amber-700">Notice:</span>
+            <span>{CHECKOUT_PAUSED_MESSAGE}</span>
+          </div>
+        )}
         <StockReservationTimer variant="banner" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
@@ -491,10 +496,10 @@ export default function CheckoutPage() {
                   <div className="flex-1 pr-2 min-w-0">
                     <p className="font-medium line-clamp-2 break-words">{item.product.title}</p>
                     <p className="text-gray-500 text-xs mt-0.5">
-                      Qty: {item.quantity} &bull; ₹{(item.effectivePrice / 100).toLocaleString('en-IN')} per unit
+                      Qty: {item.quantity} &bull; ₹{item.effectivePrice.toLocaleString('en-IN')} per unit
                     </p>
                   </div>
-                  <div className="font-semibold shrink-0">₹{((item.effectivePrice * item.quantity) / 100).toLocaleString('en-IN')}</div>
+                  <div className="font-semibold shrink-0">₹{(item.effectivePrice * item.quantity).toLocaleString('en-IN')}</div>
                 </div>
               ))}
             </div>
@@ -502,7 +507,7 @@ export default function CheckoutPage() {
             {/* Coupon Section */}
             <div className="mb-4 pb-4 border-b border-brand-linen">
               <CouponSection
-                subtotalPaise={total}
+                subtotalPaise={Math.round(total * 100)}
                 appliedCoupon={appliedCoupon}
                 onApply={handleApplyCoupon}
                 onRemove={handleRemoveCoupon}
@@ -512,7 +517,7 @@ export default function CheckoutPage() {
             <div className="border-t border-brand-linen pt-4 mb-6 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-brand-charcoal/70">Subtotal</span>
-                  <span className="font-semibold">₹{(total / 100).toLocaleString('en-IN')}</span>
+                  <span className="font-semibold">₹{total.toLocaleString('en-IN')}</span>
                 </div>
                 {appliedCoupon && (
                   <div className="flex justify-between text-sm text-emerald-700 font-semibold">
@@ -527,7 +532,7 @@ export default function CheckoutPage() {
                 <div className="flex justify-between text-lg font-bold pt-2 border-t border-brand-linen">
                   <span>Total</span>
                   <span>
-                    ₹{Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+                    ₹{Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
                   </span>
                 </div>
               </div>
@@ -536,11 +541,11 @@ export default function CheckoutPage() {
 
             <button 
               onClick={handlePay}
-              disabled={isProcessing || !selectedAddressId}
+              disabled={IS_CHECKOUT_PAUSED || isProcessing || !selectedAddressId}
               className="w-full bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-brand-orange/20 flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {isProcessing && <Loader2 className="w-5 h-5 animate-spin" />}
-              {isProcessing ? 'Processing Payment...' : 'Pay with Razorpay'}
+              {IS_CHECKOUT_PAUSED ? 'Checkout Temporarily Paused' : isProcessing ? 'Processing Payment...' : 'Pay with Razorpay'}
             </button>
             <p className="text-center text-xs text-gray-500 mt-4">Secure payment powered by Razorpay</p>
 

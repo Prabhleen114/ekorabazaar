@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { requireAdmin } from '@/lib/auth'
-import { restoreExpiredOrders } from '@/lib/orders'
+import { restoreExpiredOrders } from '@/lib/orders-server'
 
 export async function POST() {
   try {

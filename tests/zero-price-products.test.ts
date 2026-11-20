@@ -1,8 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
   calculateItemPrice,
+  calculateItemPricePaise,
+  inrToPaise,
+  paiseToINR,
   normalizeTierPriceToPaise,
   normalizeTierPriceToRupees,
+  normalizeTierPriceToINR,
   TEMP_FLAT_SHIPPING_CHARGE,
 } from '@/lib/pricing';
 
@@ -20,7 +24,7 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
 
     it('returns 0 when base price is negative', () => {
       const product = {
-        price: -500,
+        price: -5,
         customerPrice: null,
         wholesaleTiers: []
       };
@@ -38,30 +42,30 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
 
     it('does not allow customerPrice = 0 to override a valid regular price with zero', () => {
       const product = {
-        price: 24000, // ₹240
+        price: 240, // ₹240
         customerPrice: 0, // Corrupt 0 discount price
         wholesaleTiers: []
       };
       // Must NOT return 0; must fall back to valid price
-      expect(calculateItemPrice(product, 1)).toBe(24000);
+      expect(calculateItemPrice(product, 1)).toBe(240);
     });
 
     it('does not allow customerPrice < 0 to override a valid regular price', () => {
       const product = {
-        price: 15000,
-        customerPrice: -200,
+        price: 150,
+        customerPrice: -2,
         wholesaleTiers: []
       };
-      expect(calculateItemPrice(product, 1)).toBe(15000);
+      expect(calculateItemPrice(product, 1)).toBe(150);
     });
 
     it('correctly uses valid positive customerPrice when present', () => {
       const product = {
-        price: 24000, // ₹240 regular
-        customerPrice: 19900, // ₹199 promo
+        price: 240, // ₹240 regular
+        customerPrice: 199, // ₹199 promo
         wholesaleTiers: []
       };
-      expect(calculateItemPrice(product, 1)).toBe(19900);
+      expect(calculateItemPrice(product, 1)).toBe(199);
     });
   });
 
@@ -69,7 +73,7 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
     it('discards wholesale tiers with price: 0 and prevents "₹0 each" pricing', () => {
       // Product with 3 tiers where all are 0 (as in DB products 1993, 2098, etc.)
       const product = {
-        price: 58300, // ₹583
+        price: 583, // ₹583
         customerPrice: null,
         wholesaleTiers: [
           { minQty: 1, maxQty: 11, price: 0, discount: 0 },
@@ -78,16 +82,16 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
         ]
       };
 
-      // Since all tiers are 0, they are discarded; effectivePrice must remain basePrice
-      expect(calculateItemPrice(product, 1)).toBe(58300);
-      expect(calculateItemPrice(product, 15)).toBe(58300);
-      expect(calculateItemPrice(product, 60)).toBe(58300);
+      // Since all tiers are 0, they are discarded; effectivePrice must remain basePrice in INR
+      expect(calculateItemPrice(product, 1)).toBe(583);
+      expect(calculateItemPrice(product, 15)).toBe(583);
+      expect(calculateItemPrice(product, 60)).toBe(583);
     });
 
     it('handles Product 1058 (Craft Paper Pouch): filters out corrupt Tier 2 (price: 0)', () => {
-      // In DB: Base ₹5 (500p), Tier 1 (1-11): ₹5, Tier 2 (12-51): ₹0, Tier 3 (52+): ₹1
+      // Base ₹5, Tier 1 (1-11): ₹5, Tier 2 (12-51): ₹0, Tier 3 (52+): ₹1
       const product1058 = {
-        price: 500, // ₹5.00
+        price: 5, // ₹5.00
         customerPrice: null,
         wholesaleTiers: [
           { minQty: 1, maxQty: 11, price: 5, discount: 0 },
@@ -96,20 +100,20 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
         ]
       };
 
-      // Qty 1 -> Tier 1 (500 paise = ₹5)
-      expect(calculateItemPrice(product1058, 1)).toBe(500);
+      // Qty 1 -> Tier 1 (₹5)
+      expect(calculateItemPrice(product1058, 1)).toBe(5);
 
-      // Qty 20 -> Tier 2 is discarded (price: 0), so it retains Tier 1 rate (500 paise)
-      expect(calculateItemPrice(product1058, 20)).toBe(500);
+      // Qty 20 -> Tier 2 is discarded (price: 0), so it retains Tier 1 rate (₹5)
+      expect(calculateItemPrice(product1058, 20)).toBe(5);
 
-      // Qty 60 -> Tier 3 is valid (100 paise = ₹1)
-      expect(calculateItemPrice(product1058, 60)).toBe(100);
+      // Qty 60 -> Tier 3 is valid (₹1)
+      expect(calculateItemPrice(product1058, 60)).toBe(1);
     });
 
     it('retains the highest valid volume tier when quantity exceeds a discarded upper zero tier', () => {
       // 35 catalog items have Tier 1: ₹10, Tier 2: ₹5, Tier 3: ₹0 (52+)
       const packagingItem = {
-        price: 1000, // ₹10.00
+        price: 10, // ₹10.00
         customerPrice: null,
         wholesaleTiers: [
           { minQty: 1, maxQty: 11, price: 10, discountPct: 0 },
@@ -118,14 +122,14 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
         ]
       };
 
-      // Qty 1: ₹10 (1000 paise)
-      expect(calculateItemPrice(packagingItem, 1)).toBe(1000);
+      // Qty 1: ₹10
+      expect(calculateItemPrice(packagingItem, 1)).toBe(10);
 
-      // Qty 20: ₹5 (500 paise)
-      expect(calculateItemPrice(packagingItem, 20)).toBe(500);
+      // Qty 20: ₹5
+      expect(calculateItemPrice(packagingItem, 20)).toBe(5);
 
       // Qty 100: Above 52. Tier 3 was discarded. Buyer must retain Tier 2 volume discount (₹5), NOT revert to base price (₹10) or become 0
-      expect(calculateItemPrice(packagingItem, 100)).toBe(500);
+      expect(calculateItemPrice(packagingItem, 100)).toBe(5);
     });
   });
 
@@ -133,7 +137,7 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
     it('authentically prices low-cost supplies across quantities', () => {
       // ₹3 soap sample box
       const product3 = {
-        price: 300,
+        price: 3,
         customerPrice: null,
         wholesaleTiers: [
           { minQty: 1, maxQty: 49, price: 3, discountPct: 0 },
@@ -141,38 +145,43 @@ describe('Zero-Price Product Detection & Safeguard Regression Suite', () => {
         ]
       };
 
-      expect(calculateItemPrice(product3, 1)).toBe(300);
-      expect(calculateItemPrice(product3, 10)).toBe(300);
-      expect(calculateItemPrice(product3, 50)).toBe(200);
+      expect(calculateItemPrice(product3, 1)).toBe(3);
+      expect(calculateItemPrice(product3, 10)).toBe(3);
+      expect(calculateItemPrice(product3, 50)).toBe(2);
 
       // Total payable check
       const subtotalQty50 = calculateItemPrice(product3, 50) * 50;
-      expect(subtotalQty50).toBe(10000); // ₹100.00
+      expect(subtotalQty50).toBe(100); // ₹100.00
+      expect(inrToPaise(subtotalQty50)).toBe(10000); // 10000 paise at Razorpay boundary
     });
   });
 
   describe('Order Creation & Razorpay Consistency Guard', () => {
-    it('ensures payable order amount is strictly greater than zero', () => {
+    it('ensures payable order amount is strictly greater than zero and converts to paise at boundary', () => {
       const items = [
         {
-          product: { price: 24000, customerPrice: null, wholesaleTiers: [] },
+          product: { price: 240, customerPrice: null, wholesaleTiers: [] },
           quantity: 2
         }
       ];
 
-      let totalAmountPaise = 0;
+      let totalAmountINR = 0;
       for (const item of items) {
         const effectivePrice = calculateItemPrice(item.product, item.quantity);
         expect(effectivePrice).toBeGreaterThan(0);
-        totalAmountPaise += effectivePrice * item.quantity;
+        totalAmountINR += effectivePrice * item.quantity;
       }
 
-      const shippingPaise = TEMP_FLAT_SHIPPING_CHARGE * 100;
-      const finalPayablePaise = totalAmountPaise + shippingPaise;
+      const shippingINR = TEMP_FLAT_SHIPPING_CHARGE;
+      const finalPayableINR = totalAmountINR + shippingINR;
 
-      expect(totalAmountPaise).toBe(48000); // ₹480
-      expect(shippingPaise).toBe(9000); // ₹90
-      expect(finalPayablePaise).toBe(57000); // ₹570
+      expect(totalAmountINR).toBe(480); // ₹480
+      expect(shippingINR).toBe(90); // ₹90
+      expect(finalPayableINR).toBe(570); // ₹570
+
+      // Razorpay boundary conversion exactly once
+      const finalPayablePaise = inrToPaise(finalPayableINR);
+      expect(finalPayablePaise).toBe(57000); // 57000 paise
     });
 
     it('rejects order processing if any product evaluates to zero or negative price', () => {
