@@ -1,5 +1,167 @@
 [
   {
+    "id": "3108",
+    "name": "JESUS CROSS SILICON MOLD",
+    "category": "Silicone & Baking Molds",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 363,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/11/O1CN01g9JaN127FLOnL5Pcf_2211763567767-0-cib-247x296.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 363,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 345,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 327,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "jkb3689",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
+    "id": "3107",
+    "name": "CHRISTMAS HEART TREE SCENTED CANDLE SILICONE MOLD DIY CHRISTMAS ORNAMENT HEART MOLD",
+    "category": "Festive & Holiday Molds",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 391,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/11/O1CN01jNa87v1EJBmccwLGe_2208302390330-0-cib-247x296.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 391,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 371,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 352,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "jkb3690",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
+    "id": "3106",
+    "name": "CROSS WITH EUROPEAN FACE AVATAR SILICON MOLD",
+    "category": "Silicone & Baking Molds",
+    "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
+    "price": 559,
+    "bulkDiscountAvailable": true,
+    "maxDiscount": 10,
+    "image": "https://jindeal.com/wp-content/uploads/2026/11/O1CN014MkuV71bqpvGDhaRV_2212035233517-0-cib-247x296.jpg",
+    "tiers": [
+      {
+        "minQty": 1,
+        "maxQty": 9,
+        "price": 559,
+        "discountPct": 0
+      },
+      {
+        "minQty": 10,
+        "maxQty": 49,
+        "price": 531,
+        "discountPct": 5
+      },
+      {
+        "minQty": 50,
+        "maxQty": null,
+        "price": 503,
+        "discountPct": 10
+      }
+    ],
+    "tags": [
+      "silicone mold",
+      "diy craft",
+      "baking tool",
+      "reusable",
+      "food grade",
+      "jkb3691",
+      "wholesale",
+      "b2b",
+      "bulk",
+      "supplies",
+      "india",
+      "craft",
+      "quality",
+      "ekora"
+    ],
+    "department": "Precision Studio Moulds",
+    "disciplines": [
+      "candle-studio",
+      "resin-lab",
+      "soap-atelier"
+    ],
+    "isQuoteOnly": false,
+    "inStock": true
+  },
+  {
     "id": "3105",
     "name": "TWISTED SPIRAL CHRISTMAS TREE CANDLE MOLD I CHRISTMAS TREE SILICONE MOULD",
     "category": "Festive & Holiday Molds",
@@ -20732,8 +20894,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "SILICONE EPOXY RESIN CASTING TRAY/BOWL MOLD | DIY STORAGE CONTAINER, TRINKET BOX, CANDLE HOLDER, JEWELRY ORGANIZER FOR RESIN, CEMENT, PLASTER, JESMONITE CRAFTS (4928B)"
   },
   {
@@ -22736,8 +22898,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "inStock": true,
+    "isQuoteOnly": true,
+    "inStock": false,
     "title": "DAISY BUTTON CHOCOLATE DIY MUFFIN CANDY BAKING MOLD CAKE DECORATING CUPCAKE PAN CAKE SILICONE MOLD"
   },
   {
@@ -23818,8 +23980,8 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "DIFFUSER BASE FOR SMALL AREAS & CAR | ALCOHOL-FREE & PHTHALATE-FREE | LONG LASTING REED DIFFUSER LIQUID | SAFE INDOOR AROMA SOLUTION"
   },
   {
@@ -37336,8 +37498,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "CONCRETE WATER RIPPLE OVAL GYPSUM TRAY DIY JEWELRY STORAGE DISH GLUE DROPPING MOULD"
+    "isQuoteOnly": true,
+    "title": "CONCRETE WATER RIPPLE OVAL GYPSUM TRAY DIY JEWELRY STORAGE DISH GLUE DROPPING MOULD",
+    "inStock": false
   },
   {
     "id": "4",
@@ -38296,8 +38459,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "GEOMETRIC STRIPED CYLINDER SILICONE CANDLE MOLD"
   },
   {
@@ -46712,8 +46875,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "CONCRETE LOVE TWIST CANDLE CUP SILICON MOLD"
   },
   {
@@ -56491,9 +56654,9 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": true,
+    "isQuoteOnly": false,
     "title": "CHRISTMAS HOLLY LEAF SILICONE MOLD – CANDLE, SOAP, CHOCOLATE & RESIN DIY MOLD",
-    "inStock": false
+    "inStock": true
   },
   {
     "id": "227",
@@ -58528,8 +58691,8 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "CONCRETE NEW BOW STORAGE BOX PLASTER MOLD, LARGE BOW CANDLE CUP JEWELRY STORAGE BOX"
   },
   {
@@ -61734,8 +61897,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "WATER SEALER- ADVANCED PROTECTION FOR CONCRETE DECOR"
+    "isQuoteOnly": true,
+    "title": "WATER SEALER- ADVANCED PROTECTION FOR CONCRETE DECOR",
+    "inStock": false
   },
   {
     "id": "290",
@@ -66819,8 +66983,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "BALLOON BEAR SCENTED CANDLE SILICONE MOLD DIY CARTOON BEAR PLASTER RESIN ANIMAL CANDLE"
   },
   {
@@ -66984,8 +67148,8 @@
     "disciplines": [
       "resin-lab"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "POLKA DOT CONCH CANDLE PLASTER CUP RESIN SILICONE MOLD"
   },
   {
@@ -132623,9 +132787,9 @@
     "disciplines": [
       "home-fragrance"
     ],
-    "isQuoteOnly": true,
+    "isQuoteOnly": false,
     "title": "Reed Diffuser Base Liquid Instant Throw Long-lasting Diffusion Unscented Diffuser Making Liquid For Diy Reed & Car Diffusers",
-    "inStock": false
+    "inStock": true
   },
   {
     "id": "790",
@@ -166145,8 +166309,9 @@
       "resin-lab",
       "soap-atelier"
     ],
-    "isQuoteOnly": false,
-    "title": "COFFEE BEAN MOULD CHO VERY SMALL"
+    "isQuoteOnly": true,
+    "title": "COFFEE BEAN MOULD CHO VERY SMALL",
+    "inStock": false
   },
   {
     "id": "1202",
@@ -175409,7 +175574,8 @@
       "culinary-chocolatier"
     ],
     "isQuoteOnly": false,
-    "title": "A TO Z ALPHABETS AND ABCD SILICON MOLD LETTERS (FOR CHOCOLATE)"
+    "title": "A TO Z ALPHABETS AND ABCD SILICON MOLD LETTERS (FOR CHOCOLATE)",
+    "inStock": true
   },
   {
     "id": "1358",
@@ -184374,8 +184540,9 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": false,
-    "title": "TAPERED PILLAR SILICONE MOLD WCM701"
+    "isQuoteOnly": true,
+    "title": "TAPERED PILLAR SILICONE MOLD WCM701",
+    "inStock": false
   },
   {
     "id": "1491",
@@ -207268,8 +207435,8 @@
     "disciplines": [
       "soap-atelier"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "NEW LONG STRIP CANDLE SILICONE MOLD DIY LONG STRIP CHRISTMAS TREE SCENTED CANDLE HANDMADE SOAP MOLD 5476BI"
   },
   {
@@ -215829,9 +215996,9 @@
       "resin-lab",
       "stone-studio"
     ],
-    "isQuoteOnly": true,
+    "isQuoteOnly": false,
     "title": "HANWEN’S NEW THREE-DIMENSIONAL HOUSE FAMILY SILICONE MOLD CANDLE CHRISTMAS MOLD PLASTER DIFFUSER STONE GLUE MOLD",
-    "inStock": false
+    "inStock": true
   },
   {
     "id": "1942",
@@ -217449,8 +217616,8 @@
     "disciplines": [
       "candle-studio"
     ],
-    "isQuoteOnly": true,
-    "inStock": false,
+    "isQuoteOnly": false,
+    "inStock": true,
     "title": "CHRISTMAS TREE TAPERED CANDLE SILICONE MOLD LONG ROD LONG STRIP CHRISTMAS CANDLE MOLD"
   },
   {
