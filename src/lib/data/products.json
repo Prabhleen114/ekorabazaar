@@ -7422,13 +7422,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 130,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 125,
-        "discountPct": 10.7
+        "price": 123,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7454,7 +7454,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "LIGHT GREEN MICA POWDER"
+    "title": "LIGHT GREEN MICA POWDER",
+    "variants": [
+      {
+        "id": "2969-25gm",
+        "size": "25 GM",
+        "price": 140,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 140,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 130,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 123,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2969-50gm",
+        "size": "50 GM",
+        "price": 252,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 252,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 234,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 222,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2969-100gm",
+        "size": "100 GM",
+        "price": 476,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 476,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 443,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 419,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2969-250gm",
+        "size": "250 GM",
+        "price": 1050,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1050,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 977,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 924,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2969-500gm",
+        "size": "500 GM",
+        "price": 1960,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1960,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1823,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1725,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2969-1kg",
+        "size": "1 KG",
+        "price": 3500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.33-PM.jpeg-5-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 3500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 3255,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 3080,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2968",
@@ -7476,13 +7640,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 195,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
         "price": 185,
-        "discountPct": 11.9
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7508,7 +7672,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "BLACK PEARL MICA POWDER"
+    "title": "BLACK PEARL MICA POWDER",
+    "variants": [
+      {
+        "id": "2968-25gm",
+        "size": "25 GM",
+        "price": 210,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 210,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 195,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 185,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2968-50gm",
+        "size": "50 GM",
+        "price": 378,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 378,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 352,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 333,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2968-100gm",
+        "size": "100 GM",
+        "price": 714,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 714,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 664,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 628,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2968-250gm",
+        "size": "250 GM",
+        "price": 1575,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1575,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1465,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1386,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2968-500gm",
+        "size": "500 GM",
+        "price": 2940,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 2940,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 2734,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 2587,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2968-1kg",
+        "size": "1 KG",
+        "price": 5250,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-1.jpeg-2-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 5250,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 4883,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 4620,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2967",
@@ -7530,13 +7858,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 195,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
         "price": 185,
-        "discountPct": 11.9
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7562,7 +7890,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "RUS BERRY MICA POWDER"
+    "title": "RUS BERRY MICA POWDER",
+    "variants": [
+      {
+        "id": "2967-25gm",
+        "size": "25 GM",
+        "price": 210,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 210,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 195,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 185,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2967-50gm",
+        "size": "50 GM",
+        "price": 378,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 378,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 352,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 333,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2967-100gm",
+        "size": "100 GM",
+        "price": 714,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 714,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 664,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 628,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2967-250gm",
+        "size": "250 GM",
+        "price": 1575,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1575,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1465,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1386,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2967-500gm",
+        "size": "500 GM",
+        "price": 2940,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 2940,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 2734,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 2587,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2967-1kg",
+        "size": "1 KG",
+        "price": 5250,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.32-PM-2.jpeg-3-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 5250,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 4883,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 4620,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2966",
@@ -7583,14 +8075,14 @@
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 95,
-        "discountPct": 13.6
+        "price": 102,
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 90,
-        "discountPct": 18.2
+        "price": 97,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7616,7 +8108,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "GOLDEN GOLD MICA POWDER"
+    "title": "GOLDEN GOLD MICA POWDER",
+    "variants": [
+      {
+        "id": "2966-25gm",
+        "size": "25 GM",
+        "price": 110,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 110,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 102,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 97,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2966-50gm",
+        "size": "50 GM",
+        "price": 198,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 198,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 184,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 174,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2966-100gm",
+        "size": "100 GM",
+        "price": 374,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 374,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 348,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 329,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2966-250gm",
+        "size": "250 GM",
+        "price": 825,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 825,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 767,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 726,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2966-500gm",
+        "size": "500 GM",
+        "price": 1540,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1540,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1432,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1355,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2966-1kg",
+        "size": "1 KG",
+        "price": 2750,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM-1-1.jpeg-1-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 2750,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 2558,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 2420,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2965",
@@ -7638,13 +8294,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 130,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 125,
-        "discountPct": 10.7
+        "price": 123,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7670,7 +8326,171 @@
     ],
     "isQuoteOnly": true,
     "inStock": false,
-    "title": "WHITE MICA POWDER ( SILVER )"
+    "title": "WHITE MICA POWDER ( SILVER )",
+    "variants": [
+      {
+        "id": "2965-25gm",
+        "size": "25 GM",
+        "price": 140,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 140,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 130,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 123,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2965-50gm",
+        "size": "50 GM",
+        "price": 252,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 252,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 234,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 222,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2965-100gm",
+        "size": "100 GM",
+        "price": 476,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 476,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 443,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 419,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2965-250gm",
+        "size": "250 GM",
+        "price": 1050,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1050,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 977,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 924,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2965-500gm",
+        "size": "500 GM",
+        "price": 1960,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1960,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1823,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1725,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2965-1kg",
+        "size": "1 KG",
+        "price": 3500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-12.37.23-PM.jpeg-4-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 3500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 3255,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 3080,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2964",
@@ -7692,13 +8512,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 130,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 125,
-        "discountPct": 10.7
+        "price": 123,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7724,7 +8544,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "BLUE 620 MICA POWDER"
+    "title": "BLUE 620 MICA POWDER",
+    "variants": [
+      {
+        "id": "2964-25gm",
+        "size": "25 GM",
+        "price": 140,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 140,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 130,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 123,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2964-50gm",
+        "size": "50 GM",
+        "price": 252,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 252,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 234,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 222,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2964-100gm",
+        "size": "100 GM",
+        "price": 476,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 476,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 443,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 419,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2964-250gm",
+        "size": "250 GM",
+        "price": 1050,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1050,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 977,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 924,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2964-500gm",
+        "size": "500 GM",
+        "price": 1960,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1960,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1823,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1725,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2964-1kg",
+        "size": "1 KG",
+        "price": 3500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.11.17-PM-6.jpeg-9-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 3500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 3255,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 3080,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2963",
@@ -7746,13 +8730,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 195,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
         "price": 185,
-        "discountPct": 11.9
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7778,7 +8762,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "ROSE C025 MICA POWDER"
+    "title": "ROSE C025 MICA POWDER",
+    "variants": [
+      {
+        "id": "2963-25gm",
+        "size": "25 GM",
+        "price": 210,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 210,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 195,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 185,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2963-50gm",
+        "size": "50 GM",
+        "price": 378,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 378,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 352,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 333,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2963-100gm",
+        "size": "100 GM",
+        "price": 714,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 714,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 664,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 628,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2963-250gm",
+        "size": "250 GM",
+        "price": 1575,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1575,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1465,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1386,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2963-500gm",
+        "size": "500 GM",
+        "price": 2940,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 2940,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 2734,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 2587,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2963-1kg",
+        "size": "1 KG",
+        "price": 5250,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-3.09.31-PM.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 5250,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 4883,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 4620,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2962",
@@ -7800,13 +8948,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 130,
-        "discountPct": 7.1
+        "discountPct": 7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 125,
-        "discountPct": 10.7
+        "price": 123,
+        "discountPct": 12
       }
     ],
     "tags": [
@@ -7832,7 +8980,171 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "RED VIOLET MICA POWDER"
+    "title": "RED VIOLET MICA POWDER",
+    "variants": [
+      {
+        "id": "2962-25gm",
+        "size": "25 GM",
+        "price": 140,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 140,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 130,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 123,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2962-50gm",
+        "size": "50 GM",
+        "price": 252,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 252,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 234,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 222,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2962-100gm",
+        "size": "100 GM",
+        "price": 476,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 476,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 443,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 419,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2962-250gm",
+        "size": "250 GM",
+        "price": 1050,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1050,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 977,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 924,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2962-500gm",
+        "size": "500 GM",
+        "price": 1960,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1960,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1823,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1725,
+            "discountPct": 12
+          }
+        ]
+      },
+      {
+        "id": "2962-1kg",
+        "size": "1 KG",
+        "price": 3500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2021/12/WhatsApp-Image-2021-12-29-at-1.41.49-PM-1.jpeg-1-247x296.jpeg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 3500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 3255,
+            "discountPct": 7
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 3080,
+            "discountPct": 12
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2961",
@@ -23247,13 +24559,13 @@
         "minQty": 10,
         "maxQty": 49,
         "price": 85,
-        "discountPct": 10.5
+        "discountPct": 11
       },
       {
         "minQty": 50,
         "maxQty": null,
         "price": 80,
-        "discountPct": 15.8
+        "discountPct": 16
       }
     ],
     "tags": [
@@ -23279,7 +24591,1024 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "CANDLE-SAFE GLITTER (0.2 MM) | HEAT RESISTANT DECORATIVE GLITTER FOR JAR & CONTAINER CANDLES"
+    "title": "CANDLE-SAFE GLITTER (0.2 MM) | HEAT RESISTANT DECORATIVE GLITTER FOR JAR & CONTAINER CANDLES",
+    "variants": [
+      {
+        "id": "2680-50gm-golden",
+        "size": "50 GM / GOLDEN",
+        "color": "GOLDEN",
+        "hex": "#ffd700",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-silver",
+        "size": "50 GM / SILVER",
+        "color": "SILVER",
+        "hex": "#c0c0c0",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-red",
+        "size": "50 GM / RED",
+        "color": "RED",
+        "hex": "#d32f2f",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-blue",
+        "size": "50 GM / BLUE",
+        "color": "BLUE",
+        "hex": "#1976d2",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-green",
+        "size": "50 GM / GREEN",
+        "color": "GREEN",
+        "hex": "#2e7d32",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-pink",
+        "size": "50 GM / PINK",
+        "color": "PINK",
+        "hex": "#e91e63",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-50gm-wonderfulviolet",
+        "size": "50 GM / WONDERFUL VIOLET",
+        "color": "WONDERFUL VIOLET",
+        "hex": "#7b1fa2",
+        "price": 95,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 95,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 85,
+            "discountPct": 11
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 80,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-golden",
+        "size": "100 GM / GOLDEN",
+        "color": "GOLDEN",
+        "hex": "#ffd700",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-silver",
+        "size": "100 GM / SILVER",
+        "color": "SILVER",
+        "hex": "#c0c0c0",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-red",
+        "size": "100 GM / RED",
+        "color": "RED",
+        "hex": "#d32f2f",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-blue",
+        "size": "100 GM / BLUE",
+        "color": "BLUE",
+        "hex": "#1976d2",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-green",
+        "size": "100 GM / GREEN",
+        "color": "GREEN",
+        "hex": "#2e7d32",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-pink",
+        "size": "100 GM / PINK",
+        "color": "PINK",
+        "hex": "#e91e63",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-100gm-wonderfulviolet",
+        "size": "100 GM / WONDERFUL VIOLET",
+        "color": "WONDERFUL VIOLET",
+        "hex": "#7b1fa2",
+        "price": 180,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 180,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 165,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 150,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-golden",
+        "size": "250 GM / GOLDEN",
+        "color": "GOLDEN",
+        "hex": "#ffd700",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-silver",
+        "size": "250 GM / SILVER",
+        "color": "SILVER",
+        "hex": "#c0c0c0",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-red",
+        "size": "250 GM / RED",
+        "color": "RED",
+        "hex": "#d32f2f",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-blue",
+        "size": "250 GM / BLUE",
+        "color": "BLUE",
+        "hex": "#1976d2",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-green",
+        "size": "250 GM / GREEN",
+        "color": "GREEN",
+        "hex": "#2e7d32",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-pink",
+        "size": "250 GM / PINK",
+        "color": "PINK",
+        "hex": "#e91e63",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-250gm-wonderfulviolet",
+        "size": "250 GM / WONDERFUL VIOLET",
+        "color": "WONDERFUL VIOLET",
+        "hex": "#7b1fa2",
+        "price": 420,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 420,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 385,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 350,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-golden",
+        "size": "500 GM / GOLDEN",
+        "color": "GOLDEN",
+        "hex": "#ffd700",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-silver",
+        "size": "500 GM / SILVER",
+        "color": "SILVER",
+        "hex": "#c0c0c0",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-red",
+        "size": "500 GM / RED",
+        "color": "RED",
+        "hex": "#d32f2f",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-blue",
+        "size": "500 GM / BLUE",
+        "color": "BLUE",
+        "hex": "#1976d2",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-green",
+        "size": "500 GM / GREEN",
+        "color": "GREEN",
+        "hex": "#2e7d32",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-pink",
+        "size": "500 GM / PINK",
+        "color": "PINK",
+        "hex": "#e91e63",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-500gm-wonderfulviolet",
+        "size": "500 GM / WONDERFUL VIOLET",
+        "color": "WONDERFUL VIOLET",
+        "hex": "#7b1fa2",
+        "price": 790,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 720,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 660,
+            "discountPct": 16
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-golden",
+        "size": "1 KG / GOLDEN",
+        "color": "GOLDEN",
+        "hex": "#ffd700",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-silver",
+        "size": "1 KG / SILVER",
+        "color": "SILVER",
+        "hex": "#c0c0c0",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-red",
+        "size": "1 KG / RED",
+        "color": "RED",
+        "hex": "#d32f2f",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-blue",
+        "size": "1 KG / BLUE",
+        "color": "BLUE",
+        "hex": "#1976d2",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-green",
+        "size": "1 KG / GREEN",
+        "color": "GREEN",
+        "hex": "#2e7d32",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-pink",
+        "size": "1 KG / PINK",
+        "color": "PINK",
+        "hex": "#e91e63",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      },
+      {
+        "id": "2680-1kg-wonderfulviolet",
+        "size": "1 KG / WONDERFUL VIOLET",
+        "color": "WONDERFUL VIOLET",
+        "hex": "#7b1fa2",
+        "price": 1450,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/01/2c4800b4-5be0-4bc9-b25b-3d6ed83e815a-247x296.png",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1450,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1320,
+            "discountPct": 9
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1200,
+            "discountPct": 17
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2679",
@@ -32226,7 +34555,7 @@
     "name": "3G EMPTY LIP BALM TUBES – PP PLASTIC LIPSTICK CONTAINERS | MULTIPLE COLORS",
     "category": "Silicone & Baking Molds",
     "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
-    "price": 20,
+    "price": 190,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
     "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
@@ -32234,20 +34563,20 @@
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 20,
+        "price": 190,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 15,
-        "discountPct": 25
+        "price": 175,
+        "discountPct": 8
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 10,
-        "discountPct": 50
+        "price": 160,
+        "discountPct": 15
       }
     ],
     "tags": [
@@ -32273,7 +34602,444 @@
     ],
     "isQuoteOnly": false,
     "inStock": true,
-    "title": "3G EMPTY LIP BALM TUBES – PP PLASTIC LIPSTICK CONTAINERS | MULTIPLE COLORS"
+    "title": "3G EMPTY LIP BALM TUBES – PP PLASTIC LIPSTICK CONTAINERS | MULTIPLE COLORS",
+    "variants": [
+      {
+        "id": "2514-10pcs-clearnatural",
+        "size": "10 PCS / CLEAR / NATURAL",
+        "color": "CLEAR / NATURAL",
+        "hex": "#f5f5f5",
+        "price": 190,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 190,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 175,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 160,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-10pcs-black",
+        "size": "10 PCS / BLACK",
+        "color": "BLACK",
+        "hex": "#111827",
+        "price": 190,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 190,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 175,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 160,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-10pcs-white",
+        "size": "10 PCS / WHITE",
+        "color": "WHITE",
+        "hex": "#ffffff",
+        "price": 190,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 190,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 175,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 160,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-10pcs-pink",
+        "size": "10 PCS / PINK",
+        "color": "PINK",
+        "hex": "#f472b6",
+        "price": 190,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 190,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 175,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 160,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-10pcs-purple",
+        "size": "10 PCS / PURPLE",
+        "color": "PURPLE",
+        "hex": "#a855f7",
+        "price": 190,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 190,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 175,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 160,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-50pcs-clearnatural",
+        "size": "50 PCS / CLEAR / NATURAL",
+        "color": "CLEAR / NATURAL",
+        "hex": "#f5f5f5",
+        "price": 850,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 850,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 780,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 720,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-50pcs-black",
+        "size": "50 PCS / BLACK",
+        "color": "BLACK",
+        "hex": "#111827",
+        "price": 850,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 850,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 780,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 720,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-50pcs-white",
+        "size": "50 PCS / WHITE",
+        "color": "WHITE",
+        "hex": "#ffffff",
+        "price": 850,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 850,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 780,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 720,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-50pcs-pink",
+        "size": "50 PCS / PINK",
+        "color": "PINK",
+        "hex": "#f472b6",
+        "price": 850,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 850,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 780,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 720,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-50pcs-purple",
+        "size": "50 PCS / PURPLE",
+        "color": "PURPLE",
+        "hex": "#a855f7",
+        "price": 850,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 850,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 780,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 720,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-100pcs-clearnatural",
+        "size": "100 PCS / CLEAR / NATURAL",
+        "color": "CLEAR / NATURAL",
+        "hex": "#f5f5f5",
+        "price": 1500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1380,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1280,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-100pcs-black",
+        "size": "100 PCS / BLACK",
+        "color": "BLACK",
+        "hex": "#111827",
+        "price": 1500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1380,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1280,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-100pcs-white",
+        "size": "100 PCS / WHITE",
+        "color": "WHITE",
+        "hex": "#ffffff",
+        "price": 1500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1380,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1280,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-100pcs-pink",
+        "size": "100 PCS / PINK",
+        "color": "PINK",
+        "hex": "#f472b6",
+        "price": 1500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1380,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1280,
+            "discountPct": 15
+          }
+        ]
+      },
+      {
+        "id": "2514-100pcs-purple",
+        "size": "100 PCS / PURPLE",
+        "color": "PURPLE",
+        "hex": "#a855f7",
+        "price": 1500,
+        "inStock": true,
+        "image": "https://jindeal.com/wp-content/uploads/2026/09/O1CN01VMy2Pq1l3xmtxaNsL_2217554924764-0-cib-247x296.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 1500,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 1380,
+            "discountPct": 8
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 1280,
+            "discountPct": 15
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2513",
@@ -235087,21 +237853,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 225,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 150,
-        "discountPct": 33.3
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 214,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 37.8
+        "price": 203,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235116,7 +237882,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "TRANSPARENT SOAP BASE"
+    "title": "TRANSPARENT SOAP BASE",
+    "variants": [
+      {
+        "id": "2405-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 225,
+        "inStock": true,
+        "image": "/images/products/transparent-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 225,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 214,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 203,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2405-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1035,
+        "inStock": true,
+        "image": "/images/products/transparent-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1035,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 983,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 932,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2405-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 1980,
+        "inStock": true,
+        "image": "/images/products/transparent-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1980,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1881,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1782,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2405-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3690,
+        "inStock": true,
+        "image": "/images/products/transparent-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3690,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3506,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3321,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2405-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4388,
+        "inStock": true,
+        "image": "/images/products/transparent-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4388,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4169,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3949,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2406",
@@ -235130,21 +238033,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 225,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 150,
-        "discountPct": 33.3
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 214,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 37.8
+        "price": 203,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235159,7 +238062,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "GOAT MILK SOAP BASE"
+    "title": "GOAT MILK SOAP BASE",
+    "variants": [
+      {
+        "id": "2406-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 225,
+        "inStock": true,
+        "image": "/images/products/goat-milk-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 225,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 214,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 203,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2406-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1035,
+        "inStock": true,
+        "image": "/images/products/goat-milk-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1035,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 983,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 932,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2406-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 1980,
+        "inStock": true,
+        "image": "/images/products/goat-milk-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1980,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1881,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1782,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2406-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3690,
+        "inStock": true,
+        "image": "/images/products/goat-milk-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3690,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3506,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3321,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2406-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4388,
+        "inStock": true,
+        "image": "/images/products/goat-milk-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4388,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4169,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3949,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2407",
@@ -235173,21 +238213,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 240,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 155,
-        "discountPct": 35.4
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 228,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 41.7
+        "price": 216,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235202,7 +238242,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "PAPAYA SOAP BASE"
+    "title": "PAPAYA SOAP BASE",
+    "variants": [
+      {
+        "id": "2407-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 240,
+        "inStock": true,
+        "image": "/images/products/papaya-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 240,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 228,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 216,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2407-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1104,
+        "inStock": true,
+        "image": "/images/products/papaya-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1104,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1049,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 994,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2407-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 2112,
+        "inStock": true,
+        "image": "/images/products/papaya-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 2112,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 2006,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1901,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2407-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3936,
+        "inStock": true,
+        "image": "/images/products/papaya-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3936,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3739,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3542,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2407-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4680,
+        "inStock": true,
+        "image": "/images/products/papaya-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4680,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4446,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 4212,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2408",
@@ -235216,21 +238393,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 240,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 155,
-        "discountPct": 35.4
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 228,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 41.7
+        "price": 216,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235245,7 +238422,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "NEEM TULSI SOAP BASE"
+    "title": "NEEM TULSI SOAP BASE",
+    "variants": [
+      {
+        "id": "2408-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 240,
+        "inStock": true,
+        "image": "/images/products/neem-tulsi-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 240,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 228,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 216,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2408-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1104,
+        "inStock": true,
+        "image": "/images/products/neem-tulsi-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1104,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1049,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 994,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2408-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 2112,
+        "inStock": true,
+        "image": "/images/products/neem-tulsi-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 2112,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 2006,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1901,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2408-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3936,
+        "inStock": true,
+        "image": "/images/products/neem-tulsi-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3936,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3739,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3542,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2408-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4680,
+        "inStock": true,
+        "image": "/images/products/neem-tulsi-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4680,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4446,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 4212,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2409",
@@ -235259,21 +238573,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 240,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 155,
-        "discountPct": 35.4
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 228,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 41.7
+        "price": 216,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235288,7 +238602,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "ALOEVERA SOAP BASE"
+    "title": "ALOEVERA SOAP BASE",
+    "variants": [
+      {
+        "id": "2409-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 240,
+        "inStock": true,
+        "image": "/images/products/aloevera-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 240,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 228,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 216,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2409-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1104,
+        "inStock": true,
+        "image": "/images/products/aloevera-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1104,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1049,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 994,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2409-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 2112,
+        "inStock": true,
+        "image": "/images/products/aloevera-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 2112,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 2006,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1901,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2409-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3936,
+        "inStock": true,
+        "image": "/images/products/aloevera-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3936,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3739,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3542,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2409-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4680,
+        "inStock": true,
+        "image": "/images/products/aloevera-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4680,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4446,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 4212,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2410",
@@ -235302,21 +238753,21 @@
     "tiers": [
       {
         "minQty": 1,
-        "maxQty": 24,
+        "maxQty": 4,
         "price": 240,
         "discountPct": 0
       },
       {
-        "minQty": 25,
-        "maxQty": 49,
-        "price": 155,
-        "discountPct": 35.4
+        "minQty": 5,
+        "maxQty": 19,
+        "price": 228,
+        "discountPct": 5
       },
       {
-        "minQty": 50,
+        "minQty": 20,
         "maxQty": null,
-        "price": 140,
-        "discountPct": 41.7
+        "price": 216,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -235331,7 +238782,144 @@
       "soap-making"
     ],
     "isQuoteOnly": false,
-    "title": "COFFEE SOAP BASE"
+    "title": "COFFEE SOAP BASE",
+    "variants": [
+      {
+        "id": "2410-1-kg-slab",
+        "size": "1 KG SLAB",
+        "price": 240,
+        "inStock": true,
+        "image": "/images/products/coffee-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 240,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 228,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 216,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2410-5-kg-box",
+        "size": "5 KG BOX",
+        "price": 1104,
+        "inStock": true,
+        "image": "/images/products/coffee-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 1104,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 1049,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 994,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2410-10-kg-carton",
+        "size": "10 KG CARTON",
+        "price": 2112,
+        "inStock": true,
+        "image": "/images/products/coffee-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 2112,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 2006,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 1901,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2410-20-kg-batch",
+        "size": "20 KG BATCH",
+        "price": 3936,
+        "inStock": true,
+        "image": "/images/products/coffee-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 3936,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 3739,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 3542,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "2410-25-kg-master-pack",
+        "size": "25 KG MASTER PACK",
+        "price": 4680,
+        "inStock": true,
+        "image": "/images/products/coffee-soap-base.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 4680,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 19,
+            "price": 4446,
+            "discountPct": 5
+          },
+          {
+            "minQty": 20,
+            "maxQty": null,
+            "price": 4212,
+            "discountPct": 10
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "2411",
@@ -440494,7 +444082,7 @@
     "name": "GLOW-IN-DARK GLITTERS ARG013",
     "category": "Silicone & Baking Molds",
     "description": "Premium food-grade silicone mold designed for baking, DIY crafting, resin art, and creative confectionery projects. Easy release and heat-resistant.",
-    "price": 462,
+    "price": 120,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
     "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
@@ -440502,23 +444090,546 @@
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 462,
+        "price": 120,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 439,
+        "price": 110,
         "discountPct": 5
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 416,
+        "price": 100,
         "discountPct": 10
       }
     ],
-    "variants": [],
+    "variants": [
+      {
+        "id": "5180-10gram-aquablue",
+        "size": "10 GRAM / AQUA BLUE",
+        "color": "AQUA BLUE",
+        "hex": "#00e5ff",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-10gram-skyblue",
+        "size": "10 GRAM / SKY BLUE",
+        "color": "SKY BLUE",
+        "hex": "#40c4ff",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-10gram-limegreen",
+        "size": "10 GRAM / LIME GREEN",
+        "color": "LIME GREEN",
+        "hex": "#76ff03",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-10gram-emeraldgreen",
+        "size": "10 GRAM / EMERALD GREEN",
+        "color": "EMERALD GREEN",
+        "hex": "#00e676",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-10gram-pink",
+        "size": "10 GRAM / PINK",
+        "color": "PINK",
+        "hex": "#ff4081",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-10gram-orange",
+        "size": "10 GRAM / ORANGE",
+        "color": "ORANGE",
+        "hex": "#ff6d00",
+        "price": 120,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 120,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 110,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 100,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-aquablue",
+        "size": "50 GRAM / AQUA BLUE",
+        "color": "AQUA BLUE",
+        "hex": "#00e5ff",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-skyblue",
+        "size": "50 GRAM / SKY BLUE",
+        "color": "SKY BLUE",
+        "hex": "#40c4ff",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-limegreen",
+        "size": "50 GRAM / LIME GREEN",
+        "color": "LIME GREEN",
+        "hex": "#76ff03",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-emeraldgreen",
+        "size": "50 GRAM / EMERALD GREEN",
+        "color": "EMERALD GREEN",
+        "hex": "#00e676",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-pink",
+        "size": "50 GRAM / PINK",
+        "color": "PINK",
+        "hex": "#ff4081",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-50gram-orange",
+        "size": "50 GRAM / ORANGE",
+        "color": "ORANGE",
+        "hex": "#ff6d00",
+        "price": 462,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 462,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 439,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 416,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-aquablue",
+        "size": "100 GRAM / AQUA BLUE",
+        "color": "AQUA BLUE",
+        "hex": "#00e5ff",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-skyblue",
+        "size": "100 GRAM / SKY BLUE",
+        "color": "SKY BLUE",
+        "hex": "#40c4ff",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-limegreen",
+        "size": "100 GRAM / LIME GREEN",
+        "color": "LIME GREEN",
+        "hex": "#76ff03",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-emeraldgreen",
+        "size": "100 GRAM / EMERALD GREEN",
+        "color": "EMERALD GREEN",
+        "hex": "#00e676",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-pink",
+        "size": "100 GRAM / PINK",
+        "color": "PINK",
+        "hex": "#ff4081",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "5180-100gram-orange",
+        "size": "100 GRAM / ORANGE",
+        "color": "ORANGE",
+        "hex": "#ff6d00",
+        "price": 790,
+        "inStock": true,
+        "image": "https://cdn.shopify.com/s/files/1/0643/7722/5270/files/Screenshot_132.webp?v=1734483544",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 790,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 49,
+            "price": 740,
+            "discountPct": 5
+          },
+          {
+            "minQty": 50,
+            "maxQty": null,
+            "price": 690,
+            "discountPct": 10
+          }
+        ]
+      }
+    ],
     "tags": [
       "silicone & baking molds",
       "wholesale",
