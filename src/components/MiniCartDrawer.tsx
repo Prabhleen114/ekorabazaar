@@ -315,9 +315,6 @@ export default function MiniCartDrawer() {
                 {/* Mandatory Tier Progress Bar */}
                 <TierProgressBar progress={quote?.progress} className="shadow-xs" />
 
-                {/* Stock Reservation Timer */}
-                {items.length > 0 && <StockReservationTimer variant="compact" />}
-
                 {/* Cart Items List */}
                 <div className="bg-white rounded-xl border border-stone-200 p-3 space-y-3">
                   {loading && items.length === 0 ? (
@@ -531,7 +528,10 @@ export default function MiniCartDrawer() {
 
               {/* Bottom Sticky Footer */}
               {items.length > 0 && (
-                <div className="border-t border-stone-200 bg-white shrink-0 p-4 space-y-3 shadow-lg">
+                <div className="border-t border-stone-200 bg-white shrink-0 p-3 sm:p-4 space-y-2.5 shadow-lg">
+                  {/* Stock Reservation Timer */}
+                  <StockReservationTimer variant="compact" />
+
                   {/* Social Proof Banner */}
                   <div className="bg-red-900 text-white text-[10px] font-bold py-1 px-3 text-center rounded-md tracking-wider uppercase">
                     100% Prepaid Dispatch &bull; Fast Doorstep Delivery
