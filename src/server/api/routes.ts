@@ -22,6 +22,7 @@ import {
   handleCreateOrder,
   handleConfirmPayment,
   handleCheckoutCallback,
+  handleGetOrderSummary,
 } from './handlers/checkout';
 import {
   handleGetAccountOrders,
@@ -121,6 +122,7 @@ export const allRoutes: RouteDefinition[] = [
   { method: 'POST', pattern: '/checkout/create-order', handler: handleCreateOrder },
   { method: 'POST', pattern: '/checkout/confirm-payment', handler: handleConfirmPayment },
   { method: 'POST', pattern: '/checkout/callback', handler: handleCheckoutCallback },
+  { method: 'GET', pattern: '/checkout/order-summary', handler: handleGetOrderSummary },
 
   // Account & Addresses
   { method: 'GET', pattern: '/account/orders', handler: handleGetAccountOrders },

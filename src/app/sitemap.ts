@@ -7,7 +7,7 @@ import { isDeprecatedProductId } from '@/lib/product-redirects';
 
 const BASE_URL = 'https://www.ekorabazaar.in';
 
-export const revalidate = 3600;
+
 
 export async function generateSitemaps() {
   return [

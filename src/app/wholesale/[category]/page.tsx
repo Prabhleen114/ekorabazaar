@@ -15,7 +15,6 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getPostsByCategory } from "@/lib/blog";
 
-export const revalidate = 3600;
 export const dynamicParams = false;
 
 type Props = {

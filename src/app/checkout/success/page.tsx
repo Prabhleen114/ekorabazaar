@@ -1,52 +1,69 @@
-import prisma from '@/lib/db';
+'use client';
+
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import OrderSuccessClient from './OrderSuccessClient';
 
-interface Props {
-  searchParams: Promise<{ orderId?: string }>;
-}
+function OrderSuccessContent() {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('orderId');
+  const [order, setOrder] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-export default async function OrderSuccessPage({ searchParams }: Props) {
-  const resolvedParams = await searchParams;
-  const orderId = resolvedParams?.orderId;
-
-  if (!orderId) {
-    return <OrderSuccessClient order={null} error="No order ID was provided." />;
-  }
-
-  try {
-    const order = await prisma.order.findUnique({
-      where: { id: orderId },
-      include: {
-        items: true,
-      },
-    });
-
-    if (!order) {
-      return <OrderSuccessClient order={null} error="Order not found." />;
+  useEffect(() => {
+    if (!orderId) {
+      setError('No order ID was provided.');
+      setLoading(false);
+      return;
     }
 
-    const serializedOrder = {
-      id: order.id,
-      total: order.total,
-      subtotal: order.subtotal,
-      shipping: order.shipping,
-      discount: order.discount,
-      createdAt: order.createdAt.toISOString(),
-      status: order.status,
-      paymentStatus: order.paymentStatus,
-      addressSnapshot: order.addressSnapshot as any,
-      items: order.items.map((item) => ({
-        id: item.id,
-        productNameSnapshot: item.productNameSnapshot,
-        quantity: item.quantity,
-        priceSnapshot: item.priceSnapshot,
-        subtotal: item.subtotal,
-      })),
-    };
+    fetch(`/api/checkout/order-summary?orderId=${encodeURIComponent(orderId)}`)
+      .then(async (res) => {
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Order not found.');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data.order) {
+          setOrder(data.order);
+        } else {
+          setError('Order not found.');
+        }
+      })
+      .catch((err) => {
+        setError(err.message || 'Failed to load order details. Please contact support.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [orderId]);
 
-    return <OrderSuccessClient order={serializedOrder} />;
-  } catch (err) {
-    console.error('Failed to load order for confirmation:', err);
-    return <OrderSuccessClient order={null} error="Failed to load order details. Please contact support." />;
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-stone-500 font-sans text-sm">
+        <div className="w-8 h-8 border-2 border-stone-300 border-t-stone-700 rounded-full animate-spin mb-3" />
+        <p>Loading your order confirmation...</p>
+      </div>
+    );
   }
+
+  return <OrderSuccessClient order={order} error={error} />;
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-stone-500 font-sans text-sm">
+          <div className="w-8 h-8 border-2 border-stone-300 border-t-stone-700 rounded-full animate-spin mb-3" />
+          <p>Loading your order confirmation...</p>
+        </div>
+      }
+    >
+      <OrderSuccessContent />
+    </Suspense>
+  );
 }

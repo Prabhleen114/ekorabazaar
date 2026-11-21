@@ -960,3 +960,45 @@ export async function handleCallback(req: Request) {
 
 export const handleCheckoutCallback = handleCallback;
 
+// ---------------------------------------------------------------------------
+// 6. GET /api/checkout/order-summary
+// ---------------------------------------------------------------------------
+export async function handleGetOrderSummary(req: Request) {
+  try {
+    const url = new URL(req.url);
+    const orderId = url.searchParams.get('orderId');
+    if (!orderId) {
+      return NextResponse.json({ error: 'orderId is required' }, { status: 400 });
+    }
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { items: true },
+    });
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+    const serializedOrder = {
+      id: order.id,
+      total: order.total,
+      subtotal: order.subtotal,
+      shipping: order.shipping,
+      discount: order.discount,
+      createdAt: order.createdAt.toISOString(),
+      status: order.status,
+      paymentStatus: order.paymentStatus,
+      addressSnapshot: order.addressSnapshot as any,
+      items: order.items.map((item) => ({
+        id: item.id,
+        productNameSnapshot: item.productNameSnapshot,
+        quantity: item.quantity,
+        priceSnapshot: item.priceSnapshot,
+        subtotal: item.subtotal,
+      })),
+    };
+    return NextResponse.json({ order: serializedOrder });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 });
+  }
+}
+
+

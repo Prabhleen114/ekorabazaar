@@ -1,7 +1,4 @@
-export const dynamic = 'force-static';
-
-export async function GET() {
-  const content = `# Ekora Bazaar
+# Ekora Bazaar
 > India's premier B2B marketplace and wholesale raw materials sourcing hub for creative studios, candle artisans, cosmetic formulators, and independent makers.
 
 Website: https://www.ekorabazaar.in
@@ -57,12 +54,3 @@ Ekora Bazaar is a B2B marketplace built for independent artisans, craft studios,
 - [Creator Guidelines](https://www.ekorabazaar.in/creator-guidelines): Standards and requirements for verified marketplace creators.
 - [XML Sitemap Index](https://www.ekorabazaar.in/sitemap_index.xml): Complete machine-readable XML sitemap index.
 - [Robots Policy](https://www.ekorabazaar.in/robots.txt): Search crawler and AI bot access policies.
-`;
-
-  return new Response(content, {
-    headers: {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "public, max-age=86400, s-maxage=86400",
-    },
-  });
-}

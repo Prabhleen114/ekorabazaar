@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /seller/dashboard/
+Disallow: /admin/
+Disallow: /start-selling
+Disallow: /login
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+Sitemap: https://www.ekorabazaar.in/sitemap_index.xml
