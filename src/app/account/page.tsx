@@ -587,7 +587,7 @@ function AccountDashboard() {
                   </div>
 
                   {/* Seller Status Prompt */}
-                  {user?.seller ? (
+                  {user?.seller && (
                     <div className="p-4 rounded-xl bg-brand-bg border border-brand-linen flex items-center justify-between gap-4">
                       <div>
                         <h4 className="font-bold text-sm text-brand-charcoal">
@@ -602,23 +602,6 @@ function AccountDashboard() {
                         className="px-4 py-2 rounded-xl bg-brand-charcoal text-white text-xs font-semibold hover:bg-black transition-colors shrink-0"
                       >
                         Seller Dashboard &rarr;
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-4">
-                      <div>
-                        <h4 className="font-bold text-sm text-emerald-900">
-                          Are you a Manufacturer or Mould Maker?
-                        </h4>
-                        <p className="text-xs text-emerald-700">
-                          Sell silicone moulds, waxes, and supplies directly to Indian creators.
-                        </p>
-                      </div>
-                      <Link
-                        href="/sell"
-                        className="px-4 py-2 rounded-xl bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800 transition-colors shrink-0"
-                      >
-                        Become a Seller &rarr;
                       </Link>
                     </div>
                   )}
