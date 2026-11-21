@@ -21,7 +21,7 @@ import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
 import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR } from "@/lib/pricing";
 
-export const revalidate = 0;
+export const revalidate = 86400; // Static ISR with on-demand cache revalidation via revalidatePath
 
 export interface ProductDetailView {
   rawProduct: any;
