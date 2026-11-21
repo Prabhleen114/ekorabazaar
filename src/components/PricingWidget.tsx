@@ -149,6 +149,131 @@ export default function PricingWidget({
     );
   }, [productName, category, variants]);
 
+  // Detect compound 2-dimensional variant matrix (e.g. "Size / Color", "10 GRAM / PEACH")
+  const compoundVariantData = useMemo(() => {
+    if (!variants || variants.length < 2) return null;
+
+    const partsList = variants.map(v => (v.size || "").split(" / ").map(s => s.trim()));
+    if (!partsList.every(p => p.length === 2 && p[0] && p[1])) return null;
+
+    const rawDim1 = Array.from(new Set(partsList.map(p => p[0])));
+    const rawDim2 = Array.from(new Set(partsList.map(p => p[1])));
+
+    if (rawDim1.length < 2 && rawDim2.length < 2) return null;
+
+    const isSizeLike = (vals: string[]) =>
+      vals.some(v => /\b(\d+\s*(g|gm|gram|grams|kg|ml|l|liter|liters|cm|mm|inch|pcs|pc|pack|set))\b/i.test(v) || /^\d+$/.test(v.trim()));
+
+    const isColorLike = (vals: string[]) => {
+      const knownColors = ["black", "white", "brown", "green", "orange", "red", "blue", "yellow", "pink", "purple", "gold", "silver", "peach", "gray", "grey", "violet", "teal", "rose", "coral", "amber", "golden", "ruby", "sapphire", "emerald"];
+      return vals.some(v => knownColors.some(c => v.toLowerCase().includes(c)));
+    };
+
+    let sizeVals = rawDim1;
+    let colorVals = rawDim2;
+    let sizeIndex = 0;
+    let colorIndex = 1;
+
+    if (isSizeLike(rawDim2) && !isSizeLike(rawDim1)) {
+      sizeVals = rawDim2;
+      colorVals = rawDim1;
+      sizeIndex = 1;
+      colorIndex = 0;
+    } else if (isColorLike(rawDim1) && !isColorLike(rawDim2)) {
+      sizeVals = rawDim2;
+      colorVals = rawDim1;
+      sizeIndex = 1;
+      colorIndex = 0;
+    }
+
+    const parseWeight = (s: string) => {
+      const m = s.match(/(\d+(?:\.\d+)?)\s*(kg|g|gm|gram|grams|ml|l|liter|pcs|pc|pack)?/i);
+      if (!m) return 0;
+      const num = parseFloat(m[1]);
+      const unit = (m[2] || "").toLowerCase();
+      if (unit === "kg" || unit === "l" || unit === "liter") return num * 1000;
+      return num;
+    };
+    sizeVals.sort((a, b) => parseWeight(a) - parseWeight(b));
+
+    const colorLabel = isColorLike(colorVals)
+      ? `Choose Shade / Color (${colorVals.length} Shades Available)`
+      : `Choose Option (${colorVals.length} Available)`;
+
+    const sizeLabel = isSizeLike(sizeVals)
+      ? `Select Weight / Size (${sizeVals.length} Options)`
+      : `Select Specification`;
+
+    const matrixMap = new Map<string, ProductVariant>();
+    for (let i = 0; i < variants.length; i++) {
+      const v = variants[i];
+      const p = partsList[i];
+      const sVal = p[sizeIndex];
+      const cVal = p[colorIndex];
+      matrixMap.set(`${sVal}:::${cVal}`, v);
+    }
+
+    return {
+      sizeVals,
+      colorVals,
+      sizeIndex,
+      colorIndex,
+      sizeLabel,
+      colorLabel,
+      matrixMap,
+      isColor: isColorLike(colorVals)
+    };
+  }, [variants]);
+
+  const currentCompoundSelection = useMemo(() => {
+    if (!compoundVariantData || !selectedVariant) return null;
+    const parts = (selectedVariant.size || "").split(" / ").map(s => s.trim());
+    return {
+      activeSize: parts[compoundVariantData.sizeIndex] || compoundVariantData.sizeVals[0],
+      activeColor: parts[compoundVariantData.colorIndex] || compoundVariantData.colorVals[0]
+    };
+  }, [compoundVariantData, selectedVariant]);
+
+  const handleCompoundSizeSelect = (s: string) => {
+    if (!compoundVariantData) return;
+    const activeColor = currentCompoundSelection?.activeColor || compoundVariantData.colorVals[0];
+    let match = compoundVariantData.matrixMap.get(`${s}:::${activeColor}`);
+    if (!match) {
+      match = variants.find(v => {
+        const parts = v.size.split(" / ").map(p => p.trim());
+        return parts[compoundVariantData.sizeIndex] === s;
+      });
+    }
+    if (match) {
+      setSelectedVariant(match);
+      if (match.color) setSelectedColor(match.color);
+      trackEvent("variant_select", { productId, productName, size: match.size, price: match.price });
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: match } }));
+      }
+    }
+  };
+
+  const handleCompoundColorSelect = (c: string) => {
+    if (!compoundVariantData) return;
+    const activeSize = currentCompoundSelection?.activeSize || compoundVariantData.sizeVals[0];
+    let match = compoundVariantData.matrixMap.get(`${activeSize}:::${c}`);
+    if (!match) {
+      match = variants.find(v => {
+        const parts = v.size.split(" / ").map(p => p.trim());
+        return parts[compoundVariantData.colorIndex] === c;
+      });
+    }
+    if (match) {
+      setSelectedVariant(match);
+      if (match.color) setSelectedColor(match.color);
+      trackEvent("variant_select", { productId, productName, size: match.size, price: match.price });
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: match } }));
+      }
+    }
+  };
+
   // Load saved pincode from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -388,94 +513,181 @@ export default function PricingWidget({
       <div className="bg-white p-4 sm:p-6 border border-stone-200 mt-4 sm:mt-6 space-y-5 shadow-xs">
         {/* VARIANT / OPTION SELECTOR (ABOVE PRICE) */}
         {variants && variants.length > 0 ? (
-          <div className="pb-4 border-b border-stone-200 space-y-3">
-            <div className="flex items-center justify-between">
-              <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
-                {isFlowerVariant ? "Choose Flower Design" : (isColorVariant ? "Choose Variant / Color" : "Select Variant / Size")}
-              </label>
-              <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
-                {selectedVariant?.size} &bull; {displayPrice > 0 ? `₹${displayPrice.toLocaleString()}` : "Price on Request"}
-              </span>
-            </div>
+          <div className="pb-4 border-b border-stone-200 space-y-4">
+            {compoundVariantData ? (
+              <div className="space-y-4">
+                {/* DIMENSION 1: Size / Weight / Quantity */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
+                      {compoundVariantData.sizeLabel}
+                    </label>
+                    <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                      {currentCompoundSelection?.activeSize}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {compoundVariantData.sizeVals.map((s, idx) => {
+                      const isSelected = currentCompoundSelection?.activeSize === s;
+                      const matchVariant = compoundVariantData.matrixMap.get(`${s}:::${currentCompoundSelection?.activeColor}`) ||
+                        variants.find(v => v.size.split(" / ").map(p => p.trim())[compoundVariantData.sizeIndex] === s);
+                      const priceLabel = matchVariant && matchVariant.price > 0 ? `₹${matchVariant.price}` : "";
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleCompoundSizeSelect(s)}
+                          className={`min-h-[40px] px-3.5 py-1.5 text-xs sm:text-sm font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                            isSelected
+                              ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
+                              : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
+                          }`}
+                        >
+                          <span>{s}</span>
+                          {priceLabel && (
+                            <span className={isSelected ? "text-amber-200 font-bold ml-0.5" : "text-stone-500 font-medium ml-0.5"}>
+                              {priceLabel}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
 
-            {/* Quick Option Dropdown specifying each variant/color available */}
-            <div className="relative">
-              <select
-                value={selectedVariant?.size || ""}
-                onChange={(e) => {
-                  const found = variants.find(v => v.size === e.target.value);
-                  if (found) {
-                    setSelectedVariant(found);
-                    if (found.color) setSelectedColor(found.color);
-                    trackEvent("variant_select", {
-                      productId,
-                      productName,
-                      size: found.size,
-                      price: found.price
-                    });
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: found } }));
-                    }
-                  }
-                }}
-                className="w-full h-11 px-3 py-2 text-xs sm:text-sm font-sans font-medium bg-stone-50 border border-stone-300 rounded text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900 appearance-none pr-8 cursor-pointer"
-              >
-                {variants.map((v, idx) => {
-                  const vPriceText = v.price > 0 ? `₹${v.price}` : "Quote on Request";
-                  const validTiers = v.tiers ? v.tiers.filter((t: any) => t && t.price > 0) : [];
-                  const tierText = validTiers.length > 1 ? `(Tiers from ₹${validTiers[validTiers.length - 1].price})` : "";
-                  return (
-                    <option key={idx} value={v.size}>
-                      {v.size} — {vPriceText} {tierText}
-                    </option>
-                  );
-                })}
-              </select>
-              <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-3.5 pointer-events-none" />
-            </div>
+                {/* DIMENSION 2: Color / Shade Swatches */}
+                <div className="space-y-2 pt-2 border-t border-stone-100">
+                  <div className="flex items-center justify-between">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
+                      {compoundVariantData.colorLabel}
+                    </label>
+                    <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                      {currentCompoundSelection?.activeColor} &bull; {displayPrice > 0 ? `₹${displayPrice.toLocaleString()}` : "Price on Request"}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {compoundVariantData.colorVals.map((c, idx) => {
+                      const isSelected = currentCompoundSelection?.activeColor === c;
+                      const colorHex = getColorHex(c);
+                      const existsForSize = Boolean(compoundVariantData.matrixMap.get(`${currentCompoundSelection?.activeSize}:::${c}`));
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          disabled={!existsForSize}
+                          onClick={() => handleCompoundColorSelect(c)}
+                          className={`min-h-[38px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                            isSelected
+                              ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
+                              : existsForSize
+                                ? "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
+                                : "bg-stone-50 text-stone-400 border-stone-200 opacity-40 cursor-not-allowed"
+                          }`}
+                        >
+                          {compoundVariantData.isColor && (
+                            <span
+                              className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
+                              style={{ backgroundColor: colorHex }}
+                            />
+                          )}
+                          <span>{c}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-sans font-semibold">
+                    {isFlowerVariant ? "Choose Flower Design" : (isColorVariant ? "Choose Variant / Color" : "Select Variant / Size")}
+                  </label>
+                  <span className="text-xs font-sans font-semibold text-stone-900 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-xs">
+                    {selectedVariant?.size} &bull; {displayPrice > 0 ? `₹${displayPrice.toLocaleString()}` : "Price on Request"}
+                  </span>
+                </div>
 
-            {/* Visual Swatch / Option Chips */}
-            <div className="flex flex-wrap gap-2 pt-0.5">
-              {variants.map((v, idx) => {
-                const isSelected = selectedVariant?.size === v.size;
-                const colorHex = v.hex || (v.color ? getColorHex(v.color) : getColorHex(v.size));
-                return (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => {
-                      setSelectedVariant(v);
-                      if (v.color) setSelectedColor(v.color);
-                      trackEvent("variant_select", {
-                        productId,
-                        productName,
-                        size: v.size,
-                        price: v.price
-                      });
-                      if (typeof window !== "undefined") {
-                        window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: v } }));
+                {/* Quick Option Dropdown specifying each variant/color available */}
+                <div className="relative">
+                  <select
+                    value={selectedVariant?.size || ""}
+                    onChange={(e) => {
+                      const found = variants.find(v => v.size === e.target.value);
+                      if (found) {
+                        setSelectedVariant(found);
+                        if (found.color) setSelectedColor(found.color);
+                        trackEvent("variant_select", {
+                          productId,
+                          productName,
+                          size: found.size,
+                          price: found.price
+                        });
+                        if (typeof window !== "undefined") {
+                          window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: found } }));
+                        }
                       }
                     }}
-                    className={`min-h-[40px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
-                      isSelected
-                        ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
-                        : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
-                    }`}
+                    className="w-full h-11 px-3 py-2 text-xs sm:text-sm font-sans font-medium bg-stone-50 border border-stone-300 rounded text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900 appearance-none pr-8 cursor-pointer"
                   >
-                    {isColorVariant && (
-                      <span
-                        className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
-                        style={{ backgroundColor: colorHex }}
-                      />
-                    )}
-                    <span>{v.color || v.size}</span>
-                    <span className={isSelected ? "text-amber-200 font-bold ml-0.5" : "text-stone-500 font-medium ml-0.5"}>
-                      {v.price > 0 ? `₹${v.price}` : "Quote"}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                    {variants.map((v, idx) => {
+                      const vPriceText = v.price > 0 ? `₹${v.price}` : "Quote on Request";
+                      const validTiers = v.tiers ? v.tiers.filter((t: any) => t && t.price > 0) : [];
+                      const tierText = validTiers.length > 1 ? `(Tiers from ₹${validTiers[validTiers.length - 1].price})` : "";
+                      return (
+                        <option key={idx} value={v.size}>
+                          {v.size} — {vPriceText} {tierText}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-3.5 pointer-events-none" />
+                </div>
+
+                {/* Visual Swatch / Option Chips */}
+                <div className="flex flex-wrap gap-2 pt-0.5">
+                  {variants.map((v, idx) => {
+                    const isSelected = selectedVariant?.size === v.size;
+                    const colorHex = v.hex || (v.color ? getColorHex(v.color) : getColorHex(v.size));
+                    return (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setSelectedVariant(v);
+                          if (v.color) setSelectedColor(v.color);
+                          trackEvent("variant_select", {
+                            productId,
+                            productName,
+                            size: v.size,
+                            price: v.price
+                          });
+                          if (typeof window !== "undefined") {
+                            window.dispatchEvent(new CustomEvent("product:variant-change", { detail: { variant: v } }));
+                          }
+                        }}
+                        className={`min-h-[40px] px-3 py-1.5 text-xs font-sans font-medium transition-all border rounded-xs flex items-center gap-2 ${
+                          isSelected
+                            ? "bg-stone-900 text-stone-50 border-stone-900 shadow-xs font-semibold"
+                            : "bg-white text-stone-800 border-stone-200 hover:border-stone-400"
+                        }`}
+                      >
+                        {isColorVariant && (
+                          <span
+                            className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/15 shadow-2xs"
+                            style={{ backgroundColor: colorHex }}
+                          />
+                        )}
+                        <span>{v.color || v.size}</span>
+                        <span className={isSelected ? "text-amber-200 font-bold ml-0.5" : "text-stone-500 font-medium ml-0.5"}>
+                          {v.price > 0 ? `₹${v.price}` : "Quote"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         ) : (
           colors && colors.length > 0 && (

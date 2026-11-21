@@ -109,10 +109,8 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
         prisma.product.findMany({
           where: {
             status: ProductStatus.PUBLISHED,
-            OR: [
-              { sellerId: null },
-              { seller: { accountStatus: 'ACTIVE' } }
-            ]
+            sellerId: { not: null },
+            seller: { accountStatus: 'ACTIVE' }
           },
           include: { seller: true, categoryRef: true },
           take: 500,
