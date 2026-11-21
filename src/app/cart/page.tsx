@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductImageClient from "@/components/ProductImageClient"
-import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck, Gift } from "lucide-react"
+import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck, Gift, ArrowRight } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE, calculateItemPrice } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
@@ -598,12 +598,18 @@ export default function CartPage() {
                 </div>
               </div>
 
-              {/* Primary Checkout Button */}
+              {/* Primary Checkout Button (Matching Reference Shopflo Image) */}
               <Link
                 href="/checkout"
-                className="w-full block text-center bg-red-900 hover:bg-red-950 text-white py-2.5 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-[0.99]"
+                className="w-full bg-red-900 hover:bg-red-950 text-white font-sans font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-between shadow-md transition-all active:scale-[0.99] min-h-[48px]"
               >
-                Proceed to Checkout &rarr;
+                <span className="text-sm sm:text-base tracking-wide">Checkout</span>
+                <div className="flex items-center gap-1.5 opacity-90">
+                  <span className="text-[10px] font-semibold bg-red-950/60 px-2 py-0.5 rounded text-red-100">
+                    Paytm &bull; PhonePe &bull; GPay &bull; Cards
+                  </span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
               </Link>
 
               {/* Trust & Guarantee Badges */}
