@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/db';
-import catalogProducts from '@/lib/data/products.json';
 import { calculateItemPrice } from '@/lib/pricing';
 
 export async function GET(req: Request) {
@@ -38,28 +37,40 @@ export async function GET(req: Request) {
       // Graceful fallback to catalog bestsellers
     }
 
-    // 2. Load candidate products from catalog
+    // 2. Load candidate products from Database
+    const dbCandidates = await prisma.product.findMany({
+      where: {
+        status: 'PUBLISHED',
+        supplierAvailable: true,
+        stock: { gt: 0 },
+        id: cartProductIds.length > 0 ? { notIn: cartProductIds } : undefined,
+      },
+      take: 40,
+      orderBy: { createdAt: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        customerPrice: true,
+        imageUrl: true,
+        category: true,
+        wholesaleTiers: true,
+        source: true,
+      },
+    });
+
     const candidateProducts: any[] = [];
-    const seenIds = new Set<string>(cartProductIds);
-
-    // Filter catalog items
-    for (const p of catalogProducts as any[]) {
+    for (const p of dbCandidates) {
       const pId = String(p.id);
-      if (seenIds.has(pId)) continue;
-      if (p.inStock === false) continue;
-      if (p.isQuoteOnly) continue;
-
       const priceINR = calculateItemPrice(p, 1);
       if (priceINR <= 0) continue;
 
-      // Base score
       let score = 1.0;
       const ruleMatch = recConsequents.find(r => r.productId === pId);
       if (ruleMatch) {
         score += ruleMatch.score * 2.0;
       }
 
-      // Gap-fit boost: +1.5x if a single purchase of this item clears the gap!
       let closesGap = false;
       if (gap > 0 && priceINR >= gap && priceINR <= gap + 500) {
         score *= 2.5;
@@ -69,12 +80,16 @@ export async function GET(req: Request) {
         closesGap = true;
       }
 
+      const originalPrice = p.customerPrice
+        ? Math.round(p.customerPrice / 100)
+        : Math.round(priceINR * 1.3);
+
       candidateProducts.push({
         id: pId,
-        title: p.name || p.title || 'Product',
+        title: p.title || 'Product',
         price: priceINR,
-        originalPrice: p.mrp || Math.round(priceINR * 1.3),
-        image: p.image || '/placeholder-product.svg',
+        originalPrice,
+        image: p.imageUrl || '/og-image.jpg',
         category: p.category || 'Supplies',
         score,
         closesGap,
@@ -90,8 +105,11 @@ export async function GET(req: Request) {
       success: true,
       recommendations: topRecs,
     });
-  } catch (err: any) {
-    console.error('Error in recommendations route:', err);
-    return NextResponse.json({ error: 'Failed to load recommendations' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Error generating checkout recommendations:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to load recommendations', recommendations: [] },
+      { status: 500 }
+    );
   }
 }

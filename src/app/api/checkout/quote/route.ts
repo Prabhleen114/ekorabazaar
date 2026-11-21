@@ -4,7 +4,6 @@ import { requireAuth } from '@/lib/auth';
 import { computePricingQuote, CartLineItem, CouponInput } from '@/lib/pricing/pricing-engine';
 import { getActiveCheckoutTiers, getCheckoutConfig } from '@/lib/checkout-config';
 import { calculateItemPrice } from '@/lib/pricing';
-import catalogProducts from '@/lib/data/products.json';
 import { normalizeCouponCode } from '@/lib/coupons';
 import { logCheckoutEvent } from '@/lib/checkout-events';
 
@@ -24,7 +23,7 @@ export async function POST(req: Request) {
     const tiers = await getActiveCheckoutTiers();
     const config = await getCheckoutConfig();
 
-    // Resolve live prices from database or official catalog to prevent client tampering
+    // Resolve live prices from database to prevent client tampering
     const resolvedItems: CartLineItem[] = [];
     const productIds = (items as any[]).map(i => String(i.productId || i.id));
 
@@ -44,10 +43,7 @@ export async function POST(req: Request) {
       const qty = Math.max(1, Number(item.quantity) || 1);
       const isGift = Boolean(item.isGift);
 
-      let product = dbProducts.find(p => p.id === pId);
-      if (!product) {
-        product = (catalogProducts as any[]).find(p => String(p.id) === pId);
-      }
+      const product = dbProducts.find(p => p.id === pId);
 
       if (product) {
         const livePriceINR = calculateItemPrice(product, qty);

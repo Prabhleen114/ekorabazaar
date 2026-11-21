@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductImageClient from "@/components/ProductImageClient"
-import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck, Gift, Sparkles } from "lucide-react"
+import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck, Gift } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE, calculateItemPrice } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
@@ -307,59 +307,79 @@ export default function CartPage() {
     fetchCart()
   }
 
-  if (loading) return <div className="min-h-screen p-8 text-center text-stone-500 font-sans">Loading your cart...</div>
+  if (loading) {
+    return (
+      <div className="min-h-[50vh] flex flex-col items-center justify-center p-6 text-stone-500 font-sans text-xs">
+        <div className="w-6 h-6 border-2 border-stone-300 border-t-red-900 rounded-full animate-spin mb-2" />
+        Loading your cart...
+      </div>
+    )
+  }
 
   const cartProductIds = items.map(i => i.productId)
   const gapToNext = quote?.progress?.next?.gap || 0
+  const itemCount = items.reduce((s, i) => s + (i.quantity || 1), 0)
+
+  const formatRupees = (amt: number) => {
+    return amt % 1 === 0
+      ? amt.toLocaleString('en-IN')
+      : amt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
-      {/* Brand Header with Home Link */}
-      <div className="flex items-center justify-between pb-5 mb-6 border-b border-stone-200">
+    <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-6">
+      {/* Brand Header */}
+      <div className="flex items-center justify-between pb-3 mb-3 border-b border-stone-200">
         <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
           <Image
             src="/images/rectangle logo ekora bazaar.jpeg"
             alt="Ekora Bazaar"
-            width={174}
-            height={38}
+            width={140}
+            height={30}
             priority
             className="object-contain mix-blend-multiply group-hover:opacity-85 transition-opacity"
-            style={{ height: "36px", width: "auto" }}
+            style={{ height: "28px", width: "auto" }}
           />
         </Link>
         <Link
           href="/shop"
-          className="text-xs uppercase tracking-wider text-stone-600 hover:text-stone-900 transition-colors font-medium flex items-center gap-1.5"
+          className="text-[11px] uppercase tracking-wider text-stone-600 hover:text-stone-900 transition-colors font-medium flex items-center gap-1"
         >
           <span>&larr;</span>
           <span>Continue Shopping</span>
         </Link>
       </div>
 
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold font-serif flex items-center gap-3 text-stone-900">
-          <ShoppingBag className="w-7 h-7 text-red-900" />
-          Your Cart ({items.reduce((s, i) => s + (i.quantity || 1), 0)})
+      {/* Page Title & Badges */}
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <h1 className="text-lg sm:text-xl font-bold font-serif flex items-center gap-2 text-stone-900">
+          <ShoppingBag className="w-5 h-5 text-red-900 shrink-0" />
+          <span>Your Cart</span>
+          <span className="text-xs font-sans font-semibold text-stone-500 bg-stone-100 px-2 py-0.5 rounded-full">
+            {itemCount} {itemCount === 1 ? 'item' : 'items'}
+          </span>
         </h1>
-        <span className="text-xs font-semibold px-2.5 py-1 bg-red-100 text-red-900 rounded-full">
-          100% Prepaid Dispatch
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200/80 rounded-full">
+            100% Prepaid Dispatch &bull; No COD
+          </span>
+        </div>
       </div>
 
       <TrackViewCart items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
 
       {/* Mandatory Milestone Progress Bar */}
-      <TierProgressBar progress={quote?.progress} className="shadow-xs mb-6" />
+      <TierProgressBar progress={quote?.progress} className="mb-4" />
 
       {items.length === 0 ? (
-        <div className="space-y-6">
-          <div className="text-center py-12 bg-white rounded-2xl border border-stone-200 shadow-xs">
-            <div className="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <ShoppingBag className="w-8 h-8 text-stone-300" />
+        <div className="space-y-4">
+          <div className="text-center py-10 bg-white rounded-xl border border-stone-200 shadow-2xs">
+            <div className="w-12 h-12 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-2">
+              <ShoppingBag className="w-6 h-6 text-stone-300" />
             </div>
-            <h2 className="text-lg font-bold mb-1 text-stone-900">Your cart is empty</h2>
-            <p className="text-stone-500 mb-4 text-xs">Add products below to reach ₹5,000 and unlock a Free Gift + flat 5% off!</p>
-            <Link href="/shop" className="bg-red-900 hover:bg-red-950 text-white px-5 py-2.5 rounded-xl transition-colors font-bold text-xs inline-block">
+            <h2 className="text-base font-bold mb-1 text-stone-900">Your cart is empty</h2>
+            <p className="text-stone-500 mb-3 text-xs">Add products below to reach ₹5,000 and unlock a Free Gift + flat 5% off!</p>
+            <Link href="/shop" className="bg-red-900 hover:bg-red-950 text-white px-4 py-2 rounded-lg transition-colors font-bold text-xs inline-block">
               Explore All Products &rarr;
             </Link>
           </div>
@@ -371,11 +391,11 @@ export default function CartPage() {
           />
         </div>
       ) : (
-        <div className="space-y-6">
-          <StockReservationTimer variant="banner" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-start">
+          {/* Left Column: Items List & Recommendations */}
+          <div className="lg:col-span-7 xl:col-span-8 space-y-3">
+            {/* Item Rows */}
+            <div className="space-y-2.5">
               {items.map(item => {
                 const unitPriceRupees = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
                   ? item.effectivePrice
@@ -383,97 +403,132 @@ export default function CartPage() {
                 const qty = Math.max(1, item.quantity || 1);
                 const lineTotalRupees = unitPriceRupees * qty;
 
-                const formatRupees = (amt: number) => {
-                  return amt % 1 === 0
-                    ? amt.toLocaleString('en-IN')
-                    : amt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                };
-
                 return (
-                  <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-stone-200 shadow-xs flex gap-3 sm:gap-4 items-center">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-stone-50 relative shrink-0 border border-stone-100">
+                  <div
+                    key={item.id || item.productId}
+                    className="bg-white p-2.5 sm:p-3 rounded-xl border border-stone-200/90 shadow-2xs flex gap-2.5 sm:gap-3 items-center hover:border-stone-300 transition-colors"
+                  >
+                    {/* Thumbnail */}
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden bg-stone-50 relative shrink-0 border border-stone-100">
                       {item.product?.imageUrl ? (
                         <ProductImageClient
                           src={item.product.imageUrl}
                           alt={item.product.title}
-                          sizes="80px"
+                          sizes="64px"
                           quality={80}
-                          className="object-contain p-1"
+                          className="object-contain p-0.5"
                           fallbackSrc="/og-image.jpg"
                         />
                       ) : (
                         <div className="w-full h-full bg-stone-200" />
                       )}
                     </div>
+
+                    {/* Product Details */}
                     <div className="flex-1 min-w-0">
-                      <Link href={`/products/${item.productId}`} className="font-semibold hover:text-red-900 transition-colors text-sm sm:text-base line-clamp-2 break-words text-stone-900">
+                      <Link
+                        href={`/products/${item.productId}`}
+                        className="font-medium hover:text-red-900 transition-colors text-xs sm:text-sm line-clamp-1 sm:line-clamp-2 text-stone-900 leading-snug"
+                      >
                         {item.product?.title || item.title}
                       </Link>
-                      <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                        <span className="text-stone-950 font-bold text-base sm:text-lg">
+                      <div className="mt-1 flex items-baseline gap-1.5 flex-wrap">
+                        <span className="text-stone-950 font-bold text-xs sm:text-sm">
                           ₹{formatRupees(lineTotalRupees)}
                         </span>
-                        <span className="text-stone-500 text-xs font-normal">
-                          ₹{formatRupees(unitPriceRupees)} per unit
+                        <span className="text-stone-400 text-[10px] sm:text-[11px] font-normal">
+                          ₹{formatRupees(unitPriceRupees)} / unit
                         </span>
                       </div>
-                      {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
+                      {!item.isAvailable && (
+                        <p className="text-red-500 text-[11px] font-medium mt-0.5">Currently unavailable</p>
+                      )}
                     </div>
-                    <div className="flex flex-col items-end gap-2 shrink-0">
-                      <div className="flex items-center bg-white rounded-lg border border-stone-300 shadow-2xs">
-                        <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-stone-100 rounded-l-lg text-stone-600" disabled={!item.isAvailable} aria-label="Decrease quantity">
-                          <Minus className="w-3 h-3" />
+
+                    {/* Quantity Controls & Delete */}
+                    <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex items-center bg-stone-50 rounded-md border border-stone-200 h-7 text-xs">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)}
+                          className="w-6 h-7 flex items-center justify-center hover:bg-stone-200/70 text-stone-600 transition-colors"
+                          disabled={!item.isAvailable}
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus className="w-2.5 h-2.5" />
                         </button>
-                        <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-bold text-stone-900">{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-stone-100 rounded-r-lg text-stone-600" disabled={!item.isAvailable} aria-label="Increase quantity">
-                          <Plus className="w-3 h-3" />
+                        <span className="w-6 text-center font-bold text-stone-900 text-xs">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)}
+                          className="w-6 h-7 flex items-center justify-center hover:bg-stone-200/70 text-stone-600 transition-colors"
+                          disabled={!item.isAvailable}
+                          aria-label="Increase quantity"
+                        >
+                          <Plus className="w-2.5 h-2.5" />
                         </button>
                       </div>
-                      <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item" aria-label="Remove item">
-                        <Trash2 className="w-4 h-4" />
+                      <button
+                        onClick={() => removeItem(item.id, item.productId)}
+                        className="text-stone-400 hover:text-red-600 p-1 transition-colors"
+                        title="Remove item"
+                        aria-label="Remove item"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
                 );
               })}
 
-              {/* Automatic Free Gift Line Item */}
+              {/* Automatic Free Gift Item Line */}
               {quote?.gift?.eligible && (
-                <div className="bg-red-50 border border-red-200 p-4 rounded-2xl flex items-center justify-between gap-4 shadow-xs">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-red-800 text-white rounded-xl flex items-center justify-center shrink-0">
-                      <Gift className="w-6 h-6" />
+                <div className="bg-red-50/80 border border-red-200 p-2.5 sm:p-3 rounded-xl flex items-center justify-between gap-3 shadow-2xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 bg-red-800 text-white rounded-lg flex items-center justify-center shrink-0">
+                      <Gift className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 bg-red-800 text-white rounded">
+                      <span className="inline-block text-[9px] font-extrabold uppercase px-1.5 py-0.2 bg-red-800 text-white rounded">
                         Free Gift
                       </span>
-                      <h4 className="font-bold text-stone-900 text-sm mt-0.5">
+                      <h4 className="font-semibold text-stone-900 text-xs mt-0.5">
                         Milestone Reward: Ekora Special Gift Item
                       </h4>
-                      <p className="text-xs text-stone-500">Automatically unlocked on reaching ₹5,000 threshold</p>
+                      <p className="text-[10px] text-stone-500">Unlocked on reaching ₹5,000 threshold</p>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="text-sm font-bold text-emerald-700">FREE</span>
-                    <span className="block text-xs text-stone-400 line-through">₹499</span>
+                    <span className="text-xs font-bold text-emerald-700">FREE</span>
+                    <span className="block text-[10px] text-stone-400 line-through">₹499</span>
                   </div>
                 </div>
               )}
-
-              {/* Recommendations Shelf */}
-              <div className="pt-4">
-                <RecommendationShelf
-                  cartProductIds={cartProductIds}
-                  gap={gapToNext}
-                  onAddItem={handleAddRecommendation}
-                />
-              </div>
             </div>
 
-            {/* Right Order Summary Column */}
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm h-fit lg:sticky lg:top-24 w-full space-y-4">
-              <h2 className="text-lg font-bold text-stone-900 border-b border-stone-100 pb-3">Order Summary</h2>
+            {/* Recommendations Shelf (Below Item List) */}
+            <div className="pt-2">
+              <RecommendationShelf
+                cartProductIds={cartProductIds}
+                gap={gapToNext}
+                onAddItem={handleAddRecommendation}
+              />
+            </div>
+          </div>
+
+          {/* Right Column: Timer + Sticky Order Summary */}
+          <div className="lg:col-span-5 xl:col-span-4 space-y-3 lg:sticky lg:top-4">
+            {/* Compact Timer Widget placed immediately above Order Summary per user instruction */}
+            <StockReservationTimer variant="compact" className="shadow-2xs" />
+
+            {/* Order Summary Box */}
+            <div className="bg-white p-4 sm:p-5 rounded-xl border border-stone-200 shadow-2xs space-y-3">
+              <div className="flex items-center justify-between border-b border-stone-100 pb-2.5">
+                <h2 className="text-sm sm:text-base font-bold text-stone-900">Order Summary</h2>
+                <span className="text-[11px] text-stone-500">
+                  {itemCount} {itemCount === 1 ? 'item' : 'items'}
+                </span>
+              </div>
 
               {/* Ekora Points Cashback / Wallet Banner */}
               <EkoraPointsBanner
@@ -482,7 +537,7 @@ export default function CartPage() {
               />
 
               {/* Coupon Section */}
-              <div className="py-2 border-b border-stone-100">
+              <div className="py-1 border-b border-stone-100">
                 <CouponSection
                   subtotalPaise={Math.round((quote?.eligibleSubtotal || total) * 100)}
                   appliedCoupon={appliedCoupon}
@@ -492,80 +547,80 @@ export default function CartPage() {
               </div>
 
               {/* Itemized Breakdown */}
-              <div className="space-y-2 text-xs sm:text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div className="flex justify-between text-stone-600">
                   <span>Eligible Subtotal</span>
                   <span className="font-semibold text-stone-900">
-                    ₹{(quote?.eligibleSubtotal || total).toLocaleString('en-IN')}
+                    ₹{formatRupees(quote?.eligibleSubtotal || total)}
                   </span>
                 </div>
 
                 {quote && quote.tierDiscount > 0 && (
-                  <div className="flex justify-between text-red-800 font-semibold">
+                  <div className="flex justify-between text-emerald-700 font-semibold">
                     <span>Milestone Discount ({quote.tierRewardDescription})</span>
-                    <span>-₹{quote.tierDiscount.toLocaleString('en-IN')}</span>
+                    <span>-₹{formatRupees(quote.tierDiscount)}</span>
                   </div>
                 )}
 
                 {quote && quote.couponDiscount > 0 && (
                   <div className="flex justify-between text-emerald-700 font-semibold">
                     <span>Coupon Discount ({quote.couponCode})</span>
-                    <span>-₹{quote.couponDiscount.toLocaleString('en-IN')}</span>
+                    <span>-₹{formatRupees(quote.couponDiscount)}</span>
                   </div>
                 )}
 
                 {quote && quote.points.pointsDiscount > 0 && (
                   <div className="flex justify-between text-emerald-700 font-semibold">
                     <span>Ekora Points Redeemed</span>
-                    <span>-₹{quote.points.pointsDiscount.toLocaleString('en-IN')}</span>
+                    <span>-₹{formatRupees(quote.points.pointsDiscount)}</span>
                   </div>
                 )}
 
                 <div className="flex justify-between text-stone-600">
                   <span>Standard Flat Shipping</span>
                   <span className="font-semibold text-stone-900">
-                    ₹{(quote?.shipping || TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+                    ₹{formatRupees(quote?.shipping || TEMP_FLAT_SHIPPING_CHARGE)}
                   </span>
                 </div>
               </div>
 
               {/* Total & Savings */}
-              <div className="border-t border-stone-200 pt-3">
+              <div className="border-t border-stone-200 pt-2.5">
                 {quote && quote.totalSavings > 0 && (
                   <div className="flex justify-between text-xs font-bold text-emerald-600 mb-1">
                     <span>Total Savings</span>
-                    <span>₹{quote.totalSavings.toLocaleString('en-IN')}</span>
+                    <span>₹{formatRupees(quote.totalSavings)}</span>
                   </div>
                 )}
-                <div className="flex justify-between items-baseline text-lg font-bold text-stone-950">
+                <div className="flex justify-between items-baseline text-base sm:text-lg font-bold text-stone-950">
                   <span>Grand Total</span>
-                  <span>₹{(quote?.grandTotal || (total + TEMP_FLAT_SHIPPING_CHARGE)).toLocaleString('en-IN')}</span>
+                  <span>₹{formatRupees(quote?.grandTotal || (total + TEMP_FLAT_SHIPPING_CHARGE))}</span>
                 </div>
               </div>
 
               {/* Primary Checkout Button */}
               <Link
                 href="/checkout"
-                className="w-full block text-center bg-red-900 hover:bg-red-950 text-white py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-[0.99]"
+                className="w-full block text-center bg-red-900 hover:bg-red-950 text-white py-2.5 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-[0.99]"
               >
                 Proceed to Checkout &rarr;
               </Link>
 
-              {/* Trust Badges */}
-              <div className="pt-2 flex flex-col gap-2 text-xs text-stone-500 font-medium">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>100% Prepaid Dispatch &bull; No COD</span>
+              {/* Trust & Guarantee Badges */}
+              <div className="pt-1 flex flex-col gap-1.5 text-[11px] text-stone-500 font-medium border-t border-stone-100">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>100% Prepaid Dispatch &bull; UPI, Cards, NetBanking</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-red-800 shrink-0" />
-                  <span>Doorstep Delivery via Surface / Air</span>
+                <div className="flex items-center gap-1.5">
+                  <Truck className="w-3.5 h-3.5 text-red-800 shrink-0" />
+                  <span>Doorstep Factory Dispatch</span>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <WhatsAppCheckoutAssistant
-                  itemCount={items.reduce((s, i) => s + (i.quantity || 1), 0)}
+                  itemCount={itemCount}
                   totalAmount={quote?.grandTotal || (total + TEMP_FLAT_SHIPPING_CHARGE)}
                   location="cart_page"
                   variant="card"
