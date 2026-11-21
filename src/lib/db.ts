@@ -1,11 +1,30 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import pg from 'pg'
+import dotenv from 'dotenv'
+import path from 'path'
+import fs from 'fs'
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient | undefined }
 
 function getPrismaClient(): PrismaClient {
   if (!globalForPrisma.prisma) {
+    if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+      const candidates = [
+        path.resolve(process.cwd(), '.env'),
+        path.resolve(process.cwd(), '../.env'),
+        path.resolve(process.cwd(), '../../.env'),
+        path.resolve(__dirname, '../../.env'),
+        path.resolve(__dirname, '../.env'),
+      ];
+      for (const cand of candidates) {
+        if (fs.existsSync(cand)) {
+          dotenv.config({ path: cand });
+          if (process.env.DATABASE_URL || process.env.POSTGRES_URL) break;
+        }
+      }
+    }
+
     // Determine the best direct database connection string.
     // Prefer DATABASE_URL (which connects to the transaction pooler, port 6543)
     // Avoid DIRECT_URL or session poolers in serverless/production runtime to prevent EMAXCONNSESSION.

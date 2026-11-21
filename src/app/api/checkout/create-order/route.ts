@@ -9,6 +9,8 @@ import catalogProducts from '@/lib/data/products.json'
 import { validateBody, CreateOrderSchema } from '@/lib/validation'
 import { normalizeCouponCode, validateCouponEligibility } from '@/lib/coupons'
 import { IS_CHECKOUT_PAUSED, CHECKOUT_PAUSED_MESSAGE } from '@/config/checkout-protection'
+import { computePricingQuote } from '@/lib/pricing/pricing-engine'
+import { getActiveCheckoutTiers, getCheckoutConfig } from '@/lib/checkout-config'
 
 export async function POST(req: Request) {
   // EMERGENCY CIRCUIT BREAKER: Block checkout while pricing pipeline is undergoing verification
@@ -160,14 +162,11 @@ export async function POST(req: Request) {
       }
     })
 
-    const shippingChargePaise = Math.round(TEMP_FLAT_SHIPPING_CHARGE * 100)
-    // Convert INR subtotal to integer paise
-    const subtotalPaise = Math.round(totalAmount * 100)
+    const tiers = await getActiveCheckoutTiers()
+    const config = await getCheckoutConfig()
 
-    // Validate and apply coupon if provided
+    let couponInput = null
     let appliedCoupon: any = null
-    let discountPaise = 0
-
     if (couponCode && typeof couponCode === 'string' && couponCode.trim()) {
       const normalizedCode = normalizeCouponCode(couponCode)
       const coupon = await prisma.coupon.findUnique({
@@ -190,7 +189,7 @@ export async function POST(req: Request) {
       }
 
       const eligibility = validateCouponEligibility(coupon, {
-        subtotalPaise,
+        subtotalPaise: Math.round(totalAmount * 100),
         usageCountForCustomer: customerUsageCount
       })
 
@@ -199,10 +198,44 @@ export async function POST(req: Request) {
       }
 
       appliedCoupon = coupon
-      discountPaise = eligibility.discountPaise
+      couponInput = {
+        code: coupon.code,
+        discountType: coupon.discountType,
+        discountValue: coupon.discountType === 'PERCENTAGE' ? coupon.discountValue : coupon.discountValue / 100,
+        maxDiscountAmount: coupon.maxDiscountAmount ? coupon.maxDiscountAmount / 100 : null,
+        minOrderAmount: coupon.minOrderAmount ? coupon.minOrderAmount / 100 : 0,
+      }
     }
 
-    const finalAmountPaise = Math.max(0, Math.round(subtotalPaise - discountPaise + shippingChargePaise))
+    const pricingQuote = computePricingQuote({
+      items: validOrderItems.map(item => ({
+        productId: item.productId,
+        title: item.productNameSnapshot,
+        price: item.priceSnapshot / 100,
+        quantity: item.quantity,
+      })),
+      tiers,
+      config,
+      coupon: couponInput,
+    })
+
+    // If Free Gift is unlocked, add the ₹0 gift line item
+    if (pricingQuote.gift.eligible && pricingQuote.gift.sku) {
+      validOrderItems.push({
+        productId: 'GIFT_' + pricingQuote.gift.sku,
+        productNameSnapshot: `Free Gift (${pricingQuote.gift.sku})`,
+        priceSnapshot: 0,
+        quantity: 1,
+        subtotal: 0,
+        isGift: true,
+      })
+    }
+
+    const finalAmountPaise = Math.round(pricingQuote.grandTotal * 100)
+    const subtotalPaise = Math.round(pricingQuote.eligibleSubtotal * 100)
+    const totalDiscountPaise = Math.round((pricingQuote.tierDiscount + pricingQuote.couponDiscount) * 100)
+    const taxPaise = Math.round(pricingQuote.tax * 100)
+    const shippingChargePaise = Math.round(pricingQuote.shipping * 100)
 
     // Razorpay key validated at import time via razorpay.ts
 
@@ -239,16 +272,20 @@ export async function POST(req: Request) {
         actualUserId = guestUser.id
       }
 
-      const discountedSubtotalPaise = Math.max(0, subtotalPaise - discountPaise)
-      const taxPaise = Math.round(discountedSubtotalPaise - (discountedSubtotalPaise / 1.18));
       const order = await tx.order.create({
         data: {
           customerId: finalUserId,
           total: finalAmountPaise,
           subtotal: subtotalPaise,
-          discount: discountPaise,
-          couponCode: appliedCoupon?.code || null,
+          discount: totalDiscountPaise,
+          couponCode: pricingQuote.couponCode || null,
           couponId: appliedCoupon?.id || null,
+          eligibleSubtotal: pricingQuote.eligibleSubtotal,
+          tierId: pricingQuote.tierId,
+          tierDiscount: pricingQuote.tierDiscount,
+          pointsRedeemed: pricingQuote.points.pointsRedeemed,
+          pointsDiscount: pricingQuote.points.pointsDiscount,
+          pricingSnapshot: JSON.parse(JSON.stringify(pricingQuote)),
           shipping: shippingChargePaise,
           tax: taxPaise,
           status: OrderStatus.PAYMENT_PENDING,
@@ -260,6 +297,29 @@ export async function POST(req: Request) {
           }
         }
       })
+
+      // Record adjustment rows for tier discount and gift
+      if (pricingQuote.tierDiscount > 0) {
+        await (tx as any).orderAdjustment.create({
+          data: {
+            orderId: order.id,
+            kind: 'tier_discount',
+            tierId: pricingQuote.tierId,
+            amount: pricingQuote.tierDiscount,
+          }
+        }).catch(() => {})
+      }
+      if (pricingQuote.gift.eligible && pricingQuote.gift.sku) {
+        await (tx as any).orderAdjustment.create({
+          data: {
+            orderId: order.id,
+            kind: 'gift',
+            tierId: pricingQuote.tierId,
+            giftSku: pricingQuote.gift.sku,
+            amount: 0,
+          }
+        }).catch(() => {})
+      }
 
       const payment = await tx.payment.create({
         data: {
@@ -295,7 +355,7 @@ export async function POST(req: Request) {
       paymentId: createdPayment.id,
       razorpayOrderId: rzpOrderId,
       amount: finalAmountPaise,
-      discount: discountPaise,
+      discount: totalDiscountPaise,
       couponCode: appliedCoupon?.code || null,
       customer: {
         name: (addressSnapshot as any)?.name || customer?.name || customerName,

@@ -1,25 +1,62 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProductImageClient from "@/components/ProductImageClient"
-import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck } from "lucide-react"
+import { Minus, Plus, Trash2, ShoppingBag, Truck, ShieldCheck, Gift, Sparkles } from "lucide-react"
 import { TrackViewCart } from "@/components/GA4Tracker"
 import { TEMP_FLAT_SHIPPING_CHARGE, calculateItemPrice } from "@/lib/pricing"
 import { trackEvent } from '@/lib/tracking'
 import StockReservationTimer from "@/components/StockReservationTimer"
 import WhatsAppCheckoutAssistant from "@/components/WhatsAppCheckoutAssistant"
 import CouponSection, { AppliedCoupon } from "@/components/CouponSection"
+import TierProgressBar from "@/components/checkout/TierProgressBar"
+import RecommendationShelf from "@/components/checkout/RecommendationShelf"
+import EkoraPointsBanner from "@/components/checkout/EkoraPointsBanner"
+import { PricingQuote } from "@/lib/pricing/pricing-engine"
 
 export default function CartPage() {
   const [items, setItems] = useState<any[]>([])
   const [total, setTotal] = useState(0)
   const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null)
+  const [quote, setQuote] = useState<PricingQuote | null>(null)
   const [loading, setLoading] = useState(true)
   const [isGuest, setIsGuest] = useState(false)
   const router = useRouter()
+
+  const syncQuote = useCallback(async (currentItems: any[], couponCode?: string) => {
+    if (currentItems.length === 0) {
+      setQuote(null)
+      return
+    }
+
+    try {
+      const res = await fetch('/api/checkout/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: currentItems.map(item => ({
+            productId: item.productId,
+            title: item.product?.title || item.title,
+            price: item.effectivePrice,
+            quantity: item.quantity,
+          })),
+          couponCode,
+        }),
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        if (data.quote) {
+          setQuote(data.quote)
+        }
+      }
+    } catch (err) {
+      console.error('Failed to sync pricing quote:', err)
+    }
+  }, [])
 
   // Load saved coupon on mount
   useEffect(() => {
@@ -52,21 +89,23 @@ export default function CartPage() {
             }
             setAppliedCoupon(updated)
             sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(updated))
+            syncQuote(items, updated.code)
           } else {
-            // Cart total no longer qualifies for this coupon
             setAppliedCoupon(null)
             sessionStorage.removeItem('ekora_applied_coupon')
+            syncQuote(items, undefined)
           }
         })
         .catch(() => {})
     }
-  }, [total])
+  }, [total, syncQuote, items])
 
   const handleApplyCoupon = (coupon: AppliedCoupon) => {
     setAppliedCoupon(coupon)
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('ekora_applied_coupon', JSON.stringify(coupon))
     }
+    syncQuote(items, coupon.code)
   }
 
   const handleRemoveCoupon = () => {
@@ -74,26 +113,10 @@ export default function CartPage() {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('ekora_applied_coupon')
     }
+    syncQuote(items, undefined)
   }
 
-  useEffect(() => {
-    fetchCart()
-
-    const handleCartUpdate = () => fetchCart()
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === 'ekora_guest_cart') fetchCart()
-    }
-
-    window.addEventListener('cart-updated', handleCartUpdate)
-    window.addEventListener('storage', handleStorage)
-
-    return () => {
-      window.removeEventListener('cart-updated', handleCartUpdate)
-      window.removeEventListener('storage', handleStorage)
-    }
-  }, [])
-
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       let res = await fetch('/api/cart', { cache: 'no-store' })
       if (res.status === 401 || res.status === 403) {
@@ -104,6 +127,7 @@ export default function CartPage() {
         if (guestItems.length === 0) {
           setItems([])
           setTotal(0)
+          setQuote(null)
           return
         }
 
@@ -113,16 +137,11 @@ export default function CartPage() {
           body: JSON.stringify({ items: guestItems })
         })
         const guestData = await guestRes.json()
-        setItems(guestData.items || [])
+        const fetchedItems = guestData.items || []
+        setItems(fetchedItems)
         const gTotal = guestData.totalAmount || 0
         setTotal(gTotal)
-        if (gTotal > 0 && gTotal < 2000) {
-          trackEvent("shipping_threshold_view", {
-            cart_value: gTotal,
-            amount_to_free_shipping: Math.max(0, 2000 - gTotal),
-            threshold: 2000,
-          })
-        }
+        syncQuote(fetchedItems, appliedCoupon?.code)
         return
       }
 
@@ -141,31 +160,39 @@ export default function CartPage() {
         })
         if (syncRes.ok) {
            clearGuestCart()
-           const finalRes = await fetch('/api/cart', { cache: 'no-store' })
-           if (finalRes.ok) {
-             res = finalRes
-           }
+           res = await fetch('/api/cart', { cache: 'no-store' })
         }
       }
 
       const data = await res.json()
-      setItems(data.items || [])
+      const fetchedItems = data.items || []
+      setItems(fetchedItems)
       const cTotal = data.totalAmount || 0
       setTotal(cTotal)
-      if (cTotal > 0 && cTotal < 2000) {
-        trackEvent("shipping_threshold_view", {
-          cart_value: cTotal,
-          amount_to_free_shipping: Math.max(0, 2000 - cTotal),
-          threshold: 2000,
-        })
-      }
+      syncQuote(fetchedItems, appliedCoupon?.code)
     } catch (err) {
       console.error(err)
-      // DO NOT clear cart on error
     } finally {
       setLoading(false)
     }
-  }
+  }, [appliedCoupon?.code, syncQuote])
+
+  useEffect(() => {
+    fetchCart()
+
+    const handleCartUpdate = () => fetchCart()
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'ekora_guest_cart') fetchCart()
+    }
+
+    window.addEventListener('cart-updated', handleCartUpdate)
+    window.addEventListener('storage', handleStorage)
+
+    return () => {
+      window.removeEventListener('cart-updated', handleCartUpdate)
+      window.removeEventListener('storage', handleStorage)
+    }
+  }, [fetchCart])
 
   const updateQuantity = async (itemId: string, newQty: number, productId: string) => {
     if (newQty < 1) return
@@ -200,6 +227,7 @@ export default function CartPage() {
         return sum
       }, 0)
       setTotal(newTotal)
+      syncQuote(updated, appliedCoupon?.code)
       return updated
     })
 
@@ -225,7 +253,6 @@ export default function CartPage() {
   }
 
   const removeItem = async (itemId: string, productId: string) => {
-    // Instant optimistic UI update
     setItems(prevItems => {
       const updated = prevItems.filter(i => i.id !== itemId && i.productId !== productId)
       const newTotal = updated.reduce((sum, item) => {
@@ -235,6 +262,7 @@ export default function CartPage() {
         return sum
       }, 0)
       setTotal(newTotal)
+      syncQuote(updated, appliedCoupon?.code)
       return updated
     })
 
@@ -255,12 +283,39 @@ export default function CartPage() {
     }
   }
 
-  if (loading) return <div className="min-h-screen p-8 text-center">Loading cart...</div>
+  const handleAddRecommendation = async (rec: { id: string; title: string; price: number; image?: string }) => {
+    const { addGuestCartItem, notifyCartUpdated } = await import('@/lib/guest-cart')
+    addGuestCartItem({
+      productId: rec.id,
+      quantity: 1,
+      title: rec.title,
+      basePrice: rec.price,
+      imageUrl: rec.image,
+    })
+
+    if (!isGuest) {
+      try {
+        await fetch('/api/cart', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId: rec.id, quantity: 1 }),
+        })
+      } catch (_) {}
+    }
+
+    notifyCartUpdated()
+    fetchCart()
+  }
+
+  if (loading) return <div className="min-h-screen p-8 text-center text-stone-500 font-sans">Loading your cart...</div>
+
+  const cartProductIds = items.map(i => i.productId)
+  const gapToNext = quote?.progress?.next?.gap || 0
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       {/* Brand Header with Home Link */}
-      <div className="flex items-center justify-between pb-5 mb-8 border-b border-stone-200">
+      <div className="flex items-center justify-between pb-5 mb-6 border-b border-stone-200">
         <Link href="/" className="inline-flex items-center group" aria-label="Ekora Bazaar Home">
           <Image
             src="/images/rectangle logo ekora bazaar.jpeg"
@@ -280,159 +335,245 @@ export default function CartPage() {
           <span>Continue Shopping</span>
         </Link>
       </div>
-      <h1 className="text-3xl font-bold font-serif mb-8 flex items-center gap-3">
-        <ShoppingBag className="w-8 h-8 text-brand-orange" />
-        Your Cart
-      </h1>
+
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold font-serif flex items-center gap-3 text-stone-900">
+          <ShoppingBag className="w-7 h-7 text-red-900" />
+          Your Cart ({items.reduce((s, i) => s + (i.quantity || 1), 0)})
+        </h1>
+        <span className="text-xs font-semibold px-2.5 py-1 bg-red-100 text-red-900 rounded-full">
+          100% Prepaid Dispatch
+        </span>
+      </div>
+
       <TrackViewCart items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
 
+      {/* Mandatory Milestone Progress Bar */}
+      <TierProgressBar progress={quote?.progress} className="shadow-xs mb-6" />
+
       {items.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl border border-brand-linen shadow-sm">
-          <div className="w-20 h-20 bg-brand-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <ShoppingBag className="w-10 h-10 text-brand-charcoal/30" />
+        <div className="space-y-6">
+          <div className="text-center py-12 bg-white rounded-2xl border border-stone-200 shadow-xs">
+            <div className="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <ShoppingBag className="w-8 h-8 text-stone-300" />
+            </div>
+            <h2 className="text-lg font-bold mb-1 text-stone-900">Your cart is empty</h2>
+            <p className="text-stone-500 mb-4 text-xs">Add products below to reach ₹5,000 and unlock a Free Gift + flat 5% off!</p>
+            <Link href="/shop" className="bg-red-900 hover:bg-red-950 text-white px-5 py-2.5 rounded-xl transition-colors font-bold text-xs inline-block">
+              Explore All Products &rarr;
+            </Link>
           </div>
-          <h2 className="text-xl font-medium mb-2">Your cart is empty</h2>
-          <p className="text-brand-charcoal/60 mb-6">Looks like you haven't added anything yet.</p>
-          <Link href="/shop" className="bg-brand-charcoal text-white px-4 md:px-6 py-3 rounded-xl hover:bg-brand-charcoal/90 transition-colors">
-            Start Shopping
-          </Link>
+
+          <RecommendationShelf
+            cartProductIds={[]}
+            gap={5000}
+            onAddItem={handleAddRecommendation}
+          />
         </div>
       ) : (
         <div className="space-y-6">
           <StockReservationTimer variant="banner" />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-4">
-            {items.map(item => {
-              const unitPriceRupees = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
-                ? item.effectivePrice
-                : calculateItemPrice(item.product, item.quantity || 1);
-              const qty = Math.max(1, item.quantity || 1);
-              const lineTotalRupees = unitPriceRupees * qty;
+            <div className="lg:col-span-2 space-y-4">
+              {items.map(item => {
+                const unitPriceRupees = typeof item.effectivePrice === 'number' && !isNaN(item.effectivePrice)
+                  ? item.effectivePrice
+                  : calculateItemPrice(item.product, item.quantity || 1);
+                const qty = Math.max(1, item.quantity || 1);
+                const lineTotalRupees = unitPriceRupees * qty;
 
-              const formatRupees = (amt: number) => {
-                return amt % 1 === 0
-                  ? amt.toLocaleString('en-IN')
-                  : amt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-              };
+                const formatRupees = (amt: number) => {
+                  return amt % 1 === 0
+                    ? amt.toLocaleString('en-IN')
+                    : amt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                };
 
-              return (
-                <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-linen shadow-sm flex gap-3 sm:gap-4 items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-brand-bg relative shrink-0">
-                    {item.product.imageUrl ? (
-                      <ProductImageClient
-                        src={item.product.imageUrl}
-                        alt={item.product.title}
-                        sizes="80px"
-                        quality={80}
-                        className="object-contain p-1"
-                        fallbackSrc="/og-image.jpg"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-200" />
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <Link href={`/products/${item.productId}`} className="font-semibold hover:text-brand-orange transition-colors text-sm sm:text-base line-clamp-2 break-words">
-                      {item.product.title}
-                    </Link>
-                    <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                      <span className="text-brand-orange font-bold text-base sm:text-lg">
-                        ₹{formatRupees(lineTotalRupees)}
-                      </span>
-                      <span className="text-stone-500 text-xs font-normal">
-                        ₹{formatRupees(unitPriceRupees)} per unit
-                      </span>
+                return (
+                  <div key={item.id} className="bg-white p-3.5 sm:p-4 rounded-2xl border border-stone-200 shadow-xs flex gap-3 sm:gap-4 items-center">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-stone-50 relative shrink-0 border border-stone-100">
+                      {item.product?.imageUrl ? (
+                        <ProductImageClient
+                          src={item.product.imageUrl}
+                          alt={item.product.title}
+                          sizes="80px"
+                          quality={80}
+                          className="object-contain p-1"
+                          fallbackSrc="/og-image.jpg"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-stone-200" />
+                      )}
                     </div>
-                    {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
-                  </div>
-                  <div className="flex flex-col items-end gap-2 shrink-0">
-                    <div className="flex items-center bg-brand-bg rounded-lg border border-brand-linen">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-l-lg" disabled={!item.isAvailable} aria-label="Decrease quantity">
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-medium">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-brand-linen/50 rounded-r-lg" disabled={!item.isAvailable} aria-label="Increase quantity">
-                        <Plus className="w-3 h-3" />
+                    <div className="flex-1 min-w-0">
+                      <Link href={`/products/${item.productId}`} className="font-semibold hover:text-red-900 transition-colors text-sm sm:text-base line-clamp-2 break-words text-stone-900">
+                        {item.product?.title || item.title}
+                      </Link>
+                      <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="text-stone-950 font-bold text-base sm:text-lg">
+                          ₹{formatRupees(lineTotalRupees)}
+                        </span>
+                        <span className="text-stone-500 text-xs font-normal">
+                          ₹{formatRupees(unitPriceRupees)} per unit
+                        </span>
+                      </div>
+                      {!item.isAvailable && <p className="text-red-500 text-xs font-semibold mt-1">Currently unavailable</p>}
+                    </div>
+                    <div className="flex flex-col items-end gap-2 shrink-0">
+                      <div className="flex items-center bg-white rounded-lg border border-stone-300 shadow-2xs">
+                        <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-stone-100 rounded-l-lg text-stone-600" disabled={!item.isAvailable} aria-label="Decrease quantity">
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-7 sm:w-8 text-center text-xs sm:text-sm font-bold text-stone-900">{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, item.quantity + 1, item.productId)} className="p-1.5 sm:p-2 hover:bg-stone-100 rounded-r-lg text-stone-600" disabled={!item.isAvailable} aria-label="Increase quantity">
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+                      <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item" aria-label="Remove item">
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
-                    <button onClick={() => removeItem(item.id, item.productId)} className="text-red-400 hover:text-red-600 p-1" title="Remove item" aria-label="Remove item">
-                      <Trash2 className="w-4 h-4" />
-                    </button>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
 
-          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-brand-linen shadow-sm h-fit lg:sticky lg:top-24 w-full overflow-hidden">
-            <h2 className="text-lg font-bold mb-4 text-brand-charcoal">Order Summary</h2>
-
-            {/* Coupon Section */}
-            <div className="mb-4 pb-4 border-b border-brand-linen">
-              <CouponSection
-                subtotalPaise={Math.round(total * 100)}
-                appliedCoupon={appliedCoupon}
-                onApply={handleApplyCoupon}
-                onRemove={handleRemoveCoupon}
-              />
-            </div>
-
-            <div className="space-y-2 mb-4">
-              <div className="flex justify-between text-sm">
-                <span className="text-brand-charcoal/70">Subtotal</span>
-                <span className="font-semibold">₹{total.toLocaleString('en-IN')}</span>
-              </div>
-
-              {appliedCoupon && (
-                <div className="flex justify-between text-sm text-emerald-700 font-semibold">
-                  <span>Coupon Discount ({appliedCoupon.code})</span>
-                  <span>-₹{appliedCoupon.discountAmountRupees.toLocaleString('en-IN')}</span>
+              {/* Automatic Free Gift Line Item */}
+              {quote?.gift?.eligible && (
+                <div className="bg-red-50 border border-red-200 p-4 rounded-2xl flex items-center justify-between gap-4 shadow-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-red-800 text-white rounded-xl flex items-center justify-center shrink-0">
+                      <Gift className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className="inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 bg-red-800 text-white rounded">
+                        Free Gift
+                      </span>
+                      <h4 className="font-bold text-stone-900 text-sm mt-0.5">
+                        Milestone Reward: Ekora Special Gift Item
+                      </h4>
+                      <p className="text-xs text-stone-500">Automatically unlocked on reaching ₹5,000 threshold</p>
+                    </div>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className="text-sm font-bold text-emerald-700">FREE</span>
+                    <span className="block text-xs text-stone-400 line-through">₹499</span>
+                  </div>
                 </div>
               )}
 
-              <div className="flex justify-between text-sm">
-                <span className="text-brand-charcoal/70">Delivery</span>
-                <span className="font-semibold">₹{TEMP_FLAT_SHIPPING_CHARGE.toLocaleString('en-IN')}</span>
+              {/* Recommendations Shelf */}
+              <div className="pt-4">
+                <RecommendationShelf
+                  cartProductIds={cartProductIds}
+                  gap={gapToNext}
+                  onAddItem={handleAddRecommendation}
+                />
               </div>
             </div>
 
-            <div className="border-t border-brand-linen pt-3.5 flex justify-between mb-4 text-lg">
-              <span className="font-bold text-brand-charcoal">Total</span>
-              <span className="font-bold text-brand-charcoal">
-                ₹{Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
-              </span>
-            </div>
+            {/* Right Order Summary Column */}
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm h-fit lg:sticky lg:top-24 w-full space-y-4">
+              <h2 className="text-lg font-bold text-stone-900 border-b border-stone-100 pb-3">Order Summary</h2>
 
-            <Link
-              href="/checkout"
-              className="w-full block text-center bg-brand-orange hover:bg-brand-terracotta text-white py-3.5 rounded-xl font-semibold transition-all shadow-md"
-            >
-              Proceed to Checkout
-            </Link>
-
-            <div className="mt-5 pt-4 border-t border-brand-linen flex flex-col gap-2.5">
-              <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>100% Secure Payments (Razorpay)</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
-                <Truck className="w-4 h-4 text-brand-orange shrink-0" />
-                <span>Dispatch within 24 Hours</span>
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <WhatsAppCheckoutAssistant
-                itemCount={items.reduce((s, i) => s + (i.quantity || 1), 0)}
-                totalAmount={Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE)}
-                location="cart_page"
-                variant="card"
+              {/* Ekora Points Cashback / Wallet Banner */}
+              <EkoraPointsBanner
+                pointsEarned={quote?.points?.pointsEarned || 0}
+                availableBalance={quote?.points?.availableBalance || 0}
               />
+
+              {/* Coupon Section */}
+              <div className="py-2 border-b border-stone-100">
+                <CouponSection
+                  subtotalPaise={Math.round((quote?.eligibleSubtotal || total) * 100)}
+                  appliedCoupon={appliedCoupon}
+                  onApply={handleApplyCoupon}
+                  onRemove={handleRemoveCoupon}
+                />
+              </div>
+
+              {/* Itemized Breakdown */}
+              <div className="space-y-2 text-xs sm:text-sm">
+                <div className="flex justify-between text-stone-600">
+                  <span>Eligible Subtotal</span>
+                  <span className="font-semibold text-stone-900">
+                    ₹{(quote?.eligibleSubtotal || total).toLocaleString('en-IN')}
+                  </span>
+                </div>
+
+                {quote && quote.tierDiscount > 0 && (
+                  <div className="flex justify-between text-red-800 font-semibold">
+                    <span>Milestone Discount ({quote.tierRewardDescription})</span>
+                    <span>-₹{quote.tierDiscount.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+
+                {quote && quote.couponDiscount > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-semibold">
+                    <span>Coupon Discount ({quote.couponCode})</span>
+                    <span>-₹{quote.couponDiscount.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+
+                {quote && quote.points.pointsDiscount > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-semibold">
+                    <span>Ekora Points Redeemed</span>
+                    <span>-₹{quote.points.pointsDiscount.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+
+                <div className="flex justify-between text-stone-600">
+                  <span>Standard Flat Shipping</span>
+                  <span className="font-semibold text-stone-900">
+                    ₹{(quote?.shipping || TEMP_FLAT_SHIPPING_CHARGE).toLocaleString('en-IN')}
+                  </span>
+                </div>
+              </div>
+
+              {/* Total & Savings */}
+              <div className="border-t border-stone-200 pt-3">
+                {quote && quote.totalSavings > 0 && (
+                  <div className="flex justify-between text-xs font-bold text-emerald-600 mb-1">
+                    <span>Total Savings</span>
+                    <span>₹{quote.totalSavings.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-baseline text-lg font-bold text-stone-950">
+                  <span>Grand Total</span>
+                  <span>₹{(quote?.grandTotal || (total + TEMP_FLAT_SHIPPING_CHARGE)).toLocaleString('en-IN')}</span>
+                </div>
+              </div>
+
+              {/* Primary Checkout Button */}
+              <Link
+                href="/checkout"
+                className="w-full block text-center bg-red-900 hover:bg-red-950 text-white py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-[0.99]"
+              >
+                Proceed to Checkout &rarr;
+              </Link>
+
+              {/* Trust Badges */}
+              <div className="pt-2 flex flex-col gap-2 text-xs text-stone-500 font-medium">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>100% Prepaid Dispatch &bull; No COD</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-red-800 shrink-0" />
+                  <span>Doorstep Delivery via Surface / Air</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <WhatsAppCheckoutAssistant
+                  itemCount={items.reduce((s, i) => s + (i.quantity || 1), 0)}
+                  totalAmount={quote?.grandTotal || (total + TEMP_FLAT_SHIPPING_CHARGE)}
+                  location="cart_page"
+                  variant="card"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
       )}
     </div>
   );

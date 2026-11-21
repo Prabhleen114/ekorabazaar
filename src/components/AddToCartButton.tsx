@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { openMiniCart } from '@/components/MiniCartDrawer'
 
 export default function AddToCartButton({ productId, inStock }: { productId: string, inStock: boolean }) {
   const [loading, setLoading] = useState(false)
@@ -20,13 +21,12 @@ export default function AddToCartButton({ productId, inStock }: { productId: str
 
       if (res.status === 401 || res.status === 403) {
         // Fallback to guest cart
-        import('@/lib/guest-cart').then(({ addGuestCartItem }) => {
-          addGuestCartItem({
-            productId,
-            quantity: 1
-          })
-          router.push('/cart')
-        });
+        const { addGuestCartItem } = await import('@/lib/guest-cart')
+        addGuestCartItem({
+          productId,
+          quantity: 1
+        })
+        openMiniCart()
         return
       }
 
@@ -36,8 +36,9 @@ export default function AddToCartButton({ productId, inStock }: { productId: str
       }
 
       // Success
-      import('@/lib/guest-cart').then(({ notifyCartUpdated }) => notifyCartUpdated());
-      router.push('/cart')
+      const { notifyCartUpdated } = await import('@/lib/guest-cart')
+      notifyCartUpdated()
+      openMiniCart()
     } catch (err: any) {
       setError(err.message)
     } finally {

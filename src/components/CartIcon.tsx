@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ShoppingBag } from 'lucide-react'
 import { getGuestCart } from '@/lib/guest-cart'
+import { openMiniCart } from '@/components/MiniCartDrawer'
 
 export default function CartIcon() {
   const [count, setCount] = useState(0)
@@ -60,10 +61,11 @@ export default function CartIcon() {
   }, [])
 
   return (
-    <Link 
-      href="/cart" 
+    <button 
+      type="button"
+      onClick={() => openMiniCart()} 
       aria-label="Shopping cart"
-      className={`relative p-2 text-brand-charcoal hover:text-brand-orange transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 rounded-full ${
+      className={`relative p-2 text-brand-charcoal hover:text-brand-orange transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 rounded-full cursor-pointer ${
         isBumping ? 'scale-115 text-brand-orange' : 'scale-100'
       }`}
     >
@@ -75,6 +77,6 @@ export default function CartIcon() {
           {count > 99 ? '99+' : count}
         </span>
       )}
-    </Link>
+    </button>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { openMiniCart } from '@/components/MiniCartDrawer'
 
 export default function QuickAddButton({ productId, productName, basePrice, category, inStock = true }: { productId: string, productName?: string, basePrice?: number, category?: string, inStock?: boolean }) {
   const isZeroPrice = basePrice !== undefined && (isNaN(basePrice) || basePrice <= 0);
@@ -44,6 +45,7 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
         const { notifyCartUpdated } = await import('@/lib/guest-cart')
         notifyCartUpdated()
         setSuccess(true)
+        openMiniCart()
         setTimeout(() => setSuccess(false), 2000)
         return
       }
@@ -56,6 +58,7 @@ export default function QuickAddButton({ productId, productName, basePrice, cate
       const { notifyCartUpdated } = await import('@/lib/guest-cart')
       notifyCartUpdated()
       setSuccess(true)
+      openMiniCart()
       setTimeout(() => setSuccess(false), 2000)
 
     } catch (err) {

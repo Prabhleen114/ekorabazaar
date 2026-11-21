@@ -26,6 +26,7 @@ model User {
   adminProducts Product[]      @relation("AdminCreatedProducts")
   seller        Seller?
   couponUsages  CouponUsage[]
+  pointsLedger  EkoraPointsLedger[]
 }
 
 model Seller {
@@ -84,6 +85,8 @@ model Product {
   createdAt                DateTime                 @default(now())
   updatedAt                DateTime                 @updatedAt
   customerPrice            Int?
+  categoryId               String?
+  categoryRef              Category?                @relation(fields: [categoryId], references: [id])
   category                 String?                  @default("General Silicone Moulds")
   classificationConfidence ClassificationConfidence @default(UNCLASSIFIED)
   classificationStatus     ClassificationStatus     @default(NEEDS_REVIEW)
@@ -93,11 +96,18 @@ model Product {
   heightCm                 Float?
   lengthCm                 Float?
   weightKg                 Float?
+  version                  Int                      @default(1)
+  lockedFields             String[]                 @default([])
+  supplierAvailable        Boolean?
+  lastSyncedAt             DateTime?
+  excludedFromTiers        Boolean                  @default(false)
   cartItems                CartItem[]
   priceChangeRequests      PriceChangeRequest[]
   adminCreator             User?                    @relation("AdminCreatedProducts", fields: [createdByAdminId], references: [id])
   seller                   Seller?                  @relation("SellerProducts", fields: [sellerId], references: [id])
+  supplierProducts         SupplierProduct[]
 
+  @@index([status, categoryId])
   @@index([status, category])
   @@index([status, sellerId])
 }
@@ -148,6 +158,13 @@ model Order {
   isSynthetic       Boolean              @default(false)
   couponCode        String?
   couponId          String?
+  eligibleSubtotal  Decimal?             @db.Decimal(12, 2)
+  tierId            Int?
+  tierDiscount      Decimal?             @default(0) @db.Decimal(12, 2)
+  pointsRedeemed    Int?                 @default(0)
+  pointsDiscount    Decimal?             @default(0) @db.Decimal(12, 2)
+  experimentVariant String?
+  pricingSnapshot   Json?
   address           Address?             @relation(fields: [addressId], references: [id])
   customer          User                 @relation(fields: [customerId], references: [id])
   coupon            Coupon?              @relation(fields: [couponId], references: [id], onDelete: SetNull)
@@ -155,6 +172,9 @@ model Order {
   items             OrderItem[]
   statusHistory     OrderStatusHistory[]
   payments          Payment[]
+  giftClaims        GiftClaim[]
+  orderAdjustments  OrderAdjustment[]
+  pointsLedger      EkoraPointsLedger[]
 }
 
 model OrderStatusHistory {
@@ -175,6 +195,7 @@ model OrderItem {
   priceSnapshot       Int
   quantity            Int
   subtotal            Int
+  isGift              Boolean  @default(false)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
   order               Order    @relation(fields: [orderId], references: [id])
@@ -425,6 +446,175 @@ model CouponUsage {
   @@index([customerPhone])
 }
 
+// ─── Canonical Store Categories (Closed Taxonomy) ─────────────────────────────
+
+model Category {
+  id             String          @id @default(uuid())
+  name           String          @unique
+  slug           String          @unique
+  description    String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  products       Product[]
+  stagingChanges StagingChange[]
+
+  @@index([slug])
+}
+
+// ─── Immutable Supplier Catalog Mirror ──────────────────────────────────────────
+
+model SupplierProduct {
+  id                String         @id @default(uuid())
+  supplierKey       String         // e.g. "MATIN_IMPEX" | "JINDEAL"
+  externalProductId String         // Supplier product ID (e.g. "7717825151030")
+  externalVariantId String         @default("") // Never NULL: prevents Postgres NULL bypass in unique index
+  sku               String?        // Normalized SKU/model code
+  title             String
+  variantTitle      String?        // e.g. "Silver / 12PCS"
+  handle            String?
+  productType       String?
+  tags              String[]       @default([])
+  costPaise         Int?           // Wholesale cost in integer paise
+  available         Boolean        @default(true)
+  rawPayload        Json           // Unaltered raw payload from supplier
+  contentHash       String         // Hash of current supplier payload
+  appliedHash       String?        // Hash of last diffed & applied payload
+  consecutiveMisses Int            @default(0) // Tracks runs absent to enforce "discontinued needs 2 misses"
+  firstSeenAt       DateTime       @default(now())
+  lastSeenAt        DateTime       @default(now())
+  lastCrawlRunId    String?
+  supplierStatus    SupplierStatus @default(ACTIVE)
+  productId         String?        // Optional link to live Product row
+  matchMethod       String?        // "SKU" | "MANUAL" | "BACKFILL"
+  product           Product?       @relation(fields: [productId], references: [id], onDelete: SetNull)
+  crawlRun          CrawlRun?      @relation(fields: [lastCrawlRunId], references: [id], onDelete: SetNull)
+
+  @@unique([supplierKey, externalProductId, externalVariantId])
+  @@index([supplierKey, sku])
+  @@index([supplierKey, lastSeenAt])
+  @@index([productId])
+  @@index([supplierStatus])
+}
+
+// ─── Crawl Execution Ledger & Checkpoints ─────────────────────────────────────
+
+model CrawlRun {
+  id               String            @id @default(uuid())
+  supplierKey      String            // "MATIN_IMPEX" | "JINDEAL"
+  targetUrl        String
+  mode             CrawlMode         @default(DRY_RUN)
+  status           CrawlRunStatus    @default(RUNNING)
+  cursor           Json?             // { page: 12, collection: "all" }
+  expectedCount    Int?              // Supplier's reported count (e.g. 3039)
+  seenCount        Int               @default(0)
+  guardrailReport  Json?             // Circuit breaker validation results
+  stats            Json?             // { matched: 640, oos: 39, restocked: 19, new: 210 }
+  startedAt        DateTime          @default(now())
+  heartbeatAt      DateTime          @default(now())
+  finishedAt       DateTime?
+  appliedAt        DateTime?
+  approvedBy       String?
+  error            String?
+  stagingChanges   StagingChange[]
+  supplierProducts SupplierProduct[]
+  auditLogs        SyncAuditLog[]
+
+  @@index([supplierKey, status])
+  @@index([startedAt])
+}
+
+// ─── Dry-Run Diff Engine & Admin Staging Queue ────────────────────────────────
+
+model StagingChange {
+  id                       String                   @id @default(uuid())
+  runId                    String
+  dedupeKey                String                   @unique // "supplierKey:extProd:extVar:type:afterHash"
+  changeType               StagingChangeType        // NEW, STOCK_CHANGED, PRICE_CHANGED, DISCONTINUED, REAPPEARED
+  supplierKey              String
+  externalProductId        String
+  externalVariantId        String                   @default("")
+  suggestedTitle           String
+  categoryId               String?
+  category                 Category?                @relation(fields: [categoryId], references: [id])
+  classificationConfidence ClassificationConfidence @default(UNCLASSIFIED)
+  classificationStatus     ClassificationStatus     @default(NEEDS_REVIEW)
+  suggestedPrice           Int                      // Retail price in paise (cost * 1.4)
+  originalCost             Int                      // Wholesale cost in paise
+  targetProductId          String?                  // Live product ID if updating existing
+  before                   Json?                    // Snapshot of live values before change
+  after                    Json?                    // Proposed new values
+  status                   StagingStatus            @default(PENDING)
+  appliedAt                DateTime?
+  conflictNote             String?
+  createdAt                DateTime                 @default(now())
+  crawlRun                 CrawlRun                 @relation(fields: [runId], references: [id], onDelete: Restrict)
+
+  @@index([runId, status])
+  @@index([changeType, status])
+}
+
+// ─── Transactional Audit Log (Immutable History) ──────────────────────────────
+
+model SyncAuditLog {
+  id              String    @id @default(uuid())
+  runId           String?
+  stagingChangeId String?
+  productId       String?   // No FK: audit record deliberately outlives deleted products
+  field           String    // "stock" | "supplierAvailable" | "price" | "status"
+  oldValue        Json?
+  newValue        Json?
+  actor           String    @default("SYSTEM_CRAWLER") // "SYSTEM_CRAWLER" | "ADMIN_APPROVAL"
+  revertedAt      DateTime?
+  createdAt       DateTime  @default(now())
+  crawlRun        CrawlRun? @relation(fields: [runId], references: [id], onDelete: Restrict)
+
+  @@unique([stagingChangeId, field])
+  @@index([productId, createdAt])
+  @@index([runId])
+}
+
+// ─── Supporting Enums ─────────────────────────────────────────────────────────
+
+enum SupplierStatus {
+  ACTIVE
+  OUT_OF_STOCK
+  DISCONTINUED
+}
+
+enum CrawlMode {
+  DRY_RUN
+  STOCK_ONLY
+  FULL
+}
+
+enum CrawlRunStatus {
+  RUNNING
+  CRAWLED           // Finished crawling, nothing written to live tables
+  HALTED_GUARDRAIL  // Circuit breaker tripped, awaiting admin sign-off
+  APPLYING
+  APPLIED
+  FAILED
+  ABORTED
+  ROLLED_BACK
+}
+
+enum StagingChangeType {
+  NEW
+  STOCK_CHANGED
+  PRICE_CHANGED
+  DISCONTINUED
+  REAPPEARED
+}
+
+enum StagingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  APPLIED
+  CONFLICT
+  SUPERSEDED
+}
+
 // ─── Customer Intelligence Tables ─────────────────────────────────────────────
 
 /// Raw first-party events (all 20 event types from the CI plan).
@@ -587,4 +777,141 @@ model CISupplierHealth {
   @@id([sellerId, productId])
   @@index([isFlagged])
   @@map("ci_supplier_health")
+}
+
+// ─── Checkout Growth Models ───────────────────────────────────────────────────
+
+model CheckoutTier {
+  id              Int       @id @default(autoincrement())
+  campaign        String    @default("default")
+  minSubtotal     Decimal   @map("min_subtotal") @db.Decimal(12, 2)
+  discountPercent Decimal   @default(0) @map("discount_percent") @db.Decimal(5, 2)
+  maxDiscount     Decimal?  @map("max_discount") @db.Decimal(12, 2)
+  giftSku         String?   @map("gift_sku")
+  active          Boolean   @default(true)
+  validFrom       DateTime? @map("valid_from")
+  validTo         DateTime? @map("valid_to")
+
+  @@index([campaign, active])
+  @@map("checkout_tiers")
+}
+
+model CheckoutConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("checkout_config")
+}
+
+model EkoraPointsLedger {
+  id             BigInt    @id @default(autoincrement())
+  userId         String    @map("user_id")
+  orderId        String?   @map("order_id")
+  type           String
+  status         String    @default("pending")
+  points         Int
+  remaining      Int?
+  issuedAt       DateTime? @map("issued_at")
+  expiresAt      DateTime? @map("expires_at")
+  note           String?
+  idempotencyKey String?   @unique @map("idempotency_key")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  createdBy      String?   @map("created_by")
+
+  user           User      @relation(fields: [userId], references: [id])
+  order          Order?    @relation(fields: [orderId], references: [id])
+  redemptions    EkoraRedemptionAllocation[] @relation("RedeemRow")
+  allocations    EkoraRedemptionAllocation[] @relation("EarnRow")
+
+  @@index([userId, expiresAt])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("ekora_points_ledger")
+}
+
+model EkoraRedemptionAllocation {
+  id          BigInt            @id @default(autoincrement())
+  redeemRowId BigInt            @map("redeem_row_id")
+  earnRowId   BigInt            @map("earn_row_id")
+  points      Int
+
+  redeemRow   EkoraPointsLedger @relation("RedeemRow", fields: [redeemRowId], references: [id])
+  earnRow     EkoraPointsLedger @relation("EarnRow", fields: [earnRowId], references: [id])
+
+  @@map("ekora_redemption_allocations")
+}
+
+model GiftClaim {
+  id                 BigInt   @id @default(autoincrement())
+  campaign           String
+  userId             String?  @map("user_id")
+  phoneHash          String?  @map("phone_hash")
+  addressHash        String?  @map("address_hash")
+  paymentFingerprint String?  @map("payment_fingerprint")
+  orderId            String   @map("order_id")
+  giftSku            String   @map("gift_sku")
+  giftMrp            Decimal  @map("gift_mrp") @db.Decimal(12, 2)
+  status             String   @default("claimed")
+  claimedAt          DateTime @default(now()) @map("claimed_at")
+
+  order              Order    @relation(fields: [orderId], references: [id])
+
+  @@index([campaign, phoneHash])
+  @@index([campaign, addressHash])
+  @@index([campaign, paymentFingerprint])
+  @@map("gift_claims")
+}
+
+model OrderAdjustment {
+  id         BigInt   @id @default(autoincrement())
+  orderId    String   @map("order_id")
+  kind       String
+  tierId     Int?     @map("tier_id")
+  amount     Decimal  @default(0) @db.Decimal(12, 2)
+  giftSku    String?  @map("gift_sku")
+  pointsUsed Int?     @map("points_used")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  order      Order    @relation(fields: [orderId], references: [id])
+
+  @@index([orderId])
+  @@map("order_adjustments")
+}
+
+model RecRule {
+  id           BigInt   @id @default(autoincrement())
+  modelVersion String   @map("model_version")
+  antecedent   String[]
+  consequent   String
+  support      Decimal  @db.Decimal(8, 6)
+  confidence   Decimal  @db.Decimal(8, 6)
+  lift         Decimal  @db.Decimal(10, 4)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([modelVersion])
+  @@map("rec_rules")
+}
+
+model RecModelState {
+  id            Int      @id @default(1)
+  activeVersion String   @map("active_version")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("rec_model_state")
+}
+
+model CheckoutEvent {
+  id        BigInt   @id @default(autoincrement())
+  sessionId String?  @map("session_id")
+  userId    String?  @map("user_id")
+  cartId    String?  @map("cart_id")
+  orderId   String?  @map("order_id")
+  variant   String?
+  event     String
+  payload   Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([event, createdAt])
+  @@index([sessionId, createdAt])
+  @@map("checkout_events")
 }
