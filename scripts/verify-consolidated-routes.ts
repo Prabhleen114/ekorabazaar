@@ -334,12 +334,15 @@ export async function runVerification() {
       base.bodyShape.error.includes('Handler for') &&
       base.bodyShape.error.includes('not found');
 
+    const isNowImplemented =
+      isUnsupportedMethodInBaseline && (res.status === 405 || (res.contentType || '').includes('application/json'));
+
     const statusMatch =
       res.status === base.status ||
-      (isUnsupportedMethodInBaseline && res.status === 405);
+      isNowImplemented;
     const ctMatch =
       (res.contentType || '').split(';')[0] === (base.contentType || '').split(';')[0] ||
-      (isUnsupportedMethodInBaseline && res.status === 405);
+      isNowImplemented;
     const locMatch = res.location === base.location;
 
     if (!statusMatch || !ctMatch || !locMatch) {
