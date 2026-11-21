@@ -18,6 +18,7 @@ export async function GET() {
               select: {
                 id: true, title: true, imageUrl: true, price: true,
                 customerPrice: true, stock: true, status: true,
+                source: true,
                 wholesaleTiers: true,
                 seller: { select: { accountStatus: true } }
               }

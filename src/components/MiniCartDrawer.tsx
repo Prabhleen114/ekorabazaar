@@ -121,7 +121,7 @@ export default function MiniCartDrawer() {
           id: item.id,
           productId: item.productId || item.product?.id,
           title: item.product?.title || item.title || "Wholesale Item",
-          price: item.effectivePrice ? item.effectivePrice / 100 : item.price,
+          price: item.effectivePrice ?? item.price,
           quantity: item.quantity,
           image: item.product?.imageUrl || item.image || "/placeholder-product.svg",
         }));

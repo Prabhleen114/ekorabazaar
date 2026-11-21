@@ -25,6 +25,7 @@ export async function POST(req: Request) {
         select: {
           id: true, title: true, imageUrl: true, price: true,
           customerPrice: true, stock: true, status: true,
+          source: true,
           wholesaleTiers: true,
           seller: { select: { accountStatus: true } }
         }
@@ -49,6 +50,7 @@ export async function POST(req: Request) {
             customerPrice: rawPricePaise,
             stock: 500,
             status: ProductStatus.PUBLISHED,
+            source: 'EKORA_OFFICIAL',
             imageUrl: catalogItem.image || '/placeholder-product.svg',
             wholesaleTiers: (catalogItem.tiers || [])
               .filter((t: any) => t && Number(t.price) > 0)
