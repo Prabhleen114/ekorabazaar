@@ -1,0 +1,726 @@
+[
+  {
+    "route": "/api/auth/me",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "user": "object"
+    }
+  },
+  {
+    "route": "/api/auth/login",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/auth/signup",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/auth/logout",
+    "method": "POST",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "`cookies` was called outside a request scope. Read more: https://nextjs.org/docs/messages/next-dynamic-api-wrong-context"
+    }
+  },
+  {
+    "route": "/api/auth/google",
+    "method": "GET",
+    "status": 503,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/auth/google/callback",
+    "method": "GET",
+    "status": 307,
+    "contentType": null,
+    "location": "http://localhost:3000/login?error=missing_code",
+    "hasSetCookie": false,
+    "bodyShape": "opaque"
+  },
+  {
+    "route": "/api/cart",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cart",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cart/guest",
+    "method": "POST",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "items": "object",
+      "totalAmount": "number"
+    }
+  },
+  {
+    "route": "/api/cart/sync",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cart/[itemId]",
+    "method": "PATCH",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cart/[itemId]",
+    "method": "DELETE",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/checkout/quote",
+    "method": "POST",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "success": "boolean",
+      "quote": "object"
+    }
+  },
+  {
+    "route": "/api/checkout/recommendations",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "success": "boolean",
+      "recommendations": "object"
+    }
+  },
+  {
+    "route": "/api/checkout/create-order",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/checkout/confirm-payment",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/checkout/callback",
+    "method": "GET",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for GET on /api/checkout/callback not found"
+    }
+  },
+  {
+    "route": "/api/account/orders",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/addresses",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/addresses",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/addresses/[id]",
+    "method": "PUT",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for PUT on /api/addresses/[id] not found"
+    }
+  },
+  {
+    "route": "/api/addresses/[id]",
+    "method": "DELETE",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/coupons",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/coupons",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/coupons/[id]",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/coupons/[id]",
+    "method": "PUT",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for PUT on /api/admin/coupons/[id] not found"
+    }
+  },
+  {
+    "route": "/api/admin/coupons/[id]",
+    "method": "DELETE",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/leads",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/leads",
+    "method": "POST",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for POST on /api/admin/leads not found"
+    }
+  },
+  {
+    "route": "/api/admin/orders",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/orders/restore-expired",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/orders/[id]",
+    "method": "GET",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/orders/[id]",
+    "method": "PATCH",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/orders/[id]/ship",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/price-requests/[id]",
+    "method": "PATCH",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for PATCH on /api/admin/price-requests/[id] not found"
+    }
+  },
+  {
+    "route": "/api/admin/products/[productId]/approve",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/products/[productId]/reject",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/sellers/[sellerId]/approve",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/sellers/[sellerId]/reactivate",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/sellers/[sellerId]/reject",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/admin/sellers/[sellerId]/suspend",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller/payment/create-order",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller/payment/confirm-payment",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller/products",
+    "method": "GET",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for GET on /api/seller/products not found"
+    }
+  },
+  {
+    "route": "/api/seller/products",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller/products/[productId]",
+    "method": "GET",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for GET on /api/seller/products/[productId] not found"
+    }
+  },
+  {
+    "route": "/api/seller/products/[productId]",
+    "method": "PUT",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for PUT on /api/seller/products/[productId] not found"
+    }
+  },
+  {
+    "route": "/api/seller/products/[productId]",
+    "method": "DELETE",
+    "status": 500,
+    "contentType": "error",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "Handler for DELETE on /api/seller/products/[productId] not found"
+    }
+  },
+  {
+    "route": "/api/seller/products/[productId]/submit",
+    "method": "POST",
+    "status": 404,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller/upload-image",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/seller-application",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/webhooks/razorpay",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/webhooks/shiprocket",
+    "method": "POST",
+    "status": 500,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cron/restore-expired",
+    "method": "GET",
+    "status": 401,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/cron/intelligence",
+    "method": "GET",
+    "status": 401,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/collect",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string",
+      "details": "object"
+    }
+  },
+  {
+    "route": "/api/events",
+    "method": "POST",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "success": "boolean",
+      "eventId": "string",
+      "receivedAt": "string"
+    }
+  },
+  {
+    "route": "/api/trending",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "trending": "object"
+    }
+  },
+  {
+    "route": "/api/search/suggestions",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "suggestions": "object",
+      "trending": "object",
+      "query": "string"
+    }
+  },
+  {
+    "route": "/api/docs/[slug]/[type]",
+    "method": "GET",
+    "status": 404,
+    "contentType": "text/html; charset=utf-8",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": "text:<!DOCTYPE html>\n<html lang=\"en..."
+  },
+  {
+    "route": "/api/apply",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/products",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "items": "object",
+      "products": "object",
+      "total": "number",
+      "pagination": "object",
+      "facets": "object",
+      "searchMeta": "object"
+    }
+  },
+  {
+    "route": "/api/coupons/validate",
+    "method": "POST",
+    "status": 404,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "valid": "boolean",
+      "error": "string"
+    }
+  },
+  {
+    "route": "/api/track-hesitation",
+    "method": "POST",
+    "status": 400,
+    "contentType": "application/json",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": {
+      "success": "boolean",
+      "error": "string"
+    }
+  },
+  {
+    "route": "/sitemap_index.xml",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/xml",
+    "location": null,
+    "hasSetCookie": false,
+    "bodyShape": "text:<?xml version=\"1.0\" encoding=\"..."
+  }
+]

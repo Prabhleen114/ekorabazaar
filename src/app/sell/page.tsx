@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import { getCreatorCount } from "@/lib/leads";
 import type { Metadata } from "next";
 
-export const revalidate = 0; // force dynamic rendering so fs count is live
+export const revalidate = 3600; // ISR cache for 1 hour
 
 export const metadata: Metadata = {
   title: "Sell on Ekora — India's Premier Creator Commerce Platform",
