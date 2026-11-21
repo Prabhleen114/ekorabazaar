@@ -61,10 +61,9 @@ export default function CartIcon() {
   }, [])
 
   return (
-    <button 
-      type="button"
-      onClick={() => openMiniCart()} 
-      aria-label="Shopping cart"
+    <Link 
+      href="/cart"
+      aria-label={`Shopping cart, ${count} items`}
       className={`relative p-2 text-brand-charcoal hover:text-brand-orange transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 rounded-full cursor-pointer ${
         isBumping ? 'scale-115 text-brand-orange' : 'scale-100'
       }`}
@@ -77,6 +76,6 @@ export default function CartIcon() {
           {count > 99 ? '99+' : count}
         </span>
       )}
-    </button>
+    </Link>
   )
 }

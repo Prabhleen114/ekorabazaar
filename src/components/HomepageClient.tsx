@@ -505,8 +505,8 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
             <span>Account</span>
           </Link>
 
-          <button
-            onClick={() => openMiniCart()}
+          <Link
+            href="/cart"
             aria-label={`Cart, ${cartCount} items`}
             style={{
               position: "relative",
@@ -553,7 +553,7 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
             >
               {cartCount}
             </span>
-          </button>
+          </Link>
 
           <button
             className="md:hidden"
@@ -596,6 +596,14 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
           className="md:hidden border-b border-[#E8E2D9] bg-[#FAF8F4] px-6 py-4 flex flex-col gap-3"
           style={{ animation: "rise 0.3s ease-out" }}
         >
+          <Link
+            href="/cart"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 flex items-center justify-between border-b border-[#E8E2D9]"
+          >
+            <span>My Cart ({cartCount})</span>
+            <span>View &rarr;</span>
+          </Link>
           <Link
             href="/shop"
             onClick={() => setMobileMenuOpen(false)}

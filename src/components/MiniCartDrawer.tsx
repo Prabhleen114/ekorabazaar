@@ -59,6 +59,7 @@ export default function MiniCartDrawer() {
   const [appliedCouponCode, setAppliedCouponCode] = useState<string | null>(null);
   const [pointsRedeemed, setPointsRedeemed] = useState(0);
   const [showSavingsDetail, setShowSavingsDetail] = useState(false);
+  const [showPriceDetails, setShowPriceDetails] = useState(false);
 
   // Load quote from server given current cart items
   const syncQuote = useCallback(
@@ -293,30 +294,42 @@ export default function MiniCartDrawer() {
               </div>
 
               {/* Header */}
-              <div className="px-5 py-3.5 border-b border-stone-200 flex items-center justify-between shrink-0 bg-white">
+              <div className="px-4 sm:px-5 py-3 border-b border-stone-200 flex items-center justify-between shrink-0 bg-white">
                 <div className="flex items-center gap-2">
-                  <ShoppingBag className="w-5 h-5 text-red-900" />
-                  <h3 className="font-serif text-base sm:text-lg font-bold text-stone-900 uppercase tracking-wide">
+                  <ShoppingBag className="w-4 h-4 text-stone-700" />
+                  <h3 className="font-sans text-sm font-bold text-stone-900 uppercase tracking-wide">
                     Your Cart ({totalCount})
                   </h3>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  className="p-1.5 text-stone-400 hover:text-stone-900 transition-colors rounded-full hover:bg-stone-100"
-                  aria-label="Close cart drawer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-3">
+                  <Link
+                    href="/cart"
+                    onClick={() => setIsOpen(false)}
+                    className="text-xs font-semibold text-red-900 hover:text-red-950 hover:underline transition-colors"
+                  >
+                    Full Cart &rarr;
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    className="p-1 text-stone-400 hover:text-stone-900 transition-colors rounded-full hover:bg-stone-100"
+                    aria-label="Close cart drawer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto divide-y divide-stone-100 p-3 sm:p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
                 {/* Mandatory Tier Progress Bar */}
-                <TierProgressBar progress={quote?.progress} className="shadow-xs" />
+                <TierProgressBar progress={quote?.progress} className="shadow-2xs" />
+
+                {/* Stock Reservation Timer inside scrollable container */}
+                <StockReservationTimer variant="compact" className="shadow-2xs" />
 
                 {/* Cart Items List */}
-                <div className="bg-white rounded-xl border border-stone-200 p-3 space-y-3">
+                <div className="bg-white rounded-xl border border-stone-200 p-3 space-y-2.5">
                   {loading && items.length === 0 ? (
                     <div className="py-12 text-center text-xs font-sans text-stone-500">
                       Loading your cart...
@@ -522,61 +535,45 @@ export default function MiniCartDrawer() {
                       gap={gapToNext}
                       onAddItem={handleAddRecommendation}
                     />
+
+                    {/* 1-Tap WhatsApp Checkout Assistant (inside scrollable content) */}
+                    <div className="pt-1">
+                      <WhatsAppCheckoutAssistant
+                        itemCount={totalCount}
+                        totalAmount={quote?.grandTotal || 0}
+                        location="mini_cart"
+                        variant="compact"
+                      />
+                    </div>
                   </>
                 )}
               </div>
 
-              {/* Bottom Sticky Footer */}
+              {/* Bottom Sticky Footer (Ultra-compact ~115px, never covering items) */}
               {items.length > 0 && (
-                <div className="border-t border-stone-200 bg-white shrink-0 p-3 sm:p-4 space-y-2.5 shadow-lg">
-                  {/* Stock Reservation Timer */}
-                  <StockReservationTimer variant="compact" />
-
-                  {/* Social Proof Banner */}
-                  <div className="bg-red-900 text-white text-[10px] font-bold py-1 px-3 text-center rounded-md tracking-wider uppercase">
-                    100% Prepaid Dispatch &bull; Fast Doorstep Delivery
+                <div className="border-t border-stone-200 bg-white shrink-0 p-3 sm:p-4 space-y-2 shadow-2xl">
+                  {/* Social Proof Pill Bar */}
+                  <div className="bg-red-900 text-white text-[10px] font-bold py-1 px-3 text-center rounded-md tracking-wider uppercase flex items-center justify-center gap-1.5">
+                    <span>100% Prepaid Dispatch</span>
+                    <span>&bull;</span>
+                    <span>Fast Doorstep Delivery</span>
                   </div>
 
                   {/* Totals Breakdown */}
-                  <div className="space-y-1.5 text-xs">
-                    <div className="flex justify-between text-stone-500">
-                      <span>Eligible Subtotal</span>
-                      <span className="font-semibold text-stone-900">
-                        ₹{(quote?.eligibleSubtotal || 0).toLocaleString("en-IN")}
-                      </span>
-                    </div>
-
-                    {quote && quote.tierDiscount > 0 && (
-                      <div className="flex justify-between text-red-800 font-semibold">
-                        <span>Milestone Discount</span>
-                        <span>-₹{quote.tierDiscount.toLocaleString("en-IN")}</span>
-                      </div>
-                    )}
-
-                    {quote && quote.couponDiscount > 0 && (
-                      <div className="flex justify-between text-emerald-700 font-semibold">
-                        <span>Coupon Discount</span>
-                        <span>-₹{quote.couponDiscount.toLocaleString("en-IN")}</span>
-                      </div>
-                    )}
-
-                    {quote && quote.points.pointsDiscount > 0 && (
-                      <div className="flex justify-between text-emerald-700 font-semibold">
-                        <span>Points Redeemed</span>
-                        <span>-₹{quote.points.pointsDiscount.toLocaleString("en-IN")}</span>
-                      </div>
-                    )}
-
-                    <div className="flex justify-between text-stone-500">
-                      <span>Delivery</span>
-                      <span className="font-semibold text-stone-900">
-                        ₹{(quote?.shipping || 90).toLocaleString("en-IN")}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline pt-2 border-t border-stone-200">
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-baseline pt-0.5">
                       <div>
-                        <span className="text-xs font-bold text-stone-700 block">Estimated total</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-bold text-stone-700">Estimated total</span>
+                          <button
+                            type="button"
+                            onClick={() => setShowPriceDetails(!showPriceDetails)}
+                            className="text-[10px] text-stone-400 hover:text-stone-700 underline flex items-center gap-0.5"
+                          >
+                            <span>{showPriceDetails ? "Hide breakdown" : "View breakdown"}</span>
+                            <ChevronDown className={`w-3 h-3 transition-transform ${showPriceDetails ? "rotate-180" : ""}`} />
+                          </button>
+                        </div>
                         {quote && quote.totalSavings > 0 && (
                           <span className="text-[11px] font-bold text-emerald-600 block">
                             You saved ₹{quote.totalSavings.toLocaleString("en-IN")}!
@@ -589,20 +586,55 @@ export default function MiniCartDrawer() {
                             ₹{((quote.eligibleSubtotal || 0) + (quote.shipping || 90)).toLocaleString("en-IN")}
                           </span>
                         )}
-                        <span className="text-lg font-black text-stone-950">
+                        <span className="text-base sm:text-lg font-black text-stone-950">
                           ₹{(quote?.grandTotal || 0).toLocaleString("en-IN")}
                         </span>
                       </div>
                     </div>
+
+                    {showPriceDetails && (
+                      <div className="pt-2 pb-1 border-t border-stone-100 space-y-1 text-xs animate-fade-in">
+                        <div className="flex justify-between text-stone-500">
+                          <span>Eligible Subtotal</span>
+                          <span className="font-semibold text-stone-900">
+                            ₹{(quote?.eligibleSubtotal || 0).toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                        {quote && quote.tierDiscount > 0 && (
+                          <div className="flex justify-between text-red-800 font-semibold">
+                            <span>Milestone Discount</span>
+                            <span>-₹{quote.tierDiscount.toLocaleString("en-IN")}</span>
+                          </div>
+                        )}
+                        {quote && quote.couponDiscount > 0 && (
+                          <div className="flex justify-between text-emerald-700 font-semibold">
+                            <span>Coupon Discount</span>
+                            <span>-₹{quote.couponDiscount.toLocaleString("en-IN")}</span>
+                          </div>
+                        )}
+                        {quote && quote.points.pointsDiscount > 0 && (
+                          <div className="flex justify-between text-emerald-700 font-semibold">
+                            <span>Points Redeemed</span>
+                            <span>-₹{quote.points.pointsDiscount.toLocaleString("en-IN")}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between text-stone-500">
+                          <span>Delivery</span>
+                          <span className="font-semibold text-stone-900">
+                            ₹{(quote?.shipping || 90).toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Red Checkout Button (Matching Reference Image) */}
                   <Link
                     href="/checkout"
                     onClick={() => setIsOpen(false)}
-                    className="w-full bg-red-900 hover:bg-red-950 text-white font-sans font-bold text-sm py-3.5 px-4 rounded-xl flex items-center justify-between shadow-md transition-all active:scale-[0.99] min-h-[50px]"
+                    className="w-full bg-red-900 hover:bg-red-950 text-white font-sans font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-between shadow-md transition-all active:scale-[0.99] min-h-[46px]"
                   >
-                    <span className="text-base tracking-wide">Checkout</span>
+                    <span className="text-sm font-bold tracking-wide">Checkout</span>
                     <div className="flex items-center gap-1.5 opacity-90">
                       <span className="text-[10px] font-medium bg-red-950/60 px-2 py-0.5 rounded text-red-100">
                         Prepaid (UPI / Cards)
@@ -611,19 +643,18 @@ export default function MiniCartDrawer() {
                     </div>
                   </Link>
 
-                  {/* 1-Tap WhatsApp Checkout Assistant */}
-                  <WhatsAppCheckoutAssistant
-                    itemCount={totalCount}
-                    totalAmount={quote?.grandTotal || 0}
-                    location="mini_cart"
-                    variant="compact"
-                  />
-
-                  {/* Powered by Caption */}
-                  <div className="text-center">
-                    <p className="text-[10px] text-stone-400">
-                      Powered by <span className="font-bold text-stone-600">Ekora Commerce</span>
-                    </p>
+                  {/* Or View Full Cart Link + Powered by Caption */}
+                  <div className="flex items-center justify-between pt-0.5 px-1 text-[11px]">
+                    <Link
+                      href="/cart"
+                      onClick={() => setIsOpen(false)}
+                      className="text-stone-500 hover:text-red-900 font-medium underline transition-colors"
+                    >
+                      View full cart &rarr;
+                    </Link>
+                    <span className="text-[10px] text-stone-400">
+                      Powered by <span className="font-semibold text-stone-600">Ekora Commerce</span>
+                    </span>
                   </div>
                 </div>
               )}
