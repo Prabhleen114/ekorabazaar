@@ -519,7 +519,7 @@ export default function BuyerNavbar() {
                     onClick={closeMenu}
                     className="text-[11px] uppercase tracking-[0.18em] text-stone-700 hover:text-stone-950 font-sans flex items-center gap-1.5 transition-colors group"
                   >
-                    <span>Browse Complete Catalog (7,000+ SKUs)</span>
+                    <span>Browse Complete Catalog (10,000+ SKUs)</span>
                     <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-0.5 transition-all" />
                   </Link>
                 </div>

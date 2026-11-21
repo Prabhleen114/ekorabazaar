@@ -160,7 +160,7 @@ export default function BuyerHomePage() {
             href="/shop"
             className="text-xs uppercase tracking-[0.18em] text-stone-600 hover:text-stone-900 underline underline-offset-4 transition-colors font-sans"
           >
-            View All 7,000+ SKUs &rarr;
+            View All 10,000+ SKUs &rarr;
           </Link>
         </div>
 

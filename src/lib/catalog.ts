@@ -108,12 +108,15 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
       const dbSellerProducts = await Promise.race([
         prisma.product.findMany({
           where: {
-            sellerId: { not: null },
             status: ProductStatus.PUBLISHED,
-            seller: { accountStatus: 'ACTIVE' }
+            OR: [
+              { sellerId: null },
+              { seller: { accountStatus: 'ACTIVE' } }
+            ]
           },
-          include: { seller: true },
-          take: 200
+          include: { seller: true, categoryRef: true },
+          take: 500,
+          orderBy: { createdAt: 'desc' }
         }),
         new Promise<never>((_, reject) =>
           setTimeout(() => reject(new Error("DB timeout")), 1500)
@@ -123,7 +126,7 @@ export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[
       if (Array.isArray(dbSellerProducts) && dbSellerProducts.length > 0) {
         sellerProductsFromDB = dbSellerProducts.map(p => {
           const effectivePriceINR = normalizeProductBasePriceToINR(p);
-          const cat = normalizeCategoryName(p.category) || "General Silicone Moulds";
+          const cat = p.categoryRef?.name || normalizeCategoryName(p.category) || "General Silicone Moulds";
           const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
           const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
           const desc = p.description || "";

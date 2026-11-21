@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import prisma from '../src/lib/db';
+import { getDepartmentForCategory } from '../src/lib/taxonomy';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -16,25 +17,45 @@ export async function exportCatalogJson(): Promise<number> {
     where: {
       status: 'PUBLISHED',
     },
-    include: {
-      categoryRef: true,
+    select: {
+      id: true,
+      title: true,
+      category: true,
+      price: true,
+      stock: true,
+      supplierAvailable: true,
+      imageUrl: true,
+      description: true,
+      wholesaleTiers: true,
     },
     orderBy: {
       createdAt: 'desc',
     },
   });
 
+  console.log(`[Export] Fetched ${dbProducts.length} published products. Formatting JSON...`);
+
   const formatted = dbProducts.map((p) => {
     const isOutOfStock = p.supplierAvailable === false || p.stock <= 0;
-    const categoryName = p.categoryRef?.name || p.category || 'General Silicone Moulds';
+    const categoryName = p.category || 'General Silicone Moulds';
+    const departmentName = getDepartmentForCategory(categoryName) || 'Precision Studio Moulds';
     const priceRupees = Math.round(p.price);
 
-    // Calculate wholesale discount tiers
-    const tiers = (p.wholesaleTiers as any[]) || [
+    // Wholesale discount tiers: respect explicit empty array [] for multi-packs
+    const hasExplicitEmptyTiers = Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length === 0;
+    const defaultTiers = [
       { minQty: 1, maxQty: 9, price: priceRupees, discountPct: 0 },
       { minQty: 10, maxQty: 49, price: Math.round(priceRupees * 0.95), discountPct: 5 },
       { minQty: 50, maxQty: null, price: Math.round(priceRupees * 0.90), discountPct: 10 },
     ];
+
+    const tiers = hasExplicitEmptyTiers
+      ? []
+      : (Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0
+          ? (p.wholesaleTiers as any[])
+          : defaultTiers);
+
+    const bulkDiscountAvailable = !isOutOfStock && tiers.length > 1;
 
     return {
       id: p.id,
@@ -42,8 +63,8 @@ export async function exportCatalogJson(): Promise<number> {
       category: categoryName,
       description: p.description || '',
       price: priceRupees,
-      bulkDiscountAvailable: true,
-      maxDiscount: 10,
+      bulkDiscountAvailable,
+      maxDiscount: bulkDiscountAvailable ? 10 : 0,
       image: p.imageUrl || '',
       tiers,
       tags: [
@@ -57,7 +78,7 @@ export async function exportCatalogJson(): Promise<number> {
         'quality',
         'ekora',
       ],
-      department: 'Precision Studio Moulds',
+      department: departmentName,
       disciplines: ['candle-studio', 'resin-lab', 'soap-atelier'],
       isQuoteOnly: isOutOfStock,
       inStock: !isOutOfStock,
