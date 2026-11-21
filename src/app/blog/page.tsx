@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600;
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-IN", {

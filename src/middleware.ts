@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { decrypt } from '@/lib/session'
 
+export const runtime = 'experimental-edge'
 
 // Protect these routes
 const protectedRoutes = ['/admin', '/seller/dashboard', '/checkout', '/account']
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
   // 1. Protect Sensitive API routes at the Edge perimeter

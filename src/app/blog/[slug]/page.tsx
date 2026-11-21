@@ -51,7 +51,7 @@ export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
-export const revalidate = 3600;
+export const dynamicParams = false;
 
 async function getRelatedProducts(tags: string[]): Promise<ProductCardItem[]> {
   if (!tags.length) return [];

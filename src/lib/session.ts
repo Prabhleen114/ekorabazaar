@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
-import { Role } from '@prisma/client'
+import type { Role } from '@prisma/client'
 
 function getSecretKey(): Uint8Array {
   const secret = process.env.JWT_SECRET
