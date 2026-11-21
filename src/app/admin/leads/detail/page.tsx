@@ -1,9 +1,7 @@
 'use client'
 
-export const dynamic = 'force-static'
-
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -14,17 +12,19 @@ function formatPaise(n: number | null | undefined): string {
   return 'Rs. ' + (num / 100).toFixed(2)
 }
 
-export default function AdminLeadDetailPage() {
-  const params = useParams()
+function AdminLeadDetailContent() {
   const router = useRouter()
-  const id = params?.id as string
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  
+  const id = searchParams.get('id') || pathname.split('/').filter(Boolean).pop() || ''
 
   const [lead, setLead] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
-    if (!id) return
+    if (!id || id === 'detail') return
     fetchLead()
   }, [id])
 
@@ -193,5 +193,13 @@ export default function AdminLeadDetailPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AdminLeadDetailPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-gray-500">Loading lead details...</div>}>
+      <AdminLeadDetailContent />
+    </Suspense>
   )
 }

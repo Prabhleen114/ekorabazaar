@@ -1,22 +1,23 @@
 'use client'
 
-export const dynamic = 'force-static'
-
-import { useState, useEffect } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { Suspense, useState, useEffect } from 'react'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import SellerProductForm from '@/components/SellerProductForm'
 
-export default function EditProductPage() {
+function EditProductContent() {
   const router = useRouter()
-  const params = useParams()
-  const id = params?.id as string
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+
+  const segments = pathname.split('/').filter(Boolean)
+  const id = searchParams.get('id') || (segments[segments.length - 1] === 'edit' ? segments[segments.length - 2] : segments[segments.length - 1]) || ''
 
   const [product, setProduct] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!id) return
+    if (!id || id === 'edit-product' || id === 'edit') return
     let isMounted = true
 
     const fetchProduct = async () => {
@@ -83,5 +84,20 @@ export default function EditProductPage() {
       </div>
       <SellerProductForm initialData={product} />
     </div>
+  )
+}
+
+export default function EditProductPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-8 max-w-4xl mx-auto">
+          <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-4" />
+          <div className="h-4 w-96 bg-gray-100 rounded animate-pulse mb-8" />
+        </div>
+      }
+    >
+      <EditProductContent />
+    </Suspense>
   )
 }

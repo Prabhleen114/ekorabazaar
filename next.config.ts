@@ -46,6 +46,18 @@ const nextConfig: NextConfig = {
         source: "/images/:path*.png",
         destination: "/images/:path*.webp",
       },
+      {
+        source: "/admin/leads/:id",
+        destination: "/admin/leads/detail?id=:id",
+      },
+      {
+        source: "/admin/orders/:id",
+        destination: "/admin/orders/detail?id=:id",
+      },
+      {
+        source: "/seller/dashboard/products/:id/edit",
+        destination: "/seller/dashboard/products/edit-product?id=:id",
+      },
     ];
   },
   async redirects() {

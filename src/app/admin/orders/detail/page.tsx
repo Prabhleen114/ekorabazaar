@@ -1,9 +1,7 @@
 'use client'
 
-export const dynamic = 'force-static'
-
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import ShippingActions from './ShippingActions'
 import OrderStatusSelector from './OrderStatusSelector'
 import { getCustomerFacingOrderStatus } from '@/lib/orders'
@@ -34,17 +32,21 @@ function orderStatusClass(status: string): string {
   return 'bg-gray-100 text-gray-600'
 }
 
-// ─── Page component ────────────────────────────────────────────────────────────
+// ─── Detail Component ─────────────────────────────────────────────────────────
 
-export default function AdminOrderDetailPage() {
-  const { id }  = useParams() as { id: string }
-  const router  = useRouter()
+function AdminOrderDetailContent() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+
+  const id = searchParams.get('id') || pathname.split('/').filter(Boolean).pop() || ''
+
   const [order,   setOrder]   = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState<string | null>(null)
 
   useEffect(() => {
-    if (!id) return
+    if (!id || id === 'detail') return
     setLoading(true)
     setError(null)
     fetch('/api/admin/orders/' + id)
@@ -75,25 +77,16 @@ export default function AdminOrderDetailPage() {
     )
   }
 
-  // ── Extract data using EXACT Prisma field names ──────────────────────────────
-  //
-  // OrderItem fields: productNameSnapshot, priceSnapshot (paise), quantity, subtotal (paise)
-  // Order fields:     subtotal, shipping, tax, total (all paise), addressSnapshot (Json)
-  // Payment fields:   status, amount (paise), currency, razorpayOrderId, razorpayPaymentId
-
   const snap: Record<string, string> | null = order.addressSnapshot ?? null
 
-  // Customer: name comes from addressSnapshot (captured at checkout), email from User relation
   const customerName  = snap?.name  || 'N/A'
   const customerEmail = order.customer?.email || 'N/A'
   const customerPhone = snap?.phone || 'N/A'
 
-  // Most-recent payment record
   const payment = Array.isArray(order.payments) && order.payments.length > 0
     ? order.payments[0]
     : null
 
-  // ── Render ──────────────────────────────────────────────────────────────────
   return (
     <div className="p-8 max-w-5xl mx-auto">
 
@@ -137,10 +130,6 @@ export default function AdminOrderDetailPage() {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {(order.items ?? []).map((item: any) => {
-                  // ← Root-cause fix: use productNameSnapshot, priceSnapshot, subtotal
-                  // These are the actual Prisma OrderItem field names.
-                  // item.productName does NOT exist — it always produced UUID fallback.
-                  // item.price does NOT exist — it always produced NaN.
                   const productName = item.productNameSnapshot || 'N/A'
                   const unitPrice   = formatPaise(item.priceSnapshot)
                   const lineTotal   = formatPaise(item.subtotal)
@@ -211,7 +200,7 @@ export default function AdminOrderDetailPage() {
             </div>
           </div>
 
-          {/* Delivery Address — always use addressSnapshot for historical accuracy */}
+          {/* Delivery Address */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="p-4 border-b border-gray-100 bg-gray-50">
               <h2 className="font-semibold text-gray-900">Delivery Address</h2>
@@ -289,5 +278,13 @@ export default function AdminOrderDetailPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AdminOrderDetailPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-gray-500">Loading order details...</div>}>
+      <AdminOrderDetailContent />
+    </Suspense>
   )
 }
