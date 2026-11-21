@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { GET as docGetRoute } from '@/app/api/docs/[slug]/[type]/route';
+import { handleDocs as docGetRoute } from '@/server/api/handlers/misc';
 import { NextRequest } from 'next/server';
 import { metadata as formulationsMetadata } from '@/app/formulations/page';
 import { generateMetadata as formulationDetailMetadata } from '@/app/formulations/[slug]/page';

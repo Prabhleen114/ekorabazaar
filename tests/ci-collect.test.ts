@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { isBotUserAgent, isRateLimited } from "@/app/api/collect/route";
+import { isBotUserAgent, isRateLimited, handleCollect as POST } from "@/server/api/handlers/misc";
 
 describe("Customer Intelligence Collector API Unit Tests", () => {
   describe("Bot Filtering", () => {
@@ -41,7 +41,6 @@ describe("Customer Intelligence Collector API Unit Tests", () => {
 
   describe("Collector Payload Validation", () => {
     it("validates event payload structure correctly", async () => {
-      const { POST } = await import("@/app/api/collect/route");
       const validPayload = {
         event_id: "evt_123456789",
         anonymous_id: "anon_test_123",
@@ -69,7 +68,6 @@ describe("Customer Intelligence Collector API Unit Tests", () => {
     });
 
     it("rejects invalid payloads with status 400", async () => {
-      const { POST } = await import("@/app/api/collect/route");
       const invalidPayload = {
         // missing event_id, anonymous_id, session_id
         event_name: "x",
@@ -89,7 +87,6 @@ describe("Customer Intelligence Collector API Unit Tests", () => {
     });
 
     it("drops bots gracefully without failing", async () => {
-      const { POST } = await import("@/app/api/collect/route");
       const payload = {
         event_id: "evt_bot_test_001",
         anonymous_id: "anon_bot_123",
