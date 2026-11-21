@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/db';
 import { requireAuth, requireSeller, requireSellerOwnership } from '@/lib/auth';
 import { getSession } from '@/lib/session';
@@ -14,7 +15,7 @@ import { supabaseServer, isSupabaseConfigured } from '@/lib/supabase';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { roundPrice, roundTiersWithDiscountPriority } from '@/lib/pricing-rounding';
-import { RouteContext } from '../types';
+import { RouteContext, handleAuthError } from '../types';
 
 const SELLER_ONBOARDING_FEE = parseInt(process.env.SELLER_ONBOARDING_FEE || '49900', 10);
 
@@ -214,9 +215,8 @@ export async function handlePostSellerProduct(req: NextRequest) {
     return NextResponse.json({ success: true, product });
   } catch (error: any) {
     console.error('Create Seller Product Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -352,9 +352,8 @@ export async function handlePatchSellerProductById(req: NextRequest, { params }:
     return NextResponse.json({ success: true, product: updatedProduct });
   } catch (error: any) {
     console.error('Edit Seller Product Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -406,9 +405,8 @@ export async function handlePostSellerProductSubmit(_req: NextRequest, { params 
     return NextResponse.json({ success: true, product: updatedProduct });
   } catch (error: any) {
     console.error('Submit Seller Product Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -495,9 +493,8 @@ export async function handlePostSellerUploadImage(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('Upload product image error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -598,9 +595,219 @@ export async function handleGetSellerApplication(_req: NextRequest) {
 
     return NextResponse.json({ success: true, application: seller });
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+// ---------------------------------------------------------------------------
+// 9. GET /api/seller/overview
+// ---------------------------------------------------------------------------
+export async function handleGetSellerOverview(_req: NextRequest) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+
+    const seller = await prisma.seller.findUnique({
+      where: { id: session.sellerId },
+      include: {
+        businessDetails: true,
+        _count: { select: { products: true, payments: true } }
+      }
+    });
+
+    if (!seller) {
+      return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
+    }
+
+    const publishedProductsCount = await prisma.product.count({
+      where: {
+        sellerId: session.sellerId,
+        status: 'PUBLISHED'
+      }
+    });
+
+    return NextResponse.json({
+      seller,
+      publishedProductsCount,
+    });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 10. GET /api/seller/orders
+// ---------------------------------------------------------------------------
+export async function handleGetSellerOrders(_req: NextRequest) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+
+    const seller = await prisma.seller.findUnique({
+      where: { id: session.sellerId }
+    });
+
+    if (!seller) {
+      return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
+    }
+
+    if (seller.accountStatus !== 'ACTIVE') {
+      return NextResponse.json({
+        locked: true,
+        accountStatus: seller.accountStatus,
+        orders: []
+      });
+    }
+
+    const orderItems = await prisma.orderItem.findMany({
+      where: { sellerId: session.sellerId },
+      include: { order: true },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return NextResponse.json({ locked: false, orders: orderItems });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 11. GET /api/seller/products
+// ---------------------------------------------------------------------------
+export async function handleGetSellerProducts(_req: NextRequest) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+
+    const seller = await prisma.seller.findUnique({
+      where: { id: session.sellerId },
+      include: { products: { orderBy: { createdAt: 'desc' } } }
+    });
+
+    if (!seller) {
+      return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
+    }
+
+    if (seller.accountStatus !== 'ACTIVE') {
+      return NextResponse.json({
+        locked: true,
+        accountStatus: seller.accountStatus,
+        products: []
+      });
+    }
+
+    return NextResponse.json({ locked: false, products: seller.products });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 12. GET /api/seller/products/:productId
+// ---------------------------------------------------------------------------
+export async function handleGetSellerProductById(_req: NextRequest, { params }: RouteContext) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+    const { productId } = await params;
+
+    const product = await prisma.product.findUnique({
+      where: { id: productId }
+    });
+
+    if (!product) {
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    }
+
+    if (product.sellerId !== session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: You do not own this resource' }, { status: 403 });
+    }
+
+    return NextResponse.json({ product });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 13. DELETE /api/seller/products/:productId
+// ---------------------------------------------------------------------------
+export async function handleDeleteSellerProductById(_req: NextRequest, { params }: RouteContext) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+    const { productId } = await params;
+
+    const product = await prisma.product.findUnique({
+      where: { id: productId }
+    });
+
+    if (!product) {
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    }
+
+    if (product.sellerId !== session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: You do not own this resource' }, { status: 403 });
+    }
+
+    await prisma.product.delete({ where: { id: productId } });
+
+    try {
+      revalidatePath(`/products/${productId}`);
+    } catch {}
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 14. GET /api/seller/profile
+// ---------------------------------------------------------------------------
+export async function handleGetSellerProfile(_req: NextRequest) {
+  try {
+    const session = await requireAuth();
+    if (!session.sellerId) {
+      return NextResponse.json({ error: 'Forbidden: Seller account required' }, { status: 403 });
+    }
+
+    const seller = await prisma.seller.findUnique({
+      where: { id: session.sellerId },
+      include: { businessDetails: true, user: true }
+    });
+
+    if (!seller) {
+      return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ seller });
+  } catch (error: any) {
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+

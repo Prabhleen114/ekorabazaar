@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
 import { validateBody, CreateCouponSchema, UpdateCouponSchema } from '@/lib/validation';
@@ -15,7 +16,7 @@ import { restoreExpiredOrders } from '@/lib/orders-server';
 import { createShiprocketOrder, generateAWB, requestPickup, generateLabel } from '@/lib/shiprocket';
 import { logAudit } from '@/lib/audit';
 import { roundPrice } from '@/lib/pricing-rounding';
-import { RouteContext } from '../types';
+import { RouteContext, handleAuthError } from '../types';
 
 export async function handleGetAdminCoupons(req: NextRequest) {
   try {
@@ -106,9 +107,8 @@ export async function handleGetAdminCoupons(req: NextRequest) {
       total: filtered.length,
     });
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.includes('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 403 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     console.error('Admin coupons GET error:', error);
     return NextResponse.json({ error: 'Failed to fetch coupons' }, { status: 500 });
   }
@@ -190,9 +190,8 @@ export async function handlePostAdminCoupons(req: NextRequest) {
       { status: 201 }
     );
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.includes('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 403 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     console.error('Admin coupon create error:', error);
     return NextResponse.json({ error: 'Failed to create coupon' }, { status: 500 });
   }
@@ -241,9 +240,8 @@ export async function handleGetAdminCouponById(_req: NextRequest, { params }: Ro
       },
     });
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.includes('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 403 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     console.error('Admin coupon GET by ID error:', error);
     return NextResponse.json({ error: 'Failed to fetch coupon details' }, { status: 500 });
   }
@@ -336,9 +334,8 @@ export async function handlePatchAdminCouponById(req: NextRequest, { params }: R
       },
     });
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.includes('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 403 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     console.error('Admin coupon PATCH error:', error);
     return NextResponse.json({ error: 'Failed to update coupon' }, { status: 500 });
   }
@@ -388,9 +385,8 @@ export async function handleDeleteAdminCouponById(_req: NextRequest, { params }:
       });
     }
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.includes('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 403 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     console.error('Admin coupon DELETE error:', error);
     return NextResponse.json({ error: 'Failed to delete coupon' }, { status: 500 });
   }
@@ -449,9 +445,8 @@ export async function handleGetAdminLeads(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('Admin leads fetch error:', error);
-    if (error.message?.includes('FORBIDDEN') || error.message?.includes('UNAUTHORIZED')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -523,9 +518,8 @@ export async function handleGetAdminOrders(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('Admin orders fetch error:', error);
-    if (error.message?.includes('FORBIDDEN') || error.message?.includes('UNAUTHORIZED')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -536,9 +530,8 @@ export async function handlePostAdminOrdersRestoreExpired() {
     const restoredCount = await restoreExpiredOrders(30);
     return NextResponse.json({ success: true, restoredCount });
   } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED' || error.message?.startsWith('FORBIDDEN')) {
-      return NextResponse.json({ error: error.message }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -565,9 +558,8 @@ export async function handleGetAdminOrderById(_req: NextRequest, { params }: Rou
     return NextResponse.json({ order });
   } catch (error: any) {
     console.error('Admin order detail fetch error:', error);
-    if (error.message?.includes('FORBIDDEN') || error.message?.includes('UNAUTHORIZED')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -623,9 +615,8 @@ export async function handlePatchAdminOrderById(req: NextRequest, { params }: Ro
     return NextResponse.json({ order: updated });
   } catch (error: any) {
     console.error('Admin order status update error:', error);
-    if (error.message?.includes('FORBIDDEN') || error.message?.includes('UNAUTHORIZED')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -896,6 +887,8 @@ export async function handlePostAdminOrderShip(req: NextRequest, { params }: Rou
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (error: any) {
     console.error('Shiprocket ship action error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: error.message || 'Internal error' }, { status: 500 });
   }
 }
@@ -949,9 +942,8 @@ export async function handlePostAdminPriceRequest(req: NextRequest, { params }: 
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Admin Price Request Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1006,12 +998,16 @@ export async function handlePostAdminProductApprove(req: NextRequest, { params }
       });
     }
 
+    try {
+      revalidatePath(`/products/${productId}`);
+      revalidatePath('/sitemap_index.xml');
+    } catch {}
+
     return NextResponse.json({ success: true, product: updatedProduct });
   } catch (error: any) {
     console.error('Admin Approve Product Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1052,12 +1048,15 @@ export async function handlePostAdminProductReject(req: NextRequest, { params }:
       reason: rejectionReason,
     });
 
+    try {
+      revalidatePath(`/products/${productId}`);
+    } catch {}
+
     return NextResponse.json({ success: true, product: updatedProduct });
   } catch (error: any) {
     console.error('Admin Reject Product Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1091,12 +1090,16 @@ export async function handlePostAdminSellerApprove(_req: NextRequest, { params }
       newAccStatus: updatedSeller.accountStatus,
     });
 
+    try {
+      revalidatePath('/sitemap_index.xml');
+      revalidatePath(`/store/${sellerId}`);
+    } catch {}
+
     return NextResponse.json({ success: true, seller: updatedSeller });
   } catch (error: any) {
     console.error('Admin Approve Seller Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1136,9 +1139,8 @@ export async function handlePostAdminSellerReactivate(_req: NextRequest, { param
     return NextResponse.json({ success: true, seller: updatedSeller });
   } catch (error: any) {
     console.error('Admin Reactivate Seller Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1185,9 +1187,8 @@ export async function handlePostAdminSellerReject(req: NextRequest, { params }: 
     return NextResponse.json({ success: true, seller: updatedSeller });
   } catch (error: any) {
     console.error('Admin Reject Seller Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -1227,9 +1228,173 @@ export async function handlePostAdminSellerSuspend(req: NextRequest, { params }:
     return NextResponse.json({ success: true, seller: updatedSeller });
   } catch (error: any) {
     console.error('Admin Suspend Seller Error:', error);
-    if (error.message.startsWith('FORBIDDEN') || error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+// ---------------------------------------------------------------------------
+// 19. GET /api/admin/overview
+// ---------------------------------------------------------------------------
+export async function handleGetAdminOverview(_req: NextRequest) {
+  try {
+    await requireAdmin();
+
+    const [
+      totalSellers,
+      pendingSellers,
+      activeSellers,
+      suspendedSellers,
+      totalProducts,
+      pendingProducts,
+      totalOrders,
+      paidOrders,
+      pendingOrders,
+      failedOrders,
+      salesData
+    ] = await Promise.all([
+      prisma.seller.count(),
+      prisma.seller.count({ where: { applicationStatus: 'UNDER_REVIEW' } }),
+      prisma.seller.count({ where: { accountStatus: 'ACTIVE' } }),
+      prisma.seller.count({ where: { accountStatus: 'SUSPENDED' } }),
+      prisma.product.count({
+        where: {
+          status: 'PUBLISHED',
+          OR: [
+            { sellerId: null },
+            { seller: { accountStatus: 'ACTIVE' } }
+          ]
+        }
+      }),
+      prisma.product.count({ where: { status: 'PENDING_APPROVAL' } }),
+      prisma.order.count(),
+      prisma.order.count({ where: { status: 'PAID' as any } }),
+      prisma.order.count({ where: { status: 'PAYMENT_PENDING' as any } }),
+      prisma.order.count({ where: { status: { in: ['CANCELLED' as any] } } }),
+      prisma.order.aggregate({
+        _sum: { total: true },
+        where: { status: 'PAID' as any }
+      })
+    ]);
+
+    const totalSalesINR = (salesData._sum.total || 0) / 100;
+
+    return NextResponse.json({
+      totalSalesINR,
+      totalOrders,
+      paidOrders,
+      pendingOrders,
+      failedOrders,
+      totalSellers,
+      pendingSellers,
+      activeSellers,
+      suspendedSellers,
+      totalProducts,
+      pendingProducts,
+    });
+  } catch (error: any) {
+    console.error('Admin Overview Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch admin overview' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 20. GET /api/admin/products
+// ---------------------------------------------------------------------------
+export async function handleGetAdminProducts(req: NextRequest) {
+  try {
+    await requireAdmin();
+    const { searchParams } = new URL(req.url);
+    const sellerId = searchParams.get('sellerId');
+
+    const products = await prisma.product.findMany({
+      include: { seller: true },
+      orderBy: { createdAt: 'desc' },
+      where: sellerId ? { sellerId } : { status: 'PENDING_APPROVAL' }
+    });
+
+    return NextResponse.json({ products });
+  } catch (error: any) {
+    console.error('Admin Products Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 21. GET /api/admin/sellers
+// ---------------------------------------------------------------------------
+export async function handleGetAdminSellers(_req: NextRequest) {
+  try {
+    await requireAdmin();
+
+    const sellers = await prisma.seller.findMany({
+      include: { 
+        businessDetails: true,
+        user: true,
+        _count: {
+          select: { products: true }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return NextResponse.json({ sellers });
+  } catch (error: any) {
+    console.error('Admin Sellers Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch sellers' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 22. GET /api/admin/price-requests
+// ---------------------------------------------------------------------------
+export async function handleGetAdminPriceRequests(_req: NextRequest) {
+  try {
+    await requireAdmin();
+
+    const requests = await prisma.priceChangeRequest.findMany({
+      include: { product: true, seller: true },
+      where: { status: 'PENDING' },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return NextResponse.json({ requests });
+  } catch (error: any) {
+    console.error('Admin Price Requests Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch price requests' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 23. GET /api/admin/leads/:id
+// ---------------------------------------------------------------------------
+export async function handleGetAdminLeadById(_req: NextRequest, { params }: RouteContext) {
+  try {
+    await requireAdmin();
+    const { id } = await params;
+    
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: { items: true }
+    });
+    if (!order) {
+      return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
+    }
+    return NextResponse.json({ lead: order });
+  } catch (error: any) {
+    console.error('Admin Lead Detail Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch lead' }, { status: 500 });
+  }
+}
+
