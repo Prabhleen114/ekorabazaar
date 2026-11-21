@@ -1,15 +1,15 @@
 import { ReactNode } from 'react'
-import { requireAuth } from '@/lib/auth'
-import { redirect } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export default async function SellerDashboardLayout({ children }: { children: ReactNode }) {
-  const session = await requireAuth().catch(() => null)
-  
-  if (!session || session.role !== 'SELLER') {
-    redirect('/')
-  }
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
+export default function SellerDashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-screen bg-gray-50 text-gray-900">
       {/* Sidebar */}

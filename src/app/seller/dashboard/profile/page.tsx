@@ -1,17 +1,68 @@
-import { requireAuth } from '@/lib/auth'
-import prisma from '@/lib/db'
-import { redirect } from 'next/navigation'
+'use client'
 
-export default async function SellerProfilePage() {
-  const session = await requireAuth().catch(() => null)
-  if (!session || !session.sellerId) redirect('/sell/start-selling')
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-  const seller = await prisma.seller.findUnique({
-    where: { id: session.sellerId },
-    include: { businessDetails: true }
-  })
+export default function SellerProfilePage() {
+  const router = useRouter()
+  const [seller, setSeller] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  if (!seller) redirect('/sell/start-selling')
+  useEffect(() => {
+    let isMounted = true
+    const fetchProfile = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch('/api/seller/profile')
+        if (res.status === 401 || res.status === 403) {
+          router.push('/sell/start-selling')
+          return
+        }
+        if (!res.ok) {
+          throw new Error('Failed to load profile')
+        }
+        const data = await res.json()
+        if (isMounted) {
+          setSeller(data.seller)
+        }
+      } catch (err: any) {
+        if (isMounted) setError(err.message || 'Error loading profile')
+      } finally {
+        if (isMounted) setLoading(false)
+      }
+    }
+
+    fetchProfile()
+    return () => {
+      isMounted = false
+    }
+  }, [router])
+
+  if (loading) {
+    return (
+      <div className="p-8 max-w-4xl">
+        <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+        <div className="bg-white rounded-xl border border-gray-100 p-6 space-y-4 animate-pulse mb-6">
+          <div className="h-10 bg-gray-100 rounded w-1/2" />
+        </div>
+        <div className="bg-white rounded-xl border border-gray-100 p-6 space-y-4 animate-pulse">
+          <div className="h-10 bg-gray-100 rounded w-1/2" />
+          <div className="h-20 bg-gray-100 rounded" />
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !seller) {
+    return (
+      <div className="p-8 max-w-4xl">
+        <div className="p-6 bg-red-50 text-red-700 rounded-xl border border-red-200">
+          {error || 'Unable to load profile.'}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="p-8 max-w-4xl">
@@ -25,7 +76,7 @@ export default async function SellerProfilePage() {
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700">Brand Name</label>
-            <input type="text" readOnly className="mt-1 block w-full bg-gray-50 border border-gray-200 rounded-md shadow-sm py-2 px-3 sm:text-sm text-gray-500 cursor-not-allowed" value={seller.brandName} />
+            <input type="text" readOnly className="mt-1 block w-full bg-gray-50 border border-gray-200 rounded-md shadow-sm py-2 px-3 sm:text-sm text-gray-500 cursor-not-allowed" value={seller.brandName || ''} />
           </div>
         </div>
       </div>

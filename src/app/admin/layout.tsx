@@ -1,17 +1,17 @@
 import { ReactNode } from 'react'
-import { requireAdmin } from '@/lib/auth'
-import { redirect } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Receipt, ExternalLink } from 'lucide-react'
 import { BILLING_APP_URL } from '@/config/billing'
 
-export default async function AdminDashboardLayout({ children }: { children: ReactNode }) {
-  const session = await requireAdmin().catch(() => null)
-  
-  if (!session || session.role !== 'ADMIN') {
-    redirect('/')
-  }
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
+export default function AdminDashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100">
       {/* Sidebar */}

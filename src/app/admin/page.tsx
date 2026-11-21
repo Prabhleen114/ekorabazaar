@@ -1,52 +1,90 @@
-import { requireAdmin } from '@/lib/auth'
-import prisma from '@/lib/db'
-import { redirect } from 'next/navigation'
-import { OrderStatus } from '@prisma/client'
+'use client';
 
-export const dynamic = 'force-dynamic';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default async function AdminOverviewPage() {
-  const session = await requireAdmin().catch(() => null)
-  if (!session) redirect('/')
+export default function AdminOverviewPage() {
+  const router = useRouter();
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const [
-    totalSellers,
-    pendingSellers,
-    activeSellers,
-    suspendedSellers,
-    totalProducts,
-    pendingProducts,
-    totalOrders,
-    paidOrders,
-    pendingOrders,
-    failedOrders,
-    salesData
-  ] = await Promise.all([
-    prisma.seller.count(),
-    prisma.seller.count({ where: { applicationStatus: 'UNDER_REVIEW' } }),
-    prisma.seller.count({ where: { accountStatus: 'ACTIVE' } }),
-    prisma.seller.count({ where: { accountStatus: 'SUSPENDED' } }),
-    prisma.product.count({
-      where: {
-        status: 'PUBLISHED',
-        OR: [
-          { sellerId: null },
-          { seller: { accountStatus: 'ACTIVE' } }
-        ]
+  useEffect(() => {
+    let mounted = true;
+    async function fetchOverview() {
+      try {
+        const res = await fetch('/api/admin/overview');
+        if (res.status === 401) {
+          router.push('/login?redirect=/admin');
+          return;
+        }
+        if (res.status === 403) {
+          router.push('/');
+          return;
+        }
+        if (!res.ok) {
+          throw new Error('Failed to load overview data');
+        }
+        const json = await res.json();
+        if (mounted) {
+          setData(json);
+          setLoading(false);
+        }
+      } catch (err: any) {
+        if (mounted) {
+          setError(err.message || 'Error loading dashboard');
+          setLoading(false);
+        }
       }
-    }),
-    prisma.product.count({ where: { status: 'PENDING_APPROVAL' } }),
-    prisma.order.count(),
-    prisma.order.count({ where: { status: OrderStatus.PAID } }),
-    prisma.order.count({ where: { status: OrderStatus.PAYMENT_PENDING } }),
-    prisma.order.count({ where: { status: { in: [OrderStatus.CANCELLED] } } }),
-    prisma.order.aggregate({
-      _sum: { total: true },
-      where: { status: OrderStatus.PAID }
-    })
-  ])
+    }
+    fetchOverview();
+    return () => {
+      mounted = false;
+    };
+  }, [router]);
 
-  const totalSalesINR = (salesData._sum.total || 0) / 100
+  if (loading) {
+    return (
+      <div className="p-8 animate-pulse">
+        <div className="h-8 w-48 bg-gray-200 rounded mb-6"></div>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-28 bg-white p-6 rounded-xl border border-gray-100"></div>
+          ))}
+        </div>
+        <div className="h-6 w-36 bg-gray-200 rounded mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-28 bg-white p-6 rounded-xl border border-gray-100"></div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-8">
+        <div className="bg-red-50 text-red-700 p-4 rounded-xl border border-red-200">
+          {error}
+        </div>
+      </div>
+    );
+  }
+
+  const {
+    totalSalesINR = 0,
+    totalOrders = 0,
+    paidOrders = 0,
+    pendingOrders = 0,
+    failedOrders = 0,
+    totalSellers = 0,
+    pendingSellers = 0,
+    activeSellers = 0,
+    suspendedSellers = 0,
+    totalProducts = 0,
+    pendingProducts = 0,
+  } = data || {};
 
   return (
     <div className="p-8">
@@ -75,7 +113,7 @@ export default async function AdminOverviewPage() {
         </div>
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Sellers & Products</h2>
+      <h2 className="text-xl font-bold mb-4">Sellers &amp; Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <h3 className="text-sm font-medium text-gray-500 mb-1">Total Sellers</h3>
@@ -106,5 +144,5 @@ export default async function AdminOverviewPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

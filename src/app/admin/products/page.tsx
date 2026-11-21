@@ -1,28 +1,74 @@
-import { requireAdmin } from '@/lib/auth'
-import prisma from '@/lib/db'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useState, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import AdminProductActions from './AdminProductActions'
 import { normalizeProductBasePriceToINR } from '@/lib/pricing'
 
-export default async function AdminProductsPage({
-  searchParams
-}: {
-  searchParams: Promise<{ sellerId?: string }>
-}) {
-  const session = await requireAdmin().catch(() => null)
-  if (!session) redirect('/')
-  
-  const { sellerId } = await searchParams
+function AdminProductsContent() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const sellerId = searchParams.get('sellerId') || undefined
 
-  const products = await prisma.product.findMany({
-    include: { seller: true },
-    orderBy: { createdAt: 'desc' },
-    where: sellerId ? { sellerId } : { status: 'PENDING_APPROVAL' }
-  })
+  const [products, setProducts] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    let isMounted = true
+    const fetchProducts = async () => {
+      setLoading(true)
+      try {
+        const url = sellerId
+          ? `/api/admin/products?sellerId=${encodeURIComponent(sellerId)}`
+          : '/api/admin/products'
+        const res = await fetch(url)
+        if (res.status === 401) {
+          router.push('/')
+          return
+        }
+        if (!res.ok) {
+          throw new Error('Failed to load products')
+        }
+        const data = await res.json()
+        if (isMounted) {
+          setProducts(data.products || [])
+        }
+      } catch (err: any) {
+        if (isMounted) setError(err.message || 'Error loading products')
+      } finally {
+        if (isMounted) setLoading(false)
+      }
+    }
+
+    fetchProducts()
+    return () => {
+      isMounted = false
+    }
+  }, [sellerId, router])
+
+  if (loading) {
+    return (
+      <div className="p-8">
+        <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-6 space-y-4">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="h-12 bg-gray-100 rounded animate-pulse" />
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-6">Product Management</h1>
+
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg text-sm border border-red-200">
+          {error}
+        </div>
+      )}
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
@@ -83,5 +129,24 @@ export default async function AdminProductsPage({
         </table>
       </div>
     </div>
+  )
+}
+
+export default function AdminProductsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-8">
+          <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-6 space-y-4">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="h-12 bg-gray-100 rounded animate-pulse" />
+            ))}
+          </div>
+        </div>
+      }
+    >
+      <AdminProductsContent />
+    </Suspense>
   )
 }

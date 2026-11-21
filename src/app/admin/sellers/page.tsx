@@ -1,26 +1,67 @@
-import { requireAdmin } from '@/lib/auth'
-import prisma from '@/lib/db'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import AdminSellerActions from './AdminSellerActions'
 
-export default async function AdminSellersPage() {
-  const session = await requireAdmin().catch(() => null)
-  if (!session) redirect('/')
+export default function AdminSellersPage() {
+  const router = useRouter()
+  const [sellers, setSellers] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  const sellers = await prisma.seller.findMany({
-    include: { 
-      businessDetails: true,
-      user: true,
-      _count: {
-        select: { products: true }
+  useEffect(() => {
+    let isMounted = true
+    const fetchSellers = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch('/api/admin/sellers')
+        if (res.status === 401) {
+          router.push('/')
+          return
+        }
+        if (!res.ok) {
+          throw new Error('Failed to load sellers')
+        }
+        const data = await res.json()
+        if (isMounted) {
+          setSellers(data.sellers || [])
+        }
+      } catch (err: any) {
+        if (isMounted) setError(err.message || 'Error loading sellers')
+      } finally {
+        if (isMounted) setLoading(false)
       }
-    },
-    orderBy: { createdAt: 'desc' }
-  })
+    }
+
+    fetchSellers()
+    return () => {
+      isMounted = false
+    }
+  }, [router])
+
+  if (loading) {
+    return (
+      <div className="p-8">
+        <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-6 space-y-4">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="h-16 bg-gray-100 rounded animate-pulse" />
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-6">Seller Management</h1>
+
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg text-sm border border-red-200">
+          {error}
+        </div>
+      )}
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
@@ -53,7 +94,7 @@ export default async function AdminSellersPage() {
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                    <div className="text-sm text-gray-900">{new Date(seller.createdAt).toLocaleDateString()}</div>
-                   <div className="text-sm text-gray-500 mt-1">{seller._count.products} Products Listed</div>
+                   <div className="text-sm text-gray-500 mt-1">{seller._count?.products ?? 0} Products Listed</div>
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                    <div className="mb-2">
@@ -76,6 +117,14 @@ export default async function AdminSellersPage() {
                 </td>
               </tr>
             ))}
+
+            {sellers.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-4 md:px-6 py-12 text-center text-sm text-gray-500">
+                  No sellers found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

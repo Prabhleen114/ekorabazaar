@@ -1,28 +1,70 @@
-import { requireAuth } from '@/lib/auth'
-import prisma from '@/lib/db'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-export default async function SellerOverviewPage() {
-  const session = await requireAuth().catch(() => null)
-  if (!session || !session.sellerId) {
-    redirect('/sell/start-selling') // Or a dedicated setup page
+export default function SellerOverviewPage() {
+  const router = useRouter()
+  const [data, setData] = useState<{ seller: any; publishedProductsCount: number } | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    let isMounted = true
+    const fetchOverview = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch('/api/seller/overview')
+        if (res.status === 401 || res.status === 403) {
+          router.push('/sell/start-selling')
+          return
+        }
+        if (!res.ok) {
+          throw new Error('Failed to load seller dashboard')
+        }
+        const json = await res.json()
+        if (isMounted) {
+          setData(json)
+        }
+      } catch (err: any) {
+        if (isMounted) setError(err.message || 'Error loading dashboard')
+      } finally {
+        if (isMounted) setLoading(false)
+      }
+    }
+
+    fetchOverview()
+    return () => {
+      isMounted = false
+    }
+  }, [router])
+
+  if (loading) {
+    return (
+      <div className="p-8">
+        <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-28 bg-white p-6 rounded-xl border border-gray-100 animate-pulse" />
+          ))}
+        </div>
+        <div className="h-64 bg-white rounded-xl border border-gray-100 p-6 animate-pulse" />
+      </div>
+    )
   }
 
-  const seller = await prisma.seller.findUnique({
-    where: { id: session.sellerId },
-    include: { businessDetails: true, _count: { select: { products: true, payments: true } } }
-  })
+  if (error || !data || !data.seller) {
+    return (
+      <div className="p-8">
+        <div className="p-6 bg-red-50 text-red-700 rounded-xl border border-red-200">
+          {error || 'Unable to load seller overview.'}
+        </div>
+      </div>
+    )
+  }
 
-  if (!seller) redirect('/sell/start-selling')
-
-  const publishedProductsCount = await prisma.product.count({
-    where: {
-      sellerId: session.sellerId,
-      status: 'PUBLISHED'
-    }
-  })
-
+  const { seller, publishedProductsCount } = data
   const isActive = seller.accountStatus === 'ACTIVE'
   const isUnderReview = seller.applicationStatus === 'UNDER_REVIEW'
   const isPendingPayment = seller.applicationStatus === 'DRAFT' || seller.applicationStatus === 'SUBMITTED'
@@ -62,7 +104,7 @@ export default async function SellerOverviewPage() {
 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <h3 className="text-sm font-medium text-gray-500 mb-1">Total Products</h3>
-          <p className="text-2xl font-semibold text-gray-900">{seller._count.products}</p>
+          <p className="text-2xl font-semibold text-gray-900">{seller._count?.products ?? 0}</p>
         </div>
       </div>
 

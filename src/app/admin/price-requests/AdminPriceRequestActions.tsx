@@ -19,7 +19,7 @@ export default function AdminPriceRequestActions({ request }: { request: any }) 
       })
       const data = await res.json()
       if (data.success) {
-        router.refresh()
+        window.location.reload()
       } else {
         alert(data.error || 'Failed to process request')
       }
