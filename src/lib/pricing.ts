@@ -23,18 +23,38 @@ export function normalizeProductBasePriceToINR(product: any): number {
 
   if (isNaN(raw) || raw <= 0) return 0;
 
-  // 1. Explicit database source check
-  if (product.source === "SCRAPER" || product.source === "ADMIN") {
-    return raw;
-  }
-  if (product.source === "CATALOG" || product.source === "EKORA_OFFICIAL" || product.source === "SELLER") {
-    return raw / 100;
-  }
+  // 1. Explicit paise flags
   if (product.isPaise || product.unit === "paise") {
     return raw / 100;
   }
 
-  // 2. Canonical INR pricing convention: default to Rupees (never divide an already-rupee amount by 100)
+  // 2. Cross-reference with wholesale tiers if present (deterministic ground truth)
+  const rawTiers = product.wholesaleTiers || product.tiers;
+  if (Array.isArray(rawTiers) && rawTiers.length > 0) {
+    const firstTierPrice = Number(rawTiers[0]?.price ?? rawTiers[0]?.priceINR);
+    if (!isNaN(firstTierPrice) && firstTierPrice > 0) {
+      // If raw is 50x+ the first tier, raw was stored in paise scale (e.g. 65000 paise vs ₹650 tier)
+      if (raw >= firstTierPrice * 50) {
+        return raw / 100;
+      }
+      // If raw matches the first tier within normal discount/margin range (<= 2.5x)
+      if (raw <= firstTierPrice * 2.5) {
+        // CATALOG and EKORA_OFFICIAL tables store paise (e.g. 28000 paise base and 28000 paise tier)
+        if ((product.source === "CATALOG" || product.source === "EKORA_OFFICIAL") && raw >= 1000) {
+          return raw / 100;
+        }
+        // SELLER, SCRAPER, ADMIN, and static catalog JSON store Rupees (e.g. 358 rupees base and 358 rupees tier)
+        return raw;
+      }
+    }
+  }
+
+  // 3. Fallback source-specific defaults for products without tiers or with empty tiers:
+  // - CATALOG & EKORA_OFFICIAL: DB tables store paise (e.g. 24000 = ₹240, 28000 = ₹280)
+  if (product.source === "CATALOG" && raw >= 1000) return raw / 100;
+  if (product.source === "EKORA_OFFICIAL" && raw >= 1000) return raw / 100;
+
+  // - SELLER, SCRAPER, ADMIN, and static catalog JSON store Rupees (e.g. 358, 237, 49)
   return raw;
 }
 

@@ -280,4 +280,97 @@ describe('Product Pricing Consistency Suite', () => {
       expect(inrToPaise(calculateItemPrice(product20, 1))).toBe(2000);
     });
   });
+
+  describe('Seller and Official Products Real-World Accuracy', () => {
+    // Real SELLER mould products (stored in Rupees in DB)
+    const sellerWCM579 = {
+      id: 'aa7e2263-b203-41f9-89b7-ba8f1a7f7bdf',
+      title: 'Yellow Angel Girl Mold | WCM579 - 1',
+      source: 'SELLER',
+      price: 358,
+      customerPrice: null,
+      wholesaleTiers: [
+        { price: 358, minQty: 1, maxQty: 9, discountPct: 0 },
+        { price: 340, minQty: 10, maxQty: 49, discountPct: 5 },
+        { price: 322, minQty: 50, maxQty: null, discountPct: 10 },
+      ],
+    };
+
+    const sellerWCM850 = {
+      id: 'wcm850-big',
+      title: 'Turtle Silicone Mould | WCM850 - BIG',
+      source: 'SELLER',
+      price: 377,
+      customerPrice: null,
+      wholesaleTiers: [
+        { price: 377, minQty: 1, maxQty: 9, discountPct: 0 },
+        { price: 358, minQty: 10, maxQty: 49, discountPct: 5 },
+      ],
+    };
+
+    const sellerWCM444 = {
+      id: 'wcm444-1',
+      title: 'Teddy On Plum | WCM444 - 1',
+      source: 'SELLER',
+      price: 532,
+      customerPrice: null,
+      wholesaleTiers: [
+        { price: 532, minQty: 1, maxQty: 9, discountPct: 0 },
+        { price: 505, minQty: 10, maxQty: 49, discountPct: 5 },
+      ],
+    };
+
+    // Real EKORA_OFFICIAL products (stored in paise in DB)
+    const officialGardenia304 = {
+      id: '304',
+      title: '3D GARDENIA JASMINE SILICONE MOLD',
+      source: 'EKORA_OFFICIAL',
+      price: 28000,
+      customerPrice: 28000,
+      wholesaleTiers: [
+        { price: 28000, minQty: 1, maxQty: 9, discountPct: 0 },
+        { price: 26500, minQty: 10, maxQty: 49, discountPct: 5 },
+        { price: 25100, minQty: 50, maxQty: null, discountPct: 10 },
+      ],
+    };
+
+    const officialSoyWax854 = {
+      id: '854',
+      title: '464 Soy Wax Natural Soy Wax Granule for Candle Making',
+      source: 'EKORA_OFFICIAL',
+      price: 38000,
+      customerPrice: 38000,
+      wholesaleTiers: [
+        { price: 38000, minQty: 1, maxQty: 11, discountPct: 0 },
+        { price: 34200, minQty: 12, maxQty: 51, discountPct: 10 },
+        { price: 32300, minQty: 52, maxQty: null, discountPct: 15 },
+      ],
+    };
+
+    it('normalizes SELLER moulds to exact Rupee prices (never ₹3.58, ₹3.77, or ₹5.32)', () => {
+      expect(normalizeProductBasePriceToINR(sellerWCM579)).toBe(358);
+      expect(normalizeProductBasePriceToINR(sellerWCM850)).toBe(377);
+      expect(normalizeProductBasePriceToINR(sellerWCM444)).toBe(532);
+
+      expect(calculateItemPrice(sellerWCM579, 1)).toBe(358);
+      expect(calculateItemPrice(sellerWCM579, 10)).toBe(340);
+      expect(calculateItemPrice(sellerWCM579, 50)).toBe(322);
+
+      expect(calculateItemPrice(sellerWCM850, 1)).toBe(377);
+      expect(calculateItemPrice(sellerWCM444, 1)).toBe(532);
+    });
+
+    it('normalizes EKORA_OFFICIAL products from paise to Rupees (never ₹28,000 or ₹38,000)', () => {
+      expect(normalizeProductBasePriceToINR(officialGardenia304)).toBe(280);
+      expect(normalizeProductBasePriceToINR(officialSoyWax854)).toBe(380);
+
+      expect(calculateItemPrice(officialGardenia304, 1)).toBe(280);
+      expect(calculateItemPrice(officialGardenia304, 10)).toBe(265);
+      expect(calculateItemPrice(officialGardenia304, 50)).toBe(251);
+
+      expect(calculateItemPrice(officialSoyWax854, 1)).toBe(380);
+      expect(calculateItemPrice(officialSoyWax854, 12)).toBe(342);
+      expect(calculateItemPrice(officialSoyWax854, 52)).toBe(323);
+    });
+  });
 });
