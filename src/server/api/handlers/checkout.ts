@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { requireAuth } from '@/lib/auth';
-import { calculateItemPrice, TEMP_FLAT_SHIPPING_CHARGE } from '@/lib/pricing';
+import { calculateItemPrice, normalizeProductBasePriceToINR, inrToPaise, TEMP_FLAT_SHIPPING_CHARGE } from '@/lib/pricing';
 import { razorpay, verifyRazorpaySignature } from '@/lib/razorpay';
 import {
   PaymentType,
@@ -248,7 +248,7 @@ export async function handleRecommendations(req: Request) {
       }
 
       const originalPrice = p.customerPrice
-        ? Math.round(p.customerPrice / 100)
+        ? Math.round(normalizeProductBasePriceToINR({ ...p, price: p.customerPrice }))
         : Math.round(priceINR * 1.3);
 
       candidateProducts.push({
@@ -418,7 +418,7 @@ export async function handleCreateOrder(req: Request) {
         if (unitPriceINR <= 0) {
           throw new Error(`Product "${product.title}" is quotation only.`);
         }
-        const unitPricePaise = unitPriceINR * 100;
+        const unitPricePaise = inrToPaise(unitPriceINR);
         const itemSubtotalPaise = unitPricePaise * item.quantity;
 
         // Atomically decrement inventory to guarantee no oversell

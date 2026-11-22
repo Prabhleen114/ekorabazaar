@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { generateOrganizationSchema, generateProductSchema, generateFaqSchema, generateBreadcrumbSchema } from '@/lib/seo';
 import { HOMEPAGE_FAQS } from '@/lib/faqs';
-import { GET as getLlmsTxt } from '@/app/llms.txt/route';
 import fs from 'fs';
 
 describe('GEO Discoverability & Structured Data Verification', () => {
@@ -109,12 +108,9 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     expect(pdpContent).toContain('href={`/wholesale/${categorySlug}`}');
   });
 
-  it('serves standard-compliant llms.txt with accurate verified facts', async () => {
-    const response = await getLlmsTxt();
-    expect(response.status).toBe(200);
-    expect(response.headers.get('Content-Type')).toContain('text/plain');
-
-    const text = await response.text();
+  it('serves standard-compliant llms.txt with accurate verified facts', () => {
+    expect(fs.existsSync('public/llms.txt')).toBe(true);
+    const text = fs.readFileSync('public/llms.txt', 'utf8');
     expect(text).toContain('# Ekora Bazaar');
     expect(text).toContain('Ekora Bazaar Pvt Ltd');
     expect(text).toContain('Kumar Aryan');

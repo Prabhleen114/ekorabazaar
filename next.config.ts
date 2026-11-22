@@ -2,6 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  outputFileTracingExcludes: {
+    '*': [
+      './EKORA BAZAAR CATALOGUES/**/*',
+      './docs/**/*',
+      './scripts/**/*',
+      './tests/**/*',
+      './**/*.pdf',
+      './**/*.csv',
+    ],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

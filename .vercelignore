@@ -1,0 +1,14 @@
+# Vercel Function & Deployment Storage Optimization
+# Exclude heavy binaries, documentation, tests, and static catalogues from serverless bundle uploads
+
+EKORA BAZAAR CATALOGUES/
+*.pdf
+*.csv
+docs/
+tests/
+scripts/
+.agents/
+.gemini/
+mcp/
+*.tsbuildinfo
+*.log

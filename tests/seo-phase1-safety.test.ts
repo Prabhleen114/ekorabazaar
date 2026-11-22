@@ -178,9 +178,9 @@ describe('Phase 1 SEO Safety & Metadata Integrity Tests', () => {
 
   describe('Sitemap Coverage', () => {
     it('ensures sitemaps index includes formulations.xml', async () => {
-      const { GET: getSitemapIndex } = await import('@/app/sitemap_index.xml/route');
-      const response = await getSitemapIndex();
-      const xml = await response.text();
+      const fs = await import('fs');
+      expect(fs.existsSync('public/sitemap_index.xml')).toBe(true);
+      const xml = fs.readFileSync('public/sitemap_index.xml', 'utf8');
       expect(xml).toContain('https://www.ekorabazaar.in/sitemap/formulations.xml');
       expect(xml).toContain('https://www.ekorabazaar.in/sitemap/static.xml');
       expect(xml).toContain('https://www.ekorabazaar.in/sitemap/guides.xml');

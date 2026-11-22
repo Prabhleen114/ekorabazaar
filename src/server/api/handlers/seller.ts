@@ -15,6 +15,7 @@ import { supabaseServer, isSupabaseConfigured } from '@/lib/supabase';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { roundPrice, roundTiersWithDiscountPriority } from '@/lib/pricing-rounding';
+import { normalizeProductBasePriceToINR } from '@/lib/pricing';
 import { RouteContext, handleAuthError } from '../types';
 
 const SELLER_ONBOARDING_FEE = parseInt(process.env.SELLER_ONBOARDING_FEE || '49900', 10);
@@ -174,25 +175,24 @@ export async function handlePostSellerProduct(req: NextRequest) {
       );
     }
 
-    const rawPricePaise = parseInt(price, 10);
-    const priceRupees = rawPricePaise / 100;
+    const priceRupees = Number(price);
     const roundedPriceRupees = roundPrice(priceRupees);
-    const finalPricePaise = Math.round(roundedPriceRupees * 100);
+    const finalPriceRupees = Math.round(roundedPriceRupees);
 
     let finalTiers = wholesaleTiers || null;
     if (Array.isArray(wholesaleTiers) && wholesaleTiers.length > 0) {
       const tiersInRupees = wholesaleTiers.map((t: any) => ({
         ...t,
-        price: typeof t.price === 'number' ? t.price / 100 : t.price,
+        price: typeof t.price === 'number' ? t.price : Number(t.price) || 0,
       }));
       const roundedTiersResult = roundTiersWithDiscountPriority(
-        roundedPriceRupees,
+        finalPriceRupees,
         priceRupees,
         tiersInRupees
       );
       finalTiers = roundedTiersResult.tiers.map((t: any) => ({
         ...t,
-        price: typeof t.price === 'number' ? Math.round(t.price * 100) : t.price,
+        price: typeof t.price === 'number' ? Math.round(t.price) : t.price,
       }));
     }
 
@@ -201,7 +201,7 @@ export async function handlePostSellerProduct(req: NextRequest) {
         title: title.trim(),
         description: description?.trim() || null,
         category: category?.trim() || null,
-        price: finalPricePaise,
+        price: finalPriceRupees,
         stock: stock !== undefined ? parseInt(stock, 10) : 0,
         moq: moq !== undefined ? parseInt(moq, 10) : 1,
         imageUrl: imageUrl || null,
@@ -299,17 +299,18 @@ export async function handlePatchSellerProductById(req: NextRequest, { params }:
 
     let roundedNewPrice = undefined;
     if (price !== undefined) {
-      const rawPricePaise = parseInt(price, 10);
-      const priceRupees = rawPricePaise / 100;
-      const roundedPriceRupees = roundPrice(priceRupees);
-      roundedNewPrice = Math.round(roundedPriceRupees * 100);
+      const priceRupees = Number(price);
+      if (!isNaN(priceRupees) && priceRupees > 0) {
+        const roundedPriceRupees = roundPrice(priceRupees);
+        roundedNewPrice = Math.round(roundedPriceRupees);
+      }
     }
 
     if (wholesaleTiers !== undefined && Array.isArray(wholesaleTiers)) {
-      const currentPriceRupees = (roundedNewPrice ?? product.price) / 100;
+      const currentPriceRupees = roundedNewPrice ?? normalizeProductBasePriceToINR(product);
       const tiersInRupees = wholesaleTiers.map((t: any) => ({
         ...t,
-        price: typeof t.price === 'number' ? t.price / 100 : t.price,
+        price: typeof t.price === 'number' ? t.price : Number(t.price) || 0,
       }));
       const roundedTiersResult = roundTiersWithDiscountPriority(
         currentPriceRupees,
@@ -318,7 +319,7 @@ export async function handlePatchSellerProductById(req: NextRequest, { params }:
       );
       updateData.wholesaleTiers = roundedTiersResult.tiers.map((t: any) => ({
         ...t,
-        price: typeof t.price === 'number' ? Math.round(t.price * 100) : t.price,
+        price: typeof t.price === 'number' ? Math.round(t.price) : t.price,
       }));
     }
 

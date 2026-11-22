@@ -373,4 +373,214 @@ describe('Product Pricing Consistency Suite', () => {
       expect(calculateItemPrice(officialSoyWax854, 52)).toBe(323);
     });
   });
+
+  describe('Live Screenshot Reported Products Exact Reproduction & Safeguard Suite', () => {
+    // 1. Goat Milk Soap Base (Product 2406 / CATALOG: 22500 paise = ₹225)
+    const goatMilkSoapBase = {
+      id: '2406',
+      title: 'GOAT MILK SOAP BASE',
+      source: 'CATALOG',
+      price: 22500,
+      customerPrice: 22500,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 24, price: 225, discountPct: 0 },
+        { minQty: 25, maxQty: 49, price: 210, discountPct: 6.7 },
+        { minQty: 50, maxQty: null, price: 195, discountPct: 13.3 },
+      ],
+    };
+
+    // 2. Aloe Vera Soap Base (Product 2410 / CATALOG: 24000 paise = ₹240)
+    const aloeVeraSoapBase = {
+      id: '2410',
+      title: 'ALOE VERA SOAP BASE',
+      source: 'CATALOG',
+      price: 24000,
+      customerPrice: 24000,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 24, price: 240, discountPct: 0 },
+        { minQty: 25, maxQty: null, price: 220, discountPct: 8.3 },
+      ],
+    };
+
+    // 3. Charcoal Soap Base (Product 2409 / CATALOG: 24000 paise = ₹240)
+    const charcoalSoapBase = {
+      id: '2409',
+      title: 'CHARCOAL SOAP BASE',
+      source: 'CATALOG',
+      price: 24000,
+      customerPrice: 24000,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 24, price: 240, discountPct: 0 },
+        { minQty: 25, maxQty: null, price: 220, discountPct: 8.3 },
+      ],
+    };
+
+    // 4. Tuberose Fragrance Oil (Product 575 / CATALOG: 11000 paise = ₹110)
+    const tuberoseFragranceOil = {
+      id: '575',
+      title: 'Tuberose Fragrance Oil',
+      source: 'CATALOG',
+      price: 11000,
+      customerPrice: 11000,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 9, price: 11000, discountPct: 0 },
+        { minQty: 10, maxQty: 49, price: 10400, discountPct: 5.5 },
+      ],
+    };
+
+    // 5. Triple Butter Soap Base (Product 2414 / CATALOG: 34600 paise or ₹346)
+    const tripleButterSoapBase = {
+      id: '2414',
+      title: 'TRIPLE BUTTER SOAP BASE',
+      source: 'CATALOG',
+      price: 34600,
+      customerPrice: 34600,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 24, price: 346, discountPct: 0 },
+        { minQty: 25, maxQty: null, price: 320, discountPct: 7.5 },
+      ],
+    };
+
+    // 6. Honey And Milk Fragrance Oil (Product 572 / CATALOG: 11000 paise = ₹110)
+    const honeyAndMilkFragranceOil = {
+      id: '572',
+      title: 'Honey And Milk Fragrance Oil',
+      source: 'CATALOG',
+      price: 11000,
+      customerPrice: 11000,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 9, price: 110, discountPct: 0 },
+      ],
+    };
+
+    // 7. Saffron Cedar Fragrance Oil (Product 578 / CATALOG: 11000 paise = ₹110)
+    const saffronCedarFragranceOil = {
+      id: '578',
+      title: 'Saffron Cedar Fragrance Oil',
+      source: 'CATALOG',
+      price: 11000,
+      customerPrice: 11000,
+      wholesaleTiers: [],
+    };
+
+    // 8. Gili Mitti Fragrance Oil (Product 582 / CATALOG: 13000 paise = ₹130)
+    const giliMittiFragranceOil = {
+      id: '582',
+      title: 'Gili Mitti Fragrance Oil',
+      source: 'CATALOG',
+      price: 13000,
+      customerPrice: 13000,
+      wholesaleTiers: [],
+    };
+
+    // 9. Masala Chai Fragrance Oil (Product 585 / CATALOG: 11000 paise = ₹110)
+    const masalaChaiFragranceOil = {
+      id: '585',
+      title: 'Masala Chai Fragrance Oil',
+      source: 'CATALOG',
+      price: 11000,
+      customerPrice: 11000,
+      wholesaleTiers: [],
+    };
+
+    // 10. Soy Pillar Blended Wax (Product 859 / EKORA_OFFICIAL: 33500 paise = ₹335)
+    const soyPillarBlendedWax = {
+      id: '859',
+      title: 'Soy Pillar Blended Wax',
+      source: 'EKORA_OFFICIAL',
+      price: 33500,
+      customerPrice: 33500,
+      wholesaleTiers: [
+        { minQty: 1, maxQty: 4, price: 33500, discountPct: 0 },
+        { minQty: 5, maxQty: 19, price: 33500, discountPct: 0 },
+        { minQty: 20, maxQty: null, price: 31000, discountPct: 7.5 },
+      ],
+    };
+
+    // 11. Low cost item (₹60 item)
+    const lowCostItem60 = {
+      id: '3001',
+      title: 'Small Measuring Spoon Set',
+      source: 'SCRAPER',
+      price: 60,
+      customerPrice: 60,
+      wholesaleTiers: [],
+    };
+
+    it('reproduces and prevents Goat Milk Soap Base ₹2.25 bug -> verifies ₹225', () => {
+      expect(normalizeProductBasePriceToINR(goatMilkSoapBase)).toBe(225);
+      expect(calculateItemPrice(goatMilkSoapBase, 1)).toBe(225);
+      expect(inrToPaise(calculateItemPrice(goatMilkSoapBase, 1))).toBe(22500);
+      expect(calculateItemPrice(goatMilkSoapBase, 1)).not.toBe(2.25);
+    });
+
+    it('reproduces and prevents Aloe Vera Soap Base ₹2.40 bug -> verifies ₹240', () => {
+      expect(normalizeProductBasePriceToINR(aloeVeraSoapBase)).toBe(240);
+      expect(calculateItemPrice(aloeVeraSoapBase, 1)).toBe(240);
+      expect(inrToPaise(calculateItemPrice(aloeVeraSoapBase, 1))).toBe(24000);
+      expect(calculateItemPrice(aloeVeraSoapBase, 1)).not.toBe(2.40);
+    });
+
+    it('reproduces and prevents Charcoal Soap Base ₹2.40 bug -> verifies ₹240', () => {
+      expect(normalizeProductBasePriceToINR(charcoalSoapBase)).toBe(240);
+      expect(calculateItemPrice(charcoalSoapBase, 1)).toBe(240);
+      expect(inrToPaise(calculateItemPrice(charcoalSoapBase, 1))).toBe(24000);
+      expect(calculateItemPrice(charcoalSoapBase, 1)).not.toBe(2.40);
+    });
+
+    it('reproduces and prevents Tuberose Fragrance Oil ₹1.10 bug -> verifies ₹110', () => {
+      expect(normalizeProductBasePriceToINR(tuberoseFragranceOil)).toBe(110);
+      expect(calculateItemPrice(tuberoseFragranceOil, 1)).toBe(110);
+      expect(inrToPaise(calculateItemPrice(tuberoseFragranceOil, 1))).toBe(11000);
+      expect(calculateItemPrice(tuberoseFragranceOil, 1)).not.toBe(1.10);
+    });
+
+    it('reproduces and prevents Triple Butter Soap Base ₹3.46 bug -> verifies ₹346', () => {
+      expect(normalizeProductBasePriceToINR(tripleButterSoapBase)).toBe(346);
+      expect(calculateItemPrice(tripleButterSoapBase, 1)).toBe(346);
+      expect(inrToPaise(calculateItemPrice(tripleButterSoapBase, 1))).toBe(34600);
+      expect(calculateItemPrice(tripleButterSoapBase, 1)).not.toBe(3.46);
+    });
+
+    it('reproduces and prevents Honey & Milk Fragrance Oil ₹1.10 bug -> verifies ₹110', () => {
+      expect(normalizeProductBasePriceToINR(honeyAndMilkFragranceOil)).toBe(110);
+      expect(calculateItemPrice(honeyAndMilkFragranceOil, 1)).toBe(110);
+      expect(inrToPaise(calculateItemPrice(honeyAndMilkFragranceOil, 1))).toBe(11000);
+      expect(calculateItemPrice(honeyAndMilkFragranceOil, 1)).not.toBe(1.10);
+    });
+
+    it('reproduces and prevents Saffron Cedar Fragrance Oil ₹1.10 bug -> verifies ₹110', () => {
+      expect(normalizeProductBasePriceToINR(saffronCedarFragranceOil)).toBe(110);
+      expect(calculateItemPrice(saffronCedarFragranceOil, 1)).toBe(110);
+      expect(inrToPaise(calculateItemPrice(saffronCedarFragranceOil, 1))).toBe(11000);
+      expect(calculateItemPrice(saffronCedarFragranceOil, 1)).not.toBe(1.10);
+    });
+
+    it('reproduces and prevents Gili Mitti Fragrance Oil ₹1.30 bug -> verifies ₹130', () => {
+      expect(normalizeProductBasePriceToINR(giliMittiFragranceOil)).toBe(130);
+      expect(calculateItemPrice(giliMittiFragranceOil, 1)).toBe(130);
+      expect(inrToPaise(calculateItemPrice(giliMittiFragranceOil, 1))).toBe(13000);
+      expect(calculateItemPrice(giliMittiFragranceOil, 1)).not.toBe(1.30);
+    });
+
+    it('reproduces and prevents Masala Chai Fragrance Oil ₹1.10 bug -> verifies ₹110', () => {
+      expect(normalizeProductBasePriceToINR(masalaChaiFragranceOil)).toBe(110);
+      expect(calculateItemPrice(masalaChaiFragranceOil, 1)).toBe(110);
+      expect(inrToPaise(calculateItemPrice(masalaChaiFragranceOil, 1))).toBe(11000);
+      expect(calculateItemPrice(masalaChaiFragranceOil, 1)).not.toBe(1.10);
+    });
+
+    it('reproduces and prevents Soy Pillar Blended Wax ₹16.75 for 5 units -> verifies ₹335/unit and ₹1,675 total', () => {
+      const unitPrice = calculateItemPrice(soyPillarBlendedWax, 5);
+      expect(unitPrice).toBe(335); // ₹335, NEVER ₹3.35
+      expect(unitPrice * 5).toBe(1675); // ₹1,675, NEVER ₹16.75
+      expect(inrToPaise(unitPrice * 5)).toBe(167500); // 167,500 paise, NEVER 1675 paise
+    });
+
+    it('verifies low cost ₹60 item normalizes to ₹60 (never ₹0.60)', () => {
+      expect(normalizeProductBasePriceToINR(lowCostItem60)).toBe(60);
+      expect(calculateItemPrice(lowCostItem60, 1)).toBe(60);
+      expect(inrToPaise(calculateItemPrice(lowCostItem60, 1))).toBe(6000);
+    });
+  });
 });

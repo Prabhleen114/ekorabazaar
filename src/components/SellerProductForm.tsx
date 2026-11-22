@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import ProductImageClient from '@/components/ProductImageClient'
 import { ALL_CATEGORIES } from '@/lib/categories'
 import { X, Upload, Plus, Trash2 } from 'lucide-react'
-import { normalizeTierPriceToRupees } from '@/lib/pricing'
+import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR } from '@/lib/pricing'
 
 export default function SellerProductForm({ initialData = null }: { initialData?: any }) {
   const router = useRouter()
@@ -14,7 +14,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
   const [title, setTitle] = useState(initialData?.title || '')
   const [description, setDescription] = useState(initialData?.description || '')
   const [category, setCategory] = useState(initialData?.category || ALL_CATEGORIES[0].id)
-  const [price, setPrice] = useState(initialData ? (initialData.price / 100).toString() : '')
+  const [price, setPrice] = useState(initialData ? normalizeProductBasePriceToINR(initialData).toString() : '')
   const [stock, setStock] = useState(initialData?.stock?.toString() || '0')
   const [moq, setMoq] = useState(initialData?.moq?.toString() || '1')
 
@@ -112,7 +112,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
         .map(t => ({
           minQty: parseInt(t.minQty, 10) || 1,
           maxQty: t.maxQty ? parseInt(t.maxQty, 10) : null,
-          price: Math.round((parseFloat(t.price) || 0) * 100),
+          price: parseFloat(t.price) || 0,
           discountPct: parseFloat(t.discountPct) || 0
         }))
 
@@ -123,7 +123,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           title,
           description,
           category,
-          price: Math.round(parsedPrice * 100),
+          price: parsedPrice,
           stock: parseInt(stock, 10),
           moq: parseInt(moq, 10),
           imageUrl,

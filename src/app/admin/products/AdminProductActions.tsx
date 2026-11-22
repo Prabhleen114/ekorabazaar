@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { normalizeProductBasePriceToINR } from '@/lib/pricing'
 
 export default function AdminProductActions({ product }: { product: any }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [customerPrice, setCustomerPrice] = useState((product.price / 100).toFixed(2))
+  const initialINR = normalizeProductBasePriceToINR(product)
+  const [customerPrice, setCustomerPrice] = useState(initialINR > 0 ? initialINR.toFixed(2) : '')
 
   const handleApprove = async () => {
     if (!confirm(`Approve product and publish at ₹${customerPrice}?`)) return
@@ -16,7 +18,7 @@ export default function AdminProductActions({ product }: { product: any }) {
       const res = await fetch(`/api/admin/products/${product.id}/approve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ customerPrice: Math.round(parseFloat(customerPrice) * 100) })
+        body: JSON.stringify({ customerPrice: parseFloat(customerPrice) })
       })
       const data = await res.json()
       if (!data.success) {

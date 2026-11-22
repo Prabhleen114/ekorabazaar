@@ -7,12 +7,18 @@ export const TEMP_FLAT_SHIPPING_CHARGE = 90;
  * into a single canonical base price in Indian Rupees (INR).
  *
  * Enforces the system-wide INR pricing convention:
- * - Scraper/Admin DB products (stored in Rupees, e.g. 49, 91, 20, 240) -> returns 49, 91, 20, 240
- * - Catalog/Official/Seller DB products (stored in Paise, e.g. 24000, 6000, 5520) -> returns 240, 60, 55.2
+ * - Scraper/Admin/Seller DB products (stored in Rupees, e.g. 49, 91, 20, 240, 358) -> returns 49, 91, 20, 240, 358
+ * - Catalog/Official DB products (stored in Paise, e.g. 24000, 6000, 33500) -> returns 240, 60, 335
  * - Static JSON catalog products (stored in Rupees, e.g. 45, 195, 20) -> returns 45, 195, 20
  */
 export function normalizeProductBasePriceToINR(product: any): number {
   if (!product) return 0;
+
+  // If already flagged or normalized to INR, never convert again
+  if (product._isINR || product.currency === "INR") {
+    const val = Number(product.customerPrice ?? product.price ?? 0);
+    return isNaN(val) || val <= 0 ? 0 : val;
+  }
 
   let raw = 0;
   if (product.customerPrice !== null && product.customerPrice !== undefined && Number(product.customerPrice) > 0) {
@@ -33,14 +39,14 @@ export function normalizeProductBasePriceToINR(product: any): number {
   if (Array.isArray(rawTiers) && rawTiers.length > 0) {
     const firstTierPrice = Number(rawTiers[0]?.price ?? rawTiers[0]?.priceINR);
     if (!isNaN(firstTierPrice) && firstTierPrice > 0) {
-      // If raw is 50x+ the first tier, raw was stored in paise scale (e.g. 65000 paise vs ₹650 tier)
+      // If raw is 50x+ the first tier, raw was stored in paise scale (e.g. 65000 paise vs ₹650 tier, or 22500 paise vs ₹225 tier)
       if (raw >= firstTierPrice * 50) {
         return raw / 100;
       }
-      // If raw matches the first tier within normal discount/margin range (<= 2.5x)
-      if (raw <= firstTierPrice * 2.5) {
+      // If raw matches the first tier within normal discount/margin range (<= 1.5x)
+      if (raw <= firstTierPrice * 1.5) {
         // CATALOG and EKORA_OFFICIAL tables store paise (e.g. 28000 paise base and 28000 paise tier)
-        if ((product.source === "CATALOG" || product.source === "EKORA_OFFICIAL") && raw >= 1000) {
+        if (product.source === "CATALOG" || product.source === "EKORA_OFFICIAL") {
           return raw / 100;
         }
         // SELLER, SCRAPER, ADMIN, and static catalog JSON store Rupees (e.g. 358 rupees base and 358 rupees tier)
@@ -51,8 +57,8 @@ export function normalizeProductBasePriceToINR(product: any): number {
 
   // 3. Fallback source-specific defaults for products without tiers or with empty tiers:
   // - CATALOG & EKORA_OFFICIAL: DB tables store paise (e.g. 24000 = ₹240, 28000 = ₹280)
-  if (product.source === "CATALOG" && raw >= 1000) return raw / 100;
-  if (product.source === "EKORA_OFFICIAL" && raw >= 1000) return raw / 100;
+  if (product.source === "CATALOG") return raw / 100;
+  if (product.source === "EKORA_OFFICIAL") return raw / 100;
 
   // - SELLER, SCRAPER, ADMIN, and static catalog JSON store Rupees (e.g. 358, 237, 49)
   return raw;
@@ -71,8 +77,8 @@ export function normalizeTierPriceToINR(rawTierPrice: number, basePriceINR: numb
     return rawTierPrice >= 1000 ? rawTierPrice / 100 : rawTierPrice;
   }
 
-  // If rawTierPrice > basePriceINR * 2.5, it was authored in paise scale (e.g. 14000 paise vs ₹240 base)
-  if (rawTierPrice > basePriceINR * 2.5) {
+  // If rawTierPrice > basePriceINR * 1.5, it was authored in paise scale (e.g. 14000 paise vs ₹240 base)
+  if (rawTierPrice > basePriceINR * 1.5) {
     return rawTierPrice / 100;
   }
   // Otherwise, it was authored in rupee scale (e.g. 140 rupees vs ₹240 base)
@@ -170,7 +176,7 @@ export function calculateItemPricePaise(product: any, quantity: number = 1): num
 
 /**
  * Converts Indian Rupees (INR) to Integer Paise.
- * Used strictly at the Razorpay payment gateway boundary.
+ * Used strictly at the Razorpay payment gateway boundary and DB order persistence.
  */
 export function inrToPaise(rupees: number): number {
   if (isNaN(rupees) || rupees <= 0) return 0;

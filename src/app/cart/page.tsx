@@ -366,7 +366,7 @@ export default function CartPage() {
         </div>
       </div>
 
-      <TrackViewCart items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
+      <TrackViewCart items={items} value={total + TEMP_FLAT_SHIPPING_CHARGE} />
 
       {/* Mandatory Milestone Progress Bar */}
       <TierProgressBar progress={quote?.progress} className="mb-4" />

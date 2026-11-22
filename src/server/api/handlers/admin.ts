@@ -974,8 +974,12 @@ export async function handlePostAdminProductApprove(req: NextRequest, { params }
       if (isNaN(customerPrice) || customerPrice <= 0) {
         return NextResponse.json({ error: 'Invalid customerPrice provided' }, { status: 400 });
       }
-      const custRupees = customerPrice / 100;
-      finalCustomerPrice = Math.round(roundPrice(custRupees) * 100);
+      // customerPrice input is in Indian Rupees (INR)
+      if (product.source === 'CATALOG' || product.source === 'EKORA_OFFICIAL') {
+        finalCustomerPrice = Math.round(customerPrice * 100);
+      } else {
+        finalCustomerPrice = Math.round(customerPrice);
+      }
     }
 
     const updatedProduct = await prisma.product.update({

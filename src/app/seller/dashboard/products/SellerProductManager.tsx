@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import ProductImageClient from "@/components/ProductImageClient"
+import { normalizeProductBasePriceToINR } from '@/lib/pricing'
 
 export default function SellerProductManager({ initialProducts }: { initialProducts: any[] }) {
   const products = initialProducts;
@@ -47,7 +48,7 @@ export default function SellerProductManager({ initialProducts }: { initialProdu
 
               <div className="flex items-center justify-between mb-4 text-sm mt-auto pt-3">
                 <span className="font-bold text-lg text-brand-charcoal">
-                  {product.price > 0 ? `₹${(product.price / 100).toFixed(2)}` : "Price on Request"}
+                  {product.price > 0 ? `₹${normalizeProductBasePriceToINR(product).toFixed(2)}` : "Price on Request"}
                 </span>
 
                 <div className={`flex items-center gap-1.5 font-medium text-xs ${product.stock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
