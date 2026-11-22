@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { openMiniCart } from "@/components/MiniCartDrawer";
 import { getGuestCart } from "@/lib/guest-cart";
@@ -389,37 +390,17 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
         <Link
           href="/"
           aria-label="Ekora Bazaar home"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "24px",
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            color: "#1A1613",
-          }}
+          className="inline-flex items-center group shrink-0 py-1"
         >
-          <span>Ekora</span>
-          <span
-            aria-hidden="true"
-            style={{
-              width: "28px",
-              height: "28px",
-              border: "1.5px solid #1A1613",
-              borderRadius: "50%",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "12px",
-              fontWeight: 700,
-            }}
-          >
-            B
-          </span>
-          <span>Bazaar</span>
+          <Image
+            src="/images/rectangle logo ekora bazaar.jpeg"
+            alt="Ekora Bazaar"
+            width={184}
+            height={38}
+            priority
+            className="object-contain mix-blend-multiply group-hover:opacity-90 transition-opacity h-8 sm:h-9 md:h-10 w-auto"
+            style={{ height: "38px", width: "auto" }}
+          />
         </Link>
 
         {/* Search bar */}
@@ -880,12 +861,12 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
               style={{ display: "block", height: "1.2em", overflow: "hidden", color: "#A8520F" }}
             >
               <span className="anim-words" style={{ display: "block" }}>
-                <span style={{ display: "block", height: "1.2em" }}>Candles</span>
-                <span style={{ display: "block", height: "1.2em" }}>Soaps</span>
-                <span style={{ display: "block", height: "1.2em" }}>Perfumes</span>
-                <span style={{ display: "block", height: "1.2em" }}>Resin art</span>
-                <span style={{ display: "block", height: "1.2em" }}>Chocolates</span>
-                <span style={{ display: "block", height: "1.2em" }}>Candles</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Candles</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Soaps</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Perfumes</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Resin art</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Chocolates</span>
+                <span style={{ display: "block", height: "1.2em", lineHeight: "1.2", whiteSpace: "nowrap" }}>Candles</span>
               </span>
             </span>
           </h1>

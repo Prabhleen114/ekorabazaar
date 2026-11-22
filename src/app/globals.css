@@ -242,11 +242,11 @@ html {
 /* Homepage Redesign Keyframe Animations */
 @keyframes words {
   0%, 16% { transform: translateY(0%); }
-  20%, 36% { transform: translateY(-20%); }
-  40%, 56% { transform: translateY(-40%); }
-  60%, 76% { transform: translateY(-60%); }
-  80%, 96% { transform: translateY(-80%); }
-  100% { transform: translateY(0%); }
+  20%, 36% { transform: translateY(-16.6667%); }
+  40%, 56% { transform: translateY(-33.3333%); }
+  60%, 76% { transform: translateY(-50%); }
+  80%, 96% { transform: translateY(-66.6667%); }
+  100% { transform: translateY(-83.3333%); }
 }
 
 @keyframes marquee {
@@ -271,6 +271,7 @@ html {
 
 .anim-words {
   animation: words 11s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  will-change: transform;
 }
 
 .anim-marquee {
