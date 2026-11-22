@@ -112,7 +112,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
         .map(t => ({
           minQty: parseInt(t.minQty, 10) || 1,
           maxQty: t.maxQty ? parseInt(t.maxQty, 10) : null,
-          price: parseFloat(t.price) || 0,
+          price: Math.round(parseFloat(t.price) || 0),
           discountPct: parseFloat(t.discountPct) || 0
         }))
 
@@ -123,7 +123,7 @@ export default function SellerProductForm({ initialData = null }: { initialData?
           title,
           description,
           category,
-          price: parsedPrice,
+          price: Math.round(parsedPrice),
           stock: parseInt(stock, 10),
           moq: parseInt(moq, 10),
           imageUrl,

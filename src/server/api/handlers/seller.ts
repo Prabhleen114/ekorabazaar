@@ -175,16 +175,31 @@ export async function handlePostSellerProduct(req: NextRequest) {
       );
     }
 
-    const priceRupees = Number(price);
-    const roundedPriceRupees = roundPrice(priceRupees);
-    const finalPriceRupees = Math.round(roundedPriceRupees);
+    // Parse incoming price and enforce integer Rupees in the database.
+    // Handles both integer Rupees (e.g. 358) and legacy paise payloads (e.g. 35800).
+    const rawPriceNum = typeof price === 'number' ? price : parseFloat(String(price));
+    let priceRupees: number;
+    if (body.isPaise || (rawPriceNum >= 1000 && Array.isArray(wholesaleTiers) && Number(wholesaleTiers[0]?.price) >= 1000)) {
+      priceRupees = rawPriceNum / 100;
+    } else if (rawPriceNum >= 10000) {
+      priceRupees = rawPriceNum / 100;
+    } else {
+      priceRupees = rawPriceNum;
+    }
+
+    const roundedPriceRupees = Math.round(roundPrice(priceRupees));
+    const finalPriceRupees = Math.max(1, roundedPriceRupees);
 
     let finalTiers = wholesaleTiers || null;
     if (Array.isArray(wholesaleTiers) && wholesaleTiers.length > 0) {
-      const tiersInRupees = wholesaleTiers.map((t: any) => ({
-        ...t,
-        price: typeof t.price === 'number' ? t.price : Number(t.price) || 0,
-      }));
+      const tiersInRupees = wholesaleTiers.map((t: any) => {
+        const tPrice = typeof t.price === 'number' ? t.price : parseFloat(String(t.price || 0));
+        const normalizedTierRupees = tPrice >= 1000 && rawPriceNum >= 1000 ? tPrice / 100 : tPrice;
+        return {
+          ...t,
+          price: normalizedTierRupees,
+        };
+      });
       const roundedTiersResult = roundTiersWithDiscountPriority(
         finalPriceRupees,
         priceRupees,
@@ -297,21 +312,32 @@ export async function handlePatchSellerProductById(req: NextRequest, { params }:
       updateData.rejectionReason = null;
     }
 
-    let roundedNewPrice = undefined;
+    let roundedNewPriceRupees = undefined;
     if (price !== undefined) {
-      const priceRupees = Number(price);
-      if (!isNaN(priceRupees) && priceRupees > 0) {
-        const roundedPriceRupees = roundPrice(priceRupees);
-        roundedNewPrice = Math.round(roundedPriceRupees);
+      const rawPriceNum = typeof price === 'number' ? price : parseFloat(String(price));
+      let priceRupees: number;
+      if (body.isPaise || (rawPriceNum >= 1000 && Array.isArray(wholesaleTiers) && Number(wholesaleTiers[0]?.price) >= 1000)) {
+        priceRupees = rawPriceNum / 100;
+      } else if (rawPriceNum >= 10000) {
+        priceRupees = rawPriceNum / 100;
+      } else {
+        priceRupees = rawPriceNum;
       }
+      roundedNewPriceRupees = Math.max(1, Math.round(roundPrice(priceRupees)));
     }
 
     if (wholesaleTiers !== undefined && Array.isArray(wholesaleTiers)) {
-      const currentPriceRupees = roundedNewPrice ?? normalizeProductBasePriceToINR(product);
-      const tiersInRupees = wholesaleTiers.map((t: any) => ({
-        ...t,
-        price: typeof t.price === 'number' ? t.price : Number(t.price) || 0,
-      }));
+      const currentPriceRupees = roundedNewPriceRupees ?? normalizeProductBasePriceToINR(product);
+      const tiersInRupees = wholesaleTiers.map((t: any) => {
+        const tPrice = typeof t.price === 'number' ? t.price : parseFloat(String(t.price || 0));
+        const normalizedTierRupees = tPrice >= 1000 && (price !== undefined ? parseFloat(String(price)) >= 1000 : product.price >= 1000)
+          ? tPrice / 100
+          : tPrice;
+        return {
+          ...t,
+          price: normalizedTierRupees,
+        };
+      });
       const roundedTiersResult = roundTiersWithDiscountPriority(
         currentPriceRupees,
         currentPriceRupees,
@@ -323,8 +349,8 @@ export async function handlePatchSellerProductById(req: NextRequest, { params }:
       }));
     }
 
-    if (roundedNewPrice !== undefined && roundedNewPrice !== product.price) {
-      const newPrice = roundedNewPrice;
+    if (roundedNewPriceRupees !== undefined && roundedNewPriceRupees !== product.price) {
+      const newPrice = roundedNewPriceRupees;
 
       if (product.status === ProductStatus.DRAFT || product.status === ProductStatus.REJECTED) {
         updateData.price = newPrice;

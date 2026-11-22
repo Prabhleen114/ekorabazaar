@@ -35,7 +35,26 @@ export async function exportCatalogJson(): Promise<number> {
 
   console.log(`[Export] Fetched ${dbProducts.length} published products. Formatting JSON...`);
 
+  // Load existing products.json to preserve curated studio photos and custom variants
+  const existingMap = new Map<string, any>();
+  if (fs.existsSync(PRODUCTS_JSON_PATH)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(PRODUCTS_JSON_PATH, 'utf-8'));
+      if (Array.isArray(existingData)) {
+        for (const item of existingData) {
+          if (item.id) existingMap.set(String(item.id), item);
+        }
+      }
+    } catch (e) {
+      console.warn('[Export] Note: Could not read existing products.json:', e);
+    }
+  }
+
+  const isCuratedStudioPhoto = (url?: string | null) =>
+    url && (url.startsWith('/images/products/') || url.startsWith('/images/custom/') || url.startsWith('/images/'));
+
   const formatted = dbProducts.map((p) => {
+    const existing = existingMap.get(String(p.id));
     const isOutOfStock = p.supplierAvailable === false || p.stock <= 0;
     const categoryName = p.category || 'General Silicone Moulds';
     const departmentName = getDepartmentForCategory(categoryName) || 'Precision Studio Moulds';
@@ -57,16 +76,25 @@ export async function exportCatalogJson(): Promise<number> {
 
     const bulkDiscountAvailable = !isOutOfStock && tiers.length > 1;
 
+    // Photo Protection: If existing catalog has a curated studio photo, preserve it
+    const finalImage = isCuratedStudioPhoto(existing?.image)
+      ? existing.image
+      : (p.imageUrl || existing?.image || '');
+
+    // Variant Protection: Preserve existing variant options
+    const variants = existing?.variants || undefined;
+
     return {
       id: p.id,
       name: p.title,
       category: categoryName,
-      description: p.description || '',
+      description: p.description || existing?.description || '',
       price: priceRupees,
       bulkDiscountAvailable,
       maxDiscount: bulkDiscountAvailable ? 10 : 0,
-      image: p.imageUrl || '',
+      image: finalImage,
       tiers,
+      ...(variants && variants.length > 0 ? { variants } : {}),
       tags: [
         categoryName.toLowerCase(),
         'wholesale',
