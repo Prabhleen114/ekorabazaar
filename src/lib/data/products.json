@@ -141064,7 +141064,7 @@
     "name": "Soy Wax White Chunk AA+",
     "category": "Candle Waxes & Additives",
     "description": "Soy Wax Pellets White Chunk AA is a natural candle making wax with clean burning performance, smooth melting, and excellent fragrance throw for handmade candles and wax melts.",
-    "price": 180,
+    "price": 209,
     "bulkDiscountAvailable": true,
     "maxDiscount": 10,
     "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
@@ -141072,20 +141072,20 @@
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 180,
+        "price": 209,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 165,
-        "discountPct": 8.3
+        "price": 195,
+        "discountPct": 6.7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 160,
-        "discountPct": 11.1
+        "price": 188,
+        "discountPct": 10
       }
     ],
     "tags": [
@@ -141118,50 +141118,122 @@
     "isQuoteOnly": false,
     "variants": [
       {
-        "size": "Little Soft Aa",
-        "price": 180,
+        "id": "862-450gm-regular",
+        "size": "450 GM / REGULAR AA+",
+        "price": 209,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 180,
+            "price": 209,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 165,
-            "discountPct": 8.3
+            "price": 195,
+            "discountPct": 6.7
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 160,
-            "discountPct": 11.1
+            "price": 188,
+            "discountPct": 10
           }
         ]
       },
       {
-        "size": "Regular Aa",
-        "price": 180,
+        "id": "862-450gm-little-soft",
+        "size": "450 GM / LITTLE SOFT AA+",
+        "price": 209,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 180,
+            "price": 209,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 165,
-            "discountPct": 8.3
+            "price": 195,
+            "discountPct": 6.7
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 160,
-            "discountPct": 11.1
+            "price": 188,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "862-1kg-regular",
+        "size": "1 KG / REGULAR AA+",
+        "price": 349,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 349,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 24,
+            "price": 343,
+            "discountPct": 1.7
+          },
+          {
+            "minQty": 25,
+            "maxQty": 99,
+            "price": 339,
+            "discountPct": 2.9
+          },
+          {
+            "minQty": 100,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 3.7
+          }
+        ]
+      },
+      {
+        "id": "862-1kg-little-soft",
+        "size": "1 KG / LITTLE SOFT AA+",
+        "price": 321,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 321,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 14,
+            "price": 315,
+            "discountPct": 1.9
+          },
+          {
+            "minQty": 15,
+            "maxQty": 99,
+            "price": 311,
+            "discountPct": 3.1
+          },
+          {
+            "minQty": 100,
+            "maxQty": null,
+            "price": 307,
+            "discountPct": 4.4
           }
         ]
       }
@@ -235591,73 +235663,145 @@
     ],
     "description": "Soy Wax Pellets White Chunk AA is a natural candle making wax with clean burning performance, smooth melting, and excellent fragrance throw for handmade candles and wax melts.",
     "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
-    "price": 180,
+    "price": 209,
     "tiers": [
       {
         "minQty": 1,
         "maxQty": 9,
-        "price": 180,
+        "price": 209,
         "discountPct": 0
       },
       {
         "minQty": 10,
         "maxQty": 49,
-        "price": 165,
-        "discountPct": 8.3
+        "price": 195,
+        "discountPct": 6.7
       },
       {
         "minQty": 50,
         "maxQty": null,
-        "price": 160,
-        "discountPct": 11.1
+        "price": 188,
+        "discountPct": 10
       }
     ],
     "variants": [
       {
-        "size": "Little Soft Aa",
-        "price": 180,
+        "id": "862-450gm-regular",
+        "size": "450 GM / REGULAR AA+",
+        "price": 209,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 180,
+            "price": 209,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 165,
-            "discountPct": 8.3
+            "price": 195,
+            "discountPct": 6.7
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 160,
-            "discountPct": 11.1
+            "price": 188,
+            "discountPct": 10
           }
         ]
       },
       {
-        "size": "Regular Aa",
-        "price": 180,
+        "id": "862-450gm-little-soft",
+        "size": "450 GM / LITTLE SOFT AA+",
+        "price": 209,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
         "tiers": [
           {
             "minQty": 1,
             "maxQty": 9,
-            "price": 180,
+            "price": 209,
             "discountPct": 0
           },
           {
             "minQty": 10,
             "maxQty": 49,
-            "price": 165,
-            "discountPct": 8.3
+            "price": 195,
+            "discountPct": 6.7
           },
           {
             "minQty": 50,
             "maxQty": null,
-            "price": 160,
-            "discountPct": 11.1
+            "price": 188,
+            "discountPct": 10
+          }
+        ]
+      },
+      {
+        "id": "862-1kg-regular",
+        "size": "1 KG / REGULAR AA+",
+        "price": 349,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 9,
+            "price": 349,
+            "discountPct": 0
+          },
+          {
+            "minQty": 10,
+            "maxQty": 24,
+            "price": 343,
+            "discountPct": 1.7
+          },
+          {
+            "minQty": 25,
+            "maxQty": 99,
+            "price": 339,
+            "discountPct": 2.9
+          },
+          {
+            "minQty": 100,
+            "maxQty": null,
+            "price": 336,
+            "discountPct": 3.7
+          }
+        ]
+      },
+      {
+        "id": "862-1kg-little-soft",
+        "size": "1 KG / LITTLE SOFT AA+",
+        "price": 321,
+        "inStock": true,
+        "image": "/images/products/waxes/soy-wax-white-chunk-aa.jpg",
+        "tiers": [
+          {
+            "minQty": 1,
+            "maxQty": 4,
+            "price": 321,
+            "discountPct": 0
+          },
+          {
+            "minQty": 5,
+            "maxQty": 14,
+            "price": 315,
+            "discountPct": 1.9
+          },
+          {
+            "minQty": 15,
+            "maxQty": 99,
+            "price": 311,
+            "discountPct": 3.1
+          },
+          {
+            "minQty": 100,
+            "maxQty": null,
+            "price": 307,
+            "discountPct": 4.4
           }
         ]
       }
