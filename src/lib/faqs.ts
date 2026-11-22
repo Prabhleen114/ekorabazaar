@@ -20,7 +20,7 @@ export const HOMEPAGE_FAQS: FaqItem[] = [
   {
     question: "Does Ekora Bazaar offer returns on wholesale/raw-material orders?",
     answer:
-      "To preserve batch purity and prevent contamination, standard wholesale and chemical/raw-material orders do not support returns or exchanges. Buyers can review technical data sheets (TDS), certificates of analysis (COA), and sample sizes before ordering volume slabs. Transit damage or leakages reported with continuous unboxing video within 24 hours are replaced promptly.",
+      "To preserve batch purity and prevent contamination, standard wholesale and chemical/raw-material orders do not support returns or exchanges. Buyers can review technical data sheets (TDS), certificates of analysis (COA), and sample sizes before ordering volume slabs. Transit damage or leakages reported with continuous unboxing video within 48 hours of delivery are replaced promptly.",
     tag: "Commercial Policy"
   },
   {

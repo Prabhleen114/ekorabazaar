@@ -17,12 +17,12 @@ export const metadata = {
   title: "Free Formulations",
   description: "Explore our collection of free cosmetic, skincare, and candle making formulations. High-quality recipes crafted by experts.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/formulations",
+    canonical: "https://ekorabazaar.in/formulations",
   },
   openGraph: {
     title: "Free Formulations",
     description: "Explore our collection of free cosmetic, skincare, and candle making formulations. High-quality recipes crafted by experts.",
-    url: "https://www.ekorabazaar.in/formulations",
+    url: "https://ekorabazaar.in/formulations",
     type: "website",
   },
 };
@@ -42,8 +42,8 @@ export default function FormulationsPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ekorabazaar.in" },
-      { "@type": "ListItem", "position": 2, "name": "Formulations", "item": "https://www.ekorabazaar.in/formulations" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ekorabazaar.in" },
+      { "@type": "ListItem", "position": 2, "name": "Formulations", "item": "https://ekorabazaar.in/formulations" }
     ]
   };
 
@@ -52,14 +52,14 @@ export default function FormulationsPage() {
     "@type": "CollectionPage",
     "name": "Ekora Maker Formulations Library",
     "description": "Lab-tested cosmetic, skincare, and candle formulation recipes for Indian makers and studios.",
-    "url": "https://www.ekorabazaar.in/formulations",
+    "url": "https://ekorabazaar.in/formulations",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": formulations.map((f, idx) => ({
         "@type": "ListItem",
         "position": idx + 1,
         "name": f.title,
-        "url": `https://www.ekorabazaar.in/formulations/${f.slug}`
+        "url": `https://ekorabazaar.in/formulations/${f.slug}`
       }))
     }
   };

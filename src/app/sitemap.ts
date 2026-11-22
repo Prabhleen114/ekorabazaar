@@ -5,7 +5,7 @@ import { ALL_CATEGORIES } from '@/lib/categories';
 import catalogProducts from '@/lib/data/products.json';
 import { isDeprecatedProductId } from '@/lib/product-redirects';
 
-const BASE_URL = 'https://www.ekorabazaar.in';
+const BASE_URL = 'https://ekorabazaar.in';
 
 
 
@@ -79,6 +79,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       { path: '/sell/why-ekora', priority: 0.7, changeFrequency: 'weekly' },
       { path: '/sell/platform', priority: 0.7, changeFrequency: 'weekly' },
       { path: '/sell/faq', priority: 0.6, changeFrequency: 'monthly' },
+      { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
       { path: '/creator-guidelines', priority: 0.5, changeFrequency: 'monthly' },
       { path: '/shipping-policy', priority: 0.5, changeFrequency: 'monthly' },
       { path: '/privacy', priority: 0.3, changeFrequency: 'monthly' },

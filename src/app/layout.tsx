@@ -19,8 +19,8 @@ const playfairDisplaySC = Playfair_Display_SC({
   weight: ["400", "700"],
   display: "swap",
 });
-const BASE_URL = "https://www.ekorabazaar.in";
-const OG_IMAGE = "https://www.ekorabazaar.in/og-image.jpg";
+const BASE_URL = "https://ekorabazaar.in";
+const OG_IMAGE = "https://ekorabazaar.in/og-image.jpg";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -127,17 +127,17 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.ekorabazaar.in/#organization",
+        "@id": "https://ekorabazaar.in/#organization",
         name: "Ekora Bazaar",
         legalName: "Ekora Bazaar Pvt Ltd",
-        url: "https://www.ekorabazaar.in",
+        url: "https://ekorabazaar.in",
         logo: {
           "@type": "ImageObject",
-          "@id": "https://www.ekorabazaar.in/#logo",
-          url: "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
+          "@id": "https://ekorabazaar.in/#logo",
+          url: "https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
           caption: "Ekora Bazaar",
         },
-        image: "https://www.ekorabazaar.in/og-image.jpg",
+        image: "https://ekorabazaar.in/og-image.jpg",
         description:
           "India's premier creator commerce platform and wholesale raw materials sourcing hub for independent artisans and makers.",
         foundingDate: "2026",
@@ -171,20 +171,20 @@ export default function RootLayout({
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.ekorabazaar.in/#website",
+        "@id": "https://ekorabazaar.in/#website",
         name: "Ekora Bazaar",
-        url: "https://www.ekorabazaar.in",
+        url: "https://ekorabazaar.in",
         description:
           "B2B raw materials, creator storefronts, and craft supplies wholesale marketplace in India.",
         publisher: {
-          "@id": "https://www.ekorabazaar.in/#organization",
+          "@id": "https://ekorabazaar.in/#organization",
         },
         inLanguage: "en-IN",
         potentialAction: {
           "@type": "SearchAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: "https://www.ekorabazaar.in/shop?q={search_term_string}",
+            urlTemplate: "https://ekorabazaar.in/shop?q={search_term_string}",
           },
           "query-input": "required name=search_term_string",
         },

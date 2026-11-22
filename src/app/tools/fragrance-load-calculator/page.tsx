@@ -8,7 +8,7 @@ import { generateFaqSchema } from "@/lib/seo";
 import Link from "next/link";
 import { Calculator, ArrowRight, ShieldCheck, HelpCircle } from "lucide-react";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://ekorabazaar.in";
 
 export const metadata: Metadata = {
   title: "Candle Fragrance Load Calculator | Formula & Ratios for Indian Makers",

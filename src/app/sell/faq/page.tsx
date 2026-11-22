@@ -19,20 +19,20 @@ export const metadata: Metadata = {
     "Ekora creator marketplace help",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/sell/faq",
+    canonical: "https://ekorabazaar.in/sell/faq",
   },
   openGraph: {
     title: "Frequently Asked Questions — Sell on Ekora",
     description:
       "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, and wholesale pricing.",
-    url: "https://www.ekorabazaar.in/sell/faq",
+    url: "https://ekorabazaar.in/sell/faq",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
       images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Frequently Asked Questions — Sell on Ekora",
     description:
       "Everything you need to know about selling on Ekora, our creator marketplace, instant storefronts, and wholesale pricing.",
-      images: ["https://www.ekorabazaar.in/og-image.jpg"],
+      images: ["https://ekorabazaar.in/og-image.jpg"],
   },
 };
 
@@ -71,19 +71,19 @@ export default function FAQPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Sell on Ekora",
-        item: "https://www.ekorabazaar.in/sell",
+        item: "https://ekorabazaar.in/sell",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "FAQ",
-        item: "https://www.ekorabazaar.in/sell/faq",
+        item: "https://ekorabazaar.in/sell/faq",
       },
     ],
   };

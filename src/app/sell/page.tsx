@@ -26,20 +26,20 @@ export const metadata: Metadata = {
     "Ekora seller application",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/sell",
+    canonical: "https://ekorabazaar.in/sell",
   },
   openGraph: {
     title: "Sell on Ekora — India's Premier Creator Commerce Platform",
     description:
       "Turn your Instagram followers into buyers with zero hassle. Join verified creators selling on Ekora.",
-    url: "https://www.ekorabazaar.in/sell",
+    url: "https://ekorabazaar.in/sell",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
       images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Sell on Ekora — India's Premier Creator Commerce Platform",
     description:
       "Turn your Instagram followers into buyers with zero hassle. Join verified creators selling on Ekora.",
-      images: ["https://www.ekorabazaar.in/og-image.jpg"],
+      images: ["https://ekorabazaar.in/og-image.jpg"],
   },
 };
 
@@ -67,13 +67,13 @@ export default function Home() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Sell on Ekora",
-        item: "https://www.ekorabazaar.in/sell",
+        item: "https://ekorabazaar.in/sell",
       },
     ],
   };

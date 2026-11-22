@@ -11,20 +11,20 @@ export const metadata: Metadata = {
     "wholesale creator storefront",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/sell/platform",
+    canonical: "https://ekorabazaar.in/sell/platform",
   },
   openGraph: {
     title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
     description:
       "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows.",
-    url: "https://www.ekorabazaar.in/sell/platform",
+    url: "https://ekorabazaar.in/sell/platform",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
       images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Creator Platform — Interactive Storefront & Wholesale Flow | Ekora",
     description:
       "Explore the Ekora creator platform — trust signals, automated Instagram sync, sample kits, and wholesale-ready flows.",
-      images: ["https://www.ekorabazaar.in/og-image.jpg"],
+      images: ["https://ekorabazaar.in/og-image.jpg"],
   },
 };
 
@@ -54,19 +54,19 @@ export default function PlatformLayout({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Sell on Ekora",
-        item: "https://www.ekorabazaar.in/sell",
+        item: "https://ekorabazaar.in/sell",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Platform",
-        item: "https://www.ekorabazaar.in/sell/platform",
+        item: "https://ekorabazaar.in/sell/platform",
       },
     ],
   };

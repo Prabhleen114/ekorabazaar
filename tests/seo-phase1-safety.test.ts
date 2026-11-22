@@ -123,7 +123,7 @@ describe('Phase 1 SEO Safety & Metadata Integrity Tests', () => {
 
   describe('Canonical URL Integrity', () => {
     it('ensures formulations index page specifies its own canonical URL', () => {
-      expect(formulationsMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/formulations');
+      expect(formulationsMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/formulations');
     });
 
     it('ensures formulation detail pages generate their own canonical URL and article schema', async () => {
@@ -131,24 +131,24 @@ describe('Phase 1 SEO Safety & Metadata Integrity Tests', () => {
         params: Promise.resolve({ slug: 'tranexamic-acid-serum-spot-correcting-serum' }),
       });
       expect(meta.alternates?.canonical).toBe(
-        'https://www.ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum'
+        'https://ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum'
       );
       expect(meta.openGraph?.url).toBe(
-        'https://www.ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum'
+        'https://ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum'
       );
     });
 
     it('ensures public static routes specify their canonical URLs', () => {
-      expect(contactMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/contact');
-      expect(shippingPolicyMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/shipping-policy');
-      expect(privacyMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/privacy');
-      expect(refundMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/refund-policy');
-      expect(termsMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/terms');
-      expect(guidesMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/guides');
+      expect(contactMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/contact');
+      expect(shippingPolicyMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/shipping-policy');
+      expect(privacyMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/privacy');
+      expect(refundMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/refund-policy');
+      expect(termsMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/terms');
+      expect(guidesMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/guides');
     });
 
     it('ensures placeholder seller agreement is noindexed but has canonical', () => {
-      expect(sellerAgreementMetadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/seller-agreement');
+      expect(sellerAgreementMetadata.alternates?.canonical).toBe('https://ekorabazaar.in/seller-agreement');
       expect(sellerAgreementMetadata.robots?.index).toBe(false);
       expect(sellerAgreementMetadata.robots?.follow).toBe(true);
     });
@@ -181,9 +181,9 @@ describe('Phase 1 SEO Safety & Metadata Integrity Tests', () => {
       const fs = await import('fs');
       expect(fs.existsSync('public/sitemap_index.xml')).toBe(true);
       const xml = fs.readFileSync('public/sitemap_index.xml', 'utf8');
-      expect(xml).toContain('https://www.ekorabazaar.in/sitemap/formulations.xml');
-      expect(xml).toContain('https://www.ekorabazaar.in/sitemap/static.xml');
-      expect(xml).toContain('https://www.ekorabazaar.in/sitemap/guides.xml');
+      expect(xml).toContain('https://ekorabazaar.in/sitemap/formulations.xml');
+      expect(xml).toContain('https://ekorabazaar.in/sitemap/static.xml');
+      expect(xml).toContain('https://ekorabazaar.in/sitemap/guides.xml');
     });
 
     it('ensures generateSitemaps includes formulations', async () => {
@@ -192,21 +192,22 @@ describe('Phase 1 SEO Safety & Metadata Integrity Tests', () => {
       expect(sitemaps).toContainEqual({ id: 'formulations' });
     });
 
-    it('ensures sitemap static includes contact, shipping-policy, and guides', async () => {
+    it('ensures sitemap static includes contact, shipping-policy, guides, and faq', async () => {
       const sitemapDefault = (await import('@/app/sitemap')).default;
       const staticEntries = await sitemapDefault({ id: 'static' });
       const urls = staticEntries.map(e => e.url);
-      expect(urls).toContain('https://www.ekorabazaar.in/contact');
-      expect(urls).toContain('https://www.ekorabazaar.in/shipping-policy');
-      expect(urls).toContain('https://www.ekorabazaar.in/guides');
+      expect(urls).toContain('https://ekorabazaar.in/contact');
+      expect(urls).toContain('https://ekorabazaar.in/shipping-policy');
+      expect(urls).toContain('https://ekorabazaar.in/guides');
+      expect(urls).toContain('https://ekorabazaar.in/faq');
     });
 
     it('ensures sitemap formulations includes /formulations and all formulation slugs', async () => {
       const sitemapDefault = (await import('@/app/sitemap')).default;
       const formulationEntries = await sitemapDefault({ id: 'formulations' });
       const urls = formulationEntries.map(e => e.url);
-      expect(urls).toContain('https://www.ekorabazaar.in/formulations');
-      expect(urls).toContain('https://www.ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum');
+      expect(urls).toContain('https://ekorabazaar.in/formulations');
+      expect(urls).toContain('https://ekorabazaar.in/formulations/tranexamic-acid-serum-spot-correcting-serum');
       expect(urls.length).toBe(21); // 1 index + 20 articles
     });
   });

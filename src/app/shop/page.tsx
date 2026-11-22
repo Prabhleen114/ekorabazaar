@@ -68,7 +68,7 @@ export async function generateMetadata({
     return {
       title: "No Results Found | Ekora Wholesale",
       robots: { index: false, follow: true },
-      alternates: { canonical: "https://www.ekorabazaar.in/shop" }
+      alternates: { canonical: "https://ekorabazaar.in/shop" }
     };
   }
 
@@ -77,18 +77,18 @@ export async function generateMetadata({
       title: "Shop Wholesale Products | Ekora Wholesale",
       description: "Browse filtered and sorted wholesale candle waxes, aroma chemicals, and craft raw materials.",
       robots: { index: false, follow: true },
-      alternates: { canonical: "https://www.ekorabazaar.in/shop" }
+      alternates: { canonical: "https://ekorabazaar.in/shop" }
     };
   }
 
   return {
     title: "Shop Premium Raw Materials & Craft Supplies | Ekora Wholesale",
     description: "Browse our extensive catalog of batch-tested candle waxes, epoxy resins, fragrance oils, and silicone molds at wholesale prices.",
-    alternates: { canonical: "https://www.ekorabazaar.in/shop" },
+    alternates: { canonical: "https://ekorabazaar.in/shop" },
     openGraph: {
       title: "Shop Premium Raw Materials | Ekora Wholesale",
       description: "Browse our extensive catalog of batch-tested candle waxes, epoxy resins, fragrance oils, and silicone molds.",
-      url: "https://www.ekorabazaar.in/shop",
+      url: "https://ekorabazaar.in/shop",
       type: "website",
     }
   };
@@ -115,13 +115,13 @@ export default async function ShopPage({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Wholesale Raw Materials Catalog",
-    url: "https://www.ekorabazaar.in/shop",
+    url: "https://ekorabazaar.in/shop",
     description: "Browse our extensive catalog of batch-tested candle waxes, epoxy resins, fragrance oils, and silicone molds at wholesale prices.",
   };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://www.ekorabazaar.in" },
-    { name: "Shop", url: "https://www.ekorabazaar.in/shop" }
+    { name: "Home", url: "https://ekorabazaar.in" },
+    { name: "Shop", url: "https://ekorabazaar.in/shop" }
   ]);
 
   return (

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!formulation) return { title: "Not Found" };
 
-  const canonicalUrl = `https://www.ekorabazaar.in/formulations/${slug}`;
+  const canonicalUrl = `https://ekorabazaar.in/formulations/${slug}`;
   return {
     title: `${formulation.title} | Formulations`,
     description: formulation.excerpt,
@@ -76,7 +76,7 @@ export default async function FormulationSinglePage({ params }: { params: Promis
     notFound();
   }
 
-  const canonicalUrl = `https://www.ekorabazaar.in/formulations/${slug}`;
+  const canonicalUrl = `https://ekorabazaar.in/formulations/${slug}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -88,18 +88,18 @@ export default async function FormulationSinglePage({ params }: { params: Promis
       "@type": "WebPage",
       "@id": canonicalUrl,
     },
-    image: [formulation.imageUrl || "https://www.ekorabazaar.in/og-image.jpg"],
+    image: [formulation.imageUrl || "https://ekorabazaar.in/og-image.jpg"],
     author: {
       "@type": "Organization",
       name: "Ekora Formulation Lab",
-      url: "https://www.ekorabazaar.in/formulations",
+      url: "https://ekorabazaar.in/formulations",
     },
     publisher: {
       "@type": "Organization",
-      "@id": "https://www.ekorabazaar.in/#organization",
+      "@id": "https://ekorabazaar.in/#organization",
       name: "Ekora Bazaar",
-      url: "https://www.ekorabazaar.in",
-      logo: { "@type": "ImageObject", url: "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg" },
+      url: "https://ekorabazaar.in",
+      logo: { "@type": "ImageObject", url: "https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg" },
     },
   };
 
@@ -107,8 +107,8 @@ export default async function FormulationSinglePage({ params }: { params: Promis
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.ekorabazaar.in" },
-      { "@type": "ListItem", position: 2, name: "Formulations", item: "https://www.ekorabazaar.in/formulations" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ekorabazaar.in" },
+      { "@type": "ListItem", position: 2, name: "Formulations", item: "https://ekorabazaar.in/formulations" },
       { "@type": "ListItem", position: 3, name: formulation.title, item: canonicalUrl },
     ],
   };

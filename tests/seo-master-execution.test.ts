@@ -64,11 +64,11 @@ describe('Stage A & B: Product Identity, Redirects and Catalog Integrity', () =>
     };
 
     const metadata = generateProductMetadata(deprecatedProduct);
-    expect(metadata.alternates?.canonical).toBe('https://www.ekorabazaar.in/products/375');
+    expect(metadata.alternates?.canonical).toBe('https://ekorabazaar.in/products/375');
 
     const schema = generateProductSchema(deprecatedProduct);
     expect(schema.sku).toBe('375');
-    expect(schema.offers.url).toBe('https://www.ekorabazaar.in/products/375');
+    expect(schema.offers.url).toBe('https://ekorabazaar.in/products/375');
     // Ensure no unsubstantiated "Lab-tested" claim in fallback description
     expect(schema.description).not.toContain('Lab-tested');
   });

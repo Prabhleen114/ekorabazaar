@@ -32,20 +32,20 @@ export const metadata: Metadata = {
     "Ekora raw material categories",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/sell/categories",
+    canonical: "https://ekorabazaar.in/sell/categories",
   },
   openGraph: {
     title: "Wholesale Material Categories",
     description:
       "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
-    url: "https://www.ekorabazaar.in/sell/categories",
+    url: "https://ekorabazaar.in/sell/categories",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's Premier Wholesale Raw Materials Marketplace",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "Wholesale Material Categories",
     description:
       "Explore verified wholesale raw material categories on Ekora Bazaar — candle molds, silicone molds, fragrance oils, essential oils, soy wax, resin, soap bases, and packaging containers.",
-    images: ["https://www.ekorabazaar.in/og-image.jpg"],
+    images: ["https://ekorabazaar.in/og-image.jpg"],
   },
 };
 
@@ -71,13 +71,13 @@ export default function CategoriesPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Categories",
-        item: "https://www.ekorabazaar.in/sell/categories",
+        item: "https://ekorabazaar.in/sell/categories",
       },
     ],
   };

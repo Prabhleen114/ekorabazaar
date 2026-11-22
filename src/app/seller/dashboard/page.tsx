@@ -160,7 +160,7 @@ export default function SellerOverviewPage() {
                   </p>
                 </div>
                 <span className="text-xs font-mono bg-stone-100 text-stone-700 px-3 py-1 rounded-md">
-                  https://www.ekorabazaar.in/store/{seller.id}
+                  https://ekorabazaar.in/store/{seller.id}
                 </span>
               </div>
 
@@ -173,21 +173,21 @@ export default function SellerOverviewPage() {
                 <div>
                   <h3 className="font-semibold text-gray-700 mb-1">Snippet 1 (Default): Brand Name Anchor</h3>
                   <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
-                    {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">${seller.brandName}</a>`}
+                    {`<a href="https://ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">${seller.brandName}</a>`}
                   </code>
                 </div>
 
                 <div>
                   <h3 className="font-semibold text-gray-700 mb-1">Snippet 2 (Alternative): Keyword-Style Anchor</h3>
                   <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
-                    {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">Buy wholesale craft materials from ${seller.brandName} on Ekora Bazaar</a>`}
+                    {`<a href="https://ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener">Buy wholesale craft materials from ${seller.brandName} on Ekora Bazaar</a>`}
                   </code>
                 </div>
 
                 <div>
                   <h3 className="font-semibold text-gray-700 mb-1">Snippet 3: Website Badge Embed ({badgeLabel})</h3>
                   <code className="block p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs text-stone-800 select-all overflow-x-auto">
-                    {`<a href="https://www.ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:8px 16px;background:#1c1917;color:#fff;border-radius:8px;font-family:sans-serif;font-size:13px;text-decoration:none;"><span style="color:#f59e0b;margin-right:8px;font-weight:bold;">Ekora Bazaar</span> ${badgeLabel} &bull; ${seller.brandName}</a>`}
+                    {`<a href="https://ekorabazaar.in/store/${seller.id}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:8px 16px;background:#1c1917;color:#fff;border-radius:8px;font-family:sans-serif;font-size:13px;text-decoration:none;"><span style="color:#f59e0b;margin-right:8px;font-weight:bold;">Ekora Bazaar</span> ${badgeLabel} &bull; ${seller.brandName}</a>`}
                   </code>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import serialize from "serialize-javascript";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://ekorabazaar.in";
 
 export const metadata: Metadata = {
   title: "Craft Maker Knowledge Base | Blog",

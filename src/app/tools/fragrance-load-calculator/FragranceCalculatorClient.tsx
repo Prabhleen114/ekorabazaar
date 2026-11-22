@@ -19,7 +19,7 @@ export default function FragranceCalculatorClient() {
   };
 
   const handleCopyEmbed = () => {
-    const embedCode = `<iframe src="https://www.ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`;
+    const embedCode = `<iframe src="https://ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`;
     if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(embedCode).then(() => {
         setCopiedEmbed(true);
@@ -252,7 +252,7 @@ export default function FragranceCalculatorClient() {
                   </button>
                 </div>
                 <code className="block p-2 bg-black/50 rounded-lg text-[10px] font-mono text-white/80 overflow-x-auto whitespace-pre">
-                  {`<iframe src="https://www.ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`}
+                  {`<iframe src="https://ekorabazaar.in/tools/fragrance-load-calculator" width="100%" height="650" style="border:1px solid #e7e5e4;border-radius:16px;max-width:800px;" title="Ekora Candle Fragrance Load Calculator"></iframe>`}
                 </code>
               </div>
             )}

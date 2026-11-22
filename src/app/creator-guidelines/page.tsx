@@ -14,20 +14,20 @@ export const metadata: Metadata = {
     "Instagram seller rules India",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/creator-guidelines",
+    canonical: "https://ekorabazaar.in/creator-guidelines",
   },
   openGraph: {
     title: "Creator Guidelines & Selling Standards",
     description:
       "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
-    url: "https://www.ekorabazaar.in/creator-guidelines",
+    url: "https://ekorabazaar.in/creator-guidelines",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
       images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Creator Guidelines & Selling Standards — Ekora",
     description:
       "Platform standards, quality expectations, and catalog requirements for selling on Ekora Bazaar.",
-      images: ["https://www.ekorabazaar.in/og-image.jpg"],
+      images: ["https://ekorabazaar.in/og-image.jpg"],
   },
 };
 
@@ -53,13 +53,13 @@ export default function CreatorGuidelinesPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Creator Guidelines",
-        item: "https://www.ekorabazaar.in/creator-guidelines",
+        item: "https://ekorabazaar.in/creator-guidelines",
       },
     ],
   };

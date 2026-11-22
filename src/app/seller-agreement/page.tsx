@@ -6,7 +6,7 @@ export const metadata = {
   title: "Seller Agreement",
   description: "Read the Ekora Bazaar Seller Agreement.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/seller-agreement",
+    canonical: "https://ekorabazaar.in/seller-agreement",
   },
   robots: {
     index: false,

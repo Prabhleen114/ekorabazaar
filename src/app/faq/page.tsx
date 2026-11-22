@@ -7,11 +7,11 @@ import { flags, FAQFlag } from "@/data/faq-flags";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions — Ekora Bazaar",
+  title: "Frequently Asked Questions",
   description:
     "Everything you need to know about Ekora, our creator marketplace, instant storefronts, zero DMs checkout, and wholesale pricing.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/faq",
+    canonical: "https://ekorabazaar.in/faq",
   },
 };
 

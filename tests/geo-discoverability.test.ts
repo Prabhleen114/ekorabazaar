@@ -10,11 +10,11 @@ describe('GEO Discoverability & Structured Data Verification', () => {
 
     const org: any = schemas.find((s: any) => s['@type'] === 'Organization');
     expect(org).toBeDefined();
-    expect(org['@id']).toBe('https://www.ekorabazaar.in/#organization');
+    expect(org['@id']).toBe('https://ekorabazaar.in/#organization');
     expect(org.name).toBe('Ekora Bazaar');
     expect(org.legalName).toBe('Ekora Bazaar Pvt Ltd');
-    expect(org.url).toBe('https://www.ekorabazaar.in');
-    expect(org.logo.url).toBe('https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg');
+    expect(org.url).toBe('https://ekorabazaar.in');
+    expect(org.logo.url).toBe('https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg');
     expect(org.foundingDate).toBe('2026');
     expect(org.founders).toEqual([
       { '@type': 'Person', name: 'Kumar Aryan' },
@@ -28,8 +28,8 @@ describe('GEO Discoverability & Structured Data Verification', () => {
 
     const website: any = schemas.find((s: any) => s['@type'] === 'WebSite');
     expect(website).toBeDefined();
-    expect(website['@id']).toBe('https://www.ekorabazaar.in/#website');
-    expect(website.publisher['@id']).toBe('https://www.ekorabazaar.in/#organization');
+    expect(website['@id']).toBe('https://ekorabazaar.in/#website');
+    expect(website.publisher['@id']).toBe('https://ekorabazaar.in/#organization');
     expect(website.potentialAction['@type']).toBe('SearchAction');
   });
 
@@ -47,14 +47,14 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     };
 
     const schema: any = generateProductSchema(product);
-    expect(schema['@id']).toBe('https://www.ekorabazaar.in/products/790#product');
+    expect(schema['@id']).toBe('https://ekorabazaar.in/products/790#product');
     expect(schema.name).toBe('Soy Wax Flakes 100% Pure');
     expect(schema.category).toBe('Candle Waxes & Additives');
     expect(schema.sku).toBe('790');
     expect(schema.brand.name).toBe('Ekora Bazaar');
-    expect(schema.brand.url).toBe('https://www.ekorabazaar.in');
+    expect(schema.brand.url).toBe('https://ekorabazaar.in');
 
-    expect(schema.offers['@id']).toBe('https://www.ekorabazaar.in/products/790#offer');
+    expect(schema.offers['@id']).toBe('https://ekorabazaar.in/products/790#offer');
     expect(schema.offers.price).toBe(245);
     expect(schema.offers.priceCurrency).toBe('INR');
     expect(schema.offers.priceValidUntil).toBe('2027-12-31');
@@ -94,15 +94,15 @@ describe('GEO Discoverability & Structured Data Verification', () => {
 
   it('connects product breadcrumbs to wholesale category landing pages', () => {
     const crumbs: any = generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://www.ekorabazaar.in' },
-      { name: 'Shop', url: 'https://www.ekorabazaar.in/shop' },
-      { name: 'Candle Waxes & Additives', url: 'https://www.ekorabazaar.in/wholesale/candle-waxes-additives' },
-      { name: 'Pure Soy Wax', url: 'https://www.ekorabazaar.in/products/790' },
+      { name: 'Home', url: 'https://ekorabazaar.in' },
+      { name: 'Shop', url: 'https://ekorabazaar.in/shop' },
+      { name: 'Candle Waxes & Additives', url: 'https://ekorabazaar.in/wholesale/candle-waxes-additives' },
+      { name: 'Pure Soy Wax', url: 'https://ekorabazaar.in/products/790' },
     ]);
 
     expect(crumbs['@type']).toBe('BreadcrumbList');
     expect(crumbs.itemListElement).toHaveLength(4);
-    expect(crumbs.itemListElement[2].item).toBe('https://www.ekorabazaar.in/wholesale/candle-waxes-additives');
+    expect(crumbs.itemListElement[2].item).toBe('https://ekorabazaar.in/wholesale/candle-waxes-additives');
 
     const pdpContent = fs.readFileSync('src/app/products/[id]/page.tsx', 'utf8');
     expect(pdpContent).toContain('href={`/wholesale/${categorySlug}`}');
@@ -117,9 +117,9 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     expect(text).toContain('Prabhleen Kaur');
     expect(text).toContain('Muzaffarpur, Bihar - 842001, India');
     expect(text).toContain('₹90');
-    expect(text).toContain('https://www.ekorabazaar.in/wholesale/candle-waxes-additives');
-    expect(text).toContain('https://www.ekorabazaar.in/guides');
-    expect(text).toContain('https://www.ekorabazaar.in/formulations');
-    expect(text).toContain('https://www.ekorabazaar.in/tools/fragrance-load-calculator');
+    expect(text).toContain('https://ekorabazaar.in/wholesale/candle-waxes-additives');
+    expect(text).toContain('https://ekorabazaar.in/guides');
+    expect(text).toContain('https://ekorabazaar.in/formulations');
+    expect(text).toContain('https://ekorabazaar.in/tools/fragrance-load-calculator');
   });
 });

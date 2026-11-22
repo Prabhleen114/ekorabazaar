@@ -10,7 +10,7 @@ import { ProductStatus } from "@prisma/client";
 import ProductCard, { ProductCardItem } from "@/components/ProductCard";
 import { ALL_CATEGORIES } from "@/lib/categories";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://ekorabazaar.in";
 
 type Props = { params: Promise<{ slug: string }> };
 

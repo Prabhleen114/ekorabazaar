@@ -19,20 +19,20 @@ export const metadata: Metadata = {
     "Ekora candle classes",
   ],
   alternates: {
-    canonical: "https://www.ekorabazaar.in/classes",
+    canonical: "https://ekorabazaar.in/classes",
   },
   openGraph: {
     title: "Luxury Candle-Making Classes",
     description:
       "Learn slow craft, thoughtful design, and professional techniques from beginner foundations to advanced themes.",
-    url: "https://www.ekorabazaar.in/classes",
+    url: "https://ekorabazaar.in/classes",
     siteName: "Ekora Bazaar",
     locale: "en_IN",
     type: "website",
       images: [
       {
-        url: "https://www.ekorabazaar.in/og-image.jpg",
-        secureUrl: "https://www.ekorabazaar.in/og-image.jpg",
+        url: "https://ekorabazaar.in/og-image.jpg",
+        secureUrl: "https://ekorabazaar.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ekora Bazaar — India's First Creator Commerce Platform",
@@ -184,13 +184,13 @@ export default function ClassesPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.ekorabazaar.in",
+        item: "https://ekorabazaar.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Classes",
-        item: "https://www.ekorabazaar.in/classes",
+        item: "https://ekorabazaar.in/classes",
       },
     ],
   };

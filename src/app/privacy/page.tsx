@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Read the Ekora Bazaar Privacy Policy to understand how we collect, use, and protect your information.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/privacy",
+    canonical: "https://ekorabazaar.in/privacy",
   },
   openGraph: {
     title: "Privacy Policy",
     description: "Read the Ekora Bazaar Privacy Policy to understand how we collect, use, and protect your information.",
-    url: "https://www.ekorabazaar.in/privacy",
+    url: "https://ekorabazaar.in/privacy",
     type: "website",
   },
 };

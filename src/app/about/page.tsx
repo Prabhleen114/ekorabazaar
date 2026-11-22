@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Ekora Bazaar, India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/about",
+    canonical: "https://ekorabazaar.in/about",
   },
   openGraph: {
     title: "About Us",
     description: "Learn about Ekora Bazaar, India's premier creator commerce marketplace and wholesale raw materials platform built for independent artisans.",
-    url: "https://www.ekorabazaar.in/about",
+    url: "https://ekorabazaar.in/about",
     type: "website",
   },
 };
@@ -24,12 +24,12 @@ export default function AboutPage() {
     "@type": "AboutPage",
     "mainEntity": {
       "@type": "LocalBusiness",
-      "@id": "https://www.ekorabazaar.in/#organization",
+      "@id": "https://ekorabazaar.in/#organization",
       "name": "Ekora Bazaar",
       "legalName": "Ekora Bazaar Pvt Ltd",
-      "url": "https://www.ekorabazaar.in",
-      "logo": "https://www.ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
-      "image": "https://www.ekorabazaar.in/og-image.jpg",
+      "url": "https://ekorabazaar.in",
+      "logo": "https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
+      "image": "https://ekorabazaar.in/og-image.jpg",
       "telephone": "+91-9041500605",
       "email": "ekorabazaar@gmail.com",
       "priceRange": "₹₹",

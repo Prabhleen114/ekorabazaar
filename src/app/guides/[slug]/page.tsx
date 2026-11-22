@@ -8,7 +8,7 @@ import serialize from "serialize-javascript";
 import { getWholesaleCategoryFaqs } from "@/lib/faqs";
 import { generateFaqSchema } from "@/lib/seo";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://www.ekorabazaar.in";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://ekorabazaar.in";
 
 type Props = {
   params: Promise<{ slug: string }>;

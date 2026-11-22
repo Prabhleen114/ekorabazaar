@@ -5,8 +5,9 @@ Disallow: /seller/dashboard/
 Disallow: /admin/
 Disallow: /start-selling
 Disallow: /login
+Disallow: /signup
 Disallow: /account/
 Disallow: /checkout/
 Disallow: /cart/
 
-Sitemap: https://www.ekorabazaar.in/sitemap_index.xml
+Sitemap: https://ekorabazaar.in/sitemap_index.xml

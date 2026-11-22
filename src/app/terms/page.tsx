@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Read the Ekora Bazaar Terms of Service outlining commercial platform rules, B2B wholesale transactions, GST compliance, and dispute resolution.",
   alternates: {
-    canonical: "https://www.ekorabazaar.in/terms",
+    canonical: "https://ekorabazaar.in/terms",
   },
   openGraph: {
     title: "Terms of Service",
     description: "Read the Ekora Bazaar Terms of Service outlining commercial platform rules, B2B wholesale transactions, GST compliance, and dispute resolution.",
-    url: "https://www.ekorabazaar.in/terms",
+    url: "https://ekorabazaar.in/terms",
     type: "website",
   },
 };

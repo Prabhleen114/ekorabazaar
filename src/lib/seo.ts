@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { normalizeProductBasePriceToINR } from '@/lib/pricing';
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.ekorabazaar.in';
+export const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://ekorabazaar.in';
 const SITE_NAME = 'Ekora Bazaar';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
@@ -101,7 +101,8 @@ export function generateProductSchema(product: any, sellerName?: string) {
     "@type": "MerchantReturnPolicy",
     "applicableCountry": "IN",
     "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-    "description": "Returns/exchanges are not available for standard wholesale and raw-material orders."
+    "merchantReturnDays": 0,
+    "description": "Returns/exchanges are not available for standard wholesale and raw-material orders once dispatched to maintain batch purity. Transit damage claims must be reported within 48 hours with continuous unboxing video."
   };
 
   const shippingDetails = {

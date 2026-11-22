@@ -247,18 +247,18 @@ export default async function ProductDetailsPage({ params }: Props) {
 
   const categorySlug = displayProduct.category ? displayProduct.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') : null;
   const breadcrumbItems = [
-    { name: "Home", url: "https://www.ekorabazaar.in" },
-    { name: "Shop", url: "https://www.ekorabazaar.in/shop" },
+    { name: "Home", url: "https://ekorabazaar.in" },
+    { name: "Shop", url: "https://ekorabazaar.in/shop" },
   ];
   if (displayProduct.category && categorySlug) {
     breadcrumbItems.push({
       name: displayProduct.category,
-      url: `https://www.ekorabazaar.in/wholesale/${categorySlug}`
+      url: `https://ekorabazaar.in/wholesale/${categorySlug}`
     });
   }
   breadcrumbItems.push({
     name: displayProduct.name,
-    url: `https://www.ekorabazaar.in/products/${productData.id}`
+    url: `https://ekorabazaar.in/products/${productData.id}`
   });
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
 

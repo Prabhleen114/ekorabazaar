@@ -124,14 +124,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "No Results Found | Ekora Wholesale",
       robots: { index: false, follow: true },
-      alternates: { canonical: `https://www.ekorabazaar.in/wholesale/${slug}` }
+      alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` }
     };
   }
 
   const baseMeta = generateCategoryMetadata(categoryObj.label, slug);
   return {
     ...baseMeta,
-    alternates: { canonical: `https://www.ekorabazaar.in/wholesale/${slug}` }
+    alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` }
   };
 }
 
@@ -158,7 +158,7 @@ export default async function WholesaleCategoryPage({ params }: Props) {
     "@type": "CollectionPage",
     "name": `Wholesale ${categoryObj.label}`,
     "description": `B2B Marketplace for wholesale ${categoryObj.label} in India.`,
-    "url": `https://www.ekorabazaar.in/wholesale/${slug}`,
+    "url": `https://ekorabazaar.in/wholesale/${slug}`,
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": products.map((p, idx) => ({
@@ -166,9 +166,9 @@ export default async function WholesaleCategoryPage({ params }: Props) {
         "position": idx + 1,
         "item": {
           "@type": "Product",
-          "url": `https://www.ekorabazaar.in/products/${p.id}`,
+          "url": `https://ekorabazaar.in/products/${p.id}`,
           "name": p.title,
-          "image": p.imageUrl || "https://www.ekorabazaar.in/og-image.jpg"
+          "image": p.imageUrl || "https://ekorabazaar.in/og-image.jpg"
         }
       }))
     }

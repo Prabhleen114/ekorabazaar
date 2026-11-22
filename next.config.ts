@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.jindeal.com" },
       { protocol: "https", hostname: "cdn.shopify.com" },
       { protocol: "https", hostname: "*.myshopify.com" },
+      { protocol: "https", hostname: "ekorabazaar.in" },
       { protocol: "https", hostname: "www.ekorabazaar.in" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "*.supabase.co" },
@@ -72,6 +73,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ekorabazaar.in" }],
+        destination: "https://ekorabazaar.in/:path*",
+        permanent: true,
+      },
       {
         source: "/sitemap.xml",
         destination: "/sitemap_index.xml",
