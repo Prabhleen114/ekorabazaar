@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import FAQAccordion from "@/components/FAQAccordion";
+import { flags } from "@/data/faq-flags";
+import type { FAQFlag } from "@/data/faq-flags";
 
 import type { Metadata } from "next";
 
@@ -51,32 +53,14 @@ export default function FAQPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Who can apply to sell on Ekora?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Any independent creator or artisan in India selling handmade, crafted, or custom items on Instagram can apply.",
-        },
+    mainEntity: flags.map((item: FAQFlag) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
       },
-      {
-        "@type": "Question",
-        name: "How long does the verification process take?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Most creator applications are reviewed and approved within 48 hours.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How does Ekora handle payments and orders?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Ekora provides an automated storefront with secure checkout, removing the need to manage orders via DMs.",
-        },
-      },
-    ],
+    })),
   };
 
   const breadcrumbSchema = {
