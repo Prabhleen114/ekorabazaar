@@ -62,6 +62,19 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
     };
   }, []);
 
+  // Close menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -537,19 +550,12 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
           </Link>
 
           <button
-            className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-            style={{
-              width: "44px",
-              height: "44px",
-              border: 0,
-              background: "transparent",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="main-menu-drawer"
+            className="flex items-center justify-center w-11 h-11 rounded-lg border-0 bg-transparent hover:bg-stone-100 transition-colors cursor-pointer"
+            title="Menu"
           >
             <svg
               aria-hidden="true"
@@ -571,84 +577,223 @@ export default function HomepageClient({ trendingProducts }: HomepageClientProps
         </div>
       </header>
 
-      {/* Mobile Menu Drawer */}
+      {/* Menu Drawer (Fully operational on Laptop, Tablet & Mobile) */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden border-b border-[#E8E2D9] bg-[#FAF8F4] px-6 py-4 flex flex-col gap-3"
-          style={{ animation: "rise 0.3s ease-out" }}
+          id="main-menu-drawer"
+          className="border-b border-[#E8E2D9] bg-[#FAF8F4] px-4 sm:px-6 md:px-12 py-5 shadow-sm anim-slide-down"
         >
-          <Link
-            href="/cart"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 flex items-center justify-between border-b border-[#E8E2D9]"
-          >
-            <span>My Cart ({cartCount})</span>
-            <span>View &rarr;</span>
-          </Link>
-          <Link
-            href="/shop"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 flex items-center justify-between border-b border-[#E8E2D9]"
-          >
-            <span>All Products</span>
-            <span>→</span>
-          </Link>
-          <Link
-            href="/shop?discipline=candle-studio"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            Candles
-          </Link>
-          <Link
-            href="/shop?discipline=soap-atelier"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            Soap & Bath
-          </Link>
-          <Link
-            href="/shop?category=Fragrance%20Oils"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            Perfume & Oils
-          </Link>
-          <Link
-            href="/shop?category=Eco-Resin%20%26%20Stone%20Moulds"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            Moulds
-          </Link>
-          <Link
-            href="/shop?department=Vessels%20%26%20Packaging%20Studio"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            Jars & Packing
-          </Link>
-          <Link
-            href="/classes"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 border-b border-[#E8E2D9]"
-          >
-            Starter Kits
-          </Link>
-          <Link
-            href="/shop?sort=new"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
-          >
-            New Arrivals
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2"
-          >
-            Learn
-          </Link>
+          <div className="max-w-[1360px] mx-auto">
+            {/* Desktop 3-Column Luxury Layout */}
+            <div className="hidden md:grid md:grid-cols-3 gap-8 py-2">
+              {/* Column 1: Craft Studios */}
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#A8520F] block mb-3 pb-1 border-b border-[#E8E2D9]">
+                  Craft Studios & Raw Materials
+                </span>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href="/shop?discipline=candle-studio"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Candle Studio</span>
+                    <span className="text-xs text-stone-400 font-normal">Waxes & Wicks &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/shop?discipline=soap-atelier"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Soap & Bath Atelier</span>
+                    <span className="text-xs text-stone-400 font-normal">Melt & Pour &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/shop?category=Fragrance%20Oils"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Perfume & Fragrance Oils</span>
+                    <span className="text-xs text-stone-400 font-normal">Cosmetic Grade &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/shop?category=Eco-Resin%20%26%20Stone%20Moulds"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Silicone & Resin Moulds</span>
+                    <span className="text-xs text-stone-400 font-normal">Factory Direct &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/shop?department=Vessels%20%26%20Packaging%20Studio"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Jars, Bottles & Packaging</span>
+                    <span className="text-xs text-stone-400 font-normal">Wholesale Packs &rarr;</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Column 2: Explore & Featured */}
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#A8520F] block mb-3 pb-1 border-b border-[#E8E2D9]">
+                  Explore Catalog
+                </span>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href="/shop"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-bold text-stone-900 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>All Wholesale Products</span>
+                    <span className="text-xs text-[#A8520F] font-semibold">Browse 400+ &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/classes"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Makers Starter Kits</span>
+                    <span className="text-xs text-stone-400 font-normal">Complete Bundles &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/shop?sort=new"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>New Arrivals</span>
+                    <span className="text-xs text-stone-400 font-normal">This Week &rarr;</span>
+                  </Link>
+                  <Link
+                    href="/about"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm font-semibold text-stone-800 hover:text-[#A8520F] transition-colors py-1 flex items-center justify-between"
+                  >
+                    <span>Formulations & Learning</span>
+                    <span className="text-xs text-stone-400 font-normal">Step-by-Step &rarr;</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Column 3: Cart, Account & Direct Support */}
+              <div className="bg-white/70 p-4 rounded-xl border border-[#E8E2D9] flex flex-col justify-between">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#4A423B] block mb-2">
+                    Quick Access
+                  </span>
+                  <div className="space-y-2">
+                    <Link
+                      href="/cart"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors"
+                    >
+                      <span className="text-xs font-bold text-stone-900">Your Cart</span>
+                      <span className="text-xs font-bold text-[#A8520F] bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                        {cartCount} {cartCount === 1 ? 'item' : 'items'}
+                      </span>
+                    </Link>
+                    <Link
+                      href="/account"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between p-2.5 rounded-lg hover:bg-stone-50 transition-colors text-xs font-semibold text-stone-700"
+                    >
+                      <span>Buyer Account & Orders</span>
+                      <span>&rarr;</span>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-stone-200">
+                  <a
+                    href="https://wa.me/919041500605?text=Hi%20Ekora!%20I%20have%20a%20question%20about%20raw%20materials."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 p-2.5 rounded-lg border border-emerald-200/80 transition-colors"
+                  >
+                    <span>Chat on WhatsApp</span>
+                    <span className="ml-auto text-[10px] font-normal text-emerald-700">Factory Support</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Streamlined View */}
+            <div className="flex md:hidden flex-col gap-2.5">
+              <Link
+                href="/cart"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 flex items-center justify-between border-b border-[#E8E2D9]"
+              >
+                <span>My Cart ({cartCount})</span>
+                <span>View &rarr;</span>
+              </Link>
+              <Link
+                href="/shop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 flex items-center justify-between border-b border-[#E8E2D9]"
+              >
+                <span>All Products</span>
+                <span>&rarr;</span>
+              </Link>
+              <Link
+                href="/shop?discipline=candle-studio"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                Candles
+              </Link>
+              <Link
+                href="/shop?discipline=soap-atelier"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                Soap & Bath
+              </Link>
+              <Link
+                href="/shop?category=Fragrance%20Oils"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                Perfume & Oils
+              </Link>
+              <Link
+                href="/shop?category=Eco-Resin%20%26%20Stone%20Moulds"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                Moulds
+              </Link>
+              <Link
+                href="/shop?department=Vessels%20%26%20Packaging%20Studio"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                Jars & Packing
+              </Link>
+              <Link
+                href="/classes"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#A8520F] py-2 border-b border-[#E8E2D9]"
+              >
+                Starter Kits
+              </Link>
+              <Link
+                href="/shop?sort=new"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2 border-b border-[#E8E2D9]"
+              >
+                New Arrivals
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest font-bold text-[#1A1613] py-2"
+              >
+                Learn
+              </Link>
+            </div>
+          </div>
         </div>
       )}
 
