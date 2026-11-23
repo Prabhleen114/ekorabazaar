@@ -64,14 +64,20 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
   });
 
   describe('1. Origin & Redirect URI Resolution (Railway / Reverse Proxies)', () => {
-    it('uses explicitly configured NEXT_PUBLIC_APP_URL', () => {
+    it('uses verified Google Cloud authorized URI (with www) for ekorabazaar.in by default', () => {
       process.env.NEXT_PUBLIC_APP_URL = 'https://ekorabazaar.in';
       const origin = getAuthOrigin();
       expect(origin).toBe('https://ekorabazaar.in');
+      expect(getOAuthRedirectUri(origin)).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
+    });
+
+    it('respects explicit GOOGLE_REDIRECT_URI override if provided', () => {
+      process.env.GOOGLE_REDIRECT_URI = 'https://ekorabazaar.in/api/auth/google/callback';
+      const origin = getAuthOrigin();
       expect(getOAuthRedirectUri(origin)).toBe('https://ekorabazaar.in/api/auth/google/callback');
     });
 
-    it('uses explicitly configured APP_URL with priority', () => {
+    it('uses explicitly configured APP_URL with priority for origin', () => {
       process.env.APP_URL = 'https://ekorabazaar.in';
       process.env.NEXT_PUBLIC_APP_URL = 'https://other.com';
       const origin = getAuthOrigin();
@@ -92,7 +98,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
 
       const origin = getAuthOrigin(req);
       expect(origin).toBe('https://ekorabazaar.in');
-      expect(getOAuthRedirectUri(origin)).toBe('https://ekorabazaar.in/api/auth/google/callback');
+      expect(getOAuthRedirectUri(origin)).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
     });
 
     it('handles comma-separated proxy header lists from multi-tier proxies (Cloudflare -> Railway)', () => {
@@ -109,7 +115,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
 
       const origin = getAuthOrigin(req);
       expect(origin).toBe('https://ekorabazaar.in');
-      expect(getOAuthRedirectUri(origin)).toBe('https://ekorabazaar.in/api/auth/google/callback');
+      expect(getOAuthRedirectUri(origin)).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
     });
 
     it('derives origin for Railway public domain if accessed via up.railway.app', () => {
@@ -171,8 +177,8 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
     });
 
     it('normalizes trailing slashes when building callback URI', () => {
-      expect(getOAuthRedirectUri('https://ekorabazaar.in/')).toBe(
-        'https://ekorabazaar.in/api/auth/google/callback'
+      expect(getOAuthRedirectUri('http://localhost:3000/')).toBe(
+        'http://localhost:3000/api/auth/google/callback'
       );
     });
   });
@@ -190,15 +196,18 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       expect(data.error).toContain('Google OAuth is not configured');
     });
 
-    it('generates compliant Google auth URL with state and cookie', async () => {
+    it('generates compliant Google auth URL with state, cookie, and diagnostic logging', async () => {
       process.env.GOOGLE_CLIENT_ID = 'test-client-id.apps.googleusercontent.com';
       process.env.GOOGLE_CLIENT_SECRET = 'test-client-secret';
       process.env.NEXT_PUBLIC_APP_URL = 'https://ekorabazaar.in';
+      process.env.NODE_ENV = 'production';
+
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       const req = createRequest('https://ekorabazaar.in/api/auth/google?redirect=/checkout');
       const res = await handleGoogle(req);
 
-      expect(res.status).toBe(307); // NextResponse.redirect default
+      expect(res.status).toBe(307);
       const location = res.headers.get('location');
       expect(location).toBeTruthy();
 
@@ -206,23 +215,33 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       expect(parsedUrl.origin).toBe('https://accounts.google.com');
       expect(parsedUrl.pathname).toBe('/o/oauth2/v2/auth');
       expect(parsedUrl.searchParams.get('client_id')).toBe('test-client-id.apps.googleusercontent.com');
-      expect(parsedUrl.searchParams.get('redirect_uri')).toBe('https://ekorabazaar.in/api/auth/google/callback');
+      expect(parsedUrl.searchParams.get('redirect_uri')).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
       expect(parsedUrl.searchParams.get('response_type')).toBe('code');
       expect(parsedUrl.searchParams.get('scope')).toBe('openid email profile');
       expect(parsedUrl.searchParams.get('access_type')).toBe('offline');
 
-      // Check state payload
+      // Check state payload contains matching redirectUri
       const stateParam = parsedUrl.searchParams.get('state')!;
       expect(stateParam).toBeTruthy();
       const decodedState = JSON.parse(Buffer.from(stateParam, 'base64url').toString('utf8'));
       expect(decodedState.redirect).toBe('/checkout');
-      expect(decodedState.redirectUri).toBe('https://ekorabazaar.in/api/auth/google/callback');
+      expect(decodedState.redirectUri).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
 
-      // Check oauth_state cookie
+      // Check oauth_state cookie has domain: .ekorabazaar.in for production cross-subdomain support
       const cookieHeader = res.headers.get('set-cookie');
       expect(cookieHeader).toContain('oauth_state=');
       expect(cookieHeader).toContain('HttpOnly');
       expect(cookieHeader?.toLowerCase()).toContain('samesite=lax');
+      expect(cookieHeader).toContain('Domain=.ekorabazaar.in');
+
+      // Check diagnostic log was emitted safely without secrets
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining('[Google OAuth Init]')
+      );
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining('Redirect URI: https://www.ekorabazaar.in/api/auth/google/callback')
+      );
+      consoleSpy.mockRestore();
     });
   });
 
@@ -256,7 +275,9 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
     });
 
     it('rejects if oauth_state cookie does not match state parameter (CSRF protection)', async () => {
-      const state = Buffer.from(JSON.stringify({ redirect: '/', redirectUri: 'https://ekorabazaar.in/api/auth/google/callback' })).toString('base64url');
+      const state = Buffer.from(
+        JSON.stringify({ redirect: '/', redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback' })
+      ).toString('base64url');
 
       const req = createRequest(`https://ekorabazaar.in/api/auth/google/callback?code=mock_code&state=${state}`, {
         cookies: { oauth_state: 'different-state-cookie' },
@@ -271,7 +292,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       const statePayload = {
         redirect: '/account',
         nonce: 'xyz123',
-        redirectUri: 'https://ekorabazaar.in/api/auth/google/callback',
+        redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback',
       };
       const state = Buffer.from(JSON.stringify(statePayload)).toString('base64url');
 
@@ -326,7 +347,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
 
       const res = await handleGoogleCallback(req);
 
-      // Verify Google Token Exchange called with exact redirect_uri
+      // Verify Google Token Exchange called with exact state redirect_uri
       expect(mockFetch).toHaveBeenCalledWith(
         'https://oauth2.googleapis.com/token',
         expect.objectContaining({
@@ -338,7 +359,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       const tokenCallBody = mockFetch.mock.calls[0][1].body as URLSearchParams;
       expect(tokenCallBody.get('code')).toBe('auth_code_123');
       expect(tokenCallBody.get('client_id')).toBe('test-client-id.apps.googleusercontent.com');
-      expect(tokenCallBody.get('redirect_uri')).toBe('https://ekorabazaar.in/api/auth/google/callback');
+      expect(tokenCallBody.get('redirect_uri')).toBe('https://www.ekorabazaar.in/api/auth/google/callback');
 
       // Verify User Created with CUSTOMER role
       expect(prisma.user.create).toHaveBeenCalledWith({
@@ -371,7 +392,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       const state = Buffer.from(
         JSON.stringify({
           redirect: '/',
-          redirectUri: 'https://ekorabazaar.in/api/auth/google/callback',
+          redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback',
         })
       ).toString('base64url');
 
@@ -440,7 +461,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       const state = Buffer.from(
         JSON.stringify({
           redirect: '//evil.com/phishing',
-          redirectUri: 'https://ekorabazaar.in/api/auth/google/callback',
+          redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback',
         })
       ).toString('base64url');
 
@@ -480,7 +501,6 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       );
 
       const res = await handleGoogleCallback(req);
-      // Malicious protocol-relative url '//evil.com/phishing' is neutralized to default '/'
       expect(res.headers.get('location')).toBe('https://ekorabazaar.in/');
     });
   });

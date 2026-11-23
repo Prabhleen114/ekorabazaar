@@ -277,8 +277,23 @@ export function getAuthOrigin(req?: NextRequest): string {
 
 /**
  * Returns the exact Google OAuth callback URI for a given origin.
+ * In production for ekorabazaar.in, defaults to 'https://www.ekorabazaar.in/api/auth/google/callback'
+ * which is the verified authorized redirect URI in Google Cloud Console.
+ * Can be overridden via GOOGLE_REDIRECT_URI or GOOGLE_OAUTH_REDIRECT_URI.
  */
 export function getOAuthRedirectUri(origin: string): string {
+  const explicitUri =
+    process.env.GOOGLE_REDIRECT_URI ||
+    process.env.GOOGLE_OAUTH_REDIRECT_URI ||
+    process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI;
+  if (explicitUri && explicitUri.trim()) {
+    return explicitUri.trim();
+  }
+
+  if (origin.includes('ekorabazaar.in')) {
+    return 'https://www.ekorabazaar.in/api/auth/google/callback';
+  }
+
   return `${origin.replace(/\/+$/, '')}/api/auth/google/callback`;
 }
 
@@ -303,6 +318,15 @@ export async function handleGoogle(req: NextRequest) {
     const origin = getAuthOrigin(req);
     const redirectUri = getOAuthRedirectUri(origin);
 
+    // Safe diagnostic logging (never logs client secrets or auth codes)
+    console.log(
+      `[Google OAuth Init] Client ID: ${clientId.substring(0, 15)}... | ` +
+      `Origin: ${origin} | ` +
+      `Redirect URI: ${redirectUri} | ` +
+      `Host: ${req.headers.get('host')} | ` +
+      `X-Forwarded-Host: ${req.headers.get('x-forwarded-host')}`
+    );
+
     const statePayload = {
       redirect: redirectTo,
       nonce: Math.random().toString(36).substring(2, 15),
@@ -320,13 +344,21 @@ export async function handleGoogle(req: NextRequest) {
     googleAuthUrl.searchParams.set('prompt', 'select_account');
 
     const response = NextResponse.redirect(googleAuthUrl.toString());
-    response.cookies.set('oauth_state', state, {
+
+    const isProd = process.env.NODE_ENV === 'production';
+    const isEkoraDomain = origin.includes('ekorabazaar.in');
+
+    const cookieOptions: any = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: isProd,
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 10,
-    });
+    };
+    if (isEkoraDomain) {
+      cookieOptions.domain = '.ekorabazaar.in';
+    }
+    response.cookies.set('oauth_state', state, cookieOptions);
 
     return response;
   } catch (err: any) {
@@ -387,6 +419,14 @@ export async function handleGoogleCallback(req: NextRequest) {
         console.warn('Failed to parse oauth state', e);
       }
     }
+
+    // Safe diagnostic logging (never logs tokens or client secrets)
+    console.log(
+      `[Google OAuth Callback] Has code: ${Boolean(code)} | ` +
+      `Error: ${errorParam || 'none'} | ` +
+      `State Param: ${stateParam ? 'present' : 'none'} | ` +
+      `Token Exchange Redirect URI: ${redirectUri}`
+    );
 
     const rawClientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     const rawClientSecret = process.env.GOOGLE_CLIENT_SECRET;
@@ -480,15 +520,33 @@ export async function handleGoogleCallback(req: NextRequest) {
       else if (user.role === 'SELLER') finalDestination = '/seller/dashboard';
     }
 
+    const isProd = process.env.NODE_ENV === 'production';
+    const isEkoraDomain = origin.includes('ekorabazaar.in');
+
     const response = NextResponse.redirect(new URL(finalDestination, origin));
-    response.cookies.set('session', sessionToken, {
+
+    const sessionCookieOptions: any = {
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: isProd,
       sameSite: 'lax',
       path: '/',
-    });
+    };
+    if (isEkoraDomain) {
+      sessionCookieOptions.domain = '.ekorabazaar.in';
+    }
+    response.cookies.set('session', sessionToken, sessionCookieOptions);
+
     response.cookies.delete('oauth_state');
+    if (isEkoraDomain) {
+      response.cookies.set('oauth_state', '', {
+        domain: '.ekorabazaar.in',
+        path: '/',
+        expires: new Date(0),
+        maxAge: 0,
+      });
+    }
+
     return response;
   } catch (error: any) {
     console.error('Google OAuth callback error:', error);
