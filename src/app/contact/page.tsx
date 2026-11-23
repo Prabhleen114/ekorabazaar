@@ -30,7 +30,7 @@ export default function ContactPage() {
       "@type": "LocalBusiness",
       "@id": "https://ekorabazaar.in/#organization",
       "name": "Ekora Bazaar",
-      "legalName": "Ekora Bazaar Pvt Ltd",
+      "legalName": "Ekora Technologies",
       "url": "https://ekorabazaar.in",
       "logo": "https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
       "image": "https://ekorabazaar.in/og-image.jpg",
@@ -112,7 +112,7 @@ export default function ContactPage() {
             </div>
             <div>
               <span className="font-semibold block text-brand-charcoal">Office Address:</span>
-              Ekora Bazaar Pvt Ltd<br/>
+              Ekora Technologies<br/>
               Near Shyam Mandir Marg, Sutapatti,<br/>
               Muzaffarpur, Bihar - 842001
             </div>

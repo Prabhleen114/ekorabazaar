@@ -311,7 +311,7 @@ Under `src/app/api/docs/[slug]/[type]/route.ts`, Ekora generates dynamic HTML "P
   3. Omits all 27 knowledge base articles, all 20 formulations, and the fragrance load calculator tool.
 
 ### 6.3 Entity Consistency Across Policies
-- **Legal Entity:** Stated as `Ekora Bazaar Pvt Ltd` on `/about` and `/contact`, but simply `Ekora Bazaar` on `/terms` and `/privacy`.
+- **Legal Entity:** Stated as `Ekora Technologies` on `/about` and `/contact`, but simply `Ekora Bazaar` on `/terms` and `/privacy`.
 - **Address:** `Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar - 842001, India`. Present in About and Contact, but missing in `LocalBusiness` schema and footer.
 - **Return Window Contradiction:**
   - `/refund-policy` says: Contact within **48 hours** with unboxing video.

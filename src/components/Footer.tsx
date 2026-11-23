@@ -107,7 +107,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p>© {new Date().getFullYear()} Ekora Bazaar. All rights reserved.</p>
             <div className="text-xs text-brand-charcoal/40 mt-1">
-              <p>Ekora Bazaar Pvt Ltd | MSME Registered Enterprise</p>
+              <p>Ekora Technologies | MSME Registered Enterprise</p>
               <p className="font-semibold mt-1">GST invoice provided on every order.</p>
             </div>
           </div>

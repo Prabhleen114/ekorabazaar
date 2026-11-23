@@ -129,7 +129,7 @@ export default function RootLayout({
         "@type": "Organization",
         "@id": "https://ekorabazaar.in/#organization",
         name: "Ekora Bazaar",
-        legalName: "Ekora Bazaar Pvt Ltd",
+        legalName: "Ekora Technologies",
         url: "https://ekorabazaar.in",
         logo: {
           "@type": "ImageObject",
@@ -142,8 +142,8 @@ export default function RootLayout({
           "India's premier creator commerce platform and wholesale raw materials sourcing hub for independent artisans and makers.",
         foundingDate: "2026",
         founders: [
-          { "@type": "Person", name: "Kumar Aryan" },
           { "@type": "Person", name: "Prabhleen Kaur" },
+          { "@type": "Person", name: "Kumar Aryan" },
         ],
         address: {
           "@type": "PostalAddress",

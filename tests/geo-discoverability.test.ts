@@ -12,13 +12,13 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     expect(org).toBeDefined();
     expect(org['@id']).toBe('https://ekorabazaar.in/#organization');
     expect(org.name).toBe('Ekora Bazaar');
-    expect(org.legalName).toBe('Ekora Bazaar Pvt Ltd');
+    expect(org.legalName).toBe('Ekora Technologies');
     expect(org.url).toBe('https://ekorabazaar.in');
     expect(org.logo.url).toBe('https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg');
     expect(org.foundingDate).toBe('2026');
     expect(org.founders).toEqual([
-      { '@type': 'Person', name: 'Kumar Aryan' },
       { '@type': 'Person', name: 'Prabhleen Kaur' },
+      { '@type': 'Person', name: 'Kumar Aryan' },
     ]);
     expect(org.address.postalCode).toBe('842001');
     expect(org.address.addressLocality).toBe('Muzaffarpur');
@@ -112,7 +112,7 @@ describe('GEO Discoverability & Structured Data Verification', () => {
     expect(fs.existsSync('public/llms.txt')).toBe(true);
     const text = fs.readFileSync('public/llms.txt', 'utf8');
     expect(text).toContain('# Ekora Bazaar');
-    expect(text).toContain('Ekora Bazaar Pvt Ltd');
+    expect(text).toContain('Ekora Technologies');
     expect(text).toContain('Kumar Aryan');
     expect(text).toContain('Prabhleen Kaur');
     expect(text).toContain('Muzaffarpur, Bihar - 842001, India');

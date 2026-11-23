@@ -111,7 +111,7 @@ export default function BuyerFooter() {
             <li><Link href="/contact" className="hover:text-brand-charcoal transition-colors text-brand-orange">Contact Us</Link></li>
           </ul>
           <div className="text-xs text-brand-charcoal/40 mt-2">
-            <p>Ekora Bazaar Pvt Ltd | MSME Registered Enterprise</p>
+            <p>Ekora Technologies | MSME Registered Enterprise</p>
             <p className="font-semibold mt-1">GST invoice provided on every order.</p>
           </div>
         </div>

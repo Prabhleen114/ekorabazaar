@@ -240,7 +240,7 @@ export function generateOrganizationSchema() {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
       "name": SITE_NAME,
-      "legalName": "Ekora Bazaar Pvt Ltd",
+      "legalName": "Ekora Technologies",
       "url": BASE_URL,
       "logo": {
         "@type": "ImageObject",
@@ -252,8 +252,8 @@ export function generateOrganizationSchema() {
       "description": "India's premier creator commerce platform and wholesale raw materials sourcing hub for independent artisans and makers.",
       "foundingDate": "2026",
       "founders": [
-        { "@type": "Person", "name": "Kumar Aryan" },
         { "@type": "Person", "name": "Prabhleen Kaur" },
+        { "@type": "Person", "name": "Kumar Aryan" },
       ],
       "address": {
         "@type": "PostalAddress",

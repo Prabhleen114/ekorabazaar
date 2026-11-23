@@ -412,7 +412,7 @@ This roadmap translates the findings from `docs/SEO_AEO_GEO_MASTER_AUDIT.md` int
 - **Dependencies:** Owner confirmation on standard damage return window (48 hours vs 7 days).
 - **Acceptance Criteria:**
   - In `src/lib/faqs.ts` line 142: Update the glass container warranty text from *"within 7 days"* to *"within 48 hours of delivery with unboxing video"* to match `/refund-policy`.
-  - Expand `TermsPage` to include registered corporate name (`Ekora Bazaar Pvt Ltd`), jurisdiction (`Muzaffarpur / New Delhi`), dispute resolution, and GST invoicing terms.
+  - Expand `TermsPage` to include registered corporate name (`Ekora Technologies`), jurisdiction (`Muzaffarpur / New Delhi`), dispute resolution, and GST invoicing terms.
 - **Validation Commands:**
   - Verify return window copy on PDP container FAQs matches `/refund-policy`.
 - **Rollback Consideration:** Git revert.
@@ -491,7 +491,7 @@ This roadmap translates the findings from `docs/SEO_AEO_GEO_MASTER_AUDIT.md` int
   2. **Google Merchant Center:**
      - Audit product feed for GTIN/MPN warnings and placeholder images.
   3. **Google Business Profile:**
-     - Claim/verify Google Business Profile for *Ekora Bazaar Pvt Ltd* in Muzaffarpur, Bihar to strengthen LocalBusiness entity graph.
+     - Claim/verify Google Business Profile for *Ekora Technologies* in Muzaffarpur, Bihar to strengthen LocalBusiness entity graph.
 
 ---
 

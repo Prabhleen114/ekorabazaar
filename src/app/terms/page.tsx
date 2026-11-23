@@ -28,7 +28,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-semibold text-brand-charcoal mt-8 mb-3">1. Acceptance of Terms &amp; Corporate Identity</h2>
             <p>
-              These Terms of Service constitute a legally binding agreement between you (&ldquo;User&rdquo;, &ldquo;Buyer&rdquo;, or &ldquo;Seller&rdquo;) and <strong>Ekora Bazaar Pvt Ltd</strong> (&ldquo;Ekora Bazaar&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), having its registered operations at Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar &ndash; 842001, India.
+              These Terms of Service constitute a legally binding agreement between you (&ldquo;User&rdquo;, &ldquo;Buyer&rdquo;, or &ldquo;Seller&rdquo;) and <strong>Ekora Technologies</strong> (&ldquo;Ekora Bazaar&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), having its registered operations at Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar &ndash; 842001, India.
             </p>
             <p>
               By accessing, browsing, registering on, or transacting through <code>https://www.ekorabazaar.in</code>, you agree to be bound by these Terms, our Privacy Policy, Shipping Policy, and Refund Policy.
@@ -90,7 +90,7 @@ export default function TermsPage() {
               In accordance with the Information Technology Act 2000 and Consumer Protection (E-Commerce) Rules 2020, the contact details for grievance redressal are:
             </p>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Company:</strong> Ekora Bazaar Pvt Ltd</li>
+              <li><strong>Company:</strong> Ekora Technologies</li>
               <li><strong>Email:</strong> <code>ekorabazaar@gmail.com</code></li>
               <li><strong>Phone / WhatsApp:</strong> +91-9041500605</li>
               <li><strong>Address:</strong> Near Shyam Mandir Marg, Sutapatti, Muzaffarpur, Bihar &ndash; 842001, India</li>

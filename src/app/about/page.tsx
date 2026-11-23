@@ -26,7 +26,7 @@ export default function AboutPage() {
       "@type": "LocalBusiness",
       "@id": "https://ekorabazaar.in/#organization",
       "name": "Ekora Bazaar",
-      "legalName": "Ekora Bazaar Pvt Ltd",
+      "legalName": "Ekora Technologies",
       "url": "https://ekorabazaar.in",
       "logo": "https://ekorabazaar.in/images/rectangle%20logo%20ekora%20bazaar.jpeg",
       "image": "https://ekorabazaar.in/og-image.jpg",
@@ -35,8 +35,8 @@ export default function AboutPage() {
       "priceRange": "₹₹",
       "foundingDate": "2026",
       "founders": [
-        { "@type": "Person", "name": "Kumar Aryan" },
-        { "@type": "Person", "name": "Prabhleen Kaur" }
+        { "@type": "Person", "name": "Prabhleen Kaur" },
+        { "@type": "Person", "name": "Kumar Aryan" }
       ],
       "address": {
         "@type": "PostalAddress",
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Legal Identity</h3>
                   <p className="text-brand-charcoal/80 mb-4">
-                    <strong>Ekora Bazaar Pvt Ltd</strong><br />
+                    <strong>Ekora Technologies</strong><br />
                     Near Shyam Mandir Marg, Sutapatti<br />
                     Muzaffarpur, Bihar - 842001<br />
                     India
@@ -138,8 +138,8 @@ export default function AboutPage() {
                   <div>
                     <h3 className="text-sm uppercase tracking-wider font-bold text-brand-charcoal/50 mb-2">Leadership &amp; Co-Founders</h3>
                     <p className="text-brand-charcoal/80">
-                      <strong>Kumar Aryan</strong> &bull; Co-Founder<br />
-                      <strong>Prabhleen Kaur</strong> &bull; Co-Founder
+                      <strong>Prabhleen Kaur</strong> &bull; Co-Founder<br />
+                      <strong>Kumar Aryan</strong> &bull; Co-Founder
                     </p>
                   </div>
                   <div>
