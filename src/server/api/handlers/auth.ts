@@ -369,28 +369,35 @@ export async function handleGoogle(req: NextRequest) {
 
 export async function handleGoogleCallback(req: NextRequest) {
   const origin = getAuthOrigin(req);
+  let currentStage = 'init';
 
   try {
+    currentStage = 'params_validation';
     const { searchParams } = new URL(req.url);
     const code = searchParams.get('code');
     const stateParam = searchParams.get('state');
     const errorParam = searchParams.get('error');
 
     if (errorParam) {
-      console.warn('Google OAuth returned error:', errorParam);
+      console.warn(`[Google OAuth Callback] Google reported error: ${errorParam}`);
       return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(errorParam)}`, origin));
     }
 
     if (!code) {
+      console.warn('[Google OAuth Callback] Missing authorization code');
       return NextResponse.redirect(new URL('/login?error=missing_code', origin));
     }
 
+    currentStage = 'csrf_validation';
     const storedState = req.cookies.get('oauth_state')?.value;
     if (!storedState || !stateParam || storedState !== stateParam) {
-      console.warn('Google OAuth CSRF mismatch: state parameter does not match stored cookie');
+      console.warn(
+        `[Google OAuth Callback] CSRF mismatch: storedState present: ${Boolean(storedState)}, stateParam present: ${Boolean(stateParam)}`
+      );
       return NextResponse.redirect(new URL('/login?error=csrf_mismatch', origin));
     }
 
+    currentStage = 'state_parsing';
     let redirectTo = '/';
     let redirectUri = getOAuthRedirectUri(origin);
 
@@ -416,28 +423,31 @@ export async function handleGoogleCallback(req: NextRequest) {
           redirectUri = decoded.redirectUri;
         }
       } catch (e) {
-        console.warn('Failed to parse oauth state', e);
+        console.warn('[Google OAuth Callback] Failed to parse oauth state payload', e);
       }
     }
 
-    // Safe diagnostic logging (never logs tokens or client secrets)
+    // Safe diagnostic logging (never logs tokens, auth codes, or secrets)
     console.log(
-      `[Google OAuth Callback] Has code: ${Boolean(code)} | ` +
-      `Error: ${errorParam || 'none'} | ` +
-      `State Param: ${stateParam ? 'present' : 'none'} | ` +
-      `Token Exchange Redirect URI: ${redirectUri}`
+      `[Google OAuth Callback] State: valid | ` +
+      `Redirect URI: ${redirectUri} | ` +
+      `Destination: ${redirectTo}`
     );
 
+    currentStage = 'credentials_check';
     const rawClientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     const rawClientSecret = process.env.GOOGLE_CLIENT_SECRET;
     const clientId = rawClientId?.trim();
     const clientSecret = rawClientSecret?.trim();
 
     if (!clientId || !clientSecret) {
-      console.error('Google OAuth credentials not configured');
+      console.error(
+        `[Google OAuth Callback] Missing credentials: ClientId present: ${Boolean(clientId)}, ClientSecret present: ${Boolean(clientSecret)}`
+      );
       return NextResponse.redirect(new URL('/login?error=oauth_not_configured', origin));
     }
 
+    currentStage = 'token_exchange';
     const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -452,19 +462,24 @@ export async function handleGoogleCallback(req: NextRequest) {
 
     if (!tokenRes.ok) {
       const errText = await tokenRes.text();
-      console.error('Google token exchange error:', tokenRes.status, errText);
+      console.error(`[Google OAuth Callback] Token exchange failed with HTTP ${tokenRes.status}:`, errText);
       return NextResponse.redirect(new URL('/login?error=token_exchange_failed', origin));
     }
 
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
+    if (!accessToken) {
+      console.error('[Google OAuth Callback] Token exchange response missing access_token');
+      return NextResponse.redirect(new URL('/login?error=token_exchange_failed', origin));
+    }
 
+    currentStage = 'user_profile_fetch';
     const userRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     if (!userRes.ok) {
-      console.error('Failed to fetch Google user profile');
+      console.error(`[Google OAuth Callback] User profile fetch failed with HTTP ${userRes.status}`);
       return NextResponse.redirect(new URL('/login?error=profile_fetch_failed', origin));
     }
 
@@ -472,48 +487,72 @@ export async function handleGoogleCallback(req: NextRequest) {
     const { sub: googleId, email, name } = googleUser;
 
     if (!email) {
+      console.warn('[Google OAuth Callback] User profile missing email');
       return NextResponse.redirect(new URL('/login?error=no_email_from_google', origin));
     }
 
-    let user = await prisma.user.findFirst({
-      where: {
-        OR: [{ googleId: googleId }, { email: email.toLowerCase() }],
-      },
-      include: { seller: true },
-    });
+    console.log(
+      `[Google OAuth Callback] Profile retrieved: emailPresent: true, subPresent: ${Boolean(googleId)}, namePresent: ${Boolean(name)}`
+    );
 
-    if (user) {
-      if (!user.googleId || (!user.name && name)) {
-        user = await prisma.user.update({
-          where: { id: user.id },
+    currentStage = 'db_user_sync';
+    let user;
+    try {
+      user = await prisma.user.findUnique({
+        where: { googleId },
+        include: { seller: true },
+      });
+
+      if (!user) {
+        user = await prisma.user.findUnique({
+          where: { email: email.toLowerCase() },
+          include: { seller: true },
+        });
+      }
+
+      if (user) {
+        if (!user.googleId || (!user.name && name)) {
+          user = await prisma.user.update({
+            where: { id: user.id },
+            data: {
+              googleId: user.googleId || googleId,
+              name: user.name || name || null,
+            },
+            include: { seller: true },
+          });
+        }
+      } else {
+        user = await prisma.user.create({
           data: {
-            googleId: user.googleId || googleId,
-            name: user.name || name || null,
+            email: email.toLowerCase(),
+            name: name || null,
+            googleId: googleId,
+            role: 'CUSTOMER',
           },
           include: { seller: true },
         });
       }
-    } else {
-      user = await prisma.user.create({
-        data: {
-          email: email.toLowerCase(),
-          name: name || null,
-          googleId: googleId,
-          role: 'CUSTOMER',
-        },
-        include: { seller: true },
-      });
+    } catch (dbErr: any) {
+      console.error('[Google OAuth Callback] Database operation failed during user sync:', dbErr);
+      return NextResponse.redirect(new URL('/login?error=auth_db_error', origin));
     }
 
+    currentStage = 'session_generation';
     const sessionPayload = {
       userId: user.id,
       role: user.role,
       sellerId: user.seller?.id || null,
     };
 
-    await createSession(sessionPayload);
-    const sessionToken = await encrypt(sessionPayload);
+    let sessionToken: string;
+    try {
+      sessionToken = await encrypt(sessionPayload);
+    } catch (jwtErr: any) {
+      console.error('[Google OAuth Callback] Session JWT encryption failed:', jwtErr);
+      return NextResponse.redirect(new URL('/login?error=auth_session_error', origin));
+    }
 
+    currentStage = 'response_redirect';
     let finalDestination = redirectTo;
     if (finalDestination === '/') {
       if (user.role === 'ADMIN') finalDestination = '/admin';
@@ -547,9 +586,27 @@ export async function handleGoogleCallback(req: NextRequest) {
       });
     }
 
+    console.log(
+      `[Google OAuth Callback Success] Authenticated userId: ${user.id} | ` +
+      `Role: ${user.role} | ` +
+      `Destination: ${finalDestination} | ` +
+      `Session Cookie Set: true (domain: ${sessionCookieOptions.domain || 'host-only'})`
+    );
+
     return response;
   } catch (error: any) {
-    console.error('Google OAuth callback error:', error);
-    return NextResponse.redirect(new URL('/login?error=auth_internal_error', origin));
+    console.error(`[Google OAuth Callback Fatal] Stage: ${currentStage} | Error: ${error?.name} - ${error?.message}`, error);
+    const safeErrorParam =
+      currentStage === 'db_user_sync'
+        ? 'auth_db_error'
+        : currentStage === 'session_generation'
+        ? 'auth_session_error'
+        : currentStage === 'token_exchange'
+        ? 'token_exchange_failed'
+        : currentStage === 'user_profile_fetch'
+        ? 'profile_fetch_failed'
+        : 'auth_internal_error';
+
+    return NextResponse.redirect(new URL(`/login?error=${safeErrorParam}&stage=${currentStage}`, origin));
   }
 }

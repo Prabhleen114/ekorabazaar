@@ -41,8 +41,17 @@ function LoginForm() {
     if (errCode === 'oauth_not_configured') {
       return 'Google Sign-In is being configured. Please use email/password or try again shortly.'
     }
-    if (errCode === 'token_exchange_failed' || errCode === 'oauth_init_failed') {
+    if (errCode === 'token_exchange_failed' || errCode === 'oauth_init_failed' || errCode === 'profile_fetch_failed') {
       return 'Google authentication encountered an issue. Please try signing in again.'
+    }
+    if (errCode === 'csrf_mismatch') {
+      return 'Security verification expired. Please try signing in again.'
+    }
+    if (errCode === 'auth_db_error') {
+      return 'Could not retrieve or create your account. Please try again shortly or contact support.'
+    }
+    if (errCode === 'auth_session_error') {
+      return 'Could not create session. Please try signing in again.'
     }
     return 'Authentication failed. Please verify your credentials.'
   }

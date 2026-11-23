@@ -21,7 +21,7 @@ vi.mock('@/lib/db', () => ({
 }));
 
 import prisma from '@/lib/db';
-import { createSession } from '@/lib/session';
+import { encrypt } from '@/lib/session';
 import {
   getAuthOrigin,
   getOAuthRedirectUri,
@@ -328,6 +328,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       global.fetch = mockFetch;
 
       // Mock Prisma user creation
+      (prisma.user.findUnique as any).mockResolvedValue(null);
       (prisma.user.findFirst as any).mockResolvedValue(null);
       (prisma.user.create as any).mockResolvedValue({
         id: 'new-user-id',
@@ -372,8 +373,8 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
         include: { seller: true },
       });
 
-      // Verify Session Creation
-      expect(createSession).toHaveBeenCalledWith({
+      // Verify Session JWT generation
+      expect(encrypt).toHaveBeenCalledWith({
         userId: 'new-user-id',
         role: 'CUSTOMER',
         sellerId: null,
@@ -417,7 +418,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
         return Promise.reject(new Error('Unknown URL'));
       });
 
-      (prisma.user.findFirst as any).mockResolvedValue({
+      (prisma.user.findUnique as any).mockResolvedValue({
         id: 'existing-id',
         email: 'existing@ekorabazaar.com',
         googleId: null,
@@ -485,7 +486,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
         return Promise.reject(new Error('Unknown URL'));
       });
 
-      (prisma.user.findFirst as any).mockResolvedValue({
+      (prisma.user.findUnique as any).mockResolvedValue({
         id: 'uid',
         email: 'test@example.com',
         googleId: 'sub-open-redirect',
@@ -502,6 +503,98 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
 
       const res = await handleGoogleCallback(req);
       expect(res.headers.get('location')).toBe('https://ekorabazaar.in/');
+    });
+
+    it('returns auth_db_error when database user creation fails', async () => {
+      const state = Buffer.from(
+        JSON.stringify({
+          redirect: '/',
+          redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback',
+        })
+      ).toString('base64url');
+
+      global.fetch = vi.fn().mockImplementation((url: string) => {
+        if (url === 'https://oauth2.googleapis.com/token') {
+          return Promise.resolve(
+            new Response(JSON.stringify({ access_token: 'mock-token' }), { status: 200 })
+          );
+        }
+        if (url === 'https://www.googleapis.com/oauth2/v3/userinfo') {
+          return Promise.resolve(
+            new Response(
+              JSON.stringify({
+                sub: 'db-fail-sub',
+                email: 'fail@example.com',
+                name: 'Fail User',
+              }),
+              { status: 200 }
+            )
+          );
+        }
+        return Promise.reject(new Error('Unknown URL'));
+      });
+
+      (prisma.user.findUnique as any).mockRejectedValue(new Error('Prisma database connection timeout'));
+
+      const req = createRequest(
+        `https://ekorabazaar.in/api/auth/google/callback?code=mock_code&state=${state}`,
+        {
+          cookies: { oauth_state: state },
+        }
+      );
+
+      const res = await handleGoogleCallback(req);
+      expect(res.headers.get('location')).toBe('https://ekorabazaar.in/login?error=auth_db_error');
+    });
+
+    it('returns auth_session_error when JWT session encryption fails', async () => {
+      const state = Buffer.from(
+        JSON.stringify({
+          redirect: '/',
+          redirectUri: 'https://www.ekorabazaar.in/api/auth/google/callback',
+        })
+      ).toString('base64url');
+
+      global.fetch = vi.fn().mockImplementation((url: string) => {
+        if (url === 'https://oauth2.googleapis.com/token') {
+          return Promise.resolve(
+            new Response(JSON.stringify({ access_token: 'mock-token' }), { status: 200 })
+          );
+        }
+        if (url === 'https://www.googleapis.com/oauth2/v3/userinfo') {
+          return Promise.resolve(
+            new Response(
+              JSON.stringify({
+                sub: 'jwt-fail-sub',
+                email: 'jwt@example.com',
+                name: 'JWT User',
+              }),
+              { status: 200 }
+            )
+          );
+        }
+        return Promise.reject(new Error('Unknown URL'));
+      });
+
+      (prisma.user.findUnique as any).mockResolvedValue({
+        id: 'jwt-user-id',
+        email: 'jwt@example.com',
+        googleId: 'jwt-fail-sub',
+        role: 'CUSTOMER',
+        seller: null,
+      });
+
+      (encrypt as any).mockRejectedValueOnce(new Error('JWT_SECRET missing'));
+
+      const req = createRequest(
+        `https://ekorabazaar.in/api/auth/google/callback?code=mock_code&state=${state}`,
+        {
+          cookies: { oauth_state: state },
+        }
+      );
+
+      const res = await handleGoogleCallback(req);
+      expect(res.headers.get('location')).toBe('https://ekorabazaar.in/login?error=auth_session_error');
     });
   });
 });

@@ -3,7 +3,11 @@ import { cookies } from 'next/headers'
 import type { Role } from '@prisma/client'
 
 function getSecretKey(): Uint8Array {
-  const secret = process.env.JWT_SECRET
+  const secret =
+    process.env.JWT_SECRET ||
+    process.env.NEXTAUTH_SECRET ||
+    process.env.AUTH_SECRET ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY
   if (!secret) {
     throw new Error(
       'CRITICAL SECURITY ERROR: JWT_SECRET environment variable is not set. ' +
@@ -46,25 +50,36 @@ export async function createSession(payload: SessionPayload) {
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000)
   const session = await encrypt(payload)
 
-  const cookieStore = await cookies()
-  cookieStore.set('session', session, {
-    expires,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-  })
+  try {
+    const cookieStore = await cookies()
+    cookieStore.set('session', session, {
+      expires,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    })
+  } catch (err: any) {
+    // In contexts where cookies() is read-only (such as GET Route Handlers returning NextResponse),
+    // cookieStore.set will throw ReadonlyRequestCookiesError.
+    // Callers in route handlers must set cookies on NextResponse directly.
+    console.warn('[Session] Note: cookieStore.set cannot be called in current phase:', err?.message || err)
+  }
 }
 
 export async function clearSession() {
-  const cookieStore = await cookies()
-  cookieStore.set('session', '', {
-    expires: new Date(0),
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-  })
+  try {
+    const cookieStore = await cookies()
+    cookieStore.set('session', '', {
+      expires: new Date(0),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    })
+  } catch (err: any) {
+    console.warn('[Session] Note: cookieStore.set cannot be called in current phase:', err?.message || err)
+  }
 }
 
 export async function getSession(): Promise<SessionPayload | null> {
