@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import bcrypt from 'bcrypt';
-import { getSession, createSession, clearSession } from '@/lib/session';
+import { getSession, createSession, clearSession, encrypt } from '@/lib/session';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { validateBody, SignupSchema } from '@/lib/validation';
 
@@ -211,9 +211,81 @@ export async function handleLogout() {
   return NextResponse.json({ success: true, redirectUrl: '/' });
 }
 
+/**
+ * Resolves the trusted public origin for OAuth flows and redirects.
+ * Prioritizes:
+ * 1. Explicitly configured APP_URL or NEXT_PUBLIC_APP_URL
+ * 2. Reverse proxy headers (x-forwarded-host, x-forwarded-proto) set by Railway / Cloudflare
+ * 3. RAILWAY_PUBLIC_DOMAIN (Railway platform environment variable)
+ * 4. Production canonical domain (https://ekorabazaar.in) or localhost in development
+ */
+export function getAuthOrigin(req?: NextRequest): string {
+  // 1. Explicitly configured canonical application URL
+  const configuredUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL;
+  if (configuredUrl) {
+    try {
+      const parsed = new URL(configuredUrl.trim());
+      return parsed.origin;
+    } catch {
+      // Ignore invalid configured URL and proceed to dynamic detection
+    }
+  }
+
+  // 2. Request header inspection (supporting reverse proxy forwarding)
+  if (req) {
+    const forwardedHost = req.headers.get('x-forwarded-host');
+    const rawHost = forwardedHost ? forwardedHost.split(',')[0].trim() : req.headers.get('host')?.trim();
+
+    const forwardedProto = req.headers.get('x-forwarded-proto');
+    let proto = forwardedProto ? forwardedProto.split(',')[0].trim() : '';
+
+    if (rawHost) {
+      const isLocal =
+        rawHost.includes('localhost') ||
+        rawHost.startsWith('127.0.0.1') ||
+        rawHost.startsWith('0.0.0.0');
+
+      if (!proto) {
+        proto = isLocal ? 'http' : 'https';
+      }
+
+      // Enforce HTTPS in production for public hosts
+      if (!isLocal && process.env.NODE_ENV === 'production') {
+        proto = 'https';
+      }
+
+      // If host resolves to localhost/0.0.0.0 inside a production container (e.g. Railway internal container address)
+      if (isLocal && (process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENVIRONMENT)) {
+        if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+          return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
+        }
+        return 'https://ekorabazaar.in';
+      }
+
+      return `${proto}://${rawHost}`;
+    }
+  }
+
+  // 3. Fallback to Railway default domain if provided by Railway environment
+  if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+    return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
+  }
+
+  // 4. Default fallback: production domain or localhost
+  return process.env.NODE_ENV === 'production' ? 'https://ekorabazaar.in' : 'http://localhost:3000';
+}
+
+/**
+ * Returns the exact Google OAuth callback URI for a given origin.
+ */
+export function getOAuthRedirectUri(origin: string): string {
+  return `${origin.replace(/\/+$/, '')}/api/auth/google/callback`;
+}
+
 export async function handleGoogle(req: NextRequest) {
   try {
-    const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const rawClientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const clientId = rawClientId?.trim();
 
     if (!clientId) {
       return NextResponse.json(
@@ -228,15 +300,13 @@ export async function handleGoogle(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const redirectTo = searchParams.get('redirect') || '/';
 
-    const host = req.headers.get('host') || 'localhost:3000';
-    const protocol =
-      req.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
-    const origin = `${protocol}://${host}`;
-    const redirectUri = `${origin}/api/auth/google/callback`;
+    const origin = getAuthOrigin(req);
+    const redirectUri = getOAuthRedirectUri(origin);
 
     const statePayload = {
       redirect: redirectTo,
       nonce: Math.random().toString(36).substring(2, 15),
+      redirectUri,
     };
     const state = Buffer.from(JSON.stringify(statePayload)).toString('base64url');
 
@@ -266,10 +336,7 @@ export async function handleGoogle(req: NextRequest) {
 }
 
 export async function handleGoogleCallback(req: NextRequest) {
-  const host = req.headers.get('host') || 'localhost:3000';
-  const protocol =
-    req.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
-  const origin = `${protocol}://${host}`;
+  const origin = getAuthOrigin(req);
 
   try {
     const { searchParams } = new URL(req.url);
@@ -293,6 +360,8 @@ export async function handleGoogleCallback(req: NextRequest) {
     }
 
     let redirectTo = '/';
+    let redirectUri = getOAuthRedirectUri(origin);
+
     if (stateParam) {
       try {
         const decoded = JSON.parse(Buffer.from(stateParam, 'base64url').toString('utf8'));
@@ -300,18 +369,29 @@ export async function handleGoogleCallback(req: NextRequest) {
           decoded &&
           decoded.redirect &&
           typeof decoded.redirect === 'string' &&
-          decoded.redirect.startsWith('/')
+          decoded.redirect.startsWith('/') &&
+          !decoded.redirect.startsWith('//') &&
+          !decoded.redirect.includes('\\')
         ) {
           redirectTo = decoded.redirect;
+        }
+        if (
+          decoded &&
+          decoded.redirectUri &&
+          typeof decoded.redirectUri === 'string' &&
+          decoded.redirectUri.startsWith('http')
+        ) {
+          redirectUri = decoded.redirectUri;
         }
       } catch (e) {
         console.warn('Failed to parse oauth state', e);
       }
     }
 
-    const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const redirectUri = `${origin}/api/auth/google/callback`;
+    const rawClientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const rawClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const clientId = rawClientId?.trim();
+    const clientSecret = rawClientSecret?.trim();
 
     if (!clientId || !clientSecret) {
       console.error('Google OAuth credentials not configured');
@@ -385,11 +465,14 @@ export async function handleGoogleCallback(req: NextRequest) {
       });
     }
 
-    await createSession({
+    const sessionPayload = {
       userId: user.id,
       role: user.role,
       sellerId: user.seller?.id || null,
-    });
+    };
+
+    await createSession(sessionPayload);
+    const sessionToken = await encrypt(sessionPayload);
 
     let finalDestination = redirectTo;
     if (finalDestination === '/') {
@@ -398,6 +481,13 @@ export async function handleGoogleCallback(req: NextRequest) {
     }
 
     const response = NextResponse.redirect(new URL(finalDestination, origin));
+    response.cookies.set('session', sessionToken, {
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
     response.cookies.delete('oauth_state');
     return response;
   } catch (error: any) {
