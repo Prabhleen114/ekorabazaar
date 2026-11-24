@@ -386,6 +386,10 @@ function hasWordBoundary(str: string, token: string): boolean {
   return before && after;
 }
 
+const GENERIC_TERMS = new Set(['oil', 'fragrance', 'scent', 'aroma', 'parfum', 'perfume', 'bottle', 'jar', 'mould', 'mold', 'powder', 'liquid', 'base', 'pack', 'bulk']);
+const ACCESSORY_TERMS = ['bottle', 'jar', 'tin', 'container', 'packaging', 'box', 'diffuser', 'stick', 'soap', 'spray', 'pump', 'cap', 'dropper'];
+const ACCESSORY_REGEX = /\b(?:bottle|jar|tin|container|packaging|box|diffuser|stick|soap|spray|pump|cap|dropper)s?\b/i;
+
 /**
  * Score a single product against a search query for relevance ranking.
  *
@@ -409,11 +413,12 @@ export function scoreProduct(
 ): number {
   if (!normalizedQuery || tokenGroups.length === 0) return 0;
 
-  const name        = (product.name        || '').toLowerCase();
-  const category    = (product.category    || '').toLowerCase();
-  const department  = (product.department  || '').toLowerCase();
-  const description = (product.description || '').toLowerCase();
-  const tags        = (product.tags        || []).map((t: string) => t.toLowerCase()).join(' ');
+  const prodAny = product as any;
+  const name        = prodAny._lowerName        ?? (prodAny._lowerName = (product.name || '').toLowerCase());
+  const category    = prodAny._lowerCategory    ?? (prodAny._lowerCategory = (product.category || '').toLowerCase());
+  const department  = prodAny._lowerDepartment  ?? (prodAny._lowerDepartment = (product.department || '').toLowerCase());
+  const description = prodAny._lowerDescription ?? (prodAny._lowerDescription = (product.description || '').toLowerCase());
+  const tags        = prodAny._lowerTags        ?? (prodAny._lowerTags = (product.tags || []).map((t: string) => t.toLowerCase()).join(' '));
 
   let score = 0;
 
@@ -437,10 +442,7 @@ export function scoreProduct(
     score += 100;
   }
 
-  // 2. GENERIC WORD HANDLING
-  const GENERIC_TERMS = new Set(['oil', 'fragrance', 'scent', 'aroma', 'parfum', 'perfume', 'bottle', 'jar', 'mould', 'mold', 'powder', 'liquid', 'base', 'pack', 'bulk']);
-
-  // 3. GROUP-LEVEL SCORING
+  // 2. GROUP-LEVEL SCORING
   let titleGroupsMatched = 0;
   
   for (const group of tokenGroups) {
@@ -477,23 +479,19 @@ export function scoreProduct(
     score += groupScore;
   }
 
-  // 4. MULTI-WORD CONTEXT MULTIPLIERS
+  // 3. MULTI-WORD CONTEXT MULTIPLIERS
   if (tokenGroups.length > 1 && titleGroupsMatched === tokenGroups.length) {
     score += 150; 
   } else if (tokenGroups.length > 2 && titleGroupsMatched >= 2) {
     score += 50;
   }
 
-  // 5. PENALIZE ACCESSORIES/PACKAGING FOR MATERIAL QUERIES
-  const ACCESSORY_TERMS = ['bottle', 'jar', 'tin', 'container', 'packaging', 'box', 'diffuser', 'stick', 'soap', 'spray', 'pump', 'cap', 'dropper'];
+  // 4. PENALIZE ACCESSORIES/PACKAGING FOR MATERIAL QUERIES
   const queryHasAccessoryTerm = tokenGroups.some(group => group.some(t => ACCESSORY_TERMS.includes(t)));
   
   if (!queryHasAccessoryTerm) {
-    const hasAccessoryInName = ACCESSORY_TERMS.some(t => new RegExp(`\\b${t}s?\\b`, 'i').test(name));
-    const hasAccessoryInCategory = ACCESSORY_TERMS.some(t => 
-      new RegExp(`\\b${t}s?\\b`, 'i').test(category) || 
-      new RegExp(`\\b${t}s?\\b`, 'i').test(department)
-    );
+    const hasAccessoryInName = ACCESSORY_REGEX.test(name);
+    const hasAccessoryInCategory = ACCESSORY_REGEX.test(category) || ACCESSORY_REGEX.test(department);
 
     if (hasAccessoryInName) {
       score -= 100;
@@ -502,7 +500,7 @@ export function scoreProduct(
     }
   }
 
-  // 6. IN-STOCK BONUS
+  // 5. IN-STOCK BONUS
   if (product.inStock) score += 5;
 
   return score;

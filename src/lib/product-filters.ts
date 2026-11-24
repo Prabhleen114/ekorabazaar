@@ -165,6 +165,8 @@ function getSearchableText(p: any): string {
 
 export function normalizeProduct(p: any): NormalizedProduct {
   if (p && (p as any)._isNormalized) return p;
+  if (p && (p as any)._normalizedProduct) return (p as any)._normalizedProduct;
+
   const rawName = p.name || p.title || "Untitled Product";
   const rawPrice = normalizeProductBasePriceToINR(p);
 
@@ -174,7 +176,11 @@ export function normalizeProduct(p: any): NormalizedProduct {
   const inStock = p.inStock !== false && (p.stock === undefined || p.stock > 0);
   const isQuoteOnly = p.isQuoteOnly === true || rawPrice === 0;
 
-  return {
+  const tags = Array.isArray(p.tags) ? p.tags : [];
+  const tagsStr = tags.join(' ');
+  const searchText = `${rawName} ${category} ${department} ${p.description || ''} ${tagsStr} ${p.id || ''}`.toLowerCase();
+
+  const normalized = {
     id: String(p.id),
     name: rawName,
     category,
@@ -188,12 +194,21 @@ export function normalizeProduct(p: any): NormalizedProduct {
     ),
     maxDiscount: p.maxDiscount || 0,
     description: p.description || "",
-    tags: Array.isArray(p.tags) ? p.tags : [],
+    tags,
     variants: Array.isArray(p.variants) ? p.variants : [],
     tiers: Array.isArray(p.tiers) ? p.tiers : (Array.isArray(p.wholesaleTiers) ? p.wholesaleTiers : []),
     isQuoteOnly,
-    _isNormalized: true
+    _isNormalized: true,
+    _searchText: searchText,
   } as any;
+
+  if (p && typeof p === 'object') {
+    try {
+      (p as any)._normalizedProduct = normalized;
+    } catch {}
+  }
+
+  return normalized;
 }
 
 /**
@@ -216,8 +231,11 @@ export function filterAndSortCatalogProducts(
   const searchTokens = normalizedQ ? expandQueryTokens(normalizedQ) : [];
   const hasSearch = normalizedQ !== null && normalizedQ.length > 0;
 
-  // 1. Normalize all products
-  const normalized = rawProducts.map(normalizeProduct);
+  // 1. Normalize all products (bypass re-mapping if products are already normalized singletons)
+  const normalized: NormalizedProduct[] =
+    rawProducts.length > 0 && rawProducts[0]?._isNormalized
+      ? (rawProducts as NormalizedProduct[])
+      : rawProducts.map(normalizeProduct);
 
   const passesFacetFilters = (p: NormalizedProduct) => {
     if (normalizedCategory) {

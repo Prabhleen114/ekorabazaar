@@ -95,9 +95,11 @@ export default function AdminPriceRequestsPage() {
                   <div className="text-sm font-medium text-gray-900">{req.seller?.brandName}</div>
                 </td>
                 <td className="px-4 md:px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-500 line-through">Old: ₹{((req.oldPrice || 0) / 100).toFixed(2)}</div>
+                  <div className="text-sm text-gray-500 line-through">
+                    Old: ₹{((req.product?.source === 'CATALOG' || req.product?.source === 'EKORA_OFFICIAL') && (req.oldPrice || 0) >= 1000 ? (req.oldPrice || 0) / 100 : (req.oldPrice || 0)).toFixed(2)}
+                  </div>
                   <div className="text-sm font-bold text-gray-900 mt-1">
-                    New: ₹{((req.requestedPrice || 0) / 100).toFixed(2)}
+                    New: ₹{((req.product?.source === 'CATALOG' || req.product?.source === 'EKORA_OFFICIAL') && (req.requestedPrice || 0) >= 1000 ? (req.requestedPrice || 0) / 100 : (req.requestedPrice || 0)).toFixed(2)}
                   </div>
                 </td>
                 <td className="px-4 md:px-6 py-4 text-sm text-gray-500 max-w-xs truncate">

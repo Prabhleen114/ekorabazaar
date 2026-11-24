@@ -149,7 +149,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       delete process.env.APP_URL;
       delete process.env.NEXT_PUBLIC_APP_URL;
       delete process.env.RAILWAY_PUBLIC_DOMAIN;
-      process.env.NODE_ENV = 'production';
+      (process.env as any).NODE_ENV = 'production';
 
       const req = createRequest('http://0.0.0.0:3000/api/auth/google', {
         headers: {
@@ -165,7 +165,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       delete process.env.APP_URL;
       delete process.env.NEXT_PUBLIC_APP_URL;
       delete process.env.RAILWAY_PUBLIC_DOMAIN;
-      process.env.NODE_ENV = 'development';
+      (process.env as any).NODE_ENV = 'development';
 
       const req = createRequest('http://localhost:3000/api/auth/google', {
         headers: { host: 'localhost:3000' },
@@ -200,7 +200,7 @@ describe('Google OAuth & Railway Deployment Flow Verification', () => {
       process.env.GOOGLE_CLIENT_ID = 'test-client-id.apps.googleusercontent.com';
       process.env.GOOGLE_CLIENT_SECRET = 'test-client-secret';
       process.env.NEXT_PUBLIC_APP_URL = 'https://ekorabazaar.in';
-      process.env.NODE_ENV = 'production';
+      (process.env as any).NODE_ENV = 'production';
 
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 

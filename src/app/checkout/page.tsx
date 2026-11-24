@@ -336,7 +336,7 @@ export default function CheckoutPage() {
         </div>
       </div>
       <h1 className="text-3xl font-bold font-serif mb-8">Checkout</h1>
-      <TrackBeginCheckout items={items} value={(total / 100) + TEMP_FLAT_SHIPPING_CHARGE} />
+      <TrackBeginCheckout items={items} value={total + TEMP_FLAT_SHIPPING_CHARGE} />
 
       {needsAuth ? (
         <div className="bg-white p-8 rounded-2xl border border-brand-linen shadow-sm max-w-md mx-auto text-center mt-12">
@@ -455,7 +455,7 @@ export default function CheckoutPage() {
                       if (!gstFocusedRef.current) {
                         gstFocusedRef.current = true
                         trackEvent("gst_field_focus", {
-                          cart_total: (total / 100) + TEMP_FLAT_SHIPPING_CHARGE,
+                          cart_total: total + TEMP_FLAT_SHIPPING_CHARGE,
                           item_count: items.length,
                         })
                       }
@@ -552,7 +552,7 @@ export default function CheckoutPage() {
             <div className="mt-4">
               <WhatsAppCheckoutAssistant
                 itemCount={items.length}
-                totalAmount={Math.max(0, (total / 100) - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE)}
+                totalAmount={Math.max(0, total - (appliedCoupon?.discountAmountRupees || 0) + TEMP_FLAT_SHIPPING_CHARGE)}
                 location="checkout_page"
                 variant="card"
               />
