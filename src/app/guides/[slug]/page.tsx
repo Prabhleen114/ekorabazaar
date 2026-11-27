@@ -1,4 +1,4 @@
-import { ALL_CATEGORIES } from "@/lib/categories";
+import { getAllWholesaleDefinitions, resolveWholesaleCategoryBySlug } from "@/lib/fragrance-collections";
 import { notFound } from "next/navigation";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
@@ -14,10 +14,9 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-// Convert slug back to Category Name for matching
+// Convert slug back to Category Definition for matching
 function slugToCategoryLabel(slug: string) {
-  return ALL_CATEGORIES.find(c => c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug) ||
-         ALL_CATEGORIES.find(c => c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+  return resolveWholesaleCategoryBySlug(slug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -48,8 +47,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return ALL_CATEGORIES.map((cat) => ({
-    slug: cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+  return getAllWholesaleDefinitions().map((cat) => ({
+    slug: cat.slug,
   }));
 }
 
@@ -146,8 +145,8 @@ export default async function GuidePage({ params }: Props) {
                 <p>Begin with 1 unit trial samples or small slabs before committing to 12+ unit wholesale cartons to verify hot throw, demoulding, and scent stability.</p>
               </div>
               <div className="space-y-1">
-                <strong className="block text-brand-charcoal font-semibold">2. Batch Purity &amp; Compliance:</strong>
-                <p>Always verify lot-specific Certificate of Analysis (COA), Technical Data Sheet (TDS), and IFRA 51st Amendment compliance documents.</p>
+                <strong className="block text-brand-charcoal font-semibold">2. Batch Specs &amp; Documentation:</strong>
+                <p>Request or download available batch documentation such as Certificate of Analysis (COA), Technical Data Sheet (TDS), SDS, or application-specific IFRA limits before large-scale production.</p>
               </div>
               <div className="space-y-1">
                 <strong className="block text-brand-charcoal font-semibold">3. Climate &amp; Storage:</strong>

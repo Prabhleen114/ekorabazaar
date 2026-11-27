@@ -82,7 +82,7 @@ In commercial craft manufacturing, mould expense must be amortized across your p
 
 *Strategic Takeaway:* While cheap plastic moulds appear attractive on marketplace portals, their rapid failure rate makes them the most expensive option per unit. Premium silicone is the superior investment for sculptural and undercut designs; heavy-duty polycarbonate is the superior investment for high-volume geometric production.
 
-Browse our [silicone moulds collection](/wholesale/silicone-moulds) and [culinary & pillar moulds catalog](/wholesale/culinary-fondant-moulds) to choose verified tools for your production line.
+Browse our [general silicone moulds collection](/wholesale/general-silicone-moulds) and [culinary & fondant moulds catalog](/wholesale/culinary-fondant-moulds) to choose practical moulds for your production line.
 
 ## 5. Cleaning and Maintenance Rules to Maximize Mould Life
 

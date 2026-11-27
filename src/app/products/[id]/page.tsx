@@ -10,9 +10,10 @@ import Link from "next/link";
 import serialize from "serialize-javascript";
 import { MessageCircle, FileText, ChevronDown } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
-import { generateProductMetadata, generateProductSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
+import { generateProductMetadata, generateProductSchema, generateProductGroupSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getCategoryFaqs } from "@/lib/faqs";
 import { getDepartmentForCategory } from "@/lib/taxonomy";
+import { resolveCategoryBreadcrumbSlug } from "@/lib/fragrance-collections";
 import { getProductApplicationSubtext } from "@/lib/catalog-subtext";
 import ProductKeySpecs from "@/components/ProductKeySpecs";
 import ProductFaqSection from "@/components/ProductFaqSection";
@@ -150,8 +151,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         sellerId: product.sellerId,
         inStock: product.stock > 0 && (isAdminManaged || (catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly)) && effectivePrice > 0,
         isQuoteOnly,
-        fragranceNotes: null as any,
-        usageLevels: null as any
+        fragranceNotes: (!isAdminManaged && (catalogItem as any)?.fragranceNotes) || null,
+        usageLevels: (!isAdminManaged && (catalogItem as any)?.usageLevels) || null
       };
     }
   } catch (err) {
@@ -219,8 +220,8 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
       sellerId: "EKO-OFFICIAL-01",
       inStock: item.inStock !== false && !isQuoteOnly,
       isQuoteOnly,
-      fragranceNotes: null as any,
-      usageLevels: null as any
+      fragranceNotes: (item as any).fragranceNotes || null,
+      usageLevels: (item as any).usageLevels || null
     };
   }
 
@@ -272,8 +273,9 @@ export default async function ProductDetailsPage({ params }: Props) {
 
   // Pre-populated JSON-LD Schema
   const jsonLd = generateProductSchema(productData.rawProduct, productData.supplierName);
+  const productGroupSchema = generateProductGroupSchema(productData.rawProduct, displayProduct.variants || [], productData.supplierName);
 
-  const categorySlug = displayProduct.category ? displayProduct.category.toLowerCase().replace(/[^a-z0-9]+/g, '-') : null;
+  const categorySlug = resolveCategoryBreadcrumbSlug(displayProduct.category);
   const breadcrumbItems = [
     { name: "Home", url: "https://ekorabazaar.in" },
     { name: "Shop", url: "https://ekorabazaar.in/shop" },
@@ -304,6 +306,8 @@ export default async function ProductDetailsPage({ params }: Props) {
     displayProduct.category.toLowerCase().includes("essential") ||
     displayProduct.category.toLowerCase().includes("oil");
 
+  const structuredSchemas = [jsonLd, ...(productGroupSchema ? [productGroupSchema] : []), breadcrumbSchema, faqSchema];
+
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
@@ -312,15 +316,8 @@ export default async function ProductDetailsPage({ params }: Props) {
       {/* Inject JSON-LD Schemas */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialize([jsonLd, breadcrumbSchema, faqSchema], { isJSON: true }) }}
+        dangerouslySetInnerHTML={{ __html: serialize(structuredSchemas, { isJSON: true }) }}
       />
-
-      {/* Visually hidden SEO tags */}
-      {displayProduct.tags && displayProduct.tags.length > 0 && (
-        <div className="sr-only" aria-hidden="true">
-          {displayProduct.tags.join(', ')}
-        </div>
-      )}
 
       {/* Main PDP Layout:
           Mobile: Single-column conversion flow where the entire buy box sits directly beneath the gallery & title.
@@ -374,7 +371,7 @@ export default async function ProductDetailsPage({ params }: Props) {
                 </span>
               )}
               <span className="inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-xs">
-                ★ Formulation Tested
+                Direct B2B Supply
               </span>
             </div>
             <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 tracking-tight font-normal leading-tight mb-1.5">
@@ -408,8 +405,8 @@ export default async function ProductDetailsPage({ params }: Props) {
 
           {/* 10. Technical Accordions (Description, Documents, FAQs, and Returns) */}
           <div className="mt-6 border-t border-stone-200 divide-y divide-stone-200">
-            {/* Description Accordion */}
-            <details className="group py-4">
+            {/* Description Accordion (open by default so crawlable content is visible) */}
+            <details open className="group py-4">
               <summary className="font-sans text-xs uppercase tracking-[0.18em] text-stone-900 font-semibold cursor-pointer flex justify-between items-center select-none">
                 <span>Product Description &amp; Formulation Overview</span>
                 <ChevronDown className="w-4 h-4 text-stone-500 group-open:rotate-180 transition-transform duration-200" />

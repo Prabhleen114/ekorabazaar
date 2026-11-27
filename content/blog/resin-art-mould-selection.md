@@ -33,7 +33,7 @@ Rigid plastics are the preferred format for large architectural slabs, river tab
 - **Planar Flatness:** Flexible silicone moulds with wide, thin bases tend to bow slightly under the heavy hydrostatic weight of mineral composites or large resin pours, resulting in coasters that wobble on tabletop surfaces. Rigid HDPE and thick acrylic forms ensure laser-straight, dead-flat surfaces.
 - **Longevity and Reusability:** HDPE (High-Density Polyethylene) forms with screwed or clamped sides can be taken apart, cleaned, and reassembled indefinitely without tearing or clouding.
 - **Release Requirements:** Unlike silicone's natural non-stick characteristics, rigid plastics require deliberate application of release agents (such as paste carnauba wax, specialized fluoropolymer sprays, or dedicated sheathing tape) to prevent permanent chemical bonding.
-- Browse our [precision studio moulds catalog](/wholesale/precision-studio-moulds).
+- Browse our [eco-resin and stone moulds catalog](/wholesale/eco-resin-stone-moulds) and [general silicone moulds](/wholesale/general-silicone-moulds).
 
 ## 2. The Exothermic Challenge in Epoxy Resin Casting
 

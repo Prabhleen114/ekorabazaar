@@ -1,10 +1,16 @@
 import { notFound } from "next/navigation";
-import { ALL_CATEGORIES } from "@/lib/categories";
 import { ProductStatus } from "@prisma/client";
 import prisma from "@/lib/db";
 import serialize from "serialize-javascript";
-import { generateCategoryMetadata, generateFaqSchema } from "@/lib/seo";
+import { generateCategoryMetadata, generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import { getWholesaleCategoryFaqs } from "@/lib/faqs";
+import {
+  getAllWholesaleDefinitions,
+  resolveWholesaleCategoryBySlug,
+  FRAGRANCE_RELATED_CROSS_LINKS,
+  WholesaleCategoryDefinition,
+} from "@/lib/fragrance-collections";
+import { normalizeProductBasePriceToINR } from "@/lib/pricing";
 import BuyerNavbar from "@/components/BuyerNavbar";
 import BuyerFooter from "@/components/BuyerFooter";
 import ProductCard from "@/components/ProductCard";
@@ -26,8 +32,13 @@ type ProductType = {
   title: string;
   category: string | null;
   price: number;
+  customerPrice?: number | null;
+  mrp?: number | null;
+  source?: string | null;
   imageUrl?: string | null;
   wholesaleTiers?: any;
+  variants?: any[];
+  isQuoteOnly?: boolean;
 };
 
 function normalizeCategoryName(cat: string | null | undefined): string {
@@ -35,51 +46,88 @@ function normalizeCategoryName(cat: string | null | undefined): string {
   return cat.trim().toLowerCase();
 }
 
-function slugToCategoryLabel(slug: string) {
-  const norm = slug.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  return ALL_CATEGORIES.find(c => c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm) ||
-         ALL_CATEGORIES.find(c => c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-') === norm);
+function slugToCategoryLabel(slug: string): WholesaleCategoryDefinition | undefined {
+  return resolveWholesaleCategoryBySlug(slug);
 }
 
-async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Promise<ProductType[]> {
+async function getWholesaleProducts(categoryObj: WholesaleCategoryDefinition, searchParamsObj?: any): Promise<ProductType[]> {
   const canonicalCategory = normalizeCategoryName(categoryObj.id);
+  const categoryList = categoryObj.includeCategories && categoryObj.includeCategories.length > 0
+    ? categoryObj.includeCategories
+    : [categoryObj.id];
+  const categorySetLower = new Set(categoryList.map((c) => c.toLowerCase()));
+  const patterns = (categoryObj.titleMatchPatterns || []).map((p) => p.toLowerCase());
 
   let products: any[] = [];
   try {
     products = await prisma.product.findMany({
       where: {
-        category: { equals: categoryObj.id, mode: 'insensitive' },
+        OR: categoryList.map((c) => ({ category: { equals: c, mode: "insensitive" as const } })),
         status: ProductStatus.PUBLISHED,
         isActive: true,
-        OR: [
-          { sellerId: null },
-          { seller: { accountStatus: 'ACTIVE' } }
+        AND: [
+          {
+            OR: [
+              { sellerId: null },
+              { seller: { accountStatus: "ACTIVE" } },
+            ],
+          },
+          ...(searchParamsObj?.q
+            ? [{ title: { contains: String(searchParamsObj.q), mode: "insensitive" as const } }]
+            : []),
         ],
-        ...(searchParamsObj?.q ? { title: { contains: String(searchParamsObj.q), mode: 'insensitive' as any } } : {})
       },
       include: { seller: true },
-      take: 12,
-      orderBy: { createdAt: 'desc' }
+      take: patterns.length > 0 ? 120 : 40,
+      orderBy: [{ stock: "desc" }, { createdAt: "desc" }],
     });
   } catch (err) {
     console.warn(`Could not load products for wholesale category ${categoryObj.label} at build time:`, err);
   }
 
+  if (patterns.length > 0 && products.length > 0) {
+    const scored = products
+      .map((p) => {
+        const hay = `${p.title || ""} ${p.category || ""}`.toLowerCase();
+        const matchScore = patterns.reduce((acc, pat) => (hay.includes(pat) ? acc + 1 : acc), 0);
+        const primaryBoost = p.category && categoryList[0] && p.category.toLowerCase() === categoryList[0].toLowerCase() ? 2 : 0;
+        const stockBoost = p.stock > 0 && (p.customerPrice ?? p.price) > 0 ? 5 : 0;
+        return { p, score: matchScore + primaryBoost + stockBoost };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((x) => x.p);
+    products = scored.slice(0, 24);
+  } else {
+    products = products
+      .sort((a, b) => ((b.stock > 0 && (b.customerPrice ?? b.price) > 0 ? 1 : 0) - (a.stock > 0 && (a.customerPrice ?? a.price) > 0 ? 1 : 0)))
+      .slice(0, 24);
+  }
+
   // Fallback to static catalog if DB returned 0 products and there are no search queries applied
   if (products.length === 0 && !searchParamsObj?.q) {
-    const matching = (catalogProducts as any[]).filter(p => {
-      const pCat = normalizeCategoryName(p.category);
-      return pCat === canonicalCategory || p.category === categoryObj.id || p.category === categoryObj.label;
-    }).slice(0, 12);
+    const matching = (catalogProducts as any[])
+      .filter((p) => {
+        const pCat = normalizeCategoryName(p.category);
+        if (!categorySetLower.has(pCat) && pCat !== canonicalCategory && p.category !== categoryObj.label) {
+          return false;
+        }
+        if (patterns.length > 0) {
+          const hay = `${p.name || p.title || ""} ${p.category || ""}`.toLowerCase();
+          return patterns.some((pat) => hay.includes(pat));
+        }
+        return true;
+      })
+      .slice(0, 24);
 
-    return matching.map(p => {
-      const rawPrice = typeof p.price === 'number' ? p.price : parseFloat(p.price || '0');
+    return matching.map((p) => {
+      const rawPrice = typeof p.price === "number" ? p.price : parseFloat(p.price || "0");
       const isQuoteOnly = p.isQuoteOnly === true || isNaN(rawPrice) || rawPrice <= 0 || p.inStock === false;
       const validTiers = (Array.isArray(p.tiers) ? p.tiers : [])
         .filter((t: any) => t && Number(t.price) > 0)
         .map((t: any) => ({
           ...t,
-          price: Math.round(Number(t.price) * 100) // normalize to paise to match ProductCard expectations
+          price: Math.round(Number(t.price) * 100), // normalize to paise to match ProductCard expectations
         }));
 
       return {
@@ -87,19 +135,20 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
         title: p.name || p.title,
         category: p.category,
         price: isQuoteOnly ? 0 : Math.round(rawPrice * 100),
-        imageUrl: p.image || p.imageUrl || '/og-image.jpg',
+        source: "CATALOG",
+        imageUrl: p.image || p.imageUrl || "/og-image.jpg",
         wholesaleTiers: validTiers,
         variants: p.variants || [],
-        isQuoteOnly
+        isQuoteOnly,
       };
     });
   }
 
-  return products.map(p => {
+  return products.map((p) => {
     const effectivePrice = p.customerPrice ?? p.price;
     const isQuoteOnly = p.stock <= 0 || effectivePrice <= 0;
     const rawTiers = Array.isArray(p.wholesaleTiers) ? (p.wholesaleTiers as any[]) : [];
-    const validTiers = rawTiers.filter(t => t && Number(t.price) > 0);
+    const validTiers = rawTiers.filter((t) => t && Number(t.price) > 0);
 
     return {
       id: String(p.id),
@@ -111,7 +160,7 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
       source: p.source,
       imageUrl: p.imageUrl,
       wholesaleTiers: validTiers,
-      isQuoteOnly
+      isQuoteOnly,
     };
   });
 }
@@ -128,20 +177,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "No Results Found | Ekora Wholesale",
       robots: { index: false, follow: true },
-      alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` }
+      alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` },
     };
   }
 
-  const baseMeta = generateCategoryMetadata(categoryObj.label, slug);
+  const baseMeta = generateCategoryMetadata(
+    categoryObj.label,
+    slug,
+    categoryObj.seoTitle,
+    categoryObj.seoDescription
+  );
   return {
     ...baseMeta,
-    alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` }
+    alternates: { canonical: `https://ekorabazaar.in/wholesale/${slug}` },
   };
 }
 
 export async function generateStaticParams() {
-  return ALL_CATEGORIES.map((cat) => ({
-    category: cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+  return getAllWholesaleDefinitions().map((cat) => ({
+    category: cat.slug,
   }));
 }
 
@@ -155,64 +209,135 @@ export default async function WholesaleCategoryPage({ params }: Props) {
   }
 
   const products = await getWholesaleProducts(categoryObj);
-  const relatedArticles = getPostsByCategory(categoryObj.label).slice(0, 3);
+  const relatedArticles = getPostsByCategory(
+    categoryObj.includeCategories?.[0] || categoryObj.label
+  ).slice(0, 3);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `Wholesale ${categoryObj.label}`,
-    "description": `B2B Marketplace for wholesale ${categoryObj.label} in India.`,
+    "name": categoryObj.h1 || `Wholesale ${categoryObj.label}`,
+    "description": categoryObj.seoDescription || `B2B Marketplace for wholesale ${categoryObj.label} in India.`,
     "url": `https://ekorabazaar.in/wholesale/${slug}`,
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": products.map((p, idx) => ({
-        "@type": "ListItem",
-        "position": idx + 1,
-        "item": {
-          "@type": "Product",
-          "url": `https://ekorabazaar.in/products/${p.id}`,
-          "name": p.title,
-          "image": p.imageUrl || "https://ekorabazaar.in/og-image.jpg"
-        }
-      }))
-    }
+      "numberOfItems": products.length,
+      "itemListElement": products.map((p, idx) => {
+        const img = p.imageUrl || "https://ekorabazaar.in/og-image.jpg";
+        const absImg = img.startsWith("http") ? img : `https://ekorabazaar.in${img}`;
+        const priceInr = p.isQuoteOnly ? 0 : normalizeProductBasePriceToINR(p);
+        return {
+          "@type": "ListItem",
+          "position": idx + 1,
+          "item": {
+            "@type": "Product",
+            "url": `https://ekorabazaar.in/products/${p.id}`,
+            "name": p.title,
+            "image": absImg,
+            ...(priceInr > 0
+              ? {
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "INR",
+                    "price": priceInr,
+                    "availability": "https://schema.org/InStock",
+                  },
+                }
+              : {}),
+          },
+        };
+      }),
+    },
   };
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://ekorabazaar.in" },
+    { name: "Shop", url: "https://ekorabazaar.in/shop" },
+    { name: categoryObj.label, url: `https://ekorabazaar.in/wholesale/${slug}` },
+  ]);
 
   const categoryFaqs = getWholesaleCategoryFaqs(categoryObj.label);
   const faqSchema = generateFaqSchema(categoryFaqs);
+  const shopFilterUrl = categoryObj.includeCategories?.[0]
+    ? `/shop?category=${encodeURIComponent(categoryObj.includeCategories[0])}`
+    : `/shop?category=${encodeURIComponent(categoryObj.label)}`;
 
   return (
     <main className="min-h-screen bg-brand-bg flex flex-col">
       <BuyerNavbar />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize([structuredData, faqSchema], { isJSON: true }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize([structuredData, breadcrumbSchema, faqSchema], { isJSON: true }) }} />
 
       <div className="pt-24 pb-12 px-4 md:px-6 max-w-7xl mx-auto w-full flex-1">
+
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="mb-6 text-xs sm:text-sm text-brand-charcoal/60">
+          <ol className="flex items-center gap-2 flex-wrap">
+            <li><Link href="/" className="hover:text-brand-orange transition-colors">Home</Link></li>
+            <li aria-hidden="true">&rsaquo;</li>
+            <li><Link href="/shop" className="hover:text-brand-orange transition-colors">Shop</Link></li>
+            <li aria-hidden="true">&rsaquo;</li>
+            <li className="text-brand-charcoal font-medium">{categoryObj.label}</li>
+          </ol>
+        </nav>
 
         {/* Header Section */}
         <div className="mb-8 bg-white p-8 md:p-12 rounded-3xl border border-brand-linen shadow-sm text-center md:text-left flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">
             <h1 className="text-3xl md:text-5xl font-bold font-serif text-brand-charcoal mb-4">
-              Wholesale {categoryObj.label} in India
+              {categoryObj.h1 || `Wholesale ${categoryObj.label} in India`}
             </h1>
             <p className="text-brand-charcoal/70 text-lg max-w-2xl">
-              Source premium <strong>{categoryObj.label}</strong> directly from verified Indian manufacturers and suppliers.
-              Buy in bulk with minimum order quantities designed for businesses, creators, and brands.
-              100% secure B2B transactions on Ekora Bazaar.
+              {categoryObj.heroIntro || (
+                <>
+                  Source premium <strong>{categoryObj.label}</strong> directly from verified Indian manufacturers and suppliers.
+                  Buy in trial quantities or wholesale packs designed for businesses, creators, and brands on Ekora Bazaar.
+                </>
+              )}
             </p>
-            <div className="mt-6 flex gap-4 justify-center md:justify-start">
-              <Link href="/shop" className="bg-brand-orange text-white px-4 md:px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-brand-terracotta transition-colors">
-                Browse All Categories
+            <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+              <Link href={shopFilterUrl} className="bg-brand-orange text-white px-4 md:px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-brand-terracotta transition-colors">
+                Browse Full {categoryObj.label} Catalog
+              </Link>
+              <Link href="/shop" className="bg-stone-100 text-brand-charcoal px-4 md:px-6 py-3 rounded-xl font-semibold hover:bg-stone-200 transition-colors">
+                All Departments
               </Link>
             </div>
           </div>
         </div>
 
+        {/* Fragrance Priority Cross-Links */}
+        {categoryObj.isFragranceRelated && (
+          <div className="mb-8 bg-white p-4 rounded-2xl border border-brand-linen">
+            <p className="text-[11px] font-mono uppercase tracking-wider text-brand-charcoal/60 mb-2.5">
+              Explore Fragrance &amp; Oil Collections
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {FRAGRANCE_RELATED_CROSS_LINKS.map((item) => {
+                const isCurrent = item.href.endsWith(`/${slug}`);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                      isCurrent
+                        ? "bg-brand-charcoal text-white border-brand-charcoal"
+                        : "bg-stone-50 text-brand-charcoal border-stone-200 hover:border-brand-orange hover:text-brand-orange"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Direct Answer: Category Sourcing Quick Facts */}
         <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-5 rounded-2xl border border-brand-linen">
           <div className="p-3 bg-stone-50/70 rounded-xl border border-stone-200/50">
             <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block mb-0.5">Minimum Order</span>
-            <strong className="text-xs sm:text-sm text-brand-charcoal font-semibold">From 1 Unit / Trial Slab</strong>
+            <strong className="text-xs sm:text-sm text-brand-charcoal font-semibold">From 1 Unit / Trial Pack</strong>
           </div>
           <div className="p-3 bg-stone-50/70 rounded-xl border border-stone-200/50">
             <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block mb-0.5">Pan-India Delivery</span>
@@ -224,14 +349,14 @@ export default async function WholesaleCategoryPage({ params }: Props) {
           </div>
           <div className="p-3 bg-stone-50/70 rounded-xl border border-stone-200/50">
             <span className="text-[10px] font-mono uppercase text-brand-charcoal/50 block mb-0.5">Dispatch Speed</span>
-            <strong className="text-xs sm:text-sm text-brand-charcoal font-semibold">24–48h from Muzaffarpur</strong>
+            <strong className="text-xs sm:text-sm text-brand-charcoal font-semibold">24–48h Dispatch Across India</strong>
           </div>
         </div>
 
         {/* Products Grid */}
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-brand-charcoal">Top {categoryObj.label} Suppliers</h2>
-          <Link href={`/shop?category=${encodeURIComponent(categoryObj.label)}`} className="text-brand-orange font-semibold hover:underline">
+          <h2 className="text-2xl font-bold text-brand-charcoal">Featured {categoryObj.label}</h2>
+          <Link href={shopFilterUrl} className="text-brand-orange font-semibold hover:underline">
             View All
           </Link>
         </div>

@@ -85,7 +85,7 @@ Cosmetic toxicologists know that reality is far more complex:
 To build a clear, distinctive brand identity in the Indian market:
 
 1. **The Aromatherapy / Botanical Wellness Line:** If your brand identity centers on holistic mindfulness, Ayurvedic principles, clean ingredients, and subtle spa relaxation, formulate **exclusively with pure essential oils** using natural soy wax from our [candle waxes collection](/wholesale/candle-waxes-additives). Transparently educate your customers that your candles provide gentle, natural botanical diffusion rather than overpowering room-filling perfume.
-2. **The Luxury Fine Home Fragrance Line:** If your brand focuses on high-end home decor, rich sensory luxury, complex perfumery, and strong scent throw, formulate with **IFRA-certified concentrated fragrance oils**.
+2. **The Fine Home Fragrance Line:** If your brand focuses on home decor, rich sensory profiles, and strong room scent throw, formulate with concentrated [candle fragrance oils](/wholesale/candle-fragrance-oils) and always match dosage to your wax's binding limit.
 3. **The Hybrid Synergy Line:** Many top artisan studios combine both: using 70% fragrance oil for strong projection and complex structure, enhanced with 30% pure essential oil to impart authentic botanical depth.
 
 ## Frequently Asked Questions

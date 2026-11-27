@@ -64,6 +64,9 @@ async function getRelatedProducts(tags: string[]): Promise<ProductCardItem[]> {
       where: {
         category: matchingCat.id,
         status: ProductStatus.PUBLISHED,
+        isActive: true,
+        stock: { gt: 0 },
+        price: { gt: 0 },
         OR: [{ sellerId: null }, { seller: { accountStatus: "ACTIVE" } }],
       },
       select: {
@@ -71,6 +74,9 @@ async function getRelatedProducts(tags: string[]): Promise<ProductCardItem[]> {
         title: true,
         category: true,
         price: true,
+        customerPrice: true,
+        mrp: true,
+        source: true,
         imageUrl: true,
         wholesaleTiers: true,
       },

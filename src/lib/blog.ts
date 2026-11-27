@@ -142,14 +142,56 @@ export function markdownToHtml(md: string): string {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "");
 
-  let html = md
+  // Convert markdown tables (contiguous lines starting with |) into clean HTML tables
+  const convertTables = (input: string) => {
+    const lines = input.split("\n");
+    const out: string[] = [];
+    let i = 0;
+    while (i < lines.length) {
+      if (
+        lines[i].trim().startsWith("|") &&
+        i + 1 < lines.length &&
+        /^\|?[\s:|-]+\|[\s:|-]*$/.test(lines[i + 1].trim())
+      ) {
+        const parseRow = (row: string) =>
+          row
+            .trim()
+            .replace(/^\|/, "")
+            .replace(/\|$/, "")
+            .split("|")
+            .map((cell) => cell.trim());
+
+        const headers = parseRow(lines[i]);
+        i += 2; // Skip header & separator
+        const rows: string[][] = [];
+        while (i < lines.length && lines[i].trim().startsWith("|")) {
+          rows.push(parseRow(lines[i]));
+          i++;
+        }
+
+        const thead = `<thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead>`;
+        const tbody = `<tbody>${rows
+          .map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`)
+          .join("")}</tbody>`;
+        out.push(`<div class="overflow-x-auto my-6"><table>${thead}${tbody}</table></div>`);
+        continue;
+      }
+      out.push(lines[i]);
+      i++;
+    }
+    return out.join("\n");
+  };
+
+  const html = convertTables(md)
     // Strip HTML comments (e.g. <!-- VERIFY: ... -->)
     .replace(/<!--[\s\S]*?-->/g, "")
+    // Drop top-level markdown H1 (already rendered by page template from frontmatter.title)
+    .replace(/^# .+\n*/m, "")
     // Headings with IDs matching extractToc
     .replace(/^#### (.+)$/gm, "<h4>$1</h4>")
     .replace(/^### (.+)$/gm, (_, t) => `<h3 id="${headingId(t)}">${t}</h3>`)
     .replace(/^## (.+)$/gm, (_, t) => `<h2 id="${headingId(t)}">${t}</h2>`)
-    .replace(/^# (.+)$/gm, "<h1>$1</h1>")
+    .replace(/^# (.+)$/gm, (_, t) => `<h2 id="${headingId(t)}">${t}</h2>`)
     // Bold / Italic
     .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
@@ -167,12 +209,21 @@ export function markdownToHtml(md: string): string {
         .join("");
       return `<ul>${items}</ul>`;
     })
+    // Ordered lists — wrap in ol
+    .replace(/(^\d+\. .+$(?:\n\d+\. .+$)*)/gm, (match) => {
+      const items = match
+        .split("\n")
+        .map((l) => l.replace(/^\d+\. /, ""))
+        .map((t) => `<li>${t}</li>`)
+        .join("");
+      return `<ol>${items}</ol>`;
+    })
     // Paragraphs — double newline separated blocks
     .split(/\n{2,}/)
     .map((block) => {
       const trimmed = block.trim();
       if (!trimmed) return "";
-      if (/^<(h[1-6]|ul|ol|li|blockquote)/.test(trimmed)) return trimmed;
+      if (/^<(h[1-6]|ul|ol|li|blockquote|div|table)/.test(trimmed)) return trimmed;
       return `<p>${trimmed.replace(/\n/g, " ")}</p>`;
     })
     .join("\n");

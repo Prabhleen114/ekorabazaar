@@ -38,7 +38,7 @@ Slab moulds are shallow, wide rectangular trays equipped with interlocking grid 
 - **Best For:** Swirl techniques that require a broad horizontal canvas—such as Taiwan swirls, feather swirls, hanger swirls, or drop swirls—followed by immediate division without knife drag.
 - **Advantages:** Allows complex two-dimensional patterns across the broad top surface of dozens of bars simultaneously.
 - **Workflow Notes:** Dividers must be inserted at the exact stage of light trace before the soap batter thickens too quickly, or removed carefully after partial setting to prevent surface tearing.
-- Check our [precision studio moulds catalog](/wholesale/precision-studio-moulds).
+- Check our [soap and bar moulds catalog](/wholesale/soap-bar-moulds).
 
 ## 2. Material Comparison: Silicone vs. Acrylic vs. HDPE vs. Plastic
 

@@ -104,8 +104,8 @@ After blending the matured aromatic concentrate with your perfumer's alcohol or 
 ## 6. Sourcing Raw Materials and Packaging in India
 
 To build a viable boutique fragrance brand in India, raw material procurement must be reliable and documented:
-- Sourcing high-grade amber and clear glass roll-on vials in bulk through [Ekora Bazaar packaging studio](/wholesale/vessels-packaging-studio) ensures leakproof seals with stainless steel roller balls that deliver an even, luxurious glide.
-- Ensure all aroma compounds are certified by the International Fragrance Association (IFRA) to safeguard skin health and ensure your brand complies with Indian cosmetic labeling laws under the Drugs and Cosmetics Act.
+- Sourcing high-grade amber and clear glass roll-on vials in bulk through [Ekora Bazaar attar and perfume bottles](/wholesale/attar-perfume-bottles) ensures tight seals with roller balls or spray atomizers suited for concentrated oils and EDP sprays.
+- Always request batch IFRA Category 4 concentration guidelines when formulating finished alcohol sprays or body oils so your brand stays aligned with safety standards.
 
 ## Frequently Asked Questions
 

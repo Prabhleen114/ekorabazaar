@@ -1,5 +1,5 @@
 # Ekora Bazaar
-> India's premier B2B marketplace and wholesale raw materials sourcing hub for creative studios, candle artisans, cosmetic formulators, and independent makers.
+> India's B2B & creator commerce marketplace for concentrated perfume fragrance oils, candle & soap fragrance oils, essential oils, candle waxes, silicone moulds, and craft formulation raw materials.
 
 Website: https://ekorabazaar.in
 Legal Entity: Ekora Technologies
@@ -9,49 +9,52 @@ Support Email: ekorabazaar@gmail.com
 Customer Support Phone: +91-9041500605
 Founded: 2026
 License: Public
-Version: 2.0
-Last-Updated: 2026-11-23
+Version: 2.1
+Last-Updated: 2026-11-28
 
 ## Company Summary & Entity Identity
-Ekora Bazaar is a B2B marketplace built for independent artisans, craft studios, and creative entrepreneurs across India. It provides direct B2B sourcing on wholesale raw materials—including candle waxes, IFRA-certified fragrance oils, precision silicone moulds, cold-pressed plant butters, cosmetic actives, and packaging supplies. Every commercial raw material order is fulfilled with batch lot traceability, valid GST tax invoices with Input Tax Credit (ITC), and professional technical documentation on request.
+Ekora Bazaar connects Indian artisans, perfumery blenders, candle makers, soap ateliers, and cosmetic formulators with direct sourcing across concentrated fragrance oils, skin-safe fragrances, pure essential oils, hydrosols, candle waxes, precision silicone moulds, plant butters, and packaging vessels. Every order supports transparent INR pricing from trial packs to bulk studio sizes and valid B2B GST tax invoicing with Input Tax Credit (ITC). Batch specification sheets (COA, TDS, SDS, or IFRA category limits) are provided when uploaded by suppliers or on commercial request.
 
 ## Core Sourcing & Business Facts
+- Currency & Pricing: Listed in Indian Rupees (INR), from 15ml–100ml trial packs to 500ml, 1 Litre, and bulk craft quantities with tiered pricing shown on product pages.
 - Flat Shipping: Standard flat delivery charge of ₹90 per order across India, regardless of item count or weight.
-- Volume Pricing & MOQ: Tiered volume wholesale discounts are available with Minimum Order Quantities (MOQ) specified directly on product listings with no hidden quote gating.
-- Return Policy: Standard wholesale and chemical/raw-material orders do not support returns or exchanges once dispatched to ensure batch purity. Transit damage claims must be reported within 48 hours accompanied by an unboxing video.
-- Invoicing: GST tax invoice with 18% Input Tax Credit (ITC) compliance provided on every order.
-- Documentation: Batch specification sheets, Certificates of Analysis (COA), and Technical Data Sheets (TDS) available on commercial request.
+- Return Policy: Standard wholesale and chemical/raw-material orders do not support returns or exchanges once dispatched to protect batch purity. Transit damage claims must be reported with continuous unboxing video within 48 hours of delivery.
+- Invoicing: GST tax invoice with Input Tax Credit (ITC) support generated with GSTIN at checkout.
 
-## Wholesale Sourcing Categories
-- [Candle Waxes & Additives](https://ekorabazaar.in/wholesale/candle-waxes-additives): Bulk soy wax flakes, paraffin slabs, beeswax, vybar, and stearic acid.
-- [Fragrance Oils](https://ekorabazaar.in/wholesale/fragrance-oils): High-flashpoint concentrated fragrance oils for candles, soaps, and diffusers.
-- [Pure Essential Oils](https://ekorabazaar.in/wholesale/essential-oils): Pure steam-distilled essential oils for aromatherapy and natural formulation.
-- [Precision Silicone Moulds](https://ekorabazaar.in/wholesale/general-silicone-moulds): Heat-resistant silicone moulds for candle pillars, soap bars, and resin casting.
-- [Eco-Resin & Casting Moulds](https://ekorabazaar.in/wholesale/eco-resin-stone-moulds): Heavy-duty silicone moulds for Jesmonite, concrete, and eco-resin decor.
-- [Raw Butters & Carrier Oils](https://ekorabazaar.in/wholesale/raw-butters-carrier-oils): Cold-pressed carrier oils, shea butter, cocoa butter, and cosmetic emollients.
-- [Candle Jars & Containers](https://ekorabazaar.in/wholesale/candle-jars-containers): Amber jars, frosted vessels, metal tins, and diffuser bottles.
-- [Micas & Pigments](https://ekorabazaar.in/wholesale/micas-pigments): Cosmetic-grade mica powders, candle dyes, and concrete colorants.
-- [Artisan Soap Bases](https://ekorabazaar.in/wholesale/artisan-soap-bases): Melt & pour soap bases (goat milk, aloe vera, transparent, shea).
-- [Cosmetic Preservatives & Chemicals](https://ekorabazaar.in/wholesale/cosmetic-preservatives-chemicals): Cosmetic actives, broad-spectrum preservatives, and emulsifiers.
+## Priority Fragrance & Essential Oil Collections
+- [Perfume Fragrance Oils](https://ekorabazaar.in/wholesale/perfume-fragrance-oils): Concentrated perfume oils, fine attar blends, perfumer's denatured ethanol bases, DPG solvents, and roll-on bottles.
+- [Fragrance Oils](https://ekorabazaar.in/wholesale/fragrance-oils): Concentrated fragrance oils for candles, wax melts, reed diffusers, and studio home fragrance.
+- [Candle Fragrance Oils](https://ekorabazaar.in/wholesale/candle-fragrance-oils): Concentrated fragrance oils curated for soy wax, beeswax, paraffin candles, and wax melts.
+- [Soap Making Fragrance Oils](https://ekorabazaar.in/wholesale/soap-making-fragrance-oils): Skin-safe and cold-process stable fragrance oils for melt-and-pour and artisan cold-process soaps.
+- [Skin Safe Fragrances](https://ekorabazaar.in/wholesale/skin-safe-fragrances): Cosmetic-grade and skin-contact fragrance blends for soaps, lotions, scrubs, and perfumes.
+- [Essential Oils](https://ekorabazaar.in/wholesale/essential-oils): Steam-distilled and cold-pressed botanical essential oils (lavender, tea tree, peppermint, eucalyptus, sandalwood, citrus, and resins).
+- [Aromatherapy Oils](https://ekorabazaar.in/wholesale/aromatherapy-oils): Pure essential oils and botanical hydrosols for diffusers, spas, and massage blends.
+- [Hydrosols & Floral Waters](https://ekorabazaar.in/wholesale/hydrosols-floral-waters): Distilled floral and herbal hydrosols including rose, neroli, lavender, rosemary, geranium, peppermint, and tea tree.
+- [Food-Grade Flavor Oils](https://ekorabazaar.in/wholesale/food-grade-flavor-oils): Lip-safe and culinary flavour oils for lip balms, glosses, and confectionery.
+- [Attar & Perfume Bottles](https://ekorabazaar.in/wholesale/attar-perfume-bottles): Roll-on attar vials, EDP spray atomizers, and perfumer's alcohol carrier bases.
+- [Diffuser Bottles & Accessories](https://ekorabazaar.in/wholesale/diffuser-bottles-accessories): Hanging car diffusers, glass reed decanters, and high-absorbency fibre diffuser sticks.
 
-## Knowledge Bases & Formulation Guides
-- [Sourcing Guides Hub](https://ekorabazaar.in/guides): Comprehensive buying guides on testing, grading, and sourcing craft raw materials.
-- [Formulations Library](https://ekorabazaar.in/formulations): Lab-tested formulation recipes, phase percentages, and production procedures for makers.
-- [Artisan Maker Blog](https://ekorabazaar.in/blog): In-depth technical tutorials covering fragrance loads, burn testing, soap saponification, and mould care.
-- [Candle Fragrance Load Calculator](https://ekorabazaar.in/tools/fragrance-load-calculator): Interactive tool to calculate exact grams of wax and fragrance oil for any vessel size or batch.
+## Core Raw Materials & Studio Categories
+- [Candle Waxes & Additives](https://ekorabazaar.in/wholesale/candle-waxes-additives): Soy wax flakes, paraffin slabs, beeswax, coconut wax, gel wax, and additives.
+- [Artisan Soap Bases](https://ekorabazaar.in/wholesale/artisan-soap-bases): Melt & pour soap bases (goat milk, aloe vera, transparent, shea butter, charcoal, ubtan).
+- [Raw Butters & Carrier Oils](https://ekorabazaar.in/wholesale/raw-butters-carrier-oils): Cold-pressed carrier oils, shea butter, mango butter, and cocoa butter.
+- [Candle Jars & Containers](https://ekorabazaar.in/wholesale/candle-jars-containers): Glass candle vessels and tins.
+- [Micas & Pigments](https://ekorabazaar.in/wholesale/micas-pigments): Mica powders, candle dyes, and pigments.
+- [Precision Silicone Moulds](https://ekorabazaar.in/wholesale/general-silicone-moulds): Silicone moulds for candle pillars, soap bars, resin, and casting.
+
+## Knowledge Bases, Guides & Feeds
+- [Sourcing Guides Hub](https://ekorabazaar.in/guides): Practical buying guides on quality checks, storage, and sourcing craft raw materials.
+- [Formulations Library](https://ekorabazaar.in/formulations): Cosmetic and craft formulation recipes with phase percentages.
+- [Artisan Maker Blog](https://ekorabazaar.in/blog): Technical guides covering fragrance vs essential oils, candle fragrance selection, soap fragrance manufacturing, perfumery blending, and aromatherapy oil applications.
+- [Candle Fragrance Load Calculator](https://ekorabazaar.in/tools/fragrance-load-calculator): Interactive gram weight calculator for candle wax and fragrance oil percentages.
+- [Merchant Product Feed (XML)](https://ekorabazaar.in/feeds/products.xml): Structured RSS 2.0 / Google Merchant XML feed of public active catalogue items with INR pricing and availability.
 
 ## Key Public URLs
-- [Home](https://ekorabazaar.in/): Homepage with curated formulation essentials and discipline directory.
-- [Shop Marketplace](https://ekorabazaar.in/shop): Searchable B2B catalog with department and category filtering.
-- [Workshops & Classes](https://ekorabazaar.in/classes): Discovery kits and masterclasses for creative makers.
-- [About Us](https://ekorabazaar.in/about): Mission, leadership team, and corporate information.
-- [Contact Support](https://ekorabazaar.in/contact): Support contact details, email, and WhatsApp chat.
-- [Frequently Asked Questions (FAQ)](https://ekorabazaar.in/faq): Comprehensive questions and answers on platform features and orders.
-- [Shipping Policy](https://ekorabazaar.in/shipping-policy): Details on ₹90 flat shipping and 24-48h dispatch.
-- [Refund Policy](https://ekorabazaar.in/refund-policy): B2B raw materials return terms and damage claims.
-- [Terms of Service](https://ekorabazaar.in/terms): Platform usage and commercial purchasing terms.
-- [Privacy Policy](https://ekorabazaar.in/privacy): Data handling and privacy compliance.
-- [Sell on Ekora](https://ekorabazaar.in/sell): Supplier registration and seller marketplace onboarding.
-- [Creator Guidelines](https://ekorabazaar.in/creator-guidelines): Standards and requirements for verified marketplace creators.
-- [XML Sitemap Index](https://ekorabazaar.in/sitemap_index.xml): Complete machine-readable XML sitemap index.
-- [Robots Policy](https://ekorabazaar.in/robots.txt): Search crawler and AI bot access policies.
+- [Home](https://ekorabazaar.in/): Marketplace homepage.
+- [Shop Marketplace](https://ekorabazaar.in/shop): Searchable catalog with department and category filtering.
+- [About Us](https://ekorabazaar.in/about): Company profile and mission.
+- [Contact Support](https://ekorabazaar.in/contact): Customer support channels.
+- [Frequently Asked Questions (FAQ)](https://ekorabazaar.in/faq): Order, shipping, and GST FAQ.
+- [Shipping Policy](https://ekorabazaar.in/shipping-policy): ₹90 flat shipping across India.
+- [XML Sitemap Index](https://ekorabazaar.in/sitemap_index.xml): Machine-readable sitemap index.
+- [Robots Policy](https://ekorabazaar.in/robots.txt): Search and AI crawler policy.

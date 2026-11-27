@@ -6,9 +6,12 @@ import { generateFaqSchema } from "@/lib/seo";
 import serialize from "serialize-javascript";
 
 export const metadata: Metadata = {
-  title: "Ekora Bazaar | B2B Raw Materials & Precision Moulds Wholesale",
+  title: "Ekora Bazaar | Fragrance Oils, Essential Oils & Craft Raw Materials India",
   description:
-    "Direct manufacturer raw materials for modern makers. 100% soy wax, IFRA certified fragrance oils, cosmetic bases, and silicone moulds.",
+    "Buy perfume fragrance oils, candle fragrance oils, essential oils, soy wax, soap bases, and silicone moulds online in India. Trial sizes to wholesale packs with GST invoicing.",
+  alternates: {
+    canonical: "https://ekorabazaar.in",
+  },
 };
 
 export default function BuyerHomePage() {

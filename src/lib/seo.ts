@@ -52,10 +52,29 @@ import { getCanonicalProductId } from '@/lib/product-redirects';
  */
 export function generateProductMetadata(product: any): Metadata {
   const canonicalId = getCanonicalProductId(String(product.id));
-  const title = product.title || product.name;
-  const description = `Source ${title} in bulk for your business. Tiered wholesale pricing, fast dispatch, and reliable delivery across India.`;
+  const rawTitle = String(product.title || product.name || 'Wholesale Supply').trim();
+  const title = rawTitle.length > 72 ? `${rawTitle.slice(0, 69).trimEnd()}...` : rawTitle;
+  const basePrice = normalizeProductBasePriceToINR(product);
+  const category = product.category ? String(product.category).trim() : '';
 
-  const imageUrl = product.imageUrl || product.image || DEFAULT_OG_IMAGE;
+  const cleanDesc = String(product.description || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const priceSnippet = basePrice > 0 ? `From ₹${basePrice % 1 === 0 ? basePrice : basePrice.toFixed(2)}. ` : '';
+  const catSnippet = category ? `${category} — ` : '';
+
+  const isWrongMoldCopy = /fragrance|essential|hydrosol/i.test(`${rawTitle} ${category}`) && /silicone mold/i.test(cleanDesc);
+  let description: string;
+  if (cleanDesc && cleanDesc.length >= 40 && !isWrongMoldCopy) {
+    const budget = Math.max(90, 158 - priceSnippet.length - catSnippet.length);
+    const body = cleanDesc.length > budget ? `${cleanDesc.slice(0, budget - 3).trimEnd()}...` : cleanDesc;
+    description = `${catSnippet}${priceSnippet}${body}`;
+  } else {
+    description = `${catSnippet}Buy ${rawTitle} online in India. ${priceSnippet}Trial sizes & wholesale bulk supply with GST invoicing on Ekora Bazaar.`;
+  }
+
+  const rawImg = product.imageUrl || product.image || DEFAULT_OG_IMAGE;
+  const imageUrl = rawImg.startsWith('http') ? rawImg : `${BASE_URL}${rawImg.startsWith('/') ? rawImg : `/${rawImg}`}`;
   const path = `/products/${canonicalId}`;
 
   return generateStandardMetadata(title, description, path, imageUrl);
@@ -64,9 +83,16 @@ export function generateProductMetadata(product: any): Metadata {
 /**
  * Generate dynamic Category Metadata
  */
-export function generateCategoryMetadata(categoryName: string, categorySlug: string): Metadata {
-  const title = `${categoryName} Wholesale | Bulk Supplier India`;
-  const description = `Source wholesale ${categoryName} for small businesses and creators. Reliable supply, volume tier pricing, and fast delivery on ${SITE_NAME}.`;
+export function generateCategoryMetadata(
+  categoryName: string,
+  categorySlug: string,
+  customTitle?: string,
+  customDescription?: string
+): Metadata {
+  const title = customTitle || `${categoryName} Wholesale | Bulk Supplier India`;
+  const description =
+    customDescription ||
+    `Source wholesale ${categoryName} for small businesses and creators. Reliable supply, volume tier pricing, and fast delivery on ${SITE_NAME}.`;
 
   const path = `/wholesale/${categorySlug}`;
   return generateStandardMetadata(title, description, path);
@@ -168,7 +194,7 @@ export function generateProductSchema(product: any, sellerName?: string) {
         ? (product.imageUrl || product.image)
         : `${BASE_URL}${product.imageUrl || product.image || "/og-image.jpg"}`
     ],
-    "description": product.description || `Source ${product.title || product.name} in bulk wholesale on Ekora Bazaar. Tiered pricing and reliable delivery across India.`,
+    "description": product.description || `Buy ${product.title || product.name} in India on Ekora Bazaar. Available in trial and wholesale pack quantities with pan-India delivery and GST invoicing.`,
     "sku": canonicalId,
     ...(product.category ? { "category": product.category } : {}),
     "brand": {
@@ -180,6 +206,73 @@ export function generateProductSchema(product: any, sellerName?: string) {
   };
 
   return schema;
+}
+
+/**
+ * Generate ProductGroup Structured Data when a product has multiple pack-size variants.
+ */
+export interface ProductGroupVariantInput {
+  size?: string;
+  price?: number | string;
+  image?: string | null;
+}
+
+export function generateProductGroupSchema(
+  product: { id: string | number; title?: string; name?: string; imageUrl?: string | null; image?: string | null; description?: string | null; stock?: number; inStock?: boolean; seller?: { businessName?: string } | null },
+  variants: ProductGroupVariantInput[],
+  sellerName?: string
+) {
+  if (!Array.isArray(variants) || variants.length <= 1) return null;
+  const canonicalId = getCanonicalProductId(String(product.id));
+  const baseName = product.title || product.name;
+  const rawImg = product.imageUrl || product.image || "/og-image.jpg";
+  const absImage = rawImg.startsWith("http") ? rawImg : `${BASE_URL}${rawImg}`;
+  const isAvailable = (product.stock ?? 0) > 0 || product.inStock !== false;
+  let computedSeller = sellerName || (product.seller && product.seller.businessName) || "Ekora Bazaar";
+  if (computedSeller === "Ekora Official Development" || computedSeller === "Ekora Official Supplier") {
+    computedSeller = "Ekora Bazaar";
+  }
+
+  const hasVariant = variants
+    .map((v) => {
+      const rawPrice = Number(v?.price || 0);
+      const size = String(v?.size || "").trim();
+      if (!size || rawPrice <= 0) return null;
+      const variantSlug = size.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      return {
+        "@type": "Product",
+        "name": `${baseName} (${size})`,
+        "sku": `${canonicalId}-${variantSlug}`,
+        "size": size,
+        "image": v.image ? (String(v.image).startsWith("http") ? v.image : `${BASE_URL}${v.image}`) : absImage,
+        "offers": {
+          "@type": "Offer",
+          "url": `${BASE_URL}/products/${canonicalId}`,
+          "priceCurrency": "INR",
+          "price": rawPrice,
+          "priceValidUntil": "2027-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          "seller": { "@type": "Organization", "name": computedSeller }
+        }
+      };
+    })
+    .filter(Boolean);
+
+  if (hasVariant.length <= 1) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProductGroup",
+    "@id": `${BASE_URL}/products/${canonicalId}#productgroup`,
+    "name": baseName,
+    "description": product.description || `${baseName} available in multiple pack sizes on Ekora Bazaar.`,
+    "url": `${BASE_URL}/products/${canonicalId}`,
+    "productGroupID": canonicalId,
+    "variesBy": ["https://schema.org/size"],
+    "brand": { "@type": "Brand", "name": "Ekora Bazaar", "url": BASE_URL },
+    "hasVariant": hasVariant,
+  };
 }
 
 /**

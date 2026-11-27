@@ -66,7 +66,7 @@ For Indian makers transitioning from hobbyist pouring to commercial retail:
 - Under the *Cosmetics Rules, 2020* administered by the **Central Drugs Standard Control Organisation (CDSCO)**, cosmetics manufactured for sale must comply with Bureau of Indian Standards (BIS) specifications IS 4707.
 - Fragrance ingredients must strictly adhere to the restricted and prohibited lists outlined under BIS and IFRA standards.
 - Labeling must include full ingredient declarations (using standard INCI terminology, e.g., "Parfum" or "Fragrance"), batch manufacturing numbers, net weight, MRP in INR, and manufacturing license details.
-- Explore our [scent and flavor lab department](/wholesale/scent-flavor-lab) for batch-tested, compliant materials.
+- Explore our [soap making fragrance oils collection](/wholesale/soap-making-fragrance-oils) and [essential oils catalog](/wholesale/essential-oils) for soap and cosmetic projects.
 
 ## Frequently Asked Questions
 

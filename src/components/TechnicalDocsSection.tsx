@@ -30,9 +30,9 @@ export default function TechnicalDocsSection({ productId, productName, category 
       type: "coa",
       title: "Certificate of Analysis (COA)",
       filename: `${slug}-coa-batch-report-2026.pdf`,
-      description: "Gas chromatography purity assay, organoleptic metrics & batch parameters",
+      description: "Lot assay & purity specifications (when uploaded or requested for commercial orders)",
       href: `/api/docs/${productId}/coa`,
-      badge: "Batch Verified",
+      badge: "Lot Assay",
       badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200"
     },
     {
@@ -57,11 +57,11 @@ export default function TechnicalDocsSection({ productId, productName, category 
       ? [
           {
             type: "ifra",
-            title: "IFRA 51st Amendment Certificate",
+            title: "IFRA Conformity Documentation",
             filename: `${slug}-ifra-conformity-certificate.pdf`,
-            description: "Skin safety limits for candles, leave-on cosmetics, and rinse-off soaps",
+            description: "Category usage limits for candles, leave-on cosmetics, and rinse-off soaps",
             href: `/api/docs/${productId}/ifra`,
-            badge: "IFRA Certified",
+            badge: "Category Limits",
             badgeColor: "bg-purple-50 text-purple-700 border-purple-200"
           }
         ]

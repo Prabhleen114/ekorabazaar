@@ -113,4 +113,4 @@ Only if the supplier provides an official IFRA Certificate confirming safe allow
 Formulating strictly within IFRA guidelines minimizes customer allergic reactions, builds credibility with retail stockists and luxury boutiques, ensures compliance with Indian BIS cosmetic standards, and protects your business from civil liability in product safety disputes.
 
 ### Where can I find genuine IFRA documentation for raw materials?
-Reputable B2B raw material marketplaces like Ekora Bazaar provide full technical datasheets and IFRA certificates from verified Indian chemical suppliers across our [scent and flavor lab department](/wholesale/scent-flavor-lab), ensuring transparency from bulk drum to finished artisan jar.
+When sourcing wholesale fragrance materials on Ekora Bazaar, browse our [skin-safe fragrances](/wholesale/skin-safe-fragrances) and [candle fragrance oils](/wholesale/candle-fragrance-oils) collections and request batch IFRA category documentation before commercial dermal production.

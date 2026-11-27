@@ -10,4 +10,86 @@ Disallow: /account/
 Disallow: /checkout/
 Disallow: /cart/
 
+# Traditional & AI Search Discovery Crawlers (explicitly permitted on public pages & product feeds)
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/dashboard/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+
 Sitemap: https://ekorabazaar.in/sitemap_index.xml

@@ -23,7 +23,11 @@ export default function ProductKeySpecs({ product }: Props) {
     const base = Array.isArray(product.fragranceNotes.base) ? product.fragranceNotes.base.join(", ") : product.fragranceNotes.base;
     scentNotesText = [top && `Top: ${top}`, heart && `Heart: ${heart}`, base && `Base: ${base}`].filter(Boolean).join(" • ");
   } else if (isFragranceOrOil) {
-    scentNotesText = "Concentrated aroma oil blend &bull; IFRA certified";
+    if (product.category.toLowerCase().includes("essential")) {
+      scentNotesText = "Pure botanical essential oil • Check batch COA/SDS on request";
+    } else {
+      scentNotesText = "Concentrated fragrance blend • Check category IFRA limits before formulation";
+    }
   } else if (product.category.toLowerCase().includes("wax")) {
     scentNotesText = "Neutral / Unscented natural base wax";
   } else if (product.category.toLowerCase().includes("mould") || product.category.toLowerCase().includes("mold")) {
@@ -50,8 +54,10 @@ export default function ProductKeySpecs({ product }: Props) {
   }
 
   // 3. Flash Point
-  let flashPointText = "> 93°C / 200°F (Safe for Candle Wax & Soap Base Pouring)";
-  if (!isFragranceOrOil && !product.category.toLowerCase().includes("wax")) {
+  let flashPointText = "> 93°C / 200°F (typical high-flashpoint candle fragrance blend; check product SDS)";
+  if (product.category.toLowerCase().includes("essential")) {
+    flashPointText = "Varies by botanical distillate (~45°C–55°C for citrus, 75°C+ for woody/resin oils; check batch SDS)";
+  } else if (!isFragranceOrOil && !product.category.toLowerCase().includes("wax")) {
     flashPointText = "Non-combustible under standard ambient studio processing";
   }
 
@@ -80,8 +86,8 @@ export default function ProductKeySpecs({ product }: Props) {
         <h3 className="text-xs uppercase tracking-[0.18em] font-sans font-bold text-stone-900">
           Key Technical Specifications
         </h3>
-        <span className="text-[10px] text-stone-400 font-sans uppercase">
-          Batch Verified
+        <span className="text-[10px] text-stone-500 font-sans uppercase">
+          Studio Reference
         </span>
       </div>
       <div className="divide-y divide-stone-100 text-xs font-sans">

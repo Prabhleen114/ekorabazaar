@@ -51,7 +51,7 @@ You do not need a commercial warehouse to launch. A 100-square-foot spare bedroo
 ### Sourcing Direct from Manufacturers:
 Avoid buying retail-packaged craft kits that markup ingredients by 300%. Source professional supplies in bulk:
 - High-grade hydrogenated soy wax flakes from our [wholesale candle waxes catalog](/wholesale/candle-waxes-additives) at ₹280 to ₹380 per kg.
-- IFRA-certified, high-flashpoint concentrated fragrance oils from our [scent & flavor lab](/wholesale/scent-flavor-lab) at ₹1,800 to ₹3,200 per kg.
+- Concentrated high-flashpoint fragrance oils from our [candle fragrance oils catalog](/wholesale/candle-fragrance-oils) for cold and hot scent throw.
 - Lead-free braided cotton wicks and sustainers from our [wick systems collection](/wholesale/wick-systems-hardware).
 - High-clarity amber and frosted glass tumblers from our [candle jars and containers studio](/wholesale/candle-jars-containers).
 

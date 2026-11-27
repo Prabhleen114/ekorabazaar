@@ -46,7 +46,7 @@ Different casting applications demand different resin formulations, which dictat
 - **Viscosity:** Low to medium (800 to 1,500 mPa.s).
 - **Pot Life:** Moderate (45 to 90 minutes).
 - **Maximum Pour Depth:** 15 mm to 30 mm.
-- **Best Applications:** Silicone mould casting, bookmarks, pyramid paperweights, floral preservation, multi-layer trays using moulds from our [precision studio moulds collection](/wholesale/precision-studio-moulds).
+- **Best Applications:** Silicone mould casting, bookmarks, pyramid paperweights, floral preservation, multi-layer trays using moulds from our [eco-resin and stone moulds collection](/wholesale/eco-resin-stone-moulds).
 
 ### 3:1 Ratio (By Weight) — Deep Cast & River Table Systems
 - **Viscosity:** Water-thin (200 to 500 mPa.s).
@@ -104,7 +104,7 @@ Follow this standard operating procedure for consistent, crystal-clear casts:
 
 ## 6. Financial Planning: Estimating Resin Costs in India
 
-High-quality epoxy casting systems in India generally retail between ₹600 and ₹1,400 per kilogram at retail hobby scale, but buying in bulk wholesale through [Ekora Bazaar raw bases](/wholesale/casting-mediums-raw-bases) drops the landed cost significantly to ₹350 to ₹650 per kilogram for 5 kg to 20 kg bulk packs (plus 18% GST).
+High-quality epoxy casting systems in India generally retail between ₹600 and ₹1,400 per kilogram at retail hobby scale, but buying in bulk wholesale through [Ekora Bazaar raw materials](/shop?department=Casting%20Mediums%20%26%20Raw%20Bases) drops the landed cost significantly depending on pack volume (plus 18% GST).
 
 ### Sample Batch Cost for a 4-Coaster Set (300g Total Pour):
 - 200g Resin (Part A) + 100g Hardener (Part B) @ ₹450/kg wholesale = ₹135.00

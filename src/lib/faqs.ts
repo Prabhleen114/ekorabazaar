@@ -118,12 +118,12 @@ export function getCategoryFaqs(productName: string, category: string): FaqItem[
     return [
       {
         question: `What is the flash point of ${name}?`,
-        answer: `Most concentrated fragrance oils in our catalog possess flash points exceeding 93°C (200°F), ensuring safety during high-temperature wax blending and hot melt-and-pour soap bases. Always check the batch specification sheet on this page for the exact flash point degree.`,
+        answer: `Concentrated candle fragrance oils typically have flash points above 93°C (200°F) for warm wax pouring, whereas pure essential oils and solvent blends vary widely (for example, citrus essential oils can range from 45°C to 55°C). Always consult the product's Safety Data Sheet (SDS) or batch specifications before high-heat processing.`,
         tag: "Safety & Flash Point"
       },
       {
-        question: `Is ${name} 100% IFRA Certified?`,
-        answer: `Yes. Every fragrance formulation on Ekora Bazaar complies strictly with the IFRA 51st Amendment Standards for category safety across candle making, cosmetic leave-on lotions, and rinse-off soap bars.`,
+        question: `How can I verify IFRA usage limits for ${name}?`,
+        answer: `Ask for or review the batch IFRA Certificate of Conformity when formulating skin-contact products such as soaps, lotions, roll-on perfumes, or lip balms. Category limits depend on whether the finished product is rinsed off (soap, wash), left on the skin (lotion, EDP), or burned in a candle.`,
         tag: "Regulatory Compliance"
       },
       {
@@ -227,19 +227,19 @@ export function getCategoryFaqs(productName: string, category: string): FaqItem[
   if (cat.includes("essential") || name.toLowerCase().includes("essential oil")) {
     return [
       {
-        question: `Is ${name} 100% pure steam-distilled or adulterated with dipropylene glycol (DPG)?`,
-        answer: `Every essential oil on Ekora Bazaar is 100% pure, natural, and undiluted, obtained through direct steam or water distillation of botanical biomass. We never dilute or adulterate with synthetic carriers, mineral oil, or DPG.`,
+        question: `How can I evaluate purity when sourcing ${name}?`,
+        answer: `Look for unblended steam-distilled or cold-pressed essential oils stored in sealed amber glass or HDPE containers, and request available Certificate of Analysis (COA) or Gas Chromatography (GC-MS) data for commercial cosmetic production batches.`,
         tag: "Botanical Purity"
       },
       {
         question: `What is the recommended safe dermal dilution rate?`,
-        answer: `For leave-on topical formulations (body oils, lotions), dilute between 0.5% and 2.0% in an approved carrier oil (such as Jojoba, Sweet Almond, or Fractionated Coconut Oil). For wash-off products, 1% to 3% is standard.`,
+        answer: `For leave-on topical formulations (body oils, lotions), dilute conservatively between 0.5% and 2.0% in an approved carrier oil (such as Jojoba, Sweet Almond, or Fractionated Coconut Oil), verifying citrus phototoxicity and sensitizer limits. For wash-off products, check IFRA Category 9 limits.`,
         tag: "Skin Safety"
       },
       {
-        question: `Can I obtain lot-specific Gas Chromatography (GC-MS) chemical profiles?`,
-        answer: `Yes. Lot-specific GC-MS reports documenting major terpene, alcohol, and ester constituents are available on request for cosmetic compliance dossiers.`,
-        tag: "Quality Certification"
+        question: `Can I use ${name} in scented candles and aromatherapy diffusers?`,
+        answer: `Yes, though essential oils evaporate faster than synthetic candle fragrance oils due to volatile terpenes. Cool soy or beeswax before stirring essential oils to protect top notes, and always run wick and hot-throw tests.`,
+        tag: "Application Guidance"
       }
     ];
   }
@@ -318,23 +318,65 @@ export function getWholesaleCategoryFaqs(categoryLabel: string): FaqItem[] {
     ];
   }
 
+  if (norm.includes("perfume fragrance oils")) {
+    return [
+      {
+        question: `What oils and carriers do I need to make Eau de Parfum (EDP) or roll-on attars?`,
+        answer: `Fine perfume formulation pairs concentrated skin-safe fragrance oils or pure essential oils with either Perfumer's Alcohol (99% denatured ethanol) for sprayable EDP/EDT scents (15%–25% fragrance oil) or odourless Dipropylene Glycol (DPG) / carrier oils for non-alcoholic roll-on attars.`
+      },
+      {
+        question: `How do IFRA limits apply to perfume oils vs skin-contact mists?`,
+        answer: `Alcohol-based fine perfumes and body oils fall under IFRA Category 4. Always confirm the batch IFRA documentation for maximum safe concentration before blending 20%+ extrait formulations.`
+      },
+      {
+        question: `What bottle sizes are available for perfume fragrance oils on Ekora Bazaar?`,
+        answer: `Fragrance oils and perfumery solvents are available from 15ml–100ml trial bottles up to 500ml and 1 Litre studio packs, alongside 8ml–100ml roll-on attar vials and glass EDP spray bottles.`
+      },
+      {
+        question: `Do you provide GST invoices for commercial perfumery brands?`,
+        answer: `Yes. Every order includes an itemized GST tax invoice with your company GSTIN when entered at checkout, shipped pan-India for a flat ₹90 fee.`
+      }
+    ];
+  }
+
+  if (norm.includes("aromatherapy")) {
+    return [
+      {
+        question: `Which oils on Ekora Bazaar are best suited for aromatherapy diffusers and spa blends?`,
+        answer: `Our Essential Oils and Hydrosols & Floral Waters collections feature single-botanical oils such as Lavender, Eucalyptus, Peppermint, Tea Tree, Frankincense, Neroli, Mandarin, and Vetiver suited for ultrasonic diffusers, steam inhalation blends, and massage carrier dilutions.`
+      },
+      {
+        question: `How should I dilute pure essential oils for massage or topical skincare?`,
+        answer: `Always dilute pure essential oils into a cold-pressed carrier oil (sweet almond, jojoba, coconut, or grapeseed) rather than applying neat to skin—typically 0.5% to 2% for adult body oils, while observing extra caution with potent oils like cinnamon, clove, and phototoxic citrus peels.`
+      },
+      {
+        question: `How should aromatherapy oils be stored in warm Indian climates?`,
+        answer: `Keep bottles tightly sealed in amber glass below 22°C away from UV light and moisture. Citrus essential oils oxidize fastest and stay freshest when stored cool and used within 6–12 months of opening.`
+      },
+      {
+        question: `Can studios order trial sizes before bulk 1 Litre bottles?`,
+        answer: `Yes. Most essential oils and floral hydrosols offer small sampling sizes alongside bulk studio volumes, shipped pan-India with flat ₹90 delivery.`
+      }
+    ];
+  }
+
   if (norm.includes("fragrance") || norm.includes("scent")) {
     return [
       {
-        question: `Are all fragrance oils IFRA-certified with safe usage limits?`,
-        answer: `Yes. 100% of fragrance oils listed on Ekora Bazaar adhere strictly to the International Fragrance Association (IFRA) 51st Amendment Standards. Batch IFRA certificates specifying maximum safe limits for candles (Category 12), body lotions (Category 5A), and soaps (Category 9) are available for immediate download.`
+        question: `How do IFRA safety limits apply to Ekora Bazaar fragrance oils?`,
+        answer: `IFRA limits define the maximum safe percentage of a fragrance oil by product type—for example, candles (Category 12), rinse-off soap bars (Category 9), leave-on body lotions (Category 5A), and fine perfumes (Category 4). Check available batch documentation or contact support for the specific IFRA category limits of your chosen SKU before commercial skin-contact use.`
       },
       {
-        question: `What is the difference between candle-grade and skin-safe fragrance oils?`,
-        answer: `Candle-grade fragrance oils are optimized for high flash points and strong hot scent throw in molten wax. Skin-safe fragrances are dermatologically compliant for topical skin contact in lotions, lip balms, soaps, and body mists.`
+        question: `What is the difference between candle fragrance oils and skin-safe soap fragrance oils?`,
+        answer: `Candle-grade fragrance oils are tuned for high-temperature wax binding and strong room projection. Skin-safe and cold-process stable fragrances are curated for soaps, bath scrubs, lotions, and personal care—always verify vanillin content, acceleration notes, and safe usage levels in test batches.`
       },
       {
-        question: `How are bulk fragrance oils packed to prevent leaking during shipping?`,
-        answer: `Concentrated fragrance oils are filled in chemical-resistant amber bottles and HDPE containers with induction-sealed caps and leak-proof tamper bands, packed in double-cushioned outer boxes.`
+        question: `How are liquid fragrance oils packed to prevent leaking during shipping?`,
+        answer: `Concentrated fragrance oils are filled in sealed amber bottles or durable HDPE containers with protective cushioning and pan-India courier tracking for a flat ₹90 shipping fee.`
       },
       {
-        question: `Can I buy trial samples before ordering 1 Liter or 5 Liter carboys?`,
-        answer: `Yes. Scent samples are available in 30ml and 100ml trial sizes so perfumers and makers can evaluate cold and hot scent throws before ordering bulk wholesale quantities.`
+        question: `Can I buy trial samples before ordering 500ml or 1 Litre packs?`,
+        answer: `Yes. Many fragrance oils offer 15ml, 30ml, 50ml, and 100ml trial sizes alongside 500ml and 1 Litre studio packs so makers can run test burns and curing trials first.`
       }
     ];
   }

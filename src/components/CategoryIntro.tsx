@@ -26,6 +26,121 @@ export default function CategoryIntro({ categoryLabel }: CategoryIntroProps) {
 
 const INTROS: Record<string, React.ReactNode> = {
 
+  "Perfume Fragrance Oils": (
+    <>
+      <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-4">
+        Formulating with Perfume Fragrance Oils, Solvents &amp; Attar Bases in India
+      </h2>
+      <p className="mb-4">
+        Whether you are crafting concentrated non-alcoholic roll-on attars, oil-based skin perfumes,
+        or alcohol-based Eau de Parfum (EDP) sprays, selecting concentrated perfume fragrance oils
+        paired with the right carrier solvent dictates projection, skin longevity, and clarity.
+      </p>
+      <p className="mb-4">
+        For sprayable fine fragrances, blend skin-safe fragrance oils at 15%–20% into perfumer&apos;s
+        denatured ethanol (99% alcohol base) and allow the batch to macerate in amber or flint glass
+        bottles. For traditional alcohol-free attars and roll-on oils, dilute concentrated fragrance
+        blends in clear, low-odor Dipropylene Glycol (DPG) or light botanical carrier oils.
+      </p>
+      <p className="mb-4">
+        Always review IFRA Category 4 concentration guidelines for fine fragrances before bottling for
+        retail sale, and test batch stability across temperature swings.
+      </p>
+      <p className="text-sm text-brand-charcoal/60">
+        Related resources:{" "}
+        <Link href="/wholesale/attar-perfume-bottles" className="underline hover:text-brand-orange">Attar &amp; Perfume Bottles</Link>
+        {" · "}
+        <Link href="/wholesale/skin-safe-fragrances" className="underline hover:text-brand-orange">Skin Safe Fragrances</Link>
+        {" · "}
+        <Link href="/blog/understanding-perfume-fragrance-oils" className="underline hover:text-brand-orange">Guide to Perfume Fragrance Oils</Link>
+      </p>
+    </>
+  ),
+
+  "Candle Fragrance Oils": (
+    <>
+      <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-4">
+        Choosing Fragrance Oils for Soy, Beeswax &amp; Paraffin Candle Making
+      </h2>
+      <p className="mb-4">
+        Candle performance hinges on pairing the right fragrance oil chemistry with your wax matrix
+        and wick size. Concentrated candle fragrance oils are formulated to bind smoothly into soy,
+        coconut-soy, and paraffin waxes at 6% to 10% load without phase separation or smoking.
+      </p>
+      <p className="mb-4">
+        Always run test pours in small trial jars before committing to bulk production cartons. Stir
+        fragrance oil into wax cooled to around 70°C–75°C (check your specific wax and oil specs),
+        stir gently for two minutes, and allow soy candles to cure for 7–14 days before evaluating
+        hot throw. Use our free{" "}
+        <Link href="/tools/fragrance-load-calculator" className="underline hover:text-brand-orange">Candle Fragrance Load Calculator</Link>
+        {" "}to measure exact gram weights.
+      </p>
+      <p className="text-sm text-brand-charcoal/60">
+        Related resources:{" "}
+        <Link href="/wholesale/candle-waxes-additives" className="underline hover:text-brand-orange">Candle Waxes &amp; Additives</Link>
+        {" · "}
+        <Link href="/wholesale/wick-systems-hardware" className="underline hover:text-brand-orange">Wick Systems &amp; Hardware</Link>
+        {" · "}
+        <Link href="/blog/choosing-candle-fragrance-oils" className="underline hover:text-brand-orange">How to Choose Candle Fragrance Oils</Link>
+      </p>
+    </>
+  ),
+
+  "Soap Making Fragrance Oils": (
+    <>
+      <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-4">
+        Sourcing Skin-Safe &amp; Cold-Process Stable Fragrance Oils for Soap
+      </h2>
+      <p className="mb-4">
+        Handmade soaps place demanding chemical requirements on fragrances. Cold-process (CP) soap
+        batches reach high alkaline pH levels during saponification, meaning untested oils can accelerate
+        trace, cause ricing, or oxidize brown due to vanillin content. For melt-and-pour glycerin soap
+        bases, lighter dosages (typically 1% to 3%) keep bars clear and free of fragrance weeping.
+      </p>
+      <p className="mb-4">
+        Choose skin-safe and CP-stable fragrance oils rated for cosmetic use, verify Category 9 rinse-off
+        usage limits against available documentation, and always run a 100g test bar batch before
+        scaling up to 1kg+ soap loaves.
+      </p>
+      <p className="text-sm text-brand-charcoal/60">
+        Related resources:{" "}
+        <Link href="/wholesale/artisan-soap-bases" className="underline hover:text-brand-orange">Artisan Soap Bases</Link>
+        {" · "}
+        <Link href="/wholesale/soap-bar-moulds" className="underline hover:text-brand-orange">Soap &amp; Bar Moulds</Link>
+        {" · "}
+        <Link href="/blog/fragrance-oils-for-soap-manufacturing" className="underline hover:text-brand-orange">Soap Fragrance Manufacturing Guide</Link>
+      </p>
+    </>
+  ),
+
+  "Aromatherapy Oils": (
+    <>
+      <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-4">
+        Sourcing Pure Essential Oils &amp; Distillates for Aromatherapy Studios
+      </h2>
+      <p className="mb-4">
+        Aromatherapy practitioners, spas, and natural formulation brands rely on concentrated plant
+        distillates—steam-distilled herbs, flowers, woods, and cold-pressed citrus oils—alongside
+        botanical floral hydrosols. Selecting authentic single-origin oils ensures consistent scent
+        profiles for ultrasonic diffusers, inhalers, bath salts, and diluted massage oil blends.
+      </p>
+      <p className="mb-4">
+        Store delicate botanical oils in sealed amber bottles in cool, dark studio cabinets away from
+        humidity and UV light, and consult carrier dilution guidelines before preparing topical blends.
+      </p>
+      <p className="text-sm text-brand-charcoal/60">
+        Related resources:{" "}
+        <Link href="/wholesale/essential-oils" className="underline hover:text-brand-orange">All Essential Oils</Link>
+        {" · "}
+        <Link href="/wholesale/hydrosols-floral-waters" className="underline hover:text-brand-orange">Hydrosols &amp; Floral Waters</Link>
+        {" · "}
+        <Link href="/wholesale/raw-butters-carrier-oils" className="underline hover:text-brand-orange">Carrier Oils &amp; Butters</Link>
+        {" · "}
+        <Link href="/blog/essential-oils-applications-guide" className="underline hover:text-brand-orange">Essential Oils Applications Guide</Link>
+      </p>
+    </>
+  ),
+
   "Candle Waxes & Additives": (
     <>
       <h2 className="text-2xl font-bold font-serif text-brand-charcoal mb-4">

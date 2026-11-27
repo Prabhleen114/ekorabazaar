@@ -177,10 +177,10 @@ export default function FragranceLoadCalculatorPage() {
           <div className="bg-stone-50 border border-brand-linen p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1">
               <h3 className="font-serif font-bold text-lg text-brand-charcoal">
-                Ready to source premium waxes and IFRA certified fragrances?
+                Ready to source candle waxes and fragrance oils in India?
               </h3>
               <p className="text-xs sm:text-sm text-brand-charcoal/70">
-                Direct manufacturer slabs, sample vials, flat ₹90 pan-India shipping, and automatic GST invoices.
+                Trial vials, bulk packs, flat ₹90 pan-India shipping, and automatic GST invoices.
               </p>
             </div>
             <div className="flex gap-3 shrink-0">
@@ -191,10 +191,10 @@ export default function FragranceLoadCalculatorPage() {
                 Wholesale Wax Slabs &rarr;
               </Link>
               <Link
-                href="/wholesale/fragrance-oils"
+                href="/wholesale/candle-fragrance-oils"
                 className="px-4 py-2.5 bg-white text-brand-charcoal border border-brand-linen text-xs font-semibold rounded-xl hover:bg-stone-100 transition-colors shadow-xs"
               >
-                IFRA Fragrances &rarr;
+                Candle Fragrance Oils &rarr;
               </Link>
             </div>
           </div>

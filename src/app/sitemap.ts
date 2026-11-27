@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import prisma from '@/lib/db';
 import { ProductStatus } from '@prisma/client';
-import { ALL_CATEGORIES } from '@/lib/categories';
+import { getAllWholesaleDefinitions, WholesaleCategoryDefinition } from '@/lib/fragrance-collections';
 import catalogProducts from '@/lib/data/products.json';
 import { isDeprecatedProductId } from '@/lib/product-redirects';
 
@@ -22,17 +22,26 @@ export async function generateSitemaps() {
 }
 
 async function getCategoriesWithProducts() {
-  const finalCategories: { cat: typeof ALL_CATEGORIES[0], lastModified?: Date }[] = [];
+  const definitions = getAllWholesaleDefinitions();
+  const finalCategories: { cat: WholesaleCategoryDefinition, lastModified?: Date }[] = [];
   
-  for (const cat of ALL_CATEGORIES) {
+  for (const cat of definitions) {
+    const categoryNames = cat.includeCategories && cat.includeCategories.length > 0
+      ? cat.includeCategories
+      : [cat.id];
     try {
       const latestProduct = await prisma.product.findFirst({
         where: {
-          category: cat.id,
+          OR: categoryNames.map((name) => ({ category: { equals: name, mode: 'insensitive' as const } })),
           status: ProductStatus.PUBLISHED,
-          OR: [
-            { sellerId: null },
-            { seller: { accountStatus: 'ACTIVE' } }
+          isActive: true,
+          AND: [
+            {
+              OR: [
+                { sellerId: null },
+                { seller: { accountStatus: 'ACTIVE' } }
+              ]
+            }
           ]
         },
         orderBy: { updatedAt: 'desc' },
@@ -48,7 +57,10 @@ async function getCategoriesWithProducts() {
     }
 
     // Check fallback products.json
-    const hasStatic = catalogProducts.some((p: any) => p.category === cat.id || p.category === cat.label || p.category?.toLowerCase() === cat.id.toLowerCase());
+    const categoryNamesLower = new Set(categoryNames.map((c) => c.toLowerCase()));
+    const hasStatic = (catalogProducts as any[]).some((p: any) =>
+      p.category && (categoryNamesLower.has(String(p.category).toLowerCase()) || String(p.category).toLowerCase() === cat.label.toLowerCase())
+    );
     if (hasStatic) {
       finalCategories.push({ cat });
     }
@@ -98,9 +110,9 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     const activeCats = await getCategoriesWithProducts();
     return activeCats.map(({ cat, lastModified }) => {
       const route: any = {
-        url: `${BASE_URL}/wholesale/${cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        url: `${BASE_URL}/wholesale/${cat.slug}`,
         changeFrequency: 'weekly',
-        priority: 0.9,
+        priority: cat.isFragranceRelated ? 0.95 : 0.9,
       };
       if (lastModified) route.lastModified = lastModified;
       return route;
@@ -111,7 +123,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     const activeCats = await getCategoriesWithProducts();
     return activeCats.map(({ cat, lastModified }) => {
       const route: any = {
-        url: `${BASE_URL}/guides/${cat.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        url: `${BASE_URL}/guides/${cat.slug}`,
         changeFrequency: 'monthly',
         priority: 0.7,
       };
@@ -122,20 +134,30 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
 
   if (id === 'products') {
     const routes: MetadataRoute.Sitemap = [];
+    const inactiveDbIds = new Set<string>();
     
     try {
-      const dbProducts = await prisma.product.findMany({
-        where: { 
-          status: ProductStatus.PUBLISHED,
-          OR: [
-            { sellerId: null },
-            { seller: { accountStatus: 'ACTIVE' } }
-          ]
+      const allDbProducts = await prisma.product.findMany({
+        select: {
+          id: true,
+          status: true,
+          isActive: true,
+          sellerId: true,
+          seller: { select: { accountStatus: true } },
+          updatedAt: true,
         },
-        select: { id: true, updatedAt: true },
       });
 
-      for (const product of dbProducts) {
+      for (const product of allDbProducts) {
+        const isPublic =
+          product.status === ProductStatus.PUBLISHED &&
+          product.isActive !== false &&
+          (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE');
+
+        if (!isPublic) {
+          inactiveDbIds.add(product.id);
+          continue;
+        }
         if (isDeprecatedProductId(product.id)) continue;
         routes.push({
           url: `${BASE_URL}/products/${product.id}`,
@@ -148,7 +170,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
       console.warn("Could not load dynamic products for sitemap:", err);
     }
     
-    // Fallback: append any from products.json that weren't in DB
+    // Fallback: append any from products.json that weren't in DB (and not inactive/draft in DB)
     const existingIds = new Set(routes.map(r => {
       const parts = r.url.split('/');
       return parts[parts.length - 1];
@@ -156,7 +178,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
     
     for (const p of catalogProducts as any[]) {
       const pid = String(p.id);
-      if (!existingIds.has(pid) && !isDeprecatedProductId(pid)) {
+      if (!existingIds.has(pid) && !inactiveDbIds.has(pid) && !isDeprecatedProductId(pid)) {
         routes.push({
           url: `${BASE_URL}/products/${pid}`,
           changeFrequency: 'weekly',
