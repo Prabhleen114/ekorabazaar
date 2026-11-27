@@ -187,14 +187,35 @@ export default function CheckoutPage() {
     e.preventDefault()
     setErrorMsg('')
     try {
+      // Non-blocking abandoned checkout lead capture when shipping details are entered
+      const captureLeadPayload = (addrObj: any) => {
+        fetch('/api/checkout/abandon', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerName: addrObj.name,
+            customerPhone: addrObj.phone,
+            items: items.map((i: any) => ({
+              productId: i.productId || i.id,
+              title: i.product?.title || i.title || 'Product',
+              price: i.effectivePrice || 0,
+              quantity: i.quantity || 1,
+            })),
+            totalINR: Math.max(0, total + TEMP_FLAT_SHIPPING_CHARGE - (appliedCoupon?.discountAmountRupees || 0)),
+          }),
+        }).catch(() => {})
+      }
+
       // If we don't have a session, we just use the address directly for guest checkout
-      const sessionRes = await fetch('/api/auth/session')
-      if (!sessionRes.ok) {
+      const sessionRes = await fetch('/api/auth/me')
+      const sessionJson = sessionRes.ok ? await sessionRes.json().catch(() => ({})) : {}
+      if (!sessionJson?.user) {
         const tempId = 'guest_addr_' + Date.now()
         const guestAddr = { ...newAddress, id: tempId }
         setAddresses([guestAddr])
         setSelectedAddressId(tempId)
         setShowNewAddressForm(false)
+        captureLeadPayload(guestAddr)
         return
       }
 
@@ -208,6 +229,7 @@ export default function CheckoutPage() {
       setAddresses([data.address, ...addresses.map(a => ({...a, isDefault: false}))])
       setSelectedAddressId(data.address.id)
       setShowNewAddressForm(false)
+      captureLeadPayload(data.address)
     } catch (err: any) {
       setErrorMsg(err.message)
     }

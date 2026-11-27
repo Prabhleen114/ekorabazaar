@@ -4,6 +4,7 @@ import { verifyWebhookSignature } from '@/lib/razorpay';
 import { PaymentStatus, SellerApplicationStatus, OrderStatus, ShippingStatus } from '@prisma/client';
 import { logPurchase, logPaymentFail } from '@/lib/server-ci';
 import { restoreExpiredOrders } from '@/lib/orders-server';
+import { upsertOrderLead, markCustomerLeadsConverted } from '@/lib/leads-server';
 import { GET as customerIntelligenceCronGet } from '@/customer-intelligence/api/cron/route';
 
 export async function handleRazorpayWebhook(req: NextRequest) {
@@ -179,17 +180,23 @@ export async function handleRazorpayWebhook(req: NextRequest) {
             }
           }
         }
+        return { justCapturedOrderId: null, failedOrderId: payment?.orderId || null };
       }
-      return { justCapturedOrderId: null };
+      return { justCapturedOrderId: null, failedOrderId: null };
     });
 
     if (txResult?.justCapturedOrderId) {
+      await markCustomerLeadsConverted({ orderId: txResult.justCapturedOrderId }).catch(() => {});
       try {
         const { ensureAdminNotification } = await import('@/lib/email');
         await ensureAdminNotification(txResult.justCapturedOrderId);
       } catch (emailErr) {
         console.error('Failed to dynamically import email lib in webhook:', emailErr);
       }
+    }
+
+    if ((txResult as any)?.failedOrderId) {
+      await upsertOrderLead((txResult as any).failedOrderId).catch(() => {});
     }
 
     return NextResponse.json({ success: true });
@@ -288,6 +295,19 @@ export async function handleShiprocketWebhook(req: NextRequest) {
         },
       });
     }
+
+    // Sync matching OrderShipment rows if present
+    await prisma.orderShipment.updateMany({
+      where: {
+        orderId: order.id,
+        ...(awb ? { awbCode: awb } : {}),
+      },
+      data: {
+        status: newShippingStatus,
+        ...(shippedAt ? { shippedAt } : {}),
+        ...(deliveredAt ? { deliveredAt } : {}),
+      },
+    }).catch(() => {});
 
     return NextResponse.json({ success: true });
   } catch (err: any) {

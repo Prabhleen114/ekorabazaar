@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import ProductImageClient from "@/components/ProductImageClient";
 import { ALL_CATEGORIES } from "@/lib/categories";
-import { calculateItemPrice, normalizeTierPriceToRupees } from "@/lib/pricing";
+import { calculateItemPrice, normalizeTierPriceToRupees, normalizeProductMrpToINR } from "@/lib/pricing";
 
 export type ProductCardItem = {
   id: string;
@@ -11,6 +11,8 @@ export type ProductCardItem = {
   category: string | null;
   price: number;
   customerPrice?: number | null;
+  mrp?: number | null;
+  source?: string | null;
   imageUrl?: string | null;
   wholesaleTiers?: any;
   variants?: any[];
@@ -40,6 +42,8 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
   const effectivePriceFormatted = rawEffective >= 1
     ? (rawEffective % 1 === 0 ? rawEffective.toLocaleString('en-IN') : rawEffective.toFixed(2))
     : rawEffective.toFixed(2);
+  const mrpINR = normalizeProductMrpToINR(product);
+  const showMrp = !isEffectivelyZero && mrpINR !== null && mrpINR > rawEffective;
 
   // Derive bulk tier price safely:
   let bulkTierPriceFormatted: string | null = null;
@@ -95,6 +99,11 @@ export default function ProductCard({ product, index = 0, priority = false }: { 
                 <span className="font-bold text-sm text-stone-950">
                   {hasVariants ? `From ₹${effectivePriceFormatted}` : `₹${effectivePriceFormatted}`}
                 </span>
+                {showMrp && mrpINR !== null && (
+                  <span className="text-[11px] text-stone-400 line-through">
+                    ₹{mrpINR.toLocaleString('en-IN')}
+                  </span>
+                )}
                 {bulkTierPriceFormatted && (
                   <span className="text-[10px] text-stone-500">
                     (10+ Bulk: ₹{bulkTierPriceFormatted})

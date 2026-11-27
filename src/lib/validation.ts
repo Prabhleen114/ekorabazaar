@@ -118,6 +118,87 @@ export const SellerProductSchema = z.object({
   })).optional().nullable(),
 })
 
+// --- Admin Order Shipments ---
+export const SHIPMENT_STATUS_VALUES = [
+  'CREATED',
+  'AWB_ASSIGNED',
+  'PICKUP_SCHEDULED',
+  'SHIPPED',
+  'IN_TRANSIT',
+  'DELIVERED',
+  'CANCELLED',
+  'EXCEPTION',
+] as const
+
+export const OrderShipmentCreateSchema = z.object({
+  courierName: z.string().trim().min(1, 'Courier partner name is required').max(100),
+  awbCode: z.string().trim().min(1, 'AWB / tracking number is required').max(100),
+  trackingUrl: z
+    .string()
+    .trim()
+    .max(500)
+    .optional()
+    .nullable()
+    .refine((val) => !val || /^https?:\/\//i.test(val), 'Tracking URL must start with http:// or https://'),
+  status: z.enum(SHIPMENT_STATUS_VALUES).default('SHIPPED'),
+  updateOrderStatus: z.boolean().optional(),
+})
+
+export const OrderShipmentUpdateSchema = z.object({
+  courierName: z.string().trim().min(1, 'Courier partner name is required').max(100).optional(),
+  awbCode: z.string().trim().min(1, 'AWB / tracking number is required').max(100).optional(),
+  trackingUrl: z
+    .string()
+    .trim()
+    .max(500)
+    .optional()
+    .nullable()
+    .refine((val) => !val || /^https?:\/\//i.test(val), 'Tracking URL must start with http:// or https://'),
+  status: z.enum(SHIPMENT_STATUS_VALUES).optional(),
+})
+
+// --- Admin Private Order Notes ---
+export const OrderAdminNoteSchema = z.object({
+  content: z.string().trim().min(1, 'Note content is required').max(5000, 'Note cannot exceed 5000 characters'),
+})
+
+// --- Admin Leads ---
+export const UpdateLeadSchema = z.object({
+  status: z.enum(['NEW', 'CONTACTED', 'CONVERTED', 'LOST']).optional(),
+  reason: z.string().trim().max(1000).optional().nullable(),
+})
+
+// --- Admin Product Management ---
+const isValidImageRef = (val: string) =>
+  val.startsWith('/') || /^https?:\/\//i.test(val)
+
+export const AdminProductUpdateSchema = z.object({
+  title: z.string().trim().min(1, 'Product name is required').max(300),
+  description: z.string().max(10000).optional().nullable(),
+  category: z.string().trim().min(1, 'Category is required').max(150),
+  sellingPrice: z.number().finite().positive('Selling price must be greater than ₹0'),
+  mrp: z.number().finite().positive('MRP must be greater than ₹0').optional().nullable(),
+  stock: z.number().int().min(0, 'Stock cannot be negative').optional(),
+  isActive: z.boolean().optional(),
+  status: z.enum(['DRAFT', 'PENDING_APPROVAL', 'PUBLISHED', 'REJECTED']).optional(),
+  imageUrl: z
+    .string()
+    .trim()
+    .max(1000)
+    .optional()
+    .nullable()
+    .refine((val) => !val || isValidImageRef(val), 'Invalid image URL'),
+  images: z
+    .array(
+      z.string().trim().min(1).max(1000).refine(isValidImageRef, 'Invalid image URL in gallery')
+    )
+    .max(15)
+    .optional(),
+}).refine(
+  (data) => data.mrp === undefined || data.mrp === null || data.mrp >= data.sellingPrice,
+  { message: 'MRP must be greater than or equal to Selling Price', path: ['mrp'] }
+)
+
 // --- Generic Helper: safe parse and return error response ---
 export function validateBody<T>(schema: z.ZodSchema<T>, data: unknown): 
   { success: true; data: T } | { success: false; error: string } {

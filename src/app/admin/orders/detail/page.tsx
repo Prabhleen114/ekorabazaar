@@ -1,9 +1,11 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState, useCallback } from 'react'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import ShippingActions from './ShippingActions'
 import OrderStatusSelector from './OrderStatusSelector'
+import OrderTrackingManager from './OrderTrackingManager'
+import OrderAdminNotes from './OrderAdminNotes'
 import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -45,11 +47,11 @@ function AdminOrderDetailContent() {
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState<string | null>(null)
 
-  useEffect(() => {
+  const fetchOrder = useCallback(() => {
     if (!id || id === 'detail') return
     setLoading(true)
     setError(null)
-    fetch('/api/admin/orders/' + id)
+    fetch('/api/admin/orders/' + id, { cache: 'no-store' })
       .then(res => {
         if (!res.ok) throw new Error('HTTP ' + res.status)
         return res.json()
@@ -58,6 +60,10 @@ function AdminOrderDetailContent() {
       .catch(e => setError(String(e.message)))
       .finally(() => setLoading(false))
   }, [id])
+
+  useEffect(() => {
+    fetchOrder()
+  }, [fetchOrder])
 
   if (loading) return <div className="p-8 text-gray-500">Loading order details...</div>
 
@@ -176,6 +182,20 @@ function AdminOrderDetailContent() {
               </div>
             </div>
           </div>
+
+          {/* Multi-Shipment Tracking Management */}
+          <OrderTrackingManager
+            orderId={order.id}
+            orderStatus={order.status}
+            initialShipments={order.shipments || []}
+            onUpdated={fetchOrder}
+          />
+
+          {/* Strictly Private Admin Notes */}
+          <OrderAdminNotes
+            orderId={order.id}
+            initialNotes={order.adminNotes || []}
+          />
         </div>
 
         {/* ── Right sidebar ─────────────────────────────────────── */}

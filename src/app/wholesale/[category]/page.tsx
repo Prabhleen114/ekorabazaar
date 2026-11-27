@@ -48,8 +48,9 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
   try {
     products = await prisma.product.findMany({
       where: {
-        category: canonicalCategory,
+        category: { equals: categoryObj.id, mode: 'insensitive' },
         status: ProductStatus.PUBLISHED,
+        isActive: true,
         OR: [
           { sellerId: null },
           { seller: { accountStatus: 'ACTIVE' } }
@@ -95,8 +96,8 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
   }
 
   return products.map(p => {
-    const effectivePricePaise = p.customerPrice ?? p.price;
-    const isQuoteOnly = p.stock <= 0 || effectivePricePaise <= 0;
+    const effectivePrice = p.customerPrice ?? p.price;
+    const isQuoteOnly = p.stock <= 0 || effectivePrice <= 0;
     const rawTiers = Array.isArray(p.wholesaleTiers) ? (p.wholesaleTiers as any[]) : [];
     const validTiers = rawTiers.filter(t => t && Number(t.price) > 0);
 
@@ -104,7 +105,10 @@ async function getWholesaleProducts(categoryObj: any, searchParamsObj?: any): Pr
       id: String(p.id),
       title: p.title,
       category: p.category,
-      price: effectivePricePaise,
+      price: p.price,
+      customerPrice: p.customerPrice,
+      mrp: (p as any).mrp ?? null,
+      source: p.source,
       imageUrl: p.imageUrl,
       wholesaleTiers: validTiers,
       isQuoteOnly

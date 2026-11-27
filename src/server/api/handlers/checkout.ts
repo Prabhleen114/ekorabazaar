@@ -18,6 +18,7 @@ import { computePricingQuote, CartLineItem, CouponInput } from '@/lib/pricing/pr
 import { getActiveCheckoutTiers, getCheckoutConfig } from '@/lib/checkout-config';
 import { logCheckoutEvent } from '@/lib/checkout-events';
 import { logPaymentAttempt, logApiError, logPurchase, logPaymentFail } from '@/lib/server-ci';
+import { upsertOrderLead, markCustomerLeadsConverted, captureAbandonedCheckoutLead } from '@/lib/leads-server';
 
 // ---------------------------------------------------------------------------
 // 1. POST /api/checkout/quote
@@ -399,7 +400,7 @@ export async function handleCreateOrder(req: Request) {
           throw new Error(`Product not found.`);
         }
 
-        if (product.status !== ProductStatus.PUBLISHED) {
+        if (product.status !== ProductStatus.PUBLISHED || product.isActive === false) {
           throw new Error(`Product "${product.title}" is no longer available.`);
         }
 
@@ -618,6 +619,9 @@ export async function handleCreateOrder(req: Request) {
       customerId: finalUserId,
     }).catch(() => {});
 
+    // Automatically track incomplete checkout in Leads
+    upsertOrderLead(createdOrder.id).catch(() => {});
+
     return NextResponse.json({
       success: true,
       orderId: createdOrder.id,
@@ -782,8 +786,13 @@ export async function handleConfirmPayment(req: Request) {
       return { alreadyVerified: false, orderId: payment.orderId, userId: payment.userId };
     });
 
-    // 3. Ensure Admin Notification Email is sent
+    // 3. Ensure Admin Notification Email is sent & mark matching leads converted
     if (result.orderId) {
+      markCustomerLeadsConverted({
+        orderId: result.orderId,
+        customerId: userId || result.userId,
+      }).catch(() => {});
+
       try {
         const { ensureAdminNotification } = await import('@/lib/email');
         await ensureAdminNotification(result.orderId);
@@ -919,7 +928,13 @@ export async function handleCallback(req: Request) {
       return { alreadyVerified: false, orderId: payment.orderId, userId: payment.userId };
     });
 
-    // 3. Ensure Admin Notification Email is sent
+    // 3. Ensure Admin Notification Email is sent & mark matching leads converted
+    if (result.orderId) {
+      markCustomerLeadsConverted({
+        orderId: result.orderId,
+        customerId: result.userId,
+      }).catch(() => {});
+    }
     if (result.orderId && !result.alreadyVerified) {
       try {
         const { ensureAdminNotification } = await import('@/lib/email');
@@ -998,6 +1013,86 @@ export async function handleGetOrderSummary(req: Request) {
     return NextResponse.json({ order: serializedOrder });
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7. POST /api/checkout/abandon
+// ---------------------------------------------------------------------------
+export async function handleCheckoutAbandon(req: Request) {
+  try {
+    let userId: string | null = null;
+    try {
+      const session = await requireAuth();
+      userId = session.userId;
+    } catch {
+      // Guest checkout abandon
+    }
+
+    const body = await req.json().catch(() => ({}));
+    const {
+      sessionKey,
+      customerName,
+      customerEmail,
+      customerPhone,
+      items = [],
+      totalINR = 0,
+      reason,
+    } = body;
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return NextResponse.json({ success: true, skipped: true });
+    }
+
+    const safeSessionKey =
+      (typeof sessionKey === 'string' && sessionKey.trim()) ||
+      (userId ? `user_${userId}` : customerPhone ? `phone_${String(customerPhone).trim()}` : '');
+
+    if (!safeSessionKey) {
+      return NextResponse.json({ success: true, skipped: true });
+    }
+
+    let userRecord: { name: string | null; email: string; phone: string | null } | null = null;
+    if (userId) {
+      userRecord = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { name: true, email: true, phone: true },
+      });
+    }
+
+    const resolvedItems = items.slice(0, 50).map((it: any) => {
+      const qty = Math.max(1, Number(it.quantity) || 1);
+      const unitINR = Math.max(0, Number(it.price ?? it.effectivePrice ?? 0));
+      const unitPaise = Math.round(unitINR * 100);
+      return {
+        productId: String(it.productId || it.id || ''),
+        productName: String(it.title || it.productName || 'Product'),
+        quantity: qty,
+        unitPricePaise: unitPaise,
+        subtotalPaise: unitPaise * qty,
+      };
+    });
+
+    const computedTotalPaise =
+      totalINR > 0
+        ? Math.round(Number(totalINR) * 100)
+        : resolvedItems.reduce((sum: number, i: any) => sum + i.subtotalPaise, 0);
+
+    await captureAbandonedCheckoutLead({
+      sessionKey: safeSessionKey,
+      customerId: userId,
+      customerName: customerName || userRecord?.name || null,
+      customerEmail: customerEmail || userRecord?.email || null,
+      customerPhone: customerPhone || userRecord?.phone || null,
+      items: resolvedItems,
+      orderValuePaise: computedTotalPaise,
+      reason: typeof reason === 'string' ? reason : undefined,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    console.error('Checkout abandon capture error:', err);
+    return NextResponse.json({ success: false }, { status: 200 });
   }
 }
 

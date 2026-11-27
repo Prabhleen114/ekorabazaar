@@ -4,7 +4,7 @@ import { getDepartmentForCategory } from "@/lib/taxonomy";
 import { normalizeCategoryName } from "@/lib/categories";
 import catalogProducts from "@/lib/data/products.json";
 import { NormalizedProduct } from "@/lib/product-filters";
-import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR } from "@/lib/pricing";
+import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR, normalizeProductMrpToINR } from "@/lib/pricing";
 
 export interface CatalogFacets {
   departments: Record<string, number>;
@@ -16,9 +16,14 @@ export interface CatalogFacets {
 let cachedCatalog: NormalizedProduct[] | null = null;
 let cachedFacets: CatalogFacets | null = null;
 
-// Seller product cache: refreshed every 60s to avoid per-request DB round-trips
-let cachedSellerProducts: NormalizedProduct[] | null = null;
-let cachedSellerProductsAt = 0;
+// DB overlay cache: refreshed every 60s or immediately on admin product edit
+let cachedDbRows: any[] | null = null;
+let cachedDbRowsAt = 0;
+
+export function invalidateCatalogCache() {
+  cachedDbRows = null;
+  cachedDbRowsAt = 0;
+}
 
 export function normalizeProductCore(text: string): string {
   const base = (text || "").split(/[|—–]/)[0].toUpperCase();
@@ -99,78 +104,206 @@ export function getSingletonCatalog(): { catalog: NormalizedProduct[]; facets: C
 
 export async function getUnifiedCatalog(): Promise<{ catalog: NormalizedProduct[]; facets: CatalogFacets }> {
   const { catalog: baseCatalog, facets: baseFacets } = getSingletonCatalog();
-  let allProducts: NormalizedProduct[] = [...baseCatalog];
-
-  let sellerProductsFromDB: NormalizedProduct[] = [];
   const now = Date.now();
-  if (!cachedSellerProducts || (now - cachedSellerProductsAt) > 60_000) {
+  let dbRows: any[] = [];
+
+  if (!cachedDbRows || now - cachedDbRowsAt > 60_000) {
     try {
-      const dbSellerProducts = await Promise.race([
+      const fetched = await Promise.race([
         prisma.product.findMany({
           where: {
-            status: ProductStatus.PUBLISHED,
-            sellerId: { not: null },
-            seller: { accountStatus: 'ACTIVE' }
+            OR: [
+              { adminManaged: true },
+              { source: "ADMIN" },
+              { source: "CATALOG" },
+              { source: "EKORA_OFFICIAL" },
+              {
+                AND: [
+                  { status: ProductStatus.PUBLISHED },
+                  { isActive: true },
+                  { sellerId: { not: null } },
+                  { seller: { accountStatus: "ACTIVE" } },
+                ],
+              },
+            ],
           },
-          include: { seller: true, categoryRef: true },
-          take: 500,
-          orderBy: { createdAt: 'desc' }
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            price: true,
+            customerPrice: true,
+            mrp: true,
+            imageUrl: true,
+            images: true,
+            category: true,
+            stock: true,
+            status: true,
+            isActive: true,
+            source: true,
+            adminManaged: true,
+            wholesaleTiers: true,
+            sellerId: true,
+            categoryRef: { select: { name: true } },
+            seller: { select: { accountStatus: true } },
+          },
+          orderBy: { updatedAt: "desc" },
         }),
         new Promise<never>((_, reject) =>
-          setTimeout(() => reject(new Error("DB timeout")), 1500)
-        )
+          setTimeout(() => reject(new Error("DB timeout")), 1800)
+        ),
       ]);
 
-      if (Array.isArray(dbSellerProducts) && dbSellerProducts.length > 0) {
-        sellerProductsFromDB = dbSellerProducts.map(p => {
-          const effectivePriceINR = normalizeProductBasePriceToINR(p);
-          const cat = p.categoryRef?.name || normalizeCategoryName(p.category) || "General Silicone Moulds";
-          const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
-          const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
-          const desc = p.description || "";
-          const searchText = `${p.title || ''} ${cat} ${dept} ${desc} ${p.id}`.toLowerCase();
-          return {
-            id: p.id,
-            name: p.title,
-            category: cat,
-            department: dept,
-            disciplines: [],
-            price: effectivePriceINR,
-            image: p.imageUrl || "/og-image.jpg",
-            inStock: p.stock > 0 && !isQuoteOnly,
-            bulkDiscountAvailable: isQuoteOnly ? false : (Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0),
-            maxDiscount: 0,
-            description: desc,
-            tags: [],
-            tiers: isQuoteOnly ? [] : ((p.wholesaleTiers as any[]) || [])
-              .filter((t: any) => t && Number(t.price) > 0)
-              .map((t: any) => ({
-                ...t,
-                price: normalizeTierPriceToINR(Number(t.price), effectivePriceINR),
-                minQty: Number(t.minQty) || 1
-              })),
-            isQuoteOnly,
-            _isNormalized: true,
-            _searchText: searchText
-          } as any;
-        });
+      if (Array.isArray(fetched)) {
+        dbRows = fetched;
+        cachedDbRows = dbRows;
+        cachedDbRowsAt = now;
       }
-      cachedSellerProducts = sellerProductsFromDB;
-      cachedSellerProductsAt = now;
     } catch (_err) {
-      if (cachedSellerProducts) {
-        sellerProductsFromDB = cachedSellerProducts;
+      if (cachedDbRows) {
+        dbRows = cachedDbRows;
       }
     }
   } else {
-    sellerProductsFromDB = cachedSellerProducts;
+    dbRows = cachedDbRows;
   }
 
-  if (sellerProductsFromDB.length > 0) {
-    const baseIds = new Set(baseCatalog.map(p => String(p.id)));
-    const uniqueSellerProducts = sellerProductsFromDB.filter(p => !baseIds.has(String(p.id)));
-    allProducts = [...uniqueSellerProducts, ...baseCatalog];
+  if (dbRows.length === 0) {
+    return { catalog: [...baseCatalog], facets: baseFacets };
   }
 
-  return { catalog: allProducts, facets: baseFacets };
+  const dbMap = new Map<string, any>();
+  for (const row of dbRows) {
+    dbMap.set(String(row.id), row);
+  }
+
+  const baseIds = new Set<string>();
+  const mergedBaseCatalog: NormalizedProduct[] = [];
+
+  for (const baseProd of baseCatalog) {
+    const idStr = String(baseProd.id);
+    baseIds.add(idStr);
+    const dbRow = dbMap.get(idStr);
+
+    if (!dbRow) {
+      mergedBaseCatalog.push(baseProd);
+      continue;
+    }
+
+    const isPublishedAndActive =
+      dbRow.status === ProductStatus.PUBLISHED &&
+      dbRow.isActive !== false &&
+      (!dbRow.sellerId || dbRow.seller?.accountStatus === "ACTIVE");
+
+    if (!isPublishedAndActive) {
+      // Excluded from storefront when unpublished or deactivated by admin
+      continue;
+    }
+
+    // Admin-managed or DB-overridden product: prefer DB fields over static JSON
+    const effectivePriceINR = normalizeProductBasePriceToINR(dbRow);
+    const mrpINR = normalizeProductMrpToINR(dbRow);
+    const cat = dbRow.categoryRef?.name || normalizeCategoryName(dbRow.category) || baseProd.category;
+    const dept = getDepartmentForCategory(cat) || baseProd.department || "Precision Studio Moulds";
+    const isQuoteOnly = dbRow.stock <= 0 || effectivePriceINR <= 0;
+    const desc = dbRow.description || baseProd.description || "";
+    const title = dbRow.title || baseProd.name;
+    const dbImages = Array.isArray(dbRow.images) ? dbRow.images.filter(Boolean) : [];
+    const image = dbRow.imageUrl || dbImages[0] || baseProd.image;
+
+    const dbTiers = Array.isArray(dbRow.wholesaleTiers)
+      ? (dbRow.wholesaleTiers as any[])
+          .filter((t: any) => t && Number(t.price) > 0)
+          .map((t: any) => ({
+            ...t,
+            price: normalizeTierPriceToINR(Number(t.price), effectivePriceINR),
+            minQty: Number(t.minQty) || 1,
+          }))
+      : [];
+
+    const tiers = isQuoteOnly
+      ? []
+      : dbTiers.length > 0
+      ? dbTiers
+      : baseProd.tiers || [];
+
+    const tagsArr = Array.isArray(baseProd.tags) ? baseProd.tags : [];
+    const searchText = `${title} ${cat} ${dept} ${tagsArr.join(" ")} ${desc} ${idStr}`.toLowerCase();
+
+    mergedBaseCatalog.push({
+      ...baseProd,
+      name: title,
+      category: cat,
+      department: dept,
+      price: effectivePriceINR,
+      mrp: mrpINR,
+      image,
+      inStock: dbRow.stock > 0 && !isQuoteOnly,
+      bulkDiscountAvailable: isQuoteOnly ? false : tiers.length > 1,
+      description: desc,
+      tiers,
+      isQuoteOnly,
+      _isNormalized: true,
+      _searchText: searchText,
+    } as any);
+  }
+
+  const extraDbProducts: NormalizedProduct[] = [];
+  for (const p of dbRows) {
+    const idStr = String(p.id);
+    if (baseIds.has(idStr)) continue;
+    const isPublishedAndActive =
+      p.status === ProductStatus.PUBLISHED &&
+      p.isActive !== false &&
+      (!p.sellerId || p.seller?.accountStatus === "ACTIVE");
+    if (!isPublishedAndActive) continue;
+
+    // Only append seller/admin/adminManaged rows not already represented in baseCatalog
+    if (!p.sellerId && p.source !== "ADMIN" && !p.adminManaged) continue;
+
+    const effectivePriceINR = normalizeProductBasePriceToINR(p);
+    const mrpINR = normalizeProductMrpToINR(p);
+    const cat = p.categoryRef?.name || normalizeCategoryName(p.category) || "General Silicone Moulds";
+    const dept = getDepartmentForCategory(cat) || "Precision Studio Moulds";
+    const isQuoteOnly = p.stock <= 0 || effectivePriceINR <= 0;
+    const desc = p.description || "";
+    const searchText = `${p.title || ""} ${cat} ${dept} ${desc} ${idStr}`.toLowerCase();
+    const dbImages = Array.isArray(p.images) ? p.images.filter(Boolean) : [];
+    const image = p.imageUrl || dbImages[0] || "/og-image.jpg";
+
+    extraDbProducts.push({
+      id: idStr,
+      name: p.title,
+      category: cat,
+      department: dept,
+      disciplines: [],
+      price: effectivePriceINR,
+      mrp: mrpINR,
+      image,
+      inStock: p.stock > 0 && !isQuoteOnly,
+      bulkDiscountAvailable: isQuoteOnly
+        ? false
+        : Array.isArray(p.wholesaleTiers) && (p.wholesaleTiers as any[]).length > 0,
+      maxDiscount: 0,
+      description: desc,
+      tags: [],
+      tiers: isQuoteOnly
+        ? []
+        : ((p.wholesaleTiers as any[]) || [])
+            .filter((t: any) => t && Number(t.price) > 0)
+            .map((t: any) => ({
+              ...t,
+              price: normalizeTierPriceToINR(Number(t.price), effectivePriceINR),
+              minQty: Number(t.minQty) || 1,
+            })),
+      isQuoteOnly,
+      _isNormalized: true,
+      _searchText: searchText,
+    } as any);
+  }
+
+  return {
+    catalog: [...extraDbProducts, ...mergedBaseCatalog],
+    facets: baseFacets,
+  };
 }

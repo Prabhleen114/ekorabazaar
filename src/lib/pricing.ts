@@ -65,6 +65,93 @@ export function normalizeProductBasePriceToINR(product: any): number {
 }
 
 /**
+ * Returns true if the product's database source stores monetary integers in paise.
+ */
+export function isPaiseProductSource(source?: string | null): boolean {
+  return source === "CATALOG" || source === "EKORA_OFFICIAL";
+}
+
+/**
+ * Normalizes a product's MRP into Indian Rupees (INR), respecting the DB source convention.
+ */
+export function normalizeProductMrpToINR(product: any): number | null {
+  if (!product) return null;
+  const rawMrp = product.mrp;
+  if (rawMrp === null || rawMrp === undefined) return null;
+  const num = Number(rawMrp);
+  if (isNaN(num) || num <= 0) return null;
+
+  if (product._isINR || product.currency === "INR") {
+    return num;
+  }
+  if (product.isPaise || product.unit === "paise" || isPaiseProductSource(product.source)) {
+    return num / 100;
+  }
+  return num;
+}
+
+/**
+ * Converts a Rupee (INR) integer/decimal amount into the product's existing DB storage unit
+ * (paise for CATALOG/EKORA_OFFICIAL, integer Rupees for SELLER/SCRAPER/ADMIN).
+ */
+export function convertINRToProductStorageUnit(amountINR: number, source?: string | null): number {
+  if (isNaN(amountINR) || amountINR <= 0) return 0;
+  if (isPaiseProductSource(source)) {
+    return Math.round(amountINR * 100);
+  }
+  return Math.round(amountINR);
+}
+
+/**
+ * Synchronizes existing wholesaleTiers when an admin updates the base selling price (in INR),
+ * ensuring qty-1 tier matches the updated selling price and higher tiers never exceed it.
+ */
+export function syncWholesaleTiersWithSellingPrice(
+  rawTiers: any,
+  oldBasePriceINR: number,
+  newSellingPriceINR: number,
+  source?: string | null
+): any {
+  if (!Array.isArray(rawTiers) || rawTiers.length === 0) {
+    return rawTiers;
+  }
+
+  const firstRaw = Number(rawTiers[0]?.price ?? rawTiers[0]?.priceINR ?? 0);
+  const existingTiersInPaise =
+    source === "EKORA_OFFICIAL" &&
+    oldBasePriceINR > 0 &&
+    firstRaw > oldBasePriceINR * 1.5;
+
+  return rawTiers.map((tier: any) => {
+    if (!tier || typeof tier !== "object") return tier;
+    const minQty = Number(tier.minQty) || 1;
+    const rawTierPrice = Number(tier.price ?? tier.priceINR ?? 0);
+    const tierPriceINR =
+      rawTierPrice > 0
+        ? normalizeTierPriceToINR(rawTierPrice, oldBasePriceINR > 0 ? oldBasePriceINR : newSellingPriceINR)
+        : newSellingPriceINR;
+
+    let updatedTierINR = minQty <= 1 ? newSellingPriceINR : Math.min(tierPriceINR, newSellingPriceINR);
+    updatedTierINR = updatedTierINR % 1 === 0 ? updatedTierINR : Number(updatedTierINR.toFixed(2));
+
+    const discountPct =
+      newSellingPriceINR > 0 && updatedTierINR < newSellingPriceINR
+        ? Number((((newSellingPriceINR - updatedTierINR) / newSellingPriceINR) * 100).toFixed(1))
+        : 0;
+
+    const storedPrice = existingTiersInPaise
+      ? Math.round(updatedTierINR * 100)
+      : Math.round(updatedTierINR);
+
+    return {
+      ...tier,
+      price: storedPrice,
+      discountPct,
+    };
+  });
+}
+
+/**
  * Normalizes a raw wholesale tier price to Indian Rupees (INR).
  * Suitable for UI components, catalog display, and pricing tables.
  *

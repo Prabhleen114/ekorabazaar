@@ -29,6 +29,7 @@ export interface NormalizedProduct {
   department?: string;
   disciplines?: string[];
   price: number; // In Rupees
+  mrp?: number | null; // Optional MRP in Rupees
   image: string;
   inStock: boolean;
   bulkDiscountAvailable: boolean;

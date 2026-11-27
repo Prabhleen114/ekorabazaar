@@ -21,8 +21,10 @@ export async function handleGetCart(_req: NextRequest) {
                 imageUrl: true,
                 price: true,
                 customerPrice: true,
+                mrp: true,
                 stock: true,
                 status: true,
+                isActive: true,
                 source: true,
                 wholesaleTiers: true,
                 seller: { select: { accountStatus: true } },
@@ -39,6 +41,7 @@ export async function handleGetCart(_req: NextRequest) {
       const effectivePrice = calculateItemPrice(item.product, item.quantity);
       const isAvailable =
         item.product.status === ProductStatus.PUBLISHED &&
+        item.product.isActive !== false &&
         item.product.stock >= item.quantity &&
         effectivePrice > 0 &&
         (!item.product.seller || item.product.seller.accountStatus === SellerAccountStatus.ACTIVE);
@@ -135,7 +138,7 @@ export async function handlePostCart(req: NextRequest) {
       }
     }
 
-    if (!product || product.status !== ProductStatus.PUBLISHED) {
+    if (!product || product.status !== ProductStatus.PUBLISHED || product.isActive === false) {
       return NextResponse.json({ error: 'Product not available' }, { status: 400 });
     }
     if (product.price <= 0 || (product.customerPrice !== null && product.customerPrice <= 0)) {
@@ -231,8 +234,10 @@ export async function handleGuestCart(req: NextRequest) {
           imageUrl: true,
           price: true,
           customerPrice: true,
+          mrp: true,
           stock: true,
           status: true,
+          isActive: true,
           source: true,
           wholesaleTiers: true,
           seller: { select: { accountStatus: true } },
@@ -293,6 +298,7 @@ export async function handleGuestCart(req: NextRequest) {
 
         const isAvailable =
           product.status === ProductStatus.PUBLISHED &&
+          product.isActive !== false &&
           product.stock >= quantity &&
           !isQuoteOnly &&
           effectivePrice > 0 &&

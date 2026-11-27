@@ -23,10 +23,12 @@ model User {
   events        Event[]
   orders        Order[]
   payments      Payment[]
-  adminProducts Product[]      @relation("AdminCreatedProducts")
-  seller        Seller?
-  couponUsages  CouponUsage[]
-  pointsLedger  EkoraPointsLedger[]
+  adminProducts   Product[]      @relation("AdminCreatedProducts")
+  seller          Seller?
+  couponUsages    CouponUsage[]
+  pointsLedger    EkoraPointsLedger[]
+  adminOrderNotes OrderAdminNote[] @relation("AdminOrderNoteAuthor")
+  leads           Lead[]
 }
 
 model Seller {
@@ -79,12 +81,16 @@ model Product {
   status                   ProductStatus            @default(DRAFT)
   rejectionReason          String?
   imageUrl                 String?
+  images                   String[]                 @default([])
   sellerId                 String?
   createdByAdminId         String?
   source                   String                   @default("SELLER")
   createdAt                DateTime                 @default(now())
   updatedAt                DateTime                 @updatedAt
   customerPrice            Int?
+  mrp                      Int?
+  isActive                 Boolean                  @default(true)
+  adminManaged             Boolean                  @default(false)
   categoryId               String?
   categoryRef              Category?                @relation(fields: [categoryId], references: [id])
   category                 String?                  @default("General Silicone Moulds")
@@ -175,6 +181,73 @@ model Order {
   giftClaims        GiftClaim[]
   orderAdjustments  OrderAdjustment[]
   pointsLedger      EkoraPointsLedger[]
+  shipments         OrderShipment[]
+  adminNotes        OrderAdminNote[]
+  sourceLead        Lead?                @relation("LeadSourceOrder")
+  convertedLeads    Lead[]               @relation("LeadConvertedOrder")
+}
+
+model OrderShipment {
+  id             String         @id @default(uuid())
+  orderId        String
+  shipmentNumber Int            @default(1)
+  courierName    String
+  awbCode        String
+  trackingUrl    String?
+  status         ShippingStatus @default(SHIPPED)
+  shippedAt      DateTime?
+  deliveredAt    DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId, createdAt])
+  @@index([awbCode])
+}
+
+model OrderAdminNote {
+  id        String   @id @default(uuid())
+  orderId   String
+  authorId  String?
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  author    User?    @relation("AdminOrderNoteAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([orderId, createdAt(sort: Desc)])
+}
+
+model Lead {
+  id               String     @id @default(uuid())
+  dedupeKey        String     @unique
+  source           LeadSource
+  status           LeadStatus @default(NEW)
+  customerId       String?
+  orderId          String?    @unique
+  convertedOrderId String?
+  customerName     String?
+  customerEmail    String?
+  customerPhone    String?
+  itemsSnapshot    Json?
+  orderValue       Int        @default(0)
+  currency         String     @default("INR")
+  reason           String?
+  lastActivityAt   DateTime   @default(now())
+  convertedAt      DateTime?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  customer         User?      @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  order            Order?     @relation("LeadSourceOrder", fields: [orderId], references: [id], onDelete: SetNull)
+  convertedOrder   Order?     @relation("LeadConvertedOrder", fields: [convertedOrderId], references: [id], onDelete: SetNull)
+
+  @@index([source, status])
+  @@index([customerId])
+  @@index([customerEmail])
+  @@index([lastActivityAt(sort: Desc)])
 }
 
 model OrderStatusHistory {
@@ -401,6 +474,19 @@ enum CouponStatus {
   ACTIVE
   PAUSED
   ARCHIVED
+}
+
+enum LeadSource {
+  CANCELLED_ORDER
+  INCOMPLETE_CHECKOUT
+  ABANDONED_CHECKOUT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  CONVERTED
+  LOST
 }
 
 model Coupon {

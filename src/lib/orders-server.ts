@@ -1,5 +1,6 @@
 import prisma from '@/lib/db'
 import { OrderStatus, PaymentStatus } from '@prisma/client'
+import { upsertOrderLead } from '@/lib/leads-server'
 
 /**
  * Recovers reserved inventory for orders where payment was never completed.
@@ -45,6 +46,7 @@ export async function restoreExpiredOrders(minutesThreshold = 30): Promise<numbe
         }
       })
       restoredCount++
+      await upsertOrderLead(order.id).catch(() => {})
     } catch (err) {
       console.error(`Failed to restore expired order ${order.id}:`, err)
     }

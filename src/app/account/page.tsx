@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import BuyerNavbar from '@/components/BuyerNavbar'
 import BuyerFooter from '@/components/BuyerFooter'
+import CustomerOrderTracking from '@/components/CustomerOrderTracking'
 import { 
   Package, 
   MapPin, 
@@ -415,6 +416,13 @@ function AccountDashboard() {
                             <div className="font-mono text-[11px] text-brand-charcoal/50">
                               Phone: {order.addressSnapshot.phone}
                             </div>
+                          </div>
+                        )}
+
+                        {/* Multi-Shipment Tracking Details */}
+                        {(order.shipments?.length > 0 || order.awbCode || order.trackingUrl || (order.shippingStatus && order.shippingStatus !== 'NOT_CREATED')) && (
+                          <div className="px-4 md:px-6 pb-5">
+                            <CustomerOrderTracking order={order} />
                           </div>
                         )}
                       </div>

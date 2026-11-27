@@ -2,7 +2,23 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
-import { validateBody, CreateCouponSchema, UpdateCouponSchema } from '@/lib/validation';
+import {
+  validateBody,
+  CreateCouponSchema,
+  UpdateCouponSchema,
+  OrderShipmentCreateSchema,
+  OrderShipmentUpdateSchema,
+  OrderAdminNoteSchema,
+  UpdateLeadSchema,
+} from '@/lib/validation';
+import {
+  CONFIRMED_ORDER_STATUSES,
+  CONFIRMED_ORDER_WHERE,
+  isConfirmedOrder,
+  syncLeadsFromExistingData,
+  upsertOrderLead,
+  markCustomerLeadsConverted,
+} from '@/lib/leads-server';
 import { normalizeCouponCode, getCouponComputedStatus } from '@/lib/coupons';
 import {
   CouponStatus,
@@ -395,52 +411,111 @@ export async function handleDeleteAdminCouponById(_req: NextRequest, { params }:
 export async function handleGetAdminLeads(req: NextRequest) {
   try {
     await requireAdmin();
+    await syncLeadsFromExistingData();
 
     const { searchParams } = new URL(req.url);
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
     const limit = Math.min(1000, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)));
     const skip = (page - 1) * limit;
+    const sourceFilter = searchParams.get('source')?.trim().toUpperCase() || 'ALL';
+    const statusFilter = searchParams.get('status')?.trim().toUpperCase() || 'ALL';
+    const q = searchParams.get('q')?.trim() || '';
 
-    const where = { status: 'PAYMENT_PENDING' as any };
+    const VALID_SOURCES = ['CANCELLED_ORDER', 'INCOMPLETE_CHECKOUT', 'ABANDONED_CHECKOUT'];
+    const VALID_STATUSES = ['NEW', 'CONTACTED', 'CONVERTED', 'LOST'];
 
-    const [leads, total] = await Promise.all([
-      prisma.order.findMany({
+    const where: any = {};
+    if (sourceFilter !== 'ALL' && VALID_SOURCES.includes(sourceFilter)) {
+      where.source = sourceFilter;
+    }
+    if (statusFilter !== 'ALL' && VALID_STATUSES.includes(statusFilter)) {
+      where.status = statusFilter;
+    }
+    if (q) {
+      where.OR = [
+        { customerName: { contains: q, mode: 'insensitive' } },
+        { customerEmail: { contains: q, mode: 'insensitive' } },
+        { customerPhone: { contains: q, mode: 'insensitive' } },
+        { orderId: { contains: q, mode: 'insensitive' } },
+        { id: { contains: q, mode: 'insensitive' } },
+      ];
+    }
+
+    const [leads, total, groupedBySource, groupedByStatus] = await Promise.all([
+      prisma.lead.findMany({
         skip,
         take: limit,
         where,
-        orderBy: { createdAt: 'desc' },
-        select: {
-          id: true,
-          status: true,
-          paymentStatus: true,
-          total: true,
-          currency: true,
-          createdAt: true,
-          addressSnapshot: true,
-          customer: { select: { email: true } },
-          payments: {
-            take: 1,
-            orderBy: { createdAt: 'desc' },
+        orderBy: { lastActivityAt: 'desc' },
+        include: {
+          order: {
             select: {
               id: true,
               status: true,
-              amount: true,
-              currency: true,
-              razorpayOrderId: true,
+              paymentStatus: true,
+              cancellationReason: true,
+              payments: {
+                take: 1,
+                orderBy: { createdAt: 'desc' },
+                select: {
+                  id: true,
+                  status: true,
+                  amount: true,
+                  currency: true,
+                  razorpayOrderId: true,
+                  failureReason: true,
+                },
+              },
             },
+          },
+          convertedOrder: {
+            select: { id: true, status: true, total: true, createdAt: true },
           },
         },
       }),
-      prisma.order.count({ where }),
+      prisma.lead.count({ where }),
+      prisma.lead.groupBy({
+        by: ['source'],
+        _count: { _all: true },
+      }).catch(() => []),
+      prisma.lead.groupBy({
+        by: ['status'],
+        _count: { _all: true },
+      }).catch(() => []),
     ]);
+
+    const sourceCounts: Record<string, number> = {
+      ALL: 0,
+      CANCELLED_ORDER: 0,
+      INCOMPLETE_CHECKOUT: 0,
+      ABANDONED_CHECKOUT: 0,
+    };
+    for (const row of groupedBySource as any[]) {
+      sourceCounts[row.source] = row._count._all;
+      sourceCounts.ALL += row._count._all;
+    }
+
+    const statusCounts: Record<string, number> = {
+      NEW: 0,
+      CONTACTED: 0,
+      CONVERTED: 0,
+      LOST: 0,
+    };
+    for (const row of groupedByStatus as any[]) {
+      statusCounts[row.status] = row._count._all;
+    }
 
     return NextResponse.json({
       leads,
+      counts: {
+        bySource: sourceCounts,
+        byStatus: statusCounts,
+      },
       pagination: {
         page,
         limit,
         total,
-        totalPages: Math.ceil(total / limit),
+        totalPages: Math.max(1, Math.ceil(total / limit)),
       },
     });
   } catch (error: any) {
@@ -461,20 +536,11 @@ export async function handleGetAdminOrders(req: NextRequest) {
     const skip = (page - 1) * limit;
     const status = searchParams.get('status') || null;
 
-    const VALID_STATUSES = [
-      'PAID',
-      'PROCESSING',
-      'SHIPPED',
-      'IN_TRANSIT',
-      'DELIVERED',
-      'CANCELLED',
-      'REFUND_INITIATED',
-      'REFUNDED',
-    ];
+    const VALID_CONFIRMED_STATUSES = CONFIRMED_ORDER_STATUSES.map(String);
     const where: any =
-      status && VALID_STATUSES.includes(status)
-        ? { status: status as any }
-        : { status: { not: 'PAYMENT_PENDING' } };
+      status && VALID_CONFIRMED_STATUSES.includes(status)
+        ? { AND: [CONFIRMED_ORDER_WHERE, { status: status as any }] }
+        : CONFIRMED_ORDER_WHERE;
 
     const [orders, total] = await Promise.all([
       prisma.order.findMany({
@@ -486,11 +552,15 @@ export async function handleGetAdminOrders(req: NextRequest) {
           id: true,
           status: true,
           paymentStatus: true,
+          shippingStatus: true,
           total: true,
           currency: true,
           createdAt: true,
           addressSnapshot: true,
           customer: { select: { email: true } },
+          _count: {
+            select: { shipments: true, adminNotes: true },
+          },
           payments: {
             take: 1,
             orderBy: { createdAt: 'desc' },
@@ -513,7 +583,7 @@ export async function handleGetAdminOrders(req: NextRequest) {
         page,
         limit,
         total,
-        totalPages: Math.ceil(total / limit),
+        totalPages: Math.max(1, Math.ceil(total / limit)),
       },
     });
   } catch (error: any) {
@@ -544,10 +614,17 @@ export async function handleGetAdminOrderById(_req: NextRequest, { params }: Rou
     const order = await prisma.order.findUnique({
       where: { id },
       include: {
-        customer: { select: { email: true } },
+        customer: { select: { id: true, name: true, email: true, phone: true } },
         items: true,
         payments: { orderBy: { createdAt: 'desc' } },
         statusHistory: { orderBy: { createdAt: 'desc' } },
+        shipments: { orderBy: { createdAt: 'asc' } },
+        adminNotes: {
+          orderBy: { createdAt: 'desc' },
+          include: {
+            author: { select: { id: true, name: true, email: true } },
+          },
+        },
       },
     });
 
@@ -591,7 +668,10 @@ export async function handlePatchAdminOrderById(req: NextRequest, { params }: Ro
       return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
     }
 
-    const order = await prisma.order.findUnique({ where: { id } });
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: { payments: { select: { status: true } } },
+    });
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
@@ -611,6 +691,13 @@ export async function handlePatchAdminOrderById(req: NextRequest, { params }: Ro
 
       return updatedOrder;
     });
+
+    // Keep Lead status synchronized when order is cancelled or confirmed
+    if (status === 'CANCELLED' || status === 'PAYMENT_PENDING') {
+      await upsertOrderLead(id).catch(() => {});
+    } else if (isConfirmedOrder({ status, paymentStatus: updated.paymentStatus, payments: order.payments })) {
+      await markCustomerLeadsConverted({ orderId: id, customerId: updated.customerId }).catch(() => {});
+    }
 
     return NextResponse.json({ order: updated });
   } catch (error: any) {
@@ -833,6 +920,22 @@ export async function handlePostAdminOrderShip(req: NextRequest, { params }: Rou
           shippingStatus: ShippingStatus.AWB_ASSIGNED,
         },
       });
+
+      // Record in multi-shipment OrderShipment table without overwriting existing shipments
+      const existingShipmentsCount = await prisma.orderShipment.count({
+        where: { orderId: order.id },
+      });
+      await prisma.orderShipment.create({
+        data: {
+          orderId: order.id,
+          shipmentNumber: existingShipmentsCount + 1,
+          courierName: courierName || 'Shiprocket',
+          awbCode,
+          trackingUrl,
+          status: ShippingStatus.AWB_ASSIGNED,
+        },
+      });
+
       return NextResponse.json({ message: 'AWB Assigned', order: updated });
     }
 
@@ -1379,26 +1482,421 @@ export async function handleGetAdminPriceRequests(_req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// 23. GET /api/admin/leads/:id
+// 23. GET / PATCH /api/admin/leads/:id
 // ---------------------------------------------------------------------------
 export async function handleGetAdminLeadById(_req: NextRequest, { params }: RouteContext) {
   try {
     await requireAdmin();
     const { id } = await params;
-    
-    const order = await prisma.order.findUnique({
-      where: { id },
-      include: { items: true }
+
+    let lead = await prisma.lead.findFirst({
+      where: {
+        OR: [{ id }, { orderId: id }, { dedupeKey: `order:${id}` }],
+      },
+      include: {
+        customer: { select: { id: true, name: true, email: true, phone: true } },
+        order: {
+          include: {
+            items: true,
+            payments: { orderBy: { createdAt: 'desc' } },
+            adminNotes: {
+              orderBy: { createdAt: 'desc' },
+              include: { author: { select: { id: true, name: true, email: true } } },
+            },
+          },
+        },
+        convertedOrder: {
+          select: { id: true, status: true, total: true, createdAt: true },
+        },
+      },
     });
-    if (!order) {
+
+    if (!lead) {
+      // Check if an un-synced Order exists with this ID and sync it on demand
+      const order = await prisma.order.findUnique({ where: { id } });
+      if (order) {
+        await upsertOrderLead(order.id);
+        lead = await prisma.lead.findFirst({
+          where: { OR: [{ id }, { orderId: id }] },
+          include: {
+            customer: { select: { id: true, name: true, email: true, phone: true } },
+            order: {
+              include: {
+                items: true,
+                payments: { orderBy: { createdAt: 'desc' } },
+                adminNotes: {
+                  orderBy: { createdAt: 'desc' },
+                  include: { author: { select: { id: true, name: true, email: true } } },
+                },
+              },
+            },
+            convertedOrder: {
+              select: { id: true, status: true, total: true, createdAt: true },
+            },
+          },
+        });
+      }
+    }
+
+    if (!lead) {
       return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
     }
-    return NextResponse.json({ lead: order });
+
+    return NextResponse.json({ lead });
   } catch (error: any) {
     console.error('Admin Lead Detail Error:', error);
     const authRes = handleAuthError(error);
     if (authRes) return authRes;
     return NextResponse.json({ error: 'Failed to fetch lead' }, { status: 500 });
+  }
+}
+
+export async function handlePatchAdminLeadById(req: NextRequest, { params }: RouteContext) {
+  try {
+    await requireAdmin();
+    const { id } = await params;
+
+    const rawBody = await req.json().catch(() => ({}));
+    const validation = validateBody(UpdateLeadSchema, rawBody);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+
+    const existing = await prisma.lead.findFirst({
+      where: { OR: [{ id }, { orderId: id }] },
+    });
+    if (!existing) {
+      return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
+    }
+
+    const updated = await prisma.lead.update({
+      where: { id: existing.id },
+      data: {
+        ...(validation.data.status !== undefined && { status: validation.data.status as any }),
+        ...(validation.data.reason !== undefined && { reason: validation.data.reason }),
+      },
+    });
+
+    return NextResponse.json({ success: true, lead: updated });
+  } catch (error: any) {
+    console.error('Admin Lead Update Error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to update lead' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 24. Multi-Shipment Order Tracking Management (Admin-only)
+// ---------------------------------------------------------------------------
+export async function handlePostAdminOrderShipment(req: NextRequest, { params }: RouteContext) {
+  try {
+    const admin = await requireAdmin();
+    const { id: orderId } = await params;
+
+    const rawBody = await req.json().catch(() => ({}));
+    const validation = validateBody(OrderShipmentCreateSchema, rawBody);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { shipments: true },
+    });
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+
+    const data = validation.data;
+    const maxNum = order.shipments.reduce((max, s) => Math.max(max, s.shipmentNumber || 0), 0);
+    const now = new Date();
+    const shippedAt =
+      data.status === 'SHIPPED' || data.status === 'IN_TRANSIT' || data.status === 'DELIVERED'
+        ? now
+        : null;
+    const deliveredAt = data.status === 'DELIVERED' ? now : null;
+
+    const shipment = await prisma.$transaction(async (tx) => {
+      const created = await tx.orderShipment.create({
+        data: {
+          orderId,
+          shipmentNumber: maxNum + 1,
+          courierName: data.courierName,
+          awbCode: data.awbCode,
+          trackingUrl: data.trackingUrl || null,
+          status: data.status as ShippingStatus,
+          shippedAt,
+          deliveredAt,
+        },
+      });
+
+      // Keep existing order/payment info intact; only initialize shippingStatus if NOT_CREATED
+      const orderUpdateData: any = {};
+      if (order.shippingStatus === ShippingStatus.NOT_CREATED) {
+        orderUpdateData.shippingStatus = data.status as ShippingStatus;
+        if (!order.awbCode) orderUpdateData.awbCode = data.awbCode;
+        if (!order.courierName) orderUpdateData.courierName = data.courierName;
+        if (!order.trackingUrl && data.trackingUrl) orderUpdateData.trackingUrl = data.trackingUrl;
+      }
+
+      if (
+        data.updateOrderStatus &&
+        (order.status === 'PAID' || order.status === 'PROCESSING')
+      ) {
+        orderUpdateData.status = 'SHIPPED';
+        if (!order.shippedAt) orderUpdateData.shippedAt = now;
+        await tx.orderStatusHistory.create({
+          data: {
+            orderId,
+            status: 'SHIPPED',
+            notes: `Shipment #${maxNum + 1} added (${data.courierName}: ${data.awbCode})`,
+          },
+        });
+      }
+
+      if (Object.keys(orderUpdateData).length > 0) {
+        await tx.order.update({
+          where: { id: orderId },
+          data: orderUpdateData,
+        });
+      }
+
+      return created;
+    });
+
+    await logAudit(admin.userId!, 'ADMIN_ADD_ORDER_SHIPMENT', orderId, {
+      shipmentId: shipment.id,
+      courierName: shipment.courierName,
+      awbCode: shipment.awbCode,
+    });
+
+    return NextResponse.json({ success: true, shipment }, { status: 201 });
+  } catch (error: any) {
+    console.error('Admin add order shipment error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to add shipment' }, { status: 500 });
+  }
+}
+
+export async function handlePatchAdminOrderShipment(req: NextRequest, { params }: RouteContext) {
+  try {
+    const admin = await requireAdmin();
+    const { id: orderId, shipmentId } = await params;
+
+    const rawBody = await req.json().catch(() => ({}));
+    const validation = validateBody(OrderShipmentUpdateSchema, rawBody);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+
+    const existing = await prisma.orderShipment.findUnique({
+      where: { id: shipmentId },
+    });
+    if (!existing || existing.orderId !== orderId) {
+      return NextResponse.json({ error: 'Shipment not found for this order' }, { status: 404 });
+    }
+
+    const data = validation.data;
+    const now = new Date();
+    const updatePayload: any = {};
+    if (data.courierName !== undefined) updatePayload.courierName = data.courierName;
+    if (data.awbCode !== undefined) updatePayload.awbCode = data.awbCode;
+    if (data.trackingUrl !== undefined) updatePayload.trackingUrl = data.trackingUrl || null;
+    if (data.status !== undefined) {
+      updatePayload.status = data.status as ShippingStatus;
+      if (
+        (data.status === 'SHIPPED' || data.status === 'IN_TRANSIT') &&
+        !existing.shippedAt
+      ) {
+        updatePayload.shippedAt = now;
+      }
+      if (data.status === 'DELIVERED' && !existing.deliveredAt) {
+        updatePayload.deliveredAt = now;
+      }
+    }
+
+    const updated = await prisma.orderShipment.update({
+      where: { id: shipmentId },
+      data: updatePayload,
+    });
+
+    await logAudit(admin.userId!, 'ADMIN_UPDATE_ORDER_SHIPMENT', orderId, {
+      shipmentId,
+      courierName: updated.courierName,
+      awbCode: updated.awbCode,
+      status: updated.status,
+    });
+
+    return NextResponse.json({ success: true, shipment: updated });
+  } catch (error: any) {
+    console.error('Admin update order shipment error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to update shipment' }, { status: 500 });
+  }
+}
+
+export async function handleDeleteAdminOrderShipment(_req: NextRequest, { params }: RouteContext) {
+  try {
+    const admin = await requireAdmin();
+    const { id: orderId, shipmentId } = await params;
+
+    const existing = await prisma.orderShipment.findUnique({
+      where: { id: shipmentId },
+    });
+    if (!existing || existing.orderId !== orderId) {
+      return NextResponse.json({ error: 'Shipment not found for this order' }, { status: 404 });
+    }
+
+    await prisma.orderShipment.delete({
+      where: { id: shipmentId },
+    });
+
+    await logAudit(admin.userId!, 'ADMIN_DELETE_ORDER_SHIPMENT', orderId, {
+      shipmentId,
+      awbCode: existing.awbCode,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error('Admin delete order shipment error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to delete shipment' }, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 25. Private Admin Order Notes (Strictly Admin-only)
+// ---------------------------------------------------------------------------
+export async function handleGetAdminOrderNotes(_req: NextRequest, { params }: RouteContext) {
+  try {
+    await requireAdmin();
+    const { id: orderId } = await params;
+
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      select: { id: true },
+    });
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+
+    const notes = await prisma.orderAdminNote.findMany({
+      where: { orderId },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        author: { select: { id: true, name: true, email: true } },
+      },
+    });
+
+    return NextResponse.json({ notes });
+  } catch (error: any) {
+    console.error('Admin get order notes error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to fetch admin notes' }, { status: 500 });
+  }
+}
+
+export async function handlePostAdminOrderNote(req: NextRequest, { params }: RouteContext) {
+  try {
+    const admin = await requireAdmin();
+    const { id: orderId } = await params;
+
+    const rawBody = await req.json().catch(() => ({}));
+    const validation = validateBody(OrderAdminNoteSchema, rawBody);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      select: { id: true },
+    });
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+
+    const note = await prisma.orderAdminNote.create({
+      data: {
+        orderId,
+        authorId: admin.userId || null,
+        content: validation.data.content,
+      },
+      include: {
+        author: { select: { id: true, name: true, email: true } },
+      },
+    });
+
+    return NextResponse.json({ success: true, note }, { status: 201 });
+  } catch (error: any) {
+    console.error('Admin create order note error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to create admin note' }, { status: 500 });
+  }
+}
+
+export async function handlePatchAdminOrderNote(req: NextRequest, { params }: RouteContext) {
+  try {
+    await requireAdmin();
+    const { id: orderId, noteId } = await params;
+
+    const rawBody = await req.json().catch(() => ({}));
+    const validation = validateBody(OrderAdminNoteSchema, rawBody);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+
+    const existing = await prisma.orderAdminNote.findUnique({
+      where: { id: noteId },
+    });
+    if (!existing || existing.orderId !== orderId) {
+      return NextResponse.json({ error: 'Note not found for this order' }, { status: 404 });
+    }
+
+    const note = await prisma.orderAdminNote.update({
+      where: { id: noteId },
+      data: { content: validation.data.content },
+      include: {
+        author: { select: { id: true, name: true, email: true } },
+      },
+    });
+
+    return NextResponse.json({ success: true, note });
+  } catch (error: any) {
+    console.error('Admin update order note error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to update admin note' }, { status: 500 });
+  }
+}
+
+export async function handleDeleteAdminOrderNote(_req: NextRequest, { params }: RouteContext) {
+  try {
+    await requireAdmin();
+    const { id: orderId, noteId } = await params;
+
+    const existing = await prisma.orderAdminNote.findUnique({
+      where: { id: noteId },
+    });
+    if (!existing || existing.orderId !== orderId) {
+      return NextResponse.json({ error: 'Note not found for this order' }, { status: 404 });
+    }
+
+    await prisma.orderAdminNote.delete({
+      where: { id: noteId },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error('Admin delete order note error:', error);
+    const authRes = handleAuthError(error);
+    if (authRes) return authRes;
+    return NextResponse.json({ error: 'Failed to delete admin note' }, { status: 500 });
   }
 }
 

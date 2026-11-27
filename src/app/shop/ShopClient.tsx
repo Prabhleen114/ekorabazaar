@@ -646,6 +646,11 @@ export default function ShopClient({
                                       ? `From ₹${displayPriceText}`
                                       : `₹${displayPriceText}`}
                                   </span>
+                                  {product.mrp !== null && product.mrp !== undefined && product.mrp > product.price && (
+                                    <span className="text-[11px] text-stone-400 line-through">
+                                      ₹{product.mrp.toLocaleString('en-IN')}
+                                    </span>
+                                  )}
                                   {product.bulkDiscountAvailable && (!product.variants || product.variants.length === 0) && (
                                     <span className="text-[10px] text-stone-500">(10+ Bulk Tier)</span>
                                   )}

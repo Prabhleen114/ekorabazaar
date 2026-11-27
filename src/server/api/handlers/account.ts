@@ -15,6 +15,21 @@ export async function handleGetAccountOrders(_req: NextRequest) {
         items: true,
         payments: { select: { status: true, type: true, amount: true } },
         statusHistory: { orderBy: { createdAt: 'desc' } },
+        shipments: {
+          orderBy: { createdAt: 'asc' },
+          select: {
+            id: true,
+            shipmentNumber: true,
+            courierName: true,
+            awbCode: true,
+            trackingUrl: true,
+            status: true,
+            shippedAt: true,
+            deliveredAt: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
       },
       orderBy: { createdAt: 'desc' },
     });

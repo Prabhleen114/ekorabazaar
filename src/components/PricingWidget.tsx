@@ -79,6 +79,7 @@ export default function PricingWidget({
   productName,
   sellerId,
   basePrice,
+  mrp = null,
   tiers = [],
   variants = [],
   colors = [],
@@ -91,6 +92,7 @@ export default function PricingWidget({
   productName?: string;
   sellerId?: string | null;
   basePrice?: number;
+  mrp?: number | null;
   tiers: Tier[];
   variants?: ProductVariant[];
   colors?: ProductColor[];
@@ -754,6 +756,11 @@ export default function PricingWidget({
                   <span className="text-3xl font-sans font-bold text-stone-900">
                     ₹{displayPrice.toLocaleString()}
                   </span>
+                  {mrp !== null && mrp !== undefined && mrp > displayPrice && (
+                    <span className="text-base text-stone-400 line-through font-sans">
+                      ₹{mrp.toLocaleString('en-IN')}
+                    </span>
+                  )}
                   <span className="text-xs text-stone-500 font-sans">/ unit</span>
                 </>
               )}

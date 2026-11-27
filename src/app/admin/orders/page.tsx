@@ -4,16 +4,15 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
-type TabStatus = 'ALL' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED' | 'REFUND_INITIATED' | 'REFUNDED'
+type TabStatus = 'ALL' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'IN_TRANSIT' | 'DELIVERED' | 'REFUND_INITIATED' | 'REFUNDED'
 
 const TABS: { key: TabStatus; label: string }[] = [
-  { key: 'ALL',              label: 'Total' },
-  { key: 'PAID',             label: 'Confirmed' },
+  { key: 'ALL',              label: 'Confirmed Total' },
+  { key: 'PAID',             label: 'Order Confirmed' },
   { key: 'PROCESSING',       label: 'Processing' },
   { key: 'SHIPPED',          label: 'Shipped' },
   { key: 'IN_TRANSIT',       label: 'In Transit' },
   { key: 'DELIVERED',        label: 'Delivered' },
-  { key: 'CANCELLED',        label: 'Cancelled' },
   { key: 'REFUND_INITIATED', label: 'Refund Initiated' },
   { key: 'REFUNDED',         label: 'Refunded' },
 ]
@@ -163,20 +162,21 @@ export default function AdminOrdersPage() {
                 <th className="p-4">Customer</th>
                 <th className="p-4">Amount</th>
                 <th className="p-4">Status</th>
+                <th className="p-4">Shipments</th>
                 <th className="p-4">Actions</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-gray-500">Loading orders...</td>
+                  <td colSpan={7} className="p-8 text-center text-gray-500">Loading orders...</td>
                 </tr>
               ) : orders.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-gray-500">
+                  <td colSpan={7} className="p-8 text-center text-gray-500">
                     {activeTab === 'ALL'
-                      ? 'No orders found.'
-                      : 'No orders found with status "' + activeTab + '".'}
+                      ? 'No confirmed orders found.'
+                      : 'No confirmed orders found with status "' + activeTab + '".'}
                   </td>
                 </tr>
               ) : orders.map((order) => {
@@ -184,6 +184,7 @@ export default function AdminOrdersPage() {
                 const displayName = snap?.name || order.customer?.email || 'N/A'
                 const subEmail    = snap?.name ? (order.customer?.email || '') : ''
                 const totalINR    = (order.total / 100).toFixed(2)
+                const shipCount   = order._count?.shipments || 0
                 return (
                   <tr key={order.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
                     <td className="p-4 font-mono text-xs text-gray-500">
@@ -201,6 +202,15 @@ export default function AdminOrdersPage() {
                       <span className={'inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold ' + orderStatusClass(order.status)}>
                         {getCustomerFacingOrderStatus(order.status as any)}
                       </span>
+                    </td>
+                    <td className="p-4 text-xs">
+                      {shipCount > 0 ? (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 font-semibold">
+                          {shipCount} {shipCount === 1 ? 'Shipment' : 'Shipments'}
+                        </span>
+                      ) : (
+                        <span className="text-gray-400">Not added</span>
+                      )}
                     </td>
                     <td className="p-4">
                       <Link

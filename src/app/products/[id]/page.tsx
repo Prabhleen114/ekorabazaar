@@ -19,7 +19,7 @@ import ProductFaqSection from "@/components/ProductFaqSection";
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
-import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR } from "@/lib/pricing";
+import { normalizeTierPriceToRupees, normalizeProductBasePriceToINR, normalizeTierPriceToINR, normalizeProductMrpToINR } from "@/lib/pricing";
 
 // On-demand revalidation via revalidatePath on product updates, approvals, price changes & stock decrements
 
@@ -33,6 +33,7 @@ export interface ProductDetailView {
   department: string;
   tags: string[];
   price: number;
+  mrp?: number | null;
   moq: number;
   tiers: any[];
   variants?: any[];
@@ -52,18 +53,38 @@ type Props = {
 
 async function getProductData(id: string): Promise<ProductDetailView | null> {
   // 1. Try DB first
+  let dbProductFound = false;
   try {
     const product = await prisma.product.findUnique({
       where: { id },
       include: { seller: true }
     });
 
-    if (product && product.status === ProductStatus.PUBLISHED && (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE')) {
+    if (product) {
+      dbProductFound = true;
+      const isPublishedAndActive =
+        product.status === ProductStatus.PUBLISHED &&
+        (product as any).isActive !== false &&
+        (product.sellerId === null || product.seller?.accountStatus === 'ACTIVE');
+
+      if (!isPublishedAndActive) {
+        return null;
+      }
+
       const effectivePrice = normalizeProductBasePriceToINR(product);
+      const mrpINR = normalizeProductMrpToINR(product);
       const catalogItem = (catalogProducts as any[]).find(p => String(p.id) === String(id));
-      const imageUrl = (catalogItem?.image && catalogItem.image.startsWith('/images/products/'))
-        ? catalogItem.image
-        : (product.imageUrl || "/og-image.jpg");
+      const dbImages = Array.isArray((product as any).images) ? ((product as any).images as string[]).filter(Boolean) : [];
+      const isAdminManaged = Boolean((product as any).adminManaged);
+
+      const imageUrl = isAdminManaged
+        ? (product.imageUrl || dbImages[0] || "/og-image.jpg")
+        : (product.imageUrl && product.imageUrl !== '/og-image.jpg' && !product.imageUrl.includes('placeholder')
+            ? product.imageUrl
+            : (catalogItem?.image && catalogItem.image.startsWith('/images/products/')
+                ? catalogItem.image
+                : (product.imageUrl || "/og-image.jpg")));
+
       const category = product.category || catalogItem?.category || "General Silicone Moulds";
       const department = getDepartmentForCategory(category) || catalogItem?.department || "Precision Studio Moulds";
 
@@ -77,7 +98,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
             }))
         : [];
 
-      const catalogValidTiers = Array.isArray(catalogItem?.tiers)
+      const catalogValidTiers = !isAdminManaged && Array.isArray(catalogItem?.tiers)
         ? (catalogItem.tiers as any[])
             .filter((t: any) => t && Number(t.price) > 0)
             .map((t: any) => ({
@@ -101,11 +122,13 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         ? catalogItem.colors
         : [];
 
-      const galleryImages: string[] = Array.isArray(catalogItem?.images) && catalogItem.images.length > 0
-        ? catalogItem.images
-        : [imageUrl];
+      const galleryImages: string[] = dbImages.length > 0
+        ? Array.from(new Set([imageUrl, ...dbImages].filter(Boolean)))
+        : (!isAdminManaged && Array.isArray(catalogItem?.images) && catalogItem.images.length > 0
+            ? catalogItem.images
+            : [imageUrl]);
 
-      const isQuoteOnly = catalogItem?.isQuoteOnly === true || catalogItem?.inStock === false || product.price <= 0 || product.stock <= 0 || effectivePrice <= 0;
+      const isQuoteOnly = (!isAdminManaged && (catalogItem?.isQuoteOnly === true || catalogItem?.inStock === false)) || product.price <= 0 || product.stock <= 0 || effectivePrice <= 0;
 
       return {
         rawProduct: product,
@@ -117,6 +140,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         department,
         tags: [] as string[],
         price: effectivePrice,
+        mrp: mrpINR,
         moq: product.moq || 1,
         tiers: isQuoteOnly ? [] : tiers,
         variants,
@@ -124,7 +148,7 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
         description: product.description || catalogItem?.description || "",
         supplierName: product.seller?.brandName || "Verified Ekora Supplier",
         sellerId: product.sellerId,
-        inStock: product.stock > 0 && catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly && effectivePrice > 0,
+        inStock: product.stock > 0 && (isAdminManaged || (catalogItem?.inStock !== false && !catalogItem?.isQuoteOnly)) && effectivePrice > 0,
         isQuoteOnly,
         fragranceNotes: null as any,
         usageLevels: null as any
@@ -132,6 +156,10 @@ async function getProductData(id: string): Promise<ProductDetailView | null> {
     }
   } catch (err) {
     // Database query fallback
+  }
+
+  if (dbProductFound) {
+    return null;
   }
 
   // 2. Fallback to active catalog
@@ -363,6 +391,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             productName={displayProduct.name}
             sellerId={productData.sellerId}
             basePrice={displayProduct.price}
+            mrp={productData.mrp}
             tiers={displayProduct.tiers}
             variants={displayProduct.variants}
             colors={displayProduct.colors}
