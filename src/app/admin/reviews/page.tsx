@@ -111,7 +111,8 @@ export default function AdminReviewsPage() {
         if (res.status === 401 || res.status === 403) {
           throw new Error('Admin session expired. Please log in again.')
         }
-        throw new Error('Failed to load reviews.')
+        const errBody = await res.json().catch(() => null)
+        throw new Error(errBody?.error || `Failed to load reviews (HTTP ${res.status}).`)
       }
 
       const data = await res.json()

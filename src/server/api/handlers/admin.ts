@@ -611,27 +611,44 @@ export async function handleGetAdminOrderById(_req: NextRequest, { params }: Rou
     await requireAdmin();
     const { id } = await params;
 
-    const order = await prisma.order.findUnique({
-      where: { id },
-      include: {
-        customer: { select: { id: true, name: true, email: true, phone: true } },
-        items: {
-          include: {
-            review: { select: { id: true, status: true, rating: true, createdAt: true } },
-            reviewToken: { select: { id: true, token: true, usedAt: true, expiresAt: true, revokedAt: true } },
-          },
-        },
-        payments: { orderBy: { createdAt: 'desc' } },
-        statusHistory: { orderBy: { createdAt: 'desc' } },
-        shipments: { orderBy: { createdAt: 'asc' } },
-        adminNotes: {
-          orderBy: { createdAt: 'desc' },
-          include: {
-            author: { select: { id: true, name: true, email: true } },
-          },
+    const baseInclude = {
+      customer: { select: { id: true, name: true, email: true, phone: true } },
+      payments: { orderBy: { createdAt: 'desc' as const } },
+      statusHistory: { orderBy: { createdAt: 'desc' as const } },
+      shipments: { orderBy: { createdAt: 'asc' as const } },
+      adminNotes: {
+        orderBy: { createdAt: 'desc' as const },
+        include: {
+          author: { select: { id: true, name: true, email: true } },
         },
       },
-    });
+    };
+
+    let order;
+    try {
+      order = await prisma.order.findUnique({
+        where: { id },
+        include: {
+          ...baseInclude,
+          items: {
+            include: {
+              review: { select: { id: true, status: true, rating: true, createdAt: true } },
+              reviewToken: { select: { id: true, token: true, usedAt: true, expiresAt: true, revokedAt: true } },
+            },
+          },
+        },
+      });
+    } catch (relationErr: any) {
+      // Preserve order details availability even if review tables/columns are unavailable
+      console.warn('Admin order detail review relation lookup failed; falling back to base items:', relationErr?.message || relationErr);
+      order = await prisma.order.findUnique({
+        where: { id },
+        include: {
+          ...baseInclude,
+          items: true,
+        },
+      });
+    }
 
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });

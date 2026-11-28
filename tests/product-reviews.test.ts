@@ -510,6 +510,30 @@ vi.mock('@/lib/db', () => {
         return existing;
       }),
     },
+    order: {
+      findUnique: vi.fn(async ({ where, include }: { where: { id: string }; include?: { items?: MockRecord | boolean } }) => {
+        const ord = mockState.orders.get(where.id);
+        if (!ord) return null;
+        if (
+          include?.items &&
+          typeof include.items === 'object' &&
+          (include.items as { include?: { review?: unknown } }).include?.review &&
+          mockState.session?.userId === 'simulate-missing-review-table'
+        ) {
+          throw new Error('relation "Review" does not exist');
+        }
+        const items = Array.from(mockState.orderItems.values()).filter((oi) => oi.orderId === ord.id);
+        return {
+          ...ord,
+          customer: mockState.users.get(String(ord.customerId)) || null,
+          items,
+          payments: ord.payments || [],
+          statusHistory: [],
+          shipments: [],
+          adminNotes: [],
+        };
+      }),
+    },
     $transaction: vi.fn(async (fn: (tx: MockRecord) => Promise<unknown>) => fn(prismaMock)),
   };
 
@@ -525,6 +549,7 @@ import {
   handleDeleteAdminReview,
   handlePostAdminOrderReviewLink,
 } from '@/server/api/handlers/reviews';
+import { handleGetAdminOrderById } from '@/server/api/handlers/admin';
 import {
   buildProductReviewUrl,
   buildReviewWhatsAppMessage,
@@ -924,5 +949,38 @@ describe('Product Review & Rating System End-to-End Tests', () => {
       'utf8'
     );
     expect(orderDetailSrc).toContain('OrderItemReviewShare');
+  });
+
+  it('6. Zero-review admin response & Order Details fallback resilience', async () => {
+    mockState.session = { userId: 'admin-1', role: 'ADMIN', sellerId: null };
+
+    const zeroRes = await handleGetAdminReviews(
+      new NextRequest('http://localhost/api/admin/reviews?page=1&limit=20')
+    );
+    expect(zeroRes.status).toBe(200);
+    const zeroData = await zeroRes.json();
+    expect(zeroData.reviews).toEqual([]);
+    expect(zeroData.counts).toEqual({ ALL: 0, PENDING: 0, APPROVED: 0, REJECTED: 0 });
+    expect(zeroData.overallStats).toEqual({ approvedAverageRating: 0, approvedCount: 0 });
+    expect(zeroData.products).toEqual([]);
+
+    const orderRes = await handleGetAdminOrderById(
+      new NextRequest('http://localhost/api/admin/orders/ord-paid-multi'),
+      { params: Promise.resolve({ id: 'ord-paid-multi' }) }
+    );
+    expect(orderRes.status).toBe(200);
+    const orderData = await orderRes.json();
+    expect(orderData.order.items).toHaveLength(2);
+
+    // Even if review/reviewToken relation lookup fails, order details still loads cleanly
+    mockState.session = { userId: 'simulate-missing-review-table', role: 'ADMIN', sellerId: null };
+    const fallbackOrderRes = await handleGetAdminOrderById(
+      new NextRequest('http://localhost/api/admin/orders/ord-paid-multi'),
+      { params: Promise.resolve({ id: 'ord-paid-multi' }) }
+    );
+    expect(fallbackOrderRes.status).toBe(200);
+    const fallbackOrderData = await fallbackOrderRes.json();
+    expect(fallbackOrderData.order.id).toBe('ord-paid-multi');
+    expect(fallbackOrderData.order.items).toHaveLength(2);
   });
 });

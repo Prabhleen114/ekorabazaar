@@ -742,59 +742,68 @@ export async function queryAdminReviews(filters: {
     ];
   }
 
-  const [reviews, total, statusGroups, approvedAgg, productSummaries, reviewedProducts] =
-    await Promise.all([
-      prisma.review.findMany({
-        where,
-        skip,
-        take: limit,
-        orderBy: [{ createdAt: 'desc' }],
-        include: {
-          product: {
-            select: { id: true, title: true, imageUrl: true, category: true },
-          },
-          user: {
-            select: { id: true, name: true, email: true },
-          },
-          order: {
-            select: {
-              id: true,
-              status: true,
-              createdAt: true,
-              addressSnapshot: true,
-              customer: { select: { name: true, email: true } },
-            },
+  const [reviews, total, statusGroups] = await Promise.all([
+    prisma.review.findMany({
+      where,
+      skip,
+      take: limit,
+      orderBy: [{ createdAt: 'desc' }],
+      include: {
+        product: {
+          select: { id: true, title: true, imageUrl: true, category: true },
+        },
+        user: {
+          select: { id: true, name: true, email: true },
+        },
+        order: {
+          select: {
+            id: true,
+            status: true,
+            createdAt: true,
+            addressSnapshot: true,
+            customer: { select: { name: true, email: true } },
           },
         },
-      }),
-      prisma.review.count({ where }),
-      prisma.review.groupBy({
-        by: ['status'],
-        _count: { _all: true },
-      }),
-      prisma.review.aggregate({
-        where: { status: ReviewStatus.APPROVED },
-        _avg: { rating: true },
-        _count: { _all: true },
-      }),
-      prisma.review.groupBy({
-        by: ['productId'],
-        where: { status: ReviewStatus.APPROVED },
-        _avg: { rating: true },
-        _count: { _all: true },
-      }),
-      prisma.product.findMany({
-        where: { reviews: { some: {} } },
-        select: { id: true, title: true },
-        orderBy: { title: 'asc' },
-      }),
-    ]);
+      },
+    }),
+    prisma.review.count({ where }),
+    prisma.review.groupBy({
+      by: ['status'],
+      _avg: { rating: true },
+      _count: { _all: true },
+    }),
+  ]);
 
   const counts = { ALL: 0, PENDING: 0, APPROVED: 0, REJECTED: 0 };
+  let approvedAverageRating = 0;
+  let approvedCount = 0;
   for (const grp of statusGroups) {
     counts[grp.status] = grp._count._all;
     counts.ALL += grp._count._all;
+    if (grp.status === ReviewStatus.APPROVED) {
+      approvedCount = grp._count._all;
+      approvedAverageRating = grp._avg?.rating ? Math.round(grp._avg.rating * 10) / 10 : 0;
+    }
   }
+
+  const [productSummaries, reviewedProducts] =
+    counts.ALL > 0
+      ? await Promise.all([
+          approvedCount > 0
+            ? prisma.review.groupBy({
+                by: ['productId'],
+                where: { status: ReviewStatus.APPROVED },
+                _avg: { rating: true },
+                _count: { _all: true },
+              })
+            : Promise.resolve([]),
+          prisma.product.findMany({
+            where: { reviews: { some: {} } },
+            select: { id: true, title: true },
+            orderBy: { title: 'asc' },
+          }),
+        ])
+      : [[], []];
 
   const productStatsMap = new Map<string, { averageRating: number; reviewCount: number }>();
   for (const ps of productSummaries) {
@@ -847,10 +856,8 @@ export async function queryAdminReviews(filters: {
     reviews: formatted,
     counts,
     overallStats: {
-      approvedAverageRating: approvedAgg._avg.rating
-        ? Math.round(approvedAgg._avg.rating * 10) / 10
-        : 0,
-      approvedCount: approvedAgg._count._all,
+      approvedAverageRating,
+      approvedCount,
     },
     products: reviewedProducts,
     pagination: {
