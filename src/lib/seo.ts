@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { normalizeProductBasePriceToINR } from '@/lib/pricing';
+import type { PublicProductReview, ReviewStatsSummary } from '@/lib/reviews';
 
 export const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://ekorabazaar.in';
 const SITE_NAME = 'Ekora Bazaar';
@@ -111,8 +112,13 @@ export function generateGuideMetadata(guideTitle: string, guideSlug: string): Me
 
 /**
  * Generate Product Structured Data (Schema.org) with B2B wholesale tier pricing
+ * and genuine customer AggregateRating + Review items when published reviews exist.
  */
-export function generateProductSchema(product: any, sellerName?: string) {
+export function generateProductSchema(
+  product: any,
+  sellerName?: string,
+  reviewData?: { stats?: ReviewStatsSummary; reviews?: PublicProductReview[] }
+) {
     const defaultDesc = product.description || `Buy ${product.title || product.name} wholesale online at Ekora Bazaar. Perfect for professional creators and brands.`;
     // For official products, use "Ekora Bazaar" instead of "Ekora Official Development"
     let computedSeller = sellerName || (product.seller && product.seller.businessName) || "Ekora Bazaar";
@@ -204,6 +210,39 @@ export function generateProductSchema(product: any, sellerName?: string) {
       },
     "offers": offers
   };
+
+  if (
+    reviewData?.stats &&
+    reviewData.stats.totalReviews > 0 &&
+    reviewData.stats.averageRating > 0 &&
+    Array.isArray(reviewData.reviews) &&
+    reviewData.reviews.length > 0
+  ) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": reviewData.stats.averageRating,
+      "reviewCount": reviewData.stats.totalReviews,
+      "bestRating": 5,
+      "worstRating": 1,
+    };
+
+    schema.review = reviewData.reviews.slice(0, 10).map((r) => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": r.reviewerName || (r.isVerifiedPurchase ? "Verified Buyer" : "Ekora Customer"),
+      },
+      "datePublished": r.createdAt.split("T")[0],
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": r.rating,
+        "bestRating": 5,
+        "worstRating": 1,
+      },
+      ...(r.title ? { "name": r.title } : {}),
+      "reviewBody": r.comment,
+    }));
+  }
 
   return schema;
 }

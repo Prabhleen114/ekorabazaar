@@ -29,6 +29,8 @@ model User {
   pointsLedger    EkoraPointsLedger[]
   adminOrderNotes OrderAdminNote[] @relation("AdminOrderNoteAuthor")
   leads           Lead[]
+  reviews         Review[]       @relation("CustomerReviews")
+  moderatedReviews Review[]      @relation("AdminModeratedReviews")
 }
 
 model Seller {
@@ -112,6 +114,8 @@ model Product {
   adminCreator             User?                    @relation("AdminCreatedProducts", fields: [createdByAdminId], references: [id])
   seller                   Seller?                  @relation("SellerProducts", fields: [sellerId], references: [id])
   supplierProducts         SupplierProduct[]
+  reviews                  Review[]
+  reviewTokens             ReviewToken[]
 
   @@index([status, categoryId])
   @@index([status, category])
@@ -185,6 +189,8 @@ model Order {
   adminNotes        OrderAdminNote[]
   sourceLead        Lead?                @relation("LeadSourceOrder")
   convertedLeads    Lead[]               @relation("LeadConvertedOrder")
+  reviews           Review[]
+  reviewTokens      ReviewToken[]
 }
 
 model OrderShipment {
@@ -272,6 +278,8 @@ model OrderItem {
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
   order               Order    @relation(fields: [orderId], references: [id])
+  review              Review?
+  reviewToken         ReviewToken?
 }
 
 model Payment {
@@ -1000,4 +1008,69 @@ model CheckoutEvent {
   @@index([event, createdAt])
   @@index([sessionId, createdAt])
   @@map("checkout_events")
+}
+
+// ─── Product Reviews & Verified Purchase Invites ──────────────────────────────
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model ReviewToken {
+  id          String    @id @default(uuid())
+  token       String    @unique
+  orderId     String
+  orderItemId String    @unique
+  productId   String
+  createdById String?
+  expiresAt   DateTime?
+  usedAt      DateTime?
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  order       Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  review      Review?
+
+  @@index([orderId, productId])
+  @@index([productId])
+}
+
+model Review {
+  id                 String       @id @default(uuid())
+  productId          String
+  userId             String?
+  orderId            String?
+  orderItemId        String?      @unique
+  reviewTokenId      String?      @unique
+  rating             Int
+  title              String?
+  comment            String
+  reviewerName       String?
+  reviewerEmail      String?
+  isVerifiedPurchase Boolean      @default(false)
+  status             ReviewStatus @default(PENDING)
+  moderatedById      String?
+  moderatedAt        DateTime?
+  moderationNote     String?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  product            Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user               User?        @relation("CustomerReviews", fields: [userId], references: [id], onDelete: SetNull)
+  order              Order?       @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  orderItem          OrderItem?   @relation(fields: [orderItemId], references: [id], onDelete: SetNull)
+  reviewToken        ReviewToken? @relation(fields: [reviewTokenId], references: [id], onDelete: SetNull)
+  moderatedBy        User?        @relation("AdminModeratedReviews", fields: [moderatedById], references: [id], onDelete: SetNull)
+
+  @@index([productId, status, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+  @@index([rating])
+  @@index([userId, productId])
+  @@index([orderId, productId])
+  @@index([reviewerEmail, productId])
 }

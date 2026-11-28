@@ -6,6 +6,7 @@ import ShippingActions from './ShippingActions'
 import OrderStatusSelector from './OrderStatusSelector'
 import OrderTrackingManager from './OrderTrackingManager'
 import OrderAdminNotes from './OrderAdminNotes'
+import OrderItemReviewShare from './OrderItemReviewShare'
 import { getCustomerFacingOrderStatus } from '@/lib/orders'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -142,10 +143,18 @@ function AdminOrderDetailContent() {
                   const qty         = item.quantity ?? 0
 
                   return (
-                    <tr key={item.id}>
+                    <tr key={item.id} className="align-top">
                       <td className="p-4">
                         <div className="font-medium text-sm text-gray-900">{productName}</div>
                         <div className="text-xs text-gray-400 font-mono mt-0.5">{item.productId}</div>
+                        <OrderItemReviewShare
+                          orderId={order.id}
+                          orderItemId={item.id}
+                          productId={item.productId}
+                          productName={productName}
+                          existingReview={item.review || null}
+                          existingToken={item.reviewToken || null}
+                        />
                       </td>
                       <td className="p-4 text-sm text-gray-600">{unitPrice}</td>
                       <td className="p-4 text-sm text-gray-600">{qty}</td>

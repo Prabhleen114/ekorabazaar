@@ -112,6 +112,15 @@ import {
   handleAdminIntelligenceE2EGet,
   handleAdminIntelligenceE2EPost,
 } from './handlers/misc';
+import {
+  handleGetProductReviews,
+  handlePostProductReview,
+  handleVerifyReviewToken,
+  handleGetAdminReviews,
+  handlePatchAdminReview,
+  handleDeleteAdminReview,
+  handlePostAdminOrderReviewLink,
+} from './handlers/reviews';
 
 export const allRoutes: RouteDefinition[] = [
   // Auth
@@ -171,6 +180,10 @@ export const allRoutes: RouteDefinition[] = [
   { method: 'POST', pattern: '/admin/orders/:id/notes', handler: handlePostAdminOrderNote },
   { method: 'PATCH', pattern: '/admin/orders/:id/notes/:noteId', handler: handlePatchAdminOrderNote },
   { method: 'DELETE', pattern: '/admin/orders/:id/notes/:noteId', handler: handleDeleteAdminOrderNote },
+  { method: 'POST', pattern: '/admin/orders/:id/review-link', handler: handlePostAdminOrderReviewLink },
+  { method: 'GET', pattern: '/admin/reviews', handler: handleGetAdminReviews },
+  { method: 'PATCH', pattern: '/admin/reviews/:id', handler: handlePatchAdminReview },
+  { method: 'DELETE', pattern: '/admin/reviews/:id', handler: handleDeleteAdminReview },
   { method: 'GET', pattern: '/admin/price-requests', handler: handleGetAdminPriceRequests },
   { method: 'POST', pattern: '/admin/price-requests/:id', handler: handlePostAdminPriceRequest },
   { method: 'GET', pattern: '/admin/products', handler: handleGetAdminProducts },
@@ -217,6 +230,9 @@ export const allRoutes: RouteDefinition[] = [
   { method: 'GET', pattern: '/docs/:slug/:type', handler: handleDocs },
   { method: 'POST', pattern: '/apply', handler: handleApply },
   { method: 'GET', pattern: '/products', handler: handleProducts },
+  { method: 'GET', pattern: '/products/:id/reviews', handler: handleGetProductReviews },
+  { method: 'POST', pattern: '/products/:id/reviews', handler: handlePostProductReview },
+  { method: 'GET', pattern: '/reviews/verify-token', handler: handleVerifyReviewToken },
   { method: 'POST', pattern: '/coupons/validate', handler: handleCouponsValidate },
   { method: 'POST', pattern: '/track-hesitation', handler: handleTrackHesitation },
   { method: 'POST', pattern: '/intelligence/track-hesitation', handler: handleTrackHesitation },

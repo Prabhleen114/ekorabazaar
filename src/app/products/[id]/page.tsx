@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import ProductGallery from "@/components/ProductGallery";
 import Link from "next/link";
 import serialize from "serialize-javascript";
-import { MessageCircle, FileText, ChevronDown } from "lucide-react";
+import { MessageCircle, FileText, ChevronDown, Star } from "lucide-react";
 import { TrackViewItem } from "@/components/GA4Tracker";
 import { generateProductMetadata, generateProductSchema, generateProductGroupSchema, generateBreadcrumbSchema, generateFaqSchema } from "@/lib/seo";
 import { getCategoryFaqs } from "@/lib/faqs";
@@ -17,6 +17,8 @@ import { resolveCategoryBreadcrumbSlug } from "@/lib/fragrance-collections";
 import { getProductApplicationSubtext } from "@/lib/catalog-subtext";
 import ProductKeySpecs from "@/components/ProductKeySpecs";
 import ProductFaqSection from "@/components/ProductFaqSection";
+import ProductReviewsSection from "@/components/ProductReviewsSection";
+import { getPublicProductReviews } from "@/lib/reviews-server";
 import catalogProducts from "@/lib/data/products.json";
 import { getPostsByCategory } from "@/lib/blog";
 import { isDeprecatedProductId, getCanonicalProductId } from "@/lib/product-redirects";
@@ -252,6 +254,8 @@ export default async function ProductDetailsPage({ params }: Props) {
     notFound();
   }
 
+  const reviewData = await getPublicProductReviews(productData.id);
+
   const displayProduct = {
     id: productData.id,
     name: productData.name,
@@ -272,7 +276,7 @@ export default async function ProductDetailsPage({ params }: Props) {
   };
 
   // Pre-populated JSON-LD Schema
-  const jsonLd = generateProductSchema(productData.rawProduct, productData.supplierName);
+  const jsonLd = generateProductSchema(productData.rawProduct, productData.supplierName, reviewData);
   const productGroupSchema = generateProductGroupSchema(productData.rawProduct, displayProduct.variants || [], productData.supplierName);
 
   const categorySlug = resolveCategoryBreadcrumbSlug(displayProduct.category);
@@ -380,6 +384,31 @@ export default async function ProductDetailsPage({ params }: Props) {
             <p className="text-xs text-stone-600 font-sans leading-relaxed">
               {getProductApplicationSubtext(displayProduct.category, displayProduct.department)}
             </p>
+            <div className="mt-2.5 flex items-center gap-3 flex-wrap">
+              {reviewData.stats.totalReviews > 0 ? (
+                <a
+                  href="#reviews-section"
+                  className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-stone-800 hover:text-brand-orange transition-colors"
+                >
+                  <span className="inline-flex items-center gap-0.5 text-amber-500">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                    <span className="text-stone-900 font-bold">{reviewData.stats.averageRating.toFixed(1)}</span>
+                  </span>
+                  <span className="text-stone-500">
+                    ({reviewData.stats.totalReviews}{" "}
+                    {reviewData.stats.totalReviews === 1 ? "review" : "reviews"})
+                  </span>
+                </a>
+              ) : (
+                <a
+                  href="#reviews-section"
+                  className="inline-flex items-center gap-1 text-xs font-sans font-medium text-stone-500 hover:text-brand-orange transition-colors"
+                >
+                  <Star className="w-3.5 h-3.5 text-stone-400" />
+                  <span>Be the first to review</span>
+                </a>
+              )}
+            </div>
           </div>
 
           {/* 4, 5, 6, 7 & 8: THE BUY BOX (Size chips with price, stepper, live discount, pincode check & CTAs) */}
@@ -537,6 +566,16 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
 
         </div>
+      </div>
+
+      {/* Customer Reviews & Ratings */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 w-full">
+        <ProductReviewsSection
+          productId={displayProduct.id}
+          productName={displayProduct.name}
+          initialStats={reviewData.stats}
+          initialReviews={reviewData.reviews}
+        />
       </div>
 
       {/* Pre-Purchase Technical Q&As */}

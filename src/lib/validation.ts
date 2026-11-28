@@ -199,6 +199,61 @@ export const AdminProductUpdateSchema = z.object({
   { message: 'MRP must be greater than or equal to Selling Price', path: ['mrp'] }
 )
 
+// --- Product Reviews ---
+export const CreateReviewSchema = z.object({
+  rating: z.number().int().min(1, 'Rating must be between 1 and 5').max(5, 'Rating must be between 1 and 5'),
+  title: z
+    .string()
+    .trim()
+    .max(120, 'Review title cannot exceed 120 characters')
+    .optional()
+    .nullable()
+    .transform((v) => (v && v.length > 0 ? v : null)),
+  comment: z
+    .string()
+    .trim()
+    .min(5, 'Please write at least 5 characters for your review')
+    .max(2000, 'Review cannot exceed 2000 characters'),
+  reviewerName: z
+    .string()
+    .trim()
+    .max(80, 'Name cannot exceed 80 characters')
+    .optional()
+    .nullable()
+    .transform((v) => (v && v.length > 0 ? v : null)),
+  reviewerEmail: z
+    .string()
+    .trim()
+    .max(254)
+    .optional()
+    .nullable()
+    .transform((v) => (v && v.length > 0 ? v.toLowerCase() : null))
+    .refine((v) => v === null || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), 'Please enter a valid email address'),
+  reviewToken: z
+    .string()
+    .trim()
+    .max(128)
+    .optional()
+    .nullable()
+    .transform((v) => (v && v.length > 0 ? v : null)),
+  website: z.string().optional().nullable(), // Honeypot anti-spam field
+})
+
+export const AdminModerateReviewSchema = z.object({
+  status: z.enum(['PENDING', 'APPROVED', 'REJECTED']),
+  moderationNote: z
+    .string()
+    .trim()
+    .max(1000, 'Moderation note cannot exceed 1000 characters')
+    .optional()
+    .nullable(),
+})
+
+export const AdminCreateReviewTokenSchema = z.object({
+  orderId: z.string().trim().min(1, 'Order ID is required'),
+  orderItemId: z.string().trim().min(1, 'Order item ID is required'),
+})
+
 // --- Generic Helper: safe parse and return error response ---
 export function validateBody<T>(schema: z.ZodSchema<T>, data: unknown): 
   { success: true; data: T } | { success: false; error: string } {

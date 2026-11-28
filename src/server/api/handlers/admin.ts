@@ -615,7 +615,12 @@ export async function handleGetAdminOrderById(_req: NextRequest, { params }: Rou
       where: { id },
       include: {
         customer: { select: { id: true, name: true, email: true, phone: true } },
-        items: true,
+        items: {
+          include: {
+            review: { select: { id: true, status: true, rating: true, createdAt: true } },
+            reviewToken: { select: { id: true, token: true, usedAt: true, expiresAt: true, revokedAt: true } },
+          },
+        },
         payments: { orderBy: { createdAt: 'desc' } },
         statusHistory: { orderBy: { createdAt: 'desc' } },
         shipments: { orderBy: { createdAt: 'asc' } },
